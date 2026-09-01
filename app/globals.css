@@ -1130,27 +1130,7 @@ textarea {
   }
 }
 
-/* Mobile Media Queries */
-@media (max-width: 800px) {
-  .site-header {
-    padding: 0 6vw;
-  }
-  .main-nav,
-  .coro-link {
-    display: none;
-  }
-  .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .menu-toggle i {
-    display: block;
-    width: 27px;
-    border-top: 1px solid currentColor;
-  }
-
-/* Warm Architectural Mobile Drawer Overlay */
+/* Warm Architectural Mobile Drawer Overlay (Root scope) */
 .mobile-overlay {
   position: fixed;
   inset: 0;
@@ -1159,12 +1139,14 @@ textarea {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.35s ease, visibility 0.35s ease;
 }
 
 .mobile-overlay.open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .mobile-drawer {
@@ -1331,6 +1313,26 @@ textarea {
   margin: 14px 0 0;
   letter-spacing: 0.06em;
 }
+
+/* Mobile Media Queries */
+@media (max-width: 800px) {
+  .site-header {
+    padding: 0 6vw;
+  }
+  .main-nav,
+  .coro-link {
+    display: none;
+  }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .menu-toggle i {
+    display: block;
+    width: 27px;
+    border-top: 1px solid currentColor;
+  }
 
   .hero {
     min-height: 700px;
