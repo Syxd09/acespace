@@ -1,0 +1,93 @@
+'use client';
+
+import React, { useState } from 'react';
+import { materials, Material } from '@/data/materials';
+import MaterialModal from './MaterialModal';
+import Toast from './Toast';
+import ScrollReveal from './ScrollReveal';
+
+export default function MaterialGrid() {
+  const [activeFilter, setActiveFilter] = useState<'all' | 'mineral' | 'veined' | 'textured' | 'translucent'>('all');
+  const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
+  const [showToast, setShowToast] = useState(false);
+
+  const filteredMaterials = materials.filter(
+    (m) => activeFilter === 'all' || m.type === activeFilter
+  );
+
+  const handleRequestSample = () => {
+    setShowToast(true);
+    setTimeout(() => {
+      setShowToast(false);
+    }, 2500);
+  };
+
+  return (
+    <>
+      <ScrollReveal className="filter-row" role="group" aria-label="Material filters">
+        <button
+          className={`filter ${activeFilter === 'all' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('all')}
+        >
+          All materials
+        </button>
+        <button
+          className={`filter ${activeFilter === 'mineral' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('mineral')}
+        >
+          Mineral
+        </button>
+        <button
+          className={`filter ${activeFilter === 'veined' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('veined')}
+        >
+          Veined
+        </button>
+        <button
+          className={`filter ${activeFilter === 'textured' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('textured')}
+        >
+          Textured
+        </button>
+        <button
+          className={`filter ${activeFilter === 'translucent' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('translucent')}
+        >
+          Translucent
+        </button>
+      </ScrollReveal>
+
+      <div className="material-grid" id="material-grid">
+        {filteredMaterials.map((m, index) => (
+          <article
+            key={m.slug}
+            className="material-card"
+            tabIndex={0}
+            onClick={() => setSelectedMaterial(m)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                setSelectedMaterial(m);
+              }
+            }}
+          >
+            <div className={`swatch ${m.swatch}`} />
+            <span className="card-hover">+</span>
+            <div className="card-info">
+              <h3>{m.name}</h3>
+              <p>{m.collection}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <MaterialModal
+        material={selectedMaterial}
+        onClose={() => setSelectedMaterial(null)}
+        onRequestSample={handleRequestSample}
+      />
+
+      <Toast show={showToast} message="Added to your sample shortlist" />
+    </>
+  );
+}
