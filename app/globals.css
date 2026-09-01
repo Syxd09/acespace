@@ -1150,94 +1150,187 @@ textarea {
     border-top: 1px solid currentColor;
   }
 
-  .main-nav.mobile-open {
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: auto;
-    width: min(88vw, 430px);
-    height: 100vh;
-    padding: 116px 8vw 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0;
-    background: #20241f;
-    color: #f2f0ea;
-    box-shadow: -18px 0 55px rgba(0, 0, 0, 0.24);
-    font-size: inherit;
-    letter-spacing: normal;
-    z-index: 30;
-    animation: menuIn 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  }
+/* Warm Architectural Mobile Drawer Overlay */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 33, 29, 0.45);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
 
-  .main-nav.mobile-open:before {
-    content: 'EXPLORE ACE SPACES';
-    position: absolute;
-    top: 43px;
-    left: 8vw;
-    font: 10px 'DM Mono', monospace;
-    letter-spacing: 0.1em;
-    color: #8f988d;
-  }
+.mobile-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
 
-  .main-nav.mobile-open:after {
-    content: 'Architectural materials / fabrication / project support';
-    position: absolute;
-    bottom: 40px;
-    left: 8vw;
-    right: 8vw;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
-    font: 10px/1.6 'DM Mono', monospace;
-    text-transform: uppercase;
-    letter-spacing: 0.07em;
-    color: #8f988d;
-  }
+.mobile-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(88vw, 420px);
+  height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 32px 36px;
+  box-shadow: -15px 0 45px rgba(0, 0, 0, 0.15);
+  border-left: 1px solid var(--line);
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+}
 
-  .main-nav.mobile-open a {
-    display: grid;
-    grid-template-columns: 30px 1fr 18px;
-    grid-template-rows: auto auto;
-    column-gap: 14px;
-    align-items: flex-end;
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-    opacity: 0.95;
-  }
+.mobile-overlay.open .mobile-drawer {
+  transform: translateX(0);
+}
 
-  .main-nav.mobile-open a:hover {
-    opacity: 1;
-  }
+.mobile-drawer-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
 
-  .main-nav.mobile-open .nav-num {
-    grid-row: 1 / span 2;
-    align-self: flex-start;
-    padding-top: 6px;
-    color: #8f988d;
-    font: 10px 'DM Mono', monospace;
-  }
+.mobile-close {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(30, 33, 29, 0.05);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
 
-  .main-nav.mobile-open strong {
-    font: 27px/1.05 var(--serif);
-    font-weight: 400;
-    letter-spacing: -0.04em;
-  }
+.mobile-close:hover {
+  background: var(--ink);
+  color: #fff;
+  transform: rotate(90deg);
+}
 
-  .main-nav.mobile-open small {
-    grid-column: 2;
-    color: #8f988d;
-    font: 10px 'DM Mono', monospace;
-    margin-top: 7px;
-  }
+.mobile-drawer-label {
+  font: 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin: 24px 0 14px;
+}
 
-  .main-nav.mobile-open b {
-    grid-column: 3;
-    grid-row: 1 / span 2;
-    align-self: center;
-    font-size: 17px;
-    font-weight: 400;
-  }
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.mobile-nav-item {
+  display: grid;
+  grid-template-columns: 32px 1fr 24px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background 0.2s, padding-left 0.2s;
+}
+
+.mobile-nav-item:hover {
+  padding-left: 8px;
+  background: rgba(216, 210, 197, 0.4);
+}
+
+.mobile-num {
+  font: 11px 'DM Mono', monospace;
+  color: var(--muted);
+}
+
+.mobile-nav-text strong {
+  display: block;
+  font: 21px var(--serif);
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.mobile-nav-text small {
+  display: block;
+  font: 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+
+.mobile-arrow {
+  font-size: 18px;
+  color: var(--ink);
+  justify-self: end;
+  transition: transform 0.2s;
+}
+
+.mobile-nav-item:hover .mobile-arrow {
+  transform: translate(3px, -3px);
+}
+
+.mobile-nav-item.highlight {
+  background: var(--ink);
+  color: #fff;
+  margin-top: 16px;
+  padding: 16px 18px;
+  border-radius: 2px;
+  border-bottom: none;
+}
+
+.mobile-nav-item.highlight .mobile-num,
+.mobile-nav-item.highlight small,
+.mobile-nav-item.highlight strong,
+.mobile-nav-item.highlight .mobile-arrow {
+  color: #fff;
+}
+
+.mobile-drawer-footer {
+  margin-top: auto;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.mobile-coro-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobile-coro-badge small {
+  font: 9px 'DM Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.mobile-coro-badge strong {
+  font: 15px var(--serif);
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.mobile-footer-location {
+  font: 10px/1.5 'DM Mono', monospace;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 14px 0 0;
+  letter-spacing: 0.06em;
+}
 
   .hero {
     min-height: 700px;
