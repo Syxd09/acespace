@@ -2,13 +2,13 @@
 
 import React, { useEffect, useRef } from 'react';
 
-interface ScrollRevealProps {
+interface ScrollRevealProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
   delay?: number;
 }
 
-export default function ScrollReveal({ children, className = '', delay = 0 }: ScrollRevealProps) {
+export default function ScrollReveal({ children, className = '', delay = 0, ...rest }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export default function ScrollReveal({ children, className = '', delay = 0 }: Sc
       ref={ref}
       className={`reveal ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
+      {...rest}
     >
       {children}
     </div>
