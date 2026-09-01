@@ -151,7 +151,7 @@ button {
 .hero-content {
   position: absolute;
   left: 9vw;
-  top: 28%;
+  top: 16%;
   max-width: 600px;
 }
 
@@ -1244,7 +1244,7 @@ textarea {
   }
   .hero-content {
     left: 6vw;
-    top: 25%;
+    top: 16%;
   }
   .hero-index {
     right: 6vw;
