@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useEffect } from 'react';
 import Image from 'next/image';
@@ -7,7 +7,7 @@ import { Material } from '@/data/materials';
 interface MaterialModalProps {
   material: Material | null;
   onClose: () => void;
-  onRequestSample: () => void;
+  onRequestSample?: () => void;
 }
 
 export default function MaterialModal({ material, onClose, onRequestSample }: MaterialModalProps) {
@@ -71,7 +71,11 @@ export default function MaterialModal({ material, onClose, onRequestSample }: Ma
             className="button button-dark"
             onClick={() => {
               onClose();
-              onRequestSample();
+              if (onRequestSample) {
+                onRequestSample();
+              } else {
+                window.location.href = '/contact';
+              }
             }}
           >
             Request a sample <span>↗</span>

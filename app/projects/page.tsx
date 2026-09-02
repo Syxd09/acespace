@@ -1,57 +1,59 @@
-import React from 'react';
+﻿import React from 'react';
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { projects } from '@/data/projects';
+import ProjectGallery from '@/components/ProjectGallery';
 
 export const metadata: Metadata = {
-  title: 'Projects — Ace Spaces',
-  description: 'Selected project archive and case studies featuring Ace Spaces materials and custom fabrication.',
+  title: 'Selected Architectural Projects — Ace Spaces',
+  description: 'Explore completed residential, hospitality, commercial, and retail case studies crafted with Ace Spaces mineral surfaces.',
 };
 
 export default function ProjectsPage() {
   return (
     <main className="page-main">
       <section className="page-hero">
-        <p className="eyebrow">Project archive / Selected work</p>
+        <p className="eyebrow">Projects / Selected Architectural Case Studies</p>
         <h1>
-          Spaces with
+          Material
           <br />
-          <i>something to say.</i>
+          in <i>practice.</i>
         </h1>
-        <p>A growing archive of material-led environments.</p>
+        <p>
+          A curated selection of completed spaces where Ace Spaces through-body mineral surfaces define the architectural experience.
+        </p>
       </section>
 
       <section className="page-grid">
         <h2>
-          Material in
+          Form, light
           <br />
-          <i>context.</i>
+          <i>& restraint.</i>
         </h2>
         <div className="page-copy">
           <p>
-            Every project begins with a question of use, scale and atmosphere. We connect the finished space back to the material and fabrication decisions behind it.
+            From private residential sanctuaries in Bengaluru to ambient hospitality arrival desks in Mumbai, our work celebrates seamless volumetric unity and refined craftsmanship.
+          </p>
+          <p>
+            Filter by typology below to inspect material specifications, fabrication techniques, and architectural case studies.
           </p>
         </div>
       </section>
 
-      <section className="card-grid">
-        {projects.map((proj) => (
-          <Link key={proj.slug} className="info-card" id={proj.category} href={`/projects/${proj.slug}`}>
-            <h3>{proj.title}</h3>
-            <p>{proj.subtitle} / {proj.location} / {proj.materialUsed}</p>
-          </Link>
-        ))}
+      {/* Interactive Project Gallery */}
+      <section style={{ marginBottom: '100px' }}>
+        <ProjectGallery />
       </section>
 
       <section className="callout">
-        <p className="eyebrow">Your project</p>
+        <p className="eyebrow">Collaborate on your next project</p>
         <h2>
-          Let’s make
+          Bring your
           <br />
-          something <i>specific.</i>
+          <i>drawings to life.</i>
         </h2>
-        <Link className="button" href="/contact">
-          Start a project <span>↗</span>
+        <p>We work directly with architects, interior designers, and general contractors from concept design through to final on-site installation.</p>
+        <Link className="button button-dark" href="/contact">
+          Submit Project Details <span>↗</span>
         </Link>
       </section>
     </main>
