@@ -2,7 +2,6 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { materials, Material } from '@/data/materials';
 import MaterialModal from '@/components/MaterialModal';
 import { useSampleShortlist } from '@/context/SampleContext';
@@ -84,6 +83,7 @@ export default function ColourLibrary() {
                   fontSize: '14px',
                   color: 'var(--ink)',
                   width: '100%',
+                  transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
                 }}
               />
               {searchQuery && (
@@ -118,6 +118,8 @@ export default function ColourLibrary() {
                   background: viewMode === 'grid' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'grid' ? '#fff' : 'var(--ink)',
                   borderRight: '1px solid var(--line)',
+                  transition: 'all 0.25s ease',
+                  cursor: 'pointer',
                 }}
               >
                 Grid (4-Col)
@@ -132,6 +134,8 @@ export default function ColourLibrary() {
                   background: viewMode === 'compact' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'compact' ? '#fff' : 'var(--ink)',
                   borderRight: '1px solid var(--line)',
+                  transition: 'all 0.25s ease',
+                  cursor: 'pointer',
                 }}
               >
                 Compact (6-Col)
@@ -145,6 +149,8 @@ export default function ColourLibrary() {
                   fontFamily: 'DM Mono, monospace',
                   background: viewMode === 'list' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'list' ? '#fff' : 'var(--ink)',
+                  transition: 'all 0.25s ease',
+                  cursor: 'pointer',
                 }}
               >
                 List Spec
@@ -168,40 +174,58 @@ export default function ColourLibrary() {
             Filter by Colour Group:
           </span>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            {colorFamilies.map((fam) => (
-              <button
-                key={fam.id}
-                type="button"
-                onClick={() => setSelectedColorFamily(fam.id)}
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  padding: '8px 14px',
-                  fontSize: '11px',
-                  fontFamily: 'DM Mono, monospace',
-                  textTransform: 'uppercase',
-                  border: '1px solid var(--line)',
-                  background: selectedColorFamily === fam.id ? 'var(--ink)' : 'var(--paper)',
-                  color: selectedColorFamily === fam.id ? '#fff' : 'var(--ink)',
-                  transition: 'all 0.2s',
-                }}
-              >
-                {fam.id !== 'all' && (
-                  <span
-                    style={{
-                      width: '12px',
-                      height: '12px',
-                      borderRadius: '50%',
-                      background: fam.color,
-                      border: '1px solid rgba(0,0,0,0.2)',
-                      display: 'inline-block',
-                    }}
-                  />
-                )}
-                <span>{fam.label}</span>
-              </button>
-            ))}
+            {colorFamilies.map((fam) => {
+              const isActive = selectedColorFamily === fam.id;
+              return (
+                <button
+                  key={fam.id}
+                  type="button"
+                  onClick={() => setSelectedColorFamily(fam.id)}
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '8px 14px',
+                    fontSize: '11px',
+                    fontFamily: 'DM Mono, monospace',
+                    textTransform: 'uppercase',
+                    border: '1px solid var(--line)',
+                    background: isActive ? 'var(--ink)' : 'var(--paper)',
+                    color: isActive ? '#fff' : 'var(--ink)',
+                    transform: isActive ? 'translateY(-2px)' : 'none',
+                    boxShadow: isActive ? '0 6px 14px rgba(0,0,0,0.12)' : 'none',
+                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.borderColor = 'var(--ink)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.transform = 'none';
+                      e.currentTarget.style.borderColor = 'var(--line)';
+                    }
+                  }}
+                >
+                  {fam.id !== 'all' && (
+                    <span
+                      style={{
+                        width: '12px',
+                        height: '12px',
+                        borderRadius: '50%',
+                        background: fam.color,
+                        border: '1px solid rgba(0,0,0,0.2)',
+                        display: 'inline-block',
+                      }}
+                    />
+                  )}
+                  <span>{fam.label}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -211,25 +235,39 @@ export default function ColourLibrary() {
             Filter by Pattern / Character:
           </span>
           <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            {patterns.map((pat) => (
-              <button
-                key={pat.id}
-                type="button"
-                onClick={() => setSelectedPattern(pat.id)}
-                style={{
-                  padding: '6px 12px',
-                  fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
-                  textTransform: 'uppercase',
-                  border: '1px solid var(--line)',
-                  background: selectedPattern === pat.id ? 'var(--ink)' : 'transparent',
-                  color: selectedPattern === pat.id ? '#fff' : 'var(--ink)',
-                  transition: 'all 0.2s',
-                }}
-              >
-                {pat.label}
-              </button>
-            ))}
+            {patterns.map((pat) => {
+              const isActive = selectedPattern === pat.id;
+              return (
+                <button
+                  key={pat.id}
+                  type="button"
+                  onClick={() => setSelectedPattern(pat.id)}
+                  style={{
+                    padding: '6px 12px',
+                    fontSize: '10px',
+                    fontFamily: 'DM Mono, monospace',
+                    textTransform: 'uppercase',
+                    border: '1px solid var(--line)',
+                    background: isActive ? 'var(--ink)' : 'transparent',
+                    color: isActive ? '#fff' : 'var(--ink)',
+                    transition: 'all 0.25s ease',
+                    cursor: 'pointer',
+                  }}
+                  onMouseEnter={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.background = 'rgba(30,33,29,0.08)';
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (!isActive) {
+                      e.currentTarget.style.background = 'transparent';
+                    }
+                  }}
+                >
+                  {pat.label}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -247,14 +285,14 @@ export default function ColourLibrary() {
               setSelectedColorFamily('all');
               setSelectedPattern('all');
             }}
-            style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textDecoration: 'underline', color: 'var(--ink)' }}
+            style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textDecoration: 'underline', color: 'var(--ink)', cursor: 'pointer' }}
           >
             Reset Filters
           </button>
         )}
       </div>
 
-      {/* View Mode 1: Standard 4-Col Grid */}
+      {/* View Mode 1: Standard 4-Col Grid with Hover Lift & Swatch Zoom */}
       {viewMode === 'grid' && (
         <div className="material-grid" style={{ marginBottom: '80px' }}>
           {filteredMaterials.map((mat) => {
@@ -270,7 +308,7 @@ export default function ColourLibrary() {
                   onKeyDown={(e) => e.key === 'Enter' && setActiveModalMaterial(mat)}
                 />
 
-                {/* Quick Add Sample Badge */}
+                {/* Quick Add Sample Badge with Hover Micro-Scale */}
                 <button
                   type="button"
                   onClick={(e) => {
@@ -286,7 +324,7 @@ export default function ColourLibrary() {
                     top: '14px',
                     right: '14px',
                     zIndex: 3,
-                    background: inTray ? 'var(--ink)' : 'rgba(255,255,255,0.9)',
+                    background: inTray ? 'var(--ink)' : 'rgba(255,255,255,0.92)',
                     color: inTray ? '#fff' : 'var(--ink)',
                     border: '1px solid rgba(0,0,0,0.15)',
                     padding: '6px 12px',
@@ -295,7 +333,10 @@ export default function ColourLibrary() {
                     fontFamily: 'DM Mono, monospace',
                     textTransform: 'uppercase',
                     cursor: 'pointer',
+                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 >
                   {inTray ? 'In Tray ✓' : '+ Sample'}
                 </button>
@@ -317,13 +358,13 @@ export default function ColourLibrary() {
         </div>
       )}
 
-      {/* View Mode 2: Compact 6-Col Grid */}
+      {/* View Mode 2: Compact 6-Col Grid with Hover Lift */}
       {viewMode === 'compact' && (
         <div
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(170px, 1fr))',
-            gap: '12px',
+            gap: '14px',
             marginBottom: '80px',
           }}
         >
@@ -335,15 +376,26 @@ export default function ColourLibrary() {
                 style={{
                   background: '#dcd7cd',
                   border: '1px solid var(--line)',
-                  padding: '12px',
+                  padding: '14px',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
-                  minHeight: '230px',
+                  minHeight: '240px',
                   cursor: 'pointer',
                   position: 'relative',
+                  transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease',
                 }}
                 onClick={() => setActiveModalMaterial(mat)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px)';
+                  e.currentTarget.style.boxShadow = '0 16px 32px rgba(0,0,0,0.1)';
+                  e.currentTarget.style.borderColor = 'var(--ink)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'none';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.borderColor = 'var(--line)';
+                }}
               >
                 <div>
                   <div
@@ -351,13 +403,14 @@ export default function ColourLibrary() {
                       height: '110px',
                       background: mat.hexColor,
                       border: '1px solid rgba(0,0,0,0.1)',
-                      marginBottom: '10px',
+                      marginBottom: '12px',
+                      transition: 'transform 0.4s ease',
                     }}
                   />
                   <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block' }}>
                     {mat.code}
                   </span>
-                  <strong style={{ fontSize: '13px', fontWeight: 500, color: 'var(--ink)', display: 'block', lineHeight: 1.2 }}>
+                  <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)', display: 'block', lineHeight: 1.2 }}>
                     {mat.name}
                   </strong>
                   <span style={{ fontSize: '10px', color: '#667066', display: 'block', marginTop: '2px' }}>
@@ -365,7 +418,7 @@ export default function ColourLibrary() {
                   </span>
                 </div>
 
-                <div style={{ marginTop: '10px', borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '8px' }}>
+                <div style={{ marginTop: '12px', borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '10px' }}>
                   <button
                     type="button"
                     onClick={(e) => {
@@ -378,7 +431,7 @@ export default function ColourLibrary() {
                     }}
                     style={{
                       width: '100%',
-                      padding: '5px 8px',
+                      padding: '6px 8px',
                       fontSize: '9px',
                       fontFamily: 'DM Mono, monospace',
                       textTransform: 'uppercase',
@@ -386,6 +439,7 @@ export default function ColourLibrary() {
                       color: inTray ? '#fff' : 'var(--ink)',
                       border: '1px solid var(--line)',
                       cursor: 'pointer',
+                      transition: 'all 0.2s',
                     }}
                   >
                     {inTray ? 'In Tray ✓' : '+ Sample'}
@@ -397,7 +451,7 @@ export default function ColourLibrary() {
         </div>
       )}
 
-      {/* View Mode 3: Detailed List Spec */}
+      {/* View Mode 3: Detailed List Spec with Row Slide-In Hover */}
       {viewMode === 'list' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '80px' }}>
           {filteredMaterials.map((mat) => {
@@ -408,11 +462,23 @@ export default function ColourLibrary() {
                 style={{
                   background: '#dcd7cd',
                   border: '1px solid var(--line)',
-                  padding: '16px 24px',
+                  padding: '18px 24px',
                   display: 'grid',
                   gridTemplateColumns: '60px 1.2fr 1fr 1fr 120px',
                   alignItems: 'center',
                   gap: '20px',
+                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, box-shadow 0.25s ease',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateX(6px)';
+                  e.currentTarget.style.background = '#d2cdc3';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.06)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'none';
+                  e.currentTarget.style.background = '#dcd7cd';
+                  e.currentTarget.style.boxShadow = 'none';
                 }}
               >
                 <div
@@ -421,12 +487,11 @@ export default function ColourLibrary() {
                     height: '60px',
                     background: mat.hexColor,
                     border: '1px solid rgba(0,0,0,0.15)',
-                    cursor: 'pointer',
                   }}
                   onClick={() => setActiveModalMaterial(mat)}
                 />
 
-                <div onClick={() => setActiveModalMaterial(mat)} style={{ cursor: 'pointer' }}>
+                <div onClick={() => setActiveModalMaterial(mat)}>
                   <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
                     {mat.code} • {mat.collection}
                   </span>
@@ -456,7 +521,8 @@ export default function ColourLibrary() {
                 <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
                   <button
                     type="button"
-                    onClick={() => {
+                    onClick={(e) => {
+                      e.stopPropagation();
                       if (inTray) {
                         removeSample(mat.slug);
                       } else {
@@ -472,12 +538,14 @@ export default function ColourLibrary() {
                       color: inTray ? '#fff' : 'var(--ink)',
                       border: '1px solid var(--line)',
                       cursor: 'pointer',
+                      transition: 'all 0.2s',
                     }}
                   >
                     {inTray ? 'In Tray ✓' : '+ Sample'}
                   </button>
                   <Link
                     href={`/materials/${mat.slug}`}
+                    onClick={(e) => e.stopPropagation()}
                     style={{
                       padding: '8px 10px',
                       fontSize: '11px',

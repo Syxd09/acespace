@@ -106,13 +106,31 @@ button {
 
 .main-nav a,
 .coro-link {
+  position: relative;
+  padding: 6px 0;
   opacity: 0.9;
-  transition: opacity 0.2s;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.main-nav a:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.main-nav a:hover:after {
+  width: 100%;
 }
 
 .main-nav a:hover,
 .coro-link:hover {
-  opacity: 0.55;
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 .header-actions {
@@ -222,20 +240,27 @@ h1 i, h2 i, h3 i {
   display: inline-flex;
   align-items: center;
   gap: 30px;
-  padding: 16px 19px;
+  padding: 16px 22px;
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: transform 0.25s, background 0.25s;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.3s ease;
+  position: relative;
 }
 
 .button span {
   font-size: 18px;
   line-height: 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .button:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.14);
+}
+
+.button:hover span {
+  transform: translate(4px, -4px);
 }
 
 .button-light {
@@ -396,35 +421,24 @@ h1 i, h2 i, h3 i {
   background: #d5d2c9;
   overflow: hidden;
   cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.material-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.14);
 }
 
 .material-card .swatch {
   position: absolute;
   inset: 0;
-  transition: transform 0.7s;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s ease;
 }
 
 .material-card:hover .swatch {
-  transform: scale(1.06);
-}
-
-.swatch.one {
-  background: linear-gradient(120deg, #ede8db, #c9c2b4);
-}
-.swatch.two {
-  background: linear-gradient(145deg, #d5d1c3 0 35%, #b6ab9b 35% 37%, #d9d4c8 37% 62%, #aaa092 62% 64%, #e3ded3 64%);
-}
-.swatch.three {
-  background: radial-gradient(circle at 30% 20%, #7f857e, #4d554e 50%, #2a312c);
-}
-.swatch.four {
-  background: repeating-linear-gradient(125deg, #b9b2a2 0 18px, #a8a090 18px 22px, #c6c0b4 22px 45px);
-}
-.swatch.five {
-  background: radial-gradient(circle at 80% 80%, #bcae9a, #ede2cf 56%, #d6c5ae);
-}
-.swatch.six {
-  background: linear-gradient(140deg, #3c403b, #101412 48%, #676459 49%, #222622 52%);
+  transform: scale(1.08);
+  filter: brightness(1.04);
 }
 
 .card-info {
@@ -433,14 +447,25 @@ h1 i, h2 i, h3 i {
   width: 100%;
   padding: 18px;
   color: #fff;
-  background: linear-gradient(transparent, rgba(11, 14, 11, 0.75));
+  background: linear-gradient(transparent, rgba(11, 14, 11, 0.78));
   padding-top: 65px;
+  transition: padding-bottom 0.35s ease, background 0.35s ease;
+}
+
+.material-card:hover .card-info {
+  padding-bottom: 24px;
+  background: linear-gradient(transparent, rgba(11, 14, 11, 0.88));
 }
 
 .card-info h3 {
   font-size: 18px;
   margin: 0 0 5px;
   font-weight: 500;
+  transition: transform 0.3s ease;
+}
+
+.material-card:hover .card-info h3 {
+  transform: translateX(4px);
 }
 
 .card-info p {
@@ -456,8 +481,8 @@ h1 i, h2 i, h3 i {
   position: absolute;
   top: 17px;
   right: 17px;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border: 1px solid rgba(255, 255, 255, 0.7);
   color: #fff;
   border-radius: 50%;
@@ -465,11 +490,15 @@ h1 i, h2 i, h3 i {
   place-items: center;
   font-size: 18px;
   opacity: 0;
-  transition: 0.25s;
+  transform: scale(0.85) rotate(-20deg);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease;
 }
 
 .material-card:hover .card-hover {
   opacity: 1;
+  transform: scale(1) rotate(0deg);
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
 }
 
 /* Statement */
@@ -1611,3 +1640,4 @@ textarea {
     transform: translateY(0);
   }
 }
+
