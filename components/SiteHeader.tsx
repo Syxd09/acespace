@@ -50,7 +50,6 @@ export default function SiteHeader() {
     setMobileOpen(false);
   };
 
-  // Determine active visual mode
   const isLightText = isHome && !isScrolled;
 
   return (
@@ -104,26 +103,32 @@ export default function SiteHeader() {
             <small>Collections & surfaces</small>
             <b>↗</b>
           </Link>
-          <Link href="/applications">
+          <Link href="/collections/colours">
             <span className="nav-num">02</span>
+            <strong>Colours</strong>
+            <small>Architectural palette</small>
+            <b>↗</b>
+          </Link>
+          <Link href="/applications">
+            <span className="nav-num">03</span>
             <strong>Applications</strong>
             <small>Material in context</small>
             <b>↗</b>
           </Link>
           <Link href="/fabrication">
-            <span className="nav-num">03</span>
+            <span className="nav-num">04</span>
             <strong>Fabrication</strong>
             <small>From sheet to space</small>
             <b>↗</b>
           </Link>
           <Link href="/projects">
-            <span className="nav-num">04</span>
+            <span className="nav-num">05</span>
             <strong>Projects</strong>
             <small>Selected work</small>
             <b>↗</b>
           </Link>
           <Link href="/journal">
-            <span className="nav-num">05</span>
+            <span className="nav-num">06</span>
             <strong>Journal</strong>
             <small>Notes on making</small>
             <b>↗</b>
@@ -219,8 +224,17 @@ export default function SiteHeader() {
               <span className="mobile-arrow">↗</span>
             </Link>
 
-            <Link href="/applications" onClick={closeMobileMenu} className="mobile-nav-item">
+            <Link href="/collections/colours" onClick={closeMobileMenu} className="mobile-nav-item">
               <span className="mobile-num">02</span>
+              <div className="mobile-nav-text">
+                <strong>Colours & Palette</strong>
+                <small>Full mineral colour library</small>
+              </div>
+              <span className="mobile-arrow">↗</span>
+            </Link>
+
+            <Link href="/applications" onClick={closeMobileMenu} className="mobile-nav-item">
+              <span className="mobile-num">03</span>
               <div className="mobile-nav-text">
                 <strong>Applications</strong>
                 <small>Material in context</small>
@@ -229,7 +243,7 @@ export default function SiteHeader() {
             </Link>
 
             <Link href="/fabrication" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">03</span>
+              <span className="mobile-num">04</span>
               <div className="mobile-nav-text">
                 <strong>Fabrication</strong>
                 <small>From sheet to space</small>
@@ -238,7 +252,7 @@ export default function SiteHeader() {
             </Link>
 
             <Link href="/projects" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">04</span>
+              <span className="mobile-num">05</span>
               <div className="mobile-nav-text">
                 <strong>Projects</strong>
                 <small>Selected work</small>
@@ -247,7 +261,7 @@ export default function SiteHeader() {
             </Link>
 
             <Link href="/journal" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">05</span>
+              <span className="mobile-num">06</span>
               <div className="mobile-nav-text">
                 <strong>Journal</strong>
                 <small>Notes on making</small>
@@ -265,7 +279,7 @@ export default function SiteHeader() {
               className="mobile-nav-item"
               style={{ width: '100%', textAlign: 'left', background: 'none', borderLeft: 'none', borderRight: 'none' }}
             >
-              <span className="mobile-num">06</span>
+              <span className="mobile-num">07</span>
               <div className="mobile-nav-text">
                 <strong>Sample Tray ({shortlist.length})</strong>
                 <small>Order complimentary studio specimen box</small>
@@ -274,7 +288,7 @@ export default function SiteHeader() {
             </button>
 
             <Link href="/contact" onClick={closeMobileMenu} className="mobile-nav-item highlight">
-              <span className="mobile-num">07</span>
+              <span className="mobile-num">08</span>
               <div className="mobile-nav-text">
                 <strong>Contact Practice</strong>
                 <small>Start a conversation & consultation</small>
