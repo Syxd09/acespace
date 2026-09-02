@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import EdgeProfileCatalog from '@/components/EdgeProfileCatalog';
 
@@ -37,37 +38,118 @@ export default function FabricationPage() {
   ];
 
   return (
-    <main className="page-main">
-      <section className="page-hero">
-        <p className="eyebrow">Fabrication Craft / Bengaluru Workshop</p>
-        <h1>
-          From sheet
-          <br />
-          to <i>space.</i>
-        </h1>
-        <p>
-          We unite advanced digital fabrication with master joinery craft to turn raw mineral sheets into monumental, monolithic interior elements.
-        </p>
-      </section>
+    <main className="page-main" style={{ paddingTop: '100px' }}>
+      {/* Rich Split Architectural Hero */}
+      <section
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'minmax(320px, 1.1fr) 0.9fr',
+          gap: '6vw',
+          alignItems: 'center',
+          padding: '60px 0 90px',
+          borderBottom: '1px solid var(--line)',
+        }}
+      >
+        <div>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#dcd7cd', padding: '6px 14px', borderRadius: '100px', marginBottom: '24px', border: '1px solid var(--line)' }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ink)' }} />
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)' }}>
+              Bengaluru Workshop & Advanced Machinery
+            </span>
+          </div>
 
-      <section className="page-grid">
-        <h2>
-          Detail is
-          <br />
-          <i>the difference.</i>
-        </h2>
-        <div className="page-copy">
-          <p>
-            Our fabrication methodology follows an uncompromising 4-stage sequence: cut, join, form, and hand-finish. Every phase is guided by shop drawings and rigorous laser templating.
+          <h1 style={{ fontSize: 'clamp(56px, 7vw, 108px)', lineHeight: 0.92, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+            From sheet
+            <br />
+            to <i>space.</i>
+          </h1>
+
+          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
+            We unite advanced digital fabrication with master joinery craft to turn raw mineral sheets into monumental, monolithic interior elements.
           </p>
-          <p>
-            Whether engineering an intricate 5-meter curved reception desk or a minimal residential kitchen waterfall, our craft ensures seamless architectural continuity.
-          </p>
+
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+            <Link className="button button-dark" href="/contact">
+              Discuss Fabrication Brief <span>↗</span>
+            </Link>
+            <Link className="text-link" href="#process">
+              4-Stage Sequence <span>↓</span>
+            </Link>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '20px' }}>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Tolerance
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>&lt; 0.2 mm</strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Forming
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>3D Thermoform</strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Finishing
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>600-Grit Honed</strong>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Architectural Image Frame */}
+        <div
+          style={{
+            position: 'relative',
+            height: '520px',
+            background: '#dcd7cd',
+            border: '1px solid var(--line)',
+            overflow: 'hidden',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.08)',
+          }}
+        >
+          <Image
+            src="/assets/material-macro.png"
+            alt="Hand honing and CNC carving of monolithic mineral surface"
+            fill
+            sizes="(max-width: 800px) 100vw, 45vw"
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '20px',
+              left: '20px',
+              right: '20px',
+              background: 'rgba(233, 232, 226, 0.92)',
+              backdropFilter: 'blur(12px)',
+              padding: '16px 20px',
+              border: '1px solid rgba(30,33,29,0.15)',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+                Craft Focus
+              </span>
+              <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
+                Hand-Honed Satin Edge • Sub-millimeter Tolerance
+              </strong>
+            </div>
+            <Link href="#edges" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+              Edge Profiles <span>↗</span>
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* 4-Step Craft Sequence */}
-      <section style={{ marginBottom: '100px' }}>
+      <section id="process" style={{ margin: '80px 0 100px' }}>
         <p className="eyebrow" style={{ marginBottom: '30px' }}>The 4-Stage Workshop Sequence</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
           {steps.map((step) => (
@@ -79,7 +161,8 @@ export default function FabricationPage() {
                 border: '1px solid var(--line)',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                transition: 'transform 0.3s ease',
               }}
             >
               <div>
@@ -108,7 +191,7 @@ export default function FabricationPage() {
       </section>
 
       {/* Interactive Edge Profile Catalog */}
-      <section style={{ marginBottom: '120px' }}>
+      <section id="edges" style={{ marginBottom: '120px' }}>
         <div className="section-head" style={{ marginBottom: '20px' }}>
           <div>
             <p className="eyebrow">Architectural Detailing</p>
