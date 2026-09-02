@@ -5,8 +5,8 @@ import type { Metadata } from 'next';
 import MaterialExplorer from '@/components/MaterialExplorer';
 
 export const metadata: Metadata = {
-  title: 'Materials & Surfaces — Ace Spaces',
-  description: 'Explore the Ace Spaces collection of mineral, veined, textured, and translucent solid surfaces.',
+  title: 'Materials & Substrates — Ace Spaces',
+  description: 'Explore Ace Spaces core material systems: mineral solids, marble-veined composites, particulate textures, and translucent optics.',
 };
 
 export default function MaterialsPage() {
@@ -24,7 +24,7 @@ export default function MaterialsPage() {
         }}
       >
         <div>
-          <p className="eyebrow" style={{ marginBottom: "20px" }}>Materials / Through-Body Solid Minerals</p>
+          <p className="eyebrow" style={{ marginBottom: '20px' }}>Materials / Substrates & Compositions</p>
 
           <h1 style={{ fontSize: 'clamp(56px, 7vw, 108px)', lineHeight: 0.92, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
             Material as
@@ -33,15 +33,15 @@ export default function MaterialsPage() {
           </h1>
 
           <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
-            Each surface in the Ace Spaces palette is developed to carry light with depth, maintain non-porous longevity, and enable seamless volumetric fabrication.
+            Materials define the physical substrate, tactile warmth, and engineering performance of the space. Explore our 4 core material formulations below, or browse by color palette.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="button button-dark" href="/collections/colours">
-              Explore 20+ Colours <span>↗</span>
+              Browse Colours & Palette <span>↗</span>
             </Link>
-            <Link className="text-link" href="#explorer">
-              Filter Palette <span>↓</span>
+            <Link className="text-link" href="#substrates">
+              4 Material Systems <span>↓</span>
             </Link>
           </div>
 
@@ -50,7 +50,7 @@ export default function MaterialsPage() {
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Composition
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Natural ATH</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>2/3 Natural ATH</strong>
             </div>
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
@@ -103,30 +103,75 @@ export default function MaterialsPage() {
           >
             <div>
               <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
-                Featured Specimen
+                Material Distinction
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Noma / Chalk • Honed Velvet Touch
+                Through-Body Mineral vs Surface Coatings
               </strong>
             </div>
-            <Link href="/materials/noma-chalk" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
-              Inspect Spec <span>↗</span>
+            <Link href="/collections/colours" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+              View Colours <span>↗</span>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Interactive Material Filter & Explorer */}
-      <section id="explorer" style={{ margin: '80px 0 100px' }}>
+      {/* 4 Core Material Substrates Breakdown */}
+      <section id="substrates" style={{ margin: '80px 0', borderBottom: '1px solid var(--line)', paddingBottom: '80px' }}>
+        <p className="eyebrow" style={{ marginBottom: '24px' }}>The 4 Core Material Substrates</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+          <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
+            <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>01</span>
+            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Noma Solids</h3>
+            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
+              Pure, monolithic acrylic mineral formulations offering uniform color depth and ultra-smooth tactile honings.
+            </p>
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Opaque • Non-Porous • Zero Seams</span>
+          </div>
+
+          <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
+            <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>02</span>
+            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Alto Veined</h3>
+            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
+              Directional marble drift veins engineered throughout the entire sheet depth for dramatic waterfall ends.
+            </p>
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Directional Flow • Acid Resistant</span>
+          </div>
+
+          <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
+            <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>03</span>
+            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Strata & Textures</h3>
+            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
+              Multi-scale mineral particulates and Venetian terrazzo aggregates providing earth-inspired tactile depth.
+            </p>
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Quartz Chips • Micro-Honed Grain</span>
+          </div>
+
+          <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
+            <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>04</span>
+            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Lumen Optics</h3>
+            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
+              High-dispersion translucent minerals that transform internal LED illumination into soft, diffused architectural halos.
+            </p>
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Backlit • 38% Light Transmission</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Material Explorer */}
+      <section style={{ margin: '80px 0 100px' }}>
         <div className="section-head" style={{ marginBottom: '30px' }}>
           <div>
             <p className="eyebrow">Material Selection & Swatches</p>
             <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}>
               Explore the
               <br />
-              <i>core collection.</i>
+              <i>material substrates.</i>
             </h2>
           </div>
+          <Link className="button button-dark" href="/collections/colours">
+            View Colour Palette (20+ Hues) <span>↗</span>
+          </Link>
         </div>
         <MaterialExplorer />
       </section>
@@ -172,26 +217,6 @@ export default function MaterialsPage() {
         </div>
       </section>
 
-      {/* Finish Guidance */}
-      <section className="page-grid" style={{ paddingTop: '0', borderTop: '1px solid var(--line)' }}>
-        <h2>
-          Honed, Satin
-          <br />
-          <i>or Matte.</i>
-        </h2>
-        <div className="page-copy">
-          <p>
-            <strong>Honed Matte:</strong> Offers an ultra-low sheen with a velvety chalk touch. Perfect for bright residential kitchens and ambient hospitality spaces where specular glare should be minimized.
-          </p>
-          <p>
-            <strong>Satin Smooth:</strong> Introduces subtle light diffusion across gentle curvature. Ideal for bathroom vanities, curved wall claddings, and commercial reception desks.
-          </p>
-          <p>
-            <strong>Micro-Textured:</strong> An earth-inspired tactile feel that adds subtle physical grain, providing enhanced scratch tolerance for high-use public counters.
-          </p>
-        </div>
-      </section>
-
       {/* Sample Consultation Callout */}
       <section className="callout">
         <p className="eyebrow">Sample consultation & Box Delivery</p>
@@ -210,4 +235,3 @@ export default function MaterialsPage() {
     </main>
   );
 }
-

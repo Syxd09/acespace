@@ -267,25 +267,26 @@ export default function ColourLibrary() {
         )}
       </div>
 
-      {/* View Mode 1: Standard 4-Col Grid with High-Res Texture Imagery */}
+      {/* View Mode 1: Standard 4-Col Grid with Direct Click to Open Modal */}
       {viewMode === 'grid' && (
         <div className="material-grid" style={{ marginBottom: '80px' }}>
           {filteredMaterials.map((mat) => {
             const inTray = isShortlisted(mat.slug);
             return (
-              <div key={mat.slug} className="material-card" style={{ position: 'relative' }}>
+              <div
+                key={mat.slug}
+                className="material-card"
+                style={{ position: 'relative', cursor: 'pointer' }}
+                onClick={() => setActiveModalMaterial(mat)}
+              >
                 <div
                   className="swatch"
-                  onClick={() => setActiveModalMaterial(mat)}
                   style={{
                     position: 'absolute',
                     inset: 0,
                     background: mat.textureCss || mat.hexColor,
                     overflow: 'hidden',
                   }}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => e.key === 'Enter' && setActiveModalMaterial(mat)}
                 >
                   {mat.textureImage && (
                     <Image
@@ -299,7 +300,7 @@ export default function ColourLibrary() {
                   )}
                 </div>
 
-                {/* Quick Add Sample Badge with Hover Micro-Scale */}
+                {/* Quick Add Sample Badge */}
                 <button
                   type="button"
                   onClick={(e) => {
@@ -314,7 +315,7 @@ export default function ColourLibrary() {
                     position: 'absolute',
                     top: '14px',
                     right: '14px',
-                    zIndex: 3,
+                    zIndex: 4,
                     background: inTray ? 'var(--ink)' : 'rgba(255,255,255,0.92)',
                     color: inTray ? '#fff' : 'var(--ink)',
                     border: '1px solid rgba(0,0,0,0.15)',
@@ -330,11 +331,7 @@ export default function ColourLibrary() {
                   {inTray ? 'In Tray ✓' : '+ Sample'}
                 </button>
 
-                <div
-                  className="card-info"
-                  onClick={() => setActiveModalMaterial(mat)}
-                  style={{ cursor: 'pointer', zIndex: 2 }}
-                >
+                <div className="card-info" style={{ zIndex: 2 }}>
                   <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '9px', marginBottom: '2px', display: 'block' }}>
                     {mat.code} • {mat.collection}
                   </span>
@@ -347,7 +344,7 @@ export default function ColourLibrary() {
         </div>
       )}
 
-      {/* View Mode 2: Compact 6-Col Grid with Visible Swatch Images */}
+      {/* View Mode 2: Compact 6-Col Grid */}
       {viewMode === 'compact' && (
         <div
           style={{
