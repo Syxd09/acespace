@@ -999,11 +999,11 @@ h1 i, h2 i, h3 i {
 }
 
 .page-hero {
-  min-height: 520px;
+  min-height: 540px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 95px 0 85px;
+  padding: 135px 0 85px;
   border-bottom: 1px solid var(--line);
   background: linear-gradient(120deg, #d8d6cb, #eeece6 52%, #b5b5aa);
 }
@@ -1134,7 +1134,7 @@ h1 i, h2 i, h3 i {
   color: #fff;
   display: flex;
   align-items: flex-end;
-  padding: 75px 9vw;
+  padding: 140px 9vw 75px;
 }
 
 .detail-hero h1 {
@@ -1598,5 +1598,16 @@ textarea {
   .toast {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

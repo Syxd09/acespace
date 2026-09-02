@@ -1,72 +1,35 @@
-import React from 'react';
+﻿import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import ScrollReveal from '@/components/ScrollReveal';
 import MaterialGrid from '@/components/MaterialGrid';
-import EnquiryForm from '@/components/EnquiryForm';
+import ScrollReveal from '@/components/ScrollReveal';
+import HeroSlider from '@/components/HeroSlider';
 
 export default function HomePage() {
   return (
-    <main id="top">
-      {/* Hero Section */}
-      <section className="hero">
-        <Image
-          src="/assets/hero-ace.png"
-          alt="Sculptural ivory architectural surface in a warm modern interior"
-          fill
-          priority
-          sizes="100vw"
-          className="hero-image"
-          style={{ objectFit: 'cover' }}
-        />
-        <div className="hero-shade" />
-        <ScrollReveal className="hero-content">
-          <p className="eyebrow light">Architectural materials / fabrication / India</p>
-          <h1>
-            Material,
-            <br />
-            <i>made architectural.</i>
-          </h1>
-          <p className="hero-copy">Surfaces and forms with the quiet confidence to shape a room.</p>
-          <div className="hero-buttons">
-            <a className="button button-light" href="#materials">
-              Explore materials <span>↘</span>
-            </a>
-            <Link className="text-link light" href="#projects">
-              View projects <span>↗</span>
-            </Link>
-          </div>
-        </ScrollReveal>
-        <div className="hero-index">
-          <span>01</span>
-          <span className="line" />
-          <span>04</span>
-        </div>
-        <div className="scroll-cue">
-          <span>Scroll to explore</span>
-          <span className="scroll-line" />
-        </div>
-      </section>
+    <main>
+      {/* Dynamic 5-Second Sliding Architectural Hero */}
+      <HeroSlider />
 
-      {/* Practice Intro Section */}
+      {/* Intro Section */}
       <section className="intro section-pad">
-        <ScrollReveal>
-          <div className="section-label">01 / The practice</div>
-          <div className="intro-grid">
-            <h2>
-              We bring material
-              <br />
-              <i>into focus.</i>
-            </h2>
+        <div className="section-label">01 / Foundation</div>
+        <ScrollReveal className="intro-grid">
+          <h2>
+            Quiet presence.
+            <br />
+            Lasting <i>character.</i>
+          </h2>
+          <div>
+            <p className="lead">
+              Surfaces carry the light and the silence of a room. We develop mineral materials that reward touch and age with dignity.
+            </p>
+            <p>
+              From seamless residential islands to monumental public installations, our palette is deliberately focused, tactile and durable.
+            </p>
             <div>
-              <p className="lead">
-                Ace Spaces is a material and fabrication practice for architects, designers and people who care about how a space is made.
-              </p>
-              <p>
-                From the first sample to the final edge, we work with surfaces as a design medium — precise, tactile and made to belong.
-              </p>
               <Link className="text-link dark" href="/about">
-                About Ace Spaces <span>↗</span>
+                Read our studio approach <span>↗</span>
               </Link>
             </div>
           </div>
@@ -103,8 +66,8 @@ export default function HomePage() {
           </h2>
           <div className="statement-bottom">
             <span>Material / form / detail</span>
-            <Link className="text-link dark" href="/materials#understanding">
-              Understand our materials <span>↘</span>
+            <Link className="text-link dark" href="/materials">
+              Understand our materials <span>↗</span>
             </Link>
           </div>
         </ScrollReveal>

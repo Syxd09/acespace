@@ -7,6 +7,7 @@ import { useSampleShortlist } from '@/context/SampleContext';
 
 export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
   const { shortlist, toggleTray } = useSampleShortlist();
@@ -14,6 +15,21 @@ export default function SiteHeader() {
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
+
+  // Handle scroll detection for sticky navbar background transition
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 40) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -34,11 +50,47 @@ export default function SiteHeader() {
     setMobileOpen(false);
   };
 
+  // Determine active visual mode
+  const isLightText = isHome && !isScrolled;
+
   return (
     <>
-      <header className={`site-header ${!isHome ? 'dark-header' : ''}`}>
+      <header
+        className={`site-header ${isScrolled ? 'scrolled' : ''} ${!isHome ? 'subpage-header' : ''}`}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          zIndex: 100,
+          height: isScrolled ? '70px' : '84px',
+          background: isHome
+            ? isScrolled
+              ? 'rgba(233, 232, 226, 0.92)'
+              : 'transparent'
+            : 'rgba(233, 232, 226, 0.94)',
+          backdropFilter: (isHome && !isScrolled) ? 'none' : 'blur(16px)',
+          WebkitBackdropFilter: (isHome && !isScrolled) ? 'none' : 'blur(16px)',
+          borderBottom: isHome
+            ? isScrolled
+              ? '1px solid rgba(30, 33, 29, 0.14)'
+              : '1px solid rgba(255, 255, 255, 0.12)'
+            : '1px solid var(--line)',
+          color: isLightText ? '#fff' : 'var(--ink)',
+          boxShadow: isScrolled ? '0 10px 30px rgba(0, 0, 0, 0.05)' : 'none',
+          transition: 'background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.4s ease, height 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease',
+        }}
+      >
         <Link href="/" className="wordmark" aria-label="Ace Spaces home">
-          <span className="mark">A</span>
+          <span
+            className="mark"
+            style={{
+              borderColor: 'currentColor',
+              transition: 'border-color 0.4s ease',
+            }}
+          >
+            A
+          </span>
           <span>
             ACE<br />
             <em>SPACES</em>
@@ -84,7 +136,7 @@ export default function SiteHeader() {
             type="button"
             onClick={toggleTray}
             style={{
-              background: 'transparent',
+              background: isLightText ? 'rgba(255,255,255,0.1)' : 'rgba(30,33,29,0.06)',
               border: '1px solid currentColor',
               padding: '6px 14px',
               borderRadius: '100px',
@@ -97,7 +149,7 @@ export default function SiteHeader() {
               textTransform: 'uppercase',
               color: 'inherit',
               cursor: 'pointer',
-              transition: 'opacity 0.2s',
+              transition: 'all 0.3s ease',
             }}
           >
             <span
@@ -105,12 +157,13 @@ export default function SiteHeader() {
                 width: '18px',
                 height: '18px',
                 borderRadius: '50%',
-                background: isHome ? '#fff' : 'var(--ink)',
-                color: isHome ? 'var(--ink)' : '#fff',
+                background: isLightText ? '#fff' : 'var(--ink)',
+                color: isLightText ? 'var(--ink)' : '#fff',
                 display: 'grid',
                 placeItems: 'center',
                 fontSize: '10px',
                 fontWeight: 700,
+                transition: 'all 0.3s ease',
               }}
             >
               {shortlist.length}
