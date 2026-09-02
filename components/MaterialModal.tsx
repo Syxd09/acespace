@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { Material } from '@/data/materials';
+import { useSampleShortlist } from '@/context/SampleContext';
 
 interface MaterialModalProps {
   material: Material | null;
@@ -11,6 +12,8 @@ interface MaterialModalProps {
 }
 
 export default function MaterialModal({ material, onClose, onRequestSample }: MaterialModalProps) {
+  const { addSample, isShortlisted, removeSample, toggleTray } = useSampleShortlist();
+
   useEffect(() => {
     if (material) {
       document.body.style.overflow = 'hidden';
@@ -32,6 +35,8 @@ export default function MaterialModal({ material, onClose, onRequestSample }: Ma
   }, [material, onClose]);
 
   if (!material) return null;
+
+  const shortlisted = isShortlisted(material.slug);
 
   return (
     <div
@@ -66,20 +71,37 @@ export default function MaterialModal({ material, onClose, onRequestSample }: Ma
             <span>
               Colour <b>{material.colour}</b>
             </span>
+            <span>
+              Specimen <b>100 × 100 mm</b>
+            </span>
           </div>
-          <button
-            className="button button-dark"
-            onClick={() => {
-              onClose();
-              if (onRequestSample) {
-                onRequestSample();
-              } else {
-                window.location.href = '/contact';
-              }
-            }}
-          >
-            Request a sample <span>↗</span>
-          </button>
+          <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', width: '100%' }}>
+            <button
+              className={`button ${shortlisted ? 'button-light' : 'button-dark'}`}
+              onClick={() => {
+                if (shortlisted) {
+                  removeSample(material.slug);
+                } else {
+                  addSample(material);
+                  onClose();
+                }
+              }}
+              style={{ flex: 1, justifyContent: 'center' }}
+            >
+              {shortlisted ? 'In Sample Tray ✓' : '+ Add to Sample Tray'} <span>↗</span>
+            </button>
+            <button
+              className="button button-light"
+              onClick={() => {
+                addSample(material);
+                onClose();
+                toggleTray();
+              }}
+              style={{ padding: '16px 20px' }}
+            >
+              Order Box <span>↗</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

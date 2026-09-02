@@ -1,13 +1,15 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSampleShortlist } from '@/context/SampleContext';
 
 export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === '/';
+  const { shortlist, toggleTray } = useSampleShortlist();
 
   useEffect(() => {
     setMobileOpen(false);
@@ -77,6 +79,45 @@ export default function SiteHeader() {
         </nav>
 
         <div className="header-actions">
+          {/* Sample Shortlist Header Button */}
+          <button
+            type="button"
+            onClick={toggleTray}
+            style={{
+              background: 'transparent',
+              border: '1px solid currentColor',
+              padding: '6px 14px',
+              borderRadius: '100px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              fontSize: '10px',
+              fontFamily: 'DM Mono, monospace',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: 'inherit',
+              cursor: 'pointer',
+              transition: 'opacity 0.2s',
+            }}
+          >
+            <span
+              style={{
+                width: '18px',
+                height: '18px',
+                borderRadius: '50%',
+                background: isHome ? '#fff' : 'var(--ink)',
+                color: isHome ? 'var(--ink)' : '#fff',
+                display: 'grid',
+                placeItems: 'center',
+                fontSize: '10px',
+                fontWeight: 700,
+              }}
+            >
+              {shortlist.length}
+            </span>
+            <span>Sample Tray</span>
+          </button>
+
           <a className="coro-link" href="#coro">
             Coro Collective <span>↗</span>
           </a>
@@ -161,8 +202,26 @@ export default function SiteHeader() {
               <span className="mobile-arrow">↗</span>
             </Link>
 
-            <Link href="/contact" onClick={closeMobileMenu} className="mobile-nav-item highlight">
+            {/* Mobile Sample Tray Link */}
+            <button
+              type="button"
+              onClick={() => {
+                closeMobileMenu();
+                toggleTray();
+              }}
+              className="mobile-nav-item"
+              style={{ width: '100%', textAlign: 'left', background: 'none', borderLeft: 'none', borderRight: 'none' }}
+            >
               <span className="mobile-num">06</span>
+              <div className="mobile-nav-text">
+                <strong>Sample Tray ({shortlist.length})</strong>
+                <small>Order complimentary studio specimen box</small>
+              </div>
+              <span className="mobile-arrow">↗</span>
+            </button>
+
+            <Link href="/contact" onClick={closeMobileMenu} className="mobile-nav-item highlight">
+              <span className="mobile-num">07</span>
               <div className="mobile-nav-text">
                 <strong>Contact Practice</strong>
                 <small>Start a conversation & consultation</small>

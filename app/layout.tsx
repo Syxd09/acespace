@@ -1,12 +1,14 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 import './globals.css';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
+import { SampleProvider } from '@/context/SampleContext';
+import SampleTray from '@/components/SampleTray';
 
 export const metadata: Metadata = {
   title: 'Ace Spaces — Material, made architectural',
-  description: 'Ace Spaces creates architectural materials, surfaces and fabricated elements for considered spaces.',
-  keywords: ['architectural materials', 'surfaces', 'solid surface', 'fabrication', 'Bengaluru', 'interior architecture'],
+  description: 'Ace Spaces creates architectural materials, through-body mineral surfaces and fabricated elements for considered spaces in Bengaluru, India.',
+  keywords: ['architectural materials', 'surfaces', 'solid surface', 'fabrication', 'Bengaluru', 'interior architecture', 'sample box'],
 };
 
 export default function RootLayout({
@@ -25,9 +27,12 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <SiteHeader />
-        {children}
-        <SiteFooter />
+        <SampleProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+          <SampleTray />
+        </SampleProvider>
       </body>
     </html>
   );
