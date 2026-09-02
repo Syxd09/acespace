@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap');
 
 :root {
   --ink: #1e211d;
@@ -7,10 +7,18 @@
   --muted: #667066;
   --line: rgba(30, 33, 29, 0.18);
   --serif: Georgia, 'Times New Roman', serif;
+  --z-header: 20;
+  --z-modal: 100;
+  --z-toast: 120;
+  --z-drawer: 1000;
 }
 
 * {
   box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
 }
 
 html {
@@ -48,7 +56,7 @@ button {
   justify-content: space-between;
   padding: 0 4vw;
   position: absolute;
-  z-index: 20;
+  z-index: var(--z-header);
   top: 0;
   width: 100%;
   color: #fff;
@@ -128,6 +136,7 @@ button {
 /* Hero Section */
 .hero {
   height: min(850px, 100vh);
+  height: min(850px, 100dvh);
   min-height: 680px;
   position: relative;
   color: #fff;
@@ -158,6 +167,7 @@ button {
 .eyebrow {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
+  line-height: 1.4;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin: 0 0 25px;
@@ -264,7 +274,8 @@ h1 i, h2 i, h3 i {
   display: flex;
   gap: 12px;
   align-items: center;
-  font: 11px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
 }
 
 .line {
@@ -279,7 +290,8 @@ h1 i, h2 i, h3 i {
   display: flex;
   gap: 16px;
   align-items: center;
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   transform: rotate(-90deg);
@@ -298,7 +310,9 @@ h1 i, h2 i, h3 i {
 }
 
 .section-label {
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   color: #697067;
   letter-spacing: 0.1em;
 }
@@ -430,7 +444,9 @@ h1 i, h2 i, h3 i {
 }
 
 .card-info p {
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   text-transform: uppercase;
   margin: 0;
   opacity: 0.75;
@@ -472,7 +488,9 @@ h1 i, h2 i, h3 i {
 .statement-bottom {
   display: flex;
   justify-content: space-between;
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: 0.09em;
 }
@@ -532,7 +550,9 @@ h1 i, h2 i, h3 i {
 .process span {
   display: block;
   color: #879087;
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   margin-bottom: 13px;
 }
 
@@ -567,7 +587,9 @@ h1 i, h2 i, h3 i {
   left: 18px;
   bottom: 18px;
   color: #fff;
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   text-transform: uppercase;
   z-index: 1;
 }
@@ -597,7 +619,9 @@ h1 i, h2 i, h3 i {
   border-top: 1px solid var(--line);
   padding-top: 18px;
   margin-bottom: 38px;
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
 }
 
 .project-meta span {
@@ -649,13 +673,16 @@ h1 i, h2 i, h3 i {
 
 .app-list span,
 .app-list em {
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   font-style: normal;
   color: #70796e;
 }
 
 .app-list strong {
-  font: 24px var(--serif);
+  font-family: var(--serif);
+  font-size: 24px;
   font-weight: 400;
 }
 
@@ -680,7 +707,8 @@ h1 i, h2 i, h3 i {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font: 42px var(--serif);
+  font-family: var(--serif);
+  font-size: 42px;
   font-style: italic;
   margin: auto;
 }
@@ -730,7 +758,9 @@ h1 i, h2 i, h3 i {
 }
 
 .journal-card > a {
-  font: 11px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  line-height: 1.4;
   text-transform: uppercase;
   border-bottom: 1px solid var(--ink);
   padding-bottom: 8px;
@@ -755,9 +785,10 @@ h1 i, h2 i, h3 i {
 .enquiry-side {
   justify-self: end;
   align-self: end;
-  font: 11px 'DM Mono', monospace;
-  color: #808a80;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
   line-height: 1.7;
+  color: #808a80;
 }
 
 .enquiry-side span {
@@ -782,7 +813,8 @@ h1 i, h2 i, h3 i {
 }
 
 .footer-top p {
-  font: 11px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
   line-height: 1.6;
   color: #9ca59b;
 }
@@ -795,13 +827,16 @@ h1 i, h2 i, h3 i {
 }
 
 .footer-coro small {
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   text-transform: uppercase;
   color: #808a80;
 }
 
 .footer-coro strong {
-  font: 16px var(--serif);
+  font-family: var(--serif);
+  font-size: 16px;
   font-weight: 400;
 }
 
@@ -810,7 +845,9 @@ h1 i, h2 i, h3 i {
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   color: #7e897e;
 }
 
@@ -820,7 +857,7 @@ h1 i, h2 i, h3 i {
   inset: 0;
   background: rgba(19, 21, 18, 0.7);
   backdrop-filter: blur(4px);
-  z-index: 100;
+  z-index: var(--z-modal);
   display: grid;
   place-items: center;
   padding: 20px;
@@ -880,7 +917,9 @@ h1 i, h2 i, h3 i {
   display: flex;
   gap: 35px;
   margin: 22px 0 35px;
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
@@ -896,6 +935,8 @@ h1 i, h2 i, h3 i {
   top: 10px;
   font-size: 28px;
   z-index: 2;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 /* Toast */
@@ -911,7 +952,7 @@ h1 i, h2 i, h3 i {
   letter-spacing: 0.05em;
   opacity: 0;
   transition: opacity 0.3s, transform 0.3s;
-  z-index: 120;
+  z-index: var(--z-toast);
   pointer-events: none;
 }
 
@@ -1035,7 +1076,8 @@ h1 i, h2 i, h3 i {
 }
 
 .info-card h3 {
-  font: 29px var(--serif);
+  font-family: var(--serif);
+  font-size: 29px;
   font-weight: 400;
   line-height: 1;
   margin: 0 0 15px;
@@ -1062,7 +1104,9 @@ h1 i, h2 i, h3 i {
 }
 
 .spec-row span {
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   text-transform: uppercase;
   color: var(--muted);
 }
@@ -1136,7 +1180,7 @@ textarea {
   inset: 0;
   background: rgba(30, 33, 29, 0.45);
   backdrop-filter: blur(8px);
-  z-index: 1000;
+  z-index: var(--z-drawer);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1156,6 +1200,7 @@ textarea {
   bottom: 0;
   width: min(88vw, 420px);
   height: 100vh;
+  height: 100dvh;
   background: var(--paper);
   color: var(--ink);
   display: flex;
@@ -1186,6 +1231,8 @@ textarea {
   line-height: 1;
   width: 36px;
   height: 36px;
+  min-width: 44px;
+  min-height: 44px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -1203,7 +1250,9 @@ textarea {
 }
 
 .mobile-drawer-label {
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--muted);
@@ -1232,13 +1281,16 @@ textarea {
 }
 
 .mobile-num {
-  font: 11px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  line-height: 1.4;
   color: var(--muted);
 }
 
 .mobile-nav-text strong {
   display: block;
-  font: 21px var(--serif);
+  font-family: var(--serif);
+  font-size: 21px;
   font-weight: 400;
   color: var(--ink);
   line-height: 1.1;
@@ -1247,7 +1299,9 @@ textarea {
 
 .mobile-nav-text small {
   display: block;
-  font: 10px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.4;
   text-transform: uppercase;
   color: var(--muted);
   margin-top: 4px;
@@ -1294,20 +1348,25 @@ textarea {
 }
 
 .mobile-coro-badge small {
-  font: 9px 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--muted);
 }
 
 .mobile-coro-badge strong {
-  font: 15px var(--serif);
+  font-family: var(--serif);
+  font-size: 15px;
   font-weight: 400;
   color: var(--ink);
 }
 
 .mobile-footer-location {
-  font: 10px/1.5 'DM Mono', monospace;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  line-height: 1.5;
   text-transform: uppercase;
   color: var(--muted);
   margin: 14px 0 0;
@@ -1327,6 +1386,9 @@ textarea {
     display: flex;
     flex-direction: column;
     gap: 6px;
+    min-width: 44px;
+    min-height: 44px;
+    justify-content: center;
   }
   .menu-toggle i {
     display: block;
@@ -1383,6 +1445,9 @@ textarea {
   .fabrication-copy {
     padding-top: 80px;
     padding-bottom: 80px;
+  }
+  .process {
+    grid-template-columns: repeat(2, 1fr);
   }
   .project-feature {
     grid-template-columns: 1fr;
@@ -1493,6 +1558,10 @@ textarea {
   }
   .filter {
     padding: 11px 12px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
   .process {
     grid-template-columns: repeat(2, 1fr);
@@ -1512,5 +1581,22 @@ textarea {
   }
   .card-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-image,
+  .reveal,
+  .material-card .swatch,
+  .button,
+  .app-list a,
+  .mobile-drawer,
+  .modal,
+  .toast {
+    animation: none !important;
+    transition: none !important;
   }
 }
