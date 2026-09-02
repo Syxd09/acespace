@@ -1,7 +1,8 @@
 ﻿import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import type { Metadata } from 'next';
-import { journalArticles } from '@/data/journal';
+import JournalExplorer from '@/components/JournalExplorer';
 
 export const metadata: Metadata = {
   title: 'Journal & Material Essays — Ace Spaces',
@@ -9,111 +10,115 @@ export const metadata: Metadata = {
 };
 
 export default function JournalPage() {
-  const leadArticle = journalArticles[0];
-  const remainingArticles = journalArticles.slice(1);
-
   return (
-    <main className="page-main">
-      <section className="page-hero">
-        <p className="eyebrow">Journal / Notes on Architecture & Making</p>
-        <h1>
-          Space &
-          <br />
-          <i>matter.</i>
-        </h1>
-        <p>
-          Material knowledge, fabrication thinking, and observations from the world of considered architectural interiors.
-        </p>
+    <main className="page-main" style={{ paddingTop: '100px' }}>
+      {/* Rich Split Architectural Hero */}
+      <section
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'minmax(320px, 1.1fr) 0.9fr',
+          gap: '6vw',
+          alignItems: 'center',
+          padding: '60px 0 90px',
+          borderBottom: '1px solid var(--line)',
+        }}
+      >
+        <div>
+          <p className="eyebrow" style={{ marginBottom: '20px' }}>Journal / Notes on Architecture & Making</p>
+
+          <h1 style={{ fontSize: 'clamp(56px, 7vw, 108px)', lineHeight: 0.92, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+            Space &
+            <br />
+            <i>matter.</i>
+          </h1>
+
+          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
+            Material knowledge, fabrication thinking, and observations from the world of considered architectural interiors and solid mineral joinery.
+          </p>
+
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+            <Link className="button button-dark" href="#essays">
+              Explore Essays <span>↓</span>
+            </Link>
+            <Link className="text-link" href="/contact">
+              Subscribe to Dispatch <span>↗</span>
+            </Link>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '20px' }}>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Publications
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>06 Essays</strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Research
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Optical & Joinery</strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Format
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Open Access</strong>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Architectural Image Frame */}
+        <div
+          style={{
+            position: 'relative',
+            height: '520px',
+            background: '#dcd7cd',
+            border: '1px solid var(--line)',
+            overflow: 'hidden',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.08)',
+          }}
+        >
+          <Image
+            src="/assets/material-macro.png"
+            alt="Macro detail of architectural mineral surface edge profile"
+            fill
+            sizes="(max-width: 800px) 100vw, 45vw"
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '20px',
+              left: '20px',
+              right: '20px',
+              background: 'rgba(233, 232, 226, 0.92)',
+              backdropFilter: 'blur(12px)',
+              padding: '16px 20px',
+              border: '1px solid rgba(30,33,29,0.15)',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+                Featured Essay
+              </span>
+              <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
+                The Edge is Where Material Becomes Architecture
+              </strong>
+            </div>
+            <Link href="#essays" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+              Read <span>↗</span>
+            </Link>
+          </div>
+        </div>
       </section>
 
-      {/* Featured Lead Essay */}
-      {leadArticle && (
-        <section style={{ marginBottom: '100px', borderBottom: '1px solid var(--line)', paddingBottom: '80px' }}>
-          <div className="page-grid" style={{ padding: '80px 0 40px' }}>
-            <div>
-              <p className="eyebrow">{leadArticle.category} • {leadArticle.readTime} • {leadArticle.date}</p>
-              <h2 style={{ fontSize: 'clamp(42px, 5.5vw, 76px)', lineHeight: 0.95, margin: '16px 0 24px' }}>
-                {leadArticle.title}
-              </h2>
-              <p style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                Written by {leadArticle.author}
-              </p>
-            </div>
-
-            <div className="page-copy">
-              <blockquote style={{ margin: '0 0 28px', paddingLeft: '20px', borderLeft: '2px solid var(--ink)', fontStyle: 'italic', fontSize: '19px', lineHeight: 1.5, color: 'var(--ink)' }}>
-                "{leadArticle.quote || leadArticle.summary}"
-              </blockquote>
-              {leadArticle.content?.map((paragraph, i) => (
-                <p key={i} style={{ fontSize: '15px', lineHeight: 1.75, color: '#4a5249', marginBottom: '16px' }}>
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Essays & Notes Grid */}
-      <section style={{ marginBottom: '120px' }}>
-        <div className="section-head" style={{ marginBottom: '40px' }}>
-          <div>
-            <p className="eyebrow">Selected Essays & Research Notes</p>
-            <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}>
-              Fabrication &
-              <br />
-              <i>Spatial Theory.</i>
-            </h2>
-          </div>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
-          {remainingArticles.map((article) => (
-            <article
-              key={article.slug}
-              style={{
-                background: '#dcd7cd',
-                padding: '40px 35px',
-                border: '1px solid var(--line)',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between'
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
-                  <span className="eyebrow" style={{ color: 'var(--muted)', margin: 0 }}>
-                    {article.category}
-                  </span>
-                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
-                    {article.readTime}
-                  </span>
-                </div>
-
-                <h3 style={{ fontSize: '24px', fontWeight: 400, lineHeight: 1.15, margin: '0 0 16px', letterSpacing: '-0.03em' }}>
-                  {article.title}
-                </h3>
-
-                <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#4a5249', marginBottom: '24px' }}>
-                  {article.summary}
-                </p>
-
-                {article.content && (
-                  <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#667066', fontStyle: 'italic', borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '16px' }}>
-                    "{article.content[0]}"
-                  </p>
-                )}
-              </div>
-
-              <div style={{ marginTop: '28px', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                  {article.author} • {article.date}
-                </span>
-                <span style={{ fontSize: '18px', color: 'var(--ink)' }}>↗</span>
-              </div>
-            </article>
-          ))}
-        </div>
+      {/* Interactive Journal Explorer Component */}
+      <section id="essays" style={{ margin: '80px 0 100px' }}>
+        <JournalExplorer />
       </section>
 
       {/* Newsletter / Stay Close to the Work */}
