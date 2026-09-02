@@ -24,12 +24,7 @@ export default function MaterialsPage() {
         }}
       >
         <div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: '#dcd7cd', padding: '6px 14px', borderRadius: '100px', marginBottom: '24px', border: '1px solid var(--line)' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink)' }}>
-              Through-Body Solid Minerals
-            </span>
-          </div>
+          <p className="eyebrow" style={{ marginBottom: "20px" }}>Materials / Through-Body Solid Minerals</p>
 
           <h1 style={{ fontSize: 'clamp(56px, 7vw, 108px)', lineHeight: 0.92, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
             Material as
@@ -215,3 +210,4 @@ export default function MaterialsPage() {
     </main>
   );
 }
+
