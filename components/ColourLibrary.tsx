@@ -2,6 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { materials, Material } from '@/data/materials';
 import MaterialModal from '@/components/MaterialModal';
 import { useSampleShortlist } from '@/context/SampleContext';
@@ -83,7 +84,6 @@ export default function ColourLibrary() {
                   fontSize: '14px',
                   color: 'var(--ink)',
                   width: '100%',
-                  transition: 'border-color 0.25s ease, box-shadow 0.25s ease',
                 }}
               />
               {searchQuery && (
@@ -118,7 +118,6 @@ export default function ColourLibrary() {
                   background: viewMode === 'grid' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'grid' ? '#fff' : 'var(--ink)',
                   borderRight: '1px solid var(--line)',
-                  transition: 'all 0.25s ease',
                   cursor: 'pointer',
                 }}
               >
@@ -134,7 +133,6 @@ export default function ColourLibrary() {
                   background: viewMode === 'compact' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'compact' ? '#fff' : 'var(--ink)',
                   borderRight: '1px solid var(--line)',
-                  transition: 'all 0.25s ease',
                   cursor: 'pointer',
                 }}
               >
@@ -149,7 +147,6 @@ export default function ColourLibrary() {
                   fontFamily: 'DM Mono, monospace',
                   background: viewMode === 'list' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'list' ? '#fff' : 'var(--ink)',
-                  transition: 'all 0.25s ease',
                   cursor: 'pointer',
                 }}
               >
@@ -197,18 +194,6 @@ export default function ColourLibrary() {
                     transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                     cursor: 'pointer',
                   }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.borderColor = 'var(--ink)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.transform = 'none';
-                      e.currentTarget.style.borderColor = 'var(--line)';
-                    }
-                  }}
                 >
                   {fam.id !== 'all' && (
                     <span
@@ -253,16 +238,6 @@ export default function ColourLibrary() {
                     transition: 'all 0.25s ease',
                     cursor: 'pointer',
                   }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.background = 'rgba(30,33,29,0.08)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.background = 'transparent';
-                    }
-                  }}
                 >
                   {pat.label}
                 </button>
@@ -292,7 +267,7 @@ export default function ColourLibrary() {
         )}
       </div>
 
-      {/* View Mode 1: Standard 4-Col Grid with Hover Lift & Swatch Zoom */}
+      {/* View Mode 1: Standard 4-Col Grid with High-Res Texture Imagery */}
       {viewMode === 'grid' && (
         <div className="material-grid" style={{ marginBottom: '80px' }}>
           {filteredMaterials.map((mat) => {
@@ -300,13 +275,29 @@ export default function ColourLibrary() {
             return (
               <div key={mat.slug} className="material-card" style={{ position: 'relative' }}>
                 <div
-                  className={`swatch ${mat.swatch}`}
+                  className="swatch"
                   onClick={() => setActiveModalMaterial(mat)}
-                  style={{ background: mat.hexColor }}
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    background: mat.textureCss || mat.hexColor,
+                    overflow: 'hidden',
+                  }}
                   role="button"
                   tabIndex={0}
                   onKeyDown={(e) => e.key === 'Enter' && setActiveModalMaterial(mat)}
-                />
+                >
+                  {mat.textureImage && (
+                    <Image
+                      src={mat.textureImage}
+                      alt={mat.name}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 30vw"
+                      style={{ objectFit: 'cover' }}
+                      loading="lazy"
+                    />
+                  )}
+                </div>
 
                 {/* Quick Add Sample Badge with Hover Micro-Scale */}
                 <button
@@ -335,8 +326,6 @@ export default function ColourLibrary() {
                     cursor: 'pointer',
                     transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   }}
-                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
-                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 >
                   {inTray ? 'In Tray ✓' : '+ Sample'}
                 </button>
@@ -344,9 +333,9 @@ export default function ColourLibrary() {
                 <div
                   className="card-info"
                   onClick={() => setActiveModalMaterial(mat)}
-                  style={{ cursor: 'pointer' }}
+                  style={{ cursor: 'pointer', zIndex: 2 }}
                 >
-                  <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.7)', fontSize: '9px', marginBottom: '2px', display: 'block' }}>
+                  <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '9px', marginBottom: '2px', display: 'block' }}>
                     {mat.code} • {mat.collection}
                   </span>
                   <h3>{mat.name}</h3>
@@ -358,7 +347,7 @@ export default function ColourLibrary() {
         </div>
       )}
 
-      {/* View Mode 2: Compact 6-Col Grid with Hover Lift */}
+      {/* View Mode 2: Compact 6-Col Grid with Visible Swatch Images */}
       {viewMode === 'compact' && (
         <div
           style={{
@@ -386,27 +375,29 @@ export default function ColourLibrary() {
                   transition: 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease',
                 }}
                 onClick={() => setActiveModalMaterial(mat)}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)';
-                  e.currentTarget.style.boxShadow = '0 16px 32px rgba(0,0,0,0.1)';
-                  e.currentTarget.style.borderColor = 'var(--ink)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.boxShadow = 'none';
-                  e.currentTarget.style.borderColor = 'var(--line)';
-                }}
               >
                 <div>
                   <div
                     style={{
                       height: '110px',
-                      background: mat.hexColor,
+                      background: mat.textureCss || mat.hexColor,
                       border: '1px solid rgba(0,0,0,0.1)',
                       marginBottom: '12px',
-                      transition: 'transform 0.4s ease',
+                      position: 'relative',
+                      overflow: 'hidden',
                     }}
-                  />
+                  >
+                    {mat.textureImage && (
+                      <Image
+                        src={mat.textureImage}
+                        alt={mat.name}
+                        fill
+                        sizes="180px"
+                        style={{ objectFit: 'cover' }}
+                        loading="lazy"
+                      />
+                    )}
+                  </div>
                   <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block' }}>
                     {mat.code}
                   </span>
@@ -439,7 +430,6 @@ export default function ColourLibrary() {
                       color: inTray ? '#fff' : 'var(--ink)',
                       border: '1px solid var(--line)',
                       cursor: 'pointer',
-                      transition: 'all 0.2s',
                     }}
                   >
                     {inTray ? 'In Tray ✓' : '+ Sample'}
@@ -451,7 +441,7 @@ export default function ColourLibrary() {
         </div>
       )}
 
-      {/* View Mode 3: Detailed List Spec with Row Slide-In Hover */}
+      {/* View Mode 3: Detailed List Spec */}
       {viewMode === 'list' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '80px' }}>
           {filteredMaterials.map((mat) => {
@@ -467,31 +457,33 @@ export default function ColourLibrary() {
                   gridTemplateColumns: '60px 1.2fr 1fr 1fr 120px',
                   alignItems: 'center',
                   gap: '20px',
-                  transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.25s ease, box-shadow 0.25s ease',
                   cursor: 'pointer',
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateX(6px)';
-                  e.currentTarget.style.background = '#d2cdc3';
-                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.06)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'none';
-                  e.currentTarget.style.background = '#dcd7cd';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
+                onClick={() => setActiveModalMaterial(mat)}
               >
                 <div
                   style={{
                     width: '60px',
                     height: '60px',
-                    background: mat.hexColor,
+                    background: mat.textureCss || mat.hexColor,
                     border: '1px solid rgba(0,0,0,0.15)',
+                    position: 'relative',
+                    overflow: 'hidden',
                   }}
-                  onClick={() => setActiveModalMaterial(mat)}
-                />
+                >
+                  {mat.textureImage && (
+                    <Image
+                      src={mat.textureImage}
+                      alt={mat.name}
+                      fill
+                      sizes="60px"
+                      style={{ objectFit: 'cover' }}
+                      loading="lazy"
+                    />
+                  )}
+                </div>
 
-                <div onClick={() => setActiveModalMaterial(mat)}>
+                <div>
                   <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
                     {mat.code} • {mat.collection}
                   </span>
@@ -538,7 +530,6 @@ export default function ColourLibrary() {
                       color: inTray ? '#fff' : 'var(--ink)',
                       border: '1px solid var(--line)',
                       cursor: 'pointer',
-                      transition: 'all 0.2s',
                     }}
                   >
                     {inTray ? 'In Tray ✓' : '+ Sample'}

@@ -1,6 +1,7 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { materials, Material } from '@/data/materials';
 import MaterialModal from './MaterialModal';
 import Toast from './Toast';
@@ -58,7 +59,7 @@ export default function MaterialGrid() {
       </ScrollReveal>
 
       <div className="material-grid" id="material-grid">
-        {filteredMaterials.map((m, index) => (
+        {filteredMaterials.map((m) => (
           <article
             key={m.slug}
             className="material-card"
@@ -70,22 +71,46 @@ export default function MaterialGrid() {
                 setSelectedMaterial(m);
               }
             }}
+            style={{ position: 'relative' }}
           >
-            <div className={`swatch ${m.swatch}`} />
+            <div
+              className="swatch"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: m.textureCss || m.hexColor,
+                overflow: 'hidden',
+              }}
+            >
+              {m.textureImage && (
+                <Image
+                  src={m.textureImage}
+                  alt={m.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 30vw"
+                  style={{ objectFit: 'cover' }}
+                  loading="lazy"
+                />
+              )}
+            </div>
             <span className="card-hover">+</span>
             <div className="card-info">
+              <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '9px', marginBottom: '2px', display: 'block' }}>
+                {m.code} • {m.collection}
+              </span>
               <h3>{m.name}</h3>
-              <p>{m.collection}</p>
+              <p>{m.finish} / {m.colour}</p>
             </div>
           </article>
         ))}
       </div>
 
-      <MaterialModal
-        material={selectedMaterial}
-        onClose={() => setSelectedMaterial(null)}
-        onRequestSample={handleRequestSample}
-      />
+      {selectedMaterial && (
+        <MaterialModal
+          material={selectedMaterial}
+          onClose={() => setSelectedMaterial(null)}
+        />
+      )}
 
       <Toast show={showToast} message="Added to your sample shortlist" />
     </>
