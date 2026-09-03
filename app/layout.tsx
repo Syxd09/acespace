@@ -4,6 +4,7 @@ import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
 import { SampleProvider } from '@/context/SampleContext';
 import SampleTray from '@/components/SampleTray';
+import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
   title: 'Ace Spaces — Material, made architectural',
@@ -29,7 +30,9 @@ export default function RootLayout({
       <body>
         <SampleProvider>
           <SiteHeader />
-          {children}
+          <PageTransition>
+            {children}
+          </PageTransition>
           <SiteFooter />
           <SampleTray />
         </SampleProvider>
