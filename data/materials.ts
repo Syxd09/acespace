@@ -1,4 +1,4 @@
-﻿export interface Material {
+export interface Material {
   slug: string;
   name: string;
   code: string;
@@ -246,7 +246,7 @@ export const materials: Material[] = [
     finish: 'Velvet Matte',
     colour: 'Terracotta & Burnt Sienna',
     hexColor: '#b47b62',
-    textureImage: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80',
+    textureImage: 'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=800&q=80',
     textureCss: 'linear-gradient(130deg, #c2886f 0%, #b47b62 60%, #9e644b 100%)',
     description: 'Deep clay terracotta providing rustic warmth and tactile distinction for Mediterranean and brutalist interiors.',
     swatch: 'one',

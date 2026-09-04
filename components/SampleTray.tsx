@@ -1,11 +1,11 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useSampleShortlist } from '@/context/SampleContext';
 
 export default function SampleTray() {
-  const { shortlist, removeSample, clearShortlist, isTrayOpen, setIsTrayOpen, toggleTray } = useSampleShortlist();
+  const { shortlist, removeSample, clearShortlist, isTrayOpen, setIsTrayOpen } = useSampleShortlist();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -18,7 +18,7 @@ export default function SampleTray() {
     projectType: 'Residential',
   });
 
-  if (shortlist.length === 0 && !isTrayOpen) {
+  if (!isTrayOpen) {
     return null;
   }
 
@@ -45,109 +45,97 @@ export default function SampleTray() {
 
   return (
     <>
-      {/* Floating Sample Shortlist Pill Trigger */}
-      {!isTrayOpen && shortlist.length > 0 && (
-        <button
-          type="button"
-          onClick={toggleTray}
+      {/* Sample Tray Drawer Backdrop Overlay */}
+      <div
+        style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(25, 28, 24, 0.65)',
+          backdropFilter: 'blur(6px)',
+          zIndex: 9998,
+          transition: 'opacity 0.35s ease',
+        }}
+        onClick={() => setIsTrayOpen(false)}
+      />
+
+      {/* Side Slide-Over Panel */}
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: '100%',
+          maxWidth: '520px',
+          background: 'var(--paper)',
+          zIndex: 9999,
+          display: 'flex',
+          flexDirection: 'column',
+          boxShadow: '-10px 0 40px rgba(0,0,0,0.3)',
+          borderLeft: '1px solid var(--line)',
+          animation: 'slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      >
+        {/* Header */}
+        <div
           style={{
-            position: 'fixed',
-            bottom: '30px',
-            right: '30px',
-            zIndex: 900,
-            background: 'var(--ink)',
-            color: '#fff',
-            padding: '16px 24px',
-            borderRadius: '100px',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.25)',
-            border: '1px solid rgba(255,255,255,0.2)',
+            padding: '24px 32px',
+            borderBottom: '1px solid var(--line)',
             display: 'flex',
+            justifyContent: 'space-between',
             alignItems: 'center',
-            gap: '14px',
-            cursor: 'pointer',
-            transition: 'transform 0.25s ease',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-3px)')}
-          onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
         >
-          <span
+          <div>
+            <span className="eyebrow" style={{ color: 'var(--muted)', display: 'block', marginBottom: '4px' }}>
+              Architectural Palette
+            </span>
+            <h2 style={{ fontSize: '20px', fontWeight: 500, margin: 0 }}>
+              Sample Specimen Tray ({shortlist.length})
+            </h2>
+          </div>
+          <button
+            onClick={() => setIsTrayOpen(false)}
             style={{
-              width: '24px',
-              height: '24px',
+              width: '36px',
+              height: '36px',
               borderRadius: '50%',
-              background: 'var(--paper)',
+              border: '1px solid var(--line)',
+              background: 'transparent',
               color: 'var(--ink)',
+              fontSize: '18px',
               display: 'grid',
               placeItems: 'center',
-              fontSize: '11px',
-              fontFamily: 'DM Mono, monospace',
-              fontWeight: 700,
+              cursor: 'pointer',
+              transition: 'background 0.2s ease',
             }}
+            aria-label="Close Sample Tray"
           >
-            {shortlist.length}
-          </span>
-          <span style={{ fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: 'DM Mono, monospace' }}>
-            Sample Tray ({shortlist.length})
-          </span>
-          <span style={{ fontSize: '16px' }}>↗</span>
-        </button>
-      )}
+            ✕
+          </button>
+        </div>
 
-      {/* Slide-over Sample Shortlist Drawer */}
-      <div
-        className={`mobile-overlay ${isTrayOpen ? 'open' : ''}`}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) setIsTrayOpen(false);
-        }}
-        style={{ zIndex: 1100 }}
-      >
-        <div
-          className="mobile-drawer"
-          style={{
-            width: 'min(92vw, 480px)',
-            background: 'var(--paper)',
-            padding: '32px',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-        >
-          <div className="mobile-drawer-top" style={{ marginBottom: '20px' }}>
-            <div>
-              <span className="eyebrow" style={{ color: 'var(--muted)', display: 'block', margin: 0 }}>
-                Architectural Specimen Box
-              </span>
-              <h3 style={{ fontSize: '24px', fontWeight: 400, margin: '4px 0 0', letterSpacing: '-0.03em' }}>
-                Sample Shortlist ({shortlist.length})
-              </h3>
-            </div>
-            <button
-              className="mobile-close"
-              onClick={() => setIsTrayOpen(false)}
-              aria-label="Close sample tray"
-            >
-              ×
-            </button>
-          </div>
-
+        {/* Content Body */}
+        <div style={{ flex: 1, overflowY: 'auto', padding: '32px', display: 'flex', flexDirection: 'column' }}>
           {formSubmitted ? (
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', padding: '20px 0' }}>
               <div
                 style={{
-                  width: '64px',
-                  height: '64px',
+                  width: '60px',
+                  height: '60px',
                   borderRadius: '50%',
                   background: 'var(--ink)',
                   color: '#fff',
                   display: 'grid',
                   placeItems: 'center',
-                  fontSize: '28px',
-                  margin: '0 auto 24px',
+                  margin: '0 auto 20px',
+                  fontSize: '24px',
                 }}
               >
                 ✓
               </div>
               <p className="eyebrow" style={{ color: 'var(--muted)' }}>Sample Order Dispatched</p>
-              <h2 style={{ fontSize: '32px', fontWeight: 400, margin: '0 0 16px', lineHeight: 1.1 }}>
+              <h2 style={{ fontSize: '28px', fontWeight: 400, margin: '0 0 16px', lineHeight: 1.2 }}>
                 Specimen box on its way to <i>{formData.studio || formData.name}.</i>
               </h2>
               <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#5d665c', marginBottom: '32px' }}>
@@ -160,11 +148,11 @@ export default function SampleTray() {
           ) : shortlist.length === 0 ? (
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', textAlign: 'center', padding: '40px 0' }}>
               <span className="eyebrow" style={{ color: 'var(--muted)' }}>Tray Empty</span>
-              <h3 style={{ fontSize: '28px', fontWeight: 400, margin: '12px 0 16px' }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 400, margin: '12px 0 16px' }}>
                 No specimens added yet.
               </h3>
               <p style={{ fontSize: '14px', lineHeight: 1.6, color: '#5d665c', marginBottom: '30px' }}>
-                Browse our mineral palette and click <strong>"+ Add to Sample Tray"</strong> to compile your studio sample box.
+                Browse our mineral palette and click <strong>"+ Add to Sample Tray"</strong> on any material to compile your studio specimen box.
               </p>
               <Link
                 className="button button-dark"
@@ -183,7 +171,7 @@ export default function SampleTray() {
                 </span>
                 <button
                   onClick={clearShortlist}
-                  style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', textDecoration: 'underline', cursor: 'pointer' }}
+                  style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', textDecoration: 'underline', cursor: 'pointer', background: 'none', border: 'none' }}
                 >
                   Clear All
                 </button>
@@ -213,15 +201,15 @@ export default function SampleTray() {
                         {mat.name}
                       </strong>
                       <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                        {mat.finish} • 12mm Specimen
+                        {mat.finish} · 12mm Specimen
                       </span>
                     </div>
                     <button
                       onClick={() => removeSample(mat.slug)}
-                      style={{ fontSize: '18px', color: 'var(--muted)', cursor: 'pointer' }}
+                      style={{ fontSize: '18px', color: 'var(--muted)', cursor: 'pointer', background: 'none', border: 'none' }}
                       aria-label={`Remove ${mat.name}`}
                     >
-                      ×
+                      ✕
                     </button>
                   </div>
                 ))}
@@ -302,7 +290,7 @@ export default function SampleTray() {
                       Order Complimentary Sample Box ({shortlist.length}) <span>↗</span>
                     </button>
                     <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textAlign: 'center', marginTop: '10px', textTransform: 'uppercase' }}>
-                      Free delivery to studios across India • 100mm × 100mm
+                      Free delivery to studios across India · 100mm × 100mm
                     </span>
                   </div>
                 </form>
