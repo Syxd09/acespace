@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -18,11 +18,11 @@ export default function ColourLibrary() {
 
   const colorFamilies = [
     { id: 'all', label: 'All Hues', color: '#1e211d' },
-    { id: 'white', label: 'Whites & Creams', color: '#ede8db' },
-    { id: 'beige', label: 'Beiges & Sand', color: '#d5d1c3' },
-    { id: 'grey', label: 'Greys & Ash', color: '#a6aba2' },
-    { id: 'black', label: 'Blacks & Charcoal', color: '#1a1e1b' },
+    { id: 'white', label: 'Whites & Chalk', color: '#f4f3ef' },
+    { id: 'cream', label: 'Linen & Warm Creams', color: '#e9e4d8' },
+    { id: 'grey', label: 'Greys & Ash Concrete', color: '#a6aba2' },
     { id: 'earth', label: 'Earth & Terracotta', color: '#b47b62' },
+    { id: 'black', label: 'Obsidian Noir & Charcoal', color: '#1a1e1b' },
     { id: 'translucent', label: 'Translucent & Backlit', color: '#ede2cf' },
   ];
 
@@ -97,9 +97,12 @@ export default function ColourLibrary() {
                     transform: 'translateY(-50%)',
                     fontSize: '16px',
                     color: 'var(--muted)',
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
                   }}
                 >
-                  ×
+                  ✕
                 </button>
               )}
             </div>
@@ -118,6 +121,9 @@ export default function ColourLibrary() {
                   background: viewMode === 'grid' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'grid' ? '#fff' : 'var(--ink)',
                   borderRight: '1px solid var(--line)',
+                  borderTop: 'none',
+                  borderBottom: 'none',
+                  borderLeft: 'none',
                   cursor: 'pointer',
                 }}
               >
@@ -133,6 +139,9 @@ export default function ColourLibrary() {
                   background: viewMode === 'compact' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'compact' ? '#fff' : 'var(--ink)',
                   borderRight: '1px solid var(--line)',
+                  borderTop: 'none',
+                  borderBottom: 'none',
+                  borderLeft: 'none',
                   cursor: 'pointer',
                 }}
               >
@@ -147,6 +156,7 @@ export default function ColourLibrary() {
                   fontFamily: 'DM Mono, monospace',
                   background: viewMode === 'list' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'list' ? '#fff' : 'var(--ink)',
+                  border: 'none',
                   cursor: 'pointer',
                 }}
               >
@@ -158,7 +168,7 @@ export default function ColourLibrary() {
               type="button"
               onClick={toggleTray}
               className="text-link"
-              style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}
+              style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               Open Sample Tray <span>↗</span>
             </button>
@@ -260,7 +270,7 @@ export default function ColourLibrary() {
               setSelectedColorFamily('all');
               setSelectedPattern('all');
             }}
-            style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textDecoration: 'underline', color: 'var(--ink)', cursor: 'pointer' }}
+            style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textDecoration: 'underline', color: 'var(--ink)', cursor: 'pointer', background: 'none', border: 'none' }}
           >
             Reset Filters
           </button>
@@ -300,7 +310,7 @@ export default function ColourLibrary() {
                   )}
                 </div>
 
-                {/* Quick Add Sample Badge */}
+                {/* Sample Shortlist Quick Button */}
                 <button
                   type="button"
                   onClick={(e) => {
@@ -315,8 +325,8 @@ export default function ColourLibrary() {
                     position: 'absolute',
                     top: '14px',
                     right: '14px',
-                    zIndex: 4,
-                    background: inTray ? 'var(--ink)' : 'rgba(255,255,255,0.92)',
+                    zIndex: 3,
+                    background: inTray ? 'var(--ink)' : 'rgba(255,255,255,0.94)',
                     color: inTray ? '#fff' : 'var(--ink)',
                     border: '1px solid rgba(0,0,0,0.15)',
                     padding: '6px 12px',
@@ -325,16 +335,29 @@ export default function ColourLibrary() {
                     fontFamily: 'DM Mono, monospace',
                     textTransform: 'uppercase',
                     cursor: 'pointer',
-                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                    transition: 'all 0.25s ease',
                   }}
                 >
                   {inTray ? 'In Tray ✓' : '+ Sample'}
                 </button>
 
                 <div className="card-info" style={{ zIndex: 2 }}>
-                  <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '9px', marginBottom: '2px', display: 'block' }}>
-                    {mat.code} • {mat.collection}
-                  </span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                    <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.9)', fontSize: '9px', margin: 0 }}>
+                      {mat.code} · {mat.collection}
+                    </span>
+                    <span
+                      style={{
+                        width: '12px',
+                        height: '12px',
+                        borderRadius: '50%',
+                        background: mat.hexColor,
+                        border: '1px solid rgba(255,255,255,0.6)',
+                        display: 'inline-block',
+                      }}
+                      title={`Hex: ${mat.hexColor}`}
+                    />
+                  </div>
                   <h3>{mat.name}</h3>
                   <p>{mat.finish} / {mat.colour}</p>
                 </div>
@@ -482,7 +505,7 @@ export default function ColourLibrary() {
 
                 <div>
                   <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                    {mat.code} • {mat.collection}
+                    {mat.code} · {mat.collection}
                   </span>
                   <h4 style={{ fontSize: '18px', fontWeight: 400, margin: '2px 0 0', color: 'var(--ink)' }}>
                     {mat.name}
@@ -494,7 +517,7 @@ export default function ColourLibrary() {
                     Finish & Tone
                   </span>
                   <span style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                    {mat.finish} • {mat.colour}
+                    {mat.finish} · {mat.colour}
                   </span>
                 </div>
 
