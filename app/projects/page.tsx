@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
@@ -11,22 +11,13 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <main className="page-main" style={{ paddingTop: '100px' }}>
+    <main className="page-main">
       {/* Rich Split Architectural Hero */}
-      <section
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 1.1fr) 0.9fr',
-          gap: '6vw',
-          alignItems: 'center',
-          padding: '60px 0 90px',
-          borderBottom: '1px solid var(--line)',
-        }}
-      >
+      <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: "20px" }}>Projects / Selected Architectural Work</p>
+          <p className="eyebrow" style={{ marginBottom: "24px" }}>Projects / Selected Architectural Work</p>
 
-          <h1 style={{ fontSize: 'clamp(56px, 7vw, 108px)', lineHeight: 0.92, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+          <h1 style={{ fontSize: 'clamp(44px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
             Material
             <br />
             in <i>practice.</i>
@@ -45,7 +36,7 @@ export default function ProjectsPage() {
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '20px' }}>
+          <div className="hero-stats-row">
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Typologies
@@ -86,21 +77,7 @@ export default function ProjectsPage() {
             style={{ objectFit: 'cover' }}
             priority
           />
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '20px',
-              left: '20px',
-              right: '20px',
-              background: 'rgba(233, 232, 226, 0.92)',
-              backdropFilter: 'blur(12px)',
-              padding: '16px 20px',
-              border: '1px solid rgba(30,33,29,0.15)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
+          <div className="hero-image-badge">
             <div>
               <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Featured Case Study

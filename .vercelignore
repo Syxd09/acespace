@@ -1,0 +1,4 @@
+# Ignore raw source photos to keep deployments fast and small
+public/assets/My images/
+public/assets/My images
+.git

@@ -2,11 +2,16 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useSampleShortlist } from '@/context/SampleContext';
 
 export default function SampleTray() {
   const { shortlist, removeSample, clearShortlist, isTrayOpen, setIsTrayOpen } = useSampleShortlist();
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [orderId, setOrderId] = useState<string | null>(null);
+  const [orderNumber, setOrderNumber] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
     studio: '',
@@ -18,17 +23,108 @@ export default function SampleTray() {
     projectType: 'Residential',
   });
 
-  if (!isTrayOpen) {
+  const pathname = usePathname();
+
+  // Auto-save in-progress draft as soon as customer begins typing their details ("also if he is entering")
+  React.useEffect(() => {
+    if (formSubmitted || shortlist.length === 0) return;
+    if (!formData.name && !formData.email && !formData.phone && !formData.studio) return;
+
+    const timer = setTimeout(async () => {
+      try {
+        const payload = {
+          id: orderId || undefined,
+          status: 'in-progress',
+          customer: formData,
+          items: shortlist.map((m) => ({
+            materialSlug: m.slug,
+            name: m.name,
+            collection: m.collection,
+            finish: m.finish,
+            colour: m.colour,
+            swatch: m.swatch,
+            dimensions: '100mm × 100mm Specimen',
+          })),
+        };
+
+        const res = await fetch('/api/orders', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          if (data.orderId && !orderId) {
+            setOrderId(data.orderId);
+          }
+          if (data.orderNumber) {
+            setOrderNumber(data.orderNumber);
+          }
+        }
+      } catch (err) {
+        console.warn('Draft auto-save sync error:', err);
+      }
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [formData, shortlist, orderId, formSubmitted]);
+
+  if (pathname?.startsWith('/admin') || !isTrayOpen) {
     return null;
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    if (shortlist.length === 0) return;
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const payload = {
+        id: orderId || undefined,
+        status: 'submitted',
+        customer: formData,
+        items: shortlist.map((m) => ({
+          materialSlug: m.slug,
+          name: m.name,
+          collection: m.collection,
+          finish: m.finish,
+          colour: m.colour,
+          swatch: m.swatch,
+          dimensions: '100mm × 100mm Specimen',
+        })),
+      };
+
+      const res = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        if (data.orderNumber) {
+          setOrderNumber(data.orderNumber);
+        }
+        setFormSubmitted(true);
+      } else {
+        setErrorMessage(data.error || 'Unable to place sample order. Please try again.');
+      }
+    } catch (err) {
+      setErrorMessage((err as Error).message || 'Network error while submitting order.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setFormSubmitted(false);
+    setOrderId(null);
+    setOrderNumber('');
+    setErrorMessage(null);
     clearShortlist();
     setIsTrayOpen(false);
     setFormData({
@@ -135,6 +231,11 @@ export default function SampleTray() {
                 ✓
               </div>
               <p className="eyebrow" style={{ color: 'var(--muted)' }}>Sample Order Dispatched</p>
+              {orderNumber && (
+                <div style={{ display: 'inline-block', margin: '0 auto 16px', background: '#dcd7cd', border: '1px solid var(--line)', padding: '6px 14px', fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                  Reference: <strong>{orderNumber}</strong>
+                </div>
+              )}
               <h2 style={{ fontSize: '28px', fontWeight: 400, margin: '0 0 16px', lineHeight: 1.2 }}>
                 Specimen box on its way to <i>{formData.studio || formData.name}.</i>
               </h2>
@@ -281,13 +382,20 @@ export default function SampleTray() {
                     />
                   </div>
 
+                  {errorMessage && (
+                    <div style={{ padding: '10px 14px', background: 'rgba(215, 65, 50, 0.1)', border: '1px solid rgba(215, 65, 50, 0.3)', color: '#b93222', fontSize: '12px', fontFamily: 'DM Mono, monospace' }}>
+                      ⚠ {errorMessage}
+                    </div>
+                  )}
+
                   <div style={{ marginTop: '10px' }}>
                     <button
                       type="submit"
+                      disabled={isSubmitting}
                       className="button button-dark"
-                      style={{ width: '100%', justifyContent: 'center', padding: '18px 24px' }}
+                      style={{ width: '100%', justifyContent: 'center', padding: '18px 24px', opacity: isSubmitting ? 0.7 : 1 }}
                     >
-                      Order Complimentary Sample Box ({shortlist.length}) <span>↗</span>
+                      {isSubmitting ? 'Registering Order...' : `Order Complimentary Sample Box (${shortlist.length}) ↗`}
                     </button>
                     <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textAlign: 'center', marginTop: '10px', textTransform: 'uppercase' }}>
                       Free delivery to studios across India · 100mm × 100mm

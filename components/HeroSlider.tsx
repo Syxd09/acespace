@@ -1,71 +1,29 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-
-interface Slide {
-  id: number;
-  image: string;
-  eyebrow: string;
-  title: string;
-  subtitle: string;
-  copy: string;
-  specimen: string;
-  location: string;
-}
-
-const slides: Slide[] = [
-  {
-    id: 1,
-    image: '/assets/hero-ace.png',
-    eyebrow: 'Ace Spaces / Architectural Minerals',
-    title: 'Material,',
-    subtitle: 'made architectural.',
-    copy: 'We develop solid surfaces and fabricated elements for spaces designed to outlast the moment.',
-    specimen: 'Alto / Ivory Vein',
-    location: 'Private Residence / Bengaluru',
-  },
-  {
-    id: 2,
-    image: '/assets/material-macro.png',
-    eyebrow: 'Workshop Craft / Seamless Form',
-    title: 'Quiet depth,',
-    subtitle: 'monolithic form.',
-    copy: 'Through-body mineral compositions engineered with zero visible seams, non-porous longevity, and velvety tactile texture.',
-    specimen: 'Noma / Chalk',
-    location: 'Material Specimen / Honed Matte',
-  },
-  {
-    id: 3,
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1800&q=85',
-    eyebrow: 'Spatial Typologies / Hospitality',
-    title: 'Light, shadow',
-    subtitle: '& refined volume.',
-    copy: 'From curved reception monoliths to custom illuminated retail plinths, shaping material around pure architectural intent.',
-    specimen: 'Obsidian / Still',
-    location: 'Hospitality Pavilion / Mumbai',
-  },
-  {
-    id: 4,
-    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1800&q=85',
-    eyebrow: 'Fabrication / 5-Axis Precision',
-    title: 'From raw sheet',
-    subtitle: 'into sculpture.',
-    copy: 'Thermoformed multi-radius curvatures and laser-mitred edge transitions executed in our Bengaluru facility.',
-    specimen: 'Lumen / Shell',
-    location: 'Atelier Installation / New Delhi',
-  },
-];
+import { useSiteContent } from '@/context/SiteContentContext';
+import { defaultHeroSlides } from '@/data/contentTypes';
 
 export default function HeroSlider() {
+  const { heroSlides } = useSiteContent();
+  const slides = (heroSlides && heroSlides.length > 0) ? heroSlides : defaultHeroSlides;
+
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  // Keep index within bounds if slides count changes
+  useEffect(() => {
+    if (currentSlide >= slides.length) {
+      setCurrentSlide(0);
+    }
+  }, [slides.length, currentSlide]);
+
   // 5-second interval timer with smooth progress bar
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || slides.length === 0) return;
 
     const intervalTime = 5000;
     const updateFreq = 50;
@@ -82,7 +40,7 @@ export default function HeroSlider() {
     }, updateFreq);
 
     return () => clearInterval(timer);
-  }, [isPaused, currentSlide]);
+  }, [isPaused, currentSlide, slides.length]);
 
   const goToSlide = (idx: number) => {
     setCurrentSlide(idx);
@@ -99,6 +57,8 @@ export default function HeroSlider() {
     setProgress(0);
   };
 
+  const activeSlide = slides[currentSlide] || slides[0] || defaultHeroSlides[0];
+
   return (
     <section
       className="hero"
@@ -111,7 +71,7 @@ export default function HeroSlider() {
         const isActive = index === currentSlide;
         return (
           <div
-            key={slide.id}
+            key={slide.id || index}
             style={{
               position: 'absolute',
               inset: 0,
@@ -130,14 +90,16 @@ export default function HeroSlider() {
                 transition: 'transform 6.5s cubic-bezier(0.25, 1, 0.5, 1)',
               }}
             >
-              <Image
-                src={slide.image}
-                alt={slide.title}
-                fill
-                priority={index === 0}
-                sizes="100vw"
-                style={{ objectFit: 'cover', objectPosition: 'center' }}
-              />
+              {slide.image && (
+                <Image
+                  src={slide.image}
+                  alt={slide.title}
+                  fill
+                  priority={index === 0}
+                  sizes="100vw"
+                  style={{ objectFit: 'cover', objectPosition: 'center' }}
+                />
+              )}
             </div>
             {/* Ambient Dark Gradient Shade for Text Legibility */}
             <div
@@ -153,14 +115,14 @@ export default function HeroSlider() {
 
       {/* Hero Text Content */}
       <div className="hero-content" style={{ zIndex: 2 }}>
-        <p className="eyebrow light">{slides[currentSlide].eyebrow}</p>
+        <p className="eyebrow light">{activeSlide.eyebrow}</p>
         <h1 key={`title-${currentSlide}`} style={{ animation: 'heroTextIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both' }}>
-          {slides[currentSlide].title}
+          {activeSlide.title}
           <br />
-          <i>{slides[currentSlide].subtitle}</i>
+          <i>{activeSlide.subtitle}</i>
         </h1>
         <p key={`copy-${currentSlide}`} className="hero-copy" style={{ animation: 'heroTextIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both' }}>
-          {slides[currentSlide].copy}
+          {activeSlide.copy}
         </p>
 
         <div className="hero-buttons">
@@ -175,6 +137,7 @@ export default function HeroSlider() {
 
       {/* Interactive Slide Navigation Controls & 5s Progress Bar */}
       <div
+        className="hero-slider-controls"
         style={{
           position: 'absolute',
           right: '4vw',
@@ -187,8 +150,8 @@ export default function HeroSlider() {
         }}
       >
         {/* Specimen Tag */}
-        <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          {slides[currentSlide].specimen} • {slides[currentSlide].location}
+        <div className="specimen-tag" style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          {activeSlide.specimen} • {activeSlide.location}
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

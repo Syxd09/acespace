@@ -1,13 +1,36 @@
-﻿'use client';
+'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { journalArticles, JournalArticle } from '@/data/journal';
+import { useSiteContent } from '@/context/SiteContentContext';
 
 export default function JournalExplorer() {
+  const { journalArticles: liveArticles } = useSiteContent();
+  const articles = (liveArticles && liveArticles.length > 0) ? liveArticles : journalArticles;
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeArticle, setActiveArticle] = useState<JournalArticle | null>(null);
+  const [mounted, setMounted] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (activeArticle) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      if (modalRef.current) {
+        modalRef.current.scrollTop = 0;
+      }
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [activeArticle]);
 
   const categories = ['All', 'Material Knowledge', 'Fabrication Craft', 'Spatial Design', 'Material Science'];
 
@@ -44,7 +67,7 @@ export default function JournalExplorer() {
           flexWrap: 'wrap',
         }}
       >
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        <div className="filter-row">
           {categories.map((cat) => {
             const isActive = selectedCategory === cat;
             return (
@@ -52,6 +75,7 @@ export default function JournalExplorer() {
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
+                className={`filter ${isActive ? 'active' : ''}`}
                 style={{
                   padding: '8px 16px',
                   fontSize: '11px',
@@ -109,21 +133,12 @@ export default function JournalExplorer() {
       {/* Featured Lead Article Split Card */}
       {leadArticle && (
         <div
-          style={{
-            background: '#dcd7cd',
-            border: '1px solid var(--line)',
-            display: 'grid',
-            gridTemplateColumns: 'minmax(320px, 1.2fr) 0.8fr',
-            marginBottom: '60px',
-            overflow: 'hidden',
-            boxShadow: '0 10px 30px rgba(0,0,0,0.05)',
-            cursor: 'pointer',
-          }}
+          className="journal-lead-card"
           onClick={() => setActiveArticle(leadArticle)}
         >
-          <div style={{ padding: 'clamp(32px, 5vw, 60px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div className="journal-lead-content" style={{ padding: 'clamp(28px, 5vw, 60px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '18px' }}>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '18px', flexWrap: 'wrap' }}>
                 <span className="eyebrow" style={{ margin: 0, color: 'var(--ink)', fontWeight: 600 }}>
                   {leadArticle.category}
                 </span>
@@ -132,7 +147,7 @@ export default function JournalExplorer() {
                 </span>
               </div>
 
-              <h2 style={{ fontSize: 'clamp(32px, 4vw, 52px)', lineHeight: 1.05, margin: '0 0 20px', letterSpacing: '-0.04em' }}>
+              <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', lineHeight: 1.05, margin: '0 0 20px', letterSpacing: '-0.04em' }}>
                 {leadArticle.title}
               </h2>
 
@@ -157,7 +172,7 @@ export default function JournalExplorer() {
               )}
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '20px' }}>
+            <div className="journal-lead-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '20px' }}>
               <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
                 Written by {leadArticle.author}
               </span>
@@ -175,7 +190,7 @@ export default function JournalExplorer() {
             </div>
           </div>
 
-          <div style={{ position: 'relative', minHeight: '340px', background: '#ccc' }}>
+          <div className="journal-lead-image" style={{ position: 'relative', minHeight: '340px', background: '#ccc' }}>
             <Image
               src={leadArticle.image || '/assets/material-macro.png'}
               alt={leadArticle.title}
@@ -188,7 +203,7 @@ export default function JournalExplorer() {
       )}
 
       {/* Grid of Remaining Articles */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px', marginBottom: '80px' }}>
+      <div className="journal-articles-grid">
         {gridArticles.map((art) => (
           <article
             key={art.slug}
@@ -255,32 +270,37 @@ export default function JournalExplorer() {
       </div>
 
       {/* Interactive Essay Reader Modal / Drawer */}
-      {activeArticle && (
+      {activeArticle && mounted && typeof document !== 'undefined' && createPortal(
         <div
           style={{
             position: 'fixed',
             inset: 0,
-            zIndex: 1000,
-            background: 'rgba(0, 0, 0, 0.65)',
-            backdropFilter: 'blur(10px)',
+            zIndex: 999999,
+            background: 'rgba(15, 17, 14, 0.82)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            padding: '20px',
+            padding: 'clamp(14px, 3vh, 28px)',
+            animation: 'modalFadeIn 0.2s ease-out',
           }}
           onClick={() => setActiveArticle(null)}
+          role="dialog"
+          aria-modal="true"
         >
           <div
+            ref={modalRef}
             style={{
               background: 'var(--paper)',
               width: '100%',
               maxWidth: '820px',
-              maxHeight: '90vh',
+              maxHeight: 'min(90vh, 740px)',
               overflowY: 'auto',
               border: '1px solid var(--line)',
-              boxShadow: '0 30px 80px rgba(0,0,0,0.3)',
+              boxShadow: '0 30px 80px rgba(0,0,0,0.4)',
               position: 'relative',
-              padding: 'clamp(32px, 6vw, 60px)',
+              padding: 'clamp(24px, 4vw, 48px)',
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -375,7 +395,8 @@ export default function JournalExplorer() {
               </button>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

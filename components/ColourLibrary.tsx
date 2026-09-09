@@ -3,11 +3,14 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { materials, Material } from '@/data/materials';
+import { materials as defaultMaterials, Material } from '@/data/materials';
+import { useSiteContent } from '@/context/SiteContentContext';
 import MaterialModal from '@/components/MaterialModal';
 import { useSampleShortlist } from '@/context/SampleContext';
 
 export default function ColourLibrary() {
+  const { materials: liveMaterials } = useSiteContent();
+  const materials = (liveMaterials && liveMaterials.length > 0) ? liveMaterials : defaultMaterials;
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedColorFamily, setSelectedColorFamily] = useState<string>('all');
   const [selectedPattern, setSelectedPattern] = useState<string>('all');
@@ -65,8 +68,8 @@ export default function ColourLibrary() {
           marginBottom: '40px',
         }}
       >
-        <div style={{ display: 'grid', gridTemplateColumns: 'minmax(260px, 1.5fr) 1fr', gap: '24px', alignItems: 'center' }}>
-          <div>
+        <div className="colour-controls-bar">
+          <div className="colour-search-box" style={{ flex: 1 }}>
             <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
               Search Colour Library & Codes
             </span>
@@ -108,7 +111,7 @@ export default function ColourLibrary() {
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+          <div className="colour-view-mode-wrap" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             {/* View Mode Toggle */}
             <div style={{ display: 'flex', border: '1px solid var(--line)', background: 'var(--paper)' }}>
               <button
@@ -131,6 +134,7 @@ export default function ColourLibrary() {
               </button>
               <button
                 type="button"
+                className="compact-col-btn"
                 onClick={() => setViewMode('compact')}
                 style={{
                   padding: '10px 14px',
@@ -180,7 +184,7 @@ export default function ColourLibrary() {
           <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '10px' }}>
             Filter by Colour Group:
           </span>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <div className="colour-filter-scroll" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {colorFamilies.map((fam) => {
               const isActive = selectedColorFamily === fam.id;
               return (
@@ -229,7 +233,7 @@ export default function ColourLibrary() {
           <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '10px' }}>
             Filter by Pattern / Character:
           </span>
-          <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+          <div className="colour-filter-scroll" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {patterns.map((pat) => {
               const isActive = selectedPattern === pat.id;
               return (

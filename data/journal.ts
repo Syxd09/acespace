@@ -145,5 +145,28 @@ export const journalArticles: JournalArticle[] = [
       'Membrane vacuum presses eliminate localized pinch points and stress risers',
       'Retains 100% structural strength and non-porous properties post-forming'
     ]
-  }
+  },
+  {
+    slug: 'the-raw-material-foundation-behind-coro-collective',
+    title: 'The Raw Material Foundation: Why Architecture Begins at the Source.',
+    category: 'Ecosystem & Philosophy',
+    date: 'September 2024',
+    readTime: '05 min read',
+    author: 'Ace Spatial Research',
+    summary: 'How Ace Spaces serves as the parent company and raw material source for independent architects, interior designers, and Coro Collective.',
+    imageClass: 'journal-one',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85',
+    quote: 'Before there is a room, a curve, or a finished edge, there is the raw substrate. Architecture does not begin on the drafting board; it begins at the material source.',
+    content: [
+      'In contemporary spatial design, there is often a separation between the studio that imagines a space and the raw substrate from which that space is built. Ace Spaces was founded to dissolve that division.',
+      'As a parent company and primary raw material provider, Ace Spaces provides interior designers and architects with direct access to through-body mineral compositions, solid surface slabs, and unyielding fabrication standards. Rather than selecting from disconnected sample rings, designers work directly with the source.',
+      'This foundation is also why Coro Collective exists. Born directly out of Ace Spaces, Coro Collective serves as our sister spatial and interior design brand—taking the very raw materials we formulate and engineering them into complete living environments, sculptural reception monoliths, and bespoke furniture pieces.',
+      'Whether specifying raw slabs for an independent architectural commission or collaborating on full spatial fabrication, the principle remains constant: the material is the foundation of everything that follows.'
+    ],
+    takeaways: [
+      'Ace Spaces operates as the parent company and raw material source for architects, interior designers, and Coro Collective.',
+      'Through-body minerals provide uniform density, allowing seamless joins, thermoformed curvatures, and continuous plane transitions.',
+      'Direct sourcing empowers designers with customized sheet dimensions, edge profiles, and specialized pigment formulations.'
+    ]
+  },
 ];

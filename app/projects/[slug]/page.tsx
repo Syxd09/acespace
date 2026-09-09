@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
@@ -61,7 +61,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
         </section>
 
         {/* Challenge vs Solution */}
-        <section style={{ marginBottom: '100px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '30px' }}>
+        <section className="challenge-solution-grid">
           <div style={{ background: '#dcd7cd', padding: '40px', border: '1px solid var(--line)' }}>
             <span className="eyebrow" style={{ color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>
               The Architectural Challenge

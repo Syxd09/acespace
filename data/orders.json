@@ -1,0 +1,89 @@
+[
+  {
+    "id": "ord_seed_1",
+    "orderNumber": "ACE-ORD-1048",
+    "status": "submitted",
+    "createdAt": "2026-09-09T17:30:00.000Z",
+    "updatedAt": "2026-09-09T17:30:00.000Z",
+    "customer": {
+      "name": "Arjun Mehta",
+      "studio": "Studio Morphosis Architects",
+      "email": "arjun@morphosis.in",
+      "phone": "+91 98201 44521",
+      "address": "402 Creative Square, 12th Main, Indiranagar",
+      "city": "Bengaluru",
+      "pincode": "560038",
+      "projectType": "Bespoke Residential Penthouse"
+    },
+    "items": [
+      {
+        "materialSlug": "noma-white-chalk",
+        "name": "Noma / White Chalk",
+        "collection": "Solid Surfaces",
+        "finish": "Honed Matte",
+        "colour": "White Chalk",
+        "swatch": "swatch-noma-chalk",
+        "dimensions": "100mm × 100mm Specimen"
+      },
+      {
+        "materialSlug": "calacatta-monochrome",
+        "name": "Calacatta / Monochrome Vein",
+        "collection": "Veined Minerals",
+        "finish": "Satin Smooth",
+        "colour": "Veined White / Charcoal",
+        "swatch": "swatch-calacatta-mono",
+        "dimensions": "100mm × 100mm Specimen"
+      },
+      {
+        "materialSlug": "lumen-alabaster",
+        "name": "Lumen / Alabaster Light",
+        "collection": "Optic & Translucent",
+        "finish": "Semi-Translucent",
+        "colour": "Soft Warm Ivory",
+        "swatch": "swatch-lumen-alabaster",
+        "dimensions": "100mm × 100mm Specimen"
+      }
+    ],
+    "itemCount": 3,
+    "notes": "Prioritize courier dispatch for client presentation this Thursday."
+  },
+  {
+    "id": "ord_seed_2",
+    "orderNumber": "ACE-ORD-1049",
+    "status": "dispatched",
+    "createdAt": "2026-09-08T11:00:00.000Z",
+    "updatedAt": "2026-09-08T15:30:00.000Z",
+    "customer": {
+      "name": "Ritu Sen",
+      "studio": "Atelier Sen Design",
+      "email": "ritu@ateliersen.com",
+      "phone": "+91 99104 88320",
+      "address": "Suite 6B, The Heritage Arcade, Mehrauli Road",
+      "city": "New Delhi",
+      "pincode": "110030",
+      "projectType": "Luxury Boutique Hotel"
+    },
+    "items": [
+      {
+        "materialSlug": "noma-basalt-core",
+        "name": "Noma / Basalt Core",
+        "collection": "Solid Surfaces",
+        "finish": "Ultra Matte",
+        "colour": "Deep Basalt Charcoal",
+        "swatch": "swatch-noma-basalt",
+        "dimensions": "100mm × 100mm Specimen"
+      },
+      {
+        "materialSlug": "terra-granite-aggregate",
+        "name": "Terra / Granite Aggregate",
+        "collection": "Particulate Mineral",
+        "finish": "Textured Mineral",
+        "colour": "Granite Terrazzo Aggregate",
+        "swatch": "swatch-terra-granite",
+        "dimensions": "100mm × 100mm Specimen"
+      }
+    ],
+    "itemCount": 2,
+    "notes": "Air courier tracking AW-492041 sent via SMS."
+  }
+]

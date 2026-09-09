@@ -22,10 +22,10 @@ export default function HomePage() {
           </h2>
           <div>
             <p className="lead">
-              Surfaces carry the light and the silence of a room. We develop mineral materials that reward touch and age with dignity.
+              Surfaces carry the light and the silence of a room. As the parent company and primary raw material provider, we develop solid surfaces and mineral substrates that reward touch and outlast time.
             </p>
             <p>
-              From seamless residential islands to monumental public installations, our palette is deliberately focused, tactile and durable.
+              We are the direct material source for architects, interior designers, and bespoke builders — as well as the foundational source powering Coro Collective. Full-dimension slabs, custom sheets, and precision workshop fabrication.
             </p>
             <div>
               <Link className="text-link dark" href="/about">
@@ -77,8 +77,8 @@ export default function HomePage() {
       <section id="fabrication" className="fabrication dark-section">
         <div className="fabrication-image" style={{ position: 'relative' }}>
           <Image
-            src="/assets/material-macro.png"
-            alt="Close texture of a honed ivory mineral surface"
+            src="/assets/applications/calacatta-greige-kitchen-detail.jpg"
+            alt="Close-up of seamless 45-degree mitred waterfall edge and surface join"
             fill
             sizes="(max-width: 800px) 100vw, 50vw"
             style={{ objectFit: 'cover' }}
@@ -131,8 +131,15 @@ export default function HomePage() {
         </ScrollReveal>
 
         <ScrollReveal className="project-feature">
-          <div className="project-photo photo-one">
-            <div className="project-tag">Residential / Bengaluru</div>
+          <div className="project-photo photo-one" style={{ position: 'relative' }}>
+            <Image
+              src="/assets/applications/calacatta-greige-kitchen.jpg"
+              alt="Calacatta Greige monolithic kitchen island"
+              fill
+              sizes="(max-width: 800px) 100vw, 55vw"
+              style={{ objectFit: 'cover' }}
+            />
+            <div className="project-tag" style={{ position: 'absolute', bottom: '24px', left: '24px', zIndex: 2 }}>Residential / Bengaluru</div>
           </div>
           <div className="project-info">
             <p className="eyebrow">01 / Private residence</p>
@@ -193,19 +200,37 @@ export default function HomePage() {
       {/* Coro Collective Ecosystem Section */}
       <section id="coro" className="coro section-pad">
         <ScrollReveal>
-          <div className="coro-mark">CC</div>
+          <div style={{ textAlign: 'center' }}>
+            <div className="coro-mark">CC</div>
+            <div style={{ marginTop: '16px', fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(30,33,29,0.7)' }}>
+              Ecosystem Studio
+            </div>
+          </div>
         </ScrollReveal>
         <ScrollReveal>
-          <p className="eyebrow">The wider ecosystem</p>
-          <h2>
-            Beyond
+          <p className="eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ink)', display: 'inline-block' }}></span>
+            Parent Company &amp; Material Source
+          </p>
+          <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', lineHeight: 1.05, margin: '16px 0 24px' }}>
+            The source where
             <br />
-            the <i>surface.</i>
+            Coro Collective <i>begins.</i>
           </h2>
-          <p>Coro Collective is our sister brand for interiors and spatial design — complete environments, thoughtfully composed.</p>
-          <Link className="button button-dark" href="/about#coro">
-            Explore Coro Collective <span>↗</span>
-          </Link>
+          <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'rgba(30,33,29,0.9)', marginBottom: '16px' }}>
+            Ace Spaces is the parent company and the foundational material source behind Coro Collective. While Coro conceives complete, finished interior environments, every monolithic surface, mineral slab, and seamless join originates from the Ace Spaces raw material library.
+          </p>
+          <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'rgba(30,33,29,0.75)', marginBottom: '32px' }}>
+            We supply the very same architectural-grade raw materials directly to independent architects, interior designers, and contractors for their own bespoke projects.
+          </p>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
+            <Link className="button button-dark" href="/materials">
+              Source Raw Materials <span>↗</span>
+            </Link>
+            <Link className="button button-light" href="/about#coro" style={{ border: '1px solid var(--ink)', background: 'rgba(255,255,255,0.75)' }}>
+              Understand Ecosystem <span>↗</span>
+            </Link>
+          </div>
         </ScrollReveal>
       </section>
 

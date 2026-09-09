@@ -1,0 +1,23 @@
+[
+  {
+    "id": "sub_seed_1",
+    "email": "design@shilpastudio.com",
+    "source": "Footer Dispatch Box",
+    "createdAt": "2026-09-09T08:00:00.000Z",
+    "status": "active"
+  },
+  {
+    "id": "sub_seed_2",
+    "email": "karan.mehta@studioarch.org",
+    "source": "Footer Dispatch Box",
+    "createdAt": "2026-09-07T14:30:00.000Z",
+    "status": "active"
+  },
+  {
+    "id": "sub_seed_3",
+    "email": "specifications@prismadvisors.in",
+    "source": "Footer Dispatch Box",
+    "createdAt": "2026-09-06T10:15:00.000Z",
+    "status": "active"
+  }
+]

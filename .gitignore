@@ -1,4 +1,4 @@
-# Next.js build output
+﻿# Next.js build output
 .next/
 out/
 
@@ -7,6 +7,15 @@ node_modules/
 
 # Environment variables
 .env*.local
+.env.production
+.env.development
+
+# Vercel
+.vercel/
+
+# TypeScript build info
+*.tsbuildinfo
+next-env.d.ts
 
 # OS generated files
 .DS_Store
@@ -25,3 +34,7 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+.vercel
+
+# Raw source images
+public/assets/My images/

@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { projects } from '@/data/projects';
 
@@ -44,8 +45,16 @@ export default function ProjectGallery() {
               borderTop: idx > 0 ? '1px solid var(--line)' : 'none'
             }}
           >
-            <div className="project-photo">
-              <span className="project-tag">{project.subtitle} / {project.location}</span>
+            <div className="project-photo" style={{ position: 'relative' }}>
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 800px) 100vw, 55vw"
+                style={{ objectFit: 'cover' }}
+                priority={idx === 0}
+              />
+              <span className="project-tag" style={{ position: 'absolute', bottom: '24px', left: '24px', zIndex: 2 }}>{project.subtitle} / {project.location}</span>
             </div>
 
             <div className="project-info">

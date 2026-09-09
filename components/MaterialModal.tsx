@@ -1,8 +1,9 @@
-﻿'use client';
+'use client';
 
-import React, { useEffect } from 'react';
-import Link from 'next/link';
+import React, { useEffect, useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Material } from '@/data/materials';
 import { useSampleShortlist } from '@/context/SampleContext';
 
@@ -12,55 +13,76 @@ interface MaterialModalProps {
 }
 
 export default function MaterialModal({ material, onClose }: MaterialModalProps) {
+  const [mounted, setMounted] = useState(false);
   const { addSample, removeSample, isShortlisted } = useSampleShortlist();
   const inTray = isShortlisted(material.slug);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  // Close on Escape key and prevent background scroll
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
+
+  // Close on Escape key and lock background scroll
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
+    const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
+
+    if (cardRef.current) {
+      cardRef.current.scrollTop = 0;
+    }
+
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose]);
 
-  return (
+  if (!mounted || typeof document === 'undefined') return null;
+
+  return createPortal(
     <div
       style={{
         position: 'fixed',
-        inset: 0,
-        zIndex: 2000,
-        background: 'rgba(19, 21, 18, 0.75)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        width: '100vw',
+        height: '100vh',
+        zIndex: 999999,
+        background: 'rgba(15, 17, 14, 0.8)',
+        backdropFilter: 'blur(10px)',
+        WebkitBackdropFilter: 'blur(10px)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '20px',
-        opacity: 1,
-        visibility: 'visible',
-        animation: 'modalFadeIn 0.25s ease-out',
+        padding: 'clamp(12px, 2.5vh, 24px)',
+        boxSizing: 'border-box',
+        animation: 'modalFadeIn 0.2s ease-out',
       }}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
       <div
+        ref={cardRef}
         style={{
           background: 'var(--paper)',
           width: '100%',
-          maxWidth: '900px',
-          maxHeight: '90vh',
+          maxWidth: '880px',
+          maxHeight: 'min(90vh, 590px)',
           overflowY: 'auto',
           border: '1px solid var(--line)',
-          boxShadow: '0 30px 80px rgba(0,0,0,0.35)',
+          boxShadow: '0 25px 70px rgba(0,0,0,0.45)',
           position: 'relative',
           display: 'grid',
-          gridTemplateColumns: 'minmax(300px, 1fr) 1.2fr',
+          gridTemplateColumns: 'minmax(280px, 0.95fr) 1.2fr',
+          borderRadius: '2px',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -69,31 +91,33 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
           onClick={onClose}
           style={{
             position: 'absolute',
-            top: '16px',
-            right: '16px',
-            zIndex: 10,
-            width: '36px',
-            height: '36px',
+            top: '12px',
+            right: '12px',
+            zIndex: 20,
+            width: '32px',
+            height: '32px',
             borderRadius: '50%',
             border: '1px solid var(--line)',
-            background: 'var(--paper)',
+            background: 'rgba(233, 232, 226, 0.95)',
             display: 'grid',
             placeItems: 'center',
-            fontSize: '22px',
+            fontSize: '18px',
             cursor: 'pointer',
             lineHeight: 1,
+            color: 'var(--ink)',
+            transition: 'transform 0.15s ease',
           }}
           aria-label="Close modal"
         >
           ×
         </button>
 
-        {/* Left Side: Large Macro Texture Display */}
+        {/* Left Side: Macro Texture Display */}
         <div
           style={{
             background: material.textureCss || material.hexColor,
             position: 'relative',
-            minHeight: '400px',
+            minHeight: '260px',
             overflow: 'hidden',
           }}
         >
@@ -102,7 +126,7 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
               src={material.textureImage}
               alt={material.name}
               fill
-              sizes="(max-width: 768px) 100vw, 450px"
+              sizes="(max-width: 768px) 100vw, 420px"
               style={{ objectFit: 'cover' }}
               priority
             />
@@ -110,87 +134,114 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
           <div
             style={{
               position: 'absolute',
-              bottom: '16px',
-              left: '16px',
+              bottom: '12px',
+              left: '12px',
               background: 'rgba(233, 232, 226, 0.92)',
               backdropFilter: 'blur(8px)',
-              padding: '6px 12px',
+              padding: '4px 10px',
               border: '1px solid var(--line)',
               fontSize: '9px',
               fontFamily: 'DM Mono, monospace',
               textTransform: 'uppercase',
+              letterSpacing: '0.05em',
               color: 'var(--ink)',
             }}
           >
-            {material.finish} • 1:1 Scale Texture
+            {material.finish} • 1:1 Texture
           </div>
         </div>
 
         {/* Right Side: Architectural Spec & Actions */}
-        <div style={{ padding: 'clamp(28px, 4vw, 48px)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div
+          style={{
+            padding: 'clamp(18px, 2.4vw, 28px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            gap: '10px',
+          }}
+        >
           <div>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
-              {material.code} • {material.collection}
-            </span>
-            <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 42px)', lineHeight: 1.05, margin: '0 0 8px', letterSpacing: '-0.03em' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
+                {material.code} • {material.collection}
+              </span>
+            </div>
+
+            <h2 style={{ fontSize: 'clamp(20px, 2.2vw, 28px)', lineHeight: 1.1, margin: '0 0 4px', letterSpacing: '-0.03em' }}>
               {material.name}
             </h2>
-            <p style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '18px' }}>
+
+            <p style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', margin: '0 0 8px', letterSpacing: '0.04em' }}>
               Tone: {material.colour}
             </p>
-            <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#4a5249', marginBottom: '24px' }}>
+
+            <p style={{ fontSize: '13px', lineHeight: 1.5, color: '#4a5249', margin: '0 0 12px' }}>
               {material.description}
             </p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', borderTop: '1px solid var(--line)', borderBottom: '1px solid var(--line)', padding: '16px 0', marginBottom: '20px' }}>
+            {/* 2x2 Specs Grid */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '8px 12px',
+                borderTop: '1px solid var(--line)',
+                borderBottom: '1px solid var(--line)',
+                padding: '10px 0',
+                marginBottom: '10px',
+              }}
+            >
               <div>
-                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                   Light Transmission
                 </span>
-                <strong style={{ fontSize: '12px', color: 'var(--ink)' }}>
+                <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
                   {material.lightTransmission}
                 </strong>
               </div>
               <div>
-                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                   Standard Sheet
                 </span>
-                <strong style={{ fontSize: '12px', color: 'var(--ink)' }}>
+                <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
                   {material.dimensions}
                 </strong>
               </div>
               <div>
-                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                   Thickness Options
                 </span>
-                <strong style={{ fontSize: '12px', color: 'var(--ink)' }}>
+                <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
                   {material.thicknessOptions.join(', ')}
                 </strong>
               </div>
               <div>
-                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                   Fire Performance
                 </span>
-                <strong style={{ fontSize: '12px', color: 'var(--ink)' }}>
+                <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
                   {material.fireRating}
                 </strong>
               </div>
             </div>
 
-            <div style={{ marginBottom: '24px' }}>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+            {/* Primary Applications Pills */}
+            <div>
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
                 Primary Applications
               </span>
-              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
                 {material.applications.map((app) => (
                   <span
                     key={app}
                     style={{
-                      fontSize: '10px',
+                      fontSize: '9px',
                       fontFamily: 'DM Mono, monospace',
-                      padding: '4px 8px',
+                      padding: '3px 7px',
                       background: '#dcd7cd',
                       border: '1px solid var(--line)',
+                      color: 'var(--ink)',
                     }}
                   >
                     {app}
@@ -200,7 +251,8 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', borderTop: '1px solid var(--line)', paddingTop: '20px' }}>
+          {/* Action Buttons Row */}
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', borderTop: '1px solid var(--line)', paddingTop: '10px' }}>
             <button
               type="button"
               className="button button-dark"
@@ -211,20 +263,21 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
                   addSample(material);
                 }
               }}
-              style={{ flex: '1 1 auto', minWidth: '160px', justifyContent: 'center' }}
+              style={{ flex: '1 1 auto', minWidth: '140px', padding: '9px 16px', fontSize: '11px', justifyContent: 'center' }}
             >
               {inTray ? 'In Sample Tray ✓' : '+ Add to Sample Box'}
             </button>
             <Link
               href={`/materials/${material.slug}`}
               className="button"
-              style={{ border: '1px solid var(--line)', background: 'transparent', padding: '14px 18px' }}
+              style={{ border: '1px solid var(--line)', background: 'transparent', padding: '9px 16px', fontSize: '11px' }}
             >
               Full Spec Sheet <span>↗</span>
             </Link>
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

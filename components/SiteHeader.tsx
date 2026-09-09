@@ -1,19 +1,25 @@
-﻿'use client';
+'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSampleShortlist } from '@/context/SampleContext';
+import MegaMenu, { MegaMenuType } from '@/components/MegaMenu';
 
 export default function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeMegaMenu, setActiveMegaMenu] = useState<MegaMenuType>(null);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   const pathname = usePathname();
   const isHome = pathname === '/';
   const { shortlist, toggleTray } = useSampleShortlist();
 
+  // Close menus on route change
   useEffect(() => {
     setMobileOpen(false);
+    setActiveMegaMenu(null);
   }, [pathname]);
 
   // Handle scroll detection for sticky navbar background transition
@@ -31,6 +37,7 @@ export default function SiteHeader() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Body scroll lock on mobile open
   useEffect(() => {
     if (mobileOpen) {
       document.body.style.overflow = 'hidden';
@@ -42,15 +49,50 @@ export default function SiteHeader() {
     };
   }, [mobileOpen]);
 
-  const toggleMobileMenu = () => {
-    setMobileOpen((prev) => !prev);
+  // Close mega menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setActiveMegaMenu(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleMouseEnterNav = (menu: MegaMenuType) => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setActiveMegaMenu(menu);
+  };
+
+  const handleMouseLeaveNav = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setActiveMegaMenu(null);
+    }, 200);
   };
 
   const closeMobileMenu = () => {
     setMobileOpen(false);
   };
 
-  const isLightText = isHome && !isScrolled;
+  const toggleMobileMenu = () => {
+    setMobileOpen((prev) => !prev);
+  };
+
+  const isLightText = isHome && !isScrolled && !activeMegaMenu;
+
+  const isLinkActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
+
+  // Hide the consumer site header completely on the admin panel
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
 
   return (
     <>
@@ -64,23 +106,23 @@ export default function SiteHeader() {
           zIndex: 100,
           height: isScrolled ? '70px' : '84px',
           background: isHome
-            ? isScrolled
-              ? 'rgba(233, 232, 226, 0.92)'
+            ? (isScrolled || activeMegaMenu)
+              ? 'rgba(233, 232, 226, 0.96)'
               : 'transparent'
-            : 'rgba(233, 232, 226, 0.94)',
-          backdropFilter: (isHome && !isScrolled) ? 'none' : 'blur(16px)',
-          WebkitBackdropFilter: (isHome && !isScrolled) ? 'none' : 'blur(16px)',
+            : 'rgba(233, 232, 226, 0.96)',
+          backdropFilter: (isHome && !isScrolled && !activeMegaMenu) ? 'none' : 'blur(16px)',
+          WebkitBackdropFilter: (isHome && !isScrolled && !activeMegaMenu) ? 'none' : 'blur(16px)',
           borderBottom: isHome
-            ? isScrolled
+            ? (isScrolled || activeMegaMenu)
               ? '1px solid rgba(30, 33, 29, 0.14)'
               : '1px solid rgba(255, 255, 255, 0.12)'
             : '1px solid var(--line)',
           color: isLightText ? '#fff' : 'var(--ink)',
-          boxShadow: isScrolled ? '0 10px 30px rgba(0, 0, 0, 0.05)' : 'none',
-          transition: 'background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.4s ease, height 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease',
+          boxShadow: (isScrolled || activeMegaMenu) ? '0 10px 30px rgba(0, 0, 0, 0.05)' : 'none',
+          transition: 'background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.35s ease, height 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease',
         }}
       >
-        <Link href="/" className="wordmark" aria-label="Ace Spaces home">
+        <Link href="/" className="wordmark" aria-label="Ace Spaces home" onClick={() => setActiveMegaMenu(null)}>
           <span
             className="mark"
             style={{
@@ -96,38 +138,106 @@ export default function SiteHeader() {
           </span>
         </Link>
 
-        <nav className="main-nav" aria-label="Main navigation">
-          <Link href="/materials">
-            <span className="nav-num">01</span>
-            <strong>Materials</strong>
-            <small>Collections & surfaces</small>
-            <b>↗</b>
-          </Link>
-          <Link href="/collections/colours">
-            <span className="nav-num">02</span>
-            <strong>Colours</strong>
-            <small>Architectural palette</small>
-            <b>↗</b>
-          </Link>
-          <Link href="/applications">
-            <span className="nav-num">03</span>
-            <strong>Applications</strong>
-            <small>Material in context</small>
-            <b>↗</b>
-          </Link>
-          <Link href="/fabrication">
-            <span className="nav-num">04</span>
-            <strong>Fabrication</strong>
-            <small>From sheet to space</small>
-            <b>↗</b>
-          </Link>
-          <Link href="/projects">
+        {/* Desktop Main Navigation with Dropdown Triggers */}
+        <nav
+          className="main-nav"
+          aria-label="Main navigation"
+          onMouseLeave={handleMouseLeaveNav}
+        >
+          {/* 01. Materials */}
+          <div
+            className={`nav-item-wrapper ${activeMegaMenu === 'materials' ? 'nav-item-active' : ''}`}
+            onMouseEnter={() => handleMouseEnterNav('materials')}
+            style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}
+          >
+            <Link
+              href="/materials"
+              className={isLinkActive('/materials') ? 'active' : ''}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
+            >
+              <span className="nav-num">01</span>
+              <strong>Materials</strong>
+              <small>Collections & surfaces</small>
+              <span className="nav-chevron">▼</span>
+              <b>↗</b>
+            </Link>
+          </div>
+
+          {/* 02. Colours */}
+          <div
+            className={`nav-item-wrapper ${activeMegaMenu === 'colours' ? 'nav-item-active' : ''}`}
+            onMouseEnter={() => handleMouseEnterNav('colours')}
+            style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}
+          >
+            <Link
+              href="/collections/colours"
+              className={isLinkActive('/collections/colours') ? 'active' : ''}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
+            >
+              <span className="nav-num">02</span>
+              <strong>Colours</strong>
+              <small>Architectural palette</small>
+              <span className="nav-chevron">▼</span>
+              <b>↗</b>
+            </Link>
+          </div>
+
+          {/* 03. Applications */}
+          <div
+            className={`nav-item-wrapper ${activeMegaMenu === 'applications' ? 'nav-item-active' : ''}`}
+            onMouseEnter={() => handleMouseEnterNav('applications')}
+            style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}
+          >
+            <Link
+              href="/applications"
+              className={isLinkActive('/applications') ? 'active' : ''}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
+            >
+              <span className="nav-num">03</span>
+              <strong>Applications</strong>
+              <small>Material in context</small>
+              <span className="nav-chevron">▼</span>
+              <b>↗</b>
+            </Link>
+          </div>
+
+          {/* 04. Fabrication */}
+          <div
+            className={`nav-item-wrapper ${activeMegaMenu === 'fabrication' ? 'nav-item-active' : ''}`}
+            onMouseEnter={() => handleMouseEnterNav('fabrication')}
+            style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}
+          >
+            <Link
+              href="/fabrication"
+              className={isLinkActive('/fabrication') ? 'active' : ''}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
+            >
+              <span className="nav-num">04</span>
+              <strong>Fabrication</strong>
+              <small>From sheet to space</small>
+              <span className="nav-chevron">▼</span>
+              <b>↗</b>
+            </Link>
+          </div>
+
+          {/* 05. Projects */}
+          <Link
+            href="/projects"
+            className={isLinkActive('/projects') ? 'active' : ''}
+            onMouseEnter={() => handleMouseEnterNav(null)}
+          >
             <span className="nav-num">05</span>
             <strong>Projects</strong>
             <small>Selected work</small>
             <b>↗</b>
           </Link>
-          <Link href="/journal">
+
+          {/* 06. Journal */}
+          <Link
+            href="/journal"
+            className={isLinkActive('/journal') ? 'active' : ''}
+            onMouseEnter={() => handleMouseEnterNav(null)}
+          >
             <span className="nav-num">06</span>
             <strong>Journal</strong>
             <small>Notes on making</small>
@@ -135,6 +245,7 @@ export default function SiteHeader() {
           </Link>
         </nav>
 
+        {/* Header Right Actions */}
         <div className="header-actions">
           {/* Sample Shortlist Header Button */}
           <button
@@ -176,8 +287,8 @@ export default function SiteHeader() {
             <span>Sample Tray</span>
           </button>
 
-          <a className="coro-link" href="#coro">
-            Coro Collective <span>↗</span>
+          <a className="coro-link" href="#coro" title="Ace Spaces is the parent company and material source for Coro Collective">
+            Source for Coro <span>↗</span>
           </a>
           <button
             className={`menu-toggle ${mobileOpen ? 'active' : ''}`}
@@ -191,121 +302,127 @@ export default function SiteHeader() {
         </div>
       </header>
 
+      {/* Mega-Menu Dropdown Panel */}
+      <MegaMenu
+        activeMenu={activeMegaMenu}
+        onClose={() => setActiveMegaMenu(null)}
+        onMouseEnter={() => {
+          if (closeTimeoutRef.current) {
+            clearTimeout(closeTimeoutRef.current);
+            closeTimeoutRef.current = null;
+          }
+        }}
+        onMouseLeave={handleMouseLeaveNav}
+      />
+
       {/* Warm Architectural Mobile Navigation Drawer */}
       <div
         className={`mobile-overlay ${mobileOpen ? 'open' : ''}`}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) closeMobileMenu();
-        }}
+        onClick={closeMobileMenu}
+        aria-hidden={!mobileOpen}
+      />
+      <aside
+        className={`mobile-drawer ${mobileOpen ? 'open' : ''}`}
+        aria-label="Mobile menu"
+        aria-hidden={!mobileOpen}
       >
-        <div className="mobile-drawer">
-          <div className="mobile-drawer-top">
-            <Link href="/" onClick={closeMobileMenu} className="wordmark">
-              <span className="mark">A</span>
-              <span>
-                ACE<br />
-                <em>SPACES</em>
-              </span>
-            </Link>
-            <button className="mobile-close" onClick={closeMobileMenu} aria-label="Close menu">
-              ×
-            </button>
+        <div className="drawer-header">
+          <span className="drawer-eyebrow">EXPLORE ACE SPACES</span>
+          <button
+            className="drawer-close"
+            onClick={closeMobileMenu}
+            aria-label="Close navigation"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div className="drawer-brand-note">
+          <span className="drawer-mono-label">SOURCE & PARENT COMPANY</span>
+          <p>
+            Ace Spaces is the raw material origin and architectural engineering house for Coro Collective.
+          </p>
+        </div>
+
+        <nav className="drawer-nav">
+          <Link href="/materials" onClick={closeMobileMenu} className={isLinkActive('/materials') ? 'drawer-link active' : 'drawer-link'}>
+            <span className="drawer-num">01</span>
+            <div className="drawer-link-text">
+              <strong>Materials</strong>
+              <small>Collections, substrates & through-body sheets</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+
+          <Link href="/collections/colours" onClick={closeMobileMenu} className={isLinkActive('/collections/colours') ? 'drawer-link active' : 'drawer-link'}>
+            <span className="drawer-num">02</span>
+            <div className="drawer-link-text">
+              <strong>Colours</strong>
+              <small>20+ architectural tones, veined & mineral neutrals</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+
+          <Link href="/applications" onClick={closeMobileMenu} className={isLinkActive('/applications') ? 'drawer-link active' : 'drawer-link'}>
+            <span className="drawer-num">03</span>
+            <div className="drawer-link-text">
+              <strong>Applications</strong>
+              <small>Residential, hospitality, commercial & clinical spaces</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+
+          <Link href="/fabrication" onClick={closeMobileMenu} className={isLinkActive('/fabrication') ? 'drawer-link active' : 'drawer-link'}>
+            <span className="drawer-num">04</span>
+            <div className="drawer-link-text">
+              <strong>Fabrication</strong>
+              <small>Thermoforming, 5-axis CNC & seamless joining</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+
+          <Link href="/projects" onClick={closeMobileMenu} className={isLinkActive('/projects') ? 'drawer-link active' : 'drawer-link'}>
+            <span className="drawer-num">05</span>
+            <div className="drawer-link-text">
+              <strong>Projects</strong>
+              <small>Selected architectural case studies</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+
+          <Link href="/journal" onClick={closeMobileMenu} className={isLinkActive('/journal') ? 'drawer-link active' : 'drawer-link'}>
+            <span className="drawer-num">06</span>
+            <div className="drawer-link-text">
+              <strong>Journal</strong>
+              <small>Notes on making & materiality</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+
+          <Link href="/contact" onClick={closeMobileMenu} className="drawer-link drawer-contact-link">
+            <span className="drawer-num">07</span>
+            <div className="drawer-link-text">
+              <strong>Start a Project</strong>
+              <small>Consultation, shop drawings & material specification</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+        </nav>
+
+        <div className="drawer-footer">
+          <div className="drawer-coro-box">
+            <span className="drawer-mono-label">Ecosystem Relationship</span>
+            <p>
+              Ace Spaces provides through-body mineral sheets, custom thermoforming, and joint fabrication to Coro Collective projects.
+            </p>
           </div>
 
-          <div className="mobile-drawer-label">01 / Navigation</div>
-
-          <nav className="mobile-nav-links">
-            <Link href="/materials" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">01</span>
-              <div className="mobile-nav-text">
-                <strong>Materials</strong>
-                <small>Collections & surfaces</small>
-              </div>
-              <span className="mobile-arrow">↗</span>
-            </Link>
-
-            <Link href="/collections/colours" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">02</span>
-              <div className="mobile-nav-text">
-                <strong>Colours & Palette</strong>
-                <small>Full mineral colour library</small>
-              </div>
-              <span className="mobile-arrow">↗</span>
-            </Link>
-
-            <Link href="/applications" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">03</span>
-              <div className="mobile-nav-text">
-                <strong>Applications</strong>
-                <small>Material in context</small>
-              </div>
-              <span className="mobile-arrow">↗</span>
-            </Link>
-
-            <Link href="/fabrication" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">04</span>
-              <div className="mobile-nav-text">
-                <strong>Fabrication</strong>
-                <small>From sheet to space</small>
-              </div>
-              <span className="mobile-arrow">↗</span>
-            </Link>
-
-            <Link href="/projects" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">05</span>
-              <div className="mobile-nav-text">
-                <strong>Projects</strong>
-                <small>Selected work</small>
-              </div>
-              <span className="mobile-arrow">↗</span>
-            </Link>
-
-            <Link href="/journal" onClick={closeMobileMenu} className="mobile-nav-item">
-              <span className="mobile-num">06</span>
-              <div className="mobile-nav-text">
-                <strong>Journal</strong>
-                <small>Notes on making</small>
-              </div>
-              <span className="mobile-arrow">↗</span>
-            </Link>
-
-            {/* Mobile Sample Tray Link */}
-            <button
-              type="button"
-              onClick={() => {
-                closeMobileMenu();
-                toggleTray();
-              }}
-              className="mobile-nav-item"
-              style={{ width: '100%', textAlign: 'left', background: 'none', borderLeft: 'none', borderRight: 'none' }}
-            >
-              <span className="mobile-num">07</span>
-              <div className="mobile-nav-text">
-                <strong>Sample Tray ({shortlist.length})</strong>
-                <small>Order complimentary studio specimen box</small>
-              </div>
-              <span className="mobile-arrow">↗</span>
-            </button>
-
-            <Link href="/contact" onClick={closeMobileMenu} className="mobile-nav-item highlight">
-              <span className="mobile-num">08</span>
-              <div className="mobile-nav-text">
-                <strong>Contact Practice</strong>
-                <small>Start a conversation & consultation</small>
-              </div>
-              <span className="mobile-arrow">↗</span>
-            </Link>
-          </nav>
-
-          <div className="mobile-drawer-footer">
-            <div className="mobile-coro-badge">
-              <small>Part of the ecosystem</small>
-              <strong>Coro Collective ↗</strong>
-            </div>
-            <p className="mobile-footer-location">Bengaluru / India — Architectural Materials & Fabrication</p>
+          <div className="drawer-meta-row">
+            <span>© 2026 Ace Spaces</span>
+            <span>Bengaluru / India</span>
           </div>
         </div>
-      </div>
+      </aside>
     </>
   );
 }

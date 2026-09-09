@@ -1,0 +1,1220 @@
+{
+  "heroSlides": [
+    {
+      "id": 1,
+      "image": "/assets/applications/calacatta-greige-kitchen.jpg",
+      "eyebrow": "Ace Spaces / Parent Company & Raw Material Source",
+      "title": "The source of material,",
+      "subtitle": "where spaces begin.",
+      "copy": "The primary raw material hub for architects, interior designers, and bespoke builders — supplying solid surfaces, mineral slabs, and the foundational material powering Coro Collective.",
+      "specimen": "Alto / Ivory Vein",
+      "location": "Private Residence / Bengaluru"
+    },
+    {
+      "id": 2,
+      "image": "/assets/materials/css-calacatta-greige-sheet.jpg",
+      "eyebrow": "Workshop Craft / Seamless Form",
+      "title": "Quiet depth,",
+      "subtitle": "monolithic form.",
+      "copy": "Through-body mineral compositions engineered with zero visible seams, non-porous longevity, and velvety tactile texture.",
+      "specimen": "Noma / Chalk",
+      "location": "Material Specimen / Honed Matte"
+    },
+    {
+      "id": 3,
+      "image": "/assets/applications/stonecrest-smoke-hotel-lobby.jpg",
+      "eyebrow": "Spatial Typologies / Hospitality",
+      "title": "Light, shadow",
+      "subtitle": "& refined volume.",
+      "copy": "From curved reception monoliths to custom illuminated retail plinths, shaping material around pure architectural intent.",
+      "specimen": "Obsidian / Still",
+      "location": "Hospitality Pavilion / Mumbai"
+    },
+    {
+      "id": 4,
+      "image": "/assets/applications/excavage-education.jpg",
+      "eyebrow": "Material Longevity / Mineral Purity",
+      "title": "Engineered for",
+      "subtitle": "tactile resilience.",
+      "copy": "Completely non-porous, renewably honed, and thermoformable into continuous compound planes without silicone joint lines.",
+      "specimen": "Strata / Sand Fine",
+      "location": "Education Studio / Bengaluru"
+    }
+  ],
+  "materials": [
+    {
+      "slug": "noma-white-chalk",
+      "name": "Noma / White Chalkwqqws",
+      "code": "AC-01010911",
+      "collection": "Noma Solids",
+      "colorFamily": "white",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Ultra Matte",
+      "colour": "Pure Chalk White",
+      "hexColor": "#f4f3ef",
+      "textureImage": "/assets/materials/css-stonique-sheet.jpg",
+      "textureCss": "linear-gradient(135deg, #ffffff 0%, #f4f3ef 50%, #e8e6e0 100%)",
+      "description": "A pure, light-absorbing mineral surface with zero grain. Designed for seamless, monolithic planes in high-light architectural volumes.",
+      "swatch": "one",
+      "image": "/assets/applications/stonique-bathroom-vanity.jpg",
+      "applications": [
+        "Kitchen Worktops",
+        "Integrated Sinks",
+        "Museum Plinths",
+        "Monolithic Vanities"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Low (6%)",
+      "fireRating": "Class 1 / Class A (ASTM E84)",
+      "careGuide": "Daily cleaning with damp microfibre cloth and mild neutral detergent."
+    },
+    {
+      "slug": "noma-linen",
+      "name": "Noma / Linen",
+      "code": "AC-0102",
+      "collection": "Noma Solids",
+      "colorFamily": "cream",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Velvet Matte",
+      "colour": "Warm Linen Cream",
+      "hexColor": "#e9e4d8",
+      "textureImage": "/assets/materials/css-artista-mist-sheet.jpg",
+      "textureCss": "linear-gradient(135deg, #f2eee4 0%, #e9e4d8 60%, #ded7c9 100%)",
+      "description": "Soft, tactile, and gently warm. Noma Linen reflects ambient light with a subtle, velvety presence for calming residential sanctuaries.",
+      "swatch": "two",
+      "image": "/assets/applications/artista-mist-bathroom.jpg",
+      "applications": [
+        "Bathroom Vanities",
+        "Wall Cladding",
+        "Bespoke Joinery",
+        "Display Podiums"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Low-Medium (10%)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Non-porous surface prevents liquid absorption. Resistant to cosmetic stains."
+    },
+    {
+      "slug": "noma-parchment",
+      "name": "Noma / Parchment",
+      "code": "AC-0103",
+      "collection": "Noma Solids",
+      "colorFamily": "cream",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Satin Smooth",
+      "colour": "Warm Ecru Parchment",
+      "hexColor": "#dfd8ca",
+      "textureImage": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "linear-gradient(140deg, #ede7db 0%, #dfd8ca 50%, #cec5b4 100%)",
+      "description": "Subtle mineral depth echoing aged handmade vellum. A timeless surface that grounds natural timber and patinated brass.",
+      "swatch": "two",
+      "image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Hospitality Counters",
+        "Architectural Panelling",
+        "Custom Furniture Tops"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Low (8%)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Clean with warm water and microfibre cloth."
+    },
+    {
+      "slug": "noma-bone",
+      "name": "Noma / Bone",
+      "code": "AC-0104",
+      "collection": "Noma Solids",
+      "colorFamily": "cream",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Tactile Honed",
+      "colour": "Pale Oat Bone",
+      "hexColor": "#d6cfbf",
+      "textureImage": "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "linear-gradient(135deg, #e4ddd0 0%, #d6cfbf 60%, #c4bbab 100%)",
+      "description": "A pale earthen tone inspired by raw limestone formations, balancing neutral lightness with architectural weight.",
+      "swatch": "two",
+      "image": "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Retail Display Fixtures",
+        "Reception Desks",
+        "Wet Area Walls"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Low (7%)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Renewable and repairable surface with light abrasive pad."
+    },
+    {
+      "slug": "alto-bianco-vein",
+      "name": "Alto / Bianco Vein",
+      "code": "AC-0201",
+      "collection": "Alto Veined",
+      "colorFamily": "white",
+      "pattern": "veined",
+      "type": "veined",
+      "finish": "Polished Honed",
+      "colour": "Statuario White with Mist Veining",
+      "hexColor": "#edece8",
+      "textureImage": "/assets/materials/css-calacatta-greige-sheet.jpg",
+      "textureCss": "linear-gradient(125deg, #f7f6f2 0%, #ece9e2 40%, #c9c5bc 45%, #ece9e2 50%, #f7f6f2 100%)",
+      "description": "Continuous, soft flowing veins mimicking natural Statuario marble with the non-porous and seamless joinery capability of solid surface.",
+      "swatch": "four",
+      "image": "/assets/applications/calacatta-greige-kitchen.jpg",
+      "applications": [
+        "Kitchen Islands",
+        "Curved Feature Bars",
+        "Splashbacks",
+        "Executive Credenzas"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Low (8%)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Impervious to wine, coffee, lemon juice, and common kitchen acids."
+    },
+    {
+      "slug": "alto-calacatta-gold",
+      "name": "Alto / Calacatta Gold",
+      "code": "AC-0202",
+      "collection": "Alto Veined",
+      "colorFamily": "cream",
+      "pattern": "veined",
+      "type": "veined",
+      "finish": "Silken Satin",
+      "colour": "Warm Ivory with Honey Gold Veins",
+      "hexColor": "#f1ede4",
+      "textureImage": "/assets/materials/css-calacatta-greige-sheet.jpg",
+      "textureCss": "linear-gradient(130deg, #fdfbf7 0%, #f0ebd8 35%, #d4b886 40%, #eee8d5 45%, #fdfbf7 100%)",
+      "description": "Golden caramel and warm taupe directional movement on a soft milk-white base, bringing tailored luxury into kitchen islands.",
+      "swatch": "two",
+      "image": "/assets/applications/calacatta-greige-kitchen.jpg",
+      "applications": [
+        "Residential Kitchen Islands",
+        "Luxury Bathroom Suites",
+        "Hospitality Counters"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Low (8%)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Seamless joints conceal all structural transitions across large L-islands."
+    },
+    {
+      "slug": "alto-fior-di-bosco",
+      "name": "Alto / Fior di Bosco",
+      "code": "AC-0203",
+      "collection": "Alto Veined",
+      "colorFamily": "grey",
+      "pattern": "veined",
+      "type": "veined",
+      "finish": "Deep Satin",
+      "colour": "Smoky Taupe with Fine White Vein",
+      "hexColor": "#847e75",
+      "textureImage": "/assets/materials/css-stonecrest-smoke-sheet.jpg",
+      "textureCss": "linear-gradient(135deg, #969087 0%, #7d776e 40%, #eeebe5 42%, #756f66 50%, #686259 100%)",
+      "description": "Sophisticated Tuscan stone character featuring a rich, smoky taupe background intersected by spider-web white veins.",
+      "swatch": "three",
+      "image": "/assets/applications/stonecrest-smoke-kitchen.jpg",
+      "applications": [
+        "Executive Dining Tables",
+        "Fireplace Surrounds",
+        "Vanity Consoles"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Non-translucent",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Heat resistant up to 100°C for dry radiant temperature."
+    },
+    {
+      "slug": "strata-sand-fine",
+      "name": "Strata / Sand Fine",
+      "code": "AC-0301",
+      "collection": "Strata Textures",
+      "colorFamily": "cream",
+      "pattern": "particulate",
+      "type": "textured",
+      "finish": "Textured Honed",
+      "colour": "Warm Sand with Micro Granules",
+      "hexColor": "#dcd3c1",
+      "textureImage": "/assets/materials/css-excavage-sheet.jpg",
+      "textureCss": "radial-gradient(#ab9f8c 1px, transparent 1px), radial-gradient(#efe7d8 1px, #dcd3c1 1px)",
+      "description": "Fine, mineral-aggregate speckles scattered across a warm sand field, providing understated texture and durability.",
+      "swatch": "four",
+      "image": "/assets/applications/excavage-education.jpg",
+      "applications": [
+        "High-Traffic Counters",
+        "Cafeteria Surfaces",
+        "Healthcare Joinery"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Low (5%)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Particulate pattern forgives minor scuffs in intense commercial environments."
+    },
+    {
+      "slug": "strata-terrazzo-ash",
+      "name": "Strata / Terrazzo Ash",
+      "code": "AC-0302",
+      "collection": "Strata Textures",
+      "colorFamily": "grey",
+      "pattern": "particulate",
+      "type": "textured",
+      "finish": "Satin Polished",
+      "colour": "Grey Field with Quartz Chips",
+      "hexColor": "#969c94",
+      "textureImage": "/assets/materials/css-laguna-terrazzo-sheet.jpg",
+      "textureCss": "radial-gradient(#4a5047 1px, transparent 1px), radial-gradient(#d5ded3 1.5px, #969c94 1.5px)",
+      "description": "Multi-scale mineral aggregate chips suspended within an ash matrix, evoking Venetian terrazzo without seams.",
+      "swatch": "four",
+      "image": "/assets/applications/laguna-terrazzo-bathroom.jpg",
+      "applications": [
+        "Restaurant Table Tops",
+        "Retail Countertops",
+        "Washroom Troughs"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Opaque",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Completely non-porous with seamless joinability."
+    },
+    {
+      "slug": "terra-sienna",
+      "name": "Terra / Sienna",
+      "code": "AC-0401",
+      "collection": "Terra Earth",
+      "colorFamily": "earth",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Velvet Matte",
+      "colour": "Terracotta & Burnt Sienna",
+      "hexColor": "#b47b62",
+      "textureImage": "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "linear-gradient(130deg, #c2886f 0%, #b47b62 60%, #9e644b 100%)",
+      "description": "Deep clay terracotta providing rustic warmth and tactile distinction for Mediterranean and brutalist interiors.",
+      "swatch": "one",
+      "image": "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Cafe Bars",
+        "Boutique Retail Counters",
+        "Feature Sinks"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Opaque",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Rich pigment will not fade or leach."
+    },
+    {
+      "slug": "terra-sage",
+      "name": "Terra / Sage",
+      "code": "AC-0402",
+      "collection": "Terra Earth",
+      "colorFamily": "earth",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Honed Matte",
+      "colour": "Muted Celadon Sage",
+      "hexColor": "#8a9686",
+      "textureImage": "/assets/materials/css-artista-sage-sheet.jpg",
+      "textureCss": "linear-gradient(135deg, #99a695 0%, #8a9686 60%, #768272 100%)",
+      "description": "Subdued botanic green with soft mineral powdering, pairing effortlessly with pale oak, linen, and brushed nickel.",
+      "swatch": "two",
+      "image": "/assets/applications/artista-sage-hotel-elevator.jpg",
+      "applications": [
+        "Spa Washbasins",
+        "Residential Kitchens",
+        "Library Tabletops"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Opaque",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Honed finish is anti-reflective and soothing to touch."
+    },
+    {
+      "slug": "terra-umber",
+      "name": "Terra / Umber",
+      "code": "AC-0403",
+      "collection": "Terra Earth",
+      "colorFamily": "earth",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Velvet Satin",
+      "colour": "Raw Umber Earth",
+      "hexColor": "#705c4b",
+      "textureImage": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "linear-gradient(130deg, #826e5c 0%, #705c4b 60%, #5a4838 100%)",
+      "description": "An earthy soil tone providing depth and warmth, acting as a soft alternative to harsh blacks in grounded interior schemes.",
+      "swatch": "three",
+      "image": "https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Restaurant Service Bars",
+        "Feature Wall Panelling",
+        "Headboards"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Opaque",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "UV stable mineral formulation suitable for bright spaces."
+    },
+    {
+      "slug": "noma-concrete-ash",
+      "name": "Noma / Concrete Ash",
+      "code": "AC-0105",
+      "collection": "Noma Solids",
+      "colorFamily": "grey",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Honed Raw",
+      "colour": "Architectural Ash Grey",
+      "hexColor": "#a6aba2",
+      "textureImage": "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "linear-gradient(135deg, #b5bab1 0%, #a6aba2 60%, #8f948b 100%)",
+      "description": "The industrial honesty of micro-cast concrete paired with the smooth, warm-to-touch feel of solid surface.",
+      "swatch": "three",
+      "image": "https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Workplace Desks",
+        "Minimalist Kitchens",
+        "Public Interiors"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Opaque",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Zero dust shedding or cracking unlike traditional concrete."
+    },
+    {
+      "slug": "obsidian-still",
+      "name": "Obsidian / Still",
+      "code": "AC-0501",
+      "collection": "Obsidian Noir",
+      "colorFamily": "black",
+      "pattern": "solid",
+      "type": "textured",
+      "finish": "Tactile Matte",
+      "colour": "Deep Graphite Charcoal",
+      "hexColor": "#4d554e",
+      "textureImage": "/assets/materials/css-stonecrest-smoke-sheet.jpg",
+      "textureCss": "linear-gradient(145deg, #5c665d 0%, #4d554e 60%, #383f39 100%)",
+      "description": "Deep, mineral and tactile. A grounding, shadow-rich surface for hospitality bars and custom furniture.",
+      "swatch": "three",
+      "image": "/assets/applications/stonecrest-smoke-hotel-lobby.jpg",
+      "applications": [
+        "Hospitality Bar Tops",
+        "Reception Desks",
+        "Credenzas"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Non-translucent",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Enhanced fingerprint resistance with high-density mineral structure."
+    },
+    {
+      "slug": "obsidian-coal",
+      "name": "Obsidian / Coal",
+      "code": "AC-0502",
+      "collection": "Obsidian Noir",
+      "colorFamily": "black",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Deep Honed",
+      "colour": "Midnight Black",
+      "hexColor": "#1a1e1b",
+      "textureImage": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "linear-gradient(135deg, #282d29 0%, #1a1e1b 70%, #0d0f0e 100%)",
+      "description": "A monolithic, near-black mineral surface with an intense, light-absorbing presence and velvet touch.",
+      "swatch": "six",
+      "image": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Commercial Reception Counters",
+        "Boardroom Tables",
+        "Panelling"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Non-translucent",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Non-porous solid composition prevents liquid penetration."
+    },
+    {
+      "slug": "obsidian-basalt",
+      "name": "Obsidian / Basalt",
+      "code": "AC-0503",
+      "collection": "Obsidian Noir",
+      "colorFamily": "black",
+      "pattern": "particulate",
+      "type": "textured",
+      "finish": "Micro-Pitted Honed",
+      "colour": "Volcanic Basalt with Fine Specs",
+      "hexColor": "#2b302c",
+      "textureImage": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "radial-gradient(#4d544e 1px, transparent 1px), radial-gradient(#181b19 1px, #2b302c 100%)",
+      "description": "Inspired by cooled volcanic magma with microscopic mineral flecks that catch low grazing light.",
+      "swatch": "six",
+      "image": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Executive Dining Bars",
+        "Cocktail Counters",
+        "Accent Walls"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "19mm"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Non-translucent",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Durable anti-scratch aggregate surface."
+    },
+    {
+      "slug": "lumen-shell",
+      "name": "Lumen / Shell",
+      "code": "AC-0601",
+      "collection": "Lumen Translucent",
+      "colorFamily": "translucent",
+      "pattern": "translucent",
+      "type": "translucent",
+      "finish": "Satin Diffuse",
+      "colour": "Warm Shell Amber Translucent",
+      "hexColor": "#ede2cf",
+      "textureImage": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "radial-gradient(circle at center, #fff5e3 0%, #ede2cf 50%, #d8caa7 100%)",
+      "description": "A luminous surface with high light dispersion for softly backlit architectural installations and warm ambient fixtures.",
+      "swatch": "five",
+      "image": "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Backlit Bar Fronts",
+        "Luminous Columns",
+        "Ambient Light Screens"
+      ],
+      "thicknessOptions": [
+        "6mm (Backlit)",
+        "12mm (Standard)"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "High (38% at 6mm)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Seamless joins maintain unbroken light diffusion."
+    },
+    {
+      "slug": "lumen-ice",
+      "name": "Lumen / Ice",
+      "code": "AC-0602",
+      "collection": "Lumen Translucent",
+      "colorFamily": "translucent",
+      "pattern": "translucent",
+      "type": "translucent",
+      "finish": "Satin Matte",
+      "colour": "Cool Arctic Pearl Translucent",
+      "hexColor": "#e0e8e8",
+      "textureImage": "https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "radial-gradient(circle at center, #ffffff 0%, #e0e8e8 60%, #c4d4d4 100%)",
+      "description": "High light transmission with cool crystal undertones, turning cold LED backlights into velvety soft architectural halos.",
+      "swatch": "five",
+      "image": "https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Illuminated Retail Plinths",
+        "Backlit Ceilings",
+        "Signage Walls"
+      ],
+      "thicknessOptions": [
+        "6mm (Backlit)",
+        "12mm (Standard)"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "High (42% at 6mm)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "Compatible with standard 2700K to 6500K LED light cavities."
+    },
+    {
+      "slug": "lumen-opal",
+      "name": "Lumen / Opal",
+      "code": "AC-0603",
+      "collection": "Lumen Translucent",
+      "colorFamily": "translucent",
+      "pattern": "translucent",
+      "type": "translucent",
+      "finish": "Satin Smooth",
+      "colour": "Milky Pearl Opal",
+      "hexColor": "#eae7de",
+      "textureImage": "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1200&q=80",
+      "textureCss": "radial-gradient(circle at 40% 40%, #faf8f2 0%, #eae7de 60%, #cfc9ba 100%)",
+      "description": "Subtle daylight opacity that transforms into a luminous glowing amber volume when internally illuminated at dusk.",
+      "swatch": "five",
+      "image": "https://images.unsplash.com/photo-1541123437800-1bb1317badc2?auto=format&fit=crop&w=1200&q=80",
+      "applications": [
+        "Lounge Partitions",
+        "Light Sculpture Boxes",
+        "Nightclub Bars"
+      ],
+      "thicknessOptions": [
+        "6mm (Backlit)",
+        "12mm (Standard)"
+      ],
+      "dimensions": "3660 mm × 760 mm",
+      "lightTransmission": "Medium-High (32% at 6mm)",
+      "fireRating": "Class 1 / Class A",
+      "careGuide": "No dark seam lines when joined with color-matched translucent adhesive."
+    }
+  ],
+  "applicationSectors": [
+    {
+      "id": "residential",
+      "sectorNumber": "01",
+      "title": "Residential Architecture",
+      "tagline": "Quiet luxury for daily living",
+      "heroDescription": "In private homes, surfaces must balance effortless tactile beauty with complete non-porous resilience against cooking oils, heat, and daily life.",
+      "overview": "From expansive open-plan kitchen pavilions to private master en-suites, Ace Spaces solid surfaces unify vertical wall planes and horizontal countertops into monolithic architectural volumes with zero visible seams.",
+      "elements": [
+        "Monolithic Kitchen Islands with Waterfall Gable Ends",
+        "Continuous Full-Height Backsplashes with Zero Grout Lines",
+        "Integrated Under-mount Sink Basins with Thermo-Welded Silicone-Free Transitions",
+        "Floating Powder Room Vanities with Concealed Steel Brackets",
+        "Floor-to-Ceiling Seamless Shower Enclosures & Coved Wall Transitions"
+      ],
+      "recommendedMaterials": [
+        {
+          "name": "Alto / Ivory Vein",
+          "slug": "alto-bianco-vein",
+          "finish": "Satin Honed"
+        },
+        {
+          "name": "Noma / Chalk",
+          "slug": "noma-white-chalk",
+          "finish": "Ultra-Matte"
+        },
+        {
+          "name": "Alto / Fior di Bosco",
+          "slug": "alto-fior-di-bosco",
+          "finish": "Velvet Matte"
+        }
+      ],
+      "fabricationNote": "Color-matched acrylic thermo-welded joints ensure zero grout lines, 100% moisture barrier, and zero bacterial harborage.",
+      "images": [
+        {
+          "src": "/assets/applications/calacatta-greige-kitchen.jpg",
+          "alt": "Monolithic Calacatta Greige kitchen island and continuous splashback in residential interior",
+          "caption": "Monolithic Kitchen Island & Continuous Splashback in Alto Calacatta Greige",
+          "tag": "Monolithic Island"
+        },
+        {
+          "src": "/assets/applications/calacatta-greige-kitchen-detail.jpg",
+          "alt": "Seamless 45-degree mitred waterfall edge and surface join close-up",
+          "caption": "Seamless 45° Mitred Waterfall Gable Join with Zero Silicones",
+          "tag": "Waterfall Mitre Detail"
+        },
+        {
+          "src": "/assets/applications/stonecrest-smoke-kitchen.jpg",
+          "alt": "Architectural Stonecrest Smoke kitchen island with integrated undermount basin",
+          "caption": "Tactile Graphite Island with Continuous Integrated Undermount Basin",
+          "tag": "Integrated Sink"
+        },
+        {
+          "src": "/assets/applications/stonecrest-smoke-kitchen-detail.jpg",
+          "alt": "Thermo-welded sink transition and seamless drainage detail",
+          "caption": "Thermo-Welded Basin Transition with Coved Internal Corners",
+          "tag": "Coved Basin Detail"
+        }
+      ],
+      "specifications": [
+        {
+          "title": "45° Mitred Waterfall Gables",
+          "description": "CNC-cut 45-degree bevelled edges bonded with two-part color-matched acrylic adhesive, producing an unbroken directional stone movement down to finished flooring."
+        },
+        {
+          "title": "Thermoformed Integrated Basins",
+          "description": "Sink bowls and wash basins are chemically thermo-welded directly to the countertop deck. The joint is hand-honed to a continuous radius with zero grout lines or mildew traps."
+        },
+        {
+          "title": "Sub-Surface Steel Stiffeners",
+          "description": "Large cantilevers up to 450mm require zero vertical post legs through internal routed high-tensile structural steel box sections."
+        }
+      ],
+      "hygieneAndPerformance": [
+        {
+          "feature": "Porosity Rating",
+          "standard": "ASTM D570 < 0.03%",
+          "benefit": "Zero absorption of turmeric, red wine, citrus acids, or olive oils."
+        },
+        {
+          "feature": "Food Contact Safe",
+          "standard": "NSF / ANSI Standard 51",
+          "benefit": "Certified safe for direct culinary preparation without sealing or re-polishing."
+        },
+        {
+          "feature": "Joint Integrity",
+          "standard": "Tensile Strength > 42 MPa",
+          "benefit": "Permanent chemical weld stronger than the substrate material itself."
+        }
+      ],
+      "typicalThickness": "12mm / 20mm Solid Through-Body",
+      "jointVisibility": "< 0.08mm (Virtually Inconspicuous)",
+      "leadTime": "2 to 3 weeks from approved shop drawings"
+    },
+    {
+      "id": "hospitality",
+      "sectorNumber": "02",
+      "title": "Hospitality & Dining",
+      "tagline": "Sculptural arrival and ambient depth",
+      "heroDescription": "High-traffic hotels, lounge bars, and restaurants demand surfaces that hold up to rigorous commercial cleaning while creating dramatic ambient lighting moments.",
+      "overview": "Hospitality venues require memorable sculptural centerpieces that withstand heavy pedestrian impact, cocktail spills, and high-frequency sanitization without losing their tactile warmth.",
+      "elements": [
+        "Curved Multi-Radius Monolithic Reception Desks",
+        "Backlit Translucent Cocktail Bars with Sub-Surface LED Diffusers",
+        "Heavy-Duty Spill-Proof Dining & Lounge Table Tops",
+        "Thermoformed Curved Lift Lobby Wall Cladding & Archways",
+        "Multi-User Public Washroom Trough Sinks with Concealed Sloped Drains"
+      ],
+      "recommendedMaterials": [
+        {
+          "name": "Obsidian / Still",
+          "slug": "obsidian-still",
+          "finish": "Tactile Matte"
+        },
+        {
+          "name": "Lumen / Shell",
+          "slug": "lumen-shell",
+          "finish": "Translucent Satin"
+        },
+        {
+          "name": "Terra / Sage",
+          "slug": "terra-sage",
+          "finish": "Velvet Honed"
+        }
+      ],
+      "fabricationNote": "Multi-radius oven thermoforming and internal optical light cavities deliver soft, diffused illumination without hot-spots.",
+      "images": [
+        {
+          "src": "/assets/applications/stonecrest-smoke-hotel-lobby.jpg",
+          "alt": "Monolithic grand hotel reception desk and lobby surface in Stonecrest Smoke",
+          "caption": "Monolithic Reception Desk & Lobby Cladding in Stonecrest Smoke",
+          "tag": "Reception Monolith"
+        },
+        {
+          "src": "/assets/applications/artista-sage-hotel-elevator.jpg",
+          "alt": "Continuous curved elevator lobby and architectural corridor cladding in Artista Sage",
+          "caption": "Curved Elevator Portal & Corridor Cladding in Artista Sage",
+          "tag": "Curved Cladding"
+        },
+        {
+          "src": "/assets/applications/artista-mist-bathroom.jpg",
+          "alt": "Luxury boutique hotel suite double vanity in Artista Mist",
+          "caption": "Bespoke Boutique Suite Double Basin Floating Vanity in Artista Mist",
+          "tag": "Suite Vanities"
+        }
+      ],
+      "specifications": [
+        {
+          "title": "Sub-Surface Optical Light Cavities",
+          "description": "Lumen series sheets are calibrated to 6mm thickness and backed by dimmable 2700K optical diffusion panels for shadowless monolithic glow."
+        },
+        {
+          "title": "Heavy Impact Edge Built-ups",
+          "description": "Countertops feature 40mm to 80mm drop aprons reinforced with internal phenolic ply ribs to resist luggage strikes and stool impacts."
+        },
+        {
+          "title": "Thermal Vacuum Bending",
+          "description": "Sheets are heated to 160°C in industrial convection ovens and formed over CNC male/female timber bucks for fluid curved architecture."
+        }
+      ],
+      "hygieneAndPerformance": [
+        {
+          "feature": "Alcohol & Stain Defense",
+          "standard": "SEFA 8.1 Chemical Rating",
+          "benefit": "Immune to ethanol, acidic mixers, espresso, and cleaning agents."
+        },
+        {
+          "feature": "Fire Rating",
+          "standard": "EN 13501-1 Class B-s1,d0",
+          "benefit": "Low smoke toxicity and non-flammable compliance for public spaces."
+        },
+        {
+          "feature": "Renewability",
+          "standard": "Field Repairable Honing",
+          "benefit": "Scuffs and scratches buff out on-site in minutes without replacing sheets."
+        }
+      ],
+      "typicalThickness": "12mm sheet with 50mm-100mm mitred fascia",
+      "jointVisibility": "< 0.05mm",
+      "leadTime": "3 to 4 weeks for curved thermoformed geometries"
+    },
+    {
+      "id": "commercial",
+      "sectorNumber": "03",
+      "title": "Commercial & Workplaces",
+      "tagline": "Precision environments for focused collaboration",
+      "heroDescription": "Modern studio spaces and corporate headquarters require durable, refined work surfaces that seamlessly conceal technology and wiring infrastructure.",
+      "overview": "Workplace architecture has evolved beyond sterile cubicles into crafted mineral environments. Ace Spaces surfaces integrate flush power management, seamless collaboration islands, and non-reflective finishes for glare-free visual comfort.",
+      "elements": [
+        "Executive Boardroom Collaboration Monoliths",
+        "Sub-Surface Wireless Charging Desks with Concealed Qi Transmitters",
+        "Acoustic Mineral Wall Panelling & Elevator Portals",
+        "High-Traffic Team Pantry Bars with Integrated Draining Boards",
+        "Auditorium Rostrums and Reception Feature Walls"
+      ],
+      "recommendedMaterials": [
+        {
+          "name": "Noma / Chalk",
+          "slug": "noma-white-chalk",
+          "finish": "Ultra-Matte"
+        },
+        {
+          "name": "Strata / Sand Fine",
+          "slug": "strata-sand-fine",
+          "finish": "Fine Textured"
+        },
+        {
+          "name": "Obsidian / Coal",
+          "slug": "obsidian-coal",
+          "finish": "Honed Matte"
+        }
+      ],
+      "fabricationNote": "Sub-surface 5-axis CNC milling allows Qi wireless charging electromagnetic fields to pass directly through the solid surface.",
+      "images": [
+        {
+          "src": "/assets/applications/excavage-education.jpg",
+          "alt": "Collaborative workshop and architectural studio review island in Excavage Mineral",
+          "caption": "Collaborative Studio Review Island & Communal Workstation in Excavage",
+          "tag": "Collaboration Island"
+        },
+        {
+          "src": "/assets/applications/excavage-bathroom.jpg",
+          "alt": "Wall-to-wall seamless commercial washroom trough vanity in Excavage",
+          "caption": "Continuous Wall-to-Wall Commercial Washroom Trough in Excavage",
+          "tag": "Commercial Trough"
+        },
+        {
+          "src": "/assets/applications/excavage-bathroom-vanity-detail.jpg",
+          "alt": "Seamless basin junction and concealed sloped drain detail in Excavage solid surface",
+          "caption": "Precision CNC-Milled Sloped Drain Detail with Zero Bacterial Traps",
+          "tag": "Sloped Drain Detail"
+        }
+      ],
+      "specifications": [
+        {
+          "title": "Invisible Induction Charging Embeds",
+          "description": "Underside pocket milling leaves a 3mm membrane above the charging coil, allowing smartphones to charge simply by resting on the bare surface."
+        },
+        {
+          "title": "Concealed Cable Pass-Throughs",
+          "description": "Flush removable mineral caps fit with 0.5mm tolerances, hiding cables while maintaining an uninterrupted monolithic surface."
+        },
+        {
+          "title": "Anti-Glare Low Gloss Finish",
+          "description": "Diamond-pad honed to 8-12 gloss units to prevent eye fatigue from overhead LED office lighting and monitors."
+        }
+      ],
+      "hygieneAndPerformance": [
+        {
+          "feature": "Scratch Resistance",
+          "standard": "Barcol Hardness > 60",
+          "benefit": "Resists laptop cases, metal buckles, and daily office accessories."
+        },
+        {
+          "feature": "Zero VOC Emissions",
+          "standard": "UL GREENGUARD Gold",
+          "benefit": "Compliant with LEED v4, WELL Building, and IGBC green building standards."
+        },
+        {
+          "feature": "Sound Dampening",
+          "standard": "Mineral Composite Matrix",
+          "benefit": "Softer acoustic impact than stainless steel, glass, or polished porcelain."
+        }
+      ],
+      "typicalThickness": "12mm / 19mm with structural under-frame",
+      "jointVisibility": "< 0.08mm",
+      "leadTime": "2 to 3 weeks"
+    },
+    {
+      "id": "retail",
+      "sectorNumber": "04",
+      "title": "Retail & Experience Centres",
+      "tagline": "Curated stages for brand expression",
+      "heroDescription": "Luxury retail interiors use solid surfaces as monolithic sculptural plinths and display counters that focus attention entirely on the product.",
+      "overview": "High-end retail and brand pavilions require bespoke textures, sculptural arches, and illuminated display pedestals that invite touch while maintaining complete brand prestige.",
+      "elements": [
+        "Translucent Illuminated Product Display Pedestals",
+        "Point-of-Sale Monolithic Counters with Concealed Cash Drawers",
+        "Curved Architectural Feature Archways & Portals",
+        "Branded Visual Merchandising Fixtures with Relief Engravings",
+        "VIP Client Consultation Salons & Jewelry Display Trays"
+      ],
+      "recommendedMaterials": [
+        {
+          "name": "Strata / Terrazzo Ash",
+          "slug": "strata-terrazzo-ash",
+          "finish": "Satin Smooth"
+        },
+        {
+          "name": "Lumen / Shell",
+          "slug": "lumen-shell",
+          "finish": "Translucent Polish"
+        },
+        {
+          "name": "Noma / Linen",
+          "slug": "noma-linen",
+          "finish": "Fine Honed"
+        }
+      ],
+      "fabricationNote": "High-precision 5-axis CNC routing enables intricate typography, logo relief engravings, and microscopic backlit light perforations.",
+      "images": [
+        {
+          "src": "/assets/applications/laguna-terrazzo-bathroom.jpg",
+          "alt": "Sculptural Terrazzo luxury display pavilion and washstand in Laguna Terrazzo",
+          "caption": "Bespoke Display Pavilion & Monolithic Washstand in Laguna Terrazzo",
+          "tag": "Terrazzo Pavilion"
+        },
+        {
+          "src": "/assets/applications/laguna-terrazzo-vanity-detail.jpg",
+          "alt": "Close-up of curved terrazzo radii and precision-finished joint",
+          "caption": "Curved Internal Radius & Inconspicuous Terrazzo Joint Detail",
+          "tag": "Terrazzo Joint Detail"
+        },
+        {
+          "src": "/assets/applications/stonique-bathroom-vanity.jpg",
+          "alt": "Sculptural floating display plinth and vanity in pure white Stonique",
+          "caption": "Sculptural Floating Display Plinth & Basin in Pure White Stonique",
+          "tag": "Floating Plinth"
+        }
+      ],
+      "specifications": [
+        {
+          "title": "CNC Relief Branding",
+          "description": "Brand marks, typography, and texture patterns milled to 0.1mm tolerances directly into the stone body without decals."
+        },
+        {
+          "title": "Internal Steel Framework",
+          "description": "Cantilevered cashwraps and floating pedestals built with integrated powder-coated steel space-frames to support heavy loads."
+        },
+        {
+          "title": "Micro-Radius Chamfering",
+          "description": "Edges hand-worked to 2mm radius to ensure safety for customers while preserving crisp architectural geometry."
+        }
+      ],
+      "hygieneAndPerformance": [
+        {
+          "feature": "UV Color Fastness",
+          "standard": "Delta E < 1.0 after 1000h Xenon",
+          "benefit": "Zero fading or yellowing under intense retail display halogen and LED spots."
+        },
+        {
+          "feature": "Surface Cleanliness",
+          "standard": "Wipe-Clean Non-Porous",
+          "benefit": "Fingerprints and cosmetic pigments wipe away effortlessly with water and microfiber."
+        },
+        {
+          "feature": "Modularity",
+          "standard": "Demountable Joint Engineering",
+          "benefit": "Fixtures can be disassembled and re-deployed across seasonal store rollouts."
+        }
+      ],
+      "typicalThickness": "12mm / 24mm built-up profile",
+      "jointVisibility": "< 0.05mm",
+      "leadTime": "3 weeks"
+    },
+    {
+      "id": "custom",
+      "sectorNumber": "05",
+      "title": "Clinical & Specialist Spaces",
+      "tagline": "Non-porous hygienic precision",
+      "heroDescription": "Sterile clinical environments, dental operatory suites, and diagnostic laboratories demand chemical-resistant surfaces certified to zero bacterial harboring.",
+      "overview": "Where hygiene is non-negotiable, Ace Spaces solid surface offers seamless, coved transitions from wall to counter to sink with zero silicone caulking, eliminating the breeding grounds for MRSA, mold, and pathogens.",
+      "elements": [
+        "Seamless Surgical Scrub Sinks with Sloped Splash Walls",
+        "Clinical Reception Desks with Disinfection Resilience",
+        "Operatory Cabinet Countertops with Integrated Containment Rims",
+        "Cleanroom Seamless Wall Cladding with Coved Floor Skirtings",
+        "Specimen Preparation Benches with Acid & Reagent Resistance"
+      ],
+      "recommendedMaterials": [
+        {
+          "name": "Noma / White Chalk",
+          "slug": "noma-white-chalk",
+          "finish": "Clinical Matte"
+        },
+        {
+          "name": "Alto / Bianco Vein",
+          "slug": "alto-bianco-vein",
+          "finish": "Satin Pure"
+        },
+        {
+          "name": "Strata / Silt",
+          "slug": "strata-silt",
+          "finish": "Honed Neutral"
+        }
+      ],
+      "fabricationNote": "Custom thermoformed integral coved corners and silicone-free chemical welding guarantee zero bacterial harborage points.",
+      "images": [
+        {
+          "src": "/assets/applications/stonique-healthcare-clinic-1.jpg",
+          "alt": "Hygienic dental clinic consultation and reception space in Stonique solid surface",
+          "caption": "Non-Porous Clinical Consultation & Reception Counter in Stonique",
+          "tag": "Clinical Reception"
+        },
+        {
+          "src": "/assets/applications/stonique-healthcare-clinic-2.jpg",
+          "alt": "Specialist operatory treatment room countertops and splashbacks in seamless solid surface",
+          "caption": "Hygienic Operatory Countertops & Integrated Splashbacks",
+          "tag": "Operatory Surfaces"
+        },
+        {
+          "src": "/assets/applications/stonique-bathroom-vanity.jpg",
+          "alt": "Sterile scrub sink with thermo-welded basin and zero silicone seals",
+          "caption": "Seamless Scrub Basin with Continuous Wall Splash Transition",
+          "tag": "Scrub Station"
+        }
+      ],
+      "specifications": [
+        {
+          "title": "Integral Coved Skirting",
+          "description": "Countertops transition directly into backsplashes via a smooth 10mm cove radius, completely replacing mould-prone silicone caulk."
+        },
+        {
+          "title": "Containment Marine Edges",
+          "description": "Countertop perimeters can be machined with an integrated 4mm raised water-retaining lip to stop chemical spillage onto flooring."
+        },
+        {
+          "title": "Disinfectant Compatibility",
+          "description": "Immune to bleach, 70% isopropyl alcohol, quaternary ammonium solutions, and chlorhexidine gluconate."
+        }
+      ],
+      "hygieneAndPerformance": [
+        {
+          "feature": "Microbial Harboring",
+          "standard": "ISO 846 Method A & C Rating 0",
+          "benefit": "Incapable of supporting fungal or bacterial growth even under high humidity."
+        },
+        {
+          "feature": "NSF Healthcare",
+          "standard": "NSF / ANSI 51 Non-Food Zone & Food Zone",
+          "benefit": "Highest international standard for cleanable commercial hygiene."
+        },
+        {
+          "feature": "Chemical Resistance",
+          "standard": "DIN 68861 Part 1 1B",
+          "benefit": "Immune to medical iodine, sodium hypochlorite, and staining pigments."
+        }
+      ],
+      "typicalThickness": "12mm solid throughout",
+      "jointVisibility": "< 0.05mm (Hermetically sealed)",
+      "leadTime": "2 to 3 weeks"
+    }
+  ],
+  "journalArticles": [
+    {
+      "slug": "the-edge-is-where-material-becomes-architecture",
+      "title": "The edge is where material becomes architecture.",
+      "category": "Material Knowledge",
+      "date": "August 2024",
+      "readTime": "06 min read",
+      "author": "Ace Spatial Research",
+      "summary": "The precision of an edge defines how light transitions across planes and how a volume is experienced in an interior.",
+      "imageClass": "journal-one",
+      "image": "/assets/material-macro.png",
+      "quote": "An edge is not where a material simply stops; it is where the relationship between light, shadow, and touch is declared.",
+      "content": [
+        "In architectural joinery, surfaces are often judged by their faces—their color, vein structure, and specular reflection. But in truth, it is the edge that reveals the true integrity of the craft.",
+        "When working with monolithic solid surfaces, the edge transitions from being an afterthought to a primary design tool. Because solid surfaces are through-body materials with uniform mineral density, they can be carved, chamfered, shark-nosed, or thermo-bent without exposing an unsightly substrate.",
+        "A sharp 45-degree mitre creates an illusion of monumental stone density, while a subtle 2mm micro-radius softens the light transition, inviting the hand to rest upon it. Understanding how shadow falls across these micro-geometries allows designers to sculpt space with extraordinary nuance."
+      ],
+      "takeaways": [
+        "Through-body composition eliminates visible sub-layers at edges",
+        "Micro-radii soften harsh transitions and reduce chipping risk",
+        "Chamfers and shark-noses create floating shadows beneath cantilevered worktops"
+      ]
+    },
+    {
+      "slug": "on-the-beauty-of-the-seamless-join",
+      "title": "On the beauty of the seamless join.",
+      "category": "Fabrication Craft",
+      "date": "July 2024",
+      "readTime": "04 min read",
+      "author": "Workshop Practice",
+      "summary": "When two planes meet without interruption, material ceases to feel assembled and begins to feel carved from continuous geological bedrock.",
+      "imageClass": "journal-two",
+      "image": "/assets/hero-ace.png",
+      "quote": "Eliminating the seam is not merely a technical triumph—it is a visual liberation from modular limitations.",
+      "content": [
+        "Traditional natural stone and composite slabs are inherently bound by quarry sizes and transport limitations. Grout lines and silicone expansion joints interrupt the eye, compartmentalizing architecture into discrete tiles and slabs.",
+        "Our seamless joining technique utilizes a chemically active, color-matched acrylic adhesive matrix that chemically welds adjacent solid surface panels together. Once cured and hand-honed to a unified grain structure, the joint becomes completely invisible to both the eye and the touch.",
+        "This allows for monolithic 10-meter reception bars, continuous kitchen islands wrapping into full-height walls, and integrated undermount basins that flow without a single dirt trap."
+      ],
+      "takeaways": [
+        "Zero grout lines eliminate mold and bacteria breeding zones",
+        "Chemical resin welding creates bonds as strong as the parent material",
+        "Enables infinite continuous lengths for monumental commercial joinery"
+      ]
+    },
+    {
+      "slug": "sculpting-with-light-translucent-surfaces",
+      "title": "Sculpting with light: The physics of translucent minerals.",
+      "category": "Spatial Design",
+      "date": "June 2024",
+      "readTime": "07 min read",
+      "author": "Ace Optical Lab",
+      "summary": "How 6mm translucent solid surfaces transform cold LED light cavities into velvety, ambient architectural halos.",
+      "imageClass": "journal-one",
+      "image": "/assets/material-macro.png",
+      "quote": "Daylight gives the surface its mineral body; internal illumination reveals its ethereal soul.",
+      "content": [
+        "When light passes through a mineral-filled acrylic matrix, it does not transmit linearly like glass. Instead, the microscopic aluminium trihydrate crystals refract and scatter photons in every direction, creating an entirely diffuse volumetric glow.",
+        "By calibrating the distance between internal LED arrays and the rear face of our Lumen Series panels (typically 75mm to 100mm cavity depth), designers can achieve perfectly uniform luminance without hot spots.",
+        "This technology opens up extraordinary possibilities for ambient bar fronts, glowing spatial divider screens, illuminated retail plinths, and sculptural pendant boxes."
+      ],
+      "takeaways": [
+        "High internal light diffusion eliminates harsh LED diode pixelation",
+        "Optimal backlighting achieved at 6mm nominal material thickness",
+        "Color temperature changes (2700K vs 4000K) dynamically shift surface mood"
+      ]
+    },
+    {
+      "slug": "why-texture-changes-the-room",
+      "title": "Why texture changes the room: Acoustics and low-glare calm.",
+      "category": "Spatial Design",
+      "date": "May 2024",
+      "readTime": "05 min read",
+      "author": "Ace Studio Notes",
+      "summary": "Tactility alters how sound, shadow, and warmth settle into an interior sanctuary.",
+      "imageClass": "journal-two",
+      "image": "/assets/hero-ace.png",
+      "quote": "A room is not only seen; it is acoustically and tactilely absorbed by the surfaces that enclose it.",
+      "content": [
+        "In high-end architectural interiors, excessive specular glare from high-gloss surfaces can introduce visual fatigue and acoustic harshness. Our focus is on low-sheen, tactile honed finishes that absorb ambient illumination.",
+        "A micro-textured surface catches indirect lighting softly, diffusing shadows and grounding the space with an earthy calm.",
+        "From private dining rooms to executive suites, selecting a surface with tactile depth transforms how occupants interact with the space, making every touchpoint intentional."
+      ],
+      "takeaways": [
+        "Velvety honed matte finishes eliminate distracting light reflections",
+        "Warm-to-touch mineral feel compared to cold natural granite or quartz",
+        "Enhances sensory intimacy in residential living and wellness spaces"
+      ]
+    },
+    {
+      "slug": "a-primer-on-solid-surfaces",
+      "title": "A primer on solid surfaces: Chemistry, longevity, and sustainability.",
+      "category": "Material Science",
+      "date": "April 2024",
+      "readTime": "08 min read",
+      "author": "Technical Specifications",
+      "summary": "An exploration of mineral composition, stain performance, thermoformability, and architectural longevity.",
+      "imageClass": "journal-one",
+      "image": "/assets/material-macro.png",
+      "quote": "Solid surface is where the beauty of natural minerals meets the infinite shaping freedom of advanced polymers.",
+      "content": [
+        "Composed of approximately two-thirds natural bauxite minerals (aluminium trihydrate) and one-third advanced acrylic resin, solid surfaces represent one of the most versatile materials in modern architecture.",
+        "Being 100% non-porous, liquids cannot penetrate below the surface, rendering it completely impervious to bacterial growth, mold, and stubborn stains like turmeric, red wine, and coffee.",
+        "Unlike coated materials or engineered quartz, solid surface is fully renewable—scratches, stains, or surface wear can be sanded and hand-buffed on site back to original factory condition, ensuring decades of service life."
+      ],
+      "takeaways": [
+        "NSF/ANSI 51 certified non-porous composition for food and medical hygiene",
+        "Class 1 / Class A fire rating with low smoke toxicity",
+        "100% renewable through-body enables on-site resurfacing indefinitely"
+      ]
+    },
+    {
+      "slug": "thermoforming-organic-geometry",
+      "title": "Thermoforming organic geometry: From CAD buck to compound curves.",
+      "category": "Fabrication Craft",
+      "date": "March 2024",
+      "readTime": "06 min read",
+      "author": "Bengaluru Fabrication Hub",
+      "summary": "The precision heating and vacuum forming workflows that allow flat mineral sheets to achieve complex fluid curves.",
+      "imageClass": "journal-two",
+      "image": "/assets/hero-ace.png",
+      "quote": "Heat unlocks fluidity; precision molds restore structural permanence.",
+      "content": [
+        "Solid surface sheets heated uniformly to between 155°C and 165°C become as flexible as leather. In this malleable state, sheets are rapidly transferred to bespoke CNC-machined wooden or high-density foam bucks inside our industrial membrane vacuum presses.",
+        "As air is evacuated, atmospheric pressure forces the heated sheet uniformly against the contours of the buck. The material is held under vacuum until it cools below 80°C, locking the organic 3-dimensional form permanently into place without structural stress.",
+        "This process enables seamless spiral stair balustrades, sweeping reception monoliths, and organic ergonomic furniture without a single visible seam."
+      ],
+      "takeaways": [
+        "Platen oven heating ensures uniform thermal penetration across 12mm sheets",
+        "Membrane vacuum presses eliminate localized pinch points and stress risers",
+        "Retains 100% structural strength and non-porous properties post-forming"
+      ]
+    },
+    {
+      "slug": "the-raw-material-foundation-behind-coro-collective",
+      "title": "The Raw Material Foundation: Why Architecture Begins at the Source.",
+      "category": "Ecosystem & Philosophy",
+      "date": "September 2024",
+      "readTime": "05 min read",
+      "author": "Ace Spatial Research",
+      "summary": "How Ace Spaces serves as the parent company and raw material source for independent architects, interior designers, and Coro Collective.",
+      "imageClass": "journal-one",
+      "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=85",
+      "quote": "Before there is a room, a curve, or a finished edge, there is the raw substrate. Architecture does not begin on the drafting board; it begins at the material source.",
+      "content": [
+        "In contemporary spatial design, there is often a separation between the studio that imagines a space and the raw substrate from which that space is built. Ace Spaces was founded to dissolve that division.",
+        "As a parent company and primary raw material provider, Ace Spaces provides interior designers and architects with direct access to through-body mineral compositions, solid surface slabs, and unyielding fabrication standards. Rather than selecting from disconnected sample rings, designers work directly with the source.",
+        "This foundation is also why Coro Collective exists. Born directly out of Ace Spaces, Coro Collective serves as our sister spatial and interior design brand—taking the very raw materials we formulate and engineering them into complete living environments, sculptural reception monoliths, and bespoke furniture pieces.",
+        "Whether specifying raw slabs for an independent architectural commission or collaborating on full spatial fabrication, the principle remains constant: the material is the foundation of everything that follows."
+      ],
+      "takeaways": [
+        "Ace Spaces operates as the parent company and raw material source for architects, interior designers, and Coro Collective.",
+        "Through-body minerals provide uniform density, allowing seamless joins, thermoformed curvatures, and continuous plane transitions.",
+        "Direct sourcing empowers designers with customized sheet dimensions, edge profiles, and specialized pigment formulations."
+      ]
+    }
+  ],
+  "updatedAt": "2026-09-09T18:46:32.587Z"
+}

@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 
@@ -65,7 +65,7 @@ export default function EdgeProfileCatalog() {
 
   return (
     <div className="edge-profile-catalog" style={{ marginTop: '50px', marginBottom: '80px' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1.5fr', gap: '40px', alignItems: 'start' }}>
+      <div className="edge-profile-split">
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {edgeProfiles.map((edge) => (
             <button
@@ -118,7 +118,7 @@ export default function EdgeProfileCatalog() {
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '24px' }}>
+          <div className="edge-profile-meta">
             <div>
               <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
                 Geometry & Detail

@@ -1,0 +1,28 @@
+[
+  {
+    "id": "inq_seed_1",
+    "inquiryNumber": "ACE-INQ-402",
+    "name": "Vikramaditya Rao",
+    "email": "vikram@raodesignstudio.com",
+    "phone": "+91 98450 12890",
+    "projectType": "Commercial Headquarters & Executive Lounges",
+    "message": "We are designing the executive boardroom and curved reception desk for a 45,000 sq ft office campus in Hyderabad. We require 19mm thermoformable mineral solid surfaces with seamless joint fabrication. Please share slab lead times and architectural specification sheet.",
+    "status": "new",
+    "createdAt": "2026-09-09T15:00:00.000Z",
+    "updatedAt": "2026-09-09T15:00:00.000Z",
+    "notes": "Large commercial project. Follow up with material catalog and fabrication sample."
+  },
+  {
+    "id": "inq_seed_2",
+    "inquiryNumber": "ACE-INQ-401",
+    "name": "Ananya Sharma",
+    "email": "ananya@spacesandforms.in",
+    "phone": "+91 97112 34509",
+    "projectType": "High-End Villa Architecture",
+    "message": "Looking for through-body Calacatta vein mineral surfaces for 4 ensuite bathrooms and monolithic washbasins. Need consultation on mitered edge fabrication and integrated sinks.",
+    "status": "in-discussion",
+    "createdAt": "2026-09-07T12:00:00.000Z",
+    "updatedAt": "2026-09-08T18:00:00.000Z",
+    "notes": "Sample box sent. Scheduled call for edge profiling details."
+  }
+]

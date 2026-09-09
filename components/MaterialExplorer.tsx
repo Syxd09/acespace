@@ -3,11 +3,14 @@
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { materials, Material } from '@/data/materials';
+import { materials as defaultMaterials, Material } from '@/data/materials';
+import { useSiteContent } from '@/context/SiteContentContext';
 import MaterialModal from '@/components/MaterialModal';
 import { useSampleShortlist } from '@/context/SampleContext';
 
 export default function MaterialExplorer() {
+  const { materials: liveMaterials } = useSiteContent();
+  const materials = (liveMaterials && liveMaterials.length > 0) ? liveMaterials : defaultMaterials;
   const [activeTab, setActiveTab] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [activeModalMaterial, setActiveModalMaterial] = useState<Material | null>(null);

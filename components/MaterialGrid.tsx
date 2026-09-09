@@ -2,12 +2,15 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { materials, Material } from '@/data/materials';
+import { materials as defaultMaterials, Material } from '@/data/materials';
+import { useSiteContent } from '@/context/SiteContentContext';
 import MaterialModal from './MaterialModal';
 import Toast from './Toast';
 import ScrollReveal from './ScrollReveal';
 
 export default function MaterialGrid() {
+  const { materials: liveMaterials } = useSiteContent();
+  const materials = (liveMaterials && liveMaterials.length > 0) ? liveMaterials : defaultMaterials;
   const [activeFilter, setActiveFilter] = useState<'all' | 'mineral' | 'veined' | 'textured' | 'translucent'>('all');
   const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
   const [showToast, setShowToast] = useState(false);

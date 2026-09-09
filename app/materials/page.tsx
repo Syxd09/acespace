@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
@@ -11,30 +11,25 @@ export const metadata: Metadata = {
 
 export default function MaterialsPage() {
   return (
-    <main className="page-main" style={{ paddingTop: '100px' }}>
+    <main className="page-main">
       {/* Rich Split Architectural Hero */}
-      <section
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(320px, 1.1fr) 0.9fr',
-          gap: '6vw',
-          alignItems: 'center',
-          padding: '60px 0 90px',
-          borderBottom: '1px solid var(--line)',
-        }}
-      >
+      <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: '20px' }}>Materials / Substrates & Compositions</p>
+          <p className="eyebrow" style={{ marginBottom: '24px' }}>Materials / Substrates & Compositions</p>
 
-          <h1 style={{ fontSize: 'clamp(56px, 7vw, 108px)', lineHeight: 0.92, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+          <h1 style={{ fontSize: 'clamp(48px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
             Material as
             <br />
             <i>substance.</i>
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
-            Materials define the physical substrate, tactile warmth, and engineering performance of the space. Explore our 4 core material formulations below, or browse by color palette.
+          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '560px', marginBottom: '20px' }}>
+            Ace Spaces is the primary raw material source for architects and interior designers — providing full-dimension solid surface slabs (3660mm &times; 760mm &times; 12mm/19mm), custom blanks, and through-body minerals that power bespoke spatial creations, including our sister studio Coro Collective.
           </p>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', background: 'rgba(30,33,29,0.06)', borderRadius: '100px', fontSize: '11px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '28px' }}>
+            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ink)' }}></span>
+            Direct Raw Material Supply for Designers &amp; Architects
+          </div>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="button button-dark" href="/collections/colours">
