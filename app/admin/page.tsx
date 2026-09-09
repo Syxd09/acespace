@@ -38,6 +38,9 @@ export default function AdminPage() {
   // Active Tab
   const [activeTab, setActiveTab] = useState<TabKey>('overview');
 
+  // Collapsible Sidebar state
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(true);
+
   // Local working copy of state for editing
   const [localHeroSlides, setLocalHeroSlides] = useState<HeroSlide[]>([]);
   const [localMaterials, setLocalMaterials] = useState<Material[]>([]);
@@ -76,6 +79,7 @@ export default function AdminPage() {
 
   // Material filters
   const [materialSearchQuery, setMaterialSearchQuery] = useState<string>('');
+  const [colorSearchQuery, setColorSearchQuery] = useState<string>('');
 
   // New item modal states
   const [isAddingColor, setIsAddingColor] = useState(false);
@@ -625,17 +629,23 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
     );
   };
 
-  const deleteMaterial = (slug: string) => {
+  const deleteMaterial = async (slug: string) => {
     if (window.confirm(`Delete material slab "${slug}"?`)) {
-      setLocalMaterials(prev => prev.filter(m => m.slug !== slug));
       const remaining = localMaterials.filter(m => m.slug !== slug);
+      setLocalMaterials(remaining);
       if (remaining[0]) setSelectedMaterialSlug(remaining[0].slug);
-      showToast(`Material ${slug} deleted.`, 'info');
+      await saveContent({
+        heroSlides: localHeroSlides,
+        materials: remaining,
+        applicationSectors: localSectors,
+        journalArticles: localJournalArticles,
+      });
+      showToast(`Material ${slug} deleted & updated live.`, 'info');
     }
   };
 
   // Add Color Swatch
-  const handleCreateColor = (e: React.FormEvent) => {
+  const handleCreateColor = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newColorForm.name) {
       showToast('Please provide a colour name.', 'error');
@@ -664,10 +674,17 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
       fireRating: 'Class 1 (BS 476)',
       careGuide: 'Clean with mild architectural soap and microfiber cloth.',
     };
-    setLocalMaterials(prev => [newMaterial, ...prev]);
+    const updated = [newMaterial, ...localMaterials];
+    setLocalMaterials(updated);
     setSelectedMaterialSlug(newMaterial.slug);
     setIsAddingColor(false);
-    showToast(`✓ Colour swatch "${newMaterial.name}" added successfully!`, 'success');
+    await saveContent({
+      heroSlides: localHeroSlides,
+      materials: updated,
+      applicationSectors: localSectors,
+      journalArticles: localJournalArticles,
+    });
+    showToast(`✓ Colour swatch "${newMaterial.name}" registered & live across site!`, 'success');
   };
 
   // Journal Essays Operations
@@ -961,7 +978,31 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
         alignItems: 'center',
         borderBottom: '1px solid rgba(255,255,255,0.1)',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+          {/* Collapsible Sidebar Toggle Button */}
+          <button
+            onClick={() => setIsSidebarOpen(prev => !prev)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 12px',
+              background: isSidebarOpen ? 'rgba(255,255,255,0.08)' : '#e9e8e2',
+              color: isSidebarOpen ? '#c2cdc2' : '#1a1d19',
+              border: '1px solid rgba(255,255,255,0.25)',
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '11px',
+              fontWeight: 600,
+              letterSpacing: '0.06em',
+              cursor: 'pointer',
+              transition: 'all 0.2s ease',
+            }}
+            title={isSidebarOpen ? 'Collapse Navigation Sidebar' : 'Open Navigation Sidebar'}
+          >
+            <span style={{ fontSize: '12px' }}>{isSidebarOpen ? '◀' : '☰'}</span>
+            <span>{isSidebarOpen ? 'HIDE SIDEBAR' : 'OPEN SIDEBAR'}</span>
+          </button>
+
           <Link href="/" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span style={{
               width: '28px',
@@ -1060,61 +1101,241 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
         </div>
       </header>
 
-      {/* Main Console Navigation Tabs */}
-      <nav style={{
-        background: '#ecebe4',
-        borderBottom: '1px solid rgba(0,0,0,0.08)',
-        padding: '0 28px',
-        display: 'flex',
-        gap: '2px',
-        overflowX: 'auto',
-      }}>
-        {[
-          { key: 'overview', label: '01 Overview' },
-          { key: 'hero', label: '02 Hero Slider & Images' },
-          { key: 'materials', label: '03 Materials & Slabs' },
-          { key: 'colors', label: '04 Colours & Swatches' },
-          { key: 'applications', label: '05 Applications Photography' },
-          { key: 'journal', label: '06 Journal Essays & Articles' },
-          { key: 'media', label: '07 Media Asset Library & Upload' },
-          {
-            key: 'orders',
-            label: `08 Sample Orders (${orders.filter((o) => o.status === 'submitted' || o.status === 'in-progress').length})`,
-          },
-          {
-            key: 'inquiries',
-            label: `09 Enquiries (${inquiries.filter((i) => i.status === 'new').length})`,
-          },
-          {
-            key: 'dispatch',
-            label: `10 Dispatch (${subscribers.length})`,
-          },
-        ].map(tab => (
+      {/* Admin Layout: Collapsible Sidebar + Workspace */}
+      <div style={{ display: 'flex', flex: 1, minHeight: 'calc(100vh - 110px)', position: 'relative' }}>
+        {/* Collapsible Sidebar Navigation */}
+        <aside
+          style={{
+            width: isSidebarOpen ? '280px' : '0px',
+            minWidth: isSidebarOpen ? '280px' : '0px',
+            maxWidth: isSidebarOpen ? '280px' : '0px',
+            background: '#151814',
+            borderRight: isSidebarOpen ? '1px solid rgba(255,255,255,0.1)' : 'none',
+            overflow: 'hidden',
+            transition: 'width 0.28s cubic-bezier(0.16, 1, 0.3, 1), min-width 0.28s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+            display: 'flex',
+            flexDirection: 'column',
+            zIndex: 40,
+            flexShrink: 0,
+          }}
+        >
+          <div style={{ width: '280px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+            {/* Sidebar Header */}
+            <div
+              style={{
+                padding: '16px 20px',
+                borderBottom: '1px solid rgba(255,255,255,0.08)',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#73c991', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                  STUDIO CONSOLE
+                </div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#e9e8e2', fontWeight: 600, letterSpacing: '0.08em' }}>
+                  NAVIGATION MATRIX
+                </div>
+              </div>
+              <button
+                onClick={() => setIsSidebarOpen(false)}
+                style={{
+                  background: 'rgba(255,255,255,0.06)',
+                  border: '1px solid rgba(255,255,255,0.15)',
+                  color: '#9ca59b',
+                  cursor: 'pointer',
+                  fontFamily: 'DM Mono, monospace',
+                  fontSize: '11px',
+                  padding: '4px 8px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                }}
+                title="Collapse Sidebar"
+              >
+                <span>✕</span>
+                <span style={{ fontSize: '9px' }}>CLOSE</span>
+              </button>
+            </div>
+
+            {/* Sidebar Navigation Items */}
+            <div style={{ flex: 1, overflowY: 'auto', padding: '16px 12px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              {/* Category 1 */}
+              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#6d746d', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '8px 12px 4px 12px' }}>
+                Foundry Curation & Assets
+              </div>
+              {[
+                { key: 'overview', num: '01', title: 'Overview Matrix' },
+                { key: 'hero', num: '02', title: 'Hero Slider & Images' },
+                { key: 'materials', num: '03', title: 'Materials & Slabs' },
+                { key: 'colors', num: '04', title: 'Colours & Swatches' },
+                { key: 'applications', num: '05', title: 'Applications Photography' },
+                { key: 'journal', num: '06', title: 'Journal & Essays' },
+                { key: 'media', num: '07', title: 'Media Asset Library' },
+              ].map((item) => {
+                const isActive = activeTab === item.key;
+                return (
+                  <button
+                    key={item.key}
+                    onClick={() => setActiveTab(item.key as TabKey)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      width: '100%',
+                      padding: '10px 14px',
+                      background: isActive ? 'rgba(255,255,255,0.12)' : 'transparent',
+                      border: 'none',
+                      borderLeft: isActive ? '3px solid #73c991' : '3px solid transparent',
+                      color: isActive ? '#ffffff' : '#9ca59b',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      fontWeight: isActive ? 600 : 400,
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    <span style={{ color: isActive ? '#73c991' : '#596059', fontSize: '10px', width: '18px' }}>
+                      {item.num}
+                    </span>
+                    <span style={{ flex: 1 }}>{item.title}</span>
+                  </button>
+                );
+              })}
+
+              {/* Category 2 */}
+              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#6d746d', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '16px 12px 4px 12px' }}>
+                Real-Time Leads & Stream
+              </div>
+              {[
+                {
+                  key: 'orders',
+                  num: '08',
+                  title: 'Sample Orders',
+                  count: orders.filter((o) => o.status === 'submitted' || o.status === 'in-progress').length,
+                  badgeColor: '#e5a93b',
+                },
+                {
+                  key: 'inquiries',
+                  num: '09',
+                  title: 'Enquiries',
+                  count: inquiries.filter((i) => i.status === 'new').length,
+                  badgeColor: '#73c991',
+                },
+                {
+                  key: 'dispatch',
+                  num: '10',
+                  title: 'Dispatch Journal',
+                  count: subscribers.length,
+                  badgeColor: '#6da5c0',
+                },
+              ].map((item) => {
+                const isActive = activeTab === item.key;
+                return (
+                  <button
+                    key={item.key}
+                    onClick={() => setActiveTab(item.key as TabKey)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '12px',
+                      width: '100%',
+                      padding: '10px 14px',
+                      background: isActive ? 'rgba(255,255,255,0.12)' : 'transparent',
+                      border: 'none',
+                      borderLeft: isActive ? '3px solid #73c991' : '3px solid transparent',
+                      color: isActive ? '#ffffff' : '#9ca59b',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      fontWeight: isActive ? 600 : 400,
+                      textAlign: 'left',
+                      cursor: 'pointer',
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    <span style={{ color: isActive ? '#73c991' : '#596059', fontSize: '10px', width: '18px' }}>
+                      {item.num}
+                    </span>
+                    <span style={{ flex: 1 }}>{item.title}</span>
+                    {item.count > 0 && (
+                      <span
+                        style={{
+                          background: item.badgeColor,
+                          color: '#1a1d19',
+                          fontSize: '9px',
+                          fontWeight: 700,
+                          padding: '1px 6px',
+                          borderRadius: '10px',
+                        }}
+                      >
+                        {item.count}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Sidebar Footer */}
+            <div style={{ padding: '16px 20px', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111410' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#73c991' }} />
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#73c991' }}>
+                  Live Data Stream Synced
+                </span>
+              </div>
+              <Link
+                href="/"
+                target="_blank"
+                style={{
+                  display: 'block',
+                  color: '#9ca59b',
+                  textDecoration: 'none',
+                  fontFamily: 'DM Mono, monospace',
+                  fontSize: '10px',
+                  letterSpacing: '0.05em',
+                }}
+              >
+                View Live Site ↗
+              </Link>
+            </div>
+          </div>
+        </aside>
+
+        {/* Floating Reopen Button when Sidebar is Collapsed */}
+        {!isSidebarOpen && (
           <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key as TabKey)}
+            onClick={() => setIsSidebarOpen(true)}
             style={{
-              padding: '14px 20px',
-              background: activeTab === tab.key ? '#f5f4ee' : 'transparent',
-              border: 'none',
-              borderBottom: activeTab === tab.key ? '2px solid #1a1d19' : '2px solid transparent',
-              color: activeTab === tab.key ? '#1a1d19' : '#6d746d',
+              position: 'fixed',
+              left: '16px',
+              bottom: '24px',
+              zIndex: 90,
+              background: '#1a1d19',
+              color: '#ffffff',
+              border: '1px solid rgba(255,255,255,0.25)',
+              padding: '10px 16px',
               fontFamily: 'DM Mono, monospace',
               fontSize: '11px',
-              fontWeight: activeTab === tab.key ? '600' : '400',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase',
+              fontWeight: 600,
+              letterSpacing: '0.08em',
               cursor: 'pointer',
-              whiteSpace: 'nowrap',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
             }}
+            title="Open Console Sidebar Navigation"
           >
-            {tab.label}
+            <span>☰</span>
+            <span>OPEN SIDEBAR</span>
           </button>
-        ))}
-      </nav>
+        )}
 
-      {/* Main Content Workspace */}
-      <main style={{ flex: 1, padding: '32px 28px', maxWidth: '1440px', width: '100%', margin: '0 auto' }}>
+        {/* Main Content Workspace */}
+        <main style={{ flex: 1, minWidth: 0, padding: '32px 32px', maxWidth: '1440px', width: '100%', margin: '0 auto', overflowY: 'auto' }}>
         {/* =========================================================================
             TAB 1: OVERVIEW
         ========================================================================= */}
@@ -1592,8 +1813,17 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '750px', overflowY: 'auto', paddingRight: '4px' }}>
                 {localMaterials
                   .filter(m => {
-                    const q = materialSearchQuery.toLowerCase();
-                    return !q || m.name.toLowerCase().includes(q) || m.code.toLowerCase().includes(q) || m.collection.toLowerCase().includes(q);
+                    const q = materialSearchQuery.trim().toLowerCase();
+                    return (
+                      !q ||
+                      (m.name && m.name.toLowerCase().includes(q)) ||
+                      (m.code && m.code.toLowerCase().includes(q)) ||
+                      (m.collection && m.collection.toLowerCase().includes(q)) ||
+                      (m.colour && m.colour.toLowerCase().includes(q)) ||
+                      (m.finish && m.finish.toLowerCase().includes(q)) ||
+                      (m.colorFamily && m.colorFamily.toLowerCase().includes(q)) ||
+                      (m.hexColor && m.hexColor.toLowerCase().includes(q))
+                    );
                   })
                   .map(mat => (
                     <div
@@ -1645,7 +1875,28 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                         {selectedMaterial.name} ({selectedMaterial.code})
                       </h3>
                     </div>
-                    <div style={{ display: 'flex', gap: '8px' }}>
+                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                      <button
+                        onClick={handleSaveAll}
+                        disabled={isContextLoading}
+                        style={{
+                          padding: '6px 14px',
+                          background: '#1a1d19',
+                          color: '#ffffff',
+                          border: 'none',
+                          fontFamily: 'DM Mono, monospace',
+                          fontSize: '10px',
+                          fontWeight: 600,
+                          letterSpacing: '0.05em',
+                          cursor: isContextLoading ? 'wait' : 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                        }}
+                      >
+                        <span>💾</span>
+                        <span>{isContextLoading ? 'Saving...' : 'Save Material & Push Live'}</span>
+                      </button>
                       <Link
                         href={`/materials/${selectedMaterial.slug}`}
                         target="_blank"
@@ -1858,6 +2109,62 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
               </button>
             </div>
 
+            {/* Swatches Search and Quick Save Bar */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px', marginBottom: '20px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flex: 1, maxWidth: '440px' }}>
+                <input
+                  type="text"
+                  placeholder="Search swatches by name, code, finish, or hue..."
+                  value={colorSearchQuery}
+                  onChange={e => setColorSearchQuery(e.target.value)}
+                  style={{
+                    flex: 1,
+                    padding: '8px 12px',
+                    border: '1px solid #ccc',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    background: '#ffffff',
+                  }}
+                />
+                {colorSearchQuery && (
+                  <button
+                    onClick={() => setColorSearchQuery('')}
+                    style={{
+                      background: '#1a1d19',
+                      color: '#ffffff',
+                      border: 'none',
+                      padding: '8px 12px',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '10px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+              <button
+                onClick={handleSaveAll}
+                disabled={isContextLoading}
+                style={{
+                  padding: '8px 16px',
+                  background: '#1a1d19',
+                  color: '#ffffff',
+                  border: 'none',
+                  fontFamily: 'DM Mono, monospace',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  cursor: isContextLoading ? 'wait' : 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                }}
+              >
+                <span>💾</span>
+                <span>{isContextLoading ? 'Saving...' : 'Save Swatches & Push Live ✓'}</span>
+              </button>
+            </div>
+
             {/* Swatch Registration Modal Form */}
             {isAddingColor && (
               <div style={{
@@ -1993,8 +2300,22 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
             )}
 
             {/* Visual Swatches Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '16px\\' }}>
-              {localMaterials.map(mat => (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '16px' }}>
+              {localMaterials
+                .filter(mat => {
+                  const q = colorSearchQuery.trim().toLowerCase();
+                  if (!q) return true;
+                  return (
+                    (mat.name && mat.name.toLowerCase().includes(q)) ||
+                    (mat.code && mat.code.toLowerCase().includes(q)) ||
+                    (mat.colour && mat.colour.toLowerCase().includes(q)) ||
+                    (mat.finish && mat.finish.toLowerCase().includes(q)) ||
+                    (mat.collection && mat.collection.toLowerCase().includes(q)) ||
+                    (mat.colorFamily && mat.colorFamily.toLowerCase().includes(q)) ||
+                    (mat.hexColor && mat.hexColor.toLowerCase().includes(q))
+                  );
+                })
+                .map(mat => (
                 <div
                   key={mat.slug}
                   style={{
@@ -3784,7 +4105,8 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
           )}
         </div>
       )}
-      </main>
+        </main>
+      </div>
 
       {/* Admin Footer Bar */}
       <footer style={{

@@ -107,7 +107,7 @@
     {
       "slug": "noma-parchment",
       "name": "Noma / Parchment",
-      "code": "AC-0103",
+      "code": "AC-010309",
       "collection": "Noma Solids",
       "colorFamily": "cream",
       "pattern": "solid",
@@ -1216,5 +1216,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-09T18:46:32.587Z"
+  "updatedAt": "2026-09-09T20:44:22.802Z"
 }

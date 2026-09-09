@@ -26,13 +26,24 @@ export default function MaterialExplorer() {
   ];
 
   const filteredMaterials = useMemo(() => {
+    const rawQuery = searchQuery.trim().toLowerCase();
+
     return materials.filter((mat) => {
-      const matchesTab = activeTab === 'all' || mat.type === activeTab;
       const matchesSearch =
-        searchQuery.trim() === '' ||
-        mat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mat.colour.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mat.finish.toLowerCase().includes(searchQuery.toLowerCase());
+        !rawQuery ||
+        (mat.code && mat.code.toLowerCase().includes(rawQuery)) ||
+        (mat.name && mat.name.toLowerCase().includes(rawQuery)) ||
+        (mat.colour && mat.colour.toLowerCase().includes(rawQuery)) ||
+        (mat.finish && mat.finish.toLowerCase().includes(rawQuery)) ||
+        (mat.collection && mat.collection.toLowerCase().includes(rawQuery)) ||
+        (mat.colorFamily && mat.colorFamily.toLowerCase().includes(rawQuery)) ||
+        (mat.pattern && mat.pattern.toLowerCase().includes(rawQuery)) ||
+        (mat.type && mat.type.toLowerCase().includes(rawQuery)) ||
+        (mat.description && mat.description.toLowerCase().includes(rawQuery)) ||
+        (Array.isArray(mat.applications) && mat.applications.some((app) => app.toLowerCase().includes(rawQuery)));
+
+      // When searching by text, search globally across all collections so an architect typing a code or name never gets false zero results
+      const matchesTab = rawQuery ? true : (activeTab === 'all' || mat.type === activeTab);
 
       return matchesTab && matchesSearch;
     });
@@ -127,9 +138,36 @@ export default function MaterialExplorer() {
         </div>
       </div>
 
-      {/* Material Grid with Visible Macro Texture Imagery */}
-      <div className="material-grid" style={{ marginBottom: '60px' }}>
-        {filteredMaterials.map((material) => {
+      {/* Material Grid or Zero Results Callout */}
+      {filteredMaterials.length === 0 ? (
+        <div style={{
+          background: '#dcd7cd',
+          padding: '64px 24px',
+          textAlign: 'center',
+          border: '1px solid var(--line)',
+          marginBottom: '60px',
+        }}>
+          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            Foundry Search Query: &quot;{searchQuery}&quot;
+          </span>
+          <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', margin: '12px 0 16px', fontWeight: 400 }}>
+            No Architectural Specimens Found
+          </h3>
+          <p style={{ fontSize: '13px', color: '#6d746d', maxWidth: '460px', margin: '0 auto 24px', lineHeight: 1.6 }}>
+            No solid surface slabs match &quot;{searchQuery}&quot;. Search by code (e.g. AC-101), collection name, finish, or hue.
+          </p>
+          <button
+            type="button"
+            onClick={() => { setSearchQuery(''); setActiveTab('all'); }}
+            className="button button-dark"
+            style={{ display: 'inline-flex' }}
+          >
+            Clear Search & Show All Collections ↺
+          </button>
+        </div>
+      ) : (
+        <div className="material-grid" style={{ marginBottom: '60px' }}>
+          {filteredMaterials.map((material) => {
           const inTray = isShortlisted(material.slug);
           return (
             <div key={material.slug} className="material-card" style={{ position: 'relative' }}>
@@ -204,6 +242,7 @@ export default function MaterialExplorer() {
           );
         })}
       </div>
+      )}
 
       {/* Specimen Modal Inspector */}
       {activeModalMaterial && (

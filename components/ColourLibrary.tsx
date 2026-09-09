@@ -38,20 +38,27 @@ export default function ColourLibrary() {
   ];
 
   const filteredMaterials = useMemo(() => {
+    const rawQuery = searchQuery.trim().toLowerCase();
+
     return materials.filter((mat) => {
       const matchesSearch =
-        searchQuery.trim() === '' ||
-        mat.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mat.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mat.colour.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mat.collection.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        mat.applications.some((app) => app.toLowerCase().includes(searchQuery.toLowerCase()));
+        !rawQuery ||
+        (mat.code && mat.code.toLowerCase().includes(rawQuery)) ||
+        (mat.name && mat.name.toLowerCase().includes(rawQuery)) ||
+        (mat.colour && mat.colour.toLowerCase().includes(rawQuery)) ||
+        (mat.finish && mat.finish.toLowerCase().includes(rawQuery)) ||
+        (mat.collection && mat.collection.toLowerCase().includes(rawQuery)) ||
+        (mat.colorFamily && mat.colorFamily.toLowerCase().includes(rawQuery)) ||
+        (mat.pattern && mat.pattern.toLowerCase().includes(rawQuery)) ||
+        (mat.description && mat.description.toLowerCase().includes(rawQuery)) ||
+        (Array.isArray(mat.applications) && mat.applications.some((app) => app.toLowerCase().includes(rawQuery)));
 
+      // If user typed a search query, search globally so the query isn't blocked by a family or pattern filter
       const matchesFamily =
-        selectedColorFamily === 'all' || mat.colorFamily === selectedColorFamily;
+        rawQuery ? true : (selectedColorFamily === 'all' || mat.colorFamily === selectedColorFamily);
 
       const matchesPattern =
-        selectedPattern === 'all' || mat.pattern === selectedPattern;
+        rawQuery ? true : (selectedPattern === 'all' || mat.pattern === selectedPattern);
 
       return matchesSearch && matchesFamily && matchesPattern;
     });
