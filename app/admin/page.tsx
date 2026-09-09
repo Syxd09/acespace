@@ -82,10 +82,33 @@ export default function AdminPage() {
   const [colorSearchQuery, setColorSearchQuery] = useState<string>('');
 
   // New item modal states
+  const [isAddingMaterial, setIsAddingMaterial] = useState(false);
   const [isAddingColor, setIsAddingColor] = useState(false);
   const [isAddingSectorPhoto, setIsAddingSectorPhoto] = useState(false);
 
   // New item forms
+  const initialMaterialForm = {
+    name: '',
+    code: '',
+    collection: 'Architectural Solid',
+    colorFamily: 'white' as Material['colorFamily'],
+    pattern: 'solid' as Material['pattern'],
+    type: 'mineral' as Material['type'],
+    finish: 'Honed Satin Matte',
+    colour: '',
+    hexColor: '#f4f3ef',
+    dimensions: '3660 mm × 760 mm',
+    thicknessOptions: '12mm, 19mm',
+    textureImage: '/assets/materials/css-stonique-sheet.jpg',
+    image: '/assets/applications/stonique-bathroom-vanity.jpg',
+    applications: 'Kitchen Worktops, Wall Cladding, Bespoke Monoliths',
+    lightTransmission: 'Low (6%)',
+    fireRating: 'Class 1 / Class A (ASTM E84)',
+    careGuide: 'Daily cleaning with damp microfibre cloth and mild neutral detergent.',
+    description: '',
+  };
+  const [newMaterialForm, setNewMaterialForm] = useState(initialMaterialForm);
+
   const [newColorForm, setNewColorForm] = useState({
     name: '',
     code: '',
@@ -642,6 +665,76 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
       });
       showToast(`Material ${slug} deleted & updated live.`, 'info');
     }
+  };
+
+  // Create New Material Slab
+  const handleCreateMaterial = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newMaterialForm.name.trim()) {
+      showToast('Please provide a material slab name.', 'error');
+      return;
+    }
+
+    // Generate unique slug
+    let baseSlug = newMaterialForm.name
+      .toLowerCase()
+      .trim()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+    if (!baseSlug) baseSlug = `material-${Date.now()}`;
+    let slug = baseSlug;
+    let counter = 1;
+    while (localMaterials.some(m => m.slug === slug)) {
+      slug = `${baseSlug}-${counter}`;
+      counter++;
+    }
+
+    const code = newMaterialForm.code.trim() || `AC-${Math.floor(1000 + Math.random() * 9000)}`;
+    const applicationsArray = newMaterialForm.applications
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+    const thicknessArray = newMaterialForm.thicknessOptions
+      .split(',')
+      .map(s => s.trim())
+      .filter(Boolean);
+
+    const newMaterial: Material = {
+      slug,
+      name: newMaterialForm.name.trim(),
+      code,
+      collection: newMaterialForm.collection.trim() || 'Architectural Solid',
+      colorFamily: newMaterialForm.colorFamily,
+      pattern: newMaterialForm.pattern,
+      type: newMaterialForm.type,
+      finish: newMaterialForm.finish.trim() || 'Honed Satin Matte',
+      colour: newMaterialForm.colour.trim() || newMaterialForm.name.trim(),
+      hexColor: newMaterialForm.hexColor || '#f4f3ef',
+      textureImage: newMaterialForm.textureImage.trim() || '/assets/materials/css-stonique-sheet.jpg',
+      description: newMaterialForm.description.trim() || 'Engineered solid surface architectural slab with seamless thermoformable capability and non-porous hygiene performance.',
+      swatch: 'one',
+      image: newMaterialForm.image.trim() || '/assets/applications/stonique-bathroom-vanity.jpg',
+      applications: applicationsArray.length > 0 ? applicationsArray : ['Kitchen Worktops', 'Wall Cladding', 'Bespoke Monoliths'],
+      thicknessOptions: thicknessArray.length > 0 ? thicknessArray : ['12mm', '19mm'],
+      dimensions: newMaterialForm.dimensions.trim() || '3660 mm × 760 mm',
+      lightTransmission: newMaterialForm.lightTransmission.trim() || 'Low (6%)',
+      fireRating: newMaterialForm.fireRating.trim() || 'Class 1 / Class A (ASTM E84)',
+      careGuide: newMaterialForm.careGuide.trim() || 'Daily cleaning with damp microfibre cloth and mild neutral detergent.',
+    };
+
+    const updated = [newMaterial, ...localMaterials];
+    setLocalMaterials(updated);
+    setSelectedMaterialSlug(newMaterial.slug);
+    setIsAddingMaterial(false);
+    setNewMaterialForm(initialMaterialForm);
+
+    await saveContent({
+      heroSlides: localHeroSlides,
+      materials: updated,
+      applicationSectors: localSectors,
+      journalArticles: localJournalArticles,
+    });
+    showToast(`✓ Material slab "${newMaterial.name}" (${newMaterial.code}) registered and live across site!`, 'success');
   };
 
   // Add Color Swatch
@@ -1436,6 +1529,20 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                     + Add New Slide to Homepage Hero Carousel
                   </button>
                   <button
+                    onClick={() => { setActiveTab('materials'); setIsAddingMaterial(true); }}
+                    style={{
+                      textAlign: 'left',
+                      padding: '10px 14px',
+                      background: '#f5f4ee',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    + Register New Material Slab to Foundry Catalog
+                  </button>
+                  <button
                     onClick={() => { setActiveTab('colors'); setIsAddingColor(true); }}
                     style={{
                       textAlign: 'left',
@@ -1791,7 +1898,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                   }}
                 />
                 <button
-                  onClick={() => setIsAddingColor(true)}
+                  onClick={() => setIsAddingMaterial(true)}
                   style={{
                     padding: '8px 16px',
                     background: '#1a1d19',
@@ -1800,12 +1907,422 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                     fontFamily: 'DM Mono, monospace',
                     fontSize: '11px',
                     cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
                   }}
                 >
-                  + Add New Material Slab
+                  <span>+</span>
+                  <span>Add New Material Slab</span>
                 </button>
               </div>
             </div>
+
+            {/* Registration Form / Modal for New Material Slab */}
+            {isAddingMaterial && (
+              <div
+                style={{
+                  background: '#ffffff',
+                  padding: '28px',
+                  border: '2px solid #1a1d19',
+                  marginBottom: '28px',
+                  boxShadow: '0 12px 36px rgba(0,0,0,0.07)',
+                }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '14px', borderBottom: '1px solid #e5e4de' }}>
+                  <div>
+                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
+                      Foundry Inventory • Catalog Addition
+                    </div>
+                    <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
+                      Register New Architectural Material Slab
+                    </h3>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsAddingMaterial(false)}
+                    style={{
+                      background: 'transparent',
+                      border: '1px solid #ddd',
+                      padding: '4px 10px',
+                      cursor: 'pointer',
+                      fontSize: '16px',
+                      fontFamily: 'DM Mono, monospace',
+                    }}
+                    title="Close"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <form onSubmit={handleCreateMaterial} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                  {/* Row 1: Core Identifiers */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr 1fr', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Material Slab Name *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Calacatta Nuvo Gold"
+                        value={newMaterialForm.name}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, name: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Material Code (e.g. AC-3040)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Auto-generated if empty"
+                        value={newMaterialForm.code}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, code: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Collection Series
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Noma Solids / Veined Mineral"
+                        value={newMaterialForm.collection}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, collection: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 2: Aesthetic & Material Taxonomy */}
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Color Family
+                      </label>
+                      <select
+                        value={newMaterialForm.colorFamily}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, colorFamily: e.target.value as Material['colorFamily'] }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                      >
+                        <option value="white">White</option>
+                        <option value="cream">Cream</option>
+                        <option value="grey">Grey</option>
+                        <option value="earth">Earth</option>
+                        <option value="black">Black</option>
+                        <option value="translucent">Translucent</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Pattern / Aesthetic
+                      </label>
+                      <select
+                        value={newMaterialForm.pattern}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, pattern: e.target.value as Material['pattern'] }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                      >
+                        <option value="solid">Solid</option>
+                        <option value="veined">Veined</option>
+                        <option value="particulate">Particulate</option>
+                        <option value="translucent">Translucent</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Substrate Type
+                      </label>
+                      <select
+                        value={newMaterialForm.type}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, type: e.target.value as Material['type'] }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                      >
+                        <option value="mineral">Mineral</option>
+                        <option value="veined">Veined</option>
+                        <option value="textured">Textured</option>
+                        <option value="translucent">Translucent</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Finish Spec
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Honed Satin Matte"
+                        value={newMaterialForm.finish}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, finish: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 3: Tone & Hex Color & Transmission */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1.2fr 1fr', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Color Tone / Nuance (e.g. Pure Chalk White)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Warm Linen Cream with golden taupe undertones"
+                        value={newMaterialForm.colour}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, colour: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Hex Color Swatch
+                      </label>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <input
+                          type="color"
+                          value={newMaterialForm.hexColor}
+                          onChange={e => setNewMaterialForm(prev => ({ ...prev, hexColor: e.target.value }))}
+                          style={{ width: '42px', height: '38px', border: '1px solid #ccc', padding: 0, cursor: 'pointer', flexShrink: 0 }}
+                        />
+                        <input
+                          type="text"
+                          value={newMaterialForm.hexColor}
+                          onChange={e => setNewMaterialForm(prev => ({ ...prev, hexColor: e.target.value }))}
+                          placeholder="#f4f3ef"
+                          style={{ flex: 1, padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Light Transmission
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Low (6%) or Opaque"
+                        value={newMaterialForm.lightTransmission}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, lightTransmission: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 4: Dimensions, Thicknesses & Fire Rating */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Standard Slab Dimensions
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 3660 mm × 760 mm"
+                        value={newMaterialForm.dimensions}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, dimensions: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Thickness Options (comma separated)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="12mm, 19mm"
+                        value={newMaterialForm.thicknessOptions}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, thicknessOptions: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Fire Performance Rating
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Class 1 / Class A (ASTM E84)"
+                        value={newMaterialForm.fireRating}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, fireRating: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 5: Applications & Care Guide */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Recommended Applications (comma separated)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Kitchen Worktops, Wall Cladding, Monoliths"
+                        value={newMaterialForm.applications}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, applications: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Architectural Care & Maintenance Guide
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Daily cleaning with damp microfibre cloth and mild neutral detergent."
+                        value={newMaterialForm.careGuide}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, careGuide: e.target.value }))}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Row 6: Imagery - Texture Specimen & Spatial In-Situ Photo */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Macro Slab Texture Specimen Image
+                      </label>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                        <input
+                          type="text"
+                          placeholder="/assets/materials/css-stonique-sheet.jpg"
+                          value={newMaterialForm.textureImage}
+                          onChange={e => setNewMaterialForm(prev => ({ ...prev, textureImage: e.target.value }))}
+                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                        <select
+                          value=""
+                          onChange={e => {
+                            if (e.target.value) setNewMaterialForm(prev => ({ ...prev, textureImage: e.target.value }));
+                          }}
+                          style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        >
+                          <option value="">Media Asset...</option>
+                          {mediaAssets.map(img => (
+                            <option key={`tex-${img}`} value={img}>{img.split('/').pop()}</option>
+                          ))}
+                        </select>
+                      </div>
+                      {newMaterialForm.textureImage && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <img
+                            src={newMaterialForm.textureImage}
+                            alt="Texture preview"
+                            style={{ width: '64px', height: '48px', objectFit: 'cover', border: '1px solid #ccc' }}
+                            onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
+                          />
+                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                            Live Texture Specimen Preview
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        In-Situ Spatial Application Photo
+                      </label>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                        <input
+                          type="text"
+                          placeholder="/assets/applications/stonique-bathroom-vanity.jpg"
+                          value={newMaterialForm.image}
+                          onChange={e => setNewMaterialForm(prev => ({ ...prev, image: e.target.value }))}
+                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                        <select
+                          value=""
+                          onChange={e => {
+                            if (e.target.value) setNewMaterialForm(prev => ({ ...prev, image: e.target.value }));
+                          }}
+                          style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        >
+                          <option value="">Media Asset...</option>
+                          {mediaAssets.map(img => (
+                            <option key={`app-${img}`} value={img}>{img.split('/').pop()}</option>
+                          ))}
+                        </select>
+                      </div>
+                      {newMaterialForm.image && (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <img
+                            src={newMaterialForm.image}
+                            alt="Application preview"
+                            style={{ width: '64px', height: '48px', objectFit: 'cover', border: '1px solid #ccc' }}
+                            onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
+                          />
+                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                            Live In-Situ Spatial Preview
+                          </span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Row 7: Architectural Description */}
+                  <div>
+                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      Architectural Narrative & Specification Description
+                    </label>
+                    <textarea
+                      rows={3}
+                      placeholder="e.g. Engineered solid surface architectural slab formulated for high-traffic monolithic surfaces, seamless fabrication, and tactile warmth."
+                      value={newMaterialForm.description}
+                      onChange={e => setNewMaterialForm(prev => ({ ...prev, description: e.target.value }))}
+                      style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.5 }}
+                    />
+                  </div>
+
+                  {/* Submission buttons */}
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', paddingTop: '12px', borderTop: '1px solid #e5e4de' }}>
+                    <button
+                      type="button"
+                      onClick={() => setIsAddingMaterial(false)}
+                      style={{
+                        padding: '10px 20px',
+                        background: '#f0efe8',
+                        color: '#1a1d19',
+                        border: '1px solid #ccc',
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '11px',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isContextLoading}
+                      style={{
+                        padding: '10px 24px',
+                        background: '#1a1d19',
+                        color: '#ffffff',
+                        border: 'none',
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        letterSpacing: '0.05em',
+                        cursor: isContextLoading ? 'wait' : 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
+                      }}
+                    >
+                      <span>✓</span>
+                      <span>{isContextLoading ? 'Registering Slab...' : 'Create & Register Material Slab'}</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
 
             {/* Two column: List of Materials & Full Material Editor */}
             <div className="admin-two-col" style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: '24px' }}>
@@ -2015,6 +2532,77 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                       </select>
                     </div>
 
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Pattern / Aesthetic
+                      </label>
+                      <select
+                        value={selectedMaterial.pattern || 'solid'}
+                        onChange={e => updateMaterialField(selectedMaterial.slug, 'pattern', e.target.value)}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                      >
+                        <option value="solid">Solid</option>
+                        <option value="veined">Veined</option>
+                        <option value="particulate">Particulate</option>
+                        <option value="translucent">Translucent</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Substrate Type
+                      </label>
+                      <select
+                        value={selectedMaterial.type || 'mineral'}
+                        onChange={e => updateMaterialField(selectedMaterial.slug, 'type', e.target.value)}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                      >
+                        <option value="mineral">Mineral</option>
+                        <option value="veined">Veined</option>
+                        <option value="textured">Textured</option>
+                        <option value="translucent">Translucent</option>
+                      </select>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Color Tone Nuance / Hue Description
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedMaterial.colour || ''}
+                        onChange={e => updateMaterialField(selectedMaterial.slug, 'colour', e.target.value)}
+                        placeholder="e.g. Pure Chalk White / Warm Alabaster"
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Light Transmission
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedMaterial.lightTransmission || ''}
+                        onChange={e => updateMaterialField(selectedMaterial.slug, 'lightTransmission', e.target.value)}
+                        placeholder="e.g. Low (6%) or Opaque"
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Fire Performance Rating
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedMaterial.fireRating || ''}
+                        onChange={e => updateMaterialField(selectedMaterial.slug, 'fireRating', e.target.value)}
+                        placeholder="e.g. Class 1 / Class A (ASTM E84)"
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
                     <div style={{ gridColumn: '1 / -1' }}>
                       <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Slab Dimensions & Standard Thicknesses
@@ -2022,7 +2610,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                       <div style={{ display: 'flex', gap: '12px' }}>
                         <input
                           type="text"
-                          placeholder="Dimensions (e.g. 3660 × 760 mm)"
+                          placeholder="Dimensions (e.g. 3660 mm × 760 mm)"
                           value={selectedMaterial.dimensions || ''}
                           onChange={e => updateMaterialField(selectedMaterial.slug, 'dimensions', e.target.value)}
                           style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -2039,7 +2627,57 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
 
                     <div style={{ gridColumn: '1 / -1' }}>
                       <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Primary Image URL / Texture Specimen
+                        Recommended Applications (comma separated)
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedMaterial.applications?.join(', ') || ''}
+                        onChange={e => updateMaterialField(selectedMaterial.slug, 'applications', e.target.value.split(',').map(s => s.trim()))}
+                        placeholder="e.g. Kitchen Worktops, Wall Cladding, Bespoke Monoliths"
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div style={{ gridColumn: '1 / -1' }}>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Architectural Care & Maintenance Guide
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedMaterial.careGuide || ''}
+                        onChange={e => updateMaterialField(selectedMaterial.slug, 'careGuide', e.target.value)}
+                        placeholder="e.g. Daily cleaning with damp microfibre cloth and mild neutral detergent."
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Macro Slab Texture Specimen Image URL
+                      </label>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <input
+                          type="text"
+                          value={selectedMaterial.textureImage || ''}
+                          onChange={e => updateMaterialField(selectedMaterial.slug, 'textureImage', e.target.value)}
+                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        />
+                        <select
+                          onChange={e => { if (e.target.value) updateMaterialField(selectedMaterial.slug, 'textureImage', e.target.value); }}
+                          value=""
+                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                        >
+                          <option value="">Media...</option>
+                          {mediaAssets.map(img => (
+                            <option key={`edit-tex-${img}`} value={img}>{img.split('/').pop()}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        In-Situ Spatial Application Photo URL
                       </label>
                       <div style={{ display: 'flex', gap: '8px' }}>
                         <input
@@ -2053,9 +2691,9 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                           value=""
                           style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
                         >
-                          <option value="">Pick from Media...</option>
+                          <option value="">Media...</option>
                           {mediaAssets.map(img => (
-                            <option key={img} value={img}>{img.split('/').pop()}</option>
+                            <option key={`edit-app-${img}`} value={img}>{img.split('/').pop()}</option>
                           ))}
                         </select>
                       </div>
@@ -2063,7 +2701,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
 
                     <div style={{ gridColumn: '1 / -1' }}>
                       <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Architectural Description
+                        Architectural Description & Specification Narrative
                       </label>
                       <textarea
                         rows={3}

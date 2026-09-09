@@ -43,6 +43,35 @@
   ],
   "materials": [
     {
+      "slug": "blue",
+      "name": "blue",
+      "code": "AC-9569",
+      "collection": "Architectural Solid",
+      "colorFamily": "black",
+      "pattern": "solid",
+      "type": "mineral",
+      "finish": "Honed Matte",
+      "colour": "blue",
+      "hexColor": "#e5e4de",
+      "textureImage": "/assets/materials/css-calacatta-greige-sheet.jpg",
+      "description": "Bespoke architectural solid surface slab with seamless thermoformable capability.",
+      "swatch": "/assets/materials/css-calacatta-greige-sheet.jpg",
+      "image": "/assets/materials/css-calacatta-greige-sheet.jpg",
+      "applications": [
+        "Countertops",
+        "Wall Cladding",
+        "Bespoke Monoliths"
+      ],
+      "thicknessOptions": [
+        "12mm",
+        "20mm"
+      ],
+      "dimensions": "3660 × 760 mm",
+      "lightTransmission": "Opaque",
+      "fireRating": "Class 1 (BS 476)",
+      "careGuide": "Clean with mild architectural soap and microfiber cloth."
+    },
+    {
       "slug": "noma-white-chalk",
       "name": "Noma / White Chalkwqqws",
       "code": "AC-01010911",
@@ -1216,5 +1245,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-09T20:44:22.802Z"
+  "updatedAt": "2026-09-09T23:41:44.836Z"
 }
