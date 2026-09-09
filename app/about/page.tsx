@@ -71,9 +71,6 @@ export default function AboutPage() {
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', background: 'rgba(255,255,255,0.45)', border: '1px solid var(--line)', padding: '28px 20px', borderRadius: '4px' }}>
           <img src="/images/coro-emblem.png" alt="Coro Collective Architectural Emblem" style={{ width: '80px', height: '100px', objectFit: 'contain', marginBottom: '12px', display: 'block' }} />
           <img src="/images/coro-wordmark.png" alt="Coro Collective Wordmark" style={{ width: '130px', height: '36px', objectFit: 'contain', display: 'block' }} />
-          <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: '12px' }}>
-            Ecosystem Studio
-          </span>
         </div>
         <div>
           <p className="eyebrow">Parent &amp; Ecosystem Synergy</p>

@@ -221,28 +221,6 @@ export default function HomePage() {
               transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           >
-            {/* Ecosystem Studio Badge */}
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                fontFamily: 'DM Mono, monospace',
-                fontSize: '10px',
-                letterSpacing: '0.12em',
-                textTransform: 'uppercase',
-                color: 'rgba(30, 33, 29, 0.8)',
-                marginBottom: '26px',
-                border: '1px solid rgba(30, 33, 29, 0.16)',
-                padding: '4px 12px',
-                borderRadius: '100px',
-                background: 'rgba(255, 255, 255, 0.65)',
-              }}
-            >
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--ink)' }} />
-              Ecosystem Studio
-            </div>
-
             {/* Official Coro Geometric Emblem */}
             <div
               style={{
