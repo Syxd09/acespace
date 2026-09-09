@@ -53,6 +53,7 @@ export default function SpecimenZoomViewer({
   // Clamping zoom boundaries
   const minScale = 1;
   const maxScale = isFullscreen ? 5 : 4;
+  const progressRatio = Math.min(Math.max((scale - minScale) / (maxScale - minScale), 0), 1);
 
   const handleZoomIn = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
@@ -757,19 +758,70 @@ export default function SpecimenZoomViewer({
                   −
                 </button>
 
-                {/* Range Slider - Perfectly Centered Track & Concentric Thumb */}
+                {/* Range Slider with Mathematically Concentric Track Line & Centered Ball */}
                 <div
                   style={{
+                    position: 'relative',
+                    width: '120px',
+                    height: '32px',
                     display: 'inline-flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    height: '32px',
-                    padding: '0 2px',
+                    userSelect: 'none',
+                    margin: '0 4px',
                   }}
                 >
+                  {/* Background Track Line - Exactly at 50% vertical midline */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: '7px',
+                      right: '7px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      height: '3px',
+                      borderRadius: '3px',
+                      background: 'rgba(255, 255, 255, 0.28)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+
+                  {/* Active Progress Track Line - Highlighted up to the center of the ball */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: '7px',
+                      width: `calc(${progressRatio} * (100% - 14px))`,
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                      height: '3px',
+                      borderRadius: '3px',
+                      background: 'rgba(244, 243, 239, 0.85)',
+                      pointerEvents: 'none',
+                    }}
+                  />
+
+                  {/* The Ball (Small Circle) - DEAD CENTER Concentric on the Line */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: `calc(7px + ${progressRatio} * (100% - 14px))`,
+                      top: '50%',
+                      transform: 'translate(-50%, -50%)',
+                      width: '14px',
+                      height: '14px',
+                      borderRadius: '50%',
+                      background: '#f4f3ef',
+                      border: '1.5px solid rgba(22, 25, 22, 0.95)',
+                      boxShadow: '0 2px 5px rgba(0, 0, 0, 0.55)',
+                      pointerEvents: 'none',
+                      transition: 'transform 0.12s ease',
+                    }}
+                  />
+
+                  {/* Native Range Input Overlay - Intercepts all mouse, touch, and keyboard interactions */}
                   <input
                     type="range"
-                    className="specimen-zoom-slider"
                     min={minScale}
                     max={maxScale}
                     step={0.05}
@@ -781,6 +833,17 @@ export default function SpecimenZoomViewer({
                     }}
                     title="Drag to zoom"
                     aria-label="Specimen zoom scale"
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      opacity: 0,
+                      margin: 0,
+                      padding: 0,
+                      cursor: 'pointer',
+                      zIndex: 2,
+                    }}
                   />
                 </div>
 
