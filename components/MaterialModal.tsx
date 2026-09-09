@@ -6,6 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Material } from '@/data/materials';
 import { useSampleShortlist } from '@/context/SampleContext';
+import SpecimenZoomViewer from '@/components/SpecimenZoomViewer';
 
 interface MaterialModalProps {
   material: Material;
@@ -112,43 +113,25 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
           ×
         </button>
 
-        {/* Left Side: Macro Texture Display */}
+        {/* Left Side: Interactive Zoomable Macro Texture & In-Situ Application Viewer */}
         <div
           style={{
-            background: material.textureCss || material.hexColor,
             position: 'relative',
-            minHeight: '260px',
+            minHeight: '280px',
+            height: '100%',
             overflow: 'hidden',
           }}
         >
-          {(material.textureImage || material.image) && (
-            <Image
-              src={material.textureImage || material.image}
-              alt={material.name}
-              fill
-              sizes="(max-width: 768px) 100vw, 420px"
-              style={{ objectFit: 'cover' }}
-              priority
-            />
-          )}
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '12px',
-              left: '12px',
-              background: 'rgba(233, 232, 226, 0.92)',
-              backdropFilter: 'blur(8px)',
-              padding: '4px 10px',
-              border: '1px solid var(--line)',
-              fontSize: '9px',
-              fontFamily: 'DM Mono, monospace',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em',
-              color: 'var(--ink)',
-            }}
-          >
-            {material.finish} • 1:1 Texture
-          </div>
+          <SpecimenZoomViewer
+            textureImage={material.textureImage}
+            applicationImage={material.image}
+            materialName={material.name}
+            materialFinish={material.finish}
+            materialColour={material.colour}
+            fallbackBg={material.hexColor}
+            textureCss={material.textureCss}
+            minHeight="100%"
+          />
         </div>
 
         {/* Right Side: Architectural Spec & Actions */}

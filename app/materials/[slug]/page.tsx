@@ -5,6 +5,7 @@ import type { Metadata } from 'next';
 import { materials as defaultMaterials } from '@/data/materials';
 import { projects } from '@/data/projects';
 import { getSiteContent } from '@/data/contentStore';
+import SpecimenZoomViewer from '@/components/SpecimenZoomViewer';
 
 export const dynamic = 'force-dynamic';
 
@@ -63,6 +64,43 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
             <Link className="button button-dark" href="/contact" style={{ marginTop: '24px' }}>
               Request Sample of {material.name.split('/')[0]} <span>↗</span>
             </Link>
+          </div>
+        </section>
+
+        {/* Interactive Specimen Inspection Bench */}
+        <section style={{ marginBottom: '80px', borderTop: '1px solid var(--line)', paddingTop: '60px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '20px', flexWrap: 'wrap', gap: '12px' }}>
+            <div>
+              <p className="eyebrow" style={{ margin: '0 0 4px' }}>Macro Surface Inspection</p>
+              <h3 style={{ fontSize: '24px', fontWeight: 400, margin: 0, letterSpacing: '-0.02em' }}>
+                High-Resolution Specimen Surface
+              </h3>
+            </div>
+            <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
+              Scroll wheel or click +/− to zoom · Drag to pan · Fullscreen ⛶
+            </span>
+          </div>
+          <div
+            style={{
+              height: '460px',
+              border: '1px solid var(--line)',
+              background: material.hexColor || '#dcd7cd',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
+              position: 'relative',
+              borderRadius: '2px',
+              overflow: 'hidden',
+            }}
+          >
+            <SpecimenZoomViewer
+              textureImage={material.textureImage}
+              applicationImage={material.image}
+              materialName={material.name}
+              materialFinish={material.finish}
+              materialColour={material.colour}
+              fallbackBg={material.hexColor}
+              textureCss={material.textureCss}
+              minHeight="100%"
+            />
           </div>
         </section>
 

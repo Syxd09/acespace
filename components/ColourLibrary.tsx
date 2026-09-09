@@ -321,6 +321,35 @@ export default function ColourLibrary() {
                   )}
                 </div>
 
+                {/* Zoom & Inspect indicator */}
+                <div
+                  className="zoom-hint"
+                  style={{
+                    position: 'absolute',
+                    top: '14px',
+                    left: '14px',
+                    zIndex: 3,
+                    background: 'rgba(25, 28, 25, 0.75)',
+                    backdropFilter: 'blur(6px)',
+                    color: '#f4f3ef',
+                    border: '1px solid rgba(255,255,255,0.2)',
+                    padding: '5px 10px',
+                    borderRadius: '100px',
+                    fontSize: '9px',
+                    fontFamily: 'DM Mono, monospace',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    pointerEvents: 'none',
+                    opacity: 0.9,
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                  }}
+                >
+                  <span>🔍</span> Zoom & Inspect
+                </div>
+
                 {/* Sample Shortlist Quick Button */}
                 <button
                   type="button"
