@@ -49,12 +49,9 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
     <div
       style={{
         position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        width: '100vw',
-        height: '100vh',
+        inset: 0,
+        width: '100%',
+        height: '100%',
         zIndex: 999999,
         background: 'rgba(15, 17, 14, 0.8)',
         backdropFilter: 'blur(10px)',
@@ -77,6 +74,7 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
           width: '100%',
           maxWidth: '880px',
           maxHeight: 'min(90vh, 590px)',
+          margin: 'auto',
           overflowY: 'auto',
           border: '1px solid var(--line)',
           boxShadow: '0 25px 70px rgba(0,0,0,0.45)',
