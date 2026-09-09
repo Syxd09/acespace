@@ -3576,15 +3576,33 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                                   gap: '12px',
                                 }}
                               >
-                                <div
-                                  className={`swatch ${it.swatch}`}
-                                  style={{
-                                    width: '38px',
-                                    height: '38px',
-                                    flexShrink: 0,
-                                    border: '1px solid rgba(0,0,0,0.12)',
-                                  }}
-                                />
+                              {(() => {
+                                const itemMat = contextMaterials.find(m => m.slug === it.materialSlug || m.name === it.name);
+                                const itemImage = (it as any).textureImage || (it as any).image || itemMat?.textureImage || itemMat?.image;
+                                const itemColor = (it as any).hexColor || itemMat?.hexColor || itemMat?.textureCss || '#e8e4dc';
+                                return (
+                                  <div
+                                    style={{
+                                      width: '38px',
+                                      height: '38px',
+                                      flexShrink: 0,
+                                      border: '1px solid rgba(0,0,0,0.15)',
+                                      borderRadius: '2px',
+                                      background: itemColor,
+                                      overflow: 'hidden',
+                                      position: 'relative',
+                                    }}
+                                  >
+                                    {itemImage && (
+                                      <img
+                                        src={itemImage}
+                                        alt={it.name}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                                      />
+                                    )}
+                                  </div>
+                                );
+                              })()}
                                 <div style={{ minWidth: 0, flex: 1 }}>
                                   <div style={{ fontSize: '12px', fontWeight: 600, color: '#1a1d19', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                     {it.name}

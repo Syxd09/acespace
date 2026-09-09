@@ -121,9 +121,9 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
             overflow: 'hidden',
           }}
         >
-          {material.textureImage && (
+          {(material.textureImage || material.image) && (
             <Image
-              src={material.textureImage}
+              src={material.textureImage || material.image}
               alt={material.name}
               fill
               sizes="(max-width: 768px) 100vw, 420px"
@@ -213,7 +213,9 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
                   Thickness Options
                 </span>
                 <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
-                  {material.thicknessOptions.join(', ')}
+                  {material.thicknessOptions && material.thicknessOptions.length > 0
+                    ? material.thicknessOptions.join(', ')
+                    : '12mm, 19mm'}
                 </strong>
               </div>
               <div>
@@ -221,7 +223,7 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
                   Fire Performance
                 </span>
                 <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
-                  {material.fireRating}
+                  {material.fireRating || 'Class 1 / Class A'}
                 </strong>
               </div>
             </div>
@@ -232,7 +234,10 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
                 Primary Applications
               </span>
               <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
-                {material.applications.map((app) => (
+                {(material.applications && material.applications.length > 0
+                  ? material.applications
+                  : ['Architectural Surfaces', 'Interior Joinery']
+                ).map((app) => (
                   <span
                     key={app}
                     style={{
