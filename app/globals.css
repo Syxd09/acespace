@@ -734,22 +734,29 @@ h1 i, h2 i, h3 i {
 .coro {
   background: #c6cbc0;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.15fr;
   align-items: center;
-  gap: 10vw;
+  gap: clamp(40px, 6vw, 10vw);
 }
 
-.coro-mark {
-  width: 180px;
-  height: 180px;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: var(--serif);
-  font-size: 42px;
-  font-style: italic;
-  margin: auto;
+.coro-brand-showcase {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.coro-brand-showcase:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 60px rgba(30, 33, 29, 0.14) !important;
+}
+
+.coro-brand-showcase:hover img {
+  transform: scale(1.02);
+}
+
+@media (max-width: 900px) {
+  .coro {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 }
 
 .coro h2 {

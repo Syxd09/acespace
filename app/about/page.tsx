@@ -67,26 +67,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="callout" id="coro">
-        <p className="eyebrow">Parent &amp; Ecosystem Synergy</p>
-        <h2>
-          Powering
-          <br />
-          <i>Coro Collective.</i>
-        </h2>
-        <p>
-          Coro Collective was born from Ace Spaces to showcase what is possible when our raw materials are shaped into complete spatial concepts, bespoke furniture, and interior architecture.
-        </p>
-        <p style={{ marginTop: '14px', color: '#6e766c', fontSize: '15px' }}>
-          Independent architects and designers enjoy direct access to the very same raw materials that make Coro’s spaces celebrated.
-        </p>
-        <div style={{ display: 'flex', gap: '16px', marginTop: '28px' }}>
-          <Link className="button" href="/materials">
-            Source Materials <span>↗</span>
-          </Link>
-          <Link className="button" href="/contact" style={{ background: 'transparent', border: '1px solid var(--ink)' }}>
-            Start a Consultation <span>↗</span>
-          </Link>
+      <section className="callout" id="coro" style={{ display: 'grid', gridTemplateColumns: 'minmax(220px, 1fr) 2fr', gap: '36px', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', background: 'rgba(255,255,255,0.45)', border: '1px solid var(--line)', padding: '28px 20px', borderRadius: '4px' }}>
+          <img src="/images/coro-emblem.png" alt="Coro Collective Architectural Emblem" style={{ width: '80px', height: '100px', objectFit: 'contain', marginBottom: '12px', display: 'block' }} />
+          <img src="/images/coro-wordmark.png" alt="Coro Collective Wordmark" style={{ width: '130px', height: '36px', objectFit: 'contain', display: 'block' }} />
+          <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: '12px' }}>
+            Ecosystem Studio
+          </span>
+        </div>
+        <div>
+          <p className="eyebrow">Parent &amp; Ecosystem Synergy</p>
+          <h2>
+            Powering
+            <br />
+            <i>Coro Collective.</i>
+          </h2>
+          <p>
+            Coro Collective was born from Ace Spaces to showcase what is possible when our raw materials are shaped into complete spatial concepts, bespoke furniture, and interior architecture.
+          </p>
+          <p style={{ marginTop: '14px', color: '#6e766c', fontSize: '15px' }}>
+            Independent architects and designers enjoy direct access to the very same raw materials that make Coro’s spaces celebrated.
+          </p>
+          <div style={{ display: 'flex', gap: '16px', marginTop: '28px', flexWrap: 'wrap' }}>
+            <Link className="button" href="/materials">
+              Source Materials <span>↗</span>
+            </Link>
+            <Link className="button" href="/contact" style={{ background: 'transparent', border: '1px solid var(--ink)' }}>
+              Start a Consultation <span>↗</span>
+            </Link>
+          </div>
         </div>
       </section>
     </main>

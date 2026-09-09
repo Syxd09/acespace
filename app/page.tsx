@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import MaterialGrid from '@/components/MaterialGrid';
@@ -200,11 +200,125 @@ export default function HomePage() {
       {/* Coro Collective Ecosystem Section */}
       <section id="coro" className="coro section-pad">
         <ScrollReveal>
-          <div style={{ textAlign: 'center' }}>
-            <div className="coro-mark">CC</div>
-            <div style={{ marginTop: '16px', fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(30,33,29,0.7)' }}>
+          <div
+            className="coro-brand-showcase"
+            style={{
+              background: 'rgba(244, 243, 239, 0.72)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1px solid rgba(30, 33, 29, 0.22)',
+              borderRadius: '4px',
+              padding: 'clamp(28px, 3.5vw, 44px) clamp(22px, 3vw, 36px)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              textAlign: 'center',
+              maxWidth: '420px',
+              margin: '0 auto',
+              boxShadow: '0 20px 50px rgba(30, 33, 29, 0.09)',
+              position: 'relative',
+              transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            }}
+          >
+            {/* Ecosystem Studio Badge */}
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontFamily: 'DM Mono, monospace',
+                fontSize: '10px',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'rgba(30, 33, 29, 0.8)',
+                marginBottom: '26px',
+                border: '1px solid rgba(30, 33, 29, 0.16)',
+                padding: '4px 12px',
+                borderRadius: '100px',
+                background: 'rgba(255, 255, 255, 0.65)',
+              }}
+            >
+              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: 'var(--ink)' }} />
               Ecosystem Studio
             </div>
+
+            {/* Official Coro Geometric Emblem */}
+            <div
+              style={{
+                width: '140px',
+                height: '170px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '18px',
+              }}
+            >
+              <img
+                src="/images/coro-emblem.png"
+                alt="Coro Collective Emblem"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  display: 'block',
+                  filter: 'contrast(1.05)',
+                  transition: 'transform 0.3s ease',
+                }}
+              />
+            </div>
+
+            {/* Official Coro Geometric Wordmark */}
+            <div
+              style={{
+                width: '190px',
+                height: '52px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginBottom: '14px',
+              }}
+            >
+              <img
+                src="/images/coro-wordmark.png"
+                alt="Coro Collective Wordmark"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  display: 'block',
+                }}
+              />
+            </div>
+
+            {/* Subtle Divider */}
+            <div
+              style={{
+                width: '40px',
+                height: '1px',
+                background: 'rgba(30, 33, 29, 0.25)',
+                margin: '8px 0 16px',
+              }}
+            />
+
+            {/* Studio Identity Description */}
+            <p
+              style={{
+                fontFamily: 'DM Mono, monospace',
+                fontSize: '11px',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+                color: 'rgba(30, 33, 29, 0.85)',
+                margin: 0,
+                lineHeight: 1.6,
+              }}
+            >
+              Spatial Concepts · Monolithic Interiors
+              <br />
+              <span style={{ color: 'rgba(30, 33, 29, 0.55)', fontSize: '10px' }}>
+                Powered by Ace Spaces Foundry
+              </span>
+            </p>
           </div>
         </ScrollReveal>
         <ScrollReveal>
