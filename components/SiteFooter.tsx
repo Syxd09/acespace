@@ -260,10 +260,10 @@ export default function SiteFooter() {
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
               { label: 'Solid Surface Monoliths', href: '/materials' },
-              { label: 'Curated Architectural Palette', href: '/colours' },
+              { label: 'Curated Architectural Palette', href: '/collections/colours' },
               { label: 'Mineral Slabs & Terrazzo', href: '/materials' },
               { label: 'Translucent Backlit Slabs', href: '/materials' },
-              { label: 'Custom Specimen Box Order', href: '/sample-box' },
+              { label: 'Custom Specimen Box Order', href: '/materials' },
             ].map(item => (
               <li key={item.label}>
                 <Link
@@ -303,8 +303,8 @@ export default function SiteFooter() {
               { label: 'Commercial Atriums', href: '/applications/commercial' },
               { label: 'Hospitality & Bars', href: '/applications/hospitality' },
               { label: 'Retail Plinths & Flagships', href: '/applications/retail' },
-              { label: 'Healthcare & Laboratories', href: '/applications/healthcare' },
-              { label: 'Cultural & Academic Studios', href: '/applications/cultural' },
+              { label: 'Healthcare & Laboratories', href: '/applications/custom' },
+              { label: 'Cultural & Academic Studios', href: '/applications' },
             ].map(item => (
               <li key={item.label}>
                 <Link
