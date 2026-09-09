@@ -35,7 +35,7 @@ export default function JournalExplorer() {
   const categories = ['All', 'Material Knowledge', 'Fabrication Craft', 'Spatial Design', 'Material Science'];
 
   const filteredArticles = useMemo(() => {
-    return journalArticles.filter((art) => {
+    return articles.filter((art) => {
       const matchesCategory = selectedCategory === 'All' || art.category === selectedCategory;
       const matchesSearch =
         searchQuery.trim() === '' ||
@@ -46,7 +46,7 @@ export default function JournalExplorer() {
 
       return matchesCategory && matchesSearch;
     });
-  }, [selectedCategory, searchQuery]);
+  }, [articles, selectedCategory, searchQuery]);
 
   const leadArticle = filteredArticles[0];
   const gridArticles = filteredArticles.slice(1);

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { broadcastRealtimeEvent } from '@/lib/realtime';
 
 export default function SiteFooter() {
   const [email, setEmail] = useState('');
@@ -50,12 +51,15 @@ export default function SiteFooter() {
       const data = await res.json();
       if (res.ok && data.success) {
         setIsSubscribed(true);
+        // Instant broadcast to Admin Console
+        broadcastRealtimeEvent('DISPATCH_CREATED', { email });
       } else {
         setSubscribeError(data.error || 'Unable to subscribe. Please try again.');
       }
     } catch {
       // Offline fallback: still show confirmed to customer while logging
       setIsSubscribed(true);
+      broadcastRealtimeEvent('DISPATCH_CREATED', { email });
     } finally {
       setIsSubmitting(false);
     }

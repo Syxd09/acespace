@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { broadcastRealtimeEvent } from '@/lib/realtime';
 
 export default function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -38,6 +39,8 @@ export default function EnquiryForm() {
           setInquiryNumber(data.inquiryNumber);
         }
         setSubmitted(true);
+        // Instant broadcast to Admin Console
+        broadcastRealtimeEvent('INQUIRY_CREATED', data.inquiry || { name, email, phone });
       } else {
         setErrorMessage(data.error || 'Failed to submit enquiry. Please try again.');
       }

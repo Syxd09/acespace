@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSampleShortlist } from '@/context/SampleContext';
+import { broadcastRealtimeEvent } from '@/lib/realtime';
 
 export default function SampleTray() {
   const { shortlist, removeSample, clearShortlist, isTrayOpen, setIsTrayOpen } = useSampleShortlist();
@@ -25,11 +26,12 @@ export default function SampleTray() {
 
   const pathname = usePathname();
 
-  // Auto-save in-progress draft as soon as customer begins typing their details ("also if he is entering")
+  // Instant real-time draft capture ("also if he is entering")
   React.useEffect(() => {
     if (formSubmitted || shortlist.length === 0) return;
-    if (!formData.name && !formData.email && !formData.phone && !formData.studio) return;
+    if (!formData.name && !formData.email && !formData.phone && !formData.studio && !formData.address) return;
 
+    // Fast 350ms debounce for immediate real-time sync
     const timer = setTimeout(async () => {
       try {
         const payload = {
@@ -61,11 +63,13 @@ export default function SampleTray() {
           if (data.orderNumber) {
             setOrderNumber(data.orderNumber);
           }
+          // Broadcast real-time event to Admin console immediately
+          broadcastRealtimeEvent('ORDER_UPDATED', data.order || payload);
         }
       } catch (err) {
         console.warn('Draft auto-save sync error:', err);
       }
-    }, 1000);
+    }, 350);
 
     return () => clearTimeout(timer);
   }, [formData, shortlist, orderId, formSubmitted]);
@@ -110,6 +114,8 @@ export default function SampleTray() {
           setOrderNumber(data.orderNumber);
         }
         setFormSubmitted(true);
+        // Instant broadcast to Admin Console
+        broadcastRealtimeEvent('ORDER_SUBMITTED', data.order || payload);
       } else {
         setErrorMessage(data.error || 'Unable to place sample order. Please try again.');
       }

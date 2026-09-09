@@ -1,18 +1,25 @@
-﻿import React from 'react';
+import React from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { materials } from '@/data/materials';
+import { materials as defaultMaterials } from '@/data/materials';
 import { projects } from '@/data/projects';
+import { getSiteContent } from '@/data/contentStore';
+
+export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
-  return materials.map((mat) => ({
+  const { materials } = getSiteContent();
+  const source = materials && materials.length > 0 ? materials : defaultMaterials;
+  return source.map((mat) => ({
     slug: mat.slug,
   }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const material = materials.find((m) => m.slug === params.slug);
+  const { materials } = getSiteContent();
+  const source = materials && materials.length > 0 ? materials : defaultMaterials;
+  const material = source.find((m) => m.slug === params.slug);
   if (!material) return { title: 'Material Not Found — Ace Spaces' };
   return {
     title: `${material.name} — Material Specimen — Ace Spaces`,
@@ -21,7 +28,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function MaterialDetailPage({ params }: { params: { slug: string } }) {
-  const material = materials.find((m) => m.slug === params.slug);
+  const { materials } = getSiteContent();
+  const source = materials && materials.length > 0 ? materials : defaultMaterials;
+  const material = source.find((m) => m.slug === params.slug);
   if (!material) notFound();
 
   const relatedProjects = projects.filter((p) => p.materialSlug === material.slug);

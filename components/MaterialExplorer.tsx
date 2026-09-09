@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useMemo } from 'react';
 import Link from 'next/link';
@@ -36,7 +36,7 @@ export default function MaterialExplorer() {
 
       return matchesTab && matchesSearch;
     });
-  }, [activeTab, searchQuery]);
+  }, [materials, activeTab, searchQuery]);
 
   return (
     <div className="material-explorer">

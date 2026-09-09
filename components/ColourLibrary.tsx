@@ -55,7 +55,7 @@ export default function ColourLibrary() {
 
       return matchesSearch && matchesFamily && matchesPattern;
     });
-  }, [searchQuery, selectedColorFamily, selectedPattern]);
+  }, [materials, searchQuery, selectedColorFamily, selectedPattern]);
 
   return (
     <div className="colour-library">

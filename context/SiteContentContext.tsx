@@ -5,6 +5,8 @@ import { Material, materials as initialMaterials } from '@/data/materials';
 import { ApplicationSector, applicationSectors as initialSectors } from '@/data/applications';
 import { HeroSlide, defaultHeroSlides, SiteContent, defaultJournalArticles, JournalArticle } from '@/data/contentTypes';
 
+import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
+
 const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v1';
 
 interface SiteContentContextType {
@@ -89,7 +91,59 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
     refreshContent();
   }, [refreshContent]);
 
-  // 3. Save content both to LocalStorage immediately and to API route
+  // 3. Real-Time BroadcastChannel & Storage Event Cross-Tab Synchronizer
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const handleRealtimeContentEvent = (eventData: RealtimeEvent) => {
+      if (!eventData || eventData.type !== 'CONTENT_UPDATED') return;
+      const payload = eventData.payload as Partial<SiteContent> | undefined;
+      if (payload) {
+        if (payload.heroSlides && payload.heroSlides.length > 0) setHeroSlides(payload.heroSlides);
+        if (payload.materials && payload.materials.length > 0) setMaterials(payload.materials);
+        if (payload.applicationSectors && payload.applicationSectors.length > 0) setApplicationSectors(payload.applicationSectors);
+        if (payload.journalArticles && payload.journalArticles.length > 0) setJournalArticles(payload.journalArticles);
+      } else {
+        refreshContent();
+      }
+    };
+
+    let bc: BroadcastChannel | null = null;
+    try {
+      if ('BroadcastChannel' in window) {
+        bc = new BroadcastChannel(REALTIME_CHANNEL_NAME);
+        bc.onmessage = (event: MessageEvent<RealtimeEvent>) => {
+          handleRealtimeContentEvent(event.data);
+        };
+      }
+    } catch (e) {}
+
+    const handleStorage = (e: StorageEvent) => {
+      if (e.key === 'acespaces_realtime_event' && e.newValue) {
+        try {
+          handleRealtimeContentEvent(JSON.parse(e.newValue));
+        } catch {}
+      }
+      if (e.key === LOCAL_STORAGE_KEY && e.newValue) {
+        try {
+          const parsed = JSON.parse(e.newValue);
+          if (parsed.heroSlides) setHeroSlides(parsed.heroSlides);
+          if (parsed.materials) setMaterials(parsed.materials);
+          if (parsed.applicationSectors) setApplicationSectors(parsed.applicationSectors);
+          if (parsed.journalArticles) setJournalArticles(parsed.journalArticles);
+        } catch {}
+      }
+    };
+
+    window.addEventListener('storage', handleStorage);
+
+    return () => {
+      if (bc) bc.close();
+      window.removeEventListener('storage', handleStorage);
+    };
+  }, [refreshContent]);
+
+  // 4. Save content both to LocalStorage immediately, broadcast to all tabs, and to API route
   const saveContent = async (updated: Partial<SiteContent>): Promise<boolean> => {
     try {
       setIsLoading(true);
@@ -100,17 +154,21 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       if (updated.applicationSectors) setApplicationSectors(updated.applicationSectors);
       if (updated.journalArticles) setJournalArticles(updated.journalArticles);
 
+      const currentData: SiteContent = {
+        heroSlides: updated.heroSlides || heroSlides,
+        materials: updated.materials || materials,
+        applicationSectors: updated.applicationSectors || applicationSectors,
+        journalArticles: updated.journalArticles || journalArticles,
+        updatedAt: new Date().toISOString(),
+      };
+
       // Instant LocalStorage persistence
       if (typeof window !== 'undefined') {
-        const currentData: SiteContent = {
-          heroSlides: updated.heroSlides || heroSlides,
-          materials: updated.materials || materials,
-          applicationSectors: updated.applicationSectors || applicationSectors,
-          journalArticles: updated.journalArticles || journalArticles,
-          updatedAt: new Date().toISOString(),
-        };
         localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentData));
       }
+
+      // Broadcast immediately to all open storefront tabs
+      broadcastRealtimeEvent('CONTENT_UPDATED', currentData);
 
       // Server persistence with cache-busting
       const res = await fetch(`/api/admin/content?_t=${Date.now()}`, {
@@ -132,7 +190,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
     }
   };
 
-  // 4. Reset content to defaults
+  // 5. Reset content to defaults
   const resetToDefaults = async (): Promise<boolean> => {
     try {
       setIsLoading(true);
@@ -142,10 +200,21 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         localStorage.removeItem(LOCAL_STORAGE_KEY);
       }
 
+      const defaultData: SiteContent = {
+        heroSlides: defaultHeroSlides,
+        materials: initialMaterials,
+        applicationSectors: initialSectors,
+        journalArticles: defaultJournalArticles,
+        updatedAt: new Date().toISOString(),
+      };
+
       setHeroSlides(defaultHeroSlides);
       setMaterials(initialMaterials);
       setApplicationSectors(initialSectors);
       setJournalArticles(defaultJournalArticles);
+
+      // Broadcast reset event to all tabs
+      broadcastRealtimeEvent('CONTENT_UPDATED', defaultData);
 
       const res = await fetch(`/api/admin/content?_t=${Date.now()}`, {
         method: 'DELETE',
