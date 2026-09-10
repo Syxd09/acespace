@@ -8,6 +8,7 @@ import {
   OrderStatus,
 } from '@/data/orderStore';
 import { verifyAdminRequest } from '@/lib/adminAuth';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -39,6 +40,15 @@ export async function GET(req: NextRequest) {
 // POST: Public submission of sample orders or in-progress drafts
 export async function POST(req: NextRequest) {
   try {
+    // Rate limit: 40 requests per 10 minutes per IP
+    const rateLimit = checkRateLimit(req, 'orders', 40, 10 * 60 * 1000);
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { success: false, error: 'Too many order requests. Please retry in a few moments.' },
+        { status: 429, headers: { ...noCacheHeaders, 'Retry-After': rateLimit.retryAfterSeconds.toString() } }
+      );
+    }
+
     const body = await req.json();
 
     // Basic validation
@@ -49,7 +59,8 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const savedOrder = saveSampleOrder(body as Partial<SampleOrder>);
+    const isAdmin = verifyAdminRequest(req);
+    const savedOrder = saveSampleOrder(body as Partial<SampleOrder>, isAdmin);
 
     return NextResponse.json(
       {
@@ -63,9 +74,11 @@ export async function POST(req: NextRequest) {
     );
   } catch (err) {
     console.error('Error saving sample order:', err);
+    const errMsg = (err as Error).message || 'Error processing sample order.';
+    const isAuthError = errMsg.includes('authorization') || errMsg.includes('Unauthorized');
     return NextResponse.json(
-      { success: false, error: (err as Error).message },
-      { status: 500, headers: noCacheHeaders }
+      { success: false, error: errMsg },
+      { status: isAuthError ? 403 : 500, headers: noCacheHeaders }
     );
   }
 }

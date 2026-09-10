@@ -1,4 +1,4 @@
-﻿# Next.js build output
+# Next.js build output
 .next/
 out/
 
@@ -38,3 +38,8 @@ Thumbs.db
 
 # Raw source images
 public/assets/My images/
+
+# Dynamic order and lead databases
+data/orders.json
+data/inquiries.json
+data/subscribers.json

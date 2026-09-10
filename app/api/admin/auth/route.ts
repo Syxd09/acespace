@@ -1,10 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { checkPasskey, createSessionToken, verifyAdminRequest } from '@/lib/adminAuth';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   try {
+    // 1. Rate limiting: 5 attempts per 15 minutes
+    const rateLimit = checkRateLimit(req, 'admin_auth', 5, 15 * 60 * 1000);
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Too many authentication attempts. Studio console locked for ${rateLimit.retryAfterSeconds}s. Please retry later.`,
+        },
+        {
+          status: 429,
+          headers: {
+            'Retry-After': rateLimit.retryAfterSeconds.toString(),
+          },
+        }
+      );
+    }
+
     const body = await req.json();
     const { passkey } = body;
 

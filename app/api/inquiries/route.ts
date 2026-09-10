@@ -7,6 +7,7 @@ import {
   InquiryStatus,
 } from '@/data/orderStore';
 import { verifyAdminRequest } from '@/lib/adminAuth';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -38,6 +39,15 @@ export async function GET(req: NextRequest) {
 // POST: Public submission of contact inquiries
 export async function POST(req: NextRequest) {
   try {
+    // Rate limit: 6 inquiries per 10 minutes per IP
+    const rateLimit = checkRateLimit(req, 'inquiries', 6, 10 * 60 * 1000);
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { success: false, error: `Inquiry submission limit reached. Please retry in ${rateLimit.retryAfterSeconds}s.` },
+        { status: 429, headers: { ...noCacheHeaders, 'Retry-After': rateLimit.retryAfterSeconds.toString() } }
+      );
+    }
+
     const body = await req.json();
     const { name, email, phone, projectType, message } = body;
 

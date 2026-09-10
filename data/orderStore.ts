@@ -128,7 +128,7 @@ export function getSampleOrders(): SampleOrder[] {
   return defaultOrders;
 }
 
-export function saveSampleOrder(orderData: Partial<SampleOrder>): SampleOrder {
+export function saveSampleOrder(orderData: Partial<SampleOrder>, isAdmin: boolean = false): SampleOrder {
   const orders = getSampleOrders();
   const now = new Date().toISOString();
 
@@ -137,9 +137,22 @@ export function saveSampleOrder(orderData: Partial<SampleOrder>): SampleOrder {
     const index = orders.findIndex((o) => o.id === orderData.id);
     if (index !== -1) {
       const existing = orders[index];
+
+      // Security check: Unauthenticated users can only update 'in-progress' draft orders
+      if (!isAdmin) {
+        if (existing.status !== 'in-progress') {
+          throw new Error('Submitted orders cannot be modified without administrative authorization.');
+        }
+        // Disallow setting privileged statuses like 'dispatched', 'delivered', or 'cancelled'
+        if (orderData.status && !['in-progress', 'submitted'].includes(orderData.status)) {
+          throw new Error('Unauthorized order status transition.');
+        }
+      }
+
       const updated: SampleOrder = {
         ...existing,
         ...orderData,
+        status: orderData.status || existing.status,
         customer: {
           ...existing.customer,
           ...(orderData.customer || {}),
@@ -155,11 +168,16 @@ export function saveSampleOrder(orderData: Partial<SampleOrder>): SampleOrder {
   }
 
   // Create new order
+  // Unauthenticated users cannot create orders with privileged statuses
+  const initialStatus = (!isAdmin && orderData.status && !['in-progress', 'submitted'].includes(orderData.status))
+    ? 'submitted'
+    : (orderData.status || 'submitted');
+
   const orderNum = `ACE-ORD-${Math.floor(1000 + Math.random() * 9000)}`;
   const newOrder: SampleOrder = {
     id: `ord_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
     orderNumber: orderNum,
-    status: orderData.status || 'submitted',
+    status: initialStatus,
     createdAt: now,
     updatedAt: now,
     customer: {
