@@ -1,23 +1,32 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { projects } from '@/data/projects';
+import { projects as defaultProjects, Project } from '@/data/projects';
+import { useSiteContent } from '@/context/SiteContentContext';
 
-export default function ProjectGallery() {
+export default function ProjectGallery({ initialProjects }: { initialProjects?: Project[] }) {
+  const { projects: liveProjects } = useSiteContent();
+  const allProjects = (liveProjects && liveProjects.length > 0)
+    ? liveProjects
+    : (initialProjects && initialProjects.length > 0)
+      ? initialProjects
+      : defaultProjects;
+
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const filteredProjects = selectedCategory === 'all'
-    ? projects
-    : projects.filter((p) => p.category === selectedCategory);
+    ? allProjects
+    : allProjects.filter((p) => p.category === selectedCategory);
 
   const categories = [
-    { id: 'all', label: 'All Projects', count: projects.length },
-    { id: 'residential', label: 'Residential', count: projects.filter((p) => p.category === 'residential').length },
-    { id: 'hospitality', label: 'Hospitality', count: projects.filter((p) => p.category === 'hospitality').length },
-    { id: 'commercial', label: 'Commercial & Studio', count: projects.filter((p) => p.category === 'commercial').length },
-    { id: 'retail', label: 'Retail & Display', count: projects.filter((p) => p.category === 'retail').length },
+    { id: 'all', label: 'All Projects', count: allProjects.length },
+    { id: 'residential', label: 'Residential', count: allProjects.filter((p) => p.category === 'residential').length },
+    { id: 'hospitality', label: 'Hospitality', count: allProjects.filter((p) => p.category === 'hospitality').length },
+    { id: 'commercial', label: 'Commercial & Studio', count: allProjects.filter((p) => p.category === 'commercial').length },
+    { id: 'retail', label: 'Retail & Display', count: allProjects.filter((p) => p.category === 'retail').length },
+    { id: 'healthcare', label: 'Hospitals & Healthcare', count: allProjects.filter((p) => p.category === 'healthcare').length },
   ];
 
   return (

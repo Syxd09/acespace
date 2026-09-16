@@ -57,8 +57,18 @@ const nextConfig = {
         permanent: false,
       },
       {
-        source: '/applications/healthcare',
-        destination: '/applications/custom',
+        source: '/applications/custom',
+        destination: '/applications/healthcare',
+        permanent: true,
+      },
+      {
+        source: '/applications/hospital',
+        destination: '/applications/healthcare',
+        permanent: true,
+      },
+      {
+        source: '/applications/hospitals',
+        destination: '/applications/healthcare',
         permanent: true,
       },
       {

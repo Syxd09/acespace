@@ -3,6 +3,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import ProjectGallery from '@/components/ProjectGallery';
+import { getSiteContent } from '@/data/contentStore';
+import { defaultProjectsList } from '@/data/contentTypes';
+
+export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Selected Architectural Projects — Ace Spaces',
@@ -10,6 +14,8 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
+  const content = getSiteContent();
+  const projects = content.projects && content.projects.length > 0 ? content.projects : defaultProjectsList;
   return (
     <main className="page-main">
       {/* Rich Split Architectural Hero */}
@@ -59,16 +65,7 @@ export default function ProjectsPage() {
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div
-          style={{
-            position: 'relative',
-            height: '520px',
-            background: '#dcd7cd',
-            border: '1px solid var(--line)',
-            overflow: 'hidden',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.08)',
-          }}
-        >
+        <div className="hero-image-frame">
           <Image
             src="/assets/hero-ace.png"
             alt="Completed private residence kitchen island by Studio Vardhan Architects"
@@ -95,7 +92,7 @@ export default function ProjectsPage() {
 
       {/* Interactive Project Gallery */}
       <section id="gallery" style={{ margin: '80px 0 100px' }}>
-        <ProjectGallery />
+        <ProjectGallery initialProjects={projects} />
       </section>
 
       <section className="callout">

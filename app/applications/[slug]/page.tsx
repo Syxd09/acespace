@@ -4,7 +4,9 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { applicationSectors, getApplicationSector } from '@/data/applications';
+import { materials as allMaterials } from '@/data/materials';
 import ApplicationSlider from '@/components/ApplicationSlider';
+import ApplicationMaterialGallery from '@/components/ApplicationMaterialGallery';
 
 interface PageProps {
   params: {
@@ -13,9 +15,18 @@ interface PageProps {
 }
 
 export function generateStaticParams() {
-  return applicationSectors.map((sector) => ({
+  const base = applicationSectors.map((sector) => ({
     slug: sector.id,
   }));
+  const aliases = [
+    { slug: 'healthcare' },
+    { slug: 'custom' },
+    { slug: 'hospital' },
+    { slug: 'hospitals' },
+  ];
+  return [...base, ...aliases].filter(
+    (item, index, self) => index === self.findIndex((t) => t.slug === item.slug)
+  );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -32,6 +43,11 @@ export default function ApplicationDetailPage({ params }: PageProps) {
   if (!sector) {
     notFound();
   }
+
+  // Resolve full material objects for this sector's material gallery
+  const sectorMaterials = sector.recommendedMaterials
+    .map((rm) => allMaterials.find((m) => m.slug === rm.slug))
+    .filter((m): m is (typeof allMaterials)[0] => Boolean(m));
 
   return (
     <main className="page-main">
@@ -146,15 +162,15 @@ export default function ApplicationDetailPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Photographic Gallery Grid of all images with details */}
+      {/* Photographic Gallery Grid of all spatial room images */}
       <section style={{ padding: '80px 0', borderBottom: '1px solid var(--line)' }}>
         <p className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '14px' }}>
-          Application Showcase
+          Spatial Environments
         </p>
         <h2 style={{ fontSize: 'clamp(32px, 4vw, 52px)', margin: '0 0 40px', lineHeight: 1.05 }}>
-          Spatial Photography &
+          Spatial Architecture &
           <br />
-          <i>Close-up Details.</i>
+          <i>Installed Details.</i>
         </h2>
 
         <div className="app-slug-gallery" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '30px' }}>
@@ -209,6 +225,13 @@ export default function ApplicationDetailPage({ params }: PageProps) {
         </div>
       </section>
 
+      {/* Interactive Sector Material Palette & Swatches Image Gallery */}
+      <ApplicationMaterialGallery
+        sectorTitle={sector.title}
+        sectorSlug={sector.id}
+        materials={sectorMaterials}
+      />
+
       {/* Hygiene, Performance & Compliance Table */}
       <section style={{ padding: '80px 0', borderBottom: '1px solid var(--line)' }}>
         <p className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '14px' }}>
@@ -239,44 +262,6 @@ export default function ApplicationDetailPage({ params }: PageProps) {
               ))}
             </tbody>
           </table>
-        </div>
-      </section>
-
-      {/* Recommended Material Palette Links */}
-      <section style={{ padding: '80px 0', borderBottom: '1px solid var(--line)' }}>
-        <p className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '14px' }}>
-          Specified Surfaces
-        </p>
-        <h2 style={{ fontSize: 'clamp(32px, 4vw, 52px)', margin: '0 0 40px', lineHeight: 1.05 }}>
-          Recommended Palette for
-          <br />
-          <i>{sector.title}.</i>
-        </h2>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
-          {sector.recommendedMaterials.map((mat) => (
-            <Link
-              key={mat.slug}
-              href={`/materials/${mat.slug}`}
-              style={{
-                background: 'var(--paper)',
-                border: '1px solid var(--line)',
-                padding: '24px',
-                display: 'block',
-                transition: 'all 0.3s ease',
-              }}
-            >
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '8px' }}>
-                Finish • {mat.finish}
-              </span>
-              <strong style={{ fontSize: '17px', color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>
-                {mat.name}
-              </strong>
-              <span className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
-                View Spec Sheet <span>↗</span>
-              </span>
-            </Link>
-          ))}
         </div>
       </section>
 

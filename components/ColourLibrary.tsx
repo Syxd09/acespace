@@ -321,36 +321,6 @@ export default function ColourLibrary() {
                   )}
                 </div>
 
-                {/* Centered Zoom & Inspect Loupe Badge */}
-                <div
-                  className="zoom-hint"
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    zIndex: 3,
-                    background: 'rgba(25, 28, 25, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#f4f3ef',
-                    border: '1px solid rgba(255,255,255,0.25)',
-                    padding: '8px 16px',
-                    borderRadius: '100px',
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.06em',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    pointerEvents: 'none',
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  <span>🔍</span> Inspect & Zoom
-                </div>
-
                 {/* Sample Shortlist Quick Button */}
                 <button
                   type="button"

@@ -284,6 +284,60 @@ export default function SampleTray() {
                 <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5d665c', margin: '0 auto 16px', maxWidth: '420px' }}>
                   We have logged your order for {shortlist.length} material specimen{shortlist.length > 1 ? 's' : ''} (100mm × 100mm). Our courier partner will deliver the sample box to <strong>{formData.address}, {formData.city}</strong> within 48–72 hours.
                 </p>
+
+                {/* Office Representative Reassurance Callout */}
+                <div
+                  style={{
+                    margin: '18px auto 0',
+                    maxWidth: '430px',
+                    background: 'rgba(255, 255, 255, 0.65)',
+                    border: '1px solid var(--line)',
+                    borderLeft: '3px solid var(--ink)',
+                    padding: '14px 16px',
+                    textAlign: 'left',
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    gap: '12px',
+                    borderRadius: '2px',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      background: 'var(--ink)',
+                      color: '#fff',
+                      display: 'grid',
+                      placeItems: 'center',
+                      fontSize: '11px',
+                      flexShrink: 0,
+                      marginTop: '2px',
+                    }}
+                  >
+                    ✓
+                  </div>
+                  <div>
+                    <div
+                      style={{
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '10px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                        color: 'var(--muted)',
+                        marginBottom: '3px',
+                      }}
+                    >
+                      Studio Concierge Follow-Up
+                    </div>
+                    <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.5, color: 'var(--ink)', fontWeight: 500 }}>
+                      An Ace Spaces office representative will be contacting you shortly to confirm your sample requirements, verify dispatch details, and assist with your project specifications.
+                    </p>
+                    <div style={{ marginTop: '6px', fontSize: '11px', color: '#6e766c', fontFamily: 'DM Mono, monospace' }}>
+                      Helpline: +91 (80) 4122-8900 · studio@acespaces.in
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Specimens list in confirmation screen - Clicking opens the details modal */}

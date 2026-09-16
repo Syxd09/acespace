@@ -43,38 +43,9 @@
   ],
   "materials": [
     {
-      "slug": "blue",
-      "name": "blue",
-      "code": "AC-9569",
-      "collection": "Architectural Solid",
-      "colorFamily": "black",
-      "pattern": "solid",
-      "type": "mineral",
-      "finish": "Honed Matte",
-      "colour": "blue",
-      "hexColor": "#e5e4de",
-      "textureImage": "/assets/materials/css-calacatta-greige-sheet.jpg",
-      "description": "Bespoke architectural solid surface slab with seamless thermoformable capability.",
-      "swatch": "/assets/materials/css-calacatta-greige-sheet.jpg",
-      "image": "/assets/materials/css-calacatta-greige-sheet.jpg",
-      "applications": [
-        "Countertops",
-        "Wall Cladding",
-        "Bespoke Monoliths"
-      ],
-      "thicknessOptions": [
-        "12mm",
-        "20mm"
-      ],
-      "dimensions": "3660 × 760 mm",
-      "lightTransmission": "Opaque",
-      "fireRating": "Class 1 (BS 476)",
-      "careGuide": "Clean with mild architectural soap and microfiber cloth."
-    },
-    {
       "slug": "noma-white-chalk",
-      "name": "Noma / White Chalkwqqws",
-      "code": "AC-01010911",
+      "name": "Noma / White Chalk",
+      "code": "AC-0101",
       "collection": "Noma Solids",
       "colorFamily": "white",
       "pattern": "solid",
@@ -1001,22 +972,23 @@
       "leadTime": "3 weeks"
     },
     {
-      "id": "custom",
+      "id": "healthcare",
       "sectorNumber": "05",
-      "title": "Clinical & Specialist Spaces",
-      "tagline": "Non-porous hygienic precision",
-      "heroDescription": "Sterile clinical environments, dental operatory suites, and diagnostic laboratories demand chemical-resistant surfaces certified to zero bacterial harboring.",
-      "overview": "Where hygiene is non-negotiable, Ace Spaces solid surface offers seamless, coved transitions from wall to counter to sink with zero silicone caulking, eliminating the breeding grounds for MRSA, mold, and pathogens.",
+      "title": "Hospitals & Healthcare Spaces",
+      "tagline": "Non-porous hygienic precision & infection control",
+      "heroDescription": "Hospitals, surgical suites, sterile dental operatories, and diagnostic laboratories demand certified non-porous mineral surfaces immune to bacterial and fungal harboring.",
+      "overview": "Where hygiene and infection control are non-negotiable, Ace Spaces solid surfaces provide seamless, coved transitions from wall to counter to sink with zero silicone caulking, eliminating the microscopic breeding grounds where MRSA, mold, and pathogens accumulate.",
       "elements": [
         "Seamless Surgical Scrub Sinks with Sloped Splash Walls",
-        "Clinical Reception Desks with Disinfection Resilience",
-        "Operatory Cabinet Countertops with Integrated Containment Rims",
+        "Hospital Nurse Stations & Patient Reception Monoliths",
+        "Operatory Treatment Countertops with Integrated Containment Rims",
         "Cleanroom Seamless Wall Cladding with Coved Floor Skirtings",
-        "Specimen Preparation Benches with Acid & Reagent Resistance"
+        "Diagnostic Laboratory Workbenches with Acid & Disinfectant Resistance",
+        "Patient Room Seamless Vanity Bowls & Coved Shower Surrounds"
       ],
       "recommendedMaterials": [
         {
-          "name": "Noma / White Chalk",
+          "name": "Noma / White Chalk (Stonique)",
           "slug": "noma-white-chalk",
           "finish": "Clinical Matte"
         },
@@ -1026,9 +998,24 @@
           "finish": "Satin Pure"
         },
         {
-          "name": "Strata / Silt",
-          "slug": "strata-silt",
-          "finish": "Honed Neutral"
+          "name": "Strata / Sand Fine",
+          "slug": "strata-sand-fine",
+          "finish": "Fine Textured"
+        },
+        {
+          "name": "Noma / Linen",
+          "slug": "noma-linen",
+          "finish": "Velvet Matte"
+        },
+        {
+          "name": "Strata / Terrazzo Ash",
+          "slug": "strata-terrazzo-ash",
+          "finish": "Satin Polished"
+        },
+        {
+          "name": "Obsidian / Still",
+          "slug": "obsidian-still",
+          "finish": "Tactile Matte"
         }
       ],
       "fabricationNote": "Custom thermoformed integral coved corners and silicone-free chemical welding guarantee zero bacterial harborage points.",
@@ -1245,5 +1232,11 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-09T23:55:06.142Z"
+  "studioContact": {
+    "whatsappNumber": "+91 98450 12345",
+    "whatsappDisplay": "+91 98450 12345",
+    "whatsappDefaultMessage": "Hello Ace Spaces Studio, I would like to consult on architectural material specification for an upcoming project.",
+    "availabilityStatus": "Studio Online · Material Advisory"
+  },
+  "updatedAt": "2026-09-15T16:20:00.000Z"
 }

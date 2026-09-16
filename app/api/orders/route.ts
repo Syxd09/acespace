@@ -4,6 +4,7 @@ import {
   saveSampleOrder,
   updateSampleOrderStatus,
   deleteSampleOrder,
+  getStoreMetrics,
   SampleOrder,
   OrderStatus,
 } from '@/data/orderStore';
@@ -21,7 +22,10 @@ const noCacheHeaders = {
   'Surrogate-Control': 'no-store',
 };
 
-// GET: Retrieve all sample orders (Admin only)
+const VALID_ORDER_STATUSES: OrderStatus[] = ['pending', 'processing', 'dispatched', 'delivered', 'cancelled'];
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// GET: Retrieve sample orders or store metrics (Admin only)
 export async function GET(req: NextRequest) {
   if (!verifyAdminRequest(req)) {
     return NextResponse.json(
@@ -30,9 +34,25 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const orders = getSampleOrders();
+  const { searchParams } = new URL(req.url);
+  const view = searchParams.get('view');
+  if (view === 'metrics') {
+    const metrics = getStoreMetrics();
+    return NextResponse.json(
+      { success: true, metrics },
+      { status: 200, headers: noCacheHeaders }
+    );
+  }
+
+  const statusFilter = searchParams.get('status');
+  let orders = getSampleOrders();
+
+  if (statusFilter && VALID_ORDER_STATUSES.includes(statusFilter as OrderStatus)) {
+    orders = orders.filter((o) => o.status === statusFilter);
+  }
+
   return NextResponse.json(
-    { success: true, orders },
+    { success: true, count: orders.length, orders },
     { status: 200, headers: noCacheHeaders }
   );
 }
@@ -51,12 +71,30 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
 
-    // Basic validation
+    // Defensive validation of items array
     if (!body.items || !Array.isArray(body.items) || body.items.length === 0) {
       return NextResponse.json(
-        { success: false, error: 'Cart must contain at least one sample item.' },
+        { success: false, error: 'Cart must contain at least one architectural sample item.' },
         { status: 400, headers: noCacheHeaders }
       );
+    }
+
+    if (body.items.length > 25) {
+      return NextResponse.json(
+        { success: false, error: 'Maximum allowable sample order size is 25 specimens per request.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    // Optional customer email validation if provided
+    if (body.customer?.email && typeof body.customer.email === 'string') {
+      const emailTrimmed = body.customer.email.trim();
+      if (emailTrimmed.length > 0 && (!EMAIL_REGEX.test(emailTrimmed) || emailTrimmed.length > 120)) {
+        return NextResponse.json(
+          { success: false, error: 'Customer email format is invalid.' },
+          { status: 400, headers: noCacheHeaders }
+        );
+      }
     }
 
     const isAdmin = verifyAdminRequest(req);
@@ -99,6 +137,13 @@ export async function PATCH(req: NextRequest) {
     if (!id || !status) {
       return NextResponse.json(
         { success: false, error: 'Order ID and status are required.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    if (!VALID_ORDER_STATUSES.includes(status as OrderStatus)) {
+      return NextResponse.json(
+        { success: false, error: `Invalid order status. Must be one of: ${VALID_ORDER_STATUSES.join(', ')}` },
         { status: 400, headers: noCacheHeaders }
       );
     }

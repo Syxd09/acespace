@@ -15,32 +15,31 @@ export default function MaterialsPage() {
       {/* Rich Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: '24px' }}>Materials / Substrates & Compositions</p>
+          <p className="eyebrow" style={{ marginBottom: '24px' }}>Materials / Substrates &amp; Compositions</p>
 
-          <h1 style={{ fontSize: 'clamp(48px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+          <h1 style={{ fontSize: 'clamp(44px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
             Material as
             <br />
             <i>substance.</i>
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '560px', marginBottom: '20px' }}>
+          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '12px' }}>
             Ace Spaces is the primary raw material source for architects and interior designers — providing full-dimension solid surface slabs (3660mm &times; 760mm &times; 12mm/19mm), custom blanks, and through-body minerals that power bespoke spatial creations, including our sister studio Coro Collective.
           </p>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 14px', background: 'rgba(30,33,29,0.06)', borderRadius: '100px', fontSize: '11px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.06em', textTransform: 'uppercase', marginBottom: '28px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ink)' }}></span>
+          <div style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '18px' }}>
             Direct Raw Material Supply for Designers &amp; Architects
           </div>
 
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '24px' }}>
             <Link className="button button-dark" href="/collections/colours">
-              Browse Colours & Palette <span>↗</span>
+              Browse Colours &amp; Palette <span>↗</span>
             </Link>
             <Link className="text-link" href="#substrates">
               4 Material Systems <span>↓</span>
             </Link>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '20px' }}>
+          <div className="hero-stats-row">
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Composition
@@ -63,16 +62,7 @@ export default function MaterialsPage() {
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div
-          style={{
-            position: 'relative',
-            height: '520px',
-            background: '#dcd7cd',
-            border: '1px solid var(--line)',
-            overflow: 'hidden',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.08)',
-          }}
-        >
+        <div className="hero-image-frame">
           <Image
             src="/assets/material-macro.png"
             alt="Macro detail of through-body architectural mineral surface"
@@ -81,21 +71,7 @@ export default function MaterialsPage() {
             style={{ objectFit: 'cover' }}
             priority
           />
-          <div
-            style={{
-              position: 'absolute',
-              bottom: '20px',
-              left: '20px',
-              right: '20px',
-              background: 'rgba(233, 232, 226, 0.92)',
-              backdropFilter: 'blur(12px)',
-              padding: '16px 20px',
-              border: '1px solid rgba(30,33,29,0.15)',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
+          <div className="hero-image-badge">
             <div>
               <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Material Distinction

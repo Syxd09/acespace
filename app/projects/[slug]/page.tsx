@@ -1,16 +1,28 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import { projects } from '@/data/projects';
+import { Project } from '@/data/projects';
+import { getSiteContent } from '@/data/contentStore';
+import { defaultProjectsList } from '@/data/contentTypes';
+
+export const dynamic = 'force-dynamic';
+
+function getLiveProjects(): Project[] {
+  const content = getSiteContent();
+  return content.projects && content.projects.length > 0 ? content.projects : defaultProjectsList;
+}
 
 export async function generateStaticParams() {
+  const projects = getLiveProjects();
   return projects.map((p) => ({
     slug: p.slug,
   }));
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const projects = getLiveProjects();
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return { title: 'Project Not Found — Ace Spaces' };
   return {
@@ -20,6 +32,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default function ProjectDetailPage({ params }: { params: { slug: string } }) {
+  const projects = getLiveProjects();
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) notFound();
 
@@ -29,14 +42,70 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
     <main>
       <section className="detail-hero">
         <div>
+          <div style={{ marginBottom: '18px' }}>
+            <Link
+              href="/projects"
+              style={{
+                fontSize: '11px',
+                fontFamily: 'DM Mono, monospace',
+                color: 'rgba(255,255,255,0.7)',
+                textDecoration: 'none',
+                letterSpacing: '0.06em',
+                textTransform: 'uppercase',
+              }}
+            >
+              ← All Case Studies
+            </Link>
+          </div>
           <p className="eyebrow light">
             Case Study / {project.subtitle} / {project.location} ({project.year})
           </p>
-          <h1>
+          <h1 style={{ maxWidth: '840px' }}>
             {project.title}
           </h1>
         </div>
       </section>
+
+      {/* Hero Architectural Photography Frame */}
+      {project.image && (
+        <div
+          style={{
+            width: '100%',
+            height: 'clamp(340px, 48vw, 680px)',
+            position: 'relative',
+            borderBottom: '1px solid var(--line)',
+            background: '#1a1d19',
+            overflow: 'hidden',
+          }}
+        >
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+            priority
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: '24px',
+              left: '9vw',
+              background: 'rgba(20, 23, 19, 0.88)',
+              backdropFilter: 'blur(8px)',
+              padding: '6px 14px',
+              border: '1px solid rgba(255, 255, 255, 0.15)',
+              color: '#e9e8e2',
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '11px',
+              textTransform: 'uppercase',
+              letterSpacing: '0.08em',
+            }}
+          >
+            {project.category.toUpperCase()} • {project.location} • {project.year}
+          </div>
+        </div>
+      )}
 
       <div className="page-main">
         <section className="page-grid">

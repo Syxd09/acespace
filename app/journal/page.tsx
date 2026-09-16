@@ -59,16 +59,7 @@ export default function JournalPage() {
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div
-          style={{
-            position: 'relative',
-            height: '520px',
-            background: '#dcd7cd',
-            border: '1px solid var(--line)',
-            overflow: 'hidden',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.08)',
-          }}
-        >
+        <div className="hero-image-frame">
           <Image
             src="/assets/material-macro.png"
             alt="Macro detail of architectural mineral surface edge profile"

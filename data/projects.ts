@@ -1,8 +1,8 @@
-﻿export interface Project {
+export interface Project {
   slug: string;
   title: string;
   subtitle: string;
-  category: 'residential' | 'hospitality' | 'commercial' | 'retail';
+  category: 'residential' | 'hospitality' | 'commercial' | 'retail' | 'healthcare';
   location: string;
   year: string;
   architect: string;
@@ -113,6 +113,30 @@ export const projects: Project[] = [
       { label: 'Color Temperature', value: '2700K Warm Ambient' },
       { label: 'Plinth Count', value: '8 Modular Freestanding Units' },
       { label: 'Light Diffusion', value: 'Uniform 98% Field Distribution' }
+    ]
+  },
+  {
+    slug: 'clinical-precision',
+    title: 'Clinical precision & surgical hygiene',
+    subtitle: 'Specialist medical & surgical center',
+    category: 'healthcare',
+    location: 'Hyderabad, India',
+    year: '2024',
+    architect: 'Arch-Med Spatial Design',
+    area: '540 sq.m',
+    description: 'Wall-to-wall seamless surgical scrub stations, operatory countertops, and patient consultation desks fabricated with pure non-porous solid surfaces with zero grout lines or bacterial traps.',
+    materialUsed: 'Noma / White Chalk (Stonique)',
+    materialSlug: 'noma-white-chalk',
+    application: 'Surgical Scrub Sinks, Operatory Workbenches, Clinical Reception Desk',
+    fabrication: 'Thermoformed Integral 10mm Coves, Silicone-Free Acrylic Joint Welds, Marine Containment Edges',
+    image: '/assets/applications/stonique-healthcare-clinic-1.jpg',
+    challenge: 'Eliminating mold-prone silicone sealant joints at the wall-to-counter and counter-to-sink junctions while meeting strict ISO 846 Class 0 cleanroom hygiene standards.',
+    solution: 'Designed and fabricated custom thermoformed 10mm integral coves that transition seamlessly from counter into backsplash and sink, creating a single continuous hermetic plane.',
+    specs: [
+      { label: 'Surface Material', value: 'Noma / White Chalk (12mm Clinical Matte)' },
+      { label: 'Hygiene Standard', value: 'ISO 846 Method A & C Rating 0' },
+      { label: 'Chemical Immunity', value: 'Bleach, 70% IPA, Chlorhexidine Resistant' },
+      { label: 'Joint Tolerance', value: '< 0.05mm Silicone-Free Thermo-Weld' }
     ]
   }
 ];

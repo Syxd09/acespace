@@ -22,10 +22,10 @@ export default function ApplicationsPage() {
 
           <h1
             style={{
-              fontSize: 'clamp(44px, 6.5vw, 92px)',
-              lineHeight: 0.98,
-              margin: '0 0 24px',
-              letterSpacing: '-0.05em',
+              fontSize: 'clamp(44px, 7vw, 108px)',
+              lineHeight: 0.96,
+              margin: '0 0 28px',
+              letterSpacing: '-0.06em',
             }}
           >
             Formed for
@@ -45,7 +45,7 @@ export default function ApplicationsPage() {
             From quiet residential monoliths to high-traffic commercial atriums, Ace Spaces solid mineral surfaces bring seamless hygiene, thermal stability, and bespoke fabrication to six distinct architectural typologies.
           </p>
 
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="button button-dark" href="#sectors">
               Explore Sectors <span>↓</span>
             </Link>
@@ -53,18 +53,31 @@ export default function ApplicationsPage() {
               View Materials <span>↗</span>
             </Link>
           </div>
+
+          <div className="hero-stats-row">
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Typologies
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>06 Sectors</strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Joinery
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Zero-Joint Spec</strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Compliance
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Commercial Grade</strong>
+            </div>
+          </div>
         </div>
 
         {/* Hero Architectural Accent */}
-        <div
-          style={{
-            position: 'relative',
-            height: '460px',
-            background: '#dcd7cd',
-            border: '1px solid var(--line)',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="hero-image-frame">
           <Image
             src="/assets/applications/calacatta-greige-kitchen.jpg"
             alt="Seamless curved solid surface kitchen island installation"
@@ -73,6 +86,19 @@ export default function ApplicationsPage() {
             style={{ objectFit: 'cover' }}
             priority
           />
+          <div className="hero-image-badge">
+            <div>
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+                Typology Focus
+              </span>
+              <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
+                Curved Monoliths • Seamless Thermal Forming
+              </strong>
+            </div>
+            <Link href="#sectors" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+              Explore Sectors <span>↓</span>
+            </Link>
+          </div>
         </div>
       </section>
 

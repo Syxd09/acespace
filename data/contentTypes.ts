@@ -1,6 +1,7 @@
 import { journalArticles as initialJournalArticles, JournalArticle } from './journal';
 import { materials as defaultMaterials, Material } from './materials';
 import { applicationSectors as defaultSectors, ApplicationSector } from './applications';
+import { projects as defaultProjects, Project } from './projects';
 
 export interface HeroSlide {
   id: number;
@@ -56,13 +57,31 @@ export const defaultHeroSlides: HeroSlide[] = [
   },
 ];
 
+export interface StudioContactConfig {
+  whatsappNumber: string;
+  whatsappDisplay: string;
+  whatsappDefaultMessage: string;
+  availabilityStatus: string;
+}
+
+export const defaultStudioContact: StudioContactConfig = {
+  whatsappNumber: '+91 98450 12345',
+  whatsappDisplay: '+91 98450 12345',
+  whatsappDefaultMessage: 'Hello Ace Spaces Studio, I would like to consult on material specifications for an upcoming architectural project.',
+  availabilityStatus: 'Studio Online · Material Advisory',
+};
+
 export interface SiteContent {
   heroSlides: HeroSlide[];
   materials: Material[];
   applicationSectors: ApplicationSector[];
   journalArticles: JournalArticle[];
+  projects?: Project[];
+  studioContact?: StudioContactConfig;
   updatedAt: string;
 }
 
-export { type JournalArticle };
+export { type JournalArticle, type Project };
 export const defaultJournalArticles: JournalArticle[] = initialJournalArticles;
+export const defaultProjectsList: Project[] = defaultProjects;
+

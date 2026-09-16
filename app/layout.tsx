@@ -5,6 +5,7 @@ import SiteFooter from '@/components/SiteFooter';
 import { SampleProvider } from '@/context/SampleContext';
 import { SiteContentProvider } from '@/context/SiteContentContext';
 import SampleTray from '@/components/SampleTray';
+import ArchitecturalAIBot from '@/components/ArchitecturalAIBot';
 import PageTransition from '@/components/PageTransition';
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -36,16 +37,17 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <SiteContentProvider>
           <SampleProvider>
-          <SiteHeader />
-          <PageTransition>
-            {children}
-          </PageTransition>
-          <SiteFooter />
-          <SampleTray />
-        </SampleProvider>
+            <SiteHeader />
+            <PageTransition>
+              {children}
+            </PageTransition>
+            <SiteFooter />
+            <SampleTray />
+            <ArchitecturalAIBot />
+          </SampleProvider>
         </SiteContentProvider>
       </body>
     </html>

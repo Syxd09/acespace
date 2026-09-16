@@ -18,7 +18,9 @@ const noCacheHeaders = {
   'Surrogate-Control': 'no-store',
 };
 
-// GET: Retrieve all subscribers (Admin only)
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// GET: Retrieve subscribers with optional status filter (Admin only)
 export async function GET(req: NextRequest) {
   if (!verifyAdminRequest(req)) {
     return NextResponse.json(
@@ -27,14 +29,21 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const subscribers = getDispatchSubscribers();
+  const { searchParams } = new URL(req.url);
+  const statusFilter = searchParams.get('status');
+
+  let subscribers = getDispatchSubscribers();
+  if (statusFilter === 'active' || statusFilter === 'unsubscribed') {
+    subscribers = subscribers.filter((s) => s.status === statusFilter);
+  }
+
   return NextResponse.json(
-    { success: true, subscribers },
+    { success: true, count: subscribers.length, subscribers },
     { status: 200, headers: noCacheHeaders }
   );
 }
 
-// POST: Public signup to newsletter dispatch
+// POST: Public signup to newsletter dispatch with RFC validation
 export async function POST(req: NextRequest) {
   try {
     // Rate limit: 6 newsletter signups per 10 minutes per IP
@@ -49,16 +58,20 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { email, source } = body;
 
-    if (!email || typeof email !== 'string' || !email.includes('@')) {
+    if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email.trim()) || email.trim().length > 120) {
       return NextResponse.json(
-        { success: false, error: 'A valid email address is required.' },
+        { success: false, error: 'A valid email address is required for Ace Dispatch subscription.' },
         { status: 400, headers: noCacheHeaders }
       );
     }
 
+    const cleanSource = typeof source === 'string' && source.trim().length > 0 
+      ? source.trim().slice(0, 100) 
+      : 'Footer Dispatch Box';
+
     const { subscriber, alreadySubscribed } = addDispatchSubscriber(
-      email,
-      source || 'Footer Dispatch Box'
+      email.trim(),
+      cleanSource
     );
 
     return NextResponse.json(

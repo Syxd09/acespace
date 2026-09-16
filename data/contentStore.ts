@@ -2,7 +2,16 @@ import fs from 'fs';
 import path from 'path';
 import { materials as defaultMaterials } from './materials';
 import { applicationSectors as defaultSectors } from './applications';
-import { HeroSlide, defaultHeroSlides, SiteContent, defaultJournalArticles, JournalArticle } from './contentTypes';
+import { projects as defaultProjects } from './projects';
+import {
+  HeroSlide,
+  defaultHeroSlides,
+  SiteContent,
+  defaultJournalArticles,
+  JournalArticle,
+  defaultStudioContact,
+  StudioContactConfig,
+} from './contentTypes';
 
 export * from './contentTypes';
 
@@ -38,6 +47,8 @@ export function getSiteContent(): SiteContent {
         materials: parsed.materials || defaultMaterials,
         applicationSectors: parsed.applicationSectors || defaultSectors,
         journalArticles: parsed.journalArticles || defaultJournalArticles,
+        projects: parsed.projects || defaultProjects,
+        studioContact: parsed.studioContact || defaultStudioContact,
         updatedAt: parsed.updatedAt || new Date().toISOString(),
       };
     }
@@ -50,6 +61,8 @@ export function getSiteContent(): SiteContent {
     materials: defaultMaterials,
     applicationSectors: defaultSectors,
     journalArticles: defaultJournalArticles,
+    projects: defaultProjects,
+    studioContact: defaultStudioContact,
     updatedAt: new Date().toISOString(),
   };
 }
@@ -61,6 +74,8 @@ export function saveSiteContent(content: Partial<SiteContent>): SiteContent {
     materials: content.materials || current.materials,
     applicationSectors: content.applicationSectors || current.applicationSectors,
     journalArticles: content.journalArticles || current.journalArticles,
+    projects: content.projects || current.projects,
+    studioContact: content.studioContact || current.studioContact || defaultStudioContact,
     updatedAt: new Date().toISOString(),
   };
 
@@ -96,6 +111,8 @@ export function resetSiteContent(): SiteContent {
     materials: defaultMaterials,
     applicationSectors: defaultSectors,
     journalArticles: defaultJournalArticles,
+    projects: defaultProjects,
+    studioContact: defaultStudioContact,
     updatedAt: new Date().toISOString(),
   };
 

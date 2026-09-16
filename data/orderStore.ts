@@ -89,17 +89,40 @@ function getFilePath(filename: string): string {
   return localFile;
 }
 
+export function sanitizeString(str?: string): string {
+  if (!str || typeof str !== 'string') return '';
+  return str.trim().replace(/[<>]/g, '');
+}
+
+export function sanitizeEmail(email?: string): string {
+  if (!email || typeof email !== 'string') return '';
+  return email.trim().toLowerCase();
+}
+
 function writeDataSafe(filename: string, data: unknown): void {
   const payload = JSON.stringify(data, null, 2);
-  const localPath = path.join(process.cwd(), 'data', filename);
+  const localDir = path.join(process.cwd(), 'data');
+  const localPath = path.join(localDir, filename);
+  const localTmp = path.join(localDir, `.${filename}.tmp.${Date.now()}`);
   const tmpPath = path.join('/tmp', `acespaces-${filename}`);
 
   let written = false;
   try {
-    fs.writeFileSync(localPath, payload, 'utf8');
+    if (!fs.existsSync(localDir)) {
+      fs.mkdirSync(localDir, { recursive: true });
+    }
+    fs.writeFileSync(localTmp, payload, 'utf8');
+    fs.renameSync(localTmp, localPath);
     written = true;
   } catch {
-    // Read-only filesystem on serverless
+    // Fallback if atomic rename fails or read-only filesystem
+    try {
+      if (fs.existsSync(localTmp)) fs.unlinkSync(localTmp);
+      fs.writeFileSync(localPath, payload, 'utf8');
+      written = true;
+    } catch {
+      // Serverless fallback
+    }
   }
 
   if (!written || process.env.VERCEL) {
@@ -109,6 +132,37 @@ function writeDataSafe(filename: string, data: unknown): void {
       console.warn(`Failed to write /tmp backup for ${filename}:`, err);
     }
   }
+}
+
+export interface StoreMetrics {
+  totalOrders: number;
+  submittedOrders: number;
+  dispatchedOrders: number;
+  totalInquiries: number;
+  newInquiries: number;
+  totalSubscribers: number;
+  activeSubscribers: number;
+  recentOrders24h: number;
+  recentInquiries24h: number;
+}
+
+export function getStoreMetrics(): StoreMetrics {
+  const orders = getSampleOrders();
+  const inquiries = getInquiries();
+  const subscribers = getDispatchSubscribers();
+  const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
+
+  return {
+    totalOrders: orders.length,
+    submittedOrders: orders.filter(o => o.status === 'submitted').length,
+    dispatchedOrders: orders.filter(o => o.status === 'dispatched').length,
+    totalInquiries: inquiries.length,
+    newInquiries: inquiries.filter(i => i.status === 'new').length,
+    totalSubscribers: subscribers.length,
+    activeSubscribers: subscribers.filter(s => s.status === 'active').length,
+    recentOrders24h: orders.filter(o => new Date(o.createdAt).getTime() > oneDayAgo).length,
+    recentInquiries24h: inquiries.filter(i => new Date(i.createdAt).getTime() > oneDayAgo).length,
+  };
 }
 
 /* =========================================================================
@@ -181,18 +235,26 @@ export function saveSampleOrder(orderData: Partial<SampleOrder>, isAdmin: boolea
     createdAt: now,
     updatedAt: now,
     customer: {
-      name: orderData.customer?.name || 'Anonymous Specifier',
-      studio: orderData.customer?.studio || '',
-      email: orderData.customer?.email || '',
-      phone: orderData.customer?.phone || '',
-      address: orderData.customer?.address || '',
-      city: orderData.customer?.city || '',
-      pincode: orderData.customer?.pincode || '',
-      projectType: orderData.customer?.projectType || 'Residential',
+      name: sanitizeString(orderData.customer?.name) || 'Anonymous Specifier',
+      studio: sanitizeString(orderData.customer?.studio),
+      email: sanitizeEmail(orderData.customer?.email),
+      phone: sanitizeString(orderData.customer?.phone),
+      address: sanitizeString(orderData.customer?.address),
+      city: sanitizeString(orderData.customer?.city),
+      pincode: sanitizeString(orderData.customer?.pincode),
+      projectType: sanitizeString(orderData.customer?.projectType) || 'Residential',
     },
-    items: orderData.items || [],
+    items: (orderData.items || []).map((it) => ({
+      materialSlug: sanitizeString(it.materialSlug),
+      name: sanitizeString(it.name),
+      collection: sanitizeString(it.collection),
+      finish: sanitizeString(it.finish),
+      colour: sanitizeString(it.colour),
+      swatch: sanitizeString(it.swatch),
+      dimensions: sanitizeString(it.dimensions) || '100mm × 100mm',
+    })),
     itemCount: (orderData.items || []).length,
-    notes: orderData.notes || '',
+    notes: sanitizeString(orderData.notes),
   };
 
   // Prepend newest first
@@ -257,11 +319,11 @@ export function saveInquiry(inquiryData: {
   const newInquiry: ProjectInquiry = {
     id: `inq_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
     inquiryNumber: inquiryNum,
-    name: inquiryData.name.trim(),
-    email: inquiryData.email.trim(),
-    phone: inquiryData.phone?.trim() || '',
-    projectType: inquiryData.projectType.trim() || 'General Consultation',
-    message: inquiryData.message.trim(),
+    name: sanitizeString(inquiryData.name, 120),
+    email: sanitizeEmail(inquiryData.email),
+    phone: inquiryData.phone ? sanitizeString(inquiryData.phone, 30) : '',
+    projectType: sanitizeString(inquiryData.projectType, 80) || 'General Consultation',
+    message: sanitizeString(inquiryData.message, 3000),
     status: 'new',
     createdAt: now,
     updatedAt: now,
@@ -280,7 +342,7 @@ export function updateInquiryStatus(id: string, status: InquiryStatus, notes?: s
   inquiries[index].status = status;
   inquiries[index].updatedAt = new Date().toISOString();
   if (notes !== undefined) {
-    inquiries[index].notes = notes;
+    inquiries[index].notes = sanitizeString(notes, 1000);
   }
 
   writeDataSafe('inquiries.json', inquiries);
@@ -316,7 +378,8 @@ export function getDispatchSubscribers(): DispatchSubscriber[] {
 
 export function addDispatchSubscriber(email: string, source = 'Footer Dispatch Box'): { subscriber: DispatchSubscriber; alreadySubscribed: boolean } {
   const subscribers = getDispatchSubscribers();
-  const normalized = email.trim().toLowerCase();
+  const normalized = sanitizeEmail(email);
+  const cleanSource = sanitizeString(source, 100) || 'Footer Dispatch Box';
   const now = new Date().toISOString();
 
   const existing = subscribers.find((s) => s.email.toLowerCase() === normalized);
@@ -332,7 +395,7 @@ export function addDispatchSubscriber(email: string, source = 'Footer Dispatch B
   const newSub: DispatchSubscriber = {
     id: `sub_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`,
     email: normalized,
-    source,
+    source: cleanSource,
     createdAt: now,
     status: 'active',
   };

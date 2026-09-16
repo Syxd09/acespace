@@ -7,7 +7,8 @@ import { useSiteContent } from '@/context/SiteContentContext';
 import { HeroSlide } from '@/data/contentTypes';
 import { Material } from '@/data/materials';
 import { ApplicationSector, ApplicationImage } from '@/data/applications';
-import { JournalArticle } from '@/data/contentTypes';
+import { JournalArticle, Project, StudioContactConfig, defaultStudioContact } from '@/data/contentTypes';
+import { generateWhatsAppUrl } from '@/lib/whatsapp';
 import {
   SampleOrder,
   ProjectInquiry,
@@ -15,9 +16,10 @@ import {
   OrderStatus,
   InquiryStatus,
 } from '@/data/orderStore';
+import { AIChatSession } from '@/data/chatStore';
 import { REALTIME_CHANNEL_NAME, broadcastRealtimeEvent } from '@/lib/realtime';
 
-type TabKey = 'overview' | 'hero' | 'materials' | 'colors' | 'applications' | 'journal' | 'media' | 'orders' | 'inquiries' | 'dispatch';
+type TabKey = 'overview' | 'hero' | 'materials' | 'colors' | 'applications' | 'projects' | 'journal' | 'media' | 'orders' | 'inquiries' | 'dispatch' | 'ai-chats';
 
 export default function AdminPage() {
   const {
@@ -25,10 +27,14 @@ export default function AdminPage() {
     materials: contextMaterials,
     applicationSectors: contextSectors,
     journalArticles: contextJournals,
+    projects: contextProjects,
+    studioContact: contextStudioContact,
     isLoading: isContextLoading,
     saveContent,
     resetToDefaults,
   } = useSiteContent();
+
+  const [localStudioContact, setLocalStudioContact] = useState<StudioContactConfig>(defaultStudioContact);
 
   // Authentication
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -125,6 +131,47 @@ export default function AdminPage() {
     tag: 'Architectural Detail',
   });
 
+  // Projects & Architectural Case Studies State
+  const [localProjects, setLocalProjects] = useState<Project[]>([]);
+  const [selectedProjectSlug, setSelectedProjectSlug] = useState<string>('');
+  const [projectSearchQuery, setProjectSearchQuery] = useState<string>('');
+  const [projectCategoryFilter, setProjectCategoryFilter] = useState<string>('all');
+  const [isAddingProject, setIsAddingProject] = useState<boolean>(false);
+  const initialProjectForm = {
+    title: '',
+    subtitle: '',
+    category: 'residential' as Project['category'],
+    location: '',
+    year: '2024',
+    architect: '',
+    area: '',
+    description: '',
+    materialUsed: '',
+    materialSlug: '',
+    application: '',
+    fabrication: '',
+    image: '/assets/applications/calacatta-greige-kitchen.jpg',
+    challenge: '',
+    solution: '',
+    specs: 'Surface Material: Alto / Ivory Vein (12mm)\nEdge Profile: 45° Mitred Waterfall\nJoinery Type: Thermo-welded Matrix',
+  };
+  const [newProjectForm, setNewProjectForm] = useState(initialProjectForm);
+
+  // Sector Material Gallery addition state
+  const [newSectorMaterialSlug, setNewSectorMaterialSlug] = useState<string>('');
+  const [newSectorMaterialFinish, setNewSectorMaterialFinish] = useState<string>('');
+
+  // Sector Hygiene Standard addition state
+  const [isAddingHygieneRow, setIsAddingHygieneRow] = useState<boolean>(false);
+  const [newHygieneForm, setNewHygieneForm] = useState({
+    feature: '',
+    standard: '',
+    benefit: '',
+  });
+
+  // Sector Element addition state
+  const [newSectorElementText, setNewSectorElementText] = useState<string>('');
+
   // =========================================================================
   // ORDERS, INQUIRIES & DISPATCH SUBSCRIBERS STATE
   // =========================================================================
@@ -142,6 +189,14 @@ export default function AdminPage() {
   const [subscribers, setSubscribers] = useState<DispatchSubscriber[]>([]);
   const [isLoadingSubscribers, setIsLoadingSubscribers] = useState<boolean>(false);
   const [subscriberSearchQuery, setSubscriberSearchQuery] = useState<string>('');
+
+  // AI Concierge Chat Sessions state
+  const [chatSessions, setChatSessions] = useState<AIChatSession[]>([]);
+  const [isLoadingChats, setIsLoadingChats] = useState<boolean>(false);
+  const [chatSearchQuery, setChatSearchQuery] = useState<string>('');
+  const [chatStatusFilter, setChatStatusFilter] = useState<'all' | 'new' | 'reviewed' | 'contacted'>('all');
+  const [selectedChatSession, setSelectedChatSession] = useState<AIChatSession | null>(null);
+  const [expandedTranscriptId, setExpandedTranscriptId] = useState<string | null>(null);
 
   // Check existing server session auth
   useEffect(() => {
@@ -181,7 +236,16 @@ export default function AdminPage() {
         setSelectedJournalSlug(contextJournals[0].slug);
       }
     }
-  }, [contextHeroSlides, contextMaterials, contextSectors, contextJournals, selectedMaterialSlug, selectedJournalSlug]);
+    if (contextProjects && contextProjects.length > 0) {
+      setLocalProjects(contextProjects);
+      if (!selectedProjectSlug && contextProjects[0]) {
+        setSelectedProjectSlug(contextProjects[0].slug);
+      }
+    }
+    if (contextStudioContact) {
+      setLocalStudioContact(contextStudioContact);
+    }
+  }, [contextHeroSlides, contextMaterials, contextSectors, contextJournals, contextProjects, contextStudioContact, selectedMaterialSlug, selectedJournalSlug, selectedProjectSlug]);
 
   // Load media assets
   const isValidImageSrc = (src?: string): boolean => {
@@ -251,8 +315,8 @@ export default function AdminPage() {
   };
 
   // Fetch orders, inquiries, and dispatch subscribers with cache-busting timestamp
-  const fetchOrders = async () => {
-    setIsLoadingOrders(true);
+  const fetchOrders = async (isSilent = false) => {
+    if (!isSilent) setIsLoadingOrders(true);
     try {
       const res = await fetch(`/api/orders?_t=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
@@ -262,12 +326,12 @@ export default function AdminPage() {
     } catch (err) {
       console.warn('Error loading orders:', err);
     } finally {
-      setIsLoadingOrders(false);
+      if (!isSilent) setIsLoadingOrders(false);
     }
   };
 
-  const fetchInquiries = async () => {
-    setIsLoadingInquiries(true);
+  const fetchInquiries = async (isSilent = false) => {
+    if (!isSilent) setIsLoadingInquiries(true);
     try {
       const res = await fetch(`/api/inquiries?_t=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
@@ -277,12 +341,12 @@ export default function AdminPage() {
     } catch (err) {
       console.warn('Error loading inquiries:', err);
     } finally {
-      setIsLoadingInquiries(false);
+      if (!isSilent) setIsLoadingInquiries(false);
     }
   };
 
-  const fetchSubscribers = async () => {
-    setIsLoadingSubscribers(true);
+  const fetchSubscribers = async (isSilent = false) => {
+    if (!isSilent) setIsLoadingSubscribers(true);
     try {
       const res = await fetch(`/api/dispatch?_t=${Date.now()}`, { cache: 'no-store' });
       if (res.ok) {
@@ -292,30 +356,47 @@ export default function AdminPage() {
     } catch (err) {
       console.warn('Error loading subscribers:', err);
     } finally {
-      setIsLoadingSubscribers(false);
+      if (!isSilent) setIsLoadingSubscribers(false);
     }
   };
 
-  const fetchAllLeads = () => {
-    fetchOrders();
-    fetchInquiries();
-    fetchSubscribers();
+  const fetchChatSessions = async (isSilent = false) => {
+    if (!isSilent) setIsLoadingChats(true);
+    try {
+      const res = await fetch(`/api/admin/chats?_t=${Date.now()}`, { cache: 'no-store' });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.sessions) setChatSessions(data.sessions);
+      }
+    } catch (err) {
+      console.warn('Error loading chat sessions:', err);
+    } finally {
+      if (!isSilent) setIsLoadingChats(false);
+    }
   };
 
-  // TRUE Real-Time Sync: Immediate BroadcastChannel listener + cross-tab storage event + window focus + 2.5s polling
+  const fetchAllLeads = (isSilent = true) => {
+    fetchOrders(isSilent);
+    fetchInquiries(isSilent);
+    fetchSubscribers(isSilent);
+    fetchChatSessions(isSilent);
+  };
+
+  // TRUE Real-Time Sync: Immediate BroadcastChannel listener + cross-tab storage event + window focus + silent 30s fallback
   useEffect(() => {
     if (!isAuthenticated) return;
 
-    fetchAllLeads();
+    // Initial load: show loading states
+    fetchAllLeads(false);
 
-    // 1. Cross-tab BroadcastChannel for sub-100ms instant updates
+    // 1. Cross-tab BroadcastChannel for sub-100ms instant silent updates
     let channel: BroadcastChannel | null = null;
     try {
       if (typeof window !== 'undefined' && 'BroadcastChannel' in window) {
         channel = new BroadcastChannel(REALTIME_CHANNEL_NAME);
         channel.onmessage = (event) => {
           if (event.data?.type) {
-            fetchAllLeads();
+            fetchAllLeads(true);
           }
         };
       }
@@ -323,27 +404,27 @@ export default function AdminPage() {
       console.debug('BroadcastChannel error:', err);
     }
 
-    // 2. LocalStorage storage event fallback
+    // 2. LocalStorage storage event fallback (silent)
     const handleStorage = (e: StorageEvent) => {
       if (e.key === 'acespaces_realtime_event') {
-        fetchAllLeads();
+        fetchAllLeads(true);
       }
     };
     window.addEventListener('storage', handleStorage);
 
-    // 3. Instant re-fetch when admin tab gains focus or visibility
+    // 3. Instant silent re-fetch when admin tab gains focus or visibility
     const handleFocus = () => {
       if (document.visibilityState === 'visible') {
-        fetchAllLeads();
+        fetchAllLeads(true);
       }
     };
     window.addEventListener('focus', handleFocus);
     document.addEventListener('visibilitychange', handleFocus);
 
-    // 4. Fast 2.5-second polling loop for cross-device/network synchronization
+    // 4. Relaxed 30-second silent fallback loop for cross-device synchronization
     const interval = setInterval(() => {
-      fetchAllLeads();
-    }, 2500);
+      fetchAllLeads(true);
+    }, 30000);
 
     return () => {
       if (channel) channel.close();
@@ -480,6 +561,73 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
     showToast('✓ Exported dispatch_subscribers.csv', 'success');
   };
 
+  const handleUpdateChatStatus = async (id: string, status: AIChatSession['status']) => {
+    try {
+      const res = await fetch('/api/admin/chats', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data.session) {
+          setChatSessions((prev) => prev.map((s) => (s.id === id ? data.session : s)));
+          if (selectedChatSession?.id === id) setSelectedChatSession(data.session);
+          showToast(`✓ Session marked as ${status.toUpperCase()}`, 'success');
+        }
+      }
+    } catch {
+      showToast('Failed to update chat session status', 'error');
+    }
+  };
+
+  const handleDeleteChatSession = async (id: string) => {
+    if (!confirm('Are you sure you want to remove this AI chat session?')) return;
+    try {
+      const res = await fetch(`/api/admin/chats?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      if (res.ok) {
+        setChatSessions((prev) => prev.filter((s) => s.id !== id));
+        if (selectedChatSession?.id === id) setSelectedChatSession(null);
+        if (expandedTranscriptId === id) setExpandedTranscriptId(null);
+        showToast('Chat session removed', 'info');
+      }
+    } catch {
+      showToast('Failed to remove chat session', 'error');
+    }
+  };
+
+  const handleExportChatsCSV = () => {
+    if (chatSessions.length === 0) {
+      showToast('No chat sessions to export', 'info');
+      return;
+    }
+    const headers = ['Session Ref', 'Date', 'Duration (s)', 'Messages', 'Status', 'Client Name', 'Phone', 'Email', 'Architectural Intent', 'Summary', 'Materials Discussed', 'Materials Suggested', 'Recommendation'];
+    const rows = chatSessions.map((s) => [
+      `"${s.sessionNumber || s.id}"`,
+      `"${new Date(s.startedAt).toLocaleString()}"`,
+      s.durationSeconds || 0,
+      s.messageCount || 0,
+      `"${s.status}"`,
+      `"${s.customerContact?.name || ''}"`,
+      `"${s.customerContact?.phone || ''}"`,
+      `"${s.customerContact?.email || ''}"`,
+      `"${(s.intent || '').replace(/"/g, '""')}"`,
+      `"${(s.summary || '').replace(/"/g, '""')}"`,
+      `"${(s.materialsDiscussed || []).join('; ')}"`,
+      `"${(s.materialsSuggested || []).join('; ')}"`,
+      `"${(s.followUpRecommendation || '').replace(/"/g, '""')}"`,
+    ]);
+    const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map((e) => e.join(','))].join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `acespaces_ai_concierge_chats_${Date.now()}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast('✓ AI Concierge chat summaries exported to CSV', 'success');
+  };
+
   // Server-side Auth submission
   const handleLogin = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -537,12 +685,26 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
       materials: localMaterials,
       applicationSectors: localSectors,
       journalArticles: localJournalArticles,
+      projects: localProjects,
+      studioContact: localStudioContact,
     });
     if (success) {
       showToast('✓ All changes saved to custom-content.json & active on site!', 'success');
       loadMedia();
     } else {
       showToast('Error saving changes. Please check server log.', 'error');
+    }
+  };
+
+  const handleSaveWhatsAppConfig = async (e?: React.FormEvent) => {
+    if (e) e.preventDefault();
+    const success = await saveContent({
+      studioContact: localStudioContact,
+    });
+    if (success) {
+      showToast('✓ WhatsApp Studio Configuration updated and live across site.', 'success');
+    } else {
+      showToast('Failed to save WhatsApp configuration.', 'error');
     }
   };
 
@@ -887,6 +1049,281 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
       })
     );
     showToast('Photo removed from sector gallery.', 'info');
+  };
+
+  // Sector Recommended Materials Operations (Powers Application Material Gallery)
+  const addSectorRecommendedMaterial = (sectorId: string, slug: string, finish: string) => {
+    const mat = localMaterials.find(m => m.slug === slug);
+    if (!mat) {
+      showToast('Please select an active material from the list.', 'error');
+      return;
+    }
+    const finishLabel = finish.trim() || mat.finish || 'Architectural Spec';
+    setLocalSectors(prev =>
+      prev.map(s => {
+        if (s.id === sectorId) {
+          const current = s.recommendedMaterials || [];
+          if (current.some(m => m.slug === slug)) {
+            showToast(`"${mat.name}" is already included in this sector gallery.`, 'info');
+            return s;
+          }
+          return {
+            ...s,
+            recommendedMaterials: [...current, { name: mat.name, slug, finish: finishLabel }],
+          };
+        }
+        return s;
+      })
+    );
+    setNewSectorMaterialSlug('');
+    setNewSectorMaterialFinish('');
+    showToast(`✓ Added "${mat.name}" to ${selectedSector?.title || 'sector'} material gallery.`, 'success');
+  };
+
+  const removeSectorRecommendedMaterial = (sectorId: string, slug: string) => {
+    setLocalSectors(prev =>
+      prev.map(s => {
+        if (s.id === sectorId) {
+          return {
+            ...s,
+            recommendedMaterials: (s.recommendedMaterials || []).filter(m => m.slug !== slug),
+          };
+        }
+        return s;
+      })
+    );
+    showToast('Material removed from sector gallery.', 'info');
+  };
+
+  const updateSectorRecommendedMaterialFinish = (sectorId: string, slug: string, finish: string) => {
+    setLocalSectors(prev =>
+      prev.map(s => {
+        if (s.id === sectorId) {
+          return {
+            ...s,
+            recommendedMaterials: (s.recommendedMaterials || []).map(m =>
+              m.slug === slug ? { ...m, finish } : m
+            ),
+          };
+        }
+        return s;
+      })
+    );
+  };
+
+  // Sector Hygiene & Performance Compliance Testing Operations
+  const addSectorHygieneRow = (sectorId: string, feature: string, standard: string, benefit: string) => {
+    if (!feature.trim() || !standard.trim()) {
+      showToast('Please provide both Feature and Test Standard.', 'error');
+      return;
+    }
+    setLocalSectors(prev =>
+      prev.map(s => {
+        if (s.id === sectorId) {
+          return {
+            ...s,
+            hygieneAndPerformance: [
+              ...(s.hygieneAndPerformance || []),
+              { feature: feature.trim(), standard: standard.trim(), benefit: benefit.trim() },
+            ],
+          };
+        }
+        return s;
+      })
+    );
+    setIsAddingHygieneRow(false);
+    setNewHygieneForm({ feature: '', standard: '', benefit: '' });
+    showToast('✓ Added compliance test row to sector table.', 'success');
+  };
+
+  const removeSectorHygieneRow = (sectorId: string, index: number) => {
+    setLocalSectors(prev =>
+      prev.map(s => {
+        if (s.id === sectorId) {
+          return {
+            ...s,
+            hygieneAndPerformance: (s.hygieneAndPerformance || []).filter((_, idx) => idx !== index),
+          };
+        }
+        return s;
+      })
+    );
+    showToast('Removed hygiene test row.', 'info');
+  };
+
+  const updateSectorHygieneRow = (sectorId: string, index: number, field: 'feature' | 'standard' | 'benefit', value: string) => {
+    setLocalSectors(prev =>
+      prev.map(s => {
+        if (s.id === sectorId) {
+          const updated = [...(s.hygieneAndPerformance || [])];
+          if (updated[index]) {
+            updated[index] = { ...updated[index], [field]: value };
+          }
+          return { ...s, hygieneAndPerformance: updated };
+        }
+        return s;
+      })
+    );
+  };
+
+  // Sector Architectural Elements Operations
+  const addSectorElement = (sectorId: string, elementText: string) => {
+    if (!elementText.trim()) return;
+    setLocalSectors(prev =>
+      prev.map(s => {
+        if (s.id === sectorId) {
+          return {
+            ...s,
+            elements: [...(s.elements || []), elementText.trim()],
+          };
+        }
+        return s;
+      })
+    );
+    setNewSectorElementText('');
+    showToast('✓ Added architectural element.', 'success');
+  };
+
+  const removeSectorElement = (sectorId: string, index: number) => {
+    setLocalSectors(prev =>
+      prev.map(s => {
+        if (s.id === sectorId) {
+          return {
+            ...s,
+            elements: (s.elements || []).filter((_, idx) => idx !== index),
+          };
+        }
+        return s;
+      })
+    );
+    showToast('Removed element.', 'info');
+  };
+
+  // =========================================================================
+  // PROJECTS & ARCHITECTURAL CASE STUDIES OPERATIONS
+  // =========================================================================
+  const selectedProject = localProjects.find(p => p.slug === selectedProjectSlug) || localProjects[0];
+
+  const updateProjectField = (slug: string, field: keyof Project, value: any) => {
+    setLocalProjects(prev =>
+      prev.map(p => (p.slug === slug ? { ...p, [field]: value } : p))
+    );
+  };
+
+  const deleteProject = async (slug: string) => {
+    if (window.confirm(`Delete architectural case study "${slug}"?`)) {
+      const remaining = localProjects.filter(p => p.slug !== slug);
+      setLocalProjects(remaining);
+      if (remaining[0]) setSelectedProjectSlug(remaining[0].slug);
+      await saveContent({
+        heroSlides: localHeroSlides,
+        materials: localMaterials,
+        applicationSectors: localSectors,
+        journalArticles: localJournalArticles,
+        projects: remaining,
+      });
+      showToast(`Case study "${slug}" deleted & updated live.`, 'info');
+    }
+  };
+
+  const handleCreateProject = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newProjectForm.title.trim()) {
+      showToast('Please provide a project title.', 'error');
+      return;
+    }
+    const slug = newProjectForm.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || `project-${Date.now()}`;
+    const specsArray = newProjectForm.specs
+      .split('\n')
+      .map(line => {
+        const parts = line.split(':');
+        if (parts.length >= 2) {
+          return { label: parts[0].trim(), value: parts.slice(1).join(':').trim() };
+        }
+        return null;
+      })
+      .filter(Boolean) as { label: string; value: string }[];
+
+    const newProj: Project = {
+      slug,
+      title: newProjectForm.title.trim(),
+      subtitle: newProjectForm.subtitle.trim() || 'Architectural Case Study',
+      category: newProjectForm.category,
+      location: newProjectForm.location.trim() || 'India',
+      year: newProjectForm.year.trim() || '2024',
+      architect: newProjectForm.architect.trim() || 'Ace Spaces Collaboration',
+      area: newProjectForm.area.trim() || 'Bespoke Pavilion',
+      description: newProjectForm.description.trim() || 'Selected architectural case study showcasing custom mineral surface fabrication.',
+      materialUsed: newProjectForm.materialUsed.trim() || 'Alto / Ivory Vein',
+      materialSlug: newProjectForm.materialSlug.trim() || 'alto-bianco-vein',
+      application: newProjectForm.application.trim() || 'Monolithic Island & Wall Cladding',
+      fabrication: newProjectForm.fabrication.trim() || 'Seamless Inconspicuous Jointing & Thermoforming',
+      image: newProjectForm.image.trim() || '/assets/applications/calacatta-greige-kitchen.jpg',
+      challenge: newProjectForm.challenge.trim() || 'Achieving monolithic architectural continuity with zero visible seams.',
+      solution: newProjectForm.solution.trim() || 'Engineered workshop pre-assembly with laser templating and color-matched adhesive curing.',
+      specs: specsArray.length > 0 ? specsArray : [
+        { label: 'Surface Material', value: 'Ace Spaces Solid Surface' },
+        { label: 'Joinery Type', value: 'Thermo-welded Matrix' },
+      ],
+    };
+
+    const updated = [newProj, ...localProjects];
+    setLocalProjects(updated);
+    setSelectedProjectSlug(newProj.slug);
+    setIsAddingProject(false);
+    setNewProjectForm(initialProjectForm);
+
+    await saveContent({
+      heroSlides: localHeroSlides,
+      materials: localMaterials,
+      applicationSectors: localSectors,
+      journalArticles: localJournalArticles,
+      projects: updated,
+    });
+    showToast(`✓ Project case study "${newProj.title}" registered & live on /projects!`, 'success');
+  };
+
+  const updateProjectSpec = (slug: string, index: number, field: 'label' | 'value', value: string) => {
+    setLocalProjects(prev =>
+      prev.map(p => {
+        if (p.slug === slug) {
+          const copy = [...p.specs];
+          if (copy[index]) {
+            copy[index] = { ...copy[index], [field]: value };
+          }
+          return { ...p, specs: copy };
+        }
+        return p;
+      })
+    );
+  };
+
+  const addProjectSpecRow = (slug: string) => {
+    setLocalProjects(prev =>
+      prev.map(p => {
+        if (p.slug === slug) {
+          return {
+            ...p,
+            specs: [...p.specs, { label: 'Specification', value: 'Value' }],
+          };
+        }
+        return p;
+      })
+    );
+  };
+
+  const removeProjectSpecRow = (slug: string, index: number) => {
+    setLocalProjects(prev =>
+      prev.map(p => {
+        if (p.slug === slug) {
+          return {
+            ...p,
+            specs: p.specs.filter((_, idx) => idx !== index),
+          };
+        }
+        return p;
+      })
+    );
   };
 
   // -------------------------------------------------------------
@@ -1263,9 +1700,10 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                 { key: 'hero', num: '02', title: 'Hero Slider & Images' },
                 { key: 'materials', num: '03', title: 'Materials & Slabs' },
                 { key: 'colors', num: '04', title: 'Colours & Swatches' },
-                { key: 'applications', num: '05', title: 'Applications Photography' },
-                { key: 'journal', num: '06', title: 'Journal & Essays' },
-                { key: 'media', num: '07', title: 'Media Asset Library' },
+                { key: 'applications', num: '05', title: 'Applications & Typologies' },
+                { key: 'projects', num: '06', title: 'Projects & Case Studies', count: localProjects.length, badgeColor: '#68b5e8' },
+                { key: 'journal', num: '07', title: 'Journal & Essays' },
+                { key: 'media', num: '08', title: 'Media Asset Library' },
               ].map((item) => {
                 const isActive = activeTab === item.key;
                 return (
@@ -1294,6 +1732,20 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                       {item.num}
                     </span>
                     <span style={{ flex: 1 }}>{item.title}</span>
+                    {item.count !== undefined && item.count > 0 && (
+                      <span
+                        style={{
+                          background: item.badgeColor || '#73c991',
+                          color: '#1a1d19',
+                          fontSize: '9px',
+                          fontWeight: 700,
+                          padding: '1px 6px',
+                          borderRadius: '10px',
+                        }}
+                      >
+                        {item.count}
+                      </span>
+                    )}
                   </button>
                 );
               })}
@@ -1305,24 +1757,31 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
               {[
                 {
                   key: 'orders',
-                  num: '08',
+                  num: '09',
                   title: 'Sample Orders',
                   count: orders.filter((o) => o.status === 'submitted' || o.status === 'in-progress').length,
                   badgeColor: '#e5a93b',
                 },
                 {
                   key: 'inquiries',
-                  num: '09',
+                  num: '10',
                   title: 'Enquiries',
                   count: inquiries.filter((i) => i.status === 'new').length,
                   badgeColor: '#73c991',
                 },
                 {
                   key: 'dispatch',
-                  num: '10',
+                  num: '11',
                   title: 'Dispatch Journal',
                   count: subscribers.length,
                   badgeColor: '#6da5c0',
+                },
+                {
+                  key: 'ai-chats',
+                  num: '12',
+                  title: 'AI Concierge Chats',
+                  count: chatSessions.filter((c) => c.status === 'new').length,
+                  badgeColor: '#a78bfa',
                 },
               ].map((item) => {
                 const isActive = activeTab === item.key;
@@ -1451,11 +1910,13 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
               {[
                 { title: 'Sample Orders', count: orders.length, desc: `${orders.filter(o => o.status === 'submitted').length} new submitted`, tab: 'orders' },
                 { title: 'Client Enquiries', count: inquiries.length, desc: `${inquiries.filter(i => i.status === 'new').length} new consultations`, tab: 'inquiries' },
+                { title: 'AI Concierge Chats', count: chatSessions.length, desc: `${chatSessions.filter(c => c.status === 'new').length} new AI summaries`, tab: 'ai-chats' },
                 { title: 'Dispatch Readers', count: subscribers.length, desc: `${subscribers.filter(s => s.status === 'active').length} active subscribers`, tab: 'dispatch' },
                 { title: 'Hero Slides', count: localHeroSlides.length, desc: 'Active carousel sequences', tab: 'hero' },
                 { title: 'Materials & Slabs', count: localMaterials.length, desc: 'Curated solid surfaces & slabs', tab: 'materials' },
                 { title: 'Colours & Swatches', count: localMaterials.length, desc: 'Honed, matte & veined chips', tab: 'colors' },
-                { title: 'Application Sectors', count: localSectors.length, desc: 'Residential, commercial, etc.', tab: 'applications' },
+                { title: 'Application Sectors', count: localSectors.length, desc: 'Hospitals, residential, retail, etc.', tab: 'applications' },
+                { title: 'Case Studies & Projects', count: localProjects.length, desc: 'Selected architectural work', tab: 'projects' },
                 { title: 'Journal Essays', count: localJournalArticles.length, desc: 'Architectural research & essays', tab: 'journal' },
                 { title: 'Media Assets', count: mediaAssets.length, desc: 'Architectural images in storage', tab: 'media' },
               ].map(stat => (
@@ -1481,6 +1942,252 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* Direct WhatsApp Studio Configuration Card */}
+            <div style={{ background: '#ffffff', padding: '24px 28px', border: '1px solid rgba(0,0,0,0.08)', marginBottom: '24px', borderRadius: '2px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#25D366', display: 'inline-block' }} />
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
+                      Live Architectural WhatsApp Advisory
+                    </span>
+                  </div>
+                  <h3 style={{ fontSize: '18px', fontWeight: 500, margin: 0 }}>
+                    Studio WhatsApp Desk & Specifier Hotline
+                  </h3>
+                  <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#6c746c', margin: '4px 0 0 0' }}>
+                    Configures the direct contact number powering the top navbar button, mobile drawer card, home page enquiry desk, and floating concierge widget.
+                  </p>
+                </div>
+
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                  <a
+                    href={generateWhatsAppUrl(localStudioContact.whatsappNumber, localStudioContact.whatsappDefaultMessage)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      background: 'rgba(37, 211, 102, 0.12)',
+                      border: '1px solid rgba(37, 211, 102, 0.4)',
+                      color: '#0e2b15',
+                      padding: '8px 14px',
+                      borderRadius: '3px',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                    }}
+                  >
+                    Test WhatsApp Link ↗
+                  </a>
+                  <button
+                    type="button"
+                    onClick={handleSaveWhatsAppConfig}
+                    className="button button-dark"
+                    style={{ padding: '8px 16px', fontSize: '11px', cursor: 'pointer' }}
+                  >
+                    Save Configuration ↗
+                  </button>
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                <div>
+                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
+                    WhatsApp Phone Number (with Country Code)
+                  </label>
+                  <input
+                    type="text"
+                    value={localStudioContact.whatsappNumber}
+                    onChange={(e) => setLocalStudioContact({ ...localStudioContact, whatsappNumber: e.target.value })}
+                    placeholder="+91 98450 12345"
+                    style={{
+                      width: '100%',
+                      padding: '8px 12px',
+                      border: '1px solid #d4d8d4',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '12px',
+                    }}
+                  />
+                  <small style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#889088' }}>
+                    E.g., +91 98450 12345 (digits are automatically cleaned for wa.me)
+                  </small>
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
+                    Display Label in Studio UI
+                  </label>
+                  <input
+                    type="text"
+                    value={localStudioContact.whatsappDisplay}
+                    onChange={(e) => setLocalStudioContact({ ...localStudioContact, whatsappDisplay: e.target.value })}
+                    placeholder="+91 98450 12345"
+                    style={{
+                      width: '100%',
+                      padding: '8px 12px',
+                      border: '1px solid #d4d8d4',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '12px',
+                    }}
+                  />
+                </div>
+
+                <div>
+                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
+                    Studio Status Badge Note
+                  </label>
+                  <input
+                    type="text"
+                    value={localStudioContact.availabilityStatus}
+                    onChange={(e) => setLocalStudioContact({ ...localStudioContact, availabilityStatus: e.target.value })}
+                    placeholder="Studio Online · Material Advisory"
+                    style={{
+                      width: '100%',
+                      padding: '8px 12px',
+                      border: '1px solid #d4d8d4',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '12px',
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ marginTop: '16px' }}>
+                <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
+                  Default Opening Greeting (Pre-filled in client WhatsApp chat)
+                </label>
+                <input
+                  type="text"
+                  value={localStudioContact.whatsappDefaultMessage}
+                  onChange={(e) => setLocalStudioContact({ ...localStudioContact, whatsappDefaultMessage: e.target.value })}
+                  placeholder="Hello Ace Spaces Studio, I would like to consult on material specification for an upcoming project."
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    border: '1px solid #d4d8d4',
+                    fontFamily: 'Manrope, sans-serif',
+                    fontSize: '12px',
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Recent AI Concierge Interactions & Material Inquiries */}
+            <div style={{ background: '#ffffff', padding: '24px 28px', border: '1px solid rgba(0,0,0,0.08)', marginBottom: '24px', borderRadius: '2px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', flexWrap: 'wrap', gap: '12px' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#a78bfa', display: 'inline-block' }} />
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#7c3aed', fontWeight: 600 }}>
+                      Real-Time AI Intelligence Feed
+                    </span>
+                  </div>
+                  <h3 style={{ fontSize: '18px', fontWeight: 500, margin: 0 }}>
+                    Recent AI Concierge Material Advisory Sessions
+                  </h3>
+                  <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#6c746c', margin: '4px 0 0 0' }}>
+                    Autonomous summaries captured when visitors conclude discussions with the Ace Spaces AI Concierge.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setActiveTab('ai-chats')}
+                  style={{
+                    background: '#1a1d19',
+                    color: '#ffffff',
+                    border: 'none',
+                    padding: '8px 16px',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  Open AI Concierge Console ({chatSessions.length}) →
+                </button>
+              </div>
+
+              {chatSessions.length === 0 ? (
+                <div style={{ padding: '32px', textAlign: 'center', background: '#faf9f5', border: '1px dashed #d4d8d4' }}>
+                  <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#889088', margin: 0 }}>
+                    No AI chat sessions recorded yet. Engage the AI bot in the bottom-right corner and close it to generate an executive summary.
+                  </p>
+                </div>
+              ) : (
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
+                  {chatSessions.slice(0, 3).map((session) => (
+                    <div
+                      key={session.id}
+                      onClick={() => {
+                        setSelectedChatSession(session);
+                        setActiveTab('ai-chats');
+                      }}
+                      style={{
+                        background: '#faf9f5',
+                        border: '1px solid rgba(0,0,0,0.08)',
+                        padding: '16px',
+                        cursor: 'pointer',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#7c3aed', fontWeight: 700, letterSpacing: '0.06em' }}>
+                          {session.sessionNumber || session.id.slice(0, 14)}
+                        </span>
+                        <span
+                          style={{
+                            fontFamily: 'DM Mono, monospace',
+                            fontSize: '9px',
+                            fontWeight: 600,
+                            padding: '2px 6px',
+                            borderRadius: '2px',
+                            background: session.status === 'new' ? '#ede9fe' : session.status === 'reviewed' ? '#fef3c7' : '#dcfce7',
+                            color: session.status === 'new' ? '#6d28d9' : session.status === 'reviewed' ? '#b45309' : '#15803d',
+                          }}
+                        >
+                          {session.status.toUpperCase()}
+                        </span>
+                      </div>
+                      <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 6px 0', color: '#1a1d19', lineHeight: 1.3 }}>
+                        {session.intent}
+                      </h4>
+                      <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', margin: '0 0 10px 0', lineHeight: 1.5, display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                        {session.summary}
+                      </p>
+                      {session.materialsSuggested && session.materialsSuggested.length > 0 && (
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '8px' }}>
+                          {session.materialsSuggested.slice(0, 2).map((m, idx) => (
+                            <span
+                              key={idx}
+                              style={{
+                                background: '#ecfdf5',
+                                border: '1px solid #a7f3d0',
+                                color: '#065f46',
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '9px',
+                                padding: '1px 6px',
+                              }}
+                            >
+                              ★ {m}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#889088', borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '8px' }}>
+                        <span>{new Date(session.startedAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' })} · {session.messageCount} msgs</span>
+                        <span style={{ color: '#1a1d19', fontWeight: 600 }}>Inspect Details →</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* System Status and Documentation */}
@@ -1555,6 +2262,20 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                     }}
                   >
                     + Register New Color Swatch / Architectural Tone
+                  </button>
+                  <button
+                    onClick={() => { setActiveTab('projects'); setIsAddingProject(true); }}
+                    style={{
+                      textAlign: 'left',
+                      padding: '10px 14px',
+                      background: '#f5f4ee',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    + Document New Architectural Project Case Study
                   </button>
                   <button
                     onClick={() => { setActiveTab('journal'); setIsAddingJournal(true); }}
@@ -3145,6 +3866,76 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                         />
                       </div>
                     </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Fabrication & Seam Detailing Note
+                      </label>
+                      <textarea
+                        rows={2}
+                        value={selectedSector.fabricationNote || ''}
+                        onChange={e => updateSectorField(selectedSector.id, 'fabricationNote', e.target.value)}
+                        placeholder="e.g. Custom thermoformed integral coved corners and silicone-free chemical welding..."
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', lineHeight: 1.5 }}
+                      />
+                    </div>
+
+                    {/* Sector Architectural Elements */}
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '6px' }}>
+                        Typical Architectural Elements ({selectedSector.elements?.length || 0})
+                      </label>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '180px', overflowY: 'auto', marginBottom: '8px' }}>
+                        {selectedSector.elements?.map((elem, eIdx) => (
+                          <div
+                            key={eIdx}
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              gap: '8px',
+                              background: '#f8f7f2',
+                              padding: '6px 10px',
+                              border: '1px solid #eee',
+                              fontSize: '11px',
+                              fontFamily: 'DM Mono, monospace',
+                            }}
+                          >
+                            <span style={{ color: '#73c991', fontSize: '12px' }}>•</span>
+                            <span style={{ flex: 1 }}>{elem}</span>
+                            <button
+                              type="button"
+                              onClick={() => removeSectorElement(selectedSector.id, eIdx)}
+                              style={{ background: 'transparent', border: 'none', color: '#c62828', cursor: 'pointer', fontSize: '13px', padding: '0 4px' }}
+                              title="Remove element"
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                      <div style={{ display: 'flex', gap: '6px' }}>
+                        <input
+                          type="text"
+                          placeholder="Add new architectural element..."
+                          value={newSectorElementText}
+                          onChange={e => setNewSectorElementText(e.target.value)}
+                          onKeyDown={e => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              addSectorElement(selectedSector.id, newSectorElementText);
+                            }
+                          }}
+                          style={{ flex: 1, padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => addSectorElement(selectedSector.id, newSectorElementText)}
+                          style={{ padding: '6px 12px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer' }}
+                        >
+                          + Add
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -3268,9 +4059,1101 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                       </div>
                     ))}
                   </div>
+                  {/* Sector Recommended Material Gallery (Powers Application Material Gallery) */}
+                  <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)', marginTop: '20px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                      <div>
+                        <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
+                          Sector Recommended Materials Gallery ({selectedSector.recommendedMaterials?.length || 0})
+                        </h3>
+                        <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', margin: '4px 0 0 0' }}>
+                          Powers the interactive material palette & spec gallery on the /applications/{selectedSector.id} frontend page.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Add Material to Sector Palette Bar */}
+                    <div style={{ background: '#f8f7f2', padding: '14px', border: '1px solid #e5e4de', marginBottom: '18px' }}>
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#555', marginBottom: '8px' }}>
+                        + Add Material to this Sector Palette
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1.6fr auto', gap: '8px' }}>
+                        <select
+                          value={newSectorMaterialSlug}
+                          onChange={e => setNewSectorMaterialSlug(e.target.value)}
+                          style={{ padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        >
+                          <option value="">Select Material from Catalog...</option>
+                          {localMaterials.map(m => (
+                            <option key={m.slug} value={m.slug}>
+                              {m.name} ({m.collection})
+                            </option>
+                          ))}
+                        </select>
+                        <input
+                          type="text"
+                          placeholder="Recommended Finish (e.g. Ultra-smooth Satin Clean)"
+                          value={newSectorMaterialFinish}
+                          onChange={e => setNewSectorMaterialFinish(e.target.value)}
+                          style={{ padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => addSectorRecommendedMaterial(selectedSector.id, newSectorMaterialSlug, newSectorMaterialFinish)}
+                          style={{
+                            padding: '7px 16px',
+                            background: '#1a1d19',
+                            color: '#fff',
+                            border: 'none',
+                            fontFamily: 'DM Mono, monospace',
+                            fontSize: '10px',
+                            cursor: 'pointer',
+                            letterSpacing: '0.06em',
+                            textTransform: 'uppercase',
+                          }}
+                        >
+                          Add to Gallery
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Material Cards Grid */}
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '14px' }}>
+                      {(selectedSector.recommendedMaterials || []).map(rec => {
+                        const matDetail = localMaterials.find(m => m.slug === rec.slug);
+                        return (
+                          <div
+                            key={rec.slug}
+                            style={{
+                              border: '1px solid #e0dfd5',
+                              background: '#faf9f5',
+                              padding: '12px',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              gap: '10px',
+                            }}
+                          >
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                              {/* Color/Texture Swatch */}
+                              <div
+                                style={{
+                                  width: '42px',
+                                  height: '42px',
+                                  borderRadius: '4px',
+                                  border: '1px solid rgba(0,0,0,0.12)',
+                                  background: matDetail?.color || '#e0dfd5',
+                                  flexShrink: 0,
+                                  position: 'relative',
+                                  overflow: 'hidden',
+                                }}
+                              >
+                                {matDetail?.image && isValidImageSrc(matDetail.image) && (
+                                  <Image
+                                    src={matDetail.image}
+                                    alt={matDetail.name || rec.name}
+                                    fill
+                                    sizes="42px"
+                                    style={{ objectFit: 'cover' }}
+                                  />
+                                )}
+                              </div>
+                              <div style={{ minWidth: 0, flex: 1 }}>
+                                <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '14px', fontWeight: 600, color: '#1a1d19', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                  {matDetail?.name || rec.name}
+                                </div>
+                                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#788078', textTransform: 'uppercase' }}>
+                                  {matDetail?.collection || 'Curated Spec'} • /{rec.slug}
+                                </div>
+                              </div>
+                            </div>
+
+                            <div>
+                              <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '3px' }}>
+                                Recommended Finish
+                              </label>
+                              <input
+                                type="text"
+                                value={rec.finish}
+                                onChange={e => updateSectorRecommendedMaterialFinish(selectedSector.id, rec.slug, e.target.value)}
+                                style={{
+                                  width: '100%',
+                                  boxSizing: 'border-box',
+                                  padding: '5px 8px',
+                                  border: '1px solid #d0cfc7',
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '10px',
+                                  background: '#fff',
+                                }}
+                              />
+                            </div>
+
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '4px', borderTop: '1px solid #ecebe4' }}>
+                              <Link
+                                href={`/materials/${rec.slug}`}
+                                target="_blank"
+                                style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#2a3029', textDecoration: 'none' }}
+                              >
+                                Inspect Material ↗
+                              </Link>
+                              <button
+                                type="button"
+                                onClick={() => removeSectorRecommendedMaterial(selectedSector.id, rec.slug)}
+                                style={{
+                                  background: 'transparent',
+                                  border: 'none',
+                                  color: '#c62828',
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '9px',
+                                  cursor: 'pointer',
+                                  padding: 0,
+                                }}
+                              >
+                                Remove ×
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
+                      {(!selectedSector.recommendedMaterials || selectedSector.recommendedMaterials.length === 0) && (
+                        <div style={{ gridColumn: '1 / -1', padding: '24px', textAlign: 'center', color: '#888', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#faf9f5', border: '1px dashed #d5d4cd' }}>
+                          No sector recommended materials configured. Add materials from the catalog above to populate the frontend material gallery.
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Sector Hygiene & Performance Compliance Testing Standards Table */}
+                  <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)', marginTop: '20px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                      <div>
+                        <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
+                          Hygiene & Performance Compliance Standards ({selectedSector.hygieneAndPerformance?.length || 0})
+                        </h3>
+                        <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', margin: '4px 0 0 0' }}>
+                          Certifications, resistance criteria & architectural compliance parameters displayed on the sector page.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setIsAddingHygieneRow(true)}
+                        style={{
+                          padding: '6px 12px',
+                          background: '#1a1d19',
+                          color: '#fff',
+                          border: 'none',
+                          fontFamily: 'DM Mono, monospace',
+                          fontSize: '10px',
+                          cursor: 'pointer',
+                          letterSpacing: '0.05em',
+                        }}
+                      >
+                        + Add Standard
+                      </button>
+                    </div>
+
+                    {/* Add Inline Row */}
+                    {isAddingHygieneRow && (
+                      <div style={{ background: '#f8f7f2', padding: '16px', border: '1px solid #ddd', marginBottom: '16px' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr', gap: '10px', marginBottom: '10px' }}>
+                          <div>
+                            <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                              Performance Feature
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="e.g. Bacterial & Microbe Resistance"
+                              value={newHygieneForm.feature}
+                              onChange={e => setNewHygieneForm(prev => ({ ...prev, feature: e.target.value }))}
+                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                              Test Standard / Certification
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="e.g. ISO 846 Class 0"
+                              value={newHygieneForm.standard}
+                              onChange={e => setNewHygieneForm(prev => ({ ...prev, standard: e.target.value }))}
+                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}
+                            />
+                          </div>
+                          <div>
+                            <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                              Architectural & Clinical Benefit
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="e.g. Zero fungal & bacterial colony formation over 28-day continuous exposure."
+                              value={newHygieneForm.benefit}
+                              onChange={e => setNewHygieneForm(prev => ({ ...prev, benefit: e.target.value }))}
+                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}
+                            />
+                          </div>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
+                          <button
+                            type="button"
+                            onClick={() => setIsAddingHygieneRow(false)}
+                            style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer' }}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => addSectorHygieneRow(selectedSector.id, newHygieneForm.feature, newHygieneForm.standard, newHygieneForm.benefit)}
+                            style={{ padding: '5px 14px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer' }}
+                          >
+                            Save Standard
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Standards Table */}
+                    <div style={{ overflowX: 'auto' }}>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                        <thead>
+                          <tr style={{ background: '#f4f3ed', borderBottom: '1px solid #e0ded4', textAlign: 'left' }}>
+                            <th style={{ padding: '8px 10px', textTransform: 'uppercase', color: '#555', width: '25%' }}>Performance Feature</th>
+                            <th style={{ padding: '8px 10px', textTransform: 'uppercase', color: '#555', width: '25%' }}>Standard / Test</th>
+                            <th style={{ padding: '8px 10px', textTransform: 'uppercase', color: '#555', width: '45%' }}>Architectural / Clinical Benefit</th>
+                            <th style={{ padding: '8px 10px', width: '5%', textAlign: 'center' }}>Del</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {(selectedSector.hygieneAndPerformance || []).map((row, rIdx) => (
+                            <tr key={rIdx} style={{ borderBottom: '1px solid #eee' }}>
+                              <td style={{ padding: '6px 8px' }}>
+                                <input
+                                  type="text"
+                                  value={row.feature}
+                                  onChange={e => updateSectorHygieneRow(selectedSector.id, rIdx, 'feature', e.target.value)}
+                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace' }}
+                                />
+                              </td>
+                              <td style={{ padding: '6px 8px' }}>
+                                <input
+                                  type="text"
+                                  value={row.standard}
+                                  onChange={e => updateSectorHygieneRow(selectedSector.id, rIdx, 'standard', e.target.value)}
+                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: 600 }}
+                                />
+                              </td>
+                              <td style={{ padding: '6px 8px' }}>
+                                <input
+                                  type="text"
+                                  value={row.benefit}
+                                  onChange={e => updateSectorHygieneRow(selectedSector.id, rIdx, 'benefit', e.target.value)}
+                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace' }}
+                                />
+                              </td>
+                              <td style={{ padding: '6px 8px', textAlign: 'center' }}>
+                                <button
+                                  type="button"
+                                  onClick={() => removeSectorHygieneRow(selectedSector.id, rIdx)}
+                                  style={{ background: 'transparent', border: 'none', color: '#c62828', cursor: 'pointer', fontSize: '12px' }}
+                                >
+                                  ×
+                                </button>
+                              </td>
+                            </tr>
+                          ))}
+                          {(!selectedSector.hygieneAndPerformance || selectedSector.hygieneAndPerformance.length === 0) && (
+                            <tr>
+                              <td colSpan={4} style={{ padding: '16px', textAlign: 'center', color: '#888' }}>
+                                No hygiene or compliance test parameters configured for this sector.
+                              </td>
+                            </tr>
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {/* =========================================================================
+            TAB: PROJECTS & ARCHITECTURAL CASE STUDIES MANAGER
+        ========================================================================= */}
+        {activeTab === 'projects' && (
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+              <div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                  Built Work & Realised Interventions
+                </div>
+                <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
+                  Architectural Projects & Case Studies ({localProjects.length})
+                </h2>
+              </div>
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <Link
+                  href="/projects"
+                  target="_blank"
+                  style={{
+                    padding: '8px 14px',
+                    background: '#2a3029',
+                    color: '#fff',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    textDecoration: 'none',
+                    letterSpacing: '0.05em',
+                  }}
+                >
+                  View /projects Gallery ↗
+                </Link>
+                <button
+                  onClick={() => setIsAddingProject(true)}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#1a1d19',
+                    color: '#fff',
+                    border: 'none',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    cursor: 'pointer',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  + Register New Case Study
+                </button>
+              </div>
+            </div>
+
+            {/* Filter & Search Toolbar */}
+            <div style={{ background: '#ffffff', padding: '16px 20px', border: '1px solid rgba(0,0,0,0.08)', marginBottom: '20px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ flex: 1, minWidth: '220px' }}>
+                <input
+                  type="text"
+                  placeholder="Search projects by title, location, architect or surface..."
+                  value={projectSearchQuery}
+                  onChange={e => setProjectSearchQuery(e.target.value)}
+                  style={{
+                    width: '100%',
+                    boxSizing: 'border-box',
+                    padding: '8px 12px',
+                    border: '1px solid #ccc',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                  }}
+                />
+              </div>
+              <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+                {(['all', 'residential', 'hospitality', 'commercial', 'retail', 'healthcare'] as const).map(cat => (
+                  <button
+                    key={cat}
+                    type="button"
+                    onClick={() => setProjectCategoryFilter(cat)}
+                    style={{
+                      padding: '6px 12px',
+                      background: projectCategoryFilter === cat ? '#1a1d19' : '#f4f3ed',
+                      color: projectCategoryFilter === cat ? '#fff' : '#444',
+                      border: '1px solid',
+                      borderColor: projectCategoryFilter === cat ? '#1a1d19' : '#ddd',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '10px',
+                      textTransform: 'uppercase',
+                      cursor: 'pointer',
+                      letterSpacing: '0.05em',
+                    }}
+                  >
+                    {cat === 'all' ? 'All Sectors' : cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Modal / In-page Form for Adding New Project */}
+            {isAddingProject && (
+              <div style={{ background: '#ffffff', padding: '24px', border: '2px solid #1a1d19', marginBottom: '24px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid #eee', paddingBottom: '12px' }}>
+                  <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: 0, fontWeight: 400 }}>
+                    Register Architectural Case Study
+                  </h3>
+                  <button
+                    onClick={() => setIsAddingProject(false)}
+                    style={{ background: 'transparent', border: 'none', fontSize: '16px', cursor: 'pointer' }}
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <form onSubmit={handleCreateProject} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Project Title *
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Clinical precision & surgical hygiene"
+                        value={newProjectForm.title}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, title: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Subtitle / Tagline
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Advanced Surgical Suite & Cleanroom Integration"
+                        value={newProjectForm.subtitle}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, subtitle: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Typology / Category *
+                      </label>
+                      <select
+                        value={newProjectForm.category}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, category: e.target.value as any }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                      >
+                        <option value="residential">Residential</option>
+                        <option value="hospitality">Hospitality</option>
+                        <option value="commercial">Commercial</option>
+                        <option value="retail">Retail</option>
+                        <option value="healthcare">Healthcare (Hospitals & Clinics)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Location
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Hyderabad, Telangana"
+                        value={newProjectForm.location}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, location: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Year Completed
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="2024"
+                        value={newProjectForm.year}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, year: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Architect / Studio
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Matrix Health Architects"
+                        value={newProjectForm.architect}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, architect: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Scale / Area
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. 4,200 sq.m Surgical Wing"
+                        value={newProjectForm.area}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, area: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Featured Surface Material
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Noma / White Chalk"
+                        value={newProjectForm.materialUsed}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, materialUsed: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Linked Material in Catalog
+                      </label>
+                      <select
+                        value={newProjectForm.materialSlug}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, materialSlug: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                      >
+                        <option value="">Select Material...</option>
+                        {localMaterials.map(m => (
+                          <option key={m.slug} value={m.slug}>{m.name} ({m.collection})</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Application Typology
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. Scrub Sinks & Cleanroom Cladding"
+                        value={newProjectForm.application}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, application: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      Primary Installation Photography (URL or Media Asset)
+                    </label>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <input
+                        type="text"
+                        placeholder="/assets/applications/..."
+                        value={newProjectForm.image}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, image: e.target.value }))}
+                        style={{ flex: 1, padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                      <select
+                        onChange={e => { if (e.target.value) setNewProjectForm(prev => ({ ...prev, image: e.target.value })); }}
+                        value=""
+                        style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                      >
+                        <option value="">Select Media Asset...</option>
+                        {mediaAssets.map(img => (
+                          <option key={img} value={img}>{img.split('/').pop()}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      Project Description & Narrative
+                    </label>
+                    <textarea
+                      rows={3}
+                      placeholder="Comprehensive architectural narrative on spatial intent, client brief, and surface materiality..."
+                      value={newProjectForm.description}
+                      onChange={e => setNewProjectForm(prev => ({ ...prev, description: e.target.value }))}
+                      style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'inherit', fontSize: '12px' }}
+                    />
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Architectural Challenge
+                      </label>
+                      <textarea
+                        rows={3}
+                        placeholder="Spatial and technical hurdles faced during design & fabrication..."
+                        value={newProjectForm.challenge}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, challenge: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'inherit', fontSize: '12px' }}
+                      />
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Engineering & Material Solution
+                      </label>
+                      <textarea
+                        rows={3}
+                        placeholder="How Ace Spaces solid surfaces resolved the tolerances and performance criteria..."
+                        value={newProjectForm.solution}
+                        onChange={e => setNewProjectForm(prev => ({ ...prev, solution: e.target.value }))}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'inherit', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      Technical Specifications (One per line as: Label: Value)
+                    </label>
+                    <textarea
+                      rows={3}
+                      placeholder={`Surface Material: Noma Solid Mineral\nHygiene Standard: ISO 846 Class 0\nJoinery Type: Inconspicuous Thermo-weld`}
+                      value={newProjectForm.specs}
+                      onChange={e => setNewProjectForm(prev => ({ ...prev, specs: e.target.value }))}
+                      style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                    />
+                  </div>
+
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '10px' }}>
+                    <button
+                      type="button"
+                      onClick={() => setIsAddingProject(false)}
+                      style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer' }}
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      style={{ padding: '8px 20px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer', textTransform: 'uppercase' }}
+                    >
+                      Publish Case Study
+                    </button>
+                  </div>
+                </form>
+              </div>
+            )}
+
+            {/* Master-Detail Split Workspace */}
+            <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: '24px', alignItems: 'start' }}>
+              {/* Left Column: Projects List */}
+              <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}>
+                <div style={{ padding: '12px 16px', background: '#f8f7f2', borderBottom: '1px solid #eee', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#666' }}>
+                  Indexed Projects ({
+                    localProjects.filter(p => {
+                      const matchesCategory = projectCategoryFilter === 'all' || p.category === projectCategoryFilter;
+                      const matchesQuery = !projectSearchQuery ||
+                        p.title.toLowerCase().includes(projectSearchQuery.toLowerCase()) ||
+                        p.location.toLowerCase().includes(projectSearchQuery.toLowerCase()) ||
+                        p.architect.toLowerCase().includes(projectSearchQuery.toLowerCase());
+                      return matchesCategory && matchesQuery;
+                    }).length
+                  })
+                </div>
+                <div>
+                  {localProjects
+                    .filter(p => {
+                      const matchesCategory = projectCategoryFilter === 'all' || p.category === projectCategoryFilter;
+                      const matchesQuery = !projectSearchQuery ||
+                        p.title.toLowerCase().includes(projectSearchQuery.toLowerCase()) ||
+                        p.location.toLowerCase().includes(projectSearchQuery.toLowerCase()) ||
+                        p.architect.toLowerCase().includes(projectSearchQuery.toLowerCase());
+                      return matchesCategory && matchesQuery;
+                    })
+                    .map(p => {
+                      const isSelected = selectedProject?.slug === p.slug;
+                      return (
+                        <div
+                          key={p.slug}
+                          onClick={() => setSelectedProjectSlug(p.slug)}
+                          style={{
+                            padding: '14px 16px',
+                            borderBottom: '1px solid #eee',
+                            cursor: 'pointer',
+                            background: isSelected ? '#f4f3ed' : '#ffffff',
+                            borderLeft: isSelected ? '3px solid #1a1d19' : '3px solid transparent',
+                            display: 'flex',
+                            gap: '12px',
+                            alignItems: 'center',
+                          }}
+                        >
+                          <div style={{ width: '48px', height: '48px', position: 'relative', background: '#eee', flexShrink: 0, overflow: 'hidden' }}>
+                            {p.image && isValidImageSrc(p.image) ? (
+                              <Image src={p.image} alt={p.title} fill sizes="48px" style={{ objectFit: 'cover' }} />
+                            ) : (
+                              <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '9px', fontFamily: 'DM Mono, monospace' }}>
+                                ARCH
+                              </div>
+                            )}
+                          </div>
+                          <div style={{ minWidth: 0, flex: 1 }}>
+                            <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '14px', fontWeight: 600, color: '#1a1d19', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                              {p.title}
+                            </div>
+                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', marginTop: '2px', display: 'flex', gap: '6px', alignItems: 'center' }}>
+                              <span style={{
+                                textTransform: 'uppercase',
+                                padding: '1px 5px',
+                                background: p.category === 'healthcare' ? '#e6fffa' : '#f0efe9',
+                                color: p.category === 'healthcare' ? '#0d9488' : '#555',
+                                borderRadius: '2px',
+                                fontSize: '8px',
+                              }}>
+                                {p.category}
+                              </span>
+                              <span>{p.location}</span>
+                              <span>•</span>
+                              <span>{p.year}</span>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
+              </div>
+
+              {/* Right Column: Active Project Editor */}
+              {selectedProject ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                  {/* Top Bar with Quick Actions */}
+                  <div style={{ background: '#ffffff', padding: '18px 24px', border: '1px solid rgba(0,0,0,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div>
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
+                        Selected Architectural Project
+                      </div>
+                      <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', fontWeight: 500, margin: '2px 0 0 0' }}>
+                        {selectedProject.title}
+                      </h3>
+                    </div>
+                    <div style={{ display: 'flex', gap: '8px' }}>
+                      <Link
+                        href={`/projects/${selectedProject.slug}`}
+                        target="_blank"
+                        style={{
+                          padding: '6px 12px',
+                          background: '#2a3029',
+                          color: '#fff',
+                          fontFamily: 'DM Mono, monospace',
+                          fontSize: '10px',
+                          textDecoration: 'none',
+                        }}
+                      >
+                        View Public Case Study ↗
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => deleteProject(selectedProject.slug)}
+                        style={{
+                          padding: '6px 12px',
+                          background: 'transparent',
+                          border: '1px solid #c62828',
+                          color: '#c62828',
+                          fontFamily: 'DM Mono, monospace',
+                          fontSize: '10px',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Delete Project ×
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Visual Photography Asset Card */}
+                  <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                    <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 14px 0', color: '#444' }}>
+                      Project Hero Photography
+                    </h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: '20px', alignItems: 'center' }}>
+                      <div style={{ width: '240px', height: '150px', position: 'relative', background: '#f5f5f0', border: '1px solid #ddd', overflow: 'hidden' }}>
+                        {selectedProject.image && isValidImageSrc(selectedProject.image) ? (
+                          <Image src={selectedProject.image} alt={selectedProject.title} fill sizes="240px" style={{ objectFit: 'cover' }} />
+                        ) : (
+                          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                            No Hero Photo
+                          </div>
+                        )}
+                      </div>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '3px' }}>
+                            Image Path (or Pick from Media Library)
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedProject.image}
+                            onChange={e => updateProjectField(selectedProject.slug, 'image', e.target.value)}
+                            style={{ width: '100%', boxSizing: 'border-box', padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          />
+                        </div>
+                        <div>
+                          <select
+                            onChange={e => { if (e.target.value) updateProjectField(selectedProject.slug, 'image', e.target.value); }}
+                            value=""
+                            style={{ padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#fff' }}
+                          >
+                            <option value="">Pick from Uploaded Assets...</option>
+                            {mediaAssets.map(img => (
+                              <option key={img} value={img}>{img.split('/').pop()}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Core Information Card */}
+                  <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                    <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
+                      Spatial Typology & Project Identifiers
+                    </h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '16px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Project Title
+                        </label>
+                        <input
+                          type="text"
+                          value={selectedProject.title}
+                          onChange={e => updateProjectField(selectedProject.slug, 'title', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Subtitle / Spatial Subhead
+                        </label>
+                        <input
+                          type="text"
+                          value={selectedProject.subtitle}
+                          onChange={e => updateProjectField(selectedProject.slug, 'subtitle', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Category / Architectural Typology
+                        </label>
+                        <select
+                          value={selectedProject.category}
+                          onChange={e => updateProjectField(selectedProject.slug, 'category', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        >
+                          <option value="residential">Residential</option>
+                          <option value="hospitality">Hospitality</option>
+                          <option value="commercial">Commercial</option>
+                          <option value="retail">Retail</option>
+                          <option value="healthcare">Healthcare (Hospitals & Cleanrooms)</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Location
+                        </label>
+                        <input
+                          type="text"
+                          value={selectedProject.location}
+                          onChange={e => updateProjectField(selectedProject.slug, 'location', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Year
+                        </label>
+                        <input
+                          type="text"
+                          value={selectedProject.year}
+                          onChange={e => updateProjectField(selectedProject.slug, 'year', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Architectural Practice
+                        </label>
+                        <input
+                          type="text"
+                          value={selectedProject.architect}
+                          onChange={e => updateProjectField(selectedProject.slug, 'architect', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Floor Area / Scope
+                        </label>
+                        <input
+                          type="text"
+                          value={selectedProject.area}
+                          onChange={e => updateProjectField(selectedProject.slug, 'area', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Surface Specification & Catalog Link */}
+                  <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                    <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
+                      Surface Specification & Catalog Connectivity
+                    </h4>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '16px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Material Display Name
+                        </label>
+                        <input
+                          type="text"
+                          value={selectedProject.materialUsed}
+                          onChange={e => updateProjectField(selectedProject.slug, 'materialUsed', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Linked Catalog Material (/materials/[slug])
+                        </label>
+                        <select
+                          value={selectedProject.materialSlug}
+                          onChange={e => updateProjectField(selectedProject.slug, 'materialSlug', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        >
+                          <option value="">Select Material...</option>
+                          {localMaterials.map(m => (
+                            <option key={m.slug} value={m.slug}>{m.name} ({m.collection})</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Application Type
+                        </label>
+                        <input
+                          type="text"
+                          value={selectedProject.application}
+                          onChange={e => updateProjectField(selectedProject.slug, 'application', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        Fabrication & Joinery Techniques
+                      </label>
+                      <input
+                        type="text"
+                        value={selectedProject.fabrication}
+                        onChange={e => updateProjectField(selectedProject.slug, 'fabrication', e.target.value)}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Architectural Narrative, Challenge & Solution */}
+                  <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                    <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
+                      Architectural Case Study Narrative
+                    </h4>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          Executive Project Summary & Context
+                        </label>
+                        <textarea
+                          rows={3}
+                          value={selectedProject.description}
+                          onChange={e => updateProjectField(selectedProject.slug, 'description', e.target.value)}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'inherit', fontSize: '12px' }}
+                        />
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                            Spatial & Structural Challenge
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={selectedProject.challenge}
+                            onChange={e => updateProjectField(selectedProject.slug, 'challenge', e.target.value)}
+                            style={{ width: '100%', boxSizing: 'border-box', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'inherit', fontSize: '12px' }}
+                          />
+                        </div>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                            Engineering & Material Solution
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={selectedProject.solution}
+                            onChange={e => updateProjectField(selectedProject.slug, 'solution', e.target.value)}
+                            style={{ width: '100%', boxSizing: 'border-box', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'inherit', fontSize: '12px' }}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Technical Specifications Table */}
+                  <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                      <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0, color: '#444' }}>
+                        Technical Specifications Matrix ({selectedProject.specs?.length || 0})
+                      </h4>
+                      <button
+                        type="button"
+                        onClick={() => addProjectSpecRow(selectedProject.slug)}
+                        style={{
+                          padding: '4px 10px',
+                          background: '#1a1d19',
+                          color: '#fff',
+                          border: 'none',
+                          fontFamily: 'DM Mono, monospace',
+                          fontSize: '10px',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        + Add Spec Row
+                      </button>
+                    </div>
+
+                    <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                      <thead>
+                        <tr style={{ background: '#f4f3ed', borderBottom: '1px solid #e0ded4', textAlign: 'left' }}>
+                          <th style={{ padding: '8px 10px', textTransform: 'uppercase', color: '#555', width: '40%' }}>Parameter / Label</th>
+                          <th style={{ padding: '8px 10px', textTransform: 'uppercase', color: '#555', width: '50%' }}>Specification Value</th>
+                          <th style={{ padding: '8px 10px', width: '10%', textAlign: 'center' }}>Del</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {(selectedProject.specs || []).map((sp, sIdx) => (
+                          <tr key={sIdx} style={{ borderBottom: '1px solid #eee' }}>
+                            <td style={{ padding: '6px 8px' }}>
+                              <input
+                                type="text"
+                                value={sp.label}
+                                onChange={e => updateProjectSpec(selectedProject.slug, sIdx, 'label', e.target.value)}
+                                style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace' }}
+                              />
+                            </td>
+                            <td style={{ padding: '6px 8px' }}>
+                              <input
+                                type="text"
+                                value={sp.value}
+                                onChange={e => updateProjectSpec(selectedProject.slug, sIdx, 'value', e.target.value)}
+                                style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace' }}
+                              />
+                            </td>
+                            <td style={{ padding: '6px 8px', textAlign: 'center' }}>
+                              <button
+                                type="button"
+                                onClick={() => removeProjectSpecRow(selectedProject.slug, sIdx)}
+                                style={{ background: 'transparent', border: 'none', color: '#c62828', cursor: 'pointer', fontSize: '12px' }}
+                              >
+                                ×
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ) : (
+                <div style={{ background: '#ffffff', padding: '40px', border: '1px solid rgba(0,0,0,0.08)', textAlign: 'center' }}>
+                  <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', color: '#788078' }}>
+                    Select an architectural case study from the left index to edit its narrative, typology, and specifications.
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         )}
 
@@ -4761,6 +6644,607 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
           )}
         </div>
       )}
+
+        {/* =========================================================================
+            TAB 12: AI CONCIERGE CHATS & INTELLIGENCE
+        ========================================================================= */}
+        {activeTab === 'ai-chats' && (
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '28px', flexWrap: 'wrap', gap: '16px' }}>
+              <div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#7c3aed', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#7c3aed' }} />
+                  Autonomous Specifier Intelligence · Real-Time Chat Summaries
+                </div>
+                <h1 style={{ fontFamily: 'var(--serif, serif)', fontSize: '28px', fontWeight: 400, marginTop: '4px', margin: 0 }}>
+                  AI Concierge Chats & Material Advisory
+                </h1>
+                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#596059', maxWidth: '780px', lineHeight: 1.6, marginTop: '8px' }}>
+                  Real-time executive summaries generated whenever a visitor finishes chatting with the Ace Spaces AI Concierge. Captures architectural intent, provides superior solid-surface recommendations, records specifier contact details, and archives verbatim transcripts.
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <button
+                  type="button"
+                  onClick={handleExportChatsCSV}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#ffffff',
+                    border: '1px solid rgba(0,0,0,0.15)',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  📥 Export CSV ({chatSessions.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={fetchChatSessions}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#1a1d19',
+                    color: '#ffffff',
+                    border: 'none',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  ↻ Refresh Feed
+                </button>
+              </div>
+            </div>
+
+            {/* Metric Overview Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '28px' }}>
+              <div style={{ background: '#ffffff', padding: '20px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  Total AI Sessions
+                </div>
+                <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '36px', margin: '8px 0 4px 0', color: '#1a1d19' }}>
+                  {chatSessions.length}
+                </div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#889088' }}>
+                  Archived conversations
+                </div>
+              </div>
+
+              <div style={{ background: '#ffffff', padding: '20px', border: '1px solid rgba(0,0,0,0.08)', borderLeft: '3px solid #7c3aed' }}>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#7c3aed', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
+                  New Inquiries
+                </div>
+                <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '36px', margin: '8px 0 4px 0', color: '#7c3aed' }}>
+                  {chatSessions.filter((c) => c.status === 'new').length}
+                </div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#889088' }}>
+                  Awaiting review
+                </div>
+              </div>
+
+              <div style={{ background: '#ffffff', padding: '20px', border: '1px solid rgba(0,0,0,0.08)', borderLeft: '3px solid #059669' }}>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#059669', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
+                  Material Suggestions Given
+                </div>
+                <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '36px', margin: '8px 0 4px 0', color: '#059669' }}>
+                  {chatSessions.filter((c) => c.materialsSuggested && c.materialsSuggested.length > 0).length}
+                </div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#889088' }}>
+                  Better material recommendations
+                </div>
+              </div>
+
+              <div style={{ background: '#ffffff', padding: '20px', border: '1px solid rgba(0,0,0,0.08)', borderLeft: '3px solid #2563eb' }}>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#2563eb', textTransform: 'uppercase', letterSpacing: '0.08em', fontWeight: 600 }}>
+                  Client Contacts Captured
+                </div>
+                <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '36px', margin: '8px 0 4px 0', color: '#2563eb' }}>
+                  {chatSessions.filter((c) => c.customerContact?.phone || c.customerContact?.email).length}
+                </div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#889088' }}>
+                  Direct follow-up ready
+                </div>
+              </div>
+            </div>
+
+            {/* Filter and Search Bar */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px', background: '#ffffff', padding: '16px 20px', border: '1px solid rgba(0,0,0,0.08)' }}>
+              {/* Status Filter Tabs */}
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                {(['all', 'new', 'reviewed', 'contacted'] as const).map((status) => {
+                  const count = status === 'all' ? chatSessions.length : chatSessions.filter((c) => c.status === status).length;
+                  const isSelected = chatStatusFilter === status;
+                  return (
+                    <button
+                      key={status}
+                      type="button"
+                      onClick={() => setChatStatusFilter(status)}
+                      style={{
+                        padding: '6px 14px',
+                        background: isSelected ? '#1a1d19' : '#f5f4ee',
+                        color: isSelected ? '#ffffff' : '#596059',
+                        border: '1px solid ' + (isSelected ? '#1a1d19' : 'rgba(0,0,0,0.08)'),
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '11px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.06em',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                      }}
+                    >
+                      <span>{status}</span>
+                      <span style={{
+                        background: isSelected ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.06)',
+                        padding: '1px 6px',
+                        borderRadius: '8px',
+                        fontSize: '10px',
+                      }}>
+                        {count}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Search Box */}
+              <div style={{ flex: 1, maxWidth: '400px', minWidth: '240px' }}>
+                <input
+                  type="text"
+                  placeholder="Search by client, material, or keyword..."
+                  value={chatSearchQuery}
+                  onChange={(e) => setChatSearchQuery(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '8px 14px',
+                    background: '#faf9f5',
+                    border: '1px solid rgba(0,0,0,0.15)',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    outline: 'none',
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Sessions Feed */}
+            {isLoadingChats && chatSessions.length === 0 ? (
+              <div style={{ background: '#ffffff', padding: '48px', border: '1px solid rgba(0,0,0,0.08)', textAlign: 'center' }}>
+                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#788078' }}>
+                  Loading AI concierge chat sessions...
+                </p>
+              </div>
+            ) : chatSessions.length === 0 ? (
+              <div style={{ background: '#ffffff', padding: '60px 24px', border: '1px solid rgba(0,0,0,0.08)', textAlign: 'center' }}>
+                <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#ede9fe', color: '#7c3aed', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px auto', fontSize: '20px' }}>
+                  💬
+                </div>
+                <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '22px', fontWeight: 400, margin: '0 0 8px 0' }}>
+                  No AI Concierge Conversations Recorded Yet
+                </h3>
+                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#889088', maxWidth: '520px', margin: '0 auto 20px auto', lineHeight: 1.6 }}>
+                  When visitors converse with the Ace Spaces AI Concierge on the website and close the chat, the conversation is automatically summarized, categorized with recommended materials, and streamed here in real time.
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {chatSessions
+                  .filter((session) => {
+                    if (chatStatusFilter !== 'all' && session.status !== chatStatusFilter) return false;
+                    if (!chatSearchQuery.trim()) return true;
+                    const q = chatSearchQuery.toLowerCase();
+                    return (
+                      session.intent?.toLowerCase().includes(q) ||
+                      session.summary?.toLowerCase().includes(q) ||
+                      session.sessionNumber?.toLowerCase().includes(q) ||
+                      session.customerContact?.name?.toLowerCase().includes(q) ||
+                      session.customerContact?.phone?.toLowerCase().includes(q) ||
+                      session.materialsDiscussed?.some((m) => m.toLowerCase().includes(q)) ||
+                      session.materialsSuggested?.some((m) => m.toLowerCase().includes(q))
+                    );
+                  })
+                  .map((session) => {
+                    const isExpanded = expandedTranscriptId === session.id;
+                    const cleanPhone = session.customerContact?.phone ? session.customerContact.phone.replace(/[^0-9]/g, '') : '';
+                    const whatsAppHref = cleanPhone
+                      ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(
+                          `Hello ${session.customerContact?.name || 'Architect'}, following up from Ace Spaces Bengaluru regarding your inquiry on ${session.intent} (${session.sessionNumber || 'Ref'}). How can we assist with your material specs?`
+                        )}`
+                      : null;
+
+                    return (
+                      <div
+                        key={session.id}
+                        style={{
+                          background: '#ffffff',
+                          border: '1px solid rgba(0,0,0,0.08)',
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.03)',
+                          transition: 'all 0.15s ease',
+                        }}
+                      >
+                        {/* Session Top Bar */}
+                        <div
+                          style={{
+                            padding: '16px 24px',
+                            background: '#faf9f5',
+                            borderBottom: '1px solid rgba(0,0,0,0.06)',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            flexWrap: 'wrap',
+                            gap: '12px',
+                          }}
+                        >
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 700, color: '#7c3aed', letterSpacing: '0.06em' }}>
+                              {session.sessionNumber || session.id.slice(0, 16)}
+                            </span>
+                            <span style={{ color: '#d4d8d4' }}>|</span>
+                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6c746c' }}>
+                              {new Date(session.startedAt).toLocaleString('en-GB', {
+                                day: '2-digit',
+                                month: 'short',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                              })}
+                            </span>
+                            {session.durationSeconds ? (
+                              <>
+                                <span style={{ color: '#d4d8d4' }}>•</span>
+                                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6c746c' }}>
+                                  ⏱ {Math.floor(session.durationSeconds / 60)}m {session.durationSeconds % 60}s
+                                </span>
+                              </>
+                            ) : null}
+                            <span style={{ color: '#d4d8d4' }}>•</span>
+                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6c746c' }}>
+                              💬 {session.messageCount || session.messages?.length || 0} messages
+                            </span>
+                          </div>
+
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            <span
+                              style={{
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '10px',
+                                fontWeight: 700,
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.08em',
+                                padding: '3px 10px',
+                                borderRadius: '3px',
+                                background:
+                                  session.status === 'new'
+                                    ? '#ede9fe'
+                                    : session.status === 'reviewed'
+                                    ? '#fef3c7'
+                                    : session.status === 'contacted'
+                                    ? '#dcfce7'
+                                    : '#f3f4f6',
+                                color:
+                                  session.status === 'new'
+                                    ? '#6d28d9'
+                                    : session.status === 'reviewed'
+                                    ? '#b45309'
+                                    : session.status === 'contacted'
+                                    ? '#15803d'
+                                    : '#4b5563',
+                                border:
+                                  session.status === 'new'
+                                    ? '1px solid #ddd6fe'
+                                    : session.status === 'reviewed'
+                                    ? '1px solid #fde68a'
+                                    : session.status === 'contacted'
+                                    ? '1px solid #bbf7d0'
+                                    : '1px solid #e5e7eb',
+                              }}
+                            >
+                              ● {session.status}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Session Body */}
+                        <div style={{ padding: '24px' }}>
+                          {/* Client Contact Info Banner (if captured) */}
+                          {session.customerContact && (session.customerContact.name || session.customerContact.phone || session.customerContact.email) && (
+                            <div
+                              style={{
+                                background: '#f0fdf4',
+                                border: '1px solid #bbf7d0',
+                                padding: '12px 18px',
+                                marginBottom: '18px',
+                                display: 'flex',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                                flexWrap: 'wrap',
+                                gap: '12px',
+                              }}
+                            >
+                              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
+                                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#166534', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                                  👤 Captured Contact:
+                                </span>
+                                {session.customerContact.name && (
+                                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#14532d' }}>
+                                    {session.customerContact.name}
+                                  </strong>
+                                )}
+                                {session.customerContact.phone && (
+                                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#166534' }}>
+                                    📞 {session.customerContact.phone}
+                                  </span>
+                                )}
+                                {session.customerContact.email && (
+                                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#166534' }}>
+                                    ✉️ {session.customerContact.email}
+                                  </span>
+                                )}
+                              </div>
+
+                              {whatsAppHref && (
+                                <a
+                                  href={whatsAppHref}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  style={{
+                                    background: '#25D366',
+                                    color: '#ffffff',
+                                    padding: '6px 14px',
+                                    borderRadius: '2px',
+                                    fontFamily: 'DM Mono, monospace',
+                                    fontSize: '11px',
+                                    fontWeight: 600,
+                                    textDecoration: 'none',
+                                    display: 'inline-flex',
+                                    alignItems: 'center',
+                                    gap: '6px',
+                                    boxShadow: '0 2px 6px rgba(37,211,102,0.3)',
+                                  }}
+                                >
+                                  <span>WhatsApp Specifier</span>
+                                  <span>↗</span>
+                                </a>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Architectural Intent */}
+                          <div style={{ marginBottom: '14px' }}>
+                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em', marginBottom: '4px' }}>
+                              Architectural Intent
+                            </div>
+                            <h3 style={{ fontSize: '18px', fontWeight: 600, margin: 0, color: '#1a1d19', letterSpacing: '-0.01em' }}>
+                              {session.intent || 'General Architectural Surface Advisory'}
+                            </h3>
+                          </div>
+
+                          {/* Executive Summary */}
+                          <div style={{ background: '#faf9f5', border: '1px solid rgba(0,0,0,0.06)', padding: '16px 20px', marginBottom: '20px' }}>
+                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#889088', letterSpacing: '0.08em', marginBottom: '6px' }}>
+                              AI Executive Summary
+                            </div>
+                            <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#2b302b', lineHeight: 1.65, margin: 0 }}>
+                              {session.summary}
+                            </p>
+                          </div>
+
+                          {/* Materials Comparison & Suggestions Grid */}
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginBottom: '20px' }}>
+                            {/* Materials Discussed */}
+                            <div style={{ background: '#f5f4ee', padding: '14px 18px', border: '1px solid rgba(0,0,0,0.06)' }}>
+                              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em', marginBottom: '8px', fontWeight: 600 }}>
+                                Materials Mentioned by Visitor
+                              </div>
+                              {session.materialsDiscussed && session.materialsDiscussed.length > 0 ? (
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                                  {session.materialsDiscussed.map((m, idx) => (
+                                    <span
+                                      key={idx}
+                                      style={{
+                                        background: '#e9e8e2',
+                                        color: '#333833',
+                                        border: '1px solid #d4d8d4',
+                                        fontFamily: 'DM Mono, monospace',
+                                        fontSize: '11px',
+                                        padding: '3px 8px',
+                                      }}
+                                    >
+                                      {m}
+                                    </span>
+                                  ))}
+                                </div>
+                              ) : (
+                                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#889088' }}>None recorded</span>
+                              )}
+                            </div>
+
+                            {/* Better Materials Suggested */}
+                            <div style={{ background: '#f0fdf4', padding: '14px 18px', border: '1px solid #bbf7d0' }}>
+                              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#166534', letterSpacing: '0.08em', marginBottom: '8px', fontWeight: 600 }}>
+                                ★ Superior Materials & Details Advised by AI
+                              </div>
+                              {session.materialsSuggested && session.materialsSuggested.length > 0 ? (
+                                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                                  {session.materialsSuggested.map((m, idx) => (
+                                    <span
+                                      key={idx}
+                                      style={{
+                                        background: '#dcfce7',
+                                        color: '#14532d',
+                                        border: '1px solid #86efac',
+                                        fontFamily: 'DM Mono, monospace',
+                                        fontSize: '11px',
+                                        fontWeight: 600,
+                                        padding: '3px 8px',
+                                      }}
+                                    >
+                                      ★ {m}
+                                    </span>
+                                  ))}
+                                </div>
+                              ) : (
+                                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#166534' }}>General solid surface consultation</span>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Recommended Follow-Up Action */}
+                          {session.followUpRecommendation && (
+                            <div style={{ background: '#fefce8', border: '1px solid #fef08a', padding: '12px 18px', marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                              <span style={{ fontSize: '16px' }}>💡</span>
+                              <div>
+                                <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#854d0e', letterSpacing: '0.08em', display: 'block' }}>
+                                  Recommended Next Step for Studio Team
+                                </strong>
+                                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#713f12' }}>
+                                  {session.followUpRecommendation}
+                                </span>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Action Toolbar */}
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', borderTop: '1px solid rgba(0,0,0,0.06)', paddingTop: '16px' }}>
+                            <button
+                              type="button"
+                              onClick={() => setExpandedTranscriptId(isExpanded ? null : session.id)}
+                              style={{
+                                background: isExpanded ? '#1a1d19' : 'transparent',
+                                color: isExpanded ? '#ffffff' : '#1a1d19',
+                                border: '1px solid #1a1d19',
+                                padding: '6px 14px',
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '11px',
+                                fontWeight: 600,
+                                cursor: 'pointer',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                              }}
+                            >
+                              <span>{isExpanded ? '▲ Hide Full Transcript' : '▼ View Verbatim Transcript'}</span>
+                              <span style={{ opacity: 0.7 }}>({session.messages?.length || session.messageCount || 0} msgs)</span>
+                            </button>
+
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              {session.status !== 'reviewed' && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleUpdateChatStatus(session.id, 'reviewed')}
+                                  style={{
+                                    background: '#fef3c7',
+                                    color: '#92400e',
+                                    border: '1px solid #fde68a',
+                                    padding: '6px 12px',
+                                    fontFamily: 'DM Mono, monospace',
+                                    fontSize: '11px',
+                                    cursor: 'pointer',
+                                  }}
+                                >
+                                  Mark Reviewed
+                                </button>
+                              )}
+                              {session.status !== 'contacted' && (
+                                <button
+                                  type="button"
+                                  onClick={() => handleUpdateChatStatus(session.id, 'contacted')}
+                                  style={{
+                                    background: '#dcfce7',
+                                    color: '#166534',
+                                    border: '1px solid #bbf7d0',
+                                    padding: '6px 12px',
+                                    fontFamily: 'DM Mono, monospace',
+                                    fontSize: '11px',
+                                    cursor: 'pointer',
+                                  }}
+                                >
+                                  Mark Contacted
+                                </button>
+                              )}
+                              <button
+                                type="button"
+                                onClick={() => handleDeleteChatSession(session.id)}
+                                style={{
+                                  background: 'transparent',
+                                  color: '#b93222',
+                                  border: '1px solid rgba(185,50,34,0.3)',
+                                  padding: '6px 12px',
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '11px',
+                                  cursor: 'pointer',
+                                }}
+                              >
+                                Delete Record
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* Expandable Verbatim Transcript */}
+                          {isExpanded && (
+                            <div style={{ marginTop: '20px', borderTop: '1px dashed #d4d8d4', paddingTop: '16px' }}>
+                              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em', marginBottom: '14px', fontWeight: 600 }}>
+                                Verbatim Architectural Chat Transcript
+                              </div>
+                              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxHeight: '480px', overflowY: 'auto', padding: '12px', background: '#faf9f5', border: '1px solid rgba(0,0,0,0.06)' }}>
+                                {session.messages && session.messages.length > 0 ? (
+                                  session.messages.map((msg, mIdx) => {
+                                    const isUser = msg.role === 'user';
+                                    return (
+                                      <div
+                                        key={mIdx}
+                                        style={{
+                                          display: 'flex',
+                                          flexDirection: 'column',
+                                          alignItems: isUser ? 'flex-end' : 'flex-start',
+                                        }}
+                                      >
+                                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#889088', marginBottom: '3px' }}>
+                                          {isUser ? 'Visitor / Architect' : 'Ace Spaces AI Concierge'} · {msg.timestamp || 'Recorded'}
+                                        </div>
+                                        <div
+                                          style={{
+                                            maxWidth: '85%',
+                                            padding: '12px 16px',
+                                            background: isUser ? '#1a1d19' : '#ffffff',
+                                            color: isUser ? '#f5f4ee' : '#1a1d19',
+                                            border: isUser ? 'none' : '1px solid rgba(0,0,0,0.1)',
+                                            borderRadius: '2px',
+                                            fontFamily: isUser ? 'DM Mono, monospace' : 'Manrope, sans-serif',
+                                            fontSize: '12px',
+                                            lineHeight: 1.6,
+                                            whiteSpace: 'pre-wrap',
+                                          }}
+                                        >
+                                          {msg.content}
+                                        </div>
+                                      </div>
+                                    );
+                                  })
+                                ) : (
+                                  <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#889088', textAlign: 'center', margin: 0 }}>
+                                    No verbatim message logs available for this session.
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
+          </div>
+        )}
         </main>
       </div>
 

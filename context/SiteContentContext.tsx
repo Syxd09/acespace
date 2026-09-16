@@ -3,7 +3,17 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { Material, materials as initialMaterials } from '@/data/materials';
 import { ApplicationSector, applicationSectors as initialSectors } from '@/data/applications';
-import { HeroSlide, defaultHeroSlides, SiteContent, defaultJournalArticles, JournalArticle } from '@/data/contentTypes';
+import {
+  HeroSlide,
+  defaultHeroSlides,
+  SiteContent,
+  defaultJournalArticles,
+  JournalArticle,
+  Project,
+  defaultProjectsList,
+  StudioContactConfig,
+  defaultStudioContact,
+} from '@/data/contentTypes';
 
 import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
 
@@ -14,17 +24,33 @@ interface SiteContentContextType {
   materials: Material[];
   applicationSectors: ApplicationSector[];
   journalArticles: JournalArticle[];
+  projects: Project[];
+  studioContact: StudioContactConfig;
+  content: SiteContent;
   isLoading: boolean;
   saveContent: (updated: Partial<SiteContent>) => Promise<boolean>;
   resetToDefaults: () => Promise<boolean>;
   refreshContent: () => Promise<void>;
 }
 
+const defaultContentSnapshot: SiteContent = {
+  heroSlides: defaultHeroSlides,
+  materials: initialMaterials,
+  applicationSectors: initialSectors,
+  journalArticles: defaultJournalArticles,
+  projects: defaultProjectsList,
+  studioContact: defaultStudioContact,
+  updatedAt: new Date().toISOString(),
+};
+
 const SiteContentContext = createContext<SiteContentContextType>({
   heroSlides: defaultHeroSlides,
   materials: initialMaterials,
   applicationSectors: initialSectors,
   journalArticles: defaultJournalArticles,
+  projects: defaultProjectsList,
+  studioContact: defaultStudioContact,
+  content: defaultContentSnapshot,
   isLoading: false,
   saveContent: async () => false,
   resetToDefaults: async () => false,
@@ -36,6 +62,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
   const [materials, setMaterials] = useState<Material[]>(initialMaterials);
   const [applicationSectors, setApplicationSectors] = useState<ApplicationSector[]>(initialSectors);
   const [journalArticles, setJournalArticles] = useState<JournalArticle[]>(defaultJournalArticles);
+  const [projects, setProjects] = useState<Project[]>(defaultProjectsList);
+  const [studioContact, setStudioContact] = useState<StudioContactConfig>(defaultStudioContact);
   const [isLoading, setIsLoading] = useState(false);
 
   // 1. Instant client-side hydration from localStorage (prevents any serverless / cold start delay)
@@ -49,6 +77,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
           if (parsed.materials && parsed.materials.length > 0) setMaterials(parsed.materials);
           if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
           if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);
+          if (parsed.projects && parsed.projects.length > 0) setProjects(parsed.projects);
+          if (parsed.studioContact) setStudioContact(parsed.studioContact);
         }
       } catch (err) {
         console.warn('LocalStorage read error:', err);
@@ -74,6 +104,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         if (data.materials && data.materials.length > 0) setMaterials(data.materials);
         if (data.applicationSectors && data.applicationSectors.length > 0) setApplicationSectors(data.applicationSectors);
         if (data.journalArticles && data.journalArticles.length > 0) setJournalArticles(data.journalArticles);
+        if (data.projects && data.projects.length > 0) setProjects(data.projects);
+        if (data.studioContact) setStudioContact(data.studioContact);
 
         // Keep local storage synchronized
         if (typeof window !== 'undefined') {
@@ -103,6 +135,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         if (payload.materials && payload.materials.length > 0) setMaterials(payload.materials);
         if (payload.applicationSectors && payload.applicationSectors.length > 0) setApplicationSectors(payload.applicationSectors);
         if (payload.journalArticles && payload.journalArticles.length > 0) setJournalArticles(payload.journalArticles);
+        if (payload.projects && payload.projects.length > 0) setProjects(payload.projects);
+        if (payload.studioContact) setStudioContact(payload.studioContact);
       } else {
         refreshContent();
       }
@@ -131,6 +165,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
           if (parsed.materials) setMaterials(parsed.materials);
           if (parsed.applicationSectors) setApplicationSectors(parsed.applicationSectors);
           if (parsed.journalArticles) setJournalArticles(parsed.journalArticles);
+          if (parsed.projects) setProjects(parsed.projects);
         } catch {}
       }
     };
@@ -153,12 +188,16 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       if (updated.materials) setMaterials(updated.materials);
       if (updated.applicationSectors) setApplicationSectors(updated.applicationSectors);
       if (updated.journalArticles) setJournalArticles(updated.journalArticles);
+      if (updated.projects) setProjects(updated.projects);
+      if (updated.studioContact) setStudioContact(updated.studioContact);
 
       const currentData: SiteContent = {
         heroSlides: updated.heroSlides || heroSlides,
         materials: updated.materials || materials,
         applicationSectors: updated.applicationSectors || applicationSectors,
         journalArticles: updated.journalArticles || journalArticles,
+        projects: updated.projects || projects,
+        studioContact: updated.studioContact || studioContact,
         updatedAt: new Date().toISOString(),
       };
 
@@ -205,6 +244,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         materials: initialMaterials,
         applicationSectors: initialSectors,
         journalArticles: defaultJournalArticles,
+        projects: defaultProjectsList,
+        studioContact: defaultStudioContact,
         updatedAt: new Date().toISOString(),
       };
 
@@ -212,6 +253,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       setMaterials(initialMaterials);
       setApplicationSectors(initialSectors);
       setJournalArticles(defaultJournalArticles);
+      setProjects(defaultProjectsList);
+      setStudioContact(defaultStudioContact);
 
       // Broadcast reset event to all tabs
       broadcastRealtimeEvent('CONTENT_UPDATED', defaultData);
@@ -237,6 +280,17 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         materials,
         applicationSectors,
         journalArticles,
+        projects,
+        studioContact,
+        content: {
+          heroSlides,
+          materials,
+          applicationSectors,
+          journalArticles,
+          projects,
+          studioContact,
+          updatedAt: new Date().toISOString(),
+        },
         isLoading,
         saveContent,
         resetToDefaults,

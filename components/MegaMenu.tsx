@@ -11,6 +11,7 @@ interface MegaMenuProps {
   onClose: () => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  isScrolled?: boolean;
 }
 
 export default function MegaMenu({
@@ -18,6 +19,7 @@ export default function MegaMenu({
   onClose,
   onMouseEnter,
   onMouseLeave,
+  isScrolled = false,
 }: MegaMenuProps) {
   if (!activeMenu) return null;
 
@@ -28,7 +30,7 @@ export default function MegaMenu({
       onMouseLeave={onMouseLeave}
       style={{
         position: 'fixed',
-        top: '84px', // directly below header
+        top: isScrolled ? '69px' : '83px', // directly below header with 1px subpixel overlap to eliminate any gap
         left: 0,
         width: '100%',
         backgroundColor: 'rgba(233, 232, 226, 0.98)',
@@ -39,6 +41,7 @@ export default function MegaMenu({
         zIndex: 99,
         animation: 'megaMenuSlideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) both',
         overflow: 'hidden',
+        transition: 'top 0.35s ease',
       }}
     >
       <div
@@ -723,12 +726,12 @@ export default function MegaMenu({
                     </li>
                     <li>
                       <Link
-                        href="/applications/custom"
+                        href="/applications/healthcare"
                         onClick={onClose}
                         className="mega-menu-link"
                       >
-                        <strong>Sector 05: Clinical & Specialist Spaces</strong>
-                        <small>Hygienic scrub sinks & chemical-resistant tops</small>
+                        <strong>Sector 05: Hospitals & Healthcare</strong>
+                        <small>Hygienic scrub sinks, clinical operatory & non-porous surfaces</small>
                       </Link>
                     </li>
                   </ul>
@@ -793,7 +796,7 @@ export default function MegaMenu({
                     </li>
                     <li>
                       <Link
-                        href="/applications/custom"
+                        href="/applications/healthcare"
                         onClick={onClose}
                         className="mega-menu-link"
                       >

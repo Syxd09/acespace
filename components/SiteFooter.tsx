@@ -4,9 +4,14 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { broadcastRealtimeEvent } from '@/lib/realtime';
+import { useSiteContent } from '@/context/SiteContentContext';
+import { generateWhatsAppUrl, DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 
 export default function SiteFooter() {
+  const { content } = useSiteContent();
+  const whatsappNumber = content.studioContact?.whatsappNumber || DEFAULT_WHATSAPP_NUMBER;
   const [email, setEmail] = useState('');
+
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [bengaluruTime, setBengaluruTime] = useState('');
 
@@ -303,7 +308,7 @@ export default function SiteFooter() {
               { label: 'Commercial Atriums', href: '/applications/commercial' },
               { label: 'Hospitality & Bars', href: '/applications/hospitality' },
               { label: 'Retail Plinths & Flagships', href: '/applications/retail' },
-              { label: 'Healthcare & Laboratories', href: '/applications/custom' },
+              { label: 'Hospitals & Healthcare Spaces', href: '/applications/healthcare' },
               { label: 'Cultural & Academic Studios', href: '/applications' },
             ].map(item => (
               <li key={item.label}>
@@ -340,6 +345,7 @@ export default function SiteFooter() {
           </div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
+              { label: 'WhatsApp Studio Advisory ↗', href: generateWhatsAppUrl(whatsappNumber), external: true, highlight: true },
               { label: 'GREENGUARD Gold Certified', href: '/fabrication' },
               { label: 'NSF/ANSI 51 Food Safe', href: '/fabrication' },
               { label: 'ASTM Class 1 Fire Rated', href: '/fabrication' },
@@ -348,21 +354,45 @@ export default function SiteFooter() {
               { label: 'Studio Management Console ↗', href: '/admin' },
             ].map(item => (
               <li key={item.label}>
-                <Link
-                  href={item.href}
-                  style={{
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: item.href === '/admin' ? '11px' : '11px',
-                    fontWeight: item.href === '/admin' || item.href === '/contact' ? 600 : 400,
-                    color: item.href === '/admin' ? '#73c991' : item.href === '/contact' ? '#e9e8e2' : '#c2cdc2',
-                    textDecoration: 'none',
-                    transition: 'color 0.15s ease',
-                  }}
-                  onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
-                  onMouseLeave={e => (e.currentTarget.style.color = item.href === '/admin' ? '#73c991' : item.href === '/contact' ? '#e9e8e2' : '#c2cdc2')}
-                >
-                  {item.label}
-                </Link>
+                {item.external ? (
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      color: '#25D366',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '5px',
+                      transition: 'color 0.15s ease',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#25D366')}
+                  >
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#25D366' }} />
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    style={{
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: item.href === '/admin' ? '11px' : '11px',
+                      fontWeight: item.href === '/admin' || item.href === '/contact' ? 600 : 400,
+                      color: item.href === '/admin' ? '#73c991' : item.href === '/contact' ? '#e9e8e2' : '#c2cdc2',
+                      textDecoration: 'none',
+                      transition: 'color 0.15s ease',
+                    }}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                    onMouseLeave={e => (e.currentTarget.style.color = item.href === '/admin' ? '#73c991' : item.href === '/contact' ? '#e9e8e2' : '#c2cdc2')}
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

@@ -33,6 +33,36 @@ export async function POST(req: NextRequest) {
 
   try {
     const body = await req.json();
+
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return NextResponse.json(
+        { success: false, error: 'Invalid content payload. Expected a root content object.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    // Defensive guards: prevent wiping essential catalog collections
+    if ('materials' in body && (!Array.isArray(body.materials) || body.materials.length === 0)) {
+      return NextResponse.json(
+        { success: false, error: 'Materials collection cannot be emptied or non-array.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    if ('projects' in body && !Array.isArray(body.projects)) {
+      return NextResponse.json(
+        { success: false, error: 'Projects collection must be an array.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    if ('heroSlides' in body && (!Array.isArray(body.heroSlides) || body.heroSlides.length === 0)) {
+      return NextResponse.json(
+        { success: false, error: 'Hero slides collection must contain at least one slide.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
     const updated = saveSiteContent(body);
     return NextResponse.json(
       { success: true, content: updated },

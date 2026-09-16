@@ -20,7 +20,10 @@ const noCacheHeaders = {
   'Surrogate-Control': 'no-store',
 };
 
-// GET: Retrieve all client inquiries (Admin only)
+const VALID_INQUIRY_STATUSES: InquiryStatus[] = ['new', 'in-review', 'contacted', 'resolved', 'archived'];
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// GET: Retrieve client inquiries with optional status filtering (Admin only)
 export async function GET(req: NextRequest) {
   if (!verifyAdminRequest(req)) {
     return NextResponse.json(
@@ -29,14 +32,21 @@ export async function GET(req: NextRequest) {
     );
   }
 
-  const inquiries = getInquiries();
+  const { searchParams } = new URL(req.url);
+  const statusFilter = searchParams.get('status');
+
+  let inquiries = getInquiries();
+  if (statusFilter && VALID_INQUIRY_STATUSES.includes(statusFilter as InquiryStatus)) {
+    inquiries = inquiries.filter((i) => i.status === statusFilter);
+  }
+
   return NextResponse.json(
-    { success: true, inquiries },
+    { success: true, count: inquiries.length, inquiries },
     { status: 200, headers: noCacheHeaders }
   );
 }
 
-// POST: Public submission of contact inquiries
+// POST: Public submission of contact inquiries with robust input validation
 export async function POST(req: NextRequest) {
   try {
     // Rate limit: 6 inquiries per 10 minutes per IP
@@ -51,19 +61,40 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { name, email, phone, projectType, message } = body;
 
-    if (!name || !email || !message) {
+    if (!name || typeof name !== 'string' || name.trim().length === 0) {
       return NextResponse.json(
-        { success: false, error: 'Name, email, and message are required.' },
+        { success: false, error: 'Valid client name is required.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email.trim()) || email.length > 120) {
+      return NextResponse.json(
+        { success: false, error: 'Valid architectural correspondence email is required.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    if (!message || typeof message !== 'string' || message.trim().length === 0) {
+      return NextResponse.json(
+        { success: false, error: 'Project inquiry message cannot be empty.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    if (message.length > 4000) {
+      return NextResponse.json(
+        { success: false, error: 'Message payload exceeds maximum allowable length of 4000 characters.' },
         { status: 400, headers: noCacheHeaders }
       );
     }
 
     const inquiry = saveInquiry({
-      name,
-      email,
-      phone,
-      projectType: projectType || 'General Consultation',
-      message,
+      name: name.trim(),
+      email: email.trim(),
+      phone: typeof phone === 'string' ? phone.trim() : undefined,
+      projectType: typeof projectType === 'string' ? projectType.trim() : 'General Consultation',
+      message: message.trim(),
     });
 
     return NextResponse.json(
@@ -100,6 +131,13 @@ export async function PATCH(req: NextRequest) {
     if (!id || !status) {
       return NextResponse.json(
         { success: false, error: 'Inquiry ID and status required.' },
+        { status: 400, headers: noCacheHeaders }
+      );
+    }
+
+    if (!VALID_INQUIRY_STATUSES.includes(status as InquiryStatus)) {
+      return NextResponse.json(
+        { success: false, error: `Invalid status. Must be one of: ${VALID_INQUIRY_STATUSES.join(', ')}` },
         { status: 400, headers: noCacheHeaders }
       );
     }

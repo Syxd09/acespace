@@ -302,25 +302,29 @@ export const applicationSectors: ApplicationSector[] = [
     leadTime: '3 weeks'
   },
   {
-    id: 'custom',
+    id: 'healthcare',
     sectorNumber: '05',
-    title: 'Clinical & Specialist Spaces',
-    tagline: 'Non-porous hygienic precision',
+    title: 'Hospitals & Healthcare Spaces',
+    tagline: 'Non-porous hygienic precision & infection control',
     heroDescription:
-      'Sterile clinical environments, dental operatory suites, and diagnostic laboratories demand chemical-resistant surfaces certified to zero bacterial harboring.',
+      'Hospitals, surgical suites, sterile dental operatories, and diagnostic laboratories demand certified non-porous mineral surfaces immune to bacterial and fungal harboring.',
     overview:
-      'Where hygiene is non-negotiable, Ace Spaces solid surface offers seamless, coved transitions from wall to counter to sink with zero silicone caulking, eliminating the breeding grounds for MRSA, mold, and pathogens.',
+      'Where hygiene and infection control are non-negotiable, Ace Spaces solid surfaces provide seamless, coved transitions from wall to counter to sink with zero silicone caulking, eliminating the microscopic breeding grounds where MRSA, mold, and pathogens accumulate.',
     elements: [
       'Seamless Surgical Scrub Sinks with Sloped Splash Walls',
-      'Clinical Reception Desks with Disinfection Resilience',
-      'Operatory Cabinet Countertops with Integrated Containment Rims',
+      'Hospital Nurse Stations & Patient Reception Monoliths',
+      'Operatory Treatment Countertops with Integrated Containment Rims',
       'Cleanroom Seamless Wall Cladding with Coved Floor Skirtings',
-      'Specimen Preparation Benches with Acid & Reagent Resistance'
+      'Diagnostic Laboratory Workbenches with Acid & Disinfectant Resistance',
+      'Patient Room Seamless Vanity Bowls & Coved Shower Surrounds'
     ],
     recommendedMaterials: [
-      { name: 'Noma / White Chalk', slug: 'noma-white-chalk', finish: 'Clinical Matte' },
+      { name: 'Noma / White Chalk (Stonique)', slug: 'noma-white-chalk', finish: 'Clinical Matte' },
       { name: 'Alto / Bianco Vein', slug: 'alto-bianco-vein', finish: 'Satin Pure' },
-      { name: 'Strata / Silt', slug: 'strata-silt', finish: 'Honed Neutral' }
+      { name: 'Strata / Sand Fine', slug: 'strata-sand-fine', finish: 'Fine Textured' },
+      { name: 'Noma / Linen', slug: 'noma-linen', finish: 'Velvet Matte' },
+      { name: 'Strata / Terrazzo Ash', slug: 'strata-terrazzo-ash', finish: 'Satin Polished' },
+      { name: 'Obsidian / Still', slug: 'obsidian-still', finish: 'Tactile Matte' }
     ],
     fabricationNote:
       'Custom thermoformed integral coved corners and silicone-free chemical welding guarantee zero bacterial harborage points.',
@@ -370,7 +374,17 @@ export const applicationSectors: ApplicationSector[] = [
 ];
 
 export function getApplicationSector(idOrSlug: string): ApplicationSector | undefined {
-  return applicationSectors.find(
-    (s) => s.id === idOrSlug || s.title.toLowerCase().replace(/\s+/g, '-') === idOrSlug
-  );
+  const norm = idOrSlug.toLowerCase();
+  return applicationSectors.find((s) => {
+    if (s.id === norm) return true;
+    if (s.title.toLowerCase().replace(/\s+/g, '-') === norm) return true;
+    // Flexible alias resolution for healthcare / hospital / custom / clinical
+    if (
+      s.id === 'healthcare' &&
+      ['custom', 'healthcare', 'hospital', 'hospitals', 'clinical', 'clinical-specialist-spaces'].includes(norm)
+    ) {
+      return true;
+    }
+    return false;
+  });
 }
