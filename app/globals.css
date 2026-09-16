@@ -50,16 +50,24 @@ button {
 
 /* Site Header */
 .site-header {
-  height: 78px;
+  height: 84px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 4vw;
-  position: absolute;
+  padding: 0 clamp(16px, 3.5vw, 48px);
+  position: fixed;
   z-index: var(--z-header);
   top: 0;
+  left: 0;
   width: 100%;
-  color: #fff;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1800px) {
+  .site-header {
+    padding-left: calc((100vw - 1680px) / 2 + 32px) !important;
+    padding-right: calc((100vw - 1680px) / 2 + 32px) !important;
+  }
 }
 
 .site-header.dark-header {
@@ -98,10 +106,13 @@ button {
 
 .main-nav {
   display: flex;
-  gap: 2.6vw;
+  gap: clamp(10px, 1.8vw, 28px);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  align-items: center;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .main-nav a,
@@ -110,6 +121,7 @@ button {
   padding: 6px 0;
   opacity: 0.9;
   transition: opacity 0.25s ease, transform 0.25s ease;
+  white-space: nowrap;
 }
 
 .main-nav a:after {
@@ -145,10 +157,15 @@ button {
 .header-actions {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: clamp(8px, 1.2vw, 20px);
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.tray-short {
+  display: none;
 }
 
 .coro-link span {
@@ -160,11 +177,52 @@ button {
   display: none;
 }
 
-/* Hero Section */
+/* Header Responsive Collapsing - Prevents Clipping & Overflow */
+@media (max-width: 1320px) {
+  .coro-link {
+    display: none !important;
+  }
+  .header-whatsapp-btn span:not(.live-pulse) {
+    display: none !important;
+  }
+  .header-whatsapp-btn b {
+    display: none !important;
+  }
+  .header-whatsapp-btn {
+    padding: 6px 10px !important;
+  }
+}
+
+@media (max-width: 1140px) {
+  .tray-full {
+    display: none !important;
+  }
+  .tray-short {
+    display: inline !important;
+  }
+  .main-nav {
+    gap: 12px !important;
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .main-nav {
+    display: none !important;
+  }
+  .coro-link {
+    display: none !important;
+  }
+  .menu-toggle {
+    display: flex !important;
+  }
+}
+
+/* Hero Section — Full Viewport on Desktop with zero blank cut-offs */
 .hero {
-  height: min(850px, 100vh);
-  height: min(850px, 100dvh);
-  min-height: 680px;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 720px;
   position: relative;
   color: #fff;
   overflow: hidden;
@@ -186,9 +244,24 @@ button {
 
 .hero-content {
   position: absolute;
-  left: 9vw;
-  top: 16%;
-  max-width: 600px;
+  left: clamp(24px, 7vw, 110px);
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: min(680px, 85vw);
+  z-index: 2;
+}
+
+@media (min-width: 1800px) {
+  .hero-content {
+    left: calc((100vw - 1680px) / 2 + 32px);
+    max-width: 740px;
+  }
+  .hero-slider-controls {
+    right: calc((100vw - 1680px) / 2 + 32px) !important;
+  }
+  .scroll-cue {
+    left: calc((100vw - 1680px) / 2 + 32px) !important;
+  }
 }
 
 .eyebrow {
@@ -1203,47 +1276,52 @@ h1 i, h2 i, h3 i {
 
 /* Subpage Utilities from page.css */
 .page-main {
-  padding-left: 9vw;
-  padding-right: 9vw;
+  max-width: 1680px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(24px, 6vw, 96px);
+  padding-right: clamp(24px, 6vw, 96px);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .page-hero {
-  min-height: 540px;
+  min-height: auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  padding: 135px 0 85px;
+  justify-content: flex-start;
+  padding: 36px 0 64px;
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(120deg, #d8d6cb, #eeece6 52%, #b5b5aa);
+  background: transparent;
 }
 
 .page-hero h1,
 .page-grid h2,
 .callout h2 {
   font-weight: 400;
-  letter-spacing: -0.07em;
-  line-height: 0.95;
+  letter-spacing: -0.06em;
+  line-height: 0.98;
   margin: 0;
-  font-size: clamp(62px, 9vw, 132px);
+  font-size: clamp(44px, 5.6vw, 86px);
 }
 
 .page-hero p:not(.eyebrow) {
   font-size: 17px;
   line-height: 1.65;
   color: #5d665c;
-  max-width: 480px;
-  margin: 32px 0 0;
+  max-width: 560px;
+  margin: 24px 0 0;
 }
 
 .page-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 9vw;
-  padding: 115px 0;
+  gap: 6vw;
+  padding: 80px 0;
 }
 
 .page-grid h2 {
-  font-size: clamp(50px, 6vw, 84px);
+  font-size: clamp(38px, 4.5vw, 64px);
 }
 
 .page-copy {
@@ -1265,12 +1343,12 @@ h1 i, h2 i, h3 i {
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 0 0 120px;
+  gap: 16px;
+  padding: 0 0 100px;
 }
 
 .info-card {
-  min-height: 290px;
+  min-height: 280px;
   padding: 25px;
   background: #d7d7ce;
   display: flex;
@@ -1301,7 +1379,7 @@ h1 i, h2 i, h3 i {
 
 .spec-table {
   border-top: 1px solid var(--line);
-  margin: 0 0 120px;
+  margin: 0 0 100px;
 }
 
 .spec-row {
@@ -1321,18 +1399,21 @@ h1 i, h2 i, h3 i {
 }
 
 .callout {
-  margin: 0 -10vw;
-  padding: 110px 10vw;
+  margin: 60px 0;
+  padding: clamp(40px, 5vw, 80px);
   background: #c6cbc0;
+  border: 1px solid var(--line);
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .callout h2 {
-  font-size: clamp(54px, 7vw, 100px);
-  margin-bottom: 30px;
+  font-size: clamp(38px, 4.8vw, 72px);
+  margin-bottom: 24px;
 }
 
 .callout p {
-  max-width: 450px;
+  max-width: 520px;
   line-height: 1.7;
   color: #5d665c;
 }
@@ -1738,11 +1819,11 @@ textarea {
     padding-right: 6vw;
   }
   .page-hero {
-    min-height: 500px;
-    padding: 70px 0;
+    min-height: auto;
+    padding: 30px 0 50px;
   }
   .page-hero h1 {
-    font-size: 60px;
+    font-size: clamp(38px, 7vw, 54px);
   }
   .page-grid {
     grid-template-columns: 1fr;
@@ -1764,8 +1845,8 @@ textarea {
     gap: 18px;
   }
   .callout {
-    margin: 0 -6vw;
-    padding: 80px 6vw;
+    margin: 40px 0;
+    padding: 40px 24px;
   }
   .page-footer {
     padding: 45px 6vw 22px;
@@ -2681,8 +2762,8 @@ html, body {
     gap: 24px !important;
   }
   .callout {
-    margin: 0 -5vw !important;
-    padding: 50px 5vw !important;
+    margin: 30px 0 !important;
+    padding: 36px 20px !important;
   }
   .callout h2 {
     font-size: clamp(34px, 8vw, 56px) !important;
