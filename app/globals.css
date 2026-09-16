@@ -245,19 +245,47 @@ button {
 .hero-content {
   position: absolute;
   left: clamp(24px, 7vw, 110px);
-  top: 50%;
-  transform: translateY(-50%);
-  max-width: min(680px, 85vw);
+  top: clamp(120px, 15vh, 160px);
+  transform: none;
+  max-width: min(820px, 86vw);
   z-index: 2;
+}
+
+.hero-content h1 {
+  font-size: clamp(40px, 5.5vw, 84px);
+  line-height: 1.0;
+  letter-spacing: -0.05em;
+  margin-bottom: 22px;
+}
+
+.hero-content .hero-copy {
+  font-size: clamp(14px, 1.1vw, 16px);
+  max-width: min(540px, 90vw);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 32px;
+}
+
+.hero-slider-controls {
+  position: absolute;
+  right: clamp(24px, 4vw, 64px);
+  bottom: clamp(92px, 11vh, 125px);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
 }
 
 @media (min-width: 1800px) {
   .hero-content {
     left: calc((100vw - 1680px) / 2 + 32px);
-    max-width: 740px;
+    top: 160px;
+    max-width: 840px;
   }
   .hero-slider-controls {
     right: calc((100vw - 1680px) / 2 + 32px) !important;
+    bottom: 115px !important;
   }
   .scroll-cue {
     left: calc((100vw - 1680px) / 2 + 32px) !important;

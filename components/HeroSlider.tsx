@@ -136,19 +136,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Interactive Slide Navigation Controls & 5s Progress Bar */}
-      <div
-        className="hero-slider-controls"
-        style={{
-          position: 'absolute',
-          right: '4vw',
-          bottom: '40px',
-          zIndex: 10,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-end',
-          gap: '12px',
-        }}
-      >
+      <div className="hero-slider-controls">
         {/* Specimen Tag */}
         <div className="specimen-tag" style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
           {activeSlide.specimen} • {activeSlide.location}
