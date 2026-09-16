@@ -207,6 +207,7 @@ export default function MaterialExplorer() {
                     addSample(material);
                   }
                 }}
+                className="card-sample-btn"
                 style={{
                   position: 'absolute',
                   top: '14px',

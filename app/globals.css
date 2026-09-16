@@ -1711,18 +1711,24 @@ textarea {
     gap: 15px;
     flex-wrap: wrap;
   }
-  .modal {
-    grid-template-columns: 1fr;
+  .modal,
+  .material-modal-card {
+    grid-template-columns: 1fr !important;
+    max-height: 90dvh !important;
+    max-width: 480px !important;
   }
-  .modal > img {
-    min-height: 260px;
-    max-height: 320px;
+  .modal > img,
+  .material-modal-media {
+    height: 250px !important;
+    min-height: 250px !important;
+    max-height: 260px !important;
   }
-  .modal-details {
-    padding: 30px;
+  .modal-details,
+  .material-modal-body {
+    padding: 18px 16px 20px !important;
   }
   .modal-details h2 {
-    font-size: 42px;
+    font-size: 28px !important;
   }
   .modal-specs {
     margin-bottom: 25px;
@@ -2269,6 +2275,12 @@ textarea {
   }
   .tray-short {
     display: inline !important;
+  }
+  .card-sample-btn {
+    top: 8px !important;
+    right: 8px !important;
+    padding: 4px 9px !important;
+    font-size: 8.5px !important;
   }
 }
 

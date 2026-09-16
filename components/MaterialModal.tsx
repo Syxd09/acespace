@@ -47,79 +47,27 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
 
   return createPortal(
     <div
-      style={{
-        position: 'fixed',
-        inset: 0,
-        width: '100%',
-        height: '100%',
-        zIndex: 999999,
-        background: 'rgba(15, 17, 14, 0.8)',
-        backdropFilter: 'blur(10px)',
-        WebkitBackdropFilter: 'blur(10px)',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 'clamp(12px, 2.5vh, 24px)',
-        boxSizing: 'border-box',
-        animation: 'modalFadeIn 0.2s ease-out',
-      }}
+      className="material-modal-overlay"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
       <div
         ref={cardRef}
-        style={{
-          background: 'var(--paper)',
-          width: '100%',
-          maxWidth: '880px',
-          maxHeight: 'min(90vh, 590px)',
-          margin: 'auto',
-          overflowY: 'auto',
-          border: '1px solid var(--line)',
-          boxShadow: '0 25px 70px rgba(0,0,0,0.45)',
-          position: 'relative',
-          display: 'grid',
-          gridTemplateColumns: 'minmax(280px, 0.95fr) 1.2fr',
-          borderRadius: '2px',
-        }}
+        className="material-modal-card"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           type="button"
           onClick={onClose}
-          style={{
-            position: 'absolute',
-            top: '12px',
-            right: '12px',
-            zIndex: 20,
-            width: '32px',
-            height: '32px',
-            borderRadius: '50%',
-            border: '1px solid var(--line)',
-            background: 'rgba(233, 232, 226, 0.95)',
-            display: 'grid',
-            placeItems: 'center',
-            fontSize: '18px',
-            cursor: 'pointer',
-            lineHeight: 1,
-            color: 'var(--ink)',
-            transition: 'transform 0.15s ease',
-          }}
+          className="material-modal-close"
           aria-label="Close modal"
         >
           ×
         </button>
 
-        {/* Left Side: Interactive Zoomable Macro Texture & In-Situ Application Viewer */}
-        <div
-          style={{
-            position: 'relative',
-            minHeight: '280px',
-            height: '100%',
-            overflow: 'hidden',
-          }}
-        >
+        {/* Top/Left: Interactive Zoomable Macro Texture & In-Situ Application Viewer */}
+        <div className="material-modal-media">
           <SpecimenZoomViewer
             textureImage={material.textureImage}
             applicationImage={material.image}
@@ -132,16 +80,8 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
           />
         </div>
 
-        {/* Right Side: Architectural Spec & Actions */}
-        <div
-          style={{
-            padding: 'clamp(18px, 2.4vw, 28px)',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            gap: '10px',
-          }}
-        >
+        {/* Bottom/Right: Architectural Spec & Actions */}
+        <div className="material-modal-body">
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
@@ -149,7 +89,7 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
               </span>
             </div>
 
-            <h2 style={{ fontSize: 'clamp(20px, 2.2vw, 28px)', lineHeight: 1.1, margin: '0 0 4px', letterSpacing: '-0.03em' }}>
+            <h2 style={{ fontSize: 'clamp(20px, 2.2vw, 28px)', lineHeight: 1.15, margin: '0 0 4px', letterSpacing: '-0.02em', wordBreak: 'break-word' }}>
               {material.name}
             </h2>
 
@@ -163,10 +103,11 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
 
             {/* 2x2 Specs Grid */}
             <div
+              className="material-modal-specs-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
-                gap: '8px 12px',
+                gap: '8px 14px',
                 borderTop: '1px solid var(--line)',
                 borderBottom: '1px solid var(--line)',
                 padding: '10px 0',
@@ -210,7 +151,7 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
             </div>
 
             {/* Primary Applications Pills */}
-            <div>
+            <div style={{ marginBottom: '12px' }}>
               <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
                 Primary Applications
               </span>
@@ -228,6 +169,7 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
                       background: '#dcd7cd',
                       border: '1px solid var(--line)',
                       color: 'var(--ink)',
+                      borderRadius: '1px',
                     }}
                   >
                     {app}
@@ -238,7 +180,7 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
           </div>
 
           {/* Action Buttons Row */}
-          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', borderTop: '1px solid var(--line)', paddingTop: '10px' }}>
+          <div className="material-modal-actions">
             <button
               type="button"
               className="button button-dark"
@@ -249,20 +191,169 @@ export default function MaterialModal({ material, onClose }: MaterialModalProps)
                   addSample(material);
                 }
               }}
-              style={{ flex: '1 1 auto', minWidth: '140px', padding: '9px 16px', fontSize: '11px', justifyContent: 'center' }}
+              style={{ flex: '1 1 auto', minWidth: '140px', padding: '10px 16px', fontSize: '11px', justifyContent: 'center' }}
             >
               {inTray ? 'In Sample Tray ✓' : '+ Add to Sample Box'}
             </button>
             <Link
               href={`/materials/${material.slug}`}
               className="button"
-              style={{ border: '1px solid var(--line)', background: 'transparent', padding: '9px 16px', fontSize: '11px' }}
+              style={{ border: '1px solid var(--line)', background: 'transparent', padding: '10px 16px', fontSize: '11px', justifyContent: 'center' }}
             >
               Full Spec Sheet <span>↗</span>
             </Link>
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .material-modal-overlay {
+          position: fixed;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 999999;
+          background: rgba(15, 17, 14, 0.82);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: clamp(12px, 3vh, 24px);
+          box-sizing: border-box;
+          animation: modalFadeIn 0.2s ease-out;
+        }
+
+        .material-modal-card {
+          background: var(--paper);
+          width: 100%;
+          max-width: 880px;
+          max-height: min(90vh, 600px);
+          margin: auto;
+          overflow-y: auto;
+          border: 1px solid var(--line);
+          box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+          position: relative;
+          display: grid;
+          grid-template-columns: minmax(280px, 0.95fr) 1.2fr;
+          border-radius: 2px;
+        }
+
+        .material-modal-media {
+          position: relative;
+          min-height: 280px;
+          height: 100%;
+          overflow: hidden;
+        }
+
+        .material-modal-body {
+          padding: clamp(18px, 2.4vw, 28px);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 12px;
+        }
+
+        .material-modal-close {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          z-index: 20;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          border: 1px solid var(--line);
+          background: rgba(233, 232, 226, 0.95);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          display: grid;
+          place-items: center;
+          font-size: 18px;
+          cursor: pointer;
+          line-height: 1;
+          color: var(--ink);
+          transition: transform 0.15s ease, background 0.15s ease;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .material-modal-close:hover {
+          transform: scale(1.06);
+          background: #fff;
+        }
+
+        .material-modal-actions {
+          display: flex;
+          gap: 10px;
+          flex-wrap: wrap;
+          border-top: 1px solid var(--line);
+          padding-top: 12px;
+        }
+
+        @keyframes modalFadeIn {
+          from {
+            opacity: 0;
+            transform: scale(0.98);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .material-modal-overlay {
+            padding: 14px 10px !important;
+            align-items: center !important;
+          }
+
+          .material-modal-card {
+            grid-template-columns: 1fr !important;
+            max-height: 90dvh !important;
+            max-width: 480px !important;
+            border-radius: 3px !important;
+          }
+
+          .material-modal-media {
+            height: 250px !important;
+            min-height: 250px !important;
+            max-height: 260px !important;
+            border-bottom: 1px solid var(--line) !important;
+          }
+
+          .material-modal-body {
+            padding: 18px 16px 20px !important;
+            gap: 12px !important;
+          }
+
+          .material-modal-close {
+            top: 10px !important;
+            right: 10px !important;
+            z-index: 30 !important;
+          }
+        }
+
+        @media (max-width: 440px) {
+          .material-modal-media {
+            height: 220px !important;
+            min-height: 220px !important;
+          }
+
+          .material-modal-body {
+            padding: 16px 14px 18px !important;
+          }
+
+          .material-modal-actions {
+            flex-direction: column !important;
+            gap: 8px !important;
+          }
+
+          .material-modal-actions button,
+          .material-modal-actions a {
+            width: 100% !important;
+            justify-content: center !important;
+          }
+        }
+      `}</style>
     </div>,
     document.body
   );
