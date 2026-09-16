@@ -947,8 +947,9 @@ How may I assist your architectural practice today?`,
             }
           }}
         >
-          {/* Architectural Emblem Frame */}
+          {/* Architectural Desktop Emblem Frame */}
           <div
+            className="ace-ai-trigger-emblem-desktop"
             style={{
               width: '20px',
               height: '20px',
@@ -963,11 +964,44 @@ How may I assist your architectural practice today?`,
               letterSpacing: 0,
             }}
           >
-            +
+            {isOpen ? '✕' : '+'}
           </div>
 
-          {/* Text & Active Indicator */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
+          {/* Architectural Mobile Emblem (Compact 44x44 trigger badge) */}
+          <div
+            className="ace-ai-trigger-emblem-mobile"
+            style={{
+              display: 'none',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            {isOpen ? (
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '15px', color: '#f4f3ef' }}>✕</span>
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#f4f3ef', letterSpacing: '0.04em' }}>
+                  AI
+                </span>
+                <span
+                  style={{
+                    width: '5px',
+                    height: '5px',
+                    borderRadius: '50%',
+                    background: '#73c991',
+                    boxShadow: '0 0 6px rgba(115, 201, 145, 0.95)',
+                    display: 'inline-block',
+                  }}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Text & Active Indicator (Desktop) */}
+          <div className="ace-ai-trigger-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
               <span
                 style={{
@@ -1007,6 +1041,7 @@ How may I assist your architectural practice today?`,
           </div>
 
           <span
+            className="ace-ai-trigger-arrow"
             style={{
               fontFamily: 'DM Mono, monospace',
               fontSize: '13px',
@@ -1075,7 +1110,21 @@ How may I assist your architectural practice today?`,
             right: 16px !important;
           }
           .ace-ai-trigger-pill {
-            padding: 6px 12px !important;
+            width: 44px !important;
+            height: 44px !important;
+            min-width: 44px !important;
+            padding: 0 !important;
+            gap: 0 !important;
+            justify-content: center !important;
+            align-items: center !important;
+          }
+          .ace-ai-trigger-emblem-desktop,
+          .ace-ai-trigger-text,
+          .ace-ai-trigger-arrow {
+            display: none !important;
+          }
+          .ace-ai-trigger-emblem-mobile {
+            display: flex !important;
           }
           .ace-ai-chat-window {
             position: fixed !important;

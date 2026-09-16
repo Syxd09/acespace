@@ -256,6 +256,7 @@ export default function SiteHeader() {
           <button
             type="button"
             onClick={toggleTray}
+            className="sample-tray-btn"
             style={{
               background: isLightText ? 'rgba(255,255,255,0.1)' : 'rgba(30,33,29,0.06)',
               border: '1px solid currentColor',
@@ -274,6 +275,7 @@ export default function SiteHeader() {
             }}
           >
             <span
+              className="sample-tray-count"
               style={{
                 width: '18px',
                 height: '18px',
@@ -289,7 +291,10 @@ export default function SiteHeader() {
             >
               {shortlist.length}
             </span>
-            <span>Sample Tray</span>
+            <span className="sample-tray-label">
+              <span className="tray-full">Sample Tray</span>
+              <span className="tray-short">Tray</span>
+            </span>
           </button>
 
           {/* WhatsApp Direct Advisory Button */}
