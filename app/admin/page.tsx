@@ -4141,7 +4141,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                                   height: '42px',
                                   borderRadius: '4px',
                                   border: '1px solid rgba(0,0,0,0.12)',
-                                  background: matDetail?.color || '#e0dfd5',
+                                  background: matDetail?.hexColor || matDetail?.textureCss || '#e0dfd5',
                                   flexShrink: 0,
                                   position: 'relative',
                                   overflow: 'hidden',
