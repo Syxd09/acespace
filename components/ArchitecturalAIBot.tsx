@@ -309,7 +309,7 @@ How may I assist your architectural practice today?`,
                   marginBottom: '4px',
                 }}
               >
-                <span style={{ color: '#c4b08f', fontSize: '14px', lineHeight: '1.4' }}>•</span>
+                <span style={{ color: '#73c991', fontSize: '14px', lineHeight: '1.4' }}>•</span>
                 <span dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
               </div>
             );
@@ -333,7 +333,7 @@ How may I assist your architectural practice today?`,
               >
                 <span
                   style={{
-                    color: '#c4b08f',
+                    color: '#f2f0ea',
                     fontFamily: 'DM Mono, monospace',
                     fontSize: '11px',
                     fontWeight: 600,
@@ -367,8 +367,8 @@ How may I assist your architectural practice today?`,
   const formatInline = (str: string) => {
     return str
       .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ffffff; font-weight:600;">$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em style="color:#e5d5be;">$1</em>')
-      .replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08); padding:1px 4px; border-radius:3px; font-family:DM Mono,monospace; font-size:11px; color:#c4b08f;">$1</code>');
+      .replace(/\*(.*?)\*/g, '<em style="color:#f2f0ea;">$1</em>')
+      .replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08); padding:1px 5px; border-radius:0px; font-family:DM Mono,monospace; font-size:11px; color:#f2f0ea; border:1px solid rgba(255,255,255,0.12);">$1</code>');
   };
 
   return (
@@ -399,9 +399,9 @@ How may I assist your architectural practice today?`,
               maxHeight: 'calc(100vh - 110px)',
               background: '#121512',
               color: '#f4f3ef',
-              border: '1px solid rgba(255, 255, 255, 0.16)',
-              borderRadius: '8px',
-              boxShadow: '0 24px 60px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(196, 176, 143, 0.15)',
+              border: '1px solid rgba(242, 240, 234, 0.22)',
+              borderRadius: '0px',
+              boxShadow: '0 24px 60px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(242, 240, 234, 0.12)',
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
@@ -414,8 +414,8 @@ How may I assist your architectural practice today?`,
             <header
               style={{
                 padding: '14px 18px',
-                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%)',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%)',
+                borderBottom: '1px solid rgba(242, 240, 234, 0.12)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -426,14 +426,14 @@ How may I assist your architectural practice today?`,
                 {/* Minimalist Geometric Studio Emblem */}
                 <div
                   style={{
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '4px',
-                    background: 'linear-gradient(135deg, #2a3128 0%, #151914 100%)',
-                    border: '1px solid rgba(196, 176, 143, 0.4)',
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '0px',
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(242, 240, 234, 0.35)',
                     display: 'grid',
                     placeItems: 'center',
-                    color: '#c4b08f',
+                    color: '#f2f0ea',
                     fontFamily: 'DM Mono, monospace',
                     fontSize: '11px',
                     fontWeight: 700,
@@ -443,11 +443,11 @@ How may I assist your architectural practice today?`,
                   A
                 </div>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
                     <h3
                       style={{
                         margin: 0,
-                        fontSize: '13px',
+                        fontSize: '12px',
                         fontWeight: 600,
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase',
@@ -460,11 +460,11 @@ How may I assist your architectural practice today?`,
                     {/* Live Indicator Dot */}
                     <span
                       style={{
-                        width: '6px',
-                        height: '6px',
+                        width: '5px',
+                        height: '5px',
                         borderRadius: '50%',
-                        background: '#c4b08f',
-                        boxShadow: '0 0 8px rgba(196, 176, 143, 0.8)',
+                        background: '#73c991',
+                        boxShadow: '0 0 7px rgba(115, 201, 145, 0.8)',
                         display: 'inline-block',
                       }}
                     />
@@ -472,7 +472,7 @@ How may I assist your architectural practice today?`,
                   <div
                     style={{
                       fontSize: '10px',
-                      color: '#94a094',
+                      color: 'rgba(242, 240, 234, 0.55)',
                       fontFamily: 'DM Mono, monospace',
                       letterSpacing: '0.04em',
                       marginTop: '1px',
@@ -492,12 +492,12 @@ How may I assist your architectural practice today?`,
                   title="Refresh & Clear Conversation"
                   aria-label="Refresh conversation"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    color: '#a0aba0',
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid rgba(242, 240, 234, 0.18)',
+                    color: '#f2f0ea',
                     width: '26px',
                     height: '26px',
-                    borderRadius: '4px',
+                    borderRadius: '0px',
                     display: 'grid',
                     placeItems: 'center',
                     cursor: 'pointer',
@@ -506,11 +506,13 @@ How may I assist your architectural practice today?`,
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#a0aba0';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.color = '#f2f0ea';
+                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.18)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                   }}
                 >
                   ↻
@@ -523,12 +525,12 @@ How may I assist your architectural practice today?`,
                   title="Close AI Material Concierge"
                   aria-label="Close conversation"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    color: '#a0aba0',
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid rgba(242, 240, 234, 0.18)',
+                    color: '#f2f0ea',
                     width: '26px',
                     height: '26px',
-                    borderRadius: '4px',
+                    borderRadius: '0px',
                     display: 'grid',
                     placeItems: 'center',
                     cursor: 'pointer',
@@ -537,11 +539,13 @@ How may I assist your architectural practice today?`,
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#a0aba0';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                    e.currentTarget.style.color = '#f2f0ea';
+                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.18)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                   }}
                 >
                   ✕
@@ -577,18 +581,18 @@ How may I assist your architectural practice today?`,
                     style={{
                       maxWidth: msg.role === 'user' ? '86%' : '94%',
                       padding: msg.role === 'user' ? '10px 14px' : '14px 16px',
-                      borderRadius: msg.role === 'user' ? '16px 16px 2px 16px' : '4px 14px 14px 14px',
+                      borderRadius: '0px',
                       background:
                         msg.role === 'user'
-                          ? '#e9e8e2'
-                          : 'rgba(255, 255, 255, 0.04)',
-                      color: msg.role === 'user' ? '#141713' : '#e2e7e2',
+                          ? '#f2f0ea'
+                          : 'rgba(255, 255, 255, 0.03)',
+                      color: msg.role === 'user' ? '#161815' : '#f2f0ea',
                       border:
                         msg.role === 'user'
-                          ? '1px solid #d4d2c9'
+                          ? '1px solid #e0ded6'
                           : msg.isGuardrailTriggered
                           ? '1px solid rgba(220, 90, 90, 0.35)'
-                          : '1px solid rgba(255, 255, 255, 0.09)',
+                          : '1px solid rgba(242, 240, 234, 0.12)',
                       boxShadow:
                         msg.role === 'user'
                           ? '0 2px 8px rgba(0,0,0,0.15)'
@@ -627,24 +631,24 @@ How may I assist your architectural practice today?`,
                                 fontFamily: 'DM Mono, monospace',
                                 letterSpacing: '0.04em',
                                 textTransform: 'uppercase',
-                                color: '#c4b08f',
-                                background: 'rgba(196, 176, 143, 0.1)',
-                                border: '1px solid rgba(196, 176, 143, 0.25)',
-                                padding: '4px 8px',
-                                borderRadius: '3px',
+                                color: '#f2f0ea',
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                border: '1px solid rgba(242, 240, 234, 0.2)',
+                                padding: '5px 9px',
+                                borderRadius: '0px',
                                 textDecoration: 'none',
                                 display: 'inline-flex',
                                 alignItems: 'center',
-                                gap: '4px',
+                                gap: '5px',
                                 transition: 'all 0.15s ease',
                               }}
                               onMouseEnter={(e) => {
-                                e.currentTarget.style.background = 'rgba(196, 176, 143, 0.2)';
-                                e.currentTarget.style.borderColor = '#c4b08f';
+                                e.currentTarget.style.background = 'rgba(242, 240, 234, 0.12)';
+                                e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
                               }}
                               onMouseLeave={(e) => {
-                                e.currentTarget.style.background = 'rgba(196, 176, 143, 0.1)';
-                                e.currentTarget.style.borderColor = 'rgba(196, 176, 143, 0.25)';
+                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
+                                e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.2)';
                               }}
                             >
                               <span>{action.label}</span>
@@ -660,21 +664,21 @@ How may I assist your architectural practice today?`,
                                 fontFamily: 'DM Mono, monospace',
                                 letterSpacing: '0.04em',
                                 textTransform: 'uppercase',
-                                color: '#d0d8d0',
+                                color: '#f2f0ea',
                                 background: 'rgba(255, 255, 255, 0.05)',
-                                border: '1px solid rgba(255, 255, 255, 0.12)',
-                                padding: '4px 8px',
-                                borderRadius: '3px',
+                                border: '1px solid rgba(242, 240, 234, 0.18)',
+                                padding: '5px 9px',
+                                borderRadius: '0px',
                                 cursor: 'pointer',
                                 transition: 'all 0.15s ease',
                               }}
                               onMouseEnter={(e) => {
-                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                                e.currentTarget.style.borderColor = '#c4b08f';
+                                e.currentTarget.style.background = 'rgba(242, 240, 234, 0.12)';
+                                e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
                               }}
                               onMouseLeave={(e) => {
                                 e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                                e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.18)';
                               }}
                             >
                               {action.label}
@@ -689,7 +693,7 @@ How may I assist your architectural practice today?`,
                   <span
                     style={{
                       fontSize: '9px',
-                      color: '#6e7a6e',
+                      color: 'rgba(242, 240, 234, 0.45)',
                       fontFamily: 'DM Mono, monospace',
                       marginTop: '3px',
                       padding: '0 4px',
@@ -713,9 +717,9 @@ How may I assist your architectural practice today?`,
                   <div
                     style={{
                       padding: '12px 16px',
-                      borderRadius: '4px 14px 14px 14px',
-                      background: 'rgba(255, 255, 255, 0.04)',
-                      border: '1px solid rgba(196, 176, 143, 0.2)',
+                      borderRadius: '0px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(242, 240, 234, 0.16)',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '10px',
@@ -731,7 +735,7 @@ How may I assist your architectural practice today?`,
                         fontSize: '11px',
                         fontFamily: 'DM Mono, monospace',
                         letterSpacing: '0.04em',
-                        color: '#c4b08f',
+                        color: '#73c991',
                       }}
                     >
                       Synthesizing material specifications...
@@ -779,22 +783,24 @@ How may I assist your architectural practice today?`,
                       style={{
                         fontSize: '10px',
                         fontFamily: 'DM Mono, monospace',
-                        padding: '4px 8px',
-                        borderRadius: '3px',
+                        padding: '5px 10px',
+                        borderRadius: '0px',
                         background: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        color: '#c2ccc2',
+                        border: '1px solid rgba(242, 240, 234, 0.16)',
+                        color: 'rgba(242, 240, 234, 0.8)',
                         cursor: 'pointer',
                         textAlign: 'left',
                         transition: 'all 0.15s ease',
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#c4b08f';
+                        e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
+                        e.currentTarget.style.background = 'rgba(242, 240, 234, 0.08)';
                         e.currentTarget.style.color = '#ffffff';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
-                        e.currentTarget.style.color = '#c2ccc2';
+                        e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.16)';
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
+                        e.currentTarget.style.color = 'rgba(242, 240, 234, 0.8)';
                       }}
                     >
                       {starter.title} ↗
@@ -813,7 +819,7 @@ How may I assist your architectural practice today?`,
               style={{
                 padding: '12px 14px',
                 background: '#0d100d',
-                borderTop: '1px solid rgba(255, 255, 255, 0.12)',
+                borderTop: '1px solid rgba(242, 240, 234, 0.12)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '8px',
@@ -824,10 +830,10 @@ How may I assist your architectural practice today?`,
                   display: 'flex',
                   alignItems: 'flex-end',
                   gap: '8px',
-                  background: 'rgba(255, 255, 255, 0.04)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  borderRadius: '6px',
-                  padding: '6px 10px',
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  border: '1px solid rgba(242, 240, 234, 0.18)',
+                  borderRadius: '0px',
+                  padding: '8px 12px',
                 }}
               >
                 <textarea
@@ -856,12 +862,12 @@ How may I assist your architectural practice today?`,
                   disabled={!input.trim() || isLoading}
                   aria-label="Send Inquiry"
                   style={{
-                    background: input.trim() && !isLoading ? '#c4b08f' : 'rgba(255, 255, 255, 0.1)',
-                    color: input.trim() && !isLoading ? '#141713' : '#6b766b',
+                    background: input.trim() && !isLoading ? '#f2f0ea' : 'rgba(255, 255, 255, 0.08)',
+                    color: input.trim() && !isLoading ? '#161815' : 'rgba(242, 240, 234, 0.3)',
                     border: 'none',
                     width: '32px',
                     height: '32px',
-                    borderRadius: '4px',
+                    borderRadius: '0px',
                     display: 'grid',
                     placeItems: 'center',
                     cursor: input.trim() && !isLoading ? 'pointer' : 'not-allowed',
@@ -883,7 +889,7 @@ How may I assist your architectural practice today?`,
                   justifyContent: 'space-between',
                   fontSize: '9px',
                   fontFamily: 'DM Mono, monospace',
-                  color: '#717c71',
+                  color: 'rgba(242, 240, 234, 0.5)',
                   letterSpacing: '0.02em',
                 }}
               >
@@ -892,7 +898,7 @@ How may I assist your architectural practice today?`,
                   href="https://wa.me/919845012345"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: '#25D366', textDecoration: 'none' }}
+                  style={{ color: '#73c991', textDecoration: 'none' }}
                 >
                   WhatsApp in Navbar ↗
                 </Link>
@@ -901,7 +907,7 @@ How may I assist your architectural practice today?`,
           </div>
         )}
 
-        {/* Floating Trigger Pill (matches the exact screenshot & luxury aesthetic) */}
+        {/* Floating Trigger Plaque (Architectural Specifier Plaque) */}
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
@@ -909,60 +915,64 @@ How may I assist your architectural practice today?`,
           aria-label="Ace Spaces Private AI Material Intelligence"
           className="ace-ai-trigger-pill"
           style={{
-            background: isOpen ? '#1a1d19' : 'rgba(20, 23, 19, 0.95)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
+            background: isOpen ? '#141714' : 'rgba(18, 21, 18, 0.94)',
+            backdropFilter: 'blur(20px)',
+            WebkitBackdropFilter: 'blur(20px)',
             color: '#f4f3ef',
-            border: isOpen ? '1px solid #c4b08f' : '1px solid rgba(255, 255, 255, 0.2)',
-            borderRadius: '100px',
-            padding: '8px 16px',
+            border: isOpen ? '1px solid rgba(242, 240, 234, 0.65)' : '1px solid rgba(242, 240, 234, 0.24)',
+            borderRadius: '0px',
+            padding: '10px 16px',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '10px',
+            gap: '12px',
             cursor: 'pointer',
             boxShadow: isOpen
-              ? '0 12px 35px rgba(196, 176, 143, 0.25)'
-              : '0 10px 30px rgba(0, 0, 0, 0.3)',
+              ? '0 16px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(242, 240, 234, 0.15)'
+              : '0 12px 32px rgba(0, 0, 0, 0.45)',
             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
             transform: isOpen ? 'scale(0.98)' : 'scale(1)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = '#c4b08f';
-            e.currentTarget.style.boxShadow = '0 12px 35px rgba(196, 176, 143, 0.22)';
+            e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.7)';
+            e.currentTarget.style.background = 'rgba(26, 30, 26, 0.98)';
+            e.currentTarget.style.boxShadow = '0 18px 45px rgba(0, 0, 0, 0.55)';
+            e.currentTarget.style.transform = 'translateY(-3px)';
           }}
           onMouseLeave={(e) => {
             if (!isOpen) {
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-              e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.3)';
+              e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.24)';
+              e.currentTarget.style.background = 'rgba(18, 21, 18, 0.94)';
+              e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.45)';
+              e.currentTarget.style.transform = 'translateY(0)';
             }
           }}
         >
-          {/* AI Geometric Emblem Badge */}
+          {/* Architectural Emblem Frame */}
           <div
             style={{
-              width: '24px',
-              height: '24px',
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #c4b08f 0%, #9e8966 100%)',
+              width: '20px',
+              height: '20px',
+              border: '1px solid rgba(242, 240, 234, 0.35)',
+              background: 'rgba(255, 255, 255, 0.05)',
               display: 'grid',
               placeItems: 'center',
-              color: '#141713',
+              color: '#f4f3ef',
               flexShrink: 0,
               fontSize: '11px',
-              fontWeight: 800,
               fontFamily: 'DM Mono, monospace',
+              letterSpacing: 0,
             }}
           >
-            ✦
+            +
           </div>
 
           {/* Text & Active Indicator */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
               <span
                 style={{
                   fontFamily: 'DM Mono, monospace',
-                  fontSize: '10px',
+                  fontSize: '11px',
                   fontWeight: 600,
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
@@ -976,8 +986,8 @@ How may I assist your architectural practice today?`,
                   width: '5px',
                   height: '5px',
                   borderRadius: '50%',
-                  background: '#c4b08f',
-                  boxShadow: '0 0 6px rgba(196, 176, 143, 0.9)',
+                  background: '#73c991',
+                  boxShadow: '0 0 6px rgba(115, 201, 145, 0.85)',
                   display: 'inline-block',
                 }}
               />
@@ -985,9 +995,11 @@ How may I assist your architectural practice today?`,
             <span
               style={{
                 fontSize: '9px',
-                color: '#9ba79b',
+                color: 'rgba(242, 240, 234, 0.55)',
                 fontFamily: 'DM Mono, monospace',
-                letterSpacing: '0.02em',
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                marginTop: '1px',
               }}
             >
               Material Intelligence
@@ -997,9 +1009,10 @@ How may I assist your architectural practice today?`,
           <span
             style={{
               fontFamily: 'DM Mono, monospace',
-              fontSize: '11px',
-              color: '#c4b08f',
-              marginLeft: '2px',
+              fontSize: '13px',
+              color: '#f4f3ef',
+              marginLeft: '4px',
+              lineHeight: 1,
             }}
           >
             {isOpen ? '✕' : '↗'}
@@ -1023,7 +1036,7 @@ How may I assist your architectural practice today?`,
         .ai-dot-pulse {
           width: 5px;
           height: 5px;
-          background: #c4b08f;
+          background: #73c991;
           border-radius: 50%;
           display: inline-block;
           animation: aiPulse 1.2s infinite ease-in-out;
@@ -1052,7 +1065,7 @@ How may I assist your architectural practice today?`,
           border-radius: 2px;
         }
         .ace-ai-messages-scroll::-webkit-scrollbar-thumb:hover {
-          background: rgba(196, 176, 143, 0.4);
+          background: rgba(242, 240, 234, 0.35);
         }
 
         /* Responsive Mobile Behavior (<640px) */
