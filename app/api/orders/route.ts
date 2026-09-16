@@ -22,7 +22,7 @@ const noCacheHeaders = {
   'Surrogate-Control': 'no-store',
 };
 
-const VALID_ORDER_STATUSES: OrderStatus[] = ['pending', 'processing', 'dispatched', 'delivered', 'cancelled'];
+const VALID_ORDER_STATUSES: OrderStatus[] = ['in-progress', 'submitted', 'dispatched', 'delivered', 'cancelled'];
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // GET: Retrieve sample orders or store metrics (Admin only)

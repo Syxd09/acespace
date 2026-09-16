@@ -89,9 +89,10 @@ function getFilePath(filename: string): string {
   return localFile;
 }
 
-export function sanitizeString(str?: string): string {
+export function sanitizeString(str?: string, maxLength?: number): string {
   if (!str || typeof str !== 'string') return '';
-  return str.trim().replace(/[<>]/g, '');
+  const cleaned = str.trim().replace(/[<>]/g, '');
+  return typeof maxLength === 'number' && maxLength > 0 ? cleaned.slice(0, maxLength) : cleaned;
 }
 
 export function sanitizeEmail(email?: string): string {

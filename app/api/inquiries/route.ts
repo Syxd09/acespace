@@ -20,7 +20,7 @@ const noCacheHeaders = {
   'Surrogate-Control': 'no-store',
 };
 
-const VALID_INQUIRY_STATUSES: InquiryStatus[] = ['new', 'in-review', 'contacted', 'resolved', 'archived'];
+const VALID_INQUIRY_STATUSES: InquiryStatus[] = ['new', 'in-discussion', 'sample-sent', 'closed'];
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 // GET: Retrieve client inquiries with optional status filtering (Admin only)

@@ -3,7 +3,19 @@
 export const REALTIME_CHANNEL_NAME = 'acespaces_realtime_leads';
 
 export interface RealtimeEvent {
-  type: 'ORDER_UPDATED' | 'ORDER_SUBMITTED' | 'ORDER_DELETED' | 'INQUIRY_CREATED' | 'INQUIRY_UPDATED' | 'INQUIRY_DELETED' | 'DISPATCH_CREATED' | 'DISPATCH_DELETED' | 'CONTENT_UPDATED';
+  type:
+    | 'ORDER_UPDATED'
+    | 'ORDER_SUBMITTED'
+    | 'ORDER_DELETED'
+    | 'INQUIRY_CREATED'
+    | 'INQUIRY_UPDATED'
+    | 'INQUIRY_DELETED'
+    | 'DISPATCH_CREATED'
+    | 'DISPATCH_DELETED'
+    | 'CONTENT_UPDATED'
+    | 'CHAT_SESSION_CREATED'
+    | 'CHAT_SESSION_UPDATED'
+    | 'CHAT_SESSION_DELETED';
   payload?: any;
   timestamp: number;
 }
