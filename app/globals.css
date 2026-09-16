@@ -255,6 +255,8 @@ h1 i, h2 i, h3 i {
   text-transform: uppercase;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.3s ease;
   position: relative;
+  box-sizing: border-box;
+  border: 1px solid transparent;
 }
 
 .button span {
@@ -280,6 +282,166 @@ h1 i, h2 i, h3 i {
 .button-dark {
   background: var(--ink);
   color: #fff;
+}
+
+@keyframes livePulseGlow {
+  0% {
+    transform: scale(0.92);
+    box-shadow: 0 0 0 0 rgba(115, 201, 145, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(115, 201, 145, 0);
+  }
+  100% {
+    transform: scale(0.92);
+    box-shadow: 0 0 0 0 rgba(115, 201, 145, 0);
+  }
+}
+
+.button-outline-glass {
+  background: rgba(255, 255, 255, 0.04);
+  color: #f2f0ea;
+  border: 1px solid rgba(242, 240, 234, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.button-outline-glass:hover {
+  background: rgba(242, 240, 234, 0.1);
+  border-color: rgba(242, 240, 234, 0.7);
+  color: #ffffff;
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.button-outline-glass .wa-svg {
+  flex-shrink: 0;
+  color: #73c991;
+  opacity: 0.9;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.button-outline-glass:hover .wa-svg {
+  opacity: 1;
+  color: #8be4aa;
+  transform: scale(1.1);
+}
+
+.button-outline-glass .live-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #73c991;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: livePulseGlow 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.button-outline-glass span.arrow {
+  font-size: 18px;
+  line-height: 0;
+  margin-left: 12px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button-outline-glass:hover span.arrow {
+  transform: translate(4px, -4px);
+}
+
+.button-outline-dark {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid rgba(22, 24, 21, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 22px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.button-outline-dark:hover {
+  background: rgba(22, 24, 21, 0.06);
+  border-color: var(--ink);
+  color: var(--ink);
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+}
+
+.button-outline-dark .wa-svg {
+  flex-shrink: 0;
+  color: #1e7033;
+  opacity: 0.9;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.button-outline-dark:hover .wa-svg {
+  opacity: 1;
+  color: #155d28;
+  transform: scale(1.1);
+}
+
+.button-outline-dark .live-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2e7d32;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: livePulseGlow 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.button-outline-dark span.arrow {
+  font-size: 18px;
+  line-height: 0;
+  margin-left: 12px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.button-outline-dark:hover span.arrow {
+  transform: translate(4px, -4px);
+}
+
+.specifier-chip {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(242, 240, 234, 0.72);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 14px;
+  border: 1px solid rgba(242, 240, 234, 0.16);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+}
+
+.specifier-chip:hover {
+  background: rgba(242, 240, 234, 0.09);
+  border-color: rgba(242, 240, 234, 0.45);
+  color: #ffffff;
+  transform: translateY(-2px);
 }
 
 .text-link {

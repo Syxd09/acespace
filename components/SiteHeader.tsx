@@ -322,8 +322,8 @@ export default function SiteHeader() {
                 width: '6px',
                 height: '6px',
                 borderRadius: '50%',
-                background: '#25D366',
-                boxShadow: '0 0 8px #25D366',
+                background: '#73c991',
+                boxShadow: '0 0 8px rgba(115, 201, 145, 0.7)',
                 display: 'inline-block',
                 flexShrink: 0,
               }}
@@ -426,8 +426,9 @@ export default function SiteHeader() {
                   width: '26px',
                   height: '26px',
                   borderRadius: '50%',
-                  background: '#25D366',
-                  color: '#fff',
+                  background: 'rgba(115, 201, 145, 0.15)',
+                  border: '1px solid rgba(115, 201, 145, 0.35)',
+                  color: '#73c991',
                   display: 'grid',
                   placeItems: 'center',
                   flexShrink: 0,
@@ -446,7 +447,7 @@ export default function SiteHeader() {
                 </div>
               </div>
             </div>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#25D366' }}>Chat ↗</span>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#73c991' }}>Chat ↗</span>
           </a>
         </div>
 
@@ -539,11 +540,11 @@ export default function SiteHeader() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <span
                 style={{
-                  width: '8px',
-                  height: '8px',
+                  width: '7px',
+                  height: '7px',
                   borderRadius: '50%',
-                  background: '#25D366',
-                  boxShadow: '0 0 8px #25D366',
+                  background: '#73c991',
+                  boxShadow: '0 0 8px rgba(115, 201, 145, 0.6)',
                   flexShrink: 0,
                 }}
               />
@@ -556,7 +557,7 @@ export default function SiteHeader() {
                 </small>
               </div>
             </div>
-            <span style={{ color: '#25D366', fontWeight: 700, fontSize: '14px' }}>↗</span>
+            <span style={{ color: '#73c991', fontWeight: 600, fontSize: '14px' }}>↗</span>
           </a>
 
           <div className="drawer-coro-box">
