@@ -5838,7 +5838,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                   LIVE REAL-TIME STREAM
                 </span>
                 <button
-                  onClick={fetchOrders}
+                  onClick={() => fetchOrders()}
                   style={{
                     padding: '8px 16px',
                     background: '#ffffff',
@@ -6215,7 +6215,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                   LIVE REAL-TIME STREAM
                 </span>
                 <button
-                  onClick={fetchInquiries}
+                  onClick={() => fetchInquiries()}
                   style={{
                     padding: '8px 16px',
                     background: '#ffffff',
@@ -6540,7 +6540,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                   📥 Export CSV
                 </button>
                 <button
-                  onClick={fetchSubscribers}
+                  onClick={() => fetchSubscribers()}
                   style={{
                     padding: '8px 16px',
                     background: '#ffffff',
@@ -6684,7 +6684,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                 </button>
                 <button
                   type="button"
-                  onClick={fetchChatSessions}
+                  onClick={() => fetchChatSessions()}
                   style={{
                     padding: '8px 16px',
                     background: '#1a1d19',
