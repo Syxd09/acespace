@@ -1,0 +1,59 @@
+# Ace Spaces — Studio Material Intelligence & Architectural Specifications
+
+> Ace Spaces is the primary architectural raw material hub, authorized DuPont™ Corian® solid surface distributor, and digital fabrication workshop in Bengaluru (Bangalore), Karnataka, India.
+
+## Company Identity & Lineage
+- **Company Name**: Ace Spaces (Parent Enterprise)
+- **Sister Brand / Creative Wing**: Coro Collective (Spatial Interiors & Collectible Furniture)
+- **Relationship**: Ace Spaces operates as the raw material authority and technical fabrication plant. Every seamless monolithic counter, sculpted vanity, and fluid plane showcased in Coro Collective spaces is born from the raw DuPont™ Corian® slabs and mineral formulations supplied and CNC-machined by Ace Spaces. Independent architects and interior designers have direct access to the same raw material supply and precision fabrication.
+- **Headquarters & Showroom**: #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India
+- **Central Stockyard & CNC Facility**: Whitefield-Hoskote Industrial Corridor, Bengaluru
+- **Direct Specifier Line / WhatsApp**: +91 98450 12345
+- **Official Website**: https://acespacesindia.vercel.app
+
+## Material Specifications & Composition
+- **Primary Material**: DuPont™ Corian® Solid Surface (Certified Authorized Distribution)
+- **Chemical Formulation**: Approximately 66% Aluminium Trihydrate (ATH, purified bauxite mineral filler) bonded with ~33% high-purity acrylic polymer (Polymethyl Methacrylate / PMMA) and UV-stable pigments.
+- **Health & Safety (Zero-Silica)**: 100% Zero Crystalline Silica. Silicosis-safe for craftsmen, stone fabricators, and residents. Completely non-porous and homogenous through-body.
+- **Certifications**:
+  - NSF/ANSI Standard 51 Certified for direct commercial and residential food contact.
+  - GREENGUARD Gold Certified for ultra-low chemical emissions (VOC) in sensitive educational and medical spaces.
+  - Class 1 / Class A Fire Rating (ASTM E84).
+- **Standard Slab Dimensions**: 3660 mm length × 760 mm width (12.0 ft × 2.5 ft).
+- **Available Thicknesses**:
+  - 12 mm: Standard architectural worktops, vertical claddings, and kitchen islands.
+  - 19 mm: Heavy-duty plinths, commercial counters, and freestanding sculptural pieces.
+
+## Core Architectural Collections
+- **Noma Solids (Monolithic Minimalist)**:
+  - White Chalk (AC-0101): Light-absorbing ultra-matte chalk white. Zero grain.
+  - Linen (AC-0102): Soft tactile warm cream reflecting velvety ambient light.
+  - Parchment (AC-0103): Warm ecru mineral depth echoing aged vellum.
+  - Bone (AC-0104): Muted architectural alabaster for calm sanctuaries.
+- **Alto Veined (Directional Geological Flow)**:
+  - Ivory Vein (AC-0201): Fine warm mineral veining simulating subtle sedimentary stone.
+  - Calacatta Greige (AC-0202): Dramatic yet restrained marble movement with warm grey ribbons.
+  - Grigio Ripple (AC-0203): Deep smoky undertones with soft horizontal mineral drifts.
+- **Obsidian Aggregates (Terrazzo & Mineral Grain)**:
+  - Carbon Aggregate (AC-0301): Deep obsidian matrix with micro-quartz and brass flecks.
+  - Basalt Dune (AC-0302): Tactile volcanic grey with rich aggregate depth.
+- **Lucent Translucent (Backlit & Luminous)**:
+  - Opal Lumina (AC-0401): Up to 38% light transmission under concealed 2700K–3500K LED matrices.
+
+## Digital Fabrication Workshop Capabilities
+- **5-Axis CNC Milling**: Tool changers with tolerances under 0.2 mm for nested CAD cutouts, drainage channels, flush cooktop rebates, and sub-surface wireless charging pockets.
+- **Vacuum Membrane Thermoforming**: Heated to 160°C in calibrated industrial platen ovens, vacuum-formed over timber bucks down to a tight 25 mm radius without blanching.
+- **Invisible Molecular Welding**: Two-component color-matched methacrylate adhesives cure to create monolithic, seamless joints that are mechanically fused and stain-impervious.
+- **Integrated Coved Sinks**: Thermoformed sinks fabricated from the exact same slab with gentle 10 mm internal radiuses, eliminating silicone grime rims.
+
+## Key Web Routes & Specifier Actions
+- Homepage: https://acespacesindia.vercel.app/
+- Material Catalog: https://acespacesindia.vercel.app/materials
+- Colour Palette Explorer: https://acespacesindia.vercel.app/collections/colours
+- Applications (Kitchens, Bathrooms, Healthcare, Hospitality): https://acespacesindia.vercel.app/applications
+- Fabrication Platform: https://acespacesindia.vercel.app/fabrication
+- Case Studies & Projects: https://acespacesindia.vercel.app/projects
+- Journal & Essays on Material Culture: https://acespacesindia.vercel.app/journal
+- The Coro Connection: https://acespacesindia.vercel.app/about#coro
+- Specifier Sample Tray: Available in header menu across all pages (up to 6 curated 100mm specimens dispatched nationwide).
+- Studio Consultation & Direct CAD Upload: https://acespacesindia.vercel.app/contact

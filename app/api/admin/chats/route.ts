@@ -5,11 +5,19 @@ import {
   deleteChatSession,
 } from '@/data/chatStore';
 import { broadcastRealtimeEvent } from '@/lib/realtime';
+import { verifyAdminRequest } from '@/lib/adminAuth';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+export async function GET(req: NextRequest) {
+  if (!verifyAdminRequest(req)) {
+    return NextResponse.json(
+      { error: 'Unauthorized. Admin session required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const sessions = getAllChatSessions();
 
@@ -37,6 +45,13 @@ export async function GET() {
 }
 
 export async function PATCH(req: NextRequest) {
+  if (!verifyAdminRequest(req)) {
+    return NextResponse.json(
+      { error: 'Unauthorized. Admin session required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const body = await req.json();
     const { id, status } = body;
@@ -79,6 +94,13 @@ export async function PATCH(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  if (!verifyAdminRequest(req)) {
+    return NextResponse.json(
+      { error: 'Unauthorized. Admin session required.' },
+      { status: 401 }
+    );
+  }
+
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');

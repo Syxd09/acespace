@@ -1,34 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { saveChatSession, AIChatSession, AIChatMessage } from '@/data/chatStore';
 import { broadcastRealtimeEvent } from '@/lib/realtime';
-import fs from 'fs';
-import path from 'path';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 function getEnvValue(keyName: string): string | null {
-  if (process.env[keyName]) return process.env[keyName]!;
-  try {
-    const candidates = [
-      path.join(process.cwd(), '.env.local'),
-      path.join(process.cwd(), '.env'),
-    ];
-    for (const file of candidates) {
-      if (fs.existsSync(file)) {
-        const text = fs.readFileSync(file, 'utf8');
-        const match = text.match(new RegExp(`^${keyName}=(.*)$`, 'm'));
-        if (match && match[1]) {
-          return match[1].trim().replace(/^["']|["']$/g, '');
-        }
-      }
-    }
-  } catch (e) {}
-  return null;
+  return process.env[keyName] || null;
 }
 
 export async function POST(req: NextRequest) {
   try {
+    // Rate limit: 15 session recordings per minute per IP
+    const rateLimit = checkRateLimit(req, 'ai_session', 15, 60 * 1000);
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        { error: 'Session recording rate limit exceeded. Please retry shortly.' },
+        { status: 429, headers: { 'Retry-After': rateLimit.retryAfterSeconds.toString() } }
+      );
+    }
+
     const body = await req.json();
     const messages: AIChatMessage[] = Array.isArray(body?.messages) ? body.messages : [];
     const sessionId: string = body?.sessionId || `chat_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;

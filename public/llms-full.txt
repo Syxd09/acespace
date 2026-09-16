@@ -1,0 +1,53 @@
+# Ace Spaces — Complete Technical & Material Specification Reference (LLMs Full)
+
+## Executive Summary
+Ace Spaces is an authorized DuPont™ Corian® solid surface master distributor and advanced digital fabrication atelier based in Bengaluru (Bangalore), India. Ace Spaces functions as the raw material authority and precision engineering foundation for leading architects, luxury interior designers, and its sister brand Coro Collective.
+
+## Material Chemistry & Environmental Profile
+- **Polymer Matrix**: Poly(methyl methacrylate) (PMMA) acrylic resin blend (~33% by weight).
+- **Mineral Filler**: Aluminium Trihydrate (ATH), Al(OH)3, derived from refined natural bauxite ore (~66% by weight).
+- **Pigmentation**: High-durability mineral and metal-oxide pigments distributed homogenously throughout the thickness.
+- **Specific Gravity**: ~1.73–1.78 g/cm³.
+- **Tensile Strength**: 40–50 MPa (ASTM D638).
+- **Flexural Modulus**: 8,500–10,000 MPa (ASTM D790).
+- **Rockwell Hardness**: 85–92 (M Scale, ASTM D785).
+- **Water Absorption**: <0.1% after 24-hour submersion (ASTM D570) — monolithic and non-porous.
+- **Stain Resistance**: Impervious to household dyes, vinegar, lemon juice, wine, turmeric pastes, and mild chemical solvents when cleaned per protocol.
+- **Thermal Expansion Coefficient**: 3.0 × 10⁻⁵ / °C.
+- **Thermal Formability**: Thermoformable between 150°C and 165°C using calibrated silicone heating blankets and vacuum membrane presses.
+- **Silica Content**: Strictly 0.00% crystalline silica. Zero risk of occupational silicosis during cutting, CNC routing, dry/wet sanding, or installation.
+
+## Certifications & Quality Assurance
+1. **NSF/ANSI 51 Certified**: Certified for all food contact types in commercial preparation and residential culinary zones.
+2. **GREENGUARD Gold Certified**: Certified for ultra-low Volatile Organic Compounds (VOC), ensuring compliance with California Department of Public Health (CDPH) Standard Method v1.2.
+3. **ASTM E84 Surface Burning**: Class A / Class 1 fire rating with Flame Spread Index <25 and Smoke Developed Index <450.
+4. **DuPont 10-Year Installed Warranty**: Full 10-year manufacturer product warranty backed by Ace Spaces certified fabrication.
+
+## Workshop Machinery & Fabrication Tolerances
+- **5-Axis Industrial CNC**: G-code driven 5-axis routers equipped with high-frequency 12 kW spindles. Positional accuracy <0.15 mm. Nested cutouts for induction hobs, undermount sinks, and complex 3D parametric relief surfaces.
+- **Vacuum Membrane Press**: Double-diaphragm industrial vacuum presses with heated chambers up to 175°C. Capable of compound spherical bends, ergonomic vanity troughs, and fluted column casings down to a 25 mm internal bend radius.
+- **Molecular Seam Adhesive**: 10:1 ratio two-component methacrylate structural adhesives color-matched to each slab reference. Seams are clamped with vacuum leveling blocks and sanded flush, rendering joints completely invisible and structurally continuous.
+
+## Slab Catalog (Ace Spaces Curated References)
+- **Noma Solids**:
+  - AC-0101 White Chalk (3660 × 760 × 12mm / 19mm)
+  - AC-0102 Linen (3660 × 760 × 12mm / 19mm)
+  - AC-0103 Parchment (3660 × 760 × 12mm)
+  - AC-0104 Bone (3660 × 760 × 12mm)
+- **Alto Veined**:
+  - AC-0201 Ivory Vein (3660 × 760 × 12mm / 19mm)
+  - AC-0202 Calacatta Greige (3660 × 760 × 12mm / 19mm)
+  - AC-0203 Grigio Ripple (3660 × 760 × 12mm)
+- **Obsidian Aggregates**:
+  - AC-0301 Carbon Aggregate (3660 × 760 × 12mm)
+  - AC-0302 Basalt Dune (3660 × 760 × 12mm)
+- **Lucent Translucent**:
+  - AC-0401 Opal Lumina (3660 × 760 × 12mm, 38% light transmission)
+
+## Contact, Physical Showroom & Specifier Desk
+- **Showroom Address**: #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India
+- **Stockyard Address**: Ace Spaces Industrial Yard, Whitefield-Hoskote Main Road, Bengaluru, Karnataka 560067, India
+- **Consultation Hours**: Monday–Friday 09:00–19:00, Saturday 09:00–17:00 IST
+- **Phone / WhatsApp Desk**: +91 98450 12345
+- **Official Web Domain**: https://acespacesindia.vercel.app
+- **Sample Box Program**: Architects and interior designers can request up to 6 custom-labeled 100mm × 100mm × 12mm specimens delivered anywhere in India.

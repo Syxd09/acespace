@@ -1,31 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getPrivateAIResponse, STUDIO_KNOWLEDGE_BASE, GUARDRAIL_DECLINE_MESSAGE } from '@/lib/ai-knowledge';
-import fs from 'fs';
-import path from 'path';
+import { checkRateLimit } from '@/lib/rateLimit';
 
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
 /**
- * Reads an environment variable from process.env or directly parses .env.local/.env
- * ensuring hot-reload even if the dev server was started before .env was created.
+ * Fast cached environment variable lookup
  */
 function getEnvValue(keyName: string): string | null {
-  if (process.env[keyName]) return process.env[keyName]!;
-  try {
-    const candidates = ['.env.local', '.env'];
-    for (const file of candidates) {
-      const p = path.join(process.cwd(), file);
-      if (fs.existsSync(p)) {
-        const text = fs.readFileSync(p, 'utf8');
-        const match = text.match(new RegExp(`^${keyName}=(.*)$`, 'm'));
-        if (match && match[1]) {
-          return match[1].trim().replace(/^["']|["']$/g, '');
-        }
-      }
-    }
-  } catch (e) {}
-  return null;
+  return process.env[keyName] || null;
 }
 
 /**
@@ -152,6 +136,21 @@ CRITICAL PRIVACY & SCOPE GUARDRAILS
 
 export async function POST(req: NextRequest) {
   try {
+    // Rate limit: 25 requests per minute per IP
+    const rateLimit = checkRateLimit(req, 'ai_chat', 25, 60 * 1000);
+    if (!rateLimit.success) {
+      return NextResponse.json(
+        {
+          error: `Rate limit reached. Please wait ${rateLimit.retryAfterSeconds}s before sending another inquiry.`,
+          retryAfter: rateLimit.retryAfterSeconds,
+        },
+        {
+          status: 429,
+          headers: { 'Retry-After': rateLimit.retryAfterSeconds.toString() },
+        }
+      );
+    }
+
     const body = await req.json();
     const messages: ChatMessage[] = Array.isArray(body?.messages) ? body.messages : [];
 
