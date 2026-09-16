@@ -1,5 +1,3 @@
-'use client';
-
 export const REALTIME_CHANNEL_NAME = 'acespaces_realtime_leads';
 
 export interface RealtimeEvent {

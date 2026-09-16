@@ -13,8 +13,6 @@ function getEnvValue(keyName: string): string | null {
     const candidates = [
       path.join(process.cwd(), '.env.local'),
       path.join(process.cwd(), '.env'),
-      'e:/acespaces/.env.local',
-      'e:/acespaces/.env',
     ];
     for (const file of candidates) {
       if (fs.existsSync(file)) {

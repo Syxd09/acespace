@@ -29,17 +29,40 @@ export interface AIChatSession {
   lastUpdated: string;
 }
 
-const CHATS_FILE_PATHS = [
-  path.join(process.cwd(), 'data', 'chats.json'),
-  'e:/acespaces/data/chats.json',
-  'e:/ace-spaces-recreate-a-premium-architectural/data/chats.json',
-];
+const localDir = path.join(process.cwd(), 'data');
+const localDataPath = path.join(localDir, 'chats.json');
+const vercelTmpPath = path.join('/tmp', 'acespaces-chats.json');
 
 function getChatsFilePath(): string {
-  for (const p of CHATS_FILE_PATHS) {
-    if (fs.existsSync(p)) return p;
+  if (process.env.VERCEL) {
+    if (fs.existsSync(vercelTmpPath)) return vercelTmpPath;
+    if (fs.existsSync(localDataPath)) return localDataPath;
+    return vercelTmpPath;
   }
-  return CHATS_FILE_PATHS[0];
+  return localDataPath;
+}
+
+function writeChatsData(data: AIChatSession[]): void {
+  const payload = JSON.stringify(data, null, 2);
+  let written = false;
+
+  try {
+    if (!fs.existsSync(localDir)) {
+      fs.mkdirSync(localDir, { recursive: true });
+    }
+    fs.writeFileSync(localDataPath, payload, 'utf8');
+    written = true;
+  } catch {
+    // Read-only filesystem on Vercel Serverless
+  }
+
+  if (!written || process.env.VERCEL) {
+    try {
+      fs.writeFileSync(vercelTmpPath, payload, 'utf8');
+    } catch (err) {
+      console.warn('Failed to write /tmp backup for chats.json:', err);
+    }
+  }
 }
 
 export function getAllChatSessions(): AIChatSession[] {
@@ -57,9 +80,7 @@ export function getAllChatSessions(): AIChatSession[] {
 
 export function saveChatSession(session: AIChatSession): AIChatSession {
   try {
-    const filePath = getChatsFilePath();
     let sessions = getAllChatSessions();
-
     const existingIndex = sessions.findIndex((s) => s.id === session.id);
     if (existingIndex >= 0) {
       sessions[existingIndex] = {
@@ -74,7 +95,7 @@ export function saveChatSession(session: AIChatSession): AIChatSession {
       });
     }
 
-    fs.writeFileSync(filePath, JSON.stringify(sessions, null, 2), 'utf8');
+    writeChatsData(sessions);
     return session;
   } catch (err) {
     console.error('Error saving chat session:', err);
@@ -86,14 +107,18 @@ export function updateChatSessionStatus(
   id: string,
   status: AIChatSession['status']
 ): AIChatSession | null {
+  const VALID_STATUSES: AIChatSession['status'][] = ['new', 'reviewed', 'contacted', 'archived'];
+  if (!VALID_STATUSES.includes(status)) {
+    return null;
+  }
+
   try {
-    const filePath = getChatsFilePath();
     let sessions = getAllChatSessions();
     const session = sessions.find((s) => s.id === id);
     if (session) {
       session.status = status;
       session.lastUpdated = new Date().toISOString();
-      fs.writeFileSync(filePath, JSON.stringify(sessions, null, 2), 'utf8');
+      writeChatsData(sessions);
       return session;
     }
   } catch (err) {
@@ -104,11 +129,10 @@ export function updateChatSessionStatus(
 
 export function deleteChatSession(id: string): boolean {
   try {
-    const filePath = getChatsFilePath();
     let sessions = getAllChatSessions();
     const filtered = sessions.filter((s) => s.id !== id);
     if (filtered.length !== sessions.length) {
-      fs.writeFileSync(filePath, JSON.stringify(filtered, null, 2), 'utf8');
+      writeChatsData(filtered);
       return true;
     }
   } catch (err) {

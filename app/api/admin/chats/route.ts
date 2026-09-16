@@ -47,6 +47,18 @@ export async function PATCH(req: NextRequest) {
         { status: 400 }
       );
     }
+    const VALID_STATUSES: ('new' | 'reviewed' | 'contacted' | 'archived')[] = [
+      'new',
+      'reviewed',
+      'contacted',
+      'archived',
+    ];
+    if (!VALID_STATUSES.includes(status)) {
+      return NextResponse.json(
+        { error: `Invalid status. Must be one of: ${VALID_STATUSES.join(', ')}` },
+        { status: 400 }
+      );
+    }
 
     const updated = updateChatSessionStatus(id, status);
     if (updated) {

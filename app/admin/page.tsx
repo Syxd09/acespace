@@ -573,6 +573,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
         if (data.session) {
           setChatSessions((prev) => prev.map((s) => (s.id === id ? data.session : s)));
           if (selectedChatSession?.id === id) setSelectedChatSession(data.session);
+          broadcastRealtimeEvent('CHAT_SESSION_UPDATED', data.session);
           showToast(`✓ Session marked as ${status.toUpperCase()}`, 'success');
         }
       }
@@ -589,6 +590,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
         setChatSessions((prev) => prev.filter((s) => s.id !== id));
         if (selectedChatSession?.id === id) setSelectedChatSession(null);
         if (expandedTranscriptId === id) setExpandedTranscriptId(null);
+        broadcastRealtimeEvent('CHAT_SESSION_DELETED', { id });
         showToast('Chat session removed', 'info');
       }
     } catch {
