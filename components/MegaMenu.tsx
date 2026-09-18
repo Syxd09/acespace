@@ -323,390 +323,254 @@ export default function MegaMenu({
         )}
 
         {/* ============================================================ */}
-        {/* 2. PRODUCTS MEGA DROPDOWN (Matches User Reference) */}
+        {/* 2. PRODUCTS MEGA DROPDOWN */}
         {/* ============================================================ */}
         {activeMenu === 'products' && (
           <div
             style={{
-              padding: '24px 0 16px',
+              display: 'grid',
+              gridTemplateColumns: '1.4fr 0.9fr',
+              gap: '5vw',
+              alignItems: 'start',
             }}
           >
-            {/* Header Eyebrow */}
-            <div style={{ marginBottom: '28px' }}>
-              <span
-                style={{
-                  fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
-                  letterSpacing: '0.14em',
-                  textTransform: 'uppercase',
-                  color: 'var(--muted)',
-                  display: 'block',
-                  marginBottom: '6px',
-                }}
-              >
-                02 / Architectural Fabrication &amp; Fixtures
-              </span>
-              <h3
-                style={{
-                  fontSize: '22px',
-                  margin: 0,
-                  fontWeight: 500,
-                  color: 'var(--ink)',
-                  letterSpacing: '-0.02em',
-                }}
-              >
-                Products &amp; Engineered Systems
-              </h3>
-            </div>
-
-            {/* 2-Column Exact Layout from Reference */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '1fr 1fr',
-                gap: '40px 70px',
-                marginBottom: '44px',
-                maxWidth: '960px',
-              }}
-            >
-              {/* Left Column */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-                {/* 1. CORIAN® MATERIAL */}
-                <Link
-                  href="/materials"
-                  onClick={onClose}
-                  className="product-menu-link"
+            {/* Left Nav Columns */}
+            <div>
+              <div style={{ marginBottom: '28px' }}>
+                <span
                   style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                    paddingBottom: '14px',
-                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                    fontSize: '10px',
+                    fontFamily: 'DM Mono, monospace',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: 'var(--muted)',
+                    display: 'block',
+                    marginBottom: '6px',
                   }}
                 >
-                  <div>
-                    <strong
-                      style={{
-                        display: 'block',
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        letterSpacing: '0.04em',
-                        color: 'var(--ink)',
-                        textTransform: 'uppercase',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      CORIAN&reg; MATERIAL
-                    </strong>
-                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
-                      Calibrated slabs &bull; Through-body 20+ mineral palette
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
-                </Link>
-
-                {/* 2. SINKS */}
-                <Link
-                  href="/products/sinks"
-                  onClick={onClose}
-                  className="product-menu-link"
+                  02 / Architectural Fabrication &amp; Fixtures
+                </span>
+                <h3
                   style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                    paddingBottom: '14px',
-                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                    fontSize: '22px',
+                    margin: 0,
+                    fontWeight: 500,
+                    color: 'var(--ink)',
+                    letterSpacing: '-0.02em',
                   }}
                 >
-                  <div>
-                    <strong
-                      style={{
-                        display: 'block',
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        letterSpacing: '0.04em',
-                        color: 'var(--ink)',
-                        textTransform: 'uppercase',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      SINKS
-                    </strong>
-                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
-                      Undermount chemically welded bowls &bull; Zero silicone joints
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
-                </Link>
-
-                {/* 3. WASHPLANES */}
-                <Link
-                  href="/products/washplanes"
-                  onClick={onClose}
-                  className="product-menu-link"
-                  style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                    paddingBottom: '14px',
-                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
-                  }}
-                >
-                  <div>
-                    <strong
-                      style={{
-                        display: 'block',
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        letterSpacing: '0.04em',
-                        color: 'var(--ink)',
-                        textTransform: 'uppercase',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      WASHPLANES
-                    </strong>
-                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
-                      Linear sloping planes &bull; Concealed continuous trough drainage
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
-                </Link>
-
-                {/* 4. HEALTH & AGED CARE SOLUTIONS */}
-                <Link
-                  href="/products/health-aged-care"
-                  onClick={onClose}
-                  className="product-menu-link"
-                  style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                    paddingBottom: '14px',
-                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
-                  }}
-                >
-                  <div>
-                    <strong
-                      style={{
-                        display: 'block',
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        letterSpacing: '0.04em',
-                        color: 'var(--ink)',
-                        textTransform: 'uppercase',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      HEALTH &amp; AGED CARE SOLUTIONS
-                    </strong>
-                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
-                      Infection-controlled scrub sinks &bull; Accessible DDA vanities
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
-                </Link>
+                  Products &amp; Precision Systems
+                </h3>
               </div>
 
-              {/* Right Column */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
-                {/* 5. BENCHTOPS */}
-                <Link
-                  href="/products/benchtops"
-                  onClick={onClose}
-                  className="product-menu-link"
-                  style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                    paddingBottom: '14px',
-                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
-                  }}
-                >
-                  <div>
-                    <strong
-                      style={{
-                        display: 'block',
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        letterSpacing: '0.04em',
-                        color: 'var(--ink)',
-                        textTransform: 'uppercase',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      BENCHTOPS
-                    </strong>
-                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
-                      Monolithic islands &bull; Mitred waterfalls &bull; Coved splashbacks
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
-                </Link>
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '36px',
+                  marginBottom: '36px',
+                }}
+              >
+                {/* Column 1: Sinks & Primary Wet Areas */}
+                <div>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontFamily: 'DM Mono, monospace',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      display: 'block',
+                      marginBottom: '16px',
+                      paddingBottom: '8px',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    Primary Systems
+                  </span>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                    <li>
+                      <Link
+                        href="/materials"
+                        onClick={onClose}
+                        className="mega-menu-link"
+                      >
+                        <strong>CORIAN&reg; MATERIAL</strong>
+                        <small>Calibrated slabs &bull; 20+ through-body palette</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/products/sinks"
+                        onClick={onClose}
+                        className="mega-menu-link"
+                      >
+                        <strong>SINKS</strong>
+                        <small>Undermount chemically welded bowls &bull; Zero silicone joints</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/products/washplanes"
+                        onClick={onClose}
+                        className="mega-menu-link"
+                      >
+                        <strong>WASHPLANES</strong>
+                        <small>Linear sloping planes &bull; Concealed continuous trough drain</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/products/health-aged-care"
+                        onClick={onClose}
+                        className="mega-menu-link"
+                      >
+                        <strong>HEALTH &amp; AGED CARE SOLUTIONS</strong>
+                        <small>Infection-controlled scrub sinks &bull; Accessible DDA vanities</small>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
 
-                {/* 6. BASINS & VANITIES */}
-                <Link
-                  href="/products/basins-vanities"
-                  onClick={onClose}
-                  className="product-menu-link"
-                  style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                    paddingBottom: '14px',
-                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
-                  }}
-                >
-                  <div>
-                    <strong
-                      style={{
-                        display: 'block',
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        letterSpacing: '0.04em',
-                        color: 'var(--ink)',
-                        textTransform: 'uppercase',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      BASINS &amp; VANITIES
-                    </strong>
-                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
-                      Floating cantilever consoles &bull; Seamlessly fused washbowls
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
-                </Link>
+                {/* Column 2: Benchtops & Architectural Solutions */}
+                <div>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontFamily: 'DM Mono, monospace',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      display: 'block',
+                      marginBottom: '16px',
+                      paddingBottom: '8px',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    Architectural Solutions
+                  </span>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                    <li>
+                      <Link
+                        href="/products/benchtops"
+                        onClick={onClose}
+                        className="mega-menu-link"
+                      >
+                        <strong>BENCHTOPS</strong>
+                        <small>Monolithic islands &bull; Mitred waterfalls &bull; Coved splash</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/products/basins-vanities"
+                        onClick={onClose}
+                        className="mega-menu-link"
+                      >
+                        <strong>BASINS &amp; VANITIES</strong>
+                        <small>Floating cantilever consoles &bull; Seamlessly fused bowls</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/products/public-bathrooms-eot"
+                        onClick={onClose}
+                        className="mega-menu-link"
+                      >
+                        <strong>PUBLIC BATHROOMS AND EOT SOLUTIONS</strong>
+                        <small>Commercial groom stations &bull; Vandal-resistant wash</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/products/bespoke"
+                        onClick={onClose}
+                        className="mega-menu-link"
+                      >
+                        <strong>BESPOKE</strong>
+                        <small>3D thermoformed organic volumes &bull; 5-axis CNC</small>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
 
-                {/* 7. PUBLIC BATHROOMS AND EOT SOLUTIONS */}
+              {/* Bottom Actions Row */}
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '16px',
+                  alignItems: 'center',
+                  paddingTop: '20px',
+                  borderTop: '1px solid var(--line)',
+                }}
+              >
                 <Link
-                  href="/products/public-bathrooms-eot"
+                  href="/products"
                   onClick={onClose}
-                  className="product-menu-link"
-                  style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                    paddingBottom: '14px',
-                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
-                  }}
+                  className="button button-dark"
+                  style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
-                  <div>
-                    <strong
-                      style={{
-                        display: 'block',
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        letterSpacing: '0.04em',
-                        color: 'var(--ink)',
-                        textTransform: 'uppercase',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      PUBLIC BATHROOMS AND EOT SOLUTIONS
-                    </strong>
-                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
-                      Commercial groom stations &bull; Vandal-resistant washstations
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                  EXPLORE ALL PRODUCTS <span>↗</span>
                 </Link>
-
-                {/* 8. BESPOKE */}
                 <Link
-                  href="/products/bespoke"
+                  href="/products/design-certainty"
                   onClick={onClose}
-                  className="product-menu-link"
-                  style={{
-                    textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'baseline',
-                    justifyContent: 'space-between',
-                    paddingBottom: '14px',
-                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
-                  }}
+                  className="text-link"
+                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
-                  <div>
-                    <strong
-                      style={{
-                        display: 'block',
-                        fontSize: '15px',
-                        fontWeight: 600,
-                        letterSpacing: '0.04em',
-                        color: 'var(--ink)',
-                        textTransform: 'uppercase',
-                        marginBottom: '4px',
-                      }}
-                    >
-                      BESPOKE
-                    </strong>
-                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
-                      3D thermoformed organic volumes &bull; 5-axis CNC sculptural pieces
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                  DESIGN CERTAINTY SERVICE <span>↗</span>
                 </Link>
               </div>
             </div>
 
-            {/* Bottom Actions (Exact matching reference buttons) */}
+            {/* Right Feature Card */}
             <div
               style={{
+                background: '#dcd7cd',
+                border: '1px solid var(--line)',
+                overflow: 'hidden',
                 display: 'flex',
-                gap: '20px',
-                alignItems: 'center',
-                paddingTop: '24px',
-                borderTop: '1px solid var(--line)',
-                flexWrap: 'wrap',
+                flexDirection: 'column',
               }}
             >
-              <Link
-                href="/products"
-                onClick={onClose}
-                style={{
-                  display: 'inline-block',
-                  border: '1px solid var(--ink)',
-                  background: 'transparent',
-                  color: 'var(--ink)',
-                  padding: '13px 26px',
-                  fontSize: '12px',
-                  fontFamily: 'DM Mono, monospace',
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none',
-                  fontWeight: 500,
-                  transition: 'all 0.2s ease',
-                }}
-              >
-                EXPLORE ALL PRODUCTS
-              </Link>
-              <Link
-                href="/products/design-certainty"
-                onClick={onClose}
-                style={{
-                  display: 'inline-block',
-                  border: '1px solid var(--ink)',
-                  background: 'transparent',
-                  color: 'var(--ink)',
-                  padding: '13px 26px',
-                  fontSize: '12px',
-                  fontFamily: 'DM Mono, monospace',
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none',
-                  fontWeight: 500,
-                  transition: 'all 0.2s ease',
-                }}
-              >
-                DESIGN CERTAINTY SERVICE
-              </Link>
+              <div style={{ position: 'relative', height: '180px', width: '100%' }}>
+                <Image
+                  src="/assets/applications/calacatta-greige-kitchen.jpg"
+                  alt="Architectural solid surface kitchen island and integrated sink"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '12px',
+                    left: '12px',
+                    background: 'rgba(30, 33, 29, 0.85)',
+                    color: '#fff',
+                    fontSize: '9px',
+                    fontFamily: 'DM Mono, monospace',
+                    padding: '3px 8px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                  }}
+                >
+                  Fabrication Standard
+                </div>
+              </div>
+              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
+                <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
+                  Zero Silicone Joinery
+                </strong>
+                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                  Chemically welded seamless joinery eliminates dirt lines, mould, and bacterial harborage. 100% non-porous through-body solid surface.
+                </p>
+                <Link
+                  href="/products"
+                  onClick={onClose}
+                  className="button button-dark"
+                  style={{ fontSize: '10px', padding: '8px 16px' }}
+                >
+                  View Product Catalog <span>↗</span>
+                </Link>
+              </div>
             </div>
           </div>
         )}
