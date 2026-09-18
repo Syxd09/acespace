@@ -58,8 +58,8 @@ export default function MegaMenu({
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '1.7fr 0.9fr',
-              gap: '4vw',
+              gridTemplateColumns: '1.4fr 0.9fr',
+              gap: '5vw',
               alignItems: 'start',
             }}
           >
@@ -276,37 +276,40 @@ export default function MegaMenu({
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
               }}
             >
-              <div style={{ position: 'relative', height: '170px', width: '100%' }}>
+              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
                 <Image
                   src="/assets/material-macro.png"
                   alt="Architectural solid surface mineral and colour swatches"
                   fill
+                  sizes="400px"
                   style={{ objectFit: 'cover' }}
                 />
-                <div
+                <span
                   style={{
                     position: 'absolute',
                     top: '12px',
                     left: '12px',
-                    background: 'rgba(30, 33, 29, 0.85)',
+                    background: 'rgba(23, 26, 23, 0.82)',
+                    backdropFilter: 'blur(8px)',
                     color: '#fff',
-                    fontSize: '9px',
+                    padding: '4px 10px',
+                    fontSize: '10px',
                     fontFamily: 'DM Mono, monospace',
-                    padding: '3px 8px',
-                    textTransform: 'uppercase',
                     letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
                   }}
                 >
                   Mineral Chemistry
-                </div>
+                </span>
               </div>
-              <div style={{ padding: '20px 22px', background: 'var(--paper)', flex: 1 }}>
+              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
                 <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
                   Natural ATH Mineral Matrix
                 </strong>
-                <p style={{ margin: '0 0 14px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
                   Two-thirds natural mineral bauxite bonded with high-grade acrylic. 100% non-porous through-body colour with zero joint visibility.
                 </p>
                 <Link
@@ -529,31 +532,34 @@ export default function MegaMenu({
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
               }}
             >
-              <div style={{ position: 'relative', height: '180px', width: '100%' }}>
+              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
                 <Image
                   src="/assets/applications/calacatta-greige-kitchen.jpg"
                   alt="Architectural solid surface kitchen island and integrated sink"
                   fill
+                  sizes="400px"
                   style={{ objectFit: 'cover' }}
                 />
-                <div
+                <span
                   style={{
                     position: 'absolute',
                     top: '12px',
                     left: '12px',
-                    background: 'rgba(30, 33, 29, 0.85)',
+                    background: 'rgba(23, 26, 23, 0.82)',
+                    backdropFilter: 'blur(8px)',
                     color: '#fff',
-                    fontSize: '9px',
+                    padding: '4px 10px',
+                    fontSize: '10px',
                     fontFamily: 'DM Mono, monospace',
-                    padding: '3px 8px',
-                    textTransform: 'uppercase',
                     letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
                   }}
                 >
                   Fabrication Standard
-                </div>
+                </span>
               </div>
               <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
                 <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
