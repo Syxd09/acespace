@@ -18,7 +18,8 @@ export default function PageTransition({ children }: { children: React.ReactNode
     if (path.includes('/fabrication')) return '04 / FABRICATION';
     if (path.includes('/projects')) return '05 / PROJECTS';
     if (path.includes('/journal')) return '06 / JOURNAL';
-    if (path.includes('/contact')) return '07 / CONTACT PRACTICE';
+    if (path.includes('/about')) return '07 / ABOUT US';
+    if (path.includes('/contact')) return '08 / CONTACT PRACTICE';
     return 'ACE SPACES';
   };
 

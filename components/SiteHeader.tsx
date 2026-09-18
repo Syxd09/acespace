@@ -248,6 +248,25 @@ export default function SiteHeader() {
             <small>Notes on making</small>
             <b>↗</b>
           </Link>
+
+          {/* 07. About Us */}
+          <div
+            className={`nav-item-wrapper ${activeMegaMenu === 'about' ? 'nav-item-active' : ''}`}
+            onMouseEnter={() => handleMouseEnterNav('about')}
+            style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}
+          >
+            <Link
+              href="/about"
+              className={isLinkActive('/about') ? 'active' : ''}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
+            >
+              <span className="nav-num">07</span>
+              <strong>About Us</strong>
+              <small>Studio, philosophy &amp; team</small>
+              <span className="nav-chevron">▼</span>
+              <b>↗</b>
+            </Link>
+          </div>
         </nav>
 
         {/* Header Right Actions */}
@@ -511,8 +530,17 @@ export default function SiteHeader() {
             <span className="drawer-arrow">↗</span>
           </Link>
 
-          <Link href="/contact" onClick={closeMobileMenu} className="drawer-link drawer-contact-link">
+          <Link href="/about" onClick={closeMobileMenu} className={isLinkActive('/about') ? 'drawer-link active' : 'drawer-link'}>
             <span className="drawer-num">07</span>
+            <div className="drawer-link-text">
+              <strong>About Us</strong>
+              <small>Studio philosophy, craftspeople, vision &amp; Bengaluru atelier</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+
+          <Link href="/contact" onClick={closeMobileMenu} className="drawer-link drawer-contact-link">
+            <span className="drawer-num">08</span>
             <div className="drawer-link-text">
               <strong>Start a Project</strong>
               <small>Consultation, shop drawings &amp; material specification</small>

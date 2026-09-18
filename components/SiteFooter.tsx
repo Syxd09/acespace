@@ -220,15 +220,15 @@ export default function SiteFooter() {
             color: '#8c968c',
             marginBottom: '16px',
           }}>
-            [01 Origin & Foundry]
+            [01 Studio & Practice]
           </div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
-              { label: 'Parent Company Vision', href: '/about' },
-              { label: 'Raw Material Foundry', href: '/materials' },
+              { label: 'About Us (Story & Ethos)', href: '/about' },
+              { label: 'Design Philosophy & Craft', href: '/about#philosophy' },
+              { label: 'The Atelier & Craftsmen', href: '/about#team' },
+              { label: 'DuPont™ Material Foundation', href: '/about#foundation' },
               { label: 'Powering Coro Collective ↗', href: 'https://corocollective.com' },
-              { label: 'Seamless Fabrication', href: '/fabrication' },
-              { label: 'Architectural Brief & Contact Form →', href: '/contact' },
             ].map(item => (
               <li key={item.label}>
                 <Link

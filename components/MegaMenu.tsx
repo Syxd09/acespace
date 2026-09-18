@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export type MegaMenuType = 'materials' | 'colours' | 'products' | 'applications' | 'fabrication' | null;
+export type MegaMenuType = 'materials' | 'colours' | 'products' | 'applications' | 'fabrication' | 'about' | null;
 
 interface MegaMenuProps {
   activeMenu: MegaMenuType;
@@ -1101,6 +1101,274 @@ export default function MegaMenu({
                   style={{ fontSize: '10px', padding: '8px 16px' }}
                 >
                   See Joinery Craft <span>↗</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ============================================================ */}
+        {/* 5. ABOUT US MEGA DROPDOWN */}
+        {/* ============================================================ */}
+        {activeMenu === 'about' && (
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1.4fr 0.9fr',
+              gap: '5vw',
+              alignItems: 'start',
+            }}
+          >
+            {/* Left Nav Columns */}
+            <div>
+              <div style={{ marginBottom: '28px' }}>
+                <span
+                  style={{
+                    fontSize: '10px',
+                    fontFamily: 'DM Mono, monospace',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: 'var(--muted)',
+                    display: 'block',
+                    marginBottom: '6px',
+                  }}
+                >
+                  07 / Studio, Heritage &amp; Spatial Philosophy
+                </span>
+                <h3
+                  style={{
+                    fontSize: '22px',
+                    margin: 0,
+                    fontWeight: 500,
+                    color: 'var(--ink)',
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  About Us — The Practice &amp; Atelier
+                </h3>
+              </div>
+
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '28px',
+                  marginBottom: '36px',
+                }}
+              >
+                {/* Column 1: The Practice */}
+                <div>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontFamily: 'DM Mono, monospace',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      display: 'block',
+                      marginBottom: '14px',
+                      paddingBottom: '8px',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    The Practice
+                  </span>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <li>
+                      <Link href="/about#story" onClick={onClose} className="mega-menu-link">
+                        <strong>Our Architectural Story</strong>
+                        <small>Dissolving seams in modern space</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/about#philosophy" onClick={onClose} className="mega-menu-link">
+                        <strong>Design Philosophy</strong>
+                        <small>Monolithic continuity &amp; tactile honesty</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/about#team" onClick={onClose} className="mega-menu-link">
+                        <strong>The Atelier &amp; Craftsmen</strong>
+                        <small>Joiners, thermoformers &amp; CAD modelers</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/about#philosophy" onClick={onClose} className="mega-menu-link">
+                        <strong>Core Studio Values</strong>
+                        <small>Radical permanence &amp; zero-silica safety</small>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 2: Craft & Standards */}
+                <div>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontFamily: 'DM Mono, monospace',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      display: 'block',
+                      marginBottom: '14px',
+                      paddingBottom: '8px',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    Craft &amp; Standards
+                  </span>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <li>
+                      <Link href="/about#team" onClick={onClose} className="mega-menu-link">
+                        <strong>Robot Meets Artisan Hand</strong>
+                        <small>5-axis CNC paired with hand-honed edges</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/about#philosophy" onClick={onClose} className="mega-menu-link">
+                        <strong>Zero-Silica Integrity</strong>
+                        <small>Non-hazardous mineral matrix for health</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/fabrication" onClick={onClose} className="mega-menu-link">
+                        <strong>Seamless Chemistry</strong>
+                        <small>Molecularly fused inconspicuous joints</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/about#foundation" onClick={onClose} className="mega-menu-link">
+                        <strong>DuPont™ Alliance</strong>
+                        <small>Certified ATH substrate lineage &amp; warranty</small>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 3: Studio & Network */}
+                <div>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontFamily: 'DM Mono, monospace',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      display: 'block',
+                      marginBottom: '14px',
+                      paddingBottom: '8px',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    Atelier &amp; Network
+                  </span>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <li>
+                      <Link href="/about#locations" onClick={onClose} className="mega-menu-link">
+                        <strong>Indiranagar Gallery</strong>
+                        <small>Tactile specifier gallery in Bangalore</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/about#locations" onClick={onClose} className="mega-menu-link">
+                        <strong>15,000 sq.ft Workshop</strong>
+                        <small>Hoskote industrial corridor facility</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/about#coro" onClick={onClose} className="mega-menu-link">
+                        <strong>The Coro Connection</strong>
+                        <small>Powering Coro Collective spatial living</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/contact" onClick={onClose} className="mega-menu-link">
+                        <strong>Schedule Studio Visit</strong>
+                        <small>Meet our architects &amp; examine mockups</small>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Bottom Actions Row */}
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '16px',
+                  alignItems: 'center',
+                  paddingTop: '20px',
+                  borderTop: '1px solid var(--line)',
+                }}
+              >
+                <Link
+                  href="/about"
+                  onClick={onClose}
+                  className="button button-dark"
+                  style={{ fontSize: '11px', padding: '10px 20px' }}
+                >
+                  Read About Us <span>↗</span>
+                </Link>
+                <Link
+                  href="/contact"
+                  onClick={onClose}
+                  className="text-link"
+                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
+                >
+                  Visit Our Bangalore Atelier <span>↗</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Feature Card */}
+            <div
+              style={{
+                background: '#dcd7cd',
+                border: '1px solid var(--line)',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
+              }}
+            >
+              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
+                <Image
+                  src="/assets/applications/stonecrest-smoke-hotel-lobby.jpg"
+                  alt="Ace Spaces architectural studio practice and monolithic craft"
+                  fill
+                  sizes="400px"
+                  style={{ objectFit: 'cover' }}
+                />
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '12px',
+                    left: '12px',
+                    background: 'rgba(23, 26, 23, 0.82)',
+                    backdropFilter: 'blur(8px)',
+                    color: '#fff',
+                    padding: '4px 10px',
+                    fontSize: '10px',
+                    fontFamily: 'DM Mono, monospace',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  Studio Atelier
+                </span>
+              </div>
+              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
+                <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
+                  Form Follows Continuity
+                </strong>
+                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                  We are architects, digital fabricators, and master joiners. Founded in Bengaluru to dissolve the seams that divide contemporary space.
+                </p>
+                <Link
+                  href="/about"
+                  onClick={onClose}
+                  className="button button-dark"
+                  style={{ fontSize: '10px', padding: '8px 16px' }}
+                >
+                  Explore Practice <span>↗</span>
                 </Link>
               </div>
             </div>
