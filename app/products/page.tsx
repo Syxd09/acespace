@@ -2,11 +2,75 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import JsonLd from '@/components/JsonLd';
 import { productsData } from '@/data/products';
 
 export const metadata: Metadata = {
-  title: 'Architectural Products — Benchtops, Sinks, Washplanes & Vanities — Ace Spaces',
-  description: 'Explore Ace Spaces precision-fabricated solid surface architectural products: benchtops, integrated sinks, linear washplanes, vanities, commercial EOT solutions, clinical healthcare scrub bays, and bespoke 3D thermoformed installations.',
+  title: 'Architectural Products — Benchtops, Sinks, Washplanes & Vanities',
+  description:
+    'Explore Ace Spaces precision-fabricated solid surface architectural systems: monolithic benchtops, integrated sinks, commercial washplanes, floating vanities, EOT grooming stations, healthcare clinical bays, and bespoke 3D thermoformed works.',
+  keywords: [
+    'solid surface benchtops India',
+    'seamless integrated sinks Corian',
+    'commercial washplane troughs Bengaluru',
+    'cantilevered floating vanities',
+    'end of trip bathroom solutions',
+    'clinical scrub sinks solid surface',
+    'bespoke 3D thermoformed furniture',
+  ],
+  alternates: {
+    canonical: 'https://acespacesindia.vercel.app/products',
+  },
+  openGraph: {
+    title: 'Architectural Products — Benchtops, Sinks, Washplanes & Vanities | Ace Spaces',
+    description:
+      'Precision-engineered monolithic solid surface systems fabricated with 5-axis CNC accuracy and invisible molecular welds.',
+    url: 'https://acespacesindia.vercel.app/products',
+    images: [
+      {
+        url: '/assets/applications/artista-mist-bathroom.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Ace Spaces Architectural Products Catalog',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Architectural Products | Ace Spaces',
+    description:
+      'Explore monolithic benchtops, seamlessly fused sinks, commercial washplanes, and bespoke architectural fixtures.',
+    images: ['/assets/applications/artista-mist-bathroom.jpg'],
+  },
+};
+
+const productsJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Ace Spaces Architectural Products & Systems',
+  description: 'Precision solid surface architectural solutions manufactured in Bengaluru, India.',
+  itemListElement: productsData.map((p, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Product',
+      name: p.name,
+      identifier: p.code,
+      category: p.categoryName,
+      description: p.heroDescription,
+      image: `https://acespacesindia.vercel.app${p.image}`,
+      brand: {
+        '@type': 'Brand',
+        name: 'Ace Spaces',
+      },
+      offers: {
+        '@type': 'Offer',
+        availability: 'https://schema.org/InStock',
+        priceCurrency: 'INR',
+        url: `https://acespacesindia.vercel.app/products/${p.slug}`,
+      },
+    },
+  })),
 };
 
 export default function ProductsCatalogPage() {
@@ -15,6 +79,7 @@ export default function ProductsCatalogPage() {
 
   return (
     <main className="page-main">
+      <JsonLd data={productsJsonLd} />
       {/* Split Architectural Hero */}
       <section className="page-split-hero">
         <div>

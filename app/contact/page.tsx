@@ -1,12 +1,71 @@
 import React from 'react';
 import type { Metadata } from 'next';
 import EnquiryForm from '@/components/EnquiryForm';
+import JsonLd from '@/components/JsonLd';
 import { getSiteContent } from '@/data/contentStore';
 import { generateWhatsAppUrl, DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 
 export const metadata: Metadata = {
-  title: 'Contact — Ace Spaces',
-  description: 'Start a material consultation, request samples or discuss architectural fabrication details with Ace Spaces.',
+  title: 'Contact & Consultation — Studio Briefs, Samples & CAD Submission',
+  description:
+    'Start an architectural material consultation, request specifier sample swatches, or submit CAD/BIM shop drawings for 5-axis CNC fabrication with Ace Spaces in Indiranagar, Bengaluru, India.',
+  keywords: [
+    'contact Ace Spaces',
+    'DuPont Corian Bangalore contact',
+    'specifier sample box request',
+    'CAD drawing submission solid surface',
+    'Indiranagar architecture studio',
+  ],
+  alternates: {
+    canonical: 'https://acespacesindia.vercel.app/contact',
+  },
+  openGraph: {
+    title: 'Contact & Material Consultation | Ace Spaces',
+    description:
+      'Consult with our architectural materials team in Bengaluru. Direct CAD submission, sample box orders, and project estimation.',
+    url: 'https://acespacesindia.vercel.app/contact',
+    images: [
+      {
+        url: '/assets/hero-ace.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ace Spaces Indiranagar Studio & Specifier Desk',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact & Material Consultation | Ace Spaces',
+    description:
+      'Start an architectural conversation, request sample boxes, or submit drawings for fabrication in Bengaluru.',
+    images: ['/assets/hero-ace.png'],
+  },
+};
+
+const contactJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Ace Spaces',
+  url: 'https://acespacesindia.vercel.app/contact',
+  mainEntity: {
+    '@type': 'HomeAndConstructionBusiness',
+    name: 'Ace Spaces',
+    telephone: '+919845012345',
+    email: 'studio@acespaces.in',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar',
+      addressLocality: 'Bengaluru',
+      addressRegion: 'Karnataka',
+      postalCode: '560038',
+      addressCountry: 'IN',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 12.9716,
+      longitude: 77.6412,
+    },
+  },
 };
 
 export default function ContactPage() {
@@ -15,6 +74,7 @@ export default function ContactPage() {
 
   return (
     <main className="page-main">
+      <JsonLd data={contactJsonLd} />
       <section className="page-hero">
         <p className="eyebrow">Contact / Start a conversation</p>
         <h1>

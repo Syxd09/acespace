@@ -1,4 +1,5 @@
 import React from 'react';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import MaterialGrid from '@/components/MaterialGrid';
@@ -10,6 +11,29 @@ import {
   DEFAULT_WHATSAPP_NUMBER,
   DEFAULT_WHATSAPP_DISPLAY,
 } from '@/lib/whatsapp';
+
+export const metadata: Metadata = {
+  title: 'Ace Spaces — The Source of Material, Where Spaces Begin | DuPont™ Corian® Partner',
+  description:
+    'Primary architectural raw material hub, authorized DuPont™ Corian® distributor, and digital fabrication workshop in Bengaluru, India. Powering Coro Collective with calibrated through-body mineral slabs, 5-axis CNC machining, and bespoke thermoforming.',
+  alternates: {
+    canonical: 'https://acespacesindia.vercel.app',
+  },
+  openGraph: {
+    title: 'Ace Spaces — Material, made architectural',
+    description:
+      'The foundational material hub for architects, designers, and bespoke fabricators in Bengaluru, India. Certified DuPont™ Corian® solid surfaces and 5-axis CNC precision.',
+    url: 'https://acespacesindia.vercel.app',
+    images: [
+      {
+        url: '/assets/hero-ace.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ace Spaces — Architectural Solid Surface Foundry',
+      },
+    ],
+  },
+};
 
 export default function HomePage() {
   const siteContent = getSiteContent();

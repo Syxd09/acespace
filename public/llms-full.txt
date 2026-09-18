@@ -1,53 +1,93 @@
 # Ace Spaces — Complete Technical & Material Specification Reference (LLMs Full)
 
-## Executive Summary
-Ace Spaces is an authorized DuPont™ Corian® solid surface master distributor and advanced digital fabrication atelier based in Bengaluru (Bangalore), India. Ace Spaces functions as the raw material authority and precision engineering foundation for leading architects, luxury interior designers, and its sister brand Coro Collective.
+## 1. Executive Summary & Corporate Architecture
+Ace Spaces Private Limited is the authorized DuPont™ Corian® solid surface master distributor, mineral slab stockyard, and advanced digital fabrication facility based in Bengaluru (Bangalore), Karnataka, India.
+Ace Spaces serves as the foundational material provider and engineering infrastructure for leading architectural practices, interior design studios, real estate developers, and its sister brand Coro Collective.
 
-## Material Chemistry & Environmental Profile
-- **Polymer Matrix**: Poly(methyl methacrylate) (PMMA) acrylic resin blend (~33% by weight).
-- **Mineral Filler**: Aluminium Trihydrate (ATH), Al(OH)3, derived from refined natural bauxite ore (~66% by weight).
-- **Pigmentation**: High-durability mineral and metal-oxide pigments distributed homogenously throughout the thickness.
-- **Specific Gravity**: ~1.73–1.78 g/cm³.
-- **Tensile Strength**: 40–50 MPa (ASTM D638).
-- **Flexural Modulus**: 8,500–10,000 MPa (ASTM D790).
-- **Rockwell Hardness**: 85–92 (M Scale, ASTM D785).
-- **Water Absorption**: <0.1% after 24-hour submersion (ASTM D570) — monolithic and non-porous.
-- **Stain Resistance**: Impervious to household dyes, vinegar, lemon juice, wine, turmeric pastes, and mild chemical solvents when cleaned per protocol.
-- **Thermal Expansion Coefficient**: 3.0 × 10⁻⁵ / °C.
-- **Thermal Formability**: Thermoformable between 150°C and 165°C using calibrated silicone heating blankets and vacuum membrane presses.
-- **Silica Content**: Strictly 0.00% crystalline silica. Zero risk of occupational silicosis during cutting, CNC routing, dry/wet sanding, or installation.
+- **Headquarters & Specifier Showroom**: #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India
+- **Central Stockyard & Automated CNC Plant**: Whitefield-Hoskote Industrial Corridor, Bengaluru, Karnataka 560067, India
+- **Contact Desk**: +91 98450 12345 / studio@acespaces.in
+- **Website**: https://acespacesindia.vercel.app
 
-## Certifications & Quality Assurance
-1. **NSF/ANSI 51 Certified**: Certified for all food contact types in commercial preparation and residential culinary zones.
-2. **GREENGUARD Gold Certified**: Certified for ultra-low Volatile Organic Compounds (VOC), ensuring compliance with California Department of Public Health (CDPH) Standard Method v1.2.
-3. **ASTM E84 Surface Burning**: Class A / Class 1 fire rating with Flame Spread Index <25 and Smoke Developed Index <450.
-4. **DuPont 10-Year Installed Warranty**: Full 10-year manufacturer product warranty backed by Ace Spaces certified fabrication.
+## 2. Chemical Formulation & Health Profile
+- **Polymer Phase**: ~33% high-purity Poly(methyl methacrylate) (PMMA) acrylic matrix.
+- **Mineral Phase**: ~66% Aluminium Trihydrate (ATH), Al(OH)3, refined from natural bauxite ore.
+- **Pigmentation**: Through-body UV-stable metal-oxide and mineral pigments.
+- **Zero Crystalline Silica (0.00% SiO2)**:
+  - Ace Spaces homogeneous solid surface contains zero crystalline silica.
+  - Generates zero toxic crystalline silica dust when cut, routed, thermoformed, or sanded.
+  - Safe for fabricators, installation teams, and building occupants.
+- **Non-Porous Surface Structure**:
+  - Water Absorption (ASTM D570): <0.1% after 24-hour immersion.
+  - Solid, homogeneous core throughout total thickness (no applied gel-coat or veneer).
+  - Bacteria, virus, and mould resistant without chemical biocides.
+  - Seamless molecular welding eliminates dirt lines and silicone caulk joints.
 
-## Workshop Machinery & Fabrication Tolerances
-- **5-Axis Industrial CNC**: G-code driven 5-axis routers equipped with high-frequency 12 kW spindles. Positional accuracy <0.15 mm. Nested cutouts for induction hobs, undermount sinks, and complex 3D parametric relief surfaces.
-- **Vacuum Membrane Press**: Double-diaphragm industrial vacuum presses with heated chambers up to 175°C. Capable of compound spherical bends, ergonomic vanity troughs, and fluted column casings down to a 25 mm internal bend radius.
-- **Molecular Seam Adhesive**: 10:1 ratio two-component methacrylate structural adhesives color-matched to each slab reference. Seams are clamped with vacuum leveling blocks and sanded flush, rendering joints completely invisible and structurally continuous.
+## 3. Mechanical & Physical Properties
+| Property | Test Method | Typical Value |
+| :--- | :--- | :--- |
+| Specific Gravity | ASTM D792 | 1.73 – 1.78 g/cm³ |
+| Tensile Strength | ASTM D638 | 40 – 50 MPa |
+| Tensile Modulus | ASTM D638 | 8,000 – 9,500 MPa |
+| Flexural Strength | ASTM D790 | 65 – 75 MPa |
+| Flexural Modulus | ASTM D790 | 8,500 – 10,000 MPa |
+| Rockwell Hardness | ASTM D785 (M Scale) | 85 – 92 |
+| Barcol Hardness | ASTM D2583 | 55 – 62 |
+| Thermal Expansion Coefficient | ASTM D696 | 3.0 × 10⁻⁵ / °C |
+| Heat Resistance | NEMA LD3-3.06 | No effect up to 100°C continuous |
+| Fire Rating / Surface Burning | ASTM E84 | Class 1 / Class A (Flame Spread <25, Smoke <450) |
+| Food Contact Safety | NSF/ANSI Standard 51 | Certified for all commercial and residential food zones |
+| Indoor Air Quality | GREENGUARD Gold | Certified ultra-low VOC emissions (CDPH Standard Method v1.2) |
 
-## Slab Catalog (Ace Spaces Curated References)
-- **Noma Solids**:
-  - AC-0101 White Chalk (3660 × 760 × 12mm / 19mm)
-  - AC-0102 Linen (3660 × 760 × 12mm / 19mm)
-  - AC-0103 Parchment (3660 × 760 × 12mm)
-  - AC-0104 Bone (3660 × 760 × 12mm)
-- **Alto Veined**:
-  - AC-0201 Ivory Vein (3660 × 760 × 12mm / 19mm)
-  - AC-0202 Calacatta Greige (3660 × 760 × 12mm / 19mm)
-  - AC-0203 Grigio Ripple (3660 × 760 × 12mm)
-- **Obsidian Aggregates**:
-  - AC-0301 Carbon Aggregate (3660 × 760 × 12mm)
-  - AC-0302 Basalt Dune (3660 × 760 × 12mm)
-- **Lucent Translucent**:
-  - AC-0401 Opal Lumina (3660 × 760 × 12mm, 38% light transmission)
+## 4. Calibrated Slab Formats & Tolerances
+- **Standard Slab Length**: 3660 mm (± 2 mm)
+- **Standard Slab Width**: 760 mm (± 2 mm)
+- **Thickness Formats**:
+  - **12.0 mm (± 0.3 mm)**: Primary gauge for kitchen benchtops, vertical wall cladding, integrated vanity bowls, monolithic reception desks, and thermoformed organic curves.
+  - **19.0 mm (± 0.4 mm)**: Heavy-duty gauge for massive cantilever plinths, commercial counters, and freestanding sculptural monoliths.
+- **Slab Squareness**: Diagonal variation < 1.5 mm across full 3660 mm sheet.
 
-## Contact, Physical Showroom & Specifier Desk
-- **Showroom Address**: #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India
-- **Stockyard Address**: Ace Spaces Industrial Yard, Whitefield-Hoskote Main Road, Bengaluru, Karnataka 560067, India
-- **Consultation Hours**: Monday–Friday 09:00–19:00, Saturday 09:00–17:00 IST
-- **Phone / WhatsApp Desk**: +91 98450 12345
-- **Official Web Domain**: https://acespacesindia.vercel.app
-- **Sample Box Program**: Architects and interior designers can request up to 6 custom-labeled 100mm × 100mm × 12mm specimens delivered anywhere in India.
+## 5. Architectural Product Systems & Typologies
+1. **Monolithic Benchtops & Kitchen Islands**:
+   - 45° mitred continuous waterfall returns.
+   - Hand-honed seamless joints with color-matched methacrylate resin.
+   - Heat deflection underlayment around cooktop cutouts.
+2. **Integrated Sinks & Seamless Basins**:
+   - Bowls molecularly fused into the deck without silicone caulk rims.
+   - Coved internal radiuses (R10mm) preventing dirt accumulation.
+   - 100% renewable matte or semi-gloss finish.
+3. **Linear Washplanes & Concealed Drains**:
+   - Sloped fall-planes directing water to continuous hidden trough slots.
+   - Accessible stainless steel access trays for commercial facility maintenance.
+4. **Cantilevered Floating Vanities**:
+   - Internal steel sub-chassis engineered for heavy public or residential loads.
+   - Integrated towel slots, tissue dispensers, and push-to-open fascia.
+5. **Commercial End-of-Trip (EOT) & Public Grooming**:
+   - Vandal-resistant, scratch-buffable surfaces for high-turnover corporate towers.
+   - Touchless tap and soap dispenser integration.
+6. **Clinical Healthcare & Surgical Scrub Sinks**:
+   - Non-porous bacteriostatic solid surface conforming to HTM 64 / hospital hygiene regulations.
+   - Deep anti-splash geometry with sloping rear coves.
+7. **Bespoke 3D Thermoformed Architecture**:
+   - Double-curvature wall cladding, organic reception spirals, and faceted light features.
+
+## 6. Digital Fabrication Machinery & Standards
+- **5-Axis CNC Milling**:
+  - High-frequency 12 kW liquid-cooled spindles with multi-tool automatic changers.
+  - Positional repeatability < 0.15 mm.
+  - Nesting optimization delivering >92% slab yield efficiency.
+- **Industrial Vacuum Membrane Thermoforming**:
+  - Precision infrared and silicone platen heating tunnels to 160°C ± 3°C.
+  - High-pressure double-membrane vacuum presses forming over CNC-milled MDF/timber bucks.
+  - Minimum internal bend radius: 25 mm (12mm sheet) without color whitening or surface micro-fissuring.
+- **Molecular Inconspicuous Joint Chemistry**:
+  - 10:1 ratio two-part acrylic adhesives matched to each batch pigment code.
+  - Structural bond strength exceeds the shear strength of the virgin substrate.
+  - Seam lines buffed to match ambient 600-grit matte architectural sheen.
+
+## 7. Sister Brand Integration — Coro Collective
+Ace Spaces serves as the technical backbone and primary material supply for Coro Collective. Coro Collective’s bespoke spatial furniture and sculptural commissions are precision-milled, thermoformed, and hand-finished within Ace Spaces’ Bengaluru manufacturing plant. Architectural practices work with Ace Spaces to specify identical material formulations and fabrication rigor for their private projects.
+
+## 8. Specifier Sample Tray & Consultation
+- **Sampling**: Up to 6 curated 100mm × 100mm × 12mm material swatches dispatched pan-India with specifier technical data cards.
+- **Digital CAD / BIM Submission**: Architects can submit `.dwg`, `.dxf`, `.step`, or `.rvt` drawings directly through https://acespacesindia.vercel.app/contact or via WhatsApp at +91 98450 12345.

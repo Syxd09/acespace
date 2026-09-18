@@ -3,21 +3,74 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import ProjectGallery from '@/components/ProjectGallery';
+import JsonLd from '@/components/JsonLd';
 import { getSiteContent } from '@/data/contentStore';
 import { defaultProjectsList } from '@/data/contentTypes';
 
 export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
-  title: 'Selected Architectural Projects — Ace Spaces',
-  description: 'Explore completed residential, hospitality, commercial, and retail case studies crafted with Ace Spaces mineral surfaces.',
+  title: 'Architectural Projects & Case Studies — Hospitality, Residential & Retail',
+  description:
+    'Explore completed architectural case studies engineered with Ace Spaces solid surfaces: sculptural hospitality monoliths, seamless residential islands, airport washplanes, and boutique retail plinths in India.',
+  keywords: [
+    'architectural case studies India',
+    'solid surface projects Bengaluru',
+    'hospitality reception desk case study',
+    'luxury kitchen island project',
+    'Corian installation examples',
+  ],
+  alternates: {
+    canonical: 'https://acespacesindia.vercel.app/projects',
+  },
+  openGraph: {
+    title: 'Selected Architectural Projects | Ace Spaces',
+    description:
+      'Monolithic solid surface installations across luxury residential, hospitality, commercial, and retail practices in India.',
+    url: 'https://acespacesindia.vercel.app/projects',
+    images: [
+      {
+        url: '/assets/applications/stonecrest-smoke-hotel-lobby.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Ace Spaces Architectural Case Studies',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Architectural Projects | Ace Spaces',
+    description:
+      'Monolithic solid surface case studies and completed spatial projects across India.',
+    images: ['/assets/applications/stonecrest-smoke-hotel-lobby.jpg'],
+  },
 };
 
 export default function ProjectsPage() {
   const content = getSiteContent();
   const projects = content.projects && content.projects.length > 0 ? content.projects : defaultProjectsList;
+
+  const projectsJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Ace Spaces Selected Architectural Projects',
+    description: 'Case studies of monolithic solid surface installations in India.',
+    itemListElement: projects.map((p, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'CreativeWork',
+        name: p.title,
+        description: p.summary,
+        image: `https://acespacesindia.vercel.app${p.image}`,
+        url: `https://acespacesindia.vercel.app/projects/${p.slug}`,
+      },
+    })),
+  };
+
   return (
     <main className="page-main">
+      <JsonLd data={projectsJsonLd} />
       {/* Rich Split Architectural Hero */}
       <section className="page-split-hero">
         <div>

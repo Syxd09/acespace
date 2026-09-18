@@ -2,10 +2,65 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'About Us — Ace Spaces | Architectural Practice & Fabrication Atelier',
-  description: 'Ace Spaces is a Bengaluru-based architectural fabrication atelier and design practice dedicated to monolithic, seamless solid surfaces, zero-silica mineral craft, and collaborative architectural engineering.',
+  title: 'About Us — Architectural Atelier, Lineage & Coro Collective Partnership',
+  description:
+    'Ace Spaces is a Bengaluru-based architectural fabrication atelier and master raw material distributor for DuPont™ Corian®. Discover our code-meets-craft philosophy, 0% silica commitment, and symbiotic partnership powering Coro Collective.',
+  keywords: [
+    'about Ace Spaces',
+    'Coro Collective sister brand',
+    'DuPont Corian partner India',
+    'architectural solid surface foundry',
+    'zero-silica atelier Bengaluru',
+    'monolithic architecture practice',
+  ],
+  alternates: {
+    canonical: 'https://acespacesindia.vercel.app/about',
+  },
+  openGraph: {
+    title: 'About Us — Architectural Practice & Atelier | Ace Spaces',
+    description:
+      'We are architects, digital fabricators, and master joiners founded in Bengaluru to dissolve the seams that divide contemporary space.',
+    url: 'https://acespacesindia.vercel.app/about',
+    images: [
+      {
+        url: '/assets/applications/excavage-education.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Ace Spaces Atelier Craft & Philosophy',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Us | Ace Spaces',
+    description:
+      'Architectural fabrication atelier, DuPont™ Corian® partnership, and the lineage powering Coro Collective in India.',
+    images: ['/assets/applications/excavage-education.jpg'],
+  },
+};
+
+const aboutJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'About Ace Spaces',
+  url: 'https://acespacesindia.vercel.app/about',
+  description:
+    'Ace Spaces is an architectural fabrication atelier, mineral solid surface distributor, and engineering facility in Bengaluru, India.',
+  mainEntity: {
+    '@type': 'Organization',
+    name: 'Ace Spaces',
+    legalName: 'Ace Spaces Private Limited',
+    foundingLocation: 'Bengaluru, India',
+    knowsAbout: ['DuPont™ Corian® Solid Surface', 'Zero-Silica Mineral Craft', '5-Axis CNC Milling', 'Thermoforming'],
+    subOrganization: {
+      '@type': 'Organization',
+      name: 'Coro Collective',
+      description: 'Bespoke spatial interiors and collectible monolithic furniture powered by Ace Spaces.',
+    },
+  },
 };
 
 export default function AboutPage() {
@@ -61,6 +116,7 @@ export default function AboutPage() {
 
   return (
     <main className="page-main">
+      <JsonLd data={aboutJsonLd} />
       {/* Editorial Split Hero */}
       <section className="page-split-hero">
         <div>

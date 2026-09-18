@@ -3,10 +3,102 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import EdgeProfileCatalog from '@/components/EdgeProfileCatalog';
+import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'Fabrication Craft & Machinery — Ace Spaces',
-  description: 'Precision CNC routing, thermoforming, seamless joining, and hand-honed finishing for architectural solid surfaces in India.',
+  title: 'Digital Fabrication & Architectural Engineering — 5-Axis CNC & Thermoforming',
+  description:
+    'Advanced digital fabrication atelier in Bengaluru, India: automated 5-axis CNC routing (<0.2mm tolerance), vacuum membrane thermoforming (25mm tight radii), inconspicuous molecular seaming, and hand-honed finishing.',
+  keywords: [
+    'solid surface fabrication Bengaluru',
+    '5-axis CNC routing India',
+    'Corian thermoforming workshop',
+    'seamless mitred waterfall counter',
+    'architectural solid surface joinery',
+    'CAD shop drawings solid surface',
+  ],
+  alternates: {
+    canonical: 'https://acespacesindia.vercel.app/fabrication',
+  },
+  openGraph: {
+    title: 'Digital Fabrication Craft & Machinery | Ace Spaces',
+    description:
+      'Precision 5-axis CNC routing, industrial vacuum thermoforming, and invisible molecular seam welding in Bengaluru.',
+    url: 'https://acespacesindia.vercel.app/fabrication',
+    images: [
+      {
+        url: '/assets/applications/calacatta-greige-kitchen-detail.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Ace Spaces 5-Axis CNC & Fabrication Facility',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Fabrication Craft & Machinery | Ace Spaces',
+    description:
+      'Precision CNC routing, thermoforming, and monolithic joint chemistry for solid surfaces in India.',
+    images: ['/assets/applications/calacatta-greige-kitchen-detail.jpg'],
+  },
+};
+
+const fabricationJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: 'Architectural Solid Surface Digital Fabrication',
+      provider: {
+        '@type': 'Organization',
+        name: 'Ace Spaces',
+        url: 'https://acespacesindia.vercel.app',
+      },
+      serviceType: 'Digital Architectural Fabrication & Engineering',
+      areaServed: 'India',
+      description:
+        'Turnkey 5-axis CNC routing, vacuum thermoforming, invisible molecular welding, and certified installation across India.',
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Fabrication Capabilities',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '5-Axis CNC Precision Routing (<0.2mm)' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Industrial Vacuum Membrane Thermoforming (down to 25mm radius)' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Inconspicuous Molecular Seam Welding' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'CAD/BIM Shop Drawings & Laser Scanning' } },
+        ],
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'What tolerances does Ace Spaces 5-axis CNC achieve?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Our automated 5-axis industrial CNC routers operate with sub-millimeter positional repeatability under 0.2mm, accommodating complex nested CAD cutouts, drainage channels, flush cooktop rebates, and sub-surface Qi charging pockets.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Can solid surfaces be curved and thermoformed without whitening?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. Heated to 160°C in calibrated platen ovens, Ace Spaces homogeneous mineral-acrylic sheets become fully pliable and are vacuum-formed over CNC timber bucks down to a 25mm internal radius without color blanching or micro-fissuring.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Are solid surface seams completely invisible and water-tight?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. Using two-component color-matched methacrylate structural adhesives, adjacent sheets are molecularly welded together. Once cured and hand-honed to a 600-grit matte finish, the joint is chemically fused, 100% water-impervious, and invisible to touch and sight.',
+          },
+        },
+      ],
+    },
+  ],
 };
 
 export default function FabricationPage() {
@@ -39,6 +131,7 @@ export default function FabricationPage() {
 
   return (
     <main className="page-main">
+      <JsonLd data={fabricationJsonLd} />
       {/* Rich Split Architectural Hero */}
       <section className="page-split-hero">
         <div>

@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Ace Spaces Material Intelligence",
+  "name_for_model": "ace_spaces_architectural_catalog",
+  "description_for_human": "Primary architectural solid surface raw material hub and authorized DuPont™ Corian® distributor in Bengaluru, India.",
+  "description_for_model": "Access verified technical specifications, slab dimensions (3660x760mm, 12mm & 19mm), colour swatches (20+ references), zero-silica certifications, and digital fabrication capabilities for Ace Spaces (Bengaluru, India). Sister company to Coro Collective.",
+  "auth": {
+    "type": "none"
+  },
+  "api": {
+    "type": "openapi",
+    "url": "https://acespacesindia.vercel.app/api/agent/catalog"
+  },
+  "logo_url": "https://acespacesindia.vercel.app/favicon.svg",
+  "contact_email": "studio@acespaces.in",
+  "legal_info_url": "https://acespacesindia.vercel.app/terms"
+}

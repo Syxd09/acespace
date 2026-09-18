@@ -1,0 +1,34 @@
+{
+  "name": "Ace Spaces Material Hub",
+  "version": "1.0.0",
+  "description": "Architectural raw material hub, authorized DuPont™ Corian® master distributor, and 5-axis digital fabrication facility in Bengaluru, India.",
+  "website": "https://acespacesindia.vercel.app",
+  "llms_txt": "https://acespacesindia.vercel.app/llms.txt",
+  "llms_full": "https://acespacesindia.vercel.app/llms-full.txt",
+  "sitemap": "https://acespacesindia.vercel.app/sitemap.xml",
+  "actions": [
+    {
+      "name": "getCatalog",
+      "description": "Returns full architectural slab catalog, mineral tones, substrate formulations, and physical formats.",
+      "endpoint": "/api/agent/catalog",
+      "method": "GET"
+    },
+    {
+      "name": "checkMaterialAvailability",
+      "description": "Check if specific slab reference (e.g., White Chalk AC-0101, Linen AC-0102, Calacatta Greige AC-0202) is in stock.",
+      "endpoint": "/api/agent/catalog?type=materials",
+      "method": "GET"
+    },
+    {
+      "name": "getFabricationSpecs",
+      "description": "Returns 5-axis CNC router tolerances, thermoforming minimum radius (25mm), and seam adhesives.",
+      "endpoint": "/api/agent/catalog?type=fabrication",
+      "method": "GET"
+    }
+  ],
+  "contact": {
+    "phone": "+91 98450 12345",
+    "email": "studio@acespaces.in",
+    "address": "#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India"
+  }
+}

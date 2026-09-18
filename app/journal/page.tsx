@@ -3,15 +3,72 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import JournalExplorer from '@/components/JournalExplorer';
+import JsonLd from '@/components/JsonLd';
+import { journalArticles } from '@/data/journal';
 
 export const metadata: Metadata = {
-  title: 'Journal & Material Essays — Ace Spaces',
-  description: 'Notes on making, material science, fabrication philosophy, and architectural essays from Ace Spaces.',
+  title: 'Journal & Architectural Essays — Material Science & Fabrication Philosophy',
+  description:
+    'Read Ace Spaces architectural journal essays on monolithic joinery, zero-silica mineral health, 5-axis digital manufacturing, and material culture in contemporary spatial practice.',
+  keywords: [
+    'architectural essays',
+    'solid surface material science',
+    'zero-silica countertops health',
+    'seamless joinery theory',
+    'architectural fabrication journal',
+  ],
+  alternates: {
+    canonical: 'https://acespacesindia.vercel.app/journal',
+    types: {
+      'application/rss+xml': 'https://acespacesindia.vercel.app/journal/feed.xml',
+    },
+  },
+  openGraph: {
+    title: 'Journal & Material Essays | Ace Spaces',
+    description:
+      'Notes on making, material science, zero-silica health, and fabrication philosophy from our Bengaluru atelier.',
+    url: 'https://acespacesindia.vercel.app/journal',
+    images: [
+      {
+        url: '/assets/material-macro.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ace Spaces Architectural Journal',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Journal & Material Essays | Ace Spaces',
+    description:
+      'Essays on architectural solid surfaces, fabrication craft, and material culture in India.',
+    images: ['/assets/material-macro.png'],
+  },
+};
+
+const journalJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Ace Spaces Architectural Journal',
+  description: 'Notes on architectural surfaces, fabrication science, and monolithic spatial practice.',
+  url: 'https://acespacesindia.vercel.app/journal',
+  blogPost: journalArticles.map((article) => ({
+    '@type': 'BlogPosting',
+    headline: article.title,
+    description: article.summary,
+    url: `https://acespacesindia.vercel.app/journal/${article.slug}`,
+    author: {
+      '@type': 'Organization',
+      name: article.author || 'Ace Spaces',
+    },
+    image: `https://acespacesindia.vercel.app${article.image}`,
+  })),
 };
 
 export default function JournalPage() {
   return (
     <main className="page-main">
+      <JsonLd data={journalJsonLd} />
       {/* Rich Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
