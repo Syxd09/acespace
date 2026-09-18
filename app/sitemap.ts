@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { materials } from '@/data/materials';
+import { productsData } from '@/data/products';
 import { applicationSectors } from '@/data/applications';
 import { projects } from '@/data/projects';
 import { journalArticles } from '@/data/journal';
@@ -19,6 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/materials`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${BASE_URL}/products`,
       lastModified: now,
       changeFrequency: 'weekly',
       priority: 0.9,
@@ -105,9 +112,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }));
 
+  // Dynamic Product routes
+  const productRoutes: MetadataRoute.Sitemap = productsData.map((prod) => ({
+    url: `${BASE_URL}/products/${prod.slug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.85,
+  }));
+
   return [
     ...staticRoutes,
     ...materialRoutes,
+    ...productRoutes,
     ...applicationRoutes,
     ...projectRoutes,
     ...journalRoutes,

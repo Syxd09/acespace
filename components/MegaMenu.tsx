@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export type MegaMenuType = 'materials' | 'colours' | 'applications' | 'fabrication' | null;
+export type MegaMenuType = 'materials' | 'colours' | 'products' | 'applications' | 'fabrication' | null;
 
 interface MegaMenuProps {
   activeMenu: MegaMenuType;
@@ -318,6 +318,395 @@ export default function MegaMenu({
                   View Swatch Library <span>↗</span>
                 </Link>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* ============================================================ */}
+        {/* 2. PRODUCTS MEGA DROPDOWN (Matches User Reference) */}
+        {/* ============================================================ */}
+        {activeMenu === 'products' && (
+          <div
+            style={{
+              padding: '24px 0 16px',
+            }}
+          >
+            {/* Header Eyebrow */}
+            <div style={{ marginBottom: '28px' }}>
+              <span
+                style={{
+                  fontSize: '10px',
+                  fontFamily: 'DM Mono, monospace',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--muted)',
+                  display: 'block',
+                  marginBottom: '6px',
+                }}
+              >
+                02 / Architectural Fabrication &amp; Fixtures
+              </span>
+              <h3
+                style={{
+                  fontSize: '22px',
+                  margin: 0,
+                  fontWeight: 500,
+                  color: 'var(--ink)',
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                Products &amp; Engineered Systems
+              </h3>
+            </div>
+
+            {/* 2-Column Exact Layout from Reference */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '40px 70px',
+                marginBottom: '44px',
+                maxWidth: '960px',
+              }}
+            >
+              {/* Left Column */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                {/* 1. CORIAN® MATERIAL */}
+                <Link
+                  href="/materials"
+                  onClick={onClose}
+                  className="product-menu-link"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    paddingBottom: '14px',
+                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: 'block',
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        color: 'var(--ink)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      CORIAN&reg; MATERIAL
+                    </strong>
+                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
+                      Calibrated slabs &bull; Through-body 20+ mineral palette
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                </Link>
+
+                {/* 2. SINKS */}
+                <Link
+                  href="/products/sinks"
+                  onClick={onClose}
+                  className="product-menu-link"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    paddingBottom: '14px',
+                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: 'block',
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        color: 'var(--ink)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      SINKS
+                    </strong>
+                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
+                      Undermount chemically welded bowls &bull; Zero silicone joints
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                </Link>
+
+                {/* 3. WASHPLANES */}
+                <Link
+                  href="/products/washplanes"
+                  onClick={onClose}
+                  className="product-menu-link"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    paddingBottom: '14px',
+                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: 'block',
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        color: 'var(--ink)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      WASHPLANES
+                    </strong>
+                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
+                      Linear sloping planes &bull; Concealed continuous trough drainage
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                </Link>
+
+                {/* 4. HEALTH & AGED CARE SOLUTIONS */}
+                <Link
+                  href="/products/health-aged-care"
+                  onClick={onClose}
+                  className="product-menu-link"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    paddingBottom: '14px',
+                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: 'block',
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        color: 'var(--ink)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      HEALTH &amp; AGED CARE SOLUTIONS
+                    </strong>
+                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
+                      Infection-controlled scrub sinks &bull; Accessible DDA vanities
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                </Link>
+              </div>
+
+              {/* Right Column */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                {/* 5. BENCHTOPS */}
+                <Link
+                  href="/products/benchtops"
+                  onClick={onClose}
+                  className="product-menu-link"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    paddingBottom: '14px',
+                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: 'block',
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        color: 'var(--ink)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      BENCHTOPS
+                    </strong>
+                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
+                      Monolithic islands &bull; Mitred waterfalls &bull; Coved splashbacks
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                </Link>
+
+                {/* 6. BASINS & VANITIES */}
+                <Link
+                  href="/products/basins-vanities"
+                  onClick={onClose}
+                  className="product-menu-link"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    paddingBottom: '14px',
+                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: 'block',
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        color: 'var(--ink)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      BASINS &amp; VANITIES
+                    </strong>
+                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
+                      Floating cantilever consoles &bull; Seamlessly fused washbowls
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                </Link>
+
+                {/* 7. PUBLIC BATHROOMS AND EOT SOLUTIONS */}
+                <Link
+                  href="/products/public-bathrooms-eot"
+                  onClick={onClose}
+                  className="product-menu-link"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    paddingBottom: '14px',
+                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: 'block',
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        color: 'var(--ink)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      PUBLIC BATHROOMS AND EOT SOLUTIONS
+                    </strong>
+                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
+                      Commercial groom stations &bull; Vandal-resistant washstations
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                </Link>
+
+                {/* 8. BESPOKE */}
+                <Link
+                  href="/products/bespoke"
+                  onClick={onClose}
+                  className="product-menu-link"
+                  style={{
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'baseline',
+                    justifyContent: 'space-between',
+                    paddingBottom: '14px',
+                    borderBottom: '1px solid rgba(30, 33, 29, 0.12)',
+                  }}
+                >
+                  <div>
+                    <strong
+                      style={{
+                        display: 'block',
+                        fontSize: '15px',
+                        fontWeight: 600,
+                        letterSpacing: '0.04em',
+                        color: 'var(--ink)',
+                        textTransform: 'uppercase',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      BESPOKE
+                    </strong>
+                    <span style={{ fontSize: '12px', color: '#687265', fontFamily: 'DM Mono, monospace' }}>
+                      3D thermoformed organic volumes &bull; 5-axis CNC sculptural pieces
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '13px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>&nearr;</span>
+                </Link>
+              </div>
+            </div>
+
+            {/* Bottom Actions (Exact matching reference buttons) */}
+            <div
+              style={{
+                display: 'flex',
+                gap: '20px',
+                alignItems: 'center',
+                paddingTop: '24px',
+                borderTop: '1px solid var(--line)',
+                flexWrap: 'wrap',
+              }}
+            >
+              <Link
+                href="/products"
+                onClick={onClose}
+                style={{
+                  display: 'inline-block',
+                  border: '1px solid var(--ink)',
+                  background: 'transparent',
+                  color: 'var(--ink)',
+                  padding: '13px 26px',
+                  fontSize: '12px',
+                  fontFamily: 'DM Mono, monospace',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  fontWeight: 500,
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                EXPLORE ALL PRODUCTS
+              </Link>
+              <Link
+                href="/products/design-certainty"
+                onClick={onClose}
+                style={{
+                  display: 'inline-block',
+                  border: '1px solid var(--ink)',
+                  background: 'transparent',
+                  color: 'var(--ink)',
+                  padding: '13px 26px',
+                  fontSize: '12px',
+                  fontFamily: 'DM Mono, monospace',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  fontWeight: 500,
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                DESIGN CERTAINTY SERVICE
+              </Link>
             </div>
           </div>
         )}

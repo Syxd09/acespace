@@ -48,6 +48,7 @@
 
 ## Key Web Routes & Specifier Actions
 - Materials & Colours Catalog: https://acespacesindia.vercel.app/materials
+- Architectural Products Catalog (Benchtops, Sinks, Washplanes, Vanities, EOT, Healthcare, Bespoke): https://acespacesindia.vercel.app/products
 - Applications (Kitchens, Bathrooms, Healthcare, Hospitality): https://acespacesindia.vercel.app/applications
 - Fabrication Platform: https://acespacesindia.vercel.app/fabrication
 - Case Studies & Projects: https://acespacesindia.vercel.app/projects

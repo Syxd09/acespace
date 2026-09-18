@@ -168,7 +168,26 @@ export default function SiteHeader() {
             </Link>
           </div>
 
-          {/* 02. Applications */}
+          {/* 02. Products */}
+          <div
+            className={`nav-item-wrapper ${activeMegaMenu === 'products' ? 'nav-item-active' : ''}`}
+            onMouseEnter={() => handleMouseEnterNav('products')}
+            style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}
+          >
+            <Link
+              href="/products"
+              className={isLinkActive('/products') ? 'active' : ''}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
+            >
+              <span className="nav-num">02</span>
+              <strong>Products</strong>
+              <small>Sinks, benchtops &amp; vanities</small>
+              <span className="nav-chevron">▼</span>
+              <b>↗</b>
+            </Link>
+          </div>
+
+          {/* 03. Applications */}
           <div
             className={`nav-item-wrapper ${activeMegaMenu === 'applications' ? 'nav-item-active' : ''}`}
             onMouseEnter={() => handleMouseEnterNav('applications')}
@@ -179,7 +198,7 @@ export default function SiteHeader() {
               className={isLinkActive('/applications') ? 'active' : ''}
               style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
             >
-              <span className="nav-num">02</span>
+              <span className="nav-num">03</span>
               <strong>Applications</strong>
               <small>Material in context</small>
               <span className="nav-chevron">▼</span>
@@ -187,7 +206,7 @@ export default function SiteHeader() {
             </Link>
           </div>
 
-          {/* 03. Fabrication */}
+          {/* 04. Fabrication */}
           <div
             className={`nav-item-wrapper ${activeMegaMenu === 'fabrication' ? 'nav-item-active' : ''}`}
             onMouseEnter={() => handleMouseEnterNav('fabrication')}
@@ -198,7 +217,7 @@ export default function SiteHeader() {
               className={isLinkActive('/fabrication') ? 'active' : ''}
               style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
             >
-              <span className="nav-num">03</span>
+              <span className="nav-num">04</span>
               <strong>Fabrication</strong>
               <small>From sheet to space</small>
               <span className="nav-chevron">▼</span>
@@ -206,25 +225,25 @@ export default function SiteHeader() {
             </Link>
           </div>
 
-          {/* 04. Projects */}
+          {/* 05. Projects */}
           <Link
             href="/projects"
             className={isLinkActive('/projects') ? 'active' : ''}
             onMouseEnter={() => handleMouseEnterNav(null)}
           >
-            <span className="nav-num">04</span>
+            <span className="nav-num">05</span>
             <strong>Projects</strong>
             <small>Selected work</small>
             <b>↗</b>
           </Link>
 
-          {/* 05. Journal */}
+          {/* 06. Journal */}
           <Link
             href="/journal"
             className={isLinkActive('/journal') ? 'active' : ''}
             onMouseEnter={() => handleMouseEnterNav(null)}
           >
-            <span className="nav-num">05</span>
+            <span className="nav-num">06</span>
             <strong>Journal</strong>
             <small>Notes on making</small>
             <b>↗</b>
@@ -447,8 +466,17 @@ export default function SiteHeader() {
             <span className="drawer-arrow">↗</span>
           </Link>
 
-          <Link href="/applications" onClick={closeMobileMenu} className={isLinkActive('/applications') ? 'drawer-link active' : 'drawer-link'}>
+          <Link href="/products" onClick={closeMobileMenu} className={isLinkActive('/products') ? 'drawer-link active' : 'drawer-link'}>
             <span className="drawer-num">02</span>
+            <div className="drawer-link-text">
+              <strong>Products</strong>
+              <small>Sinks, benchtops, washplanes, vanities &amp; bespoke fixtures</small>
+            </div>
+            <span className="drawer-arrow">↗</span>
+          </Link>
+
+          <Link href="/applications" onClick={closeMobileMenu} className={isLinkActive('/applications') ? 'drawer-link active' : 'drawer-link'}>
+            <span className="drawer-num">03</span>
             <div className="drawer-link-text">
               <strong>Applications</strong>
               <small>Residential, hospitality, commercial &amp; clinical spaces</small>
@@ -457,7 +485,7 @@ export default function SiteHeader() {
           </Link>
 
           <Link href="/fabrication" onClick={closeMobileMenu} className={isLinkActive('/fabrication') ? 'drawer-link active' : 'drawer-link'}>
-            <span className="drawer-num">03</span>
+            <span className="drawer-num">04</span>
             <div className="drawer-link-text">
               <strong>Fabrication</strong>
               <small>Thermoforming, 5-axis CNC &amp; seamless joining</small>
@@ -466,7 +494,7 @@ export default function SiteHeader() {
           </Link>
 
           <Link href="/projects" onClick={closeMobileMenu} className={isLinkActive('/projects') ? 'drawer-link active' : 'drawer-link'}>
-            <span className="drawer-num">04</span>
+            <span className="drawer-num">05</span>
             <div className="drawer-link-text">
               <strong>Projects</strong>
               <small>Selected architectural case studies</small>
@@ -475,7 +503,7 @@ export default function SiteHeader() {
           </Link>
 
           <Link href="/journal" onClick={closeMobileMenu} className={isLinkActive('/journal') ? 'drawer-link active' : 'drawer-link'}>
-            <span className="drawer-num">05</span>
+            <span className="drawer-num">06</span>
             <div className="drawer-link-text">
               <strong>Journal</strong>
               <small>Notes on making &amp; materiality</small>
@@ -484,7 +512,7 @@ export default function SiteHeader() {
           </Link>
 
           <Link href="/contact" onClick={closeMobileMenu} className="drawer-link drawer-contact-link">
-            <span className="drawer-num">06</span>
+            <span className="drawer-num">07</span>
             <div className="drawer-link-text">
               <strong>Start a Project</strong>
               <small>Consultation, shop drawings &amp; material specification</small>

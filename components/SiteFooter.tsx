@@ -266,8 +266,8 @@ export default function SiteFooter() {
             {[
               { label: 'Solid Surface Monoliths', href: '/materials' },
               { label: 'Curated Architectural Palette', href: '/materials#library' },
-              { label: 'Mineral Slabs & Terrazzo', href: '/materials' },
-              { label: 'Translucent Backlit Slabs', href: '/materials' },
+              { label: 'Fabricated Products & Sinks', href: '/products' },
+              { label: 'Design Certainty Service', href: '/products/design-certainty' },
               { label: 'Custom Specimen Box Order', href: '/materials' },
             ].map(item => (
               <li key={item.label}>
