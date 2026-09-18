@@ -269,54 +269,33 @@ export default function MegaMenu({
             </div>
 
             {/* Right Feature Card */}
-            <div
-              style={{
-                background: '#dcd7cd',
-                border: '1px solid var(--line)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
-              }}
-            >
-              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
+            <div className="mega-menu-feature-card">
+              <div className="mega-menu-feature-image">
                 <Image
-                  src="/assets/material-macro.png"
-                  alt="Architectural solid surface mineral and colour swatches"
+                  src="/assets/hero-ace.png"
+                  alt="Through-body mineral solid surface monolith in architectural pavilion"
                   fill
                   sizes="400px"
                   style={{ objectFit: 'cover' }}
                 />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '12px',
-                    left: '12px',
-                    background: 'rgba(23, 26, 23, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#fff',
-                    padding: '4px 10px',
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  Mineral Chemistry
+                <span className="mega-menu-badge">
+                  Mineral Substrate
                 </span>
               </div>
-              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
-                <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                  Natural ATH Mineral Matrix
-                </strong>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                  Two-thirds natural mineral bauxite bonded with high-grade acrylic. 100% non-porous through-body colour with zero joint visibility.
-                </p>
+              <div className="mega-menu-feature-body">
+                <div>
+                  <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
+                    Through-Body Mineral Monoliths
+                  </strong>
+                  <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                    Two-thirds natural mineral bauxite bonded with high-grade acrylic polymer. 100% non-porous, zero-silica through-body colour with seamless continuity.
+                  </p>
+                </div>
                 <Link
                   href="/materials#library"
                   onClick={onClose}
                   className="button button-dark"
-                  style={{ fontSize: '10px', padding: '8px 16px' }}
+                  style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
                   View Swatch Library <span>↗</span>
                 </Link>
@@ -525,54 +504,33 @@ export default function MegaMenu({
             </div>
 
             {/* Right Feature Card */}
-            <div
-              style={{
-                background: '#dcd7cd',
-                border: '1px solid var(--line)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
-              }}
-            >
-              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
+            <div className="mega-menu-feature-card">
+              <div className="mega-menu-feature-image">
                 <Image
-                  src="/assets/applications/calacatta-greige-kitchen.jpg"
-                  alt="Architectural solid surface kitchen island and integrated sink"
+                  src="/assets/applications/artista-mist-bathroom.jpg"
+                  alt="Monolithic floating double vanity and seamlessly integrated basins"
                   fill
                   sizes="400px"
                   style={{ objectFit: 'cover' }}
                 />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '12px',
-                    left: '12px',
-                    background: 'rgba(23, 26, 23, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#fff',
-                    padding: '4px 10px',
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  Fabrication Standard
+                <span className="mega-menu-badge">
+                  Product Systems
                 </span>
               </div>
-              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
-                <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                  Zero Silicone Joinery
-                </strong>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                  Chemically welded seamless joinery eliminates dirt lines, mould, and bacterial harborage. 100% non-porous through-body solid surface.
-                </p>
+              <div className="mega-menu-feature-body">
+                <div>
+                  <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
+                    Monolithic Floating Vanities &amp; Sinks
+                  </strong>
+                  <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                    Seamlessly fused washplane basins, 45° mitred waterfall aprons, and bespoke vanities fabricated without silicone seams or grime lines.
+                  </p>
+                </div>
                 <Link
                   href="/products"
                   onClick={onClose}
                   className="button button-dark"
-                  style={{ fontSize: '10px', padding: '8px 16px' }}
+                  style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
                   View Product Catalog <span>↗</span>
                 </Link>
@@ -801,17 +759,8 @@ export default function MegaMenu({
             </div>
 
             {/* Right Feature Card */}
-            <div
-              style={{
-                background: '#dcd7cd',
-                border: '1px solid var(--line)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
-              }}
-            >
-              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
+            <div className="mega-menu-feature-card">
+              <div className="mega-menu-feature-image">
                 <Image
                   src="/assets/applications/stonecrest-smoke-hotel-lobby.jpg"
                   alt="Monolithic grand reception desk in hospitality interior"
@@ -819,36 +768,24 @@ export default function MegaMenu({
                   sizes="400px"
                   style={{ objectFit: 'cover' }}
                 />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '12px',
-                    left: '12px',
-                    background: 'rgba(23, 26, 23, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#fff',
-                    padding: '4px 10px',
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
+                <span className="mega-menu-badge">
                   Typology Focus
                 </span>
               </div>
-              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
-                <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                  Sculptural Hospitality Monoliths
-                </strong>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                  High-traffic reception desks, bars, and lobbies engineered with internal steel sub-frames and stain immunity.
-                </p>
+              <div className="mega-menu-feature-body">
+                <div>
+                  <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
+                    Sculptural Hospitality Monoliths
+                  </strong>
+                  <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                    High-traffic reception desks, bars, and lobbies engineered with internal steel sub-frames and stain immunity.
+                  </p>
+                </div>
                 <Link
                   href="/applications/hospitality"
                   onClick={onClose}
                   className="button button-dark"
-                  style={{ fontSize: '10px', padding: '8px 16px' }}
+                  style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
                   View Hospitality Case <span>↗</span>
                 </Link>
@@ -1057,17 +994,8 @@ export default function MegaMenu({
             </div>
 
             {/* Right Feature Card */}
-            <div
-              style={{
-                background: '#dcd7cd',
-                border: '1px solid var(--line)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
-              }}
-            >
-              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
+            <div className="mega-menu-feature-card">
+              <div className="mega-menu-feature-image">
                 <Image
                   src="/assets/applications/calacatta-greige-kitchen-detail.jpg"
                   alt="Seamless 45-degree mitred waterfall edge and surface join close-up"
@@ -1075,36 +1003,24 @@ export default function MegaMenu({
                   sizes="400px"
                   style={{ objectFit: 'cover' }}
                 />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '12px',
-                    left: '12px',
-                    background: 'rgba(23, 26, 23, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#fff',
-                    padding: '4px 10px',
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
+                <span className="mega-menu-badge">
                   Joinery Detail
                 </span>
               </div>
-              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
-                <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                  The 45° Mitred Waterfall
-                </strong>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                  Hand-dressed acrylic thermo-welds maintain pattern grain continuity from horizontal islands down to finished floor planes.
-                </p>
+              <div className="mega-menu-feature-body">
+                <div>
+                  <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
+                    The 45° Mitred Waterfall
+                  </strong>
+                  <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                    Hand-dressed acrylic thermo-welds maintain pattern grain continuity from horizontal islands down to finished floor planes.
+                  </p>
+                </div>
                 <Link
                   href="/fabrication"
                   onClick={onClose}
                   className="button button-dark"
-                  style={{ fontSize: '10px', padding: '8px 16px' }}
+                  style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
                   See Joinery Craft <span>↗</span>
                 </Link>
@@ -1325,54 +1241,33 @@ export default function MegaMenu({
             </div>
 
             {/* Right Feature Card */}
-            <div
-              style={{
-                background: '#dcd7cd',
-                border: '1px solid var(--line)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
-              }}
-            >
-              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
+            <div className="mega-menu-feature-card">
+              <div className="mega-menu-feature-image">
                 <Image
-                  src="/assets/applications/stonecrest-smoke-hotel-lobby.jpg"
+                  src="/assets/applications/excavage-education.jpg"
                   alt="Ace Spaces architectural studio practice and monolithic craft"
                   fill
                   sizes="400px"
                   style={{ objectFit: 'cover' }}
                 />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '12px',
-                    left: '12px',
-                    background: 'rgba(23, 26, 23, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#fff',
-                    padding: '4px 10px',
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
+                <span className="mega-menu-badge">
                   Studio Atelier
                 </span>
               </div>
-              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
-                <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                  Form Follows Continuity
-                </strong>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                  We are architects, digital fabricators, and master joiners. Founded in Bengaluru to dissolve the seams that divide contemporary space.
-                </p>
+              <div className="mega-menu-feature-body">
+                <div>
+                  <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
+                    Form Follows Continuity
+                  </strong>
+                  <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                    We are architects, digital fabricators, and master joiners. Founded in Bengaluru to dissolve the seams that divide contemporary space.
+                  </p>
+                </div>
                 <Link
                   href="/about"
                   onClick={onClose}
                   className="button button-dark"
-                  style={{ fontSize: '10px', padding: '8px 16px' }}
+                  style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
                   Explore Practice <span>↗</span>
                 </Link>
