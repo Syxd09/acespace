@@ -53,7 +53,12 @@ const nextConfig = {
     return [
       {
         source: '/colours',
-        destination: '/collections/colours',
+        destination: '/materials',
+        permanent: true,
+      },
+      {
+        source: '/collections/colours',
+        destination: '/materials',
         permanent: true,
       },
       {

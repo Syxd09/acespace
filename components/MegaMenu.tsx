@@ -52,20 +52,20 @@ export default function MegaMenu({
         }}
       >
         {/* ============================================================ */}
-        {/* 1. MATERIALS MEGA DROPDOWN */}
+        {/* 1. MATERIALS & COLOURS MEGA DROPDOWN */}
         {/* ============================================================ */}
-        {activeMenu === 'materials' && (
+        {(activeMenu === 'materials' || activeMenu === 'colours') && (
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: '1.4fr 0.9fr',
-              gap: '5vw',
+              gridTemplateColumns: '1.7fr 0.9fr',
+              gap: '4vw',
               alignItems: 'start',
             }}
           >
             {/* Left Nav Columns */}
             <div>
-              <div style={{ marginBottom: '28px' }}>
+              <div style={{ marginBottom: '24px' }}>
                 <span
                   style={{
                     fontSize: '10px',
@@ -77,7 +77,7 @@ export default function MegaMenu({
                     marginBottom: '6px',
                   }}
                 >
-                  01 / Architectural Mineral Substrates
+                  01 / Architectural Substrates &amp; Palette
                 </span>
                 <h3
                   style={{
@@ -88,19 +88,19 @@ export default function MegaMenu({
                     letterSpacing: '-0.02em',
                   }}
                 >
-                  Collections & Engineered Surfaces
+                  Materials, Calibrated Slabs &amp; Colour Palette
                 </h3>
               </div>
 
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '36px',
-                  marginBottom: '36px',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '24px',
+                  marginBottom: '28px',
                 }}
               >
-                {/* Column 1: Collections */}
+                {/* Column 1: Core Substrates */}
                 <div>
                   <span
                     style={{
@@ -109,423 +109,130 @@ export default function MegaMenu({
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
-                      marginBottom: '16px',
+                      marginBottom: '14px',
                       paddingBottom: '8px',
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Curated Series
-                  </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    <li>
-                      <Link
-                        href="/materials"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Alto Collection</strong>
-                        <small>Subtle directional veining & marble movement</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/materials"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Noma Collection</strong>
-                        <small>Monolithic pure whites & mineral chalks</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/materials"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Obsidian Collection</strong>
-                        <small>Deep tactile charcoals & matte monoliths</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/materials"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Strata Collection</strong>
-                        <small>Sedimentary micro-terrazzos & earth textures</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/materials"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Lumen Collection</strong>
-                        <small>Translucent mineral fields for warm backlighting</small>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Column 2: Specifications & Substrates */}
-                <div>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
-                      textTransform: 'uppercase',
-                      color: 'var(--muted)',
-                      display: 'block',
-                      marginBottom: '16px',
-                      paddingBottom: '8px',
-                      borderBottom: '1px solid var(--line)',
-                    }}
-                  >
-                    Formats & Performance
-                  </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    <li>
-                      <Link
-                        href="/materials"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Through-Body Solid Surfaces</strong>
-                        <small>100% homogeneous & non-porous across depth</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/materials"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Sheet Formats: 12mm & 20mm</strong>
-                        <small>3680 × 760mm calibrated architectural slabs</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/fabrication#edges"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Edge Profiles & Bullnosing</strong>
-                        <small>Mitred waterfalls, bevelled & pencil round profiles</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/fabrication"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Thermoforming Substrates</strong>
-                        <small>Capable of bending down to 75mm internal radii</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/materials"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Certified Care & Maintenance</strong>
-                        <small>Easily renewable and scuff-resistant in the field</small>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              {/* Bottom Actions Row */}
-              <div
-                style={{
-                  display: 'flex',
-                  gap: '16px',
-                  alignItems: 'center',
-                  paddingTop: '20px',
-                  borderTop: '1px solid var(--line)',
-                }}
-              >
-                <Link
-                  href="/materials"
-                  onClick={onClose}
-                  className="button button-dark"
-                  style={{ fontSize: '11px', padding: '10px 20px' }}
-                >
-                  Explore All Materials <span>↗</span>
-                </Link>
-                <Link
-                  href="/collections/colours"
-                  onClick={onClose}
-                  className="text-link"
-                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
-                >
-                  View Full Palette <span>↗</span>
-                </Link>
-              </div>
-            </div>
-
-            {/* Right Feature Card */}
-            <div
-              style={{
-                background: '#dcd7cd',
-                border: '1px solid var(--line)',
-                overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
-              }}
-            >
-              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
-                <Image
-                  src="/assets/applications/calacatta-greige-kitchen.jpg"
-                  alt="Through-body mineral kitchen island in Calacatta Greige"
-                  fill
-                  sizes="400px"
-                  style={{ objectFit: 'cover' }}
-                />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '12px',
-                    left: '12px',
-                    background: 'rgba(23, 26, 23, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#fff',
-                    padding: '4px 10px',
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  Mineral Feature
-                </span>
-              </div>
-              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
-                <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                  Homogeneous Mineral Matrix
-                </strong>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                  Natural bauxite mineral and acrylic polymer chemically bonded to eliminate joints, grout lines, and bacterial absorption.
-                </p>
-                <Link
-                  href="/materials/alto-bianco-vein"
-                  onClick={onClose}
-                  className="button button-dark"
-                  style={{ fontSize: '10px', padding: '8px 16px' }}
-                >
-                  View Alto Series <span>↗</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* ============================================================ */}
-        {/* 2. COLOURS MEGA DROPDOWN */}
-        {/* ============================================================ */}
-        {activeMenu === 'colours' && (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1.4fr 0.9fr',
-              gap: '5vw',
-              alignItems: 'start',
-            }}
-          >
-            {/* Left Nav Columns */}
-            <div>
-              <div style={{ marginBottom: '28px' }}>
-                <span
-                  style={{
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    color: 'var(--muted)',
-                    display: 'block',
-                    marginBottom: '6px',
-                  }}
-                >
-                  02 / Curated Architectural Palette
-                </span>
-                <h3
-                  style={{
-                    fontSize: '22px',
-                    margin: 0,
-                    fontWeight: 500,
-                    color: 'var(--ink)',
-                    letterSpacing: '-0.02em',
-                  }}
-                >
-                  Color Families & Light Integration
-                </h3>
-              </div>
-
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '36px',
-                  marginBottom: '36px',
-                }}
-              >
-                {/* Column 1: Families */}
-                <div>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
-                      textTransform: 'uppercase',
-                      color: 'var(--muted)',
-                      display: 'block',
-                      marginBottom: '16px',
-                      paddingBottom: '8px',
-                      borderBottom: '1px solid var(--line)',
-                    }}
-                  >
-                    Tone Families
-                  </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    <li>
-                      <Link
-                        href="/collections/colours?family=white"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Pure Whites & Alabasters</strong>
-                        <small>Soft light-diffusing chalks and luminous ivories</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/collections/colours?family=veined"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Veined & Directional Marbles</strong>
-                        <small>Organic veining patterns with fluid character</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/collections/colours?family=grey"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Greiges & Neutral Minerals</strong>
-                        <small>Understated warm greys for quiet living</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/collections/colours?family=earth"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Warm Terras & Earth Sediments</strong>
-                        <small>Geological terracotta, sage and sand pigments</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/collections/colours?family=black"
-                        onClick={onClose}
-                        className="mega-menu-link"
-                      >
-                        <strong>Deep Obsidian & Inks</strong>
-                        <small>Monolithic light-absorbing deep charcoals</small>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Column 2: Popular Architectural Swatches with Real Colour Dots */}
-                <div>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
-                      textTransform: 'uppercase',
-                      color: 'var(--muted)',
-                      display: 'block',
-                      marginBottom: '16px',
-                      paddingBottom: '8px',
-                      borderBottom: '1px solid var(--line)',
-                    }}
-                  >
-                    Key Architectural Swatches
+                    Core Substrates
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
-                      <Link
-                        href="/materials/alto-bianco-vein"
-                        onClick={onClose}
-                        style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--ink)' }}
-                      >
-                        <span style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#eae7df', border: '1px solid var(--line)', flexShrink: 0 }} />
-                        <div>
-                          <strong style={{ fontSize: '13px', display: 'block' }}>Alto / Ivory Vein</strong>
-                          <span style={{ fontSize: '11px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>Veined • Satin Honed</span>
-                        </div>
+                      <Link href="/materials#substrates" onClick={onClose} className="mega-menu-link">
+                        <strong>Noma Solids</strong>
+                        <small>Pure monolithic mineral chalks</small>
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/materials/noma-white-chalk"
-                        onClick={onClose}
-                        style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--ink)' }}
-                      >
-                        <span style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#f5f4ef', border: '1px solid var(--line)', flexShrink: 0 }} />
-                        <div>
-                          <strong style={{ fontSize: '13px', display: 'block' }}>Noma / White Chalk</strong>
-                          <span style={{ fontSize: '11px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>Solid • Ultra-Matte</span>
-                        </div>
+                      <Link href="/materials#substrates" onClick={onClose} className="mega-menu-link">
+                        <strong>Alto Veined</strong>
+                        <small>Directional fluid marble movement</small>
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/materials/alto-fior-di-bosco"
-                        onClick={onClose}
-                        style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--ink)' }}
-                      >
-                        <span style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#5d5a56', border: '1px solid var(--line)', flexShrink: 0 }} />
-                        <div>
-                          <strong style={{ fontSize: '13px', display: 'block' }}>Alto / Fior di Bosco</strong>
-                          <span style={{ fontSize: '11px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>Veined • Tactile Graphite</span>
-                        </div>
+                      <Link href="/materials#substrates" onClick={onClose} className="mega-menu-link">
+                        <strong>Strata Textures</strong>
+                        <small>Sedimentary micro-terrazzo aggregates</small>
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/materials/strata-terrazzo-ash"
-                        onClick={onClose}
-                        style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--ink)' }}
-                      >
-                        <span style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#cfcac0', border: '1px solid var(--line)', flexShrink: 0 }} />
-                        <div>
-                          <strong style={{ fontSize: '13px', display: 'block' }}>Strata / Terrazzo Ash</strong>
-                          <span style={{ fontSize: '11px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>Mineral • Micro-aggregate</span>
-                        </div>
+                      <Link href="/materials#substrates" onClick={onClose} className="mega-menu-link">
+                        <strong>Lumen Optics</strong>
+                        <small>Translucent fields for backlit halos</small>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 2: Tone & Colour Families */}
+                <div>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontFamily: 'DM Mono, monospace',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      display: 'block',
+                      marginBottom: '14px',
+                      paddingBottom: '8px',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    Colour Families (20+)
+                  </span>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <li>
+                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                        <strong>Whites &amp; Chalk</strong>
+                        <small>Soft light-diffusing chalks &amp; alabaster</small>
                       </Link>
                     </li>
                     <li>
-                      <Link
-                        href="/materials/terra-sage"
-                        onClick={onClose}
-                        style={{ display: 'flex', alignItems: 'center', gap: '12px', textDecoration: 'none', color: 'var(--ink)' }}
-                      >
-                        <span style={{ width: '16px', height: '16px', borderRadius: '50%', background: '#737a6b', border: '1px solid var(--line)', flexShrink: 0 }} />
-                        <div>
-                          <strong style={{ fontSize: '13px', display: 'block' }}>Terra / Sage</strong>
-                          <span style={{ fontSize: '11px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>Textured • Earth Pigment</span>
-                        </div>
+                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                        <strong>Linen &amp; Warm Creams</strong>
+                        <small>Tactile, calming natural linen hues</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                        <strong>Greiges &amp; Concrete</strong>
+                        <small>Understated architectural grey tones</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                        <strong>Warm Earth &amp; Terras</strong>
+                        <small>Geological sand, clay &amp; terracotta</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                        <strong>Obsidian Noir &amp; Inks</strong>
+                        <small>Deep light-absorbing dark charcoals</small>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Column 3: Formats & Performance */}
+                <div>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontFamily: 'DM Mono, monospace',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                      display: 'block',
+                      marginBottom: '14px',
+                      paddingBottom: '8px',
+                      borderBottom: '1px solid var(--line)',
+                    }}
+                  >
+                    Calibrated Slabs
+                  </span>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    <li>
+                      <Link href="/materials" onClick={onClose} className="mega-menu-link">
+                        <strong>Full Slabs: 3660 × 760mm</strong>
+                        <small>Calibrated architectural sheets</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/materials" onClick={onClose} className="mega-menu-link">
+                        <strong>Thickness: 12mm &amp; 19mm</strong>
+                        <small>Zero-porosity homogeneous core</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/fabrication" onClick={onClose} className="mega-menu-link">
+                        <strong>Thermoforming Substrates</strong>
+                        <small>Curve down to 75mm organic radii</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/fabrication#edges" onClick={onClose} className="mega-menu-link">
+                        <strong>Inconspicuous Seams</strong>
+                        <small>Jointless monolithic installations</small>
                       </Link>
                     </li>
                   </ul>
@@ -538,25 +245,25 @@ export default function MegaMenu({
                   display: 'flex',
                   gap: '16px',
                   alignItems: 'center',
-                  paddingTop: '20px',
+                  paddingTop: '16px',
                   borderTop: '1px solid var(--line)',
                 }}
               >
                 <Link
-                  href="/collections/colours"
+                  href="/materials"
                   onClick={onClose}
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
-                  Browse All 20+ Colours <span>↗</span>
+                  Explore Materials &amp; Palette <span>↗</span>
                 </Link>
                 <Link
-                  href="/materials"
+                  href="/contact"
                   onClick={onClose}
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
-                  Order Physical Swatch Box <span>↗</span>
+                  Order Studio Sample Box <span>↗</span>
                 </Link>
               </div>
             </div>
@@ -569,49 +276,46 @@ export default function MegaMenu({
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.06)',
               }}
             >
-              <div style={{ position: 'relative', height: '260px', width: '100%' }}>
+              <div style={{ position: 'relative', height: '170px', width: '100%' }}>
                 <Image
-                  src="/assets/materials/css-stonecrest-smoke-sheet.jpg"
-                  alt="Raw architectural sheet of Stonecrest Smoke solid surface"
+                  src="/assets/material-macro.png"
+                  alt="Architectural solid surface mineral and colour swatches"
                   fill
-                  sizes="400px"
                   style={{ objectFit: 'cover' }}
                 />
-                <span
+                <div
                   style={{
                     position: 'absolute',
                     top: '12px',
                     left: '12px',
-                    background: 'rgba(233, 232, 226, 0.92)',
-                    backdropFilter: 'blur(8px)',
-                    color: 'var(--ink)',
-                    padding: '4px 10px',
-                    fontSize: '10px',
+                    background: 'rgba(30, 33, 29, 0.85)',
+                    color: '#fff',
+                    fontSize: '9px',
                     fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.08em',
+                    padding: '3px 8px',
                     textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
                   }}
                 >
-                  Palette Insight
-                </span>
+                  Mineral Chemistry
+                </div>
               </div>
-              <div style={{ padding: '22px 24px', background: 'var(--paper)', flex: 1 }}>
+              <div style={{ padding: '20px 22px', background: 'var(--paper)', flex: 1 }}>
                 <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                  Low-Reflectivity Light Response
+                  Natural ATH Mineral Matrix
                 </strong>
-                <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                  Formulated to catch warm indirect lighting without glare, preserving depth across changing times of day.
+                <p style={{ margin: '0 0 14px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
+                  Two-thirds natural mineral bauxite bonded with high-grade acrylic. 100% non-porous through-body colour with zero joint visibility.
                 </p>
                 <Link
-                  href="/collections/colours"
+                  href="/materials#library"
                   onClick={onClose}
                   className="button button-dark"
                   style={{ fontSize: '10px', padding: '8px 16px' }}
                 >
-                  Filter Colours <span>↗</span>
+                  View Swatch Library <span>↗</span>
                 </Link>
               </div>
             </div>

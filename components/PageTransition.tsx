@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
 import { usePathname } from 'next/navigation';
@@ -12,13 +12,12 @@ export default function PageTransition({ children }: { children: React.ReactNode
 
   const getPageTitle = (path: string) => {
     if (path === '/') return 'ACE SPACES';
-    if (path.includes('/materials')) return '01 / MATERIALS';
-    if (path.includes('/collections/colours')) return '02 / COLOURS & PALETTE';
-    if (path.includes('/applications')) return '03 / APPLICATIONS';
-    if (path.includes('/fabrication')) return '04 / FABRICATION';
-    if (path.includes('/projects')) return '05 / PROJECTS';
-    if (path.includes('/journal')) return '06 / JOURNAL';
-    if (path.includes('/contact')) return '07 / CONTACT PRACTICE';
+    if (path.includes('/materials') || path.includes('/collections/colours')) return '01 / MATERIALS & COLOURS';
+    if (path.includes('/applications')) return '02 / APPLICATIONS';
+    if (path.includes('/fabrication')) return '03 / FABRICATION';
+    if (path.includes('/projects')) return '04 / PROJECTS';
+    if (path.includes('/journal')) return '05 / JOURNAL';
+    if (path.includes('/contact')) return '06 / CONTACT PRACTICE';
     return 'ACE SPACES';
   };
 

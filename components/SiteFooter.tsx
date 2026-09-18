@@ -265,7 +265,7 @@ export default function SiteFooter() {
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
               { label: 'Solid Surface Monoliths', href: '/materials' },
-              { label: 'Curated Architectural Palette', href: '/collections/colours' },
+              { label: 'Curated Architectural Palette', href: '/materials#library' },
               { label: 'Mineral Slabs & Terrazzo', href: '/materials' },
               { label: 'Translucent Backlit Slabs', href: '/materials' },
               { label: 'Custom Specimen Box Order', href: '/materials' },

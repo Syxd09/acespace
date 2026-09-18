@@ -47,9 +47,7 @@
 - **Integrated Coved Sinks**: Thermoformed sinks fabricated from the exact same slab with gentle 10 mm internal radiuses, eliminating silicone grime rims.
 
 ## Key Web Routes & Specifier Actions
-- Homepage: https://acespacesindia.vercel.app/
-- Material Catalog: https://acespacesindia.vercel.app/materials
-- Colour Palette Explorer: https://acespacesindia.vercel.app/collections/colours
+- Materials & Colours Catalog: https://acespacesindia.vercel.app/materials
 - Applications (Kitchens, Bathrooms, Healthcare, Hospitality): https://acespacesindia.vercel.app/applications
 - Fabrication Platform: https://acespacesindia.vercel.app/fabrication
 - Case Studies & Projects: https://acespacesindia.vercel.app/projects

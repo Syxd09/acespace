@@ -330,7 +330,7 @@ function generateSuggestedActions(reply: string, query: string) {
     actions.push({ label: 'The Coro Connection', href: '/about#coro' });
   }
   if (text.includes('colour') || text.includes('color') || text.includes('palette') || text.includes('noma') || text.includes('alto')) {
-    actions.push({ label: 'View Colour Library', href: '/collections/colours' });
+    actions.push({ label: 'View Materials & Colours', href: '/materials#library' });
   }
   if (text.includes('fabricat') || text.includes('cnc') || text.includes('thermoform') || text.includes('tolerance')) {
     actions.push({ label: 'Fabrication Workshop', href: '/fabrication' });

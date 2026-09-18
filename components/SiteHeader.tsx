@@ -149,45 +149,26 @@ export default function SiteHeader() {
           aria-label="Main navigation"
           onMouseLeave={handleMouseLeaveNav}
         >
-          {/* 01. Materials */}
+          {/* 01. Materials & Colours */}
           <div
-            className={`nav-item-wrapper ${activeMegaMenu === 'materials' ? 'nav-item-active' : ''}`}
+            className={`nav-item-wrapper ${activeMegaMenu === 'materials' || activeMegaMenu === 'colours' ? 'nav-item-active' : ''}`}
             onMouseEnter={() => handleMouseEnterNav('materials')}
             style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}
           >
             <Link
               href="/materials"
-              className={isLinkActive('/materials') ? 'active' : ''}
+              className={isLinkActive('/materials') || isLinkActive('/collections/colours') ? 'active' : ''}
               style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
             >
               <span className="nav-num">01</span>
-              <strong>Materials</strong>
-              <small>Collections & surfaces</small>
+              <strong>Materials &amp; Colours</strong>
+              <small>Substrates, slabs &amp; palette</small>
               <span className="nav-chevron">▼</span>
               <b>↗</b>
             </Link>
           </div>
 
-          {/* 02. Colours */}
-          <div
-            className={`nav-item-wrapper ${activeMegaMenu === 'colours' ? 'nav-item-active' : ''}`}
-            onMouseEnter={() => handleMouseEnterNav('colours')}
-            style={{ position: 'relative', height: '100%', display: 'flex', alignItems: 'center' }}
-          >
-            <Link
-              href="/collections/colours"
-              className={isLinkActive('/collections/colours') ? 'active' : ''}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
-            >
-              <span className="nav-num">02</span>
-              <strong>Colours</strong>
-              <small>Architectural palette</small>
-              <span className="nav-chevron">▼</span>
-              <b>↗</b>
-            </Link>
-          </div>
-
-          {/* 03. Applications */}
+          {/* 02. Applications */}
           <div
             className={`nav-item-wrapper ${activeMegaMenu === 'applications' ? 'nav-item-active' : ''}`}
             onMouseEnter={() => handleMouseEnterNav('applications')}
@@ -198,7 +179,7 @@ export default function SiteHeader() {
               className={isLinkActive('/applications') ? 'active' : ''}
               style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
             >
-              <span className="nav-num">03</span>
+              <span className="nav-num">02</span>
               <strong>Applications</strong>
               <small>Material in context</small>
               <span className="nav-chevron">▼</span>
@@ -206,7 +187,7 @@ export default function SiteHeader() {
             </Link>
           </div>
 
-          {/* 04. Fabrication */}
+          {/* 03. Fabrication */}
           <div
             className={`nav-item-wrapper ${activeMegaMenu === 'fabrication' ? 'nav-item-active' : ''}`}
             onMouseEnter={() => handleMouseEnterNav('fabrication')}
@@ -217,7 +198,7 @@ export default function SiteHeader() {
               className={isLinkActive('/fabrication') ? 'active' : ''}
               style={{ display: 'inline-flex', alignItems: 'center', gap: '3px' }}
             >
-              <span className="nav-num">04</span>
+              <span className="nav-num">03</span>
               <strong>Fabrication</strong>
               <small>From sheet to space</small>
               <span className="nav-chevron">▼</span>
@@ -225,25 +206,25 @@ export default function SiteHeader() {
             </Link>
           </div>
 
-          {/* 05. Projects */}
+          {/* 04. Projects */}
           <Link
             href="/projects"
             className={isLinkActive('/projects') ? 'active' : ''}
             onMouseEnter={() => handleMouseEnterNav(null)}
           >
-            <span className="nav-num">05</span>
+            <span className="nav-num">04</span>
             <strong>Projects</strong>
             <small>Selected work</small>
             <b>↗</b>
           </Link>
 
-          {/* 06. Journal */}
+          {/* 05. Journal */}
           <Link
             href="/journal"
             className={isLinkActive('/journal') ? 'active' : ''}
             onMouseEnter={() => handleMouseEnterNav(null)}
           >
-            <span className="nav-num">06</span>
+            <span className="nav-num">05</span>
             <strong>Journal</strong>
             <small>Notes on making</small>
             <b>↗</b>
@@ -457,44 +438,35 @@ export default function SiteHeader() {
         </div>
 
         <nav className="drawer-nav">
-          <Link href="/materials" onClick={closeMobileMenu} className={isLinkActive('/materials') ? 'drawer-link active' : 'drawer-link'}>
+          <Link href="/materials" onClick={closeMobileMenu} className={isLinkActive('/materials') || isLinkActive('/collections/colours') ? 'drawer-link active' : 'drawer-link'}>
             <span className="drawer-num">01</span>
             <div className="drawer-link-text">
-              <strong>Materials</strong>
-              <small>Collections, substrates & through-body sheets</small>
-            </div>
-            <span className="drawer-arrow">↗</span>
-          </Link>
-
-          <Link href="/collections/colours" onClick={closeMobileMenu} className={isLinkActive('/collections/colours') ? 'drawer-link active' : 'drawer-link'}>
-            <span className="drawer-num">02</span>
-            <div className="drawer-link-text">
-              <strong>Colours</strong>
-              <small>20+ architectural tones, veined & mineral neutrals</small>
+              <strong>Materials &amp; Colours</strong>
+              <small>Substrates, slabs &amp; 20+ architectural colour swatches</small>
             </div>
             <span className="drawer-arrow">↗</span>
           </Link>
 
           <Link href="/applications" onClick={closeMobileMenu} className={isLinkActive('/applications') ? 'drawer-link active' : 'drawer-link'}>
-            <span className="drawer-num">03</span>
+            <span className="drawer-num">02</span>
             <div className="drawer-link-text">
               <strong>Applications</strong>
-              <small>Residential, hospitality, commercial & clinical spaces</small>
+              <small>Residential, hospitality, commercial &amp; clinical spaces</small>
             </div>
             <span className="drawer-arrow">↗</span>
           </Link>
 
           <Link href="/fabrication" onClick={closeMobileMenu} className={isLinkActive('/fabrication') ? 'drawer-link active' : 'drawer-link'}>
-            <span className="drawer-num">04</span>
+            <span className="drawer-num">03</span>
             <div className="drawer-link-text">
               <strong>Fabrication</strong>
-              <small>Thermoforming, 5-axis CNC & seamless joining</small>
+              <small>Thermoforming, 5-axis CNC &amp; seamless joining</small>
             </div>
             <span className="drawer-arrow">↗</span>
           </Link>
 
           <Link href="/projects" onClick={closeMobileMenu} className={isLinkActive('/projects') ? 'drawer-link active' : 'drawer-link'}>
-            <span className="drawer-num">05</span>
+            <span className="drawer-num">04</span>
             <div className="drawer-link-text">
               <strong>Projects</strong>
               <small>Selected architectural case studies</small>
@@ -503,19 +475,19 @@ export default function SiteHeader() {
           </Link>
 
           <Link href="/journal" onClick={closeMobileMenu} className={isLinkActive('/journal') ? 'drawer-link active' : 'drawer-link'}>
-            <span className="drawer-num">06</span>
+            <span className="drawer-num">05</span>
             <div className="drawer-link-text">
               <strong>Journal</strong>
-              <small>Notes on making & materiality</small>
+              <small>Notes on making &amp; materiality</small>
             </div>
             <span className="drawer-arrow">↗</span>
           </Link>
 
           <Link href="/contact" onClick={closeMobileMenu} className="drawer-link drawer-contact-link">
-            <span className="drawer-num">07</span>
+            <span className="drawer-num">06</span>
             <div className="drawer-link-text">
               <strong>Start a Project</strong>
-              <small>Consultation, shop drawings & material specification</small>
+              <small>Consultation, shop drawings &amp; material specification</small>
             </div>
             <span className="drawer-arrow">↗</span>
           </Link>

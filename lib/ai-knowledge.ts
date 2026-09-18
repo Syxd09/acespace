@@ -187,7 +187,7 @@ Standard Slab Specs:
       'Light Transmission': 'From 6% (solids) up to 38% (Lucent series)'
     },
     suggestedActions: [
-      { label: 'View Colour Library', href: '/collections/colours' },
+      { label: 'View Colour Library', href: '/materials#library' },
       { label: 'Build Sample Tray', href: '/materials' }
     ]
   },
@@ -263,7 +263,7 @@ Sample Box Contents:
     },
     suggestedActions: [
       { label: 'Browse & Add Samples', href: '/materials' },
-      { label: 'View Colour Swatches', href: '/collections/colours' }
+      { label: 'View Colour Swatches', href: '/materials#library' }
     ]
   },
   {

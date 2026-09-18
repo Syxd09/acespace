@@ -2,40 +2,44 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import MaterialExplorer from '@/components/MaterialExplorer';
+import ColourLibrary from '@/components/ColourLibrary';
 
 export const metadata: Metadata = {
-  title: 'Materials & Substrates — Ace Spaces',
-  description: 'Explore Ace Spaces core material systems: mineral solids, marble-veined composites, particulate textures, and translucent optics.',
+  title: 'Materials & Colours — Substrates, Slabs & Palette — Ace Spaces',
+  description: 'Explore the complete Ace Spaces architectural solid surface material and colour library. Through-body mineral slabs (3660mm × 760mm), 4 core substrates, 20+ architectural tones, and studio sample box ordering.',
 };
 
-export default function MaterialsPage() {
+export default function MaterialsAndColoursPage() {
   return (
     <main className="page-main">
       {/* Rich Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: '24px' }}>Materials / Substrates &amp; Compositions</p>
+          <p className="eyebrow" style={{ marginBottom: '24px' }}>Materials &amp; Colours / Substrates, Slabs &amp; Palette</p>
 
           <h1 style={{ fontSize: 'clamp(44px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
-            Material as
+            Material &amp;
             <br />
-            <i>substance.</i>
+            <i>colour.</i>
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '12px' }}>
-            Ace Spaces is the primary raw material source for architects and interior designers — providing full-dimension solid surface slabs (3660mm &times; 760mm &times; 12mm/19mm), custom blanks, and through-body minerals that power bespoke spatial creations, including our sister studio Coro Collective.
+          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '540px', marginBottom: '16px' }}>
+            Ace Spaces is the primary raw material source and architectural colour library for architects and interior designers — providing calibrated solid surface slabs (3660mm &times; 760mm &times; 12mm/19mm), custom blanks, and 20+ through-body mineral hues that power seamless spatial creations.
           </p>
-          <div style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '18px' }}>
-            Direct Raw Material Supply for Designers &amp; Architects
+
+          <div style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '24px' }}>
+            Direct Material Supply &amp; Curated Tonal Palette for Designers &amp; Architects
           </div>
 
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '24px' }}>
-            <Link className="button button-dark" href="/collections/colours">
-              Browse Colours &amp; Palette <span>↗</span>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+            <Link className="button button-dark" href="#library">
+              Explore Swatches &amp; Palette <span>↓</span>
             </Link>
             <Link className="text-link" href="#substrates">
-              4 Material Systems <span>↓</span>
+              4 Core Substrates <span>↓</span>
+            </Link>
+            <Link className="text-link" href="/contact">
+              Order Specimen Box <span>↗</span>
             </Link>
           </div>
 
@@ -48,15 +52,21 @@ export default function MaterialsPage() {
             </div>
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Palette
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>20+ Colours</strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Hygiene
               </span>
               <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>100% Non-Porous</strong>
             </div>
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Fire Rating
+                Dispatch
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Class 1 / ASTM</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>48h Courier</strong>
             </div>
           </div>
         </div>
@@ -65,7 +75,7 @@ export default function MaterialsPage() {
         <div className="hero-image-frame">
           <Image
             src="/assets/material-macro.png"
-            alt="Macro detail of through-body architectural mineral surface"
+            alt="Macro detail of through-body architectural mineral surface and colour swatches"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"
             style={{ objectFit: 'cover' }}
@@ -74,14 +84,14 @@ export default function MaterialsPage() {
           <div className="hero-image-badge">
             <div>
               <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
-                Material Distinction
+                Integrated Palette &amp; Substrate
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Through-Body Mineral vs Surface Coatings
+                Through-Body Mineral Slabs &amp; Colour Swatches
               </strong>
             </div>
-            <Link href="/collections/colours" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
-              View Colours <span>↗</span>
+            <Link href="#library" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+              Select Samples <span>↓</span>
             </Link>
           </div>
         </div>
@@ -111,7 +121,7 @@ export default function MaterialsPage() {
 
           <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>03</span>
-            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Strata & Textures</h3>
+            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Strata &amp; Textures</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
               Multi-scale mineral particulates and Venetian terrazzo aggregates providing earth-inspired tactile depth.
             </p>
@@ -129,29 +139,30 @@ export default function MaterialsPage() {
         </div>
       </section>
 
-      {/* Interactive Material Explorer */}
-      <section style={{ margin: '80px 0 100px' }}>
-        <div className="section-head" style={{ marginBottom: '30px' }}>
+      {/* Comprehensive Colour & Swatch Library Component */}
+      <section id="library" style={{ margin: '80px 0 100px' }}>
+        <div className="section-head" style={{ marginBottom: '36px' }}>
           <div>
-            <p className="eyebrow">Material Selection & Swatches</p>
+            <p className="eyebrow">Interactive Palette &amp; Swatches</p>
             <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}>
-              Explore the
+              Complete colour &amp;
               <br />
-              <i>material substrates.</i>
+              <i>mineral library.</i>
             </h2>
           </div>
-          <Link className="button button-dark" href="/collections/colours">
-            View Colour Palette (20+ Hues) <span>↗</span>
-          </Link>
+          <p style={{ fontSize: '15px', color: 'var(--muted)', maxWidth: '440px', margin: 0, lineHeight: 1.6 }}>
+            Filter by hue family, pattern, translucency, or search by code. Click any swatch to inspect high-resolution macro textures, or add specimens to your complimentary studio sample box.
+          </p>
         </div>
-        <MaterialExplorer />
+
+        <ColourLibrary />
       </section>
 
       {/* Technical Specifications Table */}
       <section style={{ marginBottom: '120px' }}>
         <div className="section-head" style={{ marginBottom: '40px' }}>
           <div>
-            <p className="eyebrow">Technical Performance & Standards</p>
+            <p className="eyebrow">Technical Performance &amp; Standards</p>
             <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}>
               Engineered for
               <br />
@@ -167,10 +178,10 @@ export default function MaterialsPage() {
           </div>
           <div className="spec-row">
             <span>Standard Sheet Dimensions</span>
-            <strong>3660 mm (Length) × 760 mm (Width) × 12 mm (Nominal Thickness). Custom 19mm and 6mm available on order.</strong>
+            <strong>3660 mm (Length) &times; 760 mm (Width) &times; 12 mm (Nominal Thickness). Custom 19mm and 6mm available on order.</strong>
           </div>
           <div className="spec-row">
-            <span>Porosity & Hygiene</span>
+            <span>Porosity &amp; Hygiene</span>
             <strong>100% Non-porous monolithic structure. Zero microbial harborage, NSF/ANSI 51 certified for food preparation.</strong>
           </div>
           <div className="spec-row">
@@ -178,29 +189,29 @@ export default function MaterialsPage() {
             <strong>Class 1 / Class A Fire Rating (ASTM E84). Low flame spread and low smoke toxicity.</strong>
           </div>
           <div className="spec-row">
-            <span>Renewability & Lifecycle</span>
+            <span>Renewability &amp; Lifecycle</span>
             <strong>100% Homogeneous through-body. Scuffs and stains buff out on-site with standard non-abrasive pads.</strong>
           </div>
           <div className="spec-row">
             <span>Thermal Formability</span>
-            <strong>Thermoformable at 155°C – 165°C to achieve internal and external 2D/3D organic radii without discolouration.</strong>
+            <strong>Thermoformable at 155&deg;C &ndash; 165&deg;C to achieve internal and external 2D/3D organic radii without discolouration.</strong>
           </div>
         </div>
       </section>
 
       {/* Sample Consultation Callout */}
       <section className="callout">
-        <p className="eyebrow">Sample consultation & Box Delivery</p>
+        <p className="eyebrow">Sample consultation &amp; Box Delivery</p>
         <h2>
           Order architectural
           <br />
           <i>specimen boxes.</i>
         </h2>
         <p>
-          Experience our mineral depth in your studio under natural daylight. We provide complimentary 100mm × 100mm material samples to architects and interior designers across India.
+          Experience our mineral depth in your studio under natural daylight. Select up to 6 colour specimens from our library above and order a complimentary 100mm &times; 100mm specimen box delivered directly to your studio.
         </p>
         <Link className="button button-dark" href="/contact">
-          Request Material Samples <span>↗</span>
+          Request Studio Specimen Box <span>&nearr;</span>
         </Link>
       </section>
     </main>

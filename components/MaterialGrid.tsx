@@ -176,7 +176,7 @@ export default function MaterialGrid() {
               <i>Hues for quiet interiors.</i>
             </h2>
           </div>
-          <Link className="button button-dark" href="/collections/colours">
+          <Link className="button button-dark" href="/materials#library">
             See More Colours <span>↗</span>
           </Link>
         </ScrollReveal>
@@ -189,7 +189,7 @@ export default function MaterialGrid() {
           <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
             Curated Across 7 Color Families · Light Transmission &amp; Undertones
           </span>
-          <Link className="text-link dark" href="/collections/colours">
+          <Link className="text-link dark" href="/materials#library">
             See more colours <span>↗</span>
           </Link>
         </div>
