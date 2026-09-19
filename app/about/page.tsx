@@ -506,24 +506,24 @@ export default function AboutPage() {
                     width: '100%',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '100px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '120px' }}>
                     <Image
                       src="/images/dupont-logo.svg"
                       alt="DuPont Official Trademark Logo"
-                      width={120}
-                      height={46}
-                      style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+                      width={130}
+                      height={36}
+                      style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
                       priority
                     />
                   </div>
-                  <div style={{ width: '1px', height: '34px', background: 'var(--line)' }} />
+                  <div style={{ width: '1px', height: '32px', background: 'var(--line)' }} />
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '120px' }}>
                     <Image
                       src="/images/corian-solid-surface-logo.svg"
                       alt="Corian Solid Surface Official Trademark Logo"
-                      width={140}
-                      height={46}
-                      style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
+                      width={130}
+                      height={36}
+                      style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
                       priority
                     />
                   </div>
@@ -563,21 +563,21 @@ export default function AboutPage() {
                     <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
                       Material Origin
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '10px 0 12px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', margin: '12px 0 14px', flexWrap: 'wrap' }}>
                       <Image
                         src="/images/dupont-logo.svg"
                         alt="DuPont Logo"
-                        width={75}
-                        height={28}
+                        width={80}
+                        height={24}
                         style={{ height: '22px', width: 'auto', objectFit: 'contain' }}
                       />
-                      <div style={{ width: '1px', height: '20px', background: 'var(--line)' }} />
+                      <div style={{ width: '1px', height: '22px', background: 'var(--line)' }} />
                       <Image
                         src="/images/corian-solid-surface-logo.svg"
                         alt="Corian Solid Surface Logo"
-                        width={90}
-                        height={28}
-                        style={{ height: '26px', width: 'auto', objectFit: 'contain' }}
+                        width={80}
+                        height={24}
+                        style={{ height: '22px', width: 'auto', objectFit: 'contain' }}
                       />
                     </div>
                     <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>DuPont™ Corian®</h4>
