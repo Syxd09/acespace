@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 110" fill="none" role="img" aria-label="Corian Solid Surface Logo">
+  <!-- Top Red Bracket -->
+  <path d="M 35 22 L 35 8 L 265 8 L 265 22" stroke="#CC1327" stroke-width="4.5" stroke-linecap="square" fill="none"/>
+  
+  <!-- CORIAN Text -->
+  <g fill="#CC1327">
+    <!-- C -->
+    <path d="M 44 49 C 44 38 52 30 64 30 C 74 30 81 36 83 43 L 73 45 C 72 41 68 37 64 37 C 56 37 52 43 52 49 C 52 56 56 61 64 61 C 68 61 72 58 73 53 L 83 55 C 81 63 74 68 64 68 C 52 68 44 60 44 49 Z"/>
+    <!-- O -->
+    <path d="M 87 49 C 87 38 96 30 108 30 C 120 30 129 38 129 49 C 129 60 120 68 108 68 C 96 68 87 60 87 49 Z M 95 49 C 95 56 100 61 108 61 C 116 61 121 56 121 49 C 121 42 116 37 108 37 C 100 37 95 42 95 49 Z"/>
+    <!-- R -->
+    <path d="M 134 31 L 152 31 C 160 31 166 35 166 42 C 166 47 163 51 157 52 L 167 67 L 158 67 L 148 53 L 142 53 L 142 67 L 134 67 Z M 142 38 L 142 47 L 151 47 C 155 47 158 45 158 42 C 158 39 155 38 151 38 Z"/>
+    <!-- I -->
+    <path d="M 172 31 L 180 31 L 180 67 L 172 67 Z"/>
+    <!-- A -->
+    <path d="M 197 31 L 206 31 L 219 67 L 210 67 L 207 59 L 195 59 L 193 67 L 184 67 Z M 205 53 L 201 40 L 197 53 Z"/>
+    <!-- N -->
+    <path d="M 223 31 L 231 31 L 246 56 L 246 31 L 254 31 L 254 67 L 246 67 L 231 42 L 231 67 L 223 67 Z"/>
+    <!-- Registered Trademark ® -->
+    <circle cx="260" cy="34" r="5" stroke="#CC1327" stroke-width="1" fill="none"/>
+    <text x="258" y="36.5" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#CC1327">R</text>
+  </g>
+
+  <!-- SOLID SURFACE Subtitle -->
+  <text x="150" y="81" font-family="'Manrope', -apple-system, sans-serif" font-size="12" font-weight="500" letter-spacing="7" fill="#6E766C" text-anchor="middle">
+    SOLID SURFACE
+  </text>
+
+  <!-- Bottom Red Bracket -->
+  <path d="M 35 88 L 35 102 L 265 102 L 265 88" stroke="#CC1327" stroke-width="4.5" stroke-linecap="square" fill="none"/>
+</svg>

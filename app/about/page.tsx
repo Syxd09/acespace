@@ -466,6 +466,83 @@ export default function AboutPage() {
                   Authentic ATH mineral substrates backed by DuPont’s official 10-year installed manufacturer warranty.
                 </div>
               </div>
+
+              {/* Official Alliance Brand Logos Lockup */}
+              <div
+                style={{
+                  marginTop: '20px',
+                  padding: '24px 20px',
+                  background: '#ffffff',
+                  border: '1px solid var(--line)',
+                  borderRadius: '2px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '16px',
+                  alignItems: 'center',
+                  textAlign: 'center',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '9px',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: 'var(--muted)',
+                  }}
+                >
+                  Official Material Partner &amp; Distributor
+                </span>
+
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '24px',
+                    flexWrap: 'wrap',
+                    padding: '8px 0',
+                    width: '100%',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '100px' }}>
+                    <Image
+                      src="/images/dupont-logo.svg"
+                      alt="DuPont Official Trademark Logo"
+                      width={120}
+                      height={46}
+                      style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+                      priority
+                    />
+                  </div>
+                  <div style={{ width: '1px', height: '34px', background: 'var(--line)' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '120px' }}>
+                    <Image
+                      src="/images/corian-solid-surface-logo.svg"
+                      alt="Corian Solid Surface Official Trademark Logo"
+                      width={140}
+                      height={46}
+                      style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
+                      priority
+                    />
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    fontSize: '11px',
+                    fontFamily: 'DM Mono, monospace',
+                    color: '#6e766c',
+                    borderTop: '1px solid var(--line)',
+                    paddingTop: '12px',
+                    width: '100%',
+                    letterSpacing: '0.04em',
+                  }}
+                >
+                  Certified ATH Mineral Chemistry · Pan-India Supply
+                </div>
+              </div>
             </div>
 
             <div>
@@ -481,16 +558,35 @@ export default function AboutPage() {
 
               {/* The 3-Entity Ecosystem Clarification */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-                <div style={{ padding: '18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                    Material Origin
-                  </span>
-                  <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '6px 0 4px' }}>DuPont™ Corian®</h4>
-                  <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                    Global mineral manufacturer. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
-                  </p>
+                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                      Material Origin
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '10px 0 12px' }}>
+                      <Image
+                        src="/images/dupont-logo.svg"
+                        alt="DuPont Logo"
+                        width={75}
+                        height={28}
+                        style={{ height: '22px', width: 'auto', objectFit: 'contain' }}
+                      />
+                      <div style={{ width: '1px', height: '20px', background: 'var(--line)' }} />
+                      <Image
+                        src="/images/corian-solid-surface-logo.svg"
+                        alt="Corian Solid Surface Logo"
+                        width={90}
+                        height={28}
+                        style={{ height: '26px', width: 'auto', objectFit: 'contain' }}
+                      />
+                    </div>
+                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>DuPont™ Corian®</h4>
+                    <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
+                      Global mineral manufacturer. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
+                    </p>
+                  </div>
                 </div>
-                <div style={{ padding: '18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)' }}>
+                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)' }}>
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
                     Practice &amp; Atelier
                   </span>
@@ -499,7 +595,7 @@ export default function AboutPage() {
                     The architectural atelier, 5-axis CNC router, thermoforming workshop, stockyard, and nationwide installer.
                   </p>
                 </div>
-                <div style={{ padding: '18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)' }}>
+                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)' }}>
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
                     Spatial Living Brand
                   </span>
