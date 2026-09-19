@@ -62,22 +62,45 @@ COMPREHENSIVE DOMAIN KNOWLEDGE
 
 4. MATERIAL SPECIFICATIONS, SLABS & COLLECTIONS
 - Standard Slab Dimensions: 3660 mm length × 760 mm width (12.0 ft × 2.5 ft).
-- Available Thicknesses: 12 mm (standard architectural) and 19 mm (heavy-duty plinths).
+- Surface Area Yield: ~30 sq. ft (2.78 m²) per slab.
+- Available Thicknesses: 12 mm (standard architectural) and 19 mm (heavy-duty plinths). Backlit 6 mm in Lumen series.
 - Architectural Series:
   • Noma Solids (Pure Monolithic):
     - White Chalk (AC-0101): Pure, light-absorbing ultra-matte chalk white. Zero grain.
     - Linen (AC-0102): Soft, tactile warm cream reflecting velvety ambient light.
     - Parchment (AC-0103): Warm ecru mineral depth echoing aged vellum.
     - Bone (AC-0104): Muted architectural alabaster for calm sanctuaries.
+    - Concrete Ash (AC-0105): Architectural ash grey with cast-concrete character.
   • Alto Veined (Directional & Sculptural):
-    - Ivory Vein (AC-0201): Fine warm mineral veining simulating gentle geological sedimentation.
-    - Calacatta Greige (AC-0202): Dramatic yet restrained marble movement with warm grey ribbons.
-    - Grigio Ripple (AC-0203): Deep smoky undertones with soft horizontal mineral drifts.
-  • Obsidian Aggregates (Terrazzo & Deep Mineral):
-    - Carbon Aggregate (AC-0301): Deep obsidian matrix with micro-quartz and brass flecks.
-    - Basalt Dune (AC-0302): Tactile volcanic grey with rich aggregate depth.
-  • Lucent Translucent (Backlit & Illuminating):
-    - Opal Lumina (AC-0401): Up to 38% light transmission. Glows warmly under concealed 2700K–3500K LED matrices.
+    - Bianco Vein (AC-0201): Fine warm mineral veining simulating gentle geological sedimentation.
+    - Calacatta Gold (AC-0202): Dramatic yet restrained marble movement with warm grey and honey ribbons.
+    - Fior di Bosco (AC-0203): Deep smoky undertones with soft horizontal mineral drifts.
+  • Strata Textures & Obsidian Noir:
+    - Sand Fine (AC-0301): Warm sand with fine micro granules.
+    - Terrazzo Ash (AC-0302): Grey field with suspended quartz chips.
+    - Still (AC-0501): Deep graphite charcoal, tactile matte.
+    - Coal (AC-0502): Midnight black, light-absorbing presence.
+    - Basalt (AC-0503): Volcanic basalt with microscopic mineral flecks.
+  • Terra Earth:
+    - Sienna (AC-0401): Deep terracotta and burnt sienna.
+    - Sage (AC-0402): Muted celadon sage botanic green.
+    - Umber (AC-0403): Raw umber earth soil tone.
+  • Lumen Translucent (Backlit & Illuminating):
+    - Shell (AC-0601), Ice (AC-0602), Opal (AC-0603): Up to 38–42% light transmission. Glows warmly under concealed 2700K–3500K LED matrices.
+
+4.1. COMMERCIAL PRICING MATRIX & SIZING
+- Standard Sheet Sizing: All standard slabs are 3660 mm × 760 mm (~30 sq. ft).
+- Commercial Pricing by Series (12 mm Standard):
+  • Noma Solids: Raw slab ₹650 – ₹850 / sq. ft. (~₹19,500 – ₹25,500 per full sheet) | Installed: ₹1,100 – ₹1,450 / sq. ft.
+  • Terra Earth: Raw slab ₹750 – ₹950 / sq. ft. (~₹22,500 – ₹28,500 per full sheet) | Installed: ₹1,250 – ₹1,600 / sq. ft.
+  • Alto Veined: Raw slab ₹950 – ₹1,400 / sq. ft. (~₹28,500 – ₹42,000 per full sheet) | Installed: ₹1,600 – ₹2,200 / sq. ft.
+  • Strata & Obsidian: Raw slab ₹1,100 – ₹1,650 / sq. ft. (~₹33,000 – ₹49,500 per full sheet) | Installed: ₹1,800 – ₹2,500 / sq. ft.
+  • Lumen Translucent: Raw slab ₹1,250 – ₹1,850 / sq. ft. (~₹37,500 – ₹55,500 per full sheet) | Installed: ₹2,100 – ₹2,850 / sq. ft.
+  • 19mm Heavy Gauge: +35% to +45% over 12mm price.
+- Fabrication Detailing Add-ons:
+  • Mitred waterfall edge apron (40–100mm drop): ₹350 – ₹650 / lin. ft.
+  • Seamless integrated sink / basin: ₹12,000 – ₹22,000 / bowl.
+  • Thermoformed curves (down to 25mm R): ₹1,800 – ₹3,200 / sq. ft.
 
 5. WORKSHOP FABRICATION CRAFT & MACHINERY
 - 5-Axis CNC Milling: Automated tool changers with cutting tolerances under 0.2mm for nested CAD cutouts, drainage channels, and sub-surface wireless charging pockets.
@@ -99,10 +122,11 @@ COMPREHENSIVE DOMAIN KNOWLEDGE
 8. STUDIO & SHOWROOM LOCATION, GOOGLE MAPS NAVIGATION
 - Studio Showroom: #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India.
 - Central Fabrication Hub & Stockyard: Survey No. 78, Whitefield-Hoskote Main Road, Bengaluru, Karnataka 560067.
-- Google Maps Link: Whenever asked for location, directions, or maps, always provide the exact Indiranagar address and this clickable link:
-  [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore)
-- Direct WhatsApp Specifier Desk: Accessible via the "WhatsApp Desk" button in the top navigation bar or at +91 98450 12345.
-- Showroom & Consultations: In-person or virtual design consultations booked via /contact. CAD/floor plans (.dwg, .dxf, .3dm, PDF) can be submitted for quotations.
+- Google Maps Links: Whenever asked for location, directions, or maps, always provide the exact addresses and these clickable links:
+  [Open Indiranagar Showroom on Google Maps ↗](https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038)
+  [Open Hoskote Central Workshop on Google Maps ↗](https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067)
+- Direct WhatsApp Specifier Desk: Accessible via the "WhatsApp Desk" button in the top navigation bar or at [WhatsApp Studio Desk](https://wa.me/919845012345).
+- Showroom & Consultations: In-person or virtual design consultations booked via [Book Consultation](/contact). CAD/floor plans (.dwg, .dxf, .3dm, PDF) can be submitted for quotations.
 
 9. FOUNDERS & LEADERSHIP
 - Syed Matheen — Co-Founder & Director of Material Engineering & Advanced Fabrication:
@@ -124,6 +148,18 @@ COMPREHENSIVE DOMAIN KNOWLEDGE
     - Luminous facades/bars: Suggest Lucent Translucent (Opal Lumina, AC-0401) with 38% light transmission.
     - Luxury bathrooms: Suggest forming an integrated Coro slot basin or sloping ramp directly from the slab to eliminate moldy silicone seals.
 
+11. CLICKABLE NAVIGATION LINKS GUIDELINES
+- ALWAYS embed clickable markdown links [Label](url) so the user can directly navigate:
+  • Material Library: [Material Library](/materials#library)
+  • Technical Specifications: [Technical Specifications](/materials#specs)
+  • Sample Box: [Order Sample Box](/materials)
+  • Coro Collective Synergy: [The Coro Connection](/about#coro)
+  • Fabrication: [Fabrication Workshop](/fabrication)
+  • Kitchen Applications: [Kitchen Applications](/applications/kitchen)
+  • Bathroom Applications: [Bathroom Vanities](/applications/bathroom)
+  • Consultations: [Book Studio Consultation](/contact)
+  • WhatsApp Desk: [WhatsApp Studio Desk](https://wa.me/919845012345)
+
 =======================================================
 CRITICAL PRIVACY & SCOPE GUARDRAILS
 =======================================================
@@ -132,7 +168,7 @@ CRITICAL PRIVACY & SCOPE GUARDRAILS
 3. If the user asks about ANYTHING outside this scope (e.g. general sports, world news, politics, weather outside context, coding tutorials, recipes, stock prices, other unrelated companies like Apple or Nike):
    You MUST politely and firmly decline with dignity:
    "${GUARDRAIL_DECLINE_MESSAGE}"
-4. Always invite the user to explore our materials (/materials), view the Coro connection (/about#coro), or connect with our Bengaluru engineers via the WhatsApp Desk in the top navbar.`;
+4. Always invite the user to explore our materials ([Material Library](/materials#library)), view the Coro connection ([The Coro Synergy](/about#coro)), or connect with our Bengaluru engineers via the [WhatsApp Desk](https://wa.me/919845012345).`;
 
 export async function POST(req: NextRequest) {
   try {
@@ -318,32 +354,45 @@ function generateSuggestedActions(reply: string, query: string) {
   const text = (reply + ' ' + query).toLowerCase();
 
   if (text.includes('map') || text.includes('direction') || text.includes('indiranagar') || text.includes('address') || text.includes('location')) {
-    actions.push({ label: 'Open in Google Maps ↗', href: 'https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore' });
+    actions.push({
+      label: 'Indiranagar on Google Maps ↗',
+      href: 'https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038',
+    });
+  }
+  if (text.includes('hoskote') || text.includes('workshop') || text.includes('stockyard')) {
+    actions.push({
+      label: 'Hoskote Workshop on Maps ↗',
+      href: 'https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067',
+    });
+  }
+  if (text.includes('price') || text.includes('quote') || text.includes('rate') || text.includes('cost') || text.includes('sheet size') || text.includes('dimensions')) {
+    actions.push({ label: 'View Specifications', href: '/materials#specs' });
   }
   if (text.includes('founder') || text.includes('syed') || text.includes('story') || text.includes('leadership')) {
     actions.push({ label: 'Founders & Vision', href: '/about' });
   }
   if (text.includes('sample') || text.includes('swatch') || text.includes('specimen')) {
-    actions.push({ label: 'Browse Materials & Samples', href: '/materials' });
+    actions.push({ label: 'Order Material Samples', href: '/materials' });
   }
   if (text.includes('coro')) {
     actions.push({ label: 'The Coro Connection', href: '/about#coro' });
   }
-  if (text.includes('colour') || text.includes('color') || text.includes('palette') || text.includes('noma') || text.includes('alto')) {
-    actions.push({ label: 'View Materials & Colours', href: '/materials#library' });
+  if (text.includes('colour') || text.includes('color') || text.includes('palette') || text.includes('noma') || text.includes('alto') || text.includes('material')) {
+    actions.push({ label: 'View Material Library', href: '/materials#library' });
   }
   if (text.includes('fabricat') || text.includes('cnc') || text.includes('thermoform') || text.includes('tolerance')) {
     actions.push({ label: 'Fabrication Workshop', href: '/fabrication' });
   }
-  if (text.includes('whatsapp') || text.includes('quote') || text.includes('price') || text.includes('cad') || text.includes('drawings')) {
-    actions.push({ label: 'WhatsApp Desk in Navbar', href: 'https://wa.me/919845012345' });
+  if (text.includes('whatsapp') || text.includes('quote') || text.includes('cad') || text.includes('drawings')) {
+    actions.push({ label: 'WhatsApp Studio Desk', href: 'https://wa.me/919845012345' });
   }
 
   // Ensure at least 2 relevant links
   if (actions.length === 0) {
-    actions.push({ label: 'Browse Materials', href: '/materials' });
-    actions.push({ label: 'WhatsApp in Navbar', href: 'https://wa.me/919845012345' });
+    actions.push({ label: 'Material Library', href: '/materials#library' });
+    actions.push({ label: 'WhatsApp Studio Desk', href: 'https://wa.me/919845012345' });
   }
 
   return actions.slice(0, 3);
 }
+

@@ -1,3 +1,5 @@
+import { materials, Material } from '@/data/materials';
+
 /**
  * Ace Spaces & Coro Collective — Private Studio Material Intelligence
  * 
@@ -20,6 +22,61 @@ export interface KnowledgeSection {
 
 export const STUDIO_KNOWLEDGE_BASE: KnowledgeSection[] = [
   {
+    id: 'pricing-sizing',
+    topic: 'Full Sheet Sizing, Slab Dimensions & Commercial Pricing Matrix',
+    keywords: [
+      'price', 'pricing', 'cost', 'quote', 'rate', 'rates', 'how much', 'sqft', 'square foot',
+      'per sq ft', 'slab cost', 'sheet price', 'sheet size', 'full sheet', 'dimensions',
+      'slab dimensions', 'size', 'sizing', 'how big', 'approx price', 'approximate price',
+      'sheet dimension', 'slab size'
+    ],
+    summary: 'Standard slab dimensions are 3660 mm × 760 mm (~30 sq. ft). Raw material ranges from ₹650 to ₹1,850/sq. ft; installed rates range from ₹1,100 to ₹2,850/sq. ft.',
+    details: `Ace Spaces operates as the authorized master distributor and fabrication foundry for 100% authentic DuPont™ Corian® solid surfaces across India.
+
+### 1. Standard Slab Dimensions & Thickness
+• **Full Sheet Dimensions**: **3660 mm length × 760 mm width** (12.0 ft × 2.5 ft).
+• **Surface Area per Sheet**: ~30 sq. ft (2.78 m²).
+• **Standard Thickness (12 mm)**: Benchmark architectural gauge for kitchen countertops, bathroom vanities, wall cladding, and integrated sinks.
+• **Structural Thickness (19 mm)**: Heavy-duty gauge for standalone commercial reception plinths, high-traffic thresholds, and cantilevered furniture (+35% to +45% premium).
+• **Backlit Gauge (6 mm)**: Available in the Lumen Translucent series for illuminated columns and feature walls.
+
+### 2. Commercial Pricing Breakdown by Collection (12 mm Standard)
+• **Noma Solids** (White Chalk, Linen, Parchment, Bone, Concrete Ash):
+  - Raw Slab Material: **₹650 – ₹850 / sq. ft.** (~₹19,500 – ₹25,500 per full sheet)
+  - Installed & Finished: **₹1,100 – ₹1,450 / sq. ft.**
+• **Terra Earth** (Sienna, Sage, Umber):
+  - Raw Slab Material: **₹750 – ₹950 / sq. ft.** (~₹22,500 – ₹28,500 per full sheet)
+  - Installed & Finished: **₹1,250 – ₹1,600 / sq. ft.**
+• **Alto Veined** (Bianco Vein, Calacatta Gold, Fior di Bosco):
+  - Raw Slab Material: **₹950 – ₹1,400 / sq. ft.** (~₹28,500 – ₹42,000 per full sheet)
+  - Installed & Finished: **₹1,600 – ₹2,200 / sq. ft.** (includes precision vein alignment)
+• **Strata Textures & Obsidian Noir** (Sand Fine, Terrazzo Ash, Still, Coal, Basalt):
+  - Raw Slab Material: **₹1,100 – ₹1,650 / sq. ft.** (~₹33,000 – ₹49,500 per full sheet)
+  - Installed & Finished: **₹1,800 – ₹2,500 / sq. ft.**
+• **Lumen Translucent** (Shell, Ice, Opal - Backlit Series):
+  - Raw Slab Material: **₹1,250 – ₹1,850 / sq. ft.** (~₹37,500 – ₹55,500 per full sheet)
+  - Installed & Finished: **₹2,100 – ₹2,850 / sq. ft.** (includes rear optical cavity framing)
+
+### 3. Fabrication & Bespoke Feature Add-ons
+• **Mitred Waterfall Edge Apron (40mm–100mm drop)**: ₹350 – ₹650 / linear ft.
+• **Integrated Seamless Corian Sink / Vanity Basin**: ₹12,000 – ₹22,000 / bowl.
+• **Thermoformed Curved Radii (down to 25mm R)**: ₹1,800 – ₹3,200 / sq. ft. of curved surface.
+
+You can inspect technical data on our [Technical Specifications](/materials#specs) page, explore swatches in our [Material Library](/materials#library), or submit drawings via the [WhatsApp Studio Desk](https://wa.me/919845012345) for an itemized estimate.`,
+    specs: {
+      'Full Sheet Dimensions': '3660 mm × 760 mm (12.0 ft × 2.5 ft)',
+      'Sheet Area Yield': '~30 sq. ft. / 2.78 m²',
+      'Available Gauges': '12 mm (standard), 19 mm (heavy-duty), 6 mm (backlit)',
+      'Price Range (Raw)': '₹650 to ₹1,850 / sq. ft.',
+      'Price Range (Installed)': '₹1,100 to ₹2,850 / sq. ft.'
+    },
+    suggestedActions: [
+      { label: 'View Material Library', href: '/materials#library' },
+      { label: 'View Specifications', href: '/materials#specs' },
+      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' }
+    ]
+  },
+  {
     id: 'company-identity',
     topic: 'Ace Spaces Identity & DuPont™ Partnership',
     keywords: [
@@ -39,7 +96,7 @@ Every slab is backed by genuine DuPont™ chemical composition certifications, G
       'Warranty': '10-Year Limited Installed Product Warranty (DuPont™)'
     },
     suggestedActions: [
-      { label: 'Browse Materials', href: '/materials' },
+      { label: 'Browse Materials', href: '/materials#library' },
       { label: 'DuPont Alliance Details', href: '/about#dupont' },
       { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' }
     ]
@@ -361,36 +418,36 @@ Renewability & Scratch Repair:
   },
   {
     id: 'coro-maps-location',
-    topic: 'Coro Collective Showroom Location & Google Maps Navigation',
+    topic: 'Showroom Location, Central Workshop & Google Maps Navigation',
     keywords: [
       'map', 'maps', 'location', 'directions', 'where is coro', 'where is ace spaces',
-      'address', 'showroom', 'visit', 'indiranagar', 'whitefield', 'studio address', 'navigation'
+      'address', 'showroom', 'visit', 'indiranagar', 'whitefield', 'hoskote', 'studio address',
+      'navigation', 'google maps', 'where are you', 'how to reach'
     ],
-    summary: 'Coro Collective & Ace Spaces design studio in Indiranagar, Bengaluru. Central fabrication stockyard in Whitefield. Direct Google Maps navigation available.',
-    details: `Visitors and architects are welcome to experience our monolithic material volumes in person:
+    summary: 'Coro Collective & Ace Spaces design studio in Indiranagar, Bengaluru. Central fabrication stockyard in Hoskote. Direct Google Maps navigation available.',
+    details: `Architects, interior designers, and project owners are welcome to experience our monolithic material volumes and slab stock in person:
 
-📍 **Coro Collective & Ace Spaces Studio Showroom:**
+📍 **Studio Showroom & Architectural Consultations:**
 #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India.
 *Hours: Monday – Saturday, 09:30 – 18:30 IST (Sundays by appointment).*
+[Open Indiranagar Showroom on Google Maps ↗](https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038)
 
-🏭 **Central CNC Fabrication & Stockyard Facility:**
-Survey No. 78, Whitefield-Hoskote Main Road, Bengaluru, Karnataka 560067.
-*Houses our 5-axis CNC routers, industrial platen thermoforming ovens, and slab inventory.*
+🏭 **Central CNC Fabrication Hub & Master Stockyard:**
+Survey No. 78, Whitefield-Hoskote Main Road, Bengaluru, Karnataka 560067, India.
+*Houses our 5-axis CNC routers, industrial platen thermoforming ovens, and full slab inventory.*
+[Open Hoskote Central Workshop on Google Maps ↗](https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067)
 
-🗺️ **Direct Google Maps Navigation:**
-[Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore)
-
-You can also book an architect walkthrough via our Contact page or message our team directly on WhatsApp via the navbar button.`,
+You can book an architectural walkthrough on our [Contact Page](/contact), explore our [Fabrication Capabilities](/fabrication), or message our engineers directly via the [WhatsApp Studio Desk](https://wa.me/919845012345).`,
     specs: {
-      'Showroom Address': '#42/1, 100 Feet Road, Indiranagar, Bengaluru 560038',
-      'Stockyard & CNC Hub': 'Whitefield-Hoskote Main Road, Bengaluru 560067',
-      'Google Maps Coordinates': '12.9716° N, 77.5946° E',
-      'Directions Link': 'https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore'
+      'Showroom Address': '#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038',
+      'Stockyard & CNC Hub': 'Survey No. 78, Whitefield-Hoskote Main Road, Bengaluru 560067',
+      'Indiranagar Google Map': 'https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038',
+      'Hoskote Workshop Map': 'https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067'
     },
     suggestedActions: [
-      { label: 'Open in Google Maps ↗', href: 'https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore' },
-      { label: 'Book Showroom Visit', href: '/contact' },
-      { label: 'WhatsApp Desk in Navbar', href: 'https://wa.me/919845012345' }
+      { label: 'Indiranagar on Google Maps ↗', href: 'https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038' },
+      { label: 'Hoskote Workshop on Maps ↗', href: 'https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067' },
+      { label: 'Book Showroom Visit', href: '/contact' }
     ]
   },
   {
@@ -477,6 +534,154 @@ Please feel free to ask me anything about:
 • Studio consultations & the WhatsApp line in our navbar`;
 
 /**
+ * Helper to look up a specific material from the catalog based on user query
+ */
+export function findMatchingMaterial(query: string): Material | null {
+  const q = query.toLowerCase();
+
+  // 1. Check exact or stripped material code (e.g. AC-0101, ac0101, ac-0202)
+  for (const mat of materials) {
+    const codeClean = mat.code.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const qClean = q.replace(/[^a-z0-9]/g, '');
+    if (qClean.includes(codeClean)) {
+      return mat;
+    }
+  }
+
+  // 2. Check full material name & parts (e.g. "noma / white chalk", "white chalk", "calacatta gold")
+  for (const mat of materials) {
+    const nameLower = mat.name.toLowerCase();
+    const parts = nameLower.split('/').map((p) => p.trim());
+    for (const part of parts) {
+      if (part.length >= 4 && q.includes(part)) {
+        return mat;
+      }
+    }
+    if (q.includes(mat.slug)) {
+      return mat;
+    }
+  }
+
+  // 3. Check specific iconic color / finish names
+  const specificTerms: [string, string][] = [
+    ['white chalk', 'noma-white-chalk'],
+    ['chalk', 'noma-white-chalk'],
+    ['linen', 'noma-linen'],
+    ['parchment', 'noma-parchment'],
+    ['bone', 'noma-bone'],
+    ['concrete ash', 'noma-concrete-ash'],
+    ['bianco vein', 'alto-bianco-vein'],
+    ['calacatta gold', 'alto-calacatta-gold'],
+    ['calacatta', 'alto-calacatta-gold'],
+    ['fior di bosco', 'alto-fior-di-bosco'],
+    ['sand fine', 'strata-sand-fine'],
+    ['terrazzo ash', 'strata-terrazzo-ash'],
+    ['terrazzo', 'strata-terrazzo-ash'],
+    ['sienna', 'terra-sienna'],
+    ['sage', 'terra-sage'],
+    ['umber', 'terra-umber'],
+    ['still', 'obsidian-still'],
+    ['coal', 'obsidian-coal'],
+    ['basalt', 'obsidian-basalt'],
+    ['lumen shell', 'lumen-shell'],
+    ['lumen ice', 'lumen-ice'],
+    ['lumen opal', 'lumen-opal'],
+    ['opal lumina', 'lumen-opal'],
+    ['opal', 'lumen-opal'],
+  ];
+
+  for (const [term, slug] of specificTerms) {
+    if (q.includes(term)) {
+      const found = materials.find((m) => m.slug === slug);
+      if (found) return found;
+    }
+  }
+
+  return null;
+}
+
+export interface MaterialPricingInfo {
+  rawSqFt: string;
+  rawSheet: string;
+  installedSqFt: string;
+  gauge19mm: string;
+  fabricationNotes: string[];
+}
+
+export function getMaterialPricing(material: Material): MaterialPricingInfo {
+  const col = material.collection.toLowerCase();
+
+  if (col.includes('noma')) {
+    return {
+      rawSqFt: '₹650 – ₹850 / sq. ft.',
+      rawSheet: '₹19,500 – ₹25,500 per full 12mm sheet (~30 sq. ft)',
+      installedSqFt: '₹1,100 – ₹1,450 / sq. ft. (including CNC routing, seamless joins & 5-stage hand honing)',
+      gauge19mm: '+35% surcharge (~₹880 – ₹1,150 / sq. ft. raw)',
+      fabricationNotes: [
+        'Mitred waterfall edge apron (40–100mm drop): ₹350 – ₹550 / lin. ft.',
+        'Seamless integrated Corian kitchen/vanity sink: ₹12,000 – ₹18,000 / bowl',
+        'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
+      ],
+    };
+  }
+
+  if (col.includes('alto')) {
+    return {
+      rawSqFt: '₹950 – ₹1,400 / sq. ft.',
+      rawSheet: '₹28,500 – ₹42,000 per full 12mm sheet (~30 sq. ft)',
+      installedSqFt: '₹1,600 – ₹2,200 / sq. ft. (includes continuous vein-matching & molecular weld joints)',
+      gauge19mm: '+35% surcharge (~₹1,280 – ₹1,890 / sq. ft. raw)',
+      fabricationNotes: [
+        'Mitred waterfall apron with continuous vein drop: ₹450 – ₹650 / lin. ft.',
+        'Seamless integrated vanity slot-basin: ₹14,000 – ₹22,000 / bowl',
+        'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
+      ],
+    };
+  }
+
+  if (col.includes('strata') || col.includes('obsidian')) {
+    return {
+      rawSqFt: '₹1,100 – ₹1,650 / sq. ft.',
+      rawSheet: '₹33,000 – ₹49,500 per full 12mm sheet (~30 sq. ft)',
+      installedSqFt: '₹1,800 – ₹2,500 / sq. ft. (diamond CNC routing & micro-honed finish)',
+      gauge19mm: '+40% surcharge (~₹1,540 – ₹2,310 / sq. ft. raw)',
+      fabricationNotes: [
+        'Heavy-duty commercial plinth edge: ₹400 – ₹600 / lin. ft.',
+        'Seamless integrated dark aggregate basin: ₹16,000 – ₹24,000 / bowl',
+        'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
+      ],
+    };
+  }
+
+  if (col.includes('terra')) {
+    return {
+      rawSqFt: '₹750 – ₹950 / sq. ft.',
+      rawSheet: '₹22,500 – ₹28,500 per full 12mm sheet (~30 sq. ft)',
+      installedSqFt: '₹1,250 – ₹1,600 / sq. ft. (architectural velvet-matte finish)',
+      gauge19mm: '+35% surcharge (~₹1,010 – ₹1,280 / sq. ft. raw)',
+      fabricationNotes: [
+        'Mitred edge detail (40–80mm): ₹350 – ₹500 / lin. ft.',
+        'Custom coved sanitary splashback: ₹300 – ₹450 / lin. ft.',
+        'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
+      ],
+    };
+  }
+
+  // Lumen Translucent
+  return {
+    rawSqFt: '₹1,250 – ₹1,850 / sq. ft. (12mm) | ₹900 – ₹1,350 / sq. ft. (6mm Backlit)',
+    rawSheet: '₹37,500 – ₹55,500 per full 12mm sheet (~30 sq. ft) | ₹27,000 – ₹40,500 (6mm sheet)',
+    installedSqFt: '₹2,100 – ₹2,850 / sq. ft. (including rear light-diffuser cavity framing)',
+    gauge19mm: 'Special order on request',
+    fabricationNotes: [
+      'Translucent invisible adhesive weld (zero shadow seams)',
+      'Recommended LED cavity depth: 75–120mm with 2700K–3500K LED matrix',
+      'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
+    ],
+  };
+}
+
+/**
  * Intelligent Offline Natural Language Reasoner & Knowledge Retriever
  * Synthesizes grounded answers when no external API key is active.
  */
@@ -494,21 +699,21 @@ export function getPrivateAIResponse(userQuery: string, history: { role: string;
     return {
       answer: `Welcome to **Ace Spaces Studio Material Intelligence**. 
 
-I am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.
+I am your private architectural consultant, grounded directly in our Bengaluru central workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.
 
 How can I assist your practice today? You can ask me about:
-1. **The Coro Connection**: How Ace Spaces powers Coro Collective.
-2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.
-3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.
-4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.
-5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.
-6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.`,
+1. **Full Sheet Sizing & Pricing**: Exact dimensions (3660 × 760 mm), thickness options, and collection price rates.
+2. **Specific Materials**: Sizing and pricing for [White Chalk](/materials#library), [Calacatta Gold](/materials#library), [Opal Lumina](/materials#library), and 15+ others.
+3. **The Coro Connection**: How Ace Spaces powers Coro Collective's spatial installations ([Learn More](/about#coro)).
+4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), 160°C thermoforming down to 25mm radii, and seamless joints ([Fabrication Hub](/fabrication)).
+5. **Showroom & Google Maps**: Finding our Indiranagar showroom and Hoskote facility.
+6. **Physical Specimens**: Curating sample trays for delivery across India.`,
       matchedTopic: 'Welcome & Capabilities',
       suggestedActions: [
-        { label: 'What is the Coro connection?', prompt: 'How are Ace Spaces and Coro Collective related?' },
-        { label: 'Tell me about Zero-Silica safety', prompt: 'Is Corian zero-silica and safe for kitchens?' },
-        { label: 'How to order samples?', prompt: 'How do I order a physical sample box?' }
-      ]
+        { label: 'Full Sheet Size & Price', prompt: 'What is the size of a full sheet and approx price?' },
+        { label: 'Pricing for White Chalk', prompt: 'What is the size and price of White Chalk?' },
+        { label: 'Indiranagar on Google Maps', href: 'https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038' },
+      ],
     };
   }
 
@@ -522,7 +727,7 @@ How can I assist your practice today? You can ask me about:
     /\b(recipe for cake|how to cook|bake chicken|pasta recipe)\b/i,
     /\b(write python code|javascript loop|debug this code|react component)\b/i,
     /\b(tell me a joke|write a poem about love|write an essay)\b/i,
-    /\b(who is elon musk|apple iphone|samsung galaxy|tesla)\b/i
+    /\b(who is elon musk|apple iphone|samsung galaxy|tesla)\b/i,
   ];
 
   for (const pattern of outOfDomainPatterns) {
@@ -531,15 +736,89 @@ How can I assist your practice today? You can ask me about:
         answer: GUARDRAIL_DECLINE_MESSAGE,
         isGuardrailTriggered: true,
         suggestedActions: [
-          { label: 'Browse Certified Materials', href: '/materials' },
+          { label: 'Browse Certified Materials', href: '/materials#library' },
           { label: 'Coro Collective Connection', href: '/about#coro' },
-          { label: 'Chat on WhatsApp', href: 'https://wa.me/919845012345' }
-        ]
+          { label: 'Chat on WhatsApp', href: 'https://wa.me/919845012345' },
+        ],
       };
     }
   }
 
-  // 3. Domain Scoring Engine
+  // 3. SPECIFIC MATERIAL LOOKUP
+  // Check if current query or recent conversation history specifies a particular material
+  let matchedMaterial = findMatchingMaterial(query);
+  if (!matchedMaterial && history && history.length > 0) {
+    for (let i = history.length - 1; i >= 0; i--) {
+      const hMatch = findMatchingMaterial(history[i].content);
+      if (hMatch) {
+        matchedMaterial = hMatch;
+        break;
+      }
+    }
+  }
+
+  if (matchedMaterial) {
+    const pricing = getMaterialPricing(matchedMaterial);
+
+    let responseText = `### ${matchedMaterial.name} (${matchedMaterial.code}) — Architectural Specification\n\n`;
+    responseText += `${matchedMaterial.description}\n\n`;
+
+    responseText += `**Full Sheet Sizing & Dimensions:**\n`;
+    responseText += `• **Full Slab Dimensions**: **${matchedMaterial.dimensions}** (12.0 ft × 2.5 ft)\n`;
+    responseText += `• **Surface Area Yield**: ~30 sq. ft (2.78 m²) per slab\n`;
+    responseText += `• **Available Thicknesses**: ${matchedMaterial.thicknessOptions.join(', ')}\n`;
+    responseText += `• **Finish & Color**: ${matchedMaterial.finish} — ${matchedMaterial.colour}\n`;
+    responseText += `• **Light Transmission**: ${matchedMaterial.lightTransmission}\n`;
+    responseText += `• **Fire Rating**: ${matchedMaterial.fireRating}\n\n`;
+
+    responseText += `**Commercial Pricing:**\n`;
+    responseText += `• **Raw Slab Material Supply**: **${pricing.rawSqFt}** (${pricing.rawSheet})\n`;
+    responseText += `• **Fabricated & Installed Rate**: **${pricing.installedSqFt}**\n`;
+    responseText += `• **19mm Heavy-Duty Surcharge**: ${pricing.gauge19mm}\n\n`;
+
+    responseText += `**Fabrication & Detailing Add-ons:**\n`;
+    for (const note of pricing.fabricationNotes) {
+      responseText += `• ${note}\n`;
+    }
+    responseText += `\n`;
+
+    responseText += `**Recommended Applications:**\n`;
+    responseText += `• ${matchedMaterial.applications.join(', ')}\n\n`;
+
+    responseText += `Explore this surface in our [Material Library](/materials#library), review engineering tolerances on [Technical Specifications](/materials#specs), or share your drawings directly via our [WhatsApp Studio Desk](https://wa.me/919845012345) for an itemized CAD take-off.`;
+
+    return {
+      answer: responseText.trim(),
+      matchedTopic: `${matchedMaterial.name} (${matchedMaterial.code})`,
+      suggestedActions: [
+        { label: `View ${matchedMaterial.name}`, href: `/materials#library` },
+        { label: 'Order Material Sample', href: '/materials' },
+        { label: 'WhatsApp for Quote', href: 'https://wa.me/919845012345' },
+      ],
+    };
+  }
+
+  // 4. MAPS & NAVIGATION LOOKUP
+  if (/\b(map|maps|location|directions|where are you|where is|address|navigate|indiranagar|hoskote|showroom)\b/i.test(query)) {
+    const mapsSection = STUDIO_KNOWLEDGE_BASE.find((s) => s.id === 'coro-maps-location')!;
+    return {
+      answer: `### Studio Showroom, Central Workshop & Google Maps Navigation\n\n${mapsSection.details}`,
+      matchedTopic: 'Showroom Location & Navigation',
+      suggestedActions: mapsSection.suggestedActions,
+    };
+  }
+
+  // 5. GENERAL PRICING & SIZING LOOKUP
+  if (/\b(price|pricing|cost|quote|rate|rates|how much|sqft|square foot|per sq ft|slab cost|sheet price|sheet size|full sheet|dimensions|slab dimensions|size|sizing|approx price)\b/i.test(query)) {
+    const pricingSection = STUDIO_KNOWLEDGE_BASE.find((s) => s.id === 'pricing-sizing')!;
+    return {
+      answer: `### Full Sheet Sizing, Slab Dimensions & Commercial Pricing Matrix\n\n${pricingSection.details}`,
+      matchedTopic: 'Pricing & Sizing',
+      suggestedActions: pricingSection.suggestedActions,
+    };
+  }
+
+  // 6. DOMAIN SCORING ENGINE for other topics
   let bestMatch: KnowledgeSection | null = null;
   let highestScore = 0;
 
@@ -578,62 +857,39 @@ How can I assist your practice today? You can ask me about:
     return {
       answer: responseText.trim(),
       matchedTopic: bestMatch.topic,
-      suggestedActions: bestMatch.suggestedActions
-    };
-  }
-
-  // 4. Fallback for ambiguous in-domain queries
-  // Check if query is about prices/cost
-  if (/\b(price|cost|quote|rate|how much|sqft|pricing)\b/i.test(query)) {
-    return {
-      answer: `### Sizing, Slabs & Commercial Quotations
-
-Solid surface pricing depends on slab thickness (12mm standard or 19mm structural), chosen collection (Noma Solids, Alto Veined, Obsidian Aggregates, or Lucent Backlit), and fabrication geometry (thermoformed radii, CNC cutouts, and edge aprons).
-
-**Standard Specifications:**
-• **Slab Dimensions**: 3660 mm × 760 mm (12.0 ft × 2.5 ft)
-• **Standard Thickness**: 12 mm for countertops, cladding, and integrated basins; 19 mm for high-impact plinths.
-• **Material Quality**: 100% Authentic DuPont™ Corian® with 10-year manufacturer warranty.
-
-**To receive an exact project estimate:**
-1. Send your CAD drawings or dimensional floor plans directly to our **WhatsApp Studio Line** via the button in the top navbar.
-2. Or schedule an architectural consultation on our **Contact page** (/contact).`,
-      matchedTopic: 'Pricing & Sizing',
-      suggestedActions: [
-        { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' },
-        { label: 'Book Design Consultation', href: '/contact' },
-        { label: 'Order Material Samples', href: '/materials' }
-      ]
+      suggestedActions: bestMatch.suggestedActions,
     };
   }
 
   // Check if query mentions coro specifically
   if (query.includes('coro')) {
-    const coroSection = STUDIO_KNOWLEDGE_BASE.find(s => s.id === 'coro-connection')!;
+    const coroSection = STUDIO_KNOWLEDGE_BASE.find((s) => s.id === 'coro-connection')!;
     return {
       answer: `### Ace Spaces & Coro Collective Synergy\n\n${coroSection.details}`,
       matchedTopic: 'Coro Connection',
-      suggestedActions: coroSection.suggestedActions
+      suggestedActions: coroSection.suggestedActions,
     };
   }
 
-  // Default polite domain-bound response
+  // 7. Default polite domain-bound response with active links
   return {
     answer: `Thank you for your inquiry regarding Ace Spaces and our architectural surface ecosystem.
 
 As your private studio intelligence, I specialize in:
-• **DuPont™ Corian® Specifications**: Non-porous zero-silica surfaces, chemical composition (ATH + Acrylic), and certifications.
-• **Coro Collective Synergy**: How Ace Spaces acts as the parent company and raw material source for Coro's spatial designs.
-• **Fabrication Capabilities**: Sub-0.2mm 5-axis CNC machining, 160°C vacuum thermoforming, and seamless joining.
-• **Applications**: Monolithic kitchen waterfall islands, integrated basins, clinical healthcare surfaces, and backlit facades.
-• **Physical Specimens**: Curating sample trays for delivery across India.
+• **DuPont™ Corian® Specifications**: Non-porous zero-silica mineral surfaces, ATH + acrylic composition, and certified warranties ([Explore Materials](/materials#library)).
+• **Full Sheet Sizing & Pricing**: Standard 3660 mm × 760 mm slabs across Noma, Alto, Strata, and Lumen series ([Technical Specifications](/materials#specs)).
+• **Coro Collective Synergy**: How Ace Spaces acts as the parent company and raw material source for Coro's spatial designs ([The Coro Synergy](/about#coro)).
+• **Fabrication Capabilities**: Sub-0.2mm 5-axis CNC machining, 160°C vacuum thermoforming, and seamless joining ([Fabrication Hub](/fabrication)).
+• **Applications**: Monolithic kitchen waterfall islands, integrated basins, clinical healthcare surfaces, and backlit facades ([Kitchen Applications](/applications/kitchen)).
+• **Physical Specimens**: Curating sample trays for delivery across India ([Order Samples](/materials)).
 
-Could you please specify your architectural requirement or topic, or connect directly with our Bangalore studio engineers via the **WhatsApp Desk** in the navbar?`,
+Could you please specify your architectural requirement or material of interest, or connect directly with our Bengaluru studio engineers via the [WhatsApp Studio Desk](https://wa.me/919845012345)?`,
     matchedTopic: 'Studio Advisory',
     suggestedActions: [
-      { label: 'Explore Materials', href: '/materials' },
+      { label: 'Explore Materials', href: '/materials#library' },
       { label: 'Coro Collective Connection', href: '/about#coro' },
-      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' }
-    ]
+      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' },
+    ],
   };
 }
+

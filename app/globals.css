@@ -3020,4 +3020,19 @@ main.page-main {
   height: 4px;
 }
 
+/* AI Studio Material Intelligence Inline Navigation Links */
+.ai-inline-nav-link {
+  color: #73c991;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+  display: inline;
+}
+
+.ai-inline-nav-link:hover {
+  color: #a3e8b9;
+  text-decoration-color: #a3e8b9;
+}
+
 

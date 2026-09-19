@@ -366,6 +366,10 @@ How may I assist your architectural practice today?`,
 
   const formatInline = (str: string) => {
     return str
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label, href) => {
+        const isExternal = href.startsWith('http') || href.startsWith('//');
+        return `<a href="${href}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="ai-inline-nav-link">${label}</a>`;
+      })
       .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ffffff; font-weight:600;">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em style="color:#f2f0ea;">$1</em>')
       .replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08); padding:1px 5px; border-radius:0px; font-family:DM Mono,monospace; font-size:11px; color:#f2f0ea; border:1px solid rgba(255,255,255,0.12);">$1</code>');
