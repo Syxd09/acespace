@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
@@ -198,7 +198,7 @@ export default function MaterialsAndColoursPage() {
       <section id="substrates" style={{ margin: '80px 0', borderBottom: '1px solid var(--line)', paddingBottom: '80px' }}>
         <p className="eyebrow" style={{ marginBottom: '24px' }}>The 4 Core Material Substrates</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
-          <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
+          <div id="noma-solids" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>01</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Noma Solids</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
@@ -207,7 +207,7 @@ export default function MaterialsAndColoursPage() {
             <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Opaque • Non-Porous • Zero Seams</span>
           </div>
 
-          <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
+          <div id="alto-veined" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>02</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Alto Veined</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
@@ -216,7 +216,7 @@ export default function MaterialsAndColoursPage() {
             <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Directional Flow • Acid Resistant</span>
           </div>
 
-          <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
+          <div id="strata-textures" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>03</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Strata &amp; Textures</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
@@ -225,7 +225,7 @@ export default function MaterialsAndColoursPage() {
             <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Quartz Chips • Micro-Honed Grain</span>
           </div>
 
-          <div style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)' }}>
+          <div id="lumen-optics" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>04</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Lumen Optics</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
@@ -252,11 +252,13 @@ export default function MaterialsAndColoursPage() {
           </p>
         </div>
 
-        <ColourLibrary />
+        <Suspense fallback={<div style={{ padding: '60px 0', textAlign: 'center', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>Loading Material Library...</div>}>
+          <ColourLibrary />
+        </Suspense>
       </section>
 
       {/* Technical Specifications Table */}
-      <section style={{ marginBottom: '120px' }}>
+      <section id="specs" style={{ marginBottom: '120px' }}>
         <div className="section-head" style={{ marginBottom: '40px' }}>
           <div>
             <p className="eyebrow">Technical Performance &amp; Standards</p>

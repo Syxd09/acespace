@@ -104,24 +104,28 @@ const fabricationJsonLd = {
 export default function FabricationPage() {
   const steps = [
     {
+      id: 'cnc',
       num: '01',
       title: '5-Axis CNC & Precision Cutting',
       description: 'Our Bengaluru facility utilizes automated 5-axis CNC routing systems capable of achieving cutting tolerances under 0.2mm. Complex CAD geometries, sink cutouts, and sub-surface charging pockets are nested and milled with robotic repeatability.',
       specs: '0.2mm tolerance • Nested CAD/CAM • Integrated undercut sink routings'
     },
     {
+      id: 'seamless',
       num: '02',
       title: 'Seamless Inconspicuous Joining',
       description: 'By pairing solid surface components with chemically active, color-matched acrylic adhesives, adjacent sheets are thermo-welded together. Once cured, the joint becomes completely homogeneous and invisible to touch and sight.',
       specs: 'Color-matched resin matrix • Zero dirt traps • Monolithic appearance'
     },
     {
+      id: 'thermoforming',
       num: '03',
       title: 'Thermoforming & Organic Curvature',
       description: 'Heated to 160°C within calibrated industrial platen ovens, mineral sheets transition into a pliable state. They are formed over CNC-milled timber bucks using vacuum press technology to achieve compound curves and fluid radii.',
       specs: 'Vacuum membrane forming • 2D & 3D multi-radius • Zero surface blanching'
     },
     {
+      id: 'honing',
       num: '04',
       title: 'Hand Honing & Surface Finishing',
       description: 'Every fabricated piece undergoes a 5-stage progressive dry and wet hand-honing sequence, graduating from 120-grit up to 600-grit micro-abrasives. This creates an ultra-tactile matte or satin finish with flawless light absorption.',
@@ -211,6 +215,7 @@ export default function FabricationPage() {
           {steps.map((step) => (
             <div
               key={step.num}
+              id={step.id}
               style={{
                 background: '#dcd7cd',
                 padding: '35px 30px',

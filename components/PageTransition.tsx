@@ -40,6 +40,15 @@ export default function PageTransition({ children }: { children: React.ReactNode
         // Step 2: Curtain sweeps away (400ms)
         const tReveal = setTimeout(() => {
           setTransitionStage('idle');
+          if (typeof window !== 'undefined' && window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            if (hash) {
+              const el = document.getElementById(hash);
+              if (el) {
+                el.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          }
         }, 450);
 
         return () => clearTimeout(tReveal);

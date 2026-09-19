@@ -1,14 +1,16 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { materials as defaultMaterials, Material } from '@/data/materials';
 import { useSiteContent } from '@/context/SiteContentContext';
 import MaterialModal from '@/components/MaterialModal';
 import { useSampleShortlist } from '@/context/SampleContext';
 
 export default function ColourLibrary() {
+  const searchParams = useSearchParams();
   const { materials: liveMaterials } = useSiteContent();
   const materials = (liveMaterials && liveMaterials.length > 0) ? liveMaterials : defaultMaterials;
   const [searchQuery, setSearchQuery] = useState('');
@@ -18,6 +20,28 @@ export default function ColourLibrary() {
   const [activeModalMaterial, setActiveModalMaterial] = useState<Material | null>(null);
 
   const { addSample, removeSample, isShortlisted, toggleTray } = useSampleShortlist();
+
+  useEffect(() => {
+    if (!searchParams) return;
+    const familyParam = searchParams.get('family');
+    if (familyParam) {
+      const validFamilies = ['all', 'white', 'cream', 'grey', 'earth', 'black', 'translucent'];
+      if (validFamilies.includes(familyParam.toLowerCase())) {
+        setSelectedColorFamily(familyParam.toLowerCase());
+      }
+    }
+    const patternParam = searchParams.get('pattern');
+    if (patternParam) {
+      const validPatterns = ['all', 'solid', 'veined', 'particulate', 'translucent'];
+      if (validPatterns.includes(patternParam.toLowerCase())) {
+        setSelectedPattern(patternParam.toLowerCase());
+      }
+    }
+    const queryParam = searchParams.get('q');
+    if (queryParam) {
+      setSearchQuery(queryParam);
+    }
+  }, [searchParams]);
 
   const colorFamilies = [
     { id: 'all', label: 'All Hues', color: '#1e211d' },

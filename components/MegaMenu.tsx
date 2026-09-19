@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 
 export type MegaMenuType = 'materials' | 'colours' | 'products' | 'applications' | 'fabrication' | 'about' | null;
 
@@ -21,6 +22,30 @@ export default function MegaMenu({
   onMouseLeave,
   isScrolled = false,
 }: MegaMenuProps) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    onClose();
+
+    const [urlWithoutHash, hash] = href.split('#');
+    const [targetPath, queryString] = urlWithoutHash.split('?');
+
+    if (pathname === targetPath) {
+      if (queryString) {
+        router.push(href);
+      }
+      if (hash) {
+        e.preventDefault();
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          window.history.pushState(null, '', href);
+        }
+      }
+    }
+  };
+
   if (!activeMenu) return null;
 
   return (
@@ -118,25 +143,25 @@ export default function MegaMenu({
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
-                      <Link href="/materials#substrates" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials#noma-solids" onClick={(e) => handleLinkClick(e, '/materials#noma-solids')} className="mega-menu-link">
                         <strong>Noma Solids</strong>
                         <small>Pure monolithic mineral chalks</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#substrates" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials#alto-veined" onClick={(e) => handleLinkClick(e, '/materials#alto-veined')} className="mega-menu-link">
                         <strong>Alto Veined</strong>
                         <small>Directional fluid marble movement</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#substrates" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials#strata-textures" onClick={(e) => handleLinkClick(e, '/materials#strata-textures')} className="mega-menu-link">
                         <strong>Strata Textures</strong>
                         <small>Sedimentary micro-terrazzo aggregates</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#substrates" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials#lumen-optics" onClick={(e) => handleLinkClick(e, '/materials#lumen-optics')} className="mega-menu-link">
                         <strong>Lumen Optics</strong>
                         <small>Translucent fields for backlit halos</small>
                       </Link>
@@ -162,31 +187,31 @@ export default function MegaMenu({
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
-                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials?family=white#library" onClick={(e) => handleLinkClick(e, '/materials?family=white#library')} className="mega-menu-link">
                         <strong>Whites &amp; Chalk</strong>
                         <small>Soft light-diffusing chalks &amp; alabaster</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials?family=cream#library" onClick={(e) => handleLinkClick(e, '/materials?family=cream#library')} className="mega-menu-link">
                         <strong>Linen &amp; Warm Creams</strong>
                         <small>Tactile, calming natural linen hues</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials?family=grey#library" onClick={(e) => handleLinkClick(e, '/materials?family=grey#library')} className="mega-menu-link">
                         <strong>Greiges &amp; Concrete</strong>
                         <small>Understated architectural grey tones</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials?family=earth#library" onClick={(e) => handleLinkClick(e, '/materials?family=earth#library')} className="mega-menu-link">
                         <strong>Warm Earth &amp; Terras</strong>
                         <small>Geological sand, clay &amp; terracotta</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#library" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials?family=black#library" onClick={(e) => handleLinkClick(e, '/materials?family=black#library')} className="mega-menu-link">
                         <strong>Obsidian Noir &amp; Inks</strong>
                         <small>Deep light-absorbing dark charcoals</small>
                       </Link>
@@ -212,25 +237,25 @@ export default function MegaMenu({
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
-                      <Link href="/materials" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials#specs" onClick={(e) => handleLinkClick(e, '/materials#specs')} className="mega-menu-link">
                         <strong>Full Slabs: 3660 × 760mm</strong>
                         <small>Calibrated architectural sheets</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials" onClick={onClose} className="mega-menu-link">
+                      <Link href="/materials#specs" onClick={(e) => handleLinkClick(e, '/materials#specs')} className="mega-menu-link">
                         <strong>Thickness: 12mm &amp; 19mm</strong>
                         <small>Zero-porosity homogeneous core</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/fabrication" onClick={onClose} className="mega-menu-link">
+                      <Link href="/fabrication#thermoforming" onClick={(e) => handleLinkClick(e, '/fabrication#thermoforming')} className="mega-menu-link">
                         <strong>Thermoforming Substrates</strong>
                         <small>Curve down to 75mm organic radii</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/fabrication#edges" onClick={onClose} className="mega-menu-link">
+                      <Link href="/fabrication#seamless" onClick={(e) => handleLinkClick(e, '/fabrication#seamless')} className="mega-menu-link">
                         <strong>Inconspicuous Seams</strong>
                         <small>Jointless monolithic installations</small>
                       </Link>
@@ -251,7 +276,7 @@ export default function MegaMenu({
               >
                 <Link
                   href="/materials"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/materials')}
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
@@ -259,7 +284,7 @@ export default function MegaMenu({
                 </Link>
                 <Link
                   href="/contact"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
@@ -293,7 +318,7 @@ export default function MegaMenu({
                 </div>
                 <Link
                   href="/materials#library"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/materials#library')}
                   className="button button-dark"
                   style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
@@ -373,7 +398,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/materials"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/materials')}
                         className="mega-menu-link"
                       >
                         <strong>CORIAN&reg; MATERIAL</strong>
@@ -383,7 +408,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/products/sinks"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/products/sinks')}
                         className="mega-menu-link"
                       >
                         <strong>SINKS</strong>
@@ -393,7 +418,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/products/washplanes"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/products/washplanes')}
                         className="mega-menu-link"
                       >
                         <strong>WASHPLANES</strong>
@@ -403,7 +428,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/products/health-aged-care"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/products/health-aged-care')}
                         className="mega-menu-link"
                       >
                         <strong>HEALTH &amp; AGED CARE SOLUTIONS</strong>
@@ -433,7 +458,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/products/benchtops"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/products/benchtops')}
                         className="mega-menu-link"
                       >
                         <strong>BENCHTOPS</strong>
@@ -443,7 +468,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/products/basins-vanities"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/products/basins-vanities')}
                         className="mega-menu-link"
                       >
                         <strong>BASINS &amp; VANITIES</strong>
@@ -453,7 +478,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/products/public-bathrooms-eot"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/products/public-bathrooms-eot')}
                         className="mega-menu-link"
                       >
                         <strong>PUBLIC BATHROOMS AND EOT SOLUTIONS</strong>
@@ -463,7 +488,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/products/bespoke"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/products/bespoke')}
                         className="mega-menu-link"
                       >
                         <strong>BESPOKE</strong>
@@ -486,7 +511,7 @@ export default function MegaMenu({
               >
                 <Link
                   href="/products"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/products')}
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
@@ -494,7 +519,7 @@ export default function MegaMenu({
                 </Link>
                 <Link
                   href="/products/design-certainty"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/products/design-certainty')}
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
@@ -528,7 +553,7 @@ export default function MegaMenu({
                 </div>
                 <Link
                   href="/products"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/products')}
                   className="button button-dark"
                   style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
@@ -608,7 +633,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/residential"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/residential')}
                         className="mega-menu-link"
                       >
                         <strong>Sector 01: Residential Architecture</strong>
@@ -618,7 +643,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/hospitality"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/hospitality')}
                         className="mega-menu-link"
                       >
                         <strong>Sector 02: Hospitality & Dining</strong>
@@ -628,7 +653,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/commercial"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/commercial')}
                         className="mega-menu-link"
                       >
                         <strong>Sector 03: Commercial & Workplaces</strong>
@@ -638,7 +663,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/retail"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/retail')}
                         className="mega-menu-link"
                       >
                         <strong>Sector 04: Retail & Experience Centres</strong>
@@ -648,7 +673,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/healthcare"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/healthcare')}
                         className="mega-menu-link"
                       >
                         <strong>Sector 05: Hospitals & Healthcare</strong>
@@ -678,7 +703,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/residential"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/residential')}
                         className="mega-menu-link"
                       >
                         <strong>Monolithic Kitchen Islands</strong>
@@ -688,7 +713,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/hospitality"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/hospitality')}
                         className="mega-menu-link"
                       >
                         <strong>Backlit Translucent Cocktail Bars</strong>
@@ -698,7 +723,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/commercial"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/commercial')}
                         className="mega-menu-link"
                       >
                         <strong>Continuous Washroom Troughs</strong>
@@ -708,7 +733,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/retail"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/retail')}
                         className="mega-menu-link"
                       >
                         <strong>Curved Wall Cladding & Portals</strong>
@@ -718,7 +743,7 @@ export default function MegaMenu({
                     <li>
                       <Link
                         href="/applications/healthcare"
-                        onClick={onClose}
+                        onClick={(e) => handleLinkClick(e, '/applications/healthcare')}
                         className="mega-menu-link"
                       >
                         <strong>Zero-Silicone Integrated Sinks</strong>
@@ -741,7 +766,7 @@ export default function MegaMenu({
               >
                 <Link
                   href="/applications"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/applications')}
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
@@ -749,7 +774,7 @@ export default function MegaMenu({
                 </Link>
                 <Link
                   href="/contact"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
@@ -783,7 +808,7 @@ export default function MegaMenu({
                 </div>
                 <Link
                   href="/applications/hospitality"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/applications/hospitality')}
                   className="button button-dark"
                   style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
@@ -862,8 +887,8 @@ export default function MegaMenu({
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
                       <Link
-                        href="/fabrication"
-                        onClick={onClose}
+                        href="/fabrication#seamless"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#seamless')}
                         className="mega-menu-link"
                       >
                         <strong>Seamless Thermo-Welded Joints</strong>
@@ -872,8 +897,8 @@ export default function MegaMenu({
                     </li>
                     <li>
                       <Link
-                        href="/fabrication"
-                        onClick={onClose}
+                        href="/fabrication#thermoforming"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#thermoforming')}
                         className="mega-menu-link"
                       >
                         <strong>Multi-Radius Thermoforming</strong>
@@ -882,8 +907,8 @@ export default function MegaMenu({
                     </li>
                     <li>
                       <Link
-                        href="/fabrication"
-                        onClick={onClose}
+                        href="/fabrication#cnc"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#cnc')}
                         className="mega-menu-link"
                       >
                         <strong>5-Axis CNC Milling</strong>
@@ -892,8 +917,8 @@ export default function MegaMenu({
                     </li>
                     <li>
                       <Link
-                        href="/fabrication"
-                        onClick={onClose}
+                        href="/fabrication#edges"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#edges')}
                         className="mega-menu-link"
                       >
                         <strong>Integral Coved Junctions</strong>
@@ -922,8 +947,8 @@ export default function MegaMenu({
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
                       <Link
-                        href="/fabrication"
-                        onClick={onClose}
+                        href="/fabrication#process"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#process')}
                         className="mega-menu-link"
                       >
                         <strong>CAD / BIM Shop Drawings</strong>
@@ -932,8 +957,8 @@ export default function MegaMenu({
                     </li>
                     <li>
                       <Link
-                        href="/fabrication"
-                        onClick={onClose}
+                        href="/about#locations"
+                        onClick={(e) => handleLinkClick(e, '/about#locations')}
                         className="mega-menu-link"
                       >
                         <strong>Bengaluru Fabrication Facility</strong>
@@ -942,8 +967,8 @@ export default function MegaMenu({
                     </li>
                     <li>
                       <Link
-                        href="/fabrication"
-                        onClick={onClose}
+                        href="/fabrication#honing"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#honing')}
                         className="mega-menu-link"
                       >
                         <strong>On-Site Assembly & Honing</strong>
@@ -952,8 +977,8 @@ export default function MegaMenu({
                     </li>
                     <li>
                       <Link
-                        href="/fabrication"
-                        onClick={onClose}
+                        href="/about#foundation"
+                        onClick={(e) => handleLinkClick(e, '/about#foundation')}
                         className="mega-menu-link"
                       >
                         <strong>Full 10-Year Warranty</strong>
@@ -976,7 +1001,7 @@ export default function MegaMenu({
               >
                 <Link
                   href="/fabrication"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/fabrication')}
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
@@ -984,7 +1009,7 @@ export default function MegaMenu({
                 </Link>
                 <Link
                   href="/contact"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
@@ -1017,8 +1042,8 @@ export default function MegaMenu({
                   </p>
                 </div>
                 <Link
-                  href="/fabrication"
-                  onClick={onClose}
+                  href="/fabrication#process"
+                  onClick={(e) => handleLinkClick(e, '/fabrication#process')}
                   className="button button-dark"
                   style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
@@ -1096,25 +1121,25 @@ export default function MegaMenu({
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
-                      <Link href="/about#story" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#story" onClick={(e) => handleLinkClick(e, '/about#story')} className="mega-menu-link">
                         <strong>Our Architectural Story</strong>
                         <small>Dissolving seams in modern space</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about#philosophy" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#philosophy" onClick={(e) => handleLinkClick(e, '/about#philosophy')} className="mega-menu-link">
                         <strong>Design Philosophy</strong>
                         <small>Monolithic continuity &amp; tactile honesty</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about#team" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#team" onClick={(e) => handleLinkClick(e, '/about#team')} className="mega-menu-link">
                         <strong>The Atelier &amp; Craftsmen</strong>
                         <small>Joiners, thermoformers &amp; CAD modelers</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about#philosophy" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#philosophy" onClick={(e) => handleLinkClick(e, '/about#philosophy')} className="mega-menu-link">
                         <strong>Core Studio Values</strong>
                         <small>Radical permanence &amp; zero-silica safety</small>
                       </Link>
@@ -1140,25 +1165,25 @@ export default function MegaMenu({
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
-                      <Link href="/about#team" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#team" onClick={(e) => handleLinkClick(e, '/about#team')} className="mega-menu-link">
                         <strong>Robot Meets Artisan Hand</strong>
                         <small>5-axis CNC paired with hand-honed edges</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about#philosophy" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#philosophy" onClick={(e) => handleLinkClick(e, '/about#philosophy')} className="mega-menu-link">
                         <strong>Zero-Silica Integrity</strong>
                         <small>Non-hazardous mineral matrix for health</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/fabrication" onClick={onClose} className="mega-menu-link">
+                      <Link href="/fabrication#seamless" onClick={(e) => handleLinkClick(e, '/fabrication#seamless')} className="mega-menu-link">
                         <strong>Seamless Chemistry</strong>
                         <small>Molecularly fused inconspicuous joints</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about#foundation" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#foundation" onClick={(e) => handleLinkClick(e, '/about#foundation')} className="mega-menu-link">
                         <strong>DuPont™ Alliance</strong>
                         <small>Certified ATH substrate lineage &amp; warranty</small>
                       </Link>
@@ -1184,25 +1209,25 @@ export default function MegaMenu({
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
-                      <Link href="/about#locations" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#locations" onClick={(e) => handleLinkClick(e, '/about#locations')} className="mega-menu-link">
                         <strong>Indiranagar Gallery</strong>
                         <small>Tactile specifier gallery in Bangalore</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about#locations" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#locations" onClick={(e) => handleLinkClick(e, '/about#locations')} className="mega-menu-link">
                         <strong>15,000 sq.ft Workshop</strong>
                         <small>Hoskote industrial corridor facility</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about#coro" onClick={onClose} className="mega-menu-link">
+                      <Link href="/about#coro" onClick={(e) => handleLinkClick(e, '/about#coro')} className="mega-menu-link">
                         <strong>The Coro Connection</strong>
                         <small>Powering Coro Collective spatial living</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/contact" onClick={onClose} className="mega-menu-link">
+                      <Link href="/contact" onClick={(e) => handleLinkClick(e, '/contact')} className="mega-menu-link">
                         <strong>Schedule Studio Visit</strong>
                         <small>Meet our architects &amp; examine mockups</small>
                       </Link>
@@ -1223,7 +1248,7 @@ export default function MegaMenu({
               >
                 <Link
                   href="/about"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/about')}
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
@@ -1231,7 +1256,7 @@ export default function MegaMenu({
                 </Link>
                 <Link
                   href="/contact"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
@@ -1265,7 +1290,7 @@ export default function MegaMenu({
                 </div>
                 <Link
                   href="/about"
-                  onClick={onClose}
+                  onClick={(e) => handleLinkClick(e, '/about')}
                   className="button button-dark"
                   style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >

@@ -23,6 +23,45 @@ html, body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+}
+
+@keyframes targetHighlight {
+  0% {
+    box-shadow: 0 0 0 3px var(--ink), 0 12px 32px rgba(30, 33, 29, 0.22);
+    transform: translateY(-4px);
+  }
+  60% {
+    box-shadow: 0 0 0 3px var(--ink), 0 12px 32px rgba(30, 33, 29, 0.16);
+    transform: translateY(-2px);
+  }
+  100% {
+    box-shadow: none;
+    transform: translateY(0);
+  }
+}
+
+#noma-solids:target,
+#alto-veined:target,
+#strata-textures:target,
+#lumen-optics:target,
+#specs:target,
+#cnc:target,
+#seamless:target,
+#thermoforming:target,
+#honing:target {
+  animation: targetHighlight 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  position: relative;
+  z-index: 2;
+}
+
+#story:target,
+#philosophy:target,
+#team:target,
+#foundation:target,
+#locations:target,
+#coro:target {
+  animation: targetHighlight 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 body {
