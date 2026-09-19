@@ -418,36 +418,40 @@ Renewability & Scratch Repair:
   },
   {
     id: 'coro-maps-location',
-    topic: 'Showroom Location, Central Workshop & Google Maps Navigation',
+    topic: 'Ace Spaces & Coro Crafted Collective Studio & Headquarters',
     keywords: [
       'map', 'maps', 'location', 'directions', 'where is coro', 'where is ace spaces',
-      'address', 'showroom', 'visit', 'indiranagar', 'whitefield', 'hoskote', 'studio address',
-      'navigation', 'google maps', 'where are you', 'how to reach'
+      'address', 'showroom', 'visit', 'studio address', 'navigation', 'google maps',
+      'where are you', 'how to reach', 'headquarters', 'studio', 'bengaluru'
     ],
-    summary: 'Coro Collective & Ace Spaces design studio in Indiranagar, Bengaluru. Central fabrication stockyard in Hoskote. Direct Google Maps navigation available.',
-    details: `Architects, interior designers, and project owners are welcome to experience our monolithic material volumes and slab stock in person:
+    summary: 'Ace Spaces & Coro Collective share one single unified studio and headquarters in Bengaluru, Karnataka. Direct Google Maps navigation: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
+    details: `Architects, interior designers, and project owners are welcome to experience our monolithic material volumes, full slab catalog, and spatial installations at our studio:
 
-📍 **Studio Showroom & Architectural Consultations:**
-#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India.
+📍 **Ace Spaces & Coro Crafted Collective Studio & Headquarters:**
+Bengaluru, Karnataka, India.
+*(This is our single, unified studio and headquarters for both Ace Spaces and Coro Collective)*
 *Hours: Monday – Saturday, 09:30 – 18:30 IST (Sundays by appointment).*
-[Open Indiranagar Showroom on Google Maps ↗](https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038)
 
-🏭 **Central CNC Fabrication Hub & Master Stockyard:**
-Survey No. 78, Whitefield-Hoskote Main Road, Bengaluru, Karnataka 560067, India.
-*Houses our 5-axis CNC routers, industrial platen thermoforming ovens, and full slab inventory.*
-[Open Hoskote Central Workshop on Google Maps ↗](https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067)
+🗺️ **Direct Google Maps Navigation:**
+[Open Studio & Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
 
-You can book an architectural walkthrough on our [Contact Page](/contact), explore our [Fabrication Capabilities](/fabrication), or message our engineers directly via the [WhatsApp Studio Desk](https://wa.me/919845012345).`,
+Here under one roof, you can:
+• Examine our complete DuPont™ Corian® slab catalog across Noma, Alto, Strata, Terra, and Lumen series.
+• Experience 1:1 scale monolithic kitchen waterfall islands, thermoformed vanities, and seamless basins.
+• Curate and collect physical 100mm × 100mm × 12mm specifier sample boxes.
+• Consult with our fabrication engineers on CAD drawings, CNC nested cuts, and thermoforming tooling.
+
+You can book an architectural walkthrough on our [Contact Page](/contact), explore our [Fabrication Capabilities](/fabrication), or message our specifier desk directly via the [WhatsApp Studio Desk](https://wa.me/919845012345).`,
     specs: {
-      'Showroom Address': '#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038',
-      'Stockyard & CNC Hub': 'Survey No. 78, Whitefield-Hoskote Main Road, Bengaluru 560067',
-      'Indiranagar Google Map': 'https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038',
-      'Hoskote Workshop Map': 'https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067'
+      'Studio & Headquarters': 'Coro Crafted Collective & Ace Spaces, Bengaluru',
+      'Scope': 'Single unified studio & headquarters for both Ace Spaces and Coro Collective',
+      'Google Maps Link': 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
+      'Operating Hours': 'Monday – Saturday, 09:30 – 18:30 IST'
     },
     suggestedActions: [
-      { label: 'Indiranagar on Google Maps ↗', href: 'https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038' },
-      { label: 'Hoskote Workshop on Maps ↗', href: 'https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067' },
-      { label: 'Book Showroom Visit', href: '/contact' }
+      { label: 'Open Studio on Google Maps ↗', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
+      { label: 'Book Studio Visit', href: '/contact' },
+      { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919845012345' }
     ]
   },
   {
@@ -706,13 +710,13 @@ How can I assist your practice today? You can ask me about:
 2. **Specific Materials**: Sizing and pricing for [White Chalk](/materials#library), [Calacatta Gold](/materials#library), [Opal Lumina](/materials#library), and 15+ others.
 3. **The Coro Connection**: How Ace Spaces powers Coro Collective's spatial installations ([Learn More](/about#coro)).
 4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), 160°C thermoforming down to 25mm radii, and seamless joints ([Fabrication Hub](/fabrication)).
-5. **Showroom & Google Maps**: Finding our Indiranagar showroom and Hoskote facility.
+5. **Studio & Google Maps**: Visiting our unified studio and headquarters in Bengaluru ([Open on Maps](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)).
 6. **Physical Specimens**: Curating sample trays for delivery across India.`,
       matchedTopic: 'Welcome & Capabilities',
       suggestedActions: [
         { label: 'Full Sheet Size & Price', prompt: 'What is the size of a full sheet and approx price?' },
         { label: 'Pricing for White Chalk', prompt: 'What is the size and price of White Chalk?' },
-        { label: 'Indiranagar on Google Maps', href: 'https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038' },
+        { label: 'Open Studio on Google Maps', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
       ],
     };
   }
@@ -799,11 +803,11 @@ How can I assist your practice today? You can ask me about:
   }
 
   // 4. MAPS & NAVIGATION LOOKUP
-  if (/\b(map|maps|location|directions|where are you|where is|address|navigate|indiranagar|hoskote|showroom)\b/i.test(query)) {
+  if (/\b(map|maps|location|directions|where are you|where is|address|navigate|showroom|studio|headquarters|how to reach|find you)\b/i.test(query)) {
     const mapsSection = STUDIO_KNOWLEDGE_BASE.find((s) => s.id === 'coro-maps-location')!;
     return {
-      answer: `### Studio Showroom, Central Workshop & Google Maps Navigation\n\n${mapsSection.details}`,
-      matchedTopic: 'Showroom Location & Navigation',
+      answer: `### Ace Spaces & Coro Crafted Collective Studio & Headquarters\n\n${mapsSection.details}`,
+      matchedTopic: 'Studio Location & Navigation',
       suggestedActions: mapsSection.suggestedActions,
     };
   }

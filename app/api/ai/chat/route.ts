@@ -119,14 +119,16 @@ COMPREHENSIVE DOMAIN KNOWLEDGE
 - Architects, designers, and project owners can curate up to 6 physical 100mm × 100mm × 12mm specimens directly from the website's Sample Tray (accessible in the top navbar).
 - Dispatched via courier across all major metros in India.
 
-8. STUDIO & SHOWROOM LOCATION, GOOGLE MAPS NAVIGATION
-- Studio Showroom: #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India.
-- Central Fabrication Hub & Stockyard: Survey No. 78, Whitefield-Hoskote Main Road, Bengaluru, Karnataka 560067.
-- Google Maps Links: Whenever asked for location, directions, or maps, always provide the exact addresses and these clickable links:
-  [Open Indiranagar Showroom on Google Maps ↗](https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038)
-  [Open Hoskote Central Workshop on Google Maps ↗](https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067)
+8. UNIFIED STUDIO & HEADQUARTERS LOCATION, GOOGLE MAPS NAVIGATION
+- Ace Spaces & Coro Collective share ONE single unified studio and headquarters in Bengaluru, Karnataka, India. Both headquarters are located here together under one roof.
+- This is the only studio and headquarters for both Ace Spaces and Coro Collective.
+- Exact Google Maps Link: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7
+- Whenever asked for location, directions, showroom, studio, workshop, or maps, always state clearly:
+  "This is our only studio and unified headquarters for both Ace Spaces and Coro Collective in Bengaluru, Karnataka."
+  And provide the exact clickable link:
+  [Open Studio & Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
 - Direct WhatsApp Specifier Desk: Accessible via the "WhatsApp Desk" button in the top navigation bar or at [WhatsApp Studio Desk](https://wa.me/919845012345).
-- Showroom & Consultations: In-person or virtual design consultations booked via [Book Consultation](/contact). CAD/floor plans (.dwg, .dxf, .3dm, PDF) can be submitted for quotations.
+- Studio & Consultations: In-person or virtual design consultations booked via [Book Consultation](/contact). CAD/floor plans (.dwg, .dxf, .3dm, PDF) can be submitted for quotations.
 
 9. FOUNDERS & LEADERSHIP
 - Syed Matheen — Co-Founder & Director of Material Engineering & Advanced Fabrication:
@@ -353,16 +355,10 @@ function generateSuggestedActions(reply: string, query: string) {
   const actions: { label: string; href?: string; prompt?: string }[] = [];
   const text = (reply + ' ' + query).toLowerCase();
 
-  if (text.includes('map') || text.includes('direction') || text.includes('indiranagar') || text.includes('address') || text.includes('location')) {
+  if (text.includes('map') || text.includes('direction') || text.includes('address') || text.includes('location') || text.includes('studio') || text.includes('showroom') || text.includes('headquarters')) {
     actions.push({
-      label: 'Indiranagar on Google Maps ↗',
-      href: 'https://www.google.com/maps/search/?api=1&query=42%2F1%2C+100+Feet+Rd%2C+HAL+2nd+Stage%2C+Indiranagar%2C+Bengaluru%2C+Karnataka+560038',
-    });
-  }
-  if (text.includes('hoskote') || text.includes('workshop') || text.includes('stockyard')) {
-    actions.push({
-      label: 'Hoskote Workshop on Maps ↗',
-      href: 'https://www.google.com/maps/search/?api=1&query=Survey+No+78+Whitefield+Hoskote+Main+Road+Bengaluru+560067',
+      label: 'Open Studio on Google Maps ↗',
+      href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
     });
   }
   if (text.includes('price') || text.includes('quote') || text.includes('rate') || text.includes('cost') || text.includes('sheet size') || text.includes('dimensions')) {
