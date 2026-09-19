@@ -118,64 +118,66 @@ export default function AboutPage() {
     <main className="page-main">
       <JsonLd data={aboutJsonLd} />
       {/* Editorial Split Hero */}
-      <section className="page-split-hero">
-        <div>
-          <p className="eyebrow" style={{ marginBottom: '20px' }}>
-            07 / About Us · The Practice, Atelier &amp; Architectural Ethos
-          </p>
+      <section className="page-split-hero" style={{ padding: '16px 0 40px', alignItems: 'stretch' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 'auto' }}>
+          <div>
+            <p className="eyebrow" style={{ marginBottom: '14px' }}>
+              07 / About Us · The Practice, Atelier &amp; Architectural Ethos
+            </p>
 
-          <h1 style={{ fontSize: 'clamp(44px, 7vw, 104px)', lineHeight: 0.96, margin: '0 0 24px', letterSpacing: '-0.06em' }}>
-            Form, continuity &amp;
-            <br />
-            <i>the seamless plane.</i>
-          </h1>
+            <h1 style={{ fontSize: 'clamp(32px, 3.8vw, 54px)', lineHeight: 1.05, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
+              Form, continuity &amp;
+              <br />
+              <i>the seamless plane.</i>
+            </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '540px', marginBottom: '32px' }}>
-            Ace Spaces is a Bengaluru-based architectural fabrication atelier and design practice. We unite computational 5-axis digital precision with master artisan joinery, crafting monolithic, zero-silica solid surfaces that eliminate the visual friction of seams in modern space.
-          </p>
+            <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#4a5249', maxWidth: '520px', marginBottom: '20px' }}>
+              Ace Spaces is a Bengaluru-based architectural fabrication atelier and design practice. We unite computational 5-axis digital precision with master artisan joinery, crafting monolithic, zero-silica solid surfaces that eliminate the visual friction of seams in modern space.
+            </p>
 
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '36px' }}>
-            <Link className="button button-dark" href="#story">
-              Our Architectural Story <span>↓</span>
-            </Link>
-            <Link className="button" href="/contact" style={{ background: 'transparent', border: '1px solid var(--ink)' }}>
-              Visit Bangalore Atelier <span>↗</span>
-            </Link>
-            <Link className="text-link" href="#foundation" style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px' }}>
-              DuPont™ Material Foundation <span>↓</span>
-            </Link>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '24px' }}>
+              <Link className="button button-dark" href="#story">
+                Our Architectural Story <span>↓</span>
+              </Link>
+              <Link className="button" href="/contact" style={{ background: 'transparent', border: '1px solid var(--ink)' }}>
+                Visit Bangalore Atelier <span>↗</span>
+              </Link>
+              <Link className="text-link" href="#foundation" style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                DuPont™ Material Foundation <span>↓</span>
+              </Link>
+            </div>
           </div>
 
-          <div className="hero-stats-row">
+          <div className="hero-stats-row" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', paddingTop: '16px', marginTop: 'auto' }}>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Origin
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Bengaluru</strong>
+              <strong style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Bengaluru</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Discipline
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Solid Surfaces</strong>
+              <strong style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Solid Surfaces</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Fabrication Atelier
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Atelier
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>15,000 sq.ft</strong>
+              <strong style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>15,000 sq.ft</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Health Standard
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Standard
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>0% Crystalline Silica</strong>
+              <strong style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>0% Silica</strong>
             </div>
           </div>
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div className="hero-image-frame">
+        <div className="hero-image-frame" style={{ height: '100%', minHeight: '380px', maxHeight: '480px' }}>
           <Image
             src="/assets/applications/stonecrest-smoke-hotel-lobby.jpg"
             alt="Monolithic architectural counter crafted by Ace Spaces"
@@ -497,33 +499,34 @@ export default function AboutPage() {
 
                 <div
                   style={{
-                    display: 'flex',
+                    display: 'grid',
+                    gridTemplateColumns: '1fr auto 1fr',
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '24px',
-                    flexWrap: 'wrap',
+                    gap: '16px',
                     padding: '8px 0',
                     width: '100%',
+                    maxWidth: '340px',
+                    margin: '0 auto',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '120px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Image
                       src="/images/dupont-logo.svg"
                       alt="DuPont Official Trademark Logo"
                       width={130}
                       height={36}
-                      style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
+                      style={{ height: '30px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
                       priority
                     />
                   </div>
-                  <div style={{ width: '1px', height: '32px', background: 'var(--line)' }} />
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '120px' }}>
+                  <div style={{ width: '1px', height: '28px', background: 'var(--line)' }} />
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <Image
                       src="/images/corian-solid-surface-logo.svg"
                       alt="Corian Solid Surface Official Trademark Logo"
                       width={130}
                       height={36}
-                      style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
+                      style={{ height: '30px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
                       priority
                     />
                   </div>
