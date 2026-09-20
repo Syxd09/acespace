@@ -80,6 +80,17 @@ export default function SiteHeader() {
   };
 
   const menuToggleRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (drawerRef.current) {
+      if (!mobileOpen) {
+        drawerRef.current.setAttribute('inert', '');
+      } else {
+        drawerRef.current.removeAttribute('inert');
+      }
+    }
+  }, [mobileOpen]);
 
   const closeMobileMenu = () => {
     if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
@@ -413,9 +424,9 @@ export default function SiteHeader() {
         aria-hidden={!mobileOpen}
       />
       <aside
+        ref={drawerRef}
         className={`mobile-drawer ${mobileOpen ? 'open' : ''}`}
         aria-label="Mobile menu"
-        inert={!mobileOpen}
       >
         <div className="drawer-header">
           <span className="drawer-eyebrow">EXPLORE ACE SPACES</span>
