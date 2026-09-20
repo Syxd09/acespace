@@ -88,6 +88,19 @@ COMPREHENSIVE DOMAIN KNOWLEDGE
   • Lumen Translucent (Backlit & Illuminating):
     - Shell (AC-0601), Ice (AC-0602), Opal (AC-0603): Up to 38–42% light transmission. Glows warmly under concealed 2700K–3500K LED matrices.
 
+4.2. EXTENDED COLOUR PALETTE & INDENT SPECIFICATIONS (BLUES, REDS, GREENS)
+- Standard In-Stock Warm Reds & Earth:
+  • Terra / Sienna (AC-0401): Deep clay terracotta and burnt sienna with an ultra-matte mineral finish. Perfect for Mediterranean luxury, kitchen islands, and vanity sinks.
+  • Terra / Sage (AC-0402): Muted celadon sage green.
+  • Terra / Umber (AC-0403): Raw umber soil tone.
+- DuPont™ Corian® Custom Indent Blues & Saturated Colors:
+  • As the authorized DuPont™ Corian® distributor in Bangalore, Ace Spaces supplies DuPont's full global architectural color deck on project indent.
+  • Blue Palette: DuPont™ Corian® Laguna, Deep Nocturne, Marine Blue, Celestial.
+  • Saturated Red Palette: DuPont™ Corian® Imperial Red, Hot, Royal Red.
+  • Backlit Translucent Blue Effects: Lumen / Opal (AC-0603) or Lumen / Ice (AC-0602) backlit with cool-spectrum (4500K–6500K) or RGB LED matrices for radiant sapphire/cyan architectural illumination.
+- Color Consultation Rule:
+  • When a client asks for blue or red materials (or any color suggestions): Present our stocked Terra / Sienna (rich terracotta red), introduce DuPont™ Corian® indent blues/reds (Laguna, Marine Blue, Imperial Red), explain backlit Lumen options, and suggest balancing saturated planes with neutral architectural grounds like Noma / Linen (AC-0102) or Alto / Calacatta Gold (AC-0202).
+
 4.1. COMMERCIAL PRICING MATRIX & SIZING
 - Standard Sheet Sizing: All standard slabs are 3660 mm × 760 mm (~30 sq. ft).
 - Commercial Pricing by Series (12 mm Standard):
@@ -214,51 +227,63 @@ export async function POST(req: NextRequest) {
     const groqKey = getEnvValue('GROQ_API_KEY') || (getEnvValue('AI_API_KEY')?.startsWith('gsk_') ? getEnvValue('AI_API_KEY') : null);
     const openAiKey = getEnvValue('OPENAI_API_KEY') || (!getEnvValue('AI_API_KEY')?.startsWith('gsk_') ? getEnvValue('AI_API_KEY') : null);
 
-    // 1. Try Groq (Ultra-fast LLM inference)
+    // 1. Try Groq (Ultra-fast LLM inference with model fallback)
     if (groqKey) {
-      try {
-        const groqModel = getEnvValue('AI_MODEL') || 'llama-3.3-70b-versatile';
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 12000);
+      const candidateModels = Array.from(new Set([
+        getEnvValue('AI_MODEL'),
+        'openai/gpt-oss-120b',
+        'openai/gpt-oss-20b',
+        'qwen/qwen3.8-27b',
+      ].filter(Boolean))) as string[];
 
-        const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${groqKey}`,
-          },
-          body: JSON.stringify({
-            model: groqModel,
-            temperature: 0.25,
-            max_tokens: 1024,
-            messages: [
-              { role: 'system', content: ACE_SPACES_SYSTEM_PROMPT },
-              ...messages.slice(-8),
-            ],
-          }),
-          signal: controller.signal,
-        });
+      for (const groqModel of candidateModels) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 12000);
 
-        clearTimeout(timeoutId);
-
-        if (groqRes.ok) {
-          const data = await groqRes.json();
-          const reply = data.choices?.[0]?.message?.content;
-          if (reply) {
-            const suggestedActions = generateSuggestedActions(reply, query);
-            return NextResponse.json({
-              response: reply,
-              provider: 'groq',
+          const groqRes = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${groqKey}`,
+            },
+            body: JSON.stringify({
               model: groqModel,
-              suggestedActions,
-            });
+              temperature: 0.25,
+              max_tokens: 1024,
+              messages: [
+                { role: 'system', content: ACE_SPACES_SYSTEM_PROMPT },
+                ...messages.slice(-8),
+              ],
+            }),
+            signal: controller.signal,
+          });
+
+          clearTimeout(timeoutId);
+
+          if (groqRes.ok) {
+            const data = await groqRes.json();
+            const reply = data.choices?.[0]?.message?.content;
+            if (reply) {
+              const suggestedActions = generateSuggestedActions(reply, query);
+              return NextResponse.json({
+                response: reply,
+                provider: 'groq',
+                model: groqModel,
+                suggestedActions,
+              });
+            }
+          } else {
+            const errText = await groqRes.text();
+            console.warn(`Groq model ${groqModel} returned status ${groqRes.status}:`, errText);
+            // If model is not found, continue to next candidate model
+            if (groqRes.status !== 404 && !errText.includes('model_not_found')) {
+              break;
+            }
           }
-        } else {
-          const errText = await groqRes.text();
-          console.warn('Groq API returned error status:', groqRes.status, errText);
+        } catch (groqErr) {
+          console.warn(`Groq attempt with model ${groqModel} failed:`, groqErr);
         }
-      } catch (groqErr) {
-        console.warn('Groq LLM call failed or timed out. Falling back smoothly:', groqErr);
       }
     }
 

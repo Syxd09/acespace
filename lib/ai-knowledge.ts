@@ -537,65 +537,66 @@ Please feel free to ask me anything about:
 • Ordering physical specifier sample boxes across India
 • Studio consultations & the WhatsApp line in our navbar`;
 
+function matchesPhrase(text: string, phrase: string): boolean {
+  const escaped = phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(^|[^a-zA-Z0-9])${escaped}([^a-zA-Z0-9]|$)`, 'i').test(text);
+}
+
 /**
  * Helper to look up a specific material from the catalog based on user query
  */
 export function findMatchingMaterial(query: string): Material | null {
-  const q = query.toLowerCase();
+  const q = query.toLowerCase().trim();
+  if (!q) return null;
 
   // 1. Check exact or stripped material code (e.g. AC-0101, ac0101, ac-0202)
   for (const mat of materials) {
     const codeClean = mat.code.toLowerCase().replace(/[^a-z0-9]/g, '');
     const qClean = q.replace(/[^a-z0-9]/g, '');
-    if (qClean.includes(codeClean)) {
+    if (codeClean.length >= 5 && qClean.includes(codeClean)) {
       return mat;
     }
   }
 
-  // 2. Check full material name & parts (e.g. "noma / white chalk", "white chalk", "calacatta gold")
+  // 2. Check full material specific name (e.g. "white chalk", "calacatta gold", "fior di bosco")
   for (const mat of materials) {
-    const nameLower = mat.name.toLowerCase();
-    const parts = nameLower.split('/').map((p) => p.trim());
-    for (const part of parts) {
-      if (part.length >= 4 && q.includes(part)) {
-        return mat;
-      }
+    // Check specific name part after the collection slash (e.g., "White Chalk" from "Noma / White Chalk")
+    const specificName = mat.name.split('/')[1]?.trim().toLowerCase();
+    if (specificName && specificName.length >= 4 && matchesPhrase(q, specificName)) {
+      return mat;
+    }
+    if (matchesPhrase(q, mat.name.toLowerCase())) {
+      return mat;
     }
     if (q.includes(mat.slug)) {
       return mat;
     }
   }
 
-  // 3. Check specific iconic color / finish names
+  // 3. Check specific iconic color / finish names (exact phrase matches only)
   const specificTerms: [string, string][] = [
     ['white chalk', 'noma-white-chalk'],
     ['chalk', 'noma-white-chalk'],
-    ['linen', 'noma-linen'],
-    ['parchment', 'noma-parchment'],
-    ['bone', 'noma-bone'],
-    ['concrete ash', 'noma-concrete-ash'],
-    ['bianco vein', 'alto-bianco-vein'],
     ['calacatta gold', 'alto-calacatta-gold'],
     ['calacatta', 'alto-calacatta-gold'],
+    ['bianco vein', 'alto-bianco-vein'],
     ['fior di bosco', 'alto-fior-di-bosco'],
     ['sand fine', 'strata-sand-fine'],
     ['terrazzo ash', 'strata-terrazzo-ash'],
-    ['terrazzo', 'strata-terrazzo-ash'],
-    ['sienna', 'terra-sienna'],
-    ['sage', 'terra-sage'],
-    ['umber', 'terra-umber'],
-    ['still', 'obsidian-still'],
-    ['coal', 'obsidian-coal'],
-    ['basalt', 'obsidian-basalt'],
+    ['terra sienna', 'terra-sienna'],
+    ['terra sage', 'terra-sage'],
+    ['terra umber', 'terra-umber'],
+    ['obsidian still', 'obsidian-still'],
+    ['obsidian coal', 'obsidian-coal'],
+    ['obsidian basalt', 'obsidian-basalt'],
     ['lumen shell', 'lumen-shell'],
     ['lumen ice', 'lumen-ice'],
     ['lumen opal', 'lumen-opal'],
     ['opal lumina', 'lumen-opal'],
-    ['opal', 'lumen-opal'],
   ];
 
   for (const [term, slug] of specificTerms) {
-    if (q.includes(term)) {
+    if (matchesPhrase(q, term)) {
       const found = materials.find((m) => m.slug === slug);
       if (found) return found;
     }
@@ -748,18 +749,62 @@ How can I assist your practice today? You can ask me about:
     }
   }
 
-  // 3. SPECIFIC MATERIAL LOOKUP
-  // Check if current query or recent conversation history specifies a particular material
-  let matchedMaterial = findMatchingMaterial(query);
-  if (!matchedMaterial && history && history.length > 0) {
-    for (let i = history.length - 1; i >= 0; i--) {
-      const hMatch = findMatchingMaterial(history[i].content);
-      if (hMatch) {
-        matchedMaterial = hMatch;
-        break;
-      }
+  // 3. COLOR PALETTE & ARCHITECTURAL RECOMMENDATION ENGINE
+  const isColorQuery = /\b(blue|red|green|colour|color|colours|colors|palette|shade|shades|terracotta|sienna|sage|umber|amber)\b/i.test(query);
+  const isSuggestionQuery = /\b(suggest|recommend|advice|which material|options|best material)\b/i.test(query);
+
+  if (isColorQuery || isSuggestionQuery) {
+    const mentionsBlue = /\b(blue|cyan|azure|navy|ocean|sapphire)\b/i.test(query);
+    const mentionsRed = /\b(red|terracotta|sienna|crimson|ruby|rust)\b/i.test(query);
+    const mentionsGreen = /\b(green|sage|celadon|botanic)\b/i.test(query);
+
+    let advisory = `### Architectural Material & Colour Selection for Residential Spaces\n\n`;
+
+    if (mentionsRed || (mentionsBlue && mentionsRed)) {
+      advisory += `#### 1. Red & Warm Terracotta Surfaces\n`;
+      advisory += `• **[Terra / Sienna (AC-0401)](/materials#library)**: Our primary stocked architectural red — a deep, earthy burnt sienna and Mediterranean clay mineral slab (3660 × 760 mm, 12mm & 19mm). Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
+      advisory += `• **DuPont™ Corian® Indent Reds**: As the authorized DuPont™ Corian® distributor in Bangalore, we supply specialized saturated architectural reds such as *Imperial Red* and *Hot* on project indent for high-impact commercial or residential focal points.\n\n`;
     }
+
+    if (mentionsBlue || (mentionsBlue && mentionsRed)) {
+      advisory += `#### 2. Blue & Cool Oceanic Surfaces\n`;
+      advisory += `• **DuPont™ Corian® Specialized Indent Blues**: Classic solid surface blues including **Laguna**, **Deep Nocturne**, **Marine Blue**, and **Celestial** can be custom-ordered and 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins and integrated washplane basins.\n`;
+      advisory += `• **[Lumen / Opal (AC-0603)](/materials#library) & [Lumen / Ice (AC-0602)](/materials#library)**: 6mm and 12mm translucent mineral surfaces that diffuse light with up to 40% transmission. When illuminated from behind with cool-spectrum (4500K–6500K) or RGB LED matrices, they glow with radiant sapphire, cyan, or azure architectural light.\n\n`;
+    }
+
+    if (mentionsGreen && !mentionsBlue && !mentionsRed) {
+      advisory += `#### Botanic & Earthy Green Surfaces\n`;
+      advisory += `• **[Terra / Sage (AC-0402)](/materials#library)**: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n\n`;
+    }
+
+    if (!mentionsBlue && !mentionsRed && !mentionsGreen) {
+      advisory += `#### Recommended Architectural Collections\n`;
+      advisory += `• **[Noma Solids](/materials#library)**: Pure monolithic planes in White Chalk, Linen, Parchment, and Bone.\n`;
+      advisory += `• **[Alto Veined](/materials#library)**: Sculptural marble movement in Calacatta Gold and Bianco Vein.\n`;
+      advisory += `• **[Terra Earth](/materials#library)**: Earthy pigments in Sienna (terracotta red), Sage (botanic green), and Umber (warm soil).\n\n`;
+    }
+
+    advisory += `#### Balanced Architectural Pairings\n`;
+    advisory += `To ensure bold saturated colours enhance rather than overwhelm residential volumes, we recommend pairing statement red or blue surfaces with calm grounding neutrals:\n`;
+    advisory += `• **[Noma / Linen (AC-0102)](/materials#library)**: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
+    advisory += `• **[Alto / Calacatta Gold (AC-0202)](/materials#library)**: Directional veining with honey-gold ribbons that subtly unifies warm terracotta and cool accents.\n\n`;
+    advisory += `All Ace Spaces solid surfaces feature **100% zero crystalline silica** (silicosis-safe), seamless inconspicuous joins, and vacuum thermoforming capabilities down to 25mm radii.\n\n`;
+    advisory += `Would you like to curate physical 100 × 100 mm specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919845012345)?`;
+
+    return {
+      answer: advisory.trim(),
+      matchedTopic: 'Material Colour & Architectural Advisory',
+      suggestedActions: [
+        { label: 'View Terra / Sienna', href: '/materials#library' },
+        { label: 'Order Sample Tray', href: '/materials' },
+        { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919845012345' },
+      ],
+    };
   }
+
+  // 4. SPECIFIC MATERIAL LOOKUP
+  // Check if current query specifies a particular material
+  const matchedMaterial = findMatchingMaterial(query);
 
   if (matchedMaterial) {
     const pricing = getMaterialPricing(matchedMaterial);

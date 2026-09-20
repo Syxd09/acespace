@@ -1,5 +1,79 @@
 [
   {
+    "id": "chat_1789873555527_vvbr0",
+    "sessionNumber": "ACE-CHAT-212",
+    "startedAt": "2026-09-20T03:05:55.509Z",
+    "endedAt": "2026-09-20T03:11:07.918Z",
+    "durationSeconds": 312,
+    "messageCount": 3,
+    "intent": "Blue Home Color",
+    "summary": "The client requested suggestions for blue color options for their home. The AI highlighted its expertise in DuPont™ Corian® solid surfaces and directed the client to use the WhatsApp Desk for further discussion and material estimates.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {
+      "name": "",
+      "phone": "",
+      "email": ""
+    },
+    "followUpRecommendation": "Contact the client via WhatsApp to gather project details and provide a curated blue color palette with material options.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Conversation refreshed.\n\nI am Ace Spaces' private material intelligence, strictly grounded in DuPont™ Corian®, Coro Collective spatial lineage, 5-axis CNC fabrication, and zero-silica surface engineering.\n\nHow may I assist your architectural practice today?",
+        "timestamp": "08:21 AM"
+      },
+      {
+        "role": "user",
+        "content": "i want blue color for my home, please suggest some",
+        "timestamp": "08:29 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your architectural inquiry. \n\nOur studio engineers specialize in DuPont™ Corian® solid surfaces, sub-0.2mm 5-axis CNC machining, thermoforming, and Coro Collective spatial integration.\n\nTo discuss your project drawings or obtain immediate material estimates, please tap the **WhatsApp Desk** button in the top navigation bar or browse our certified materials.",
+        "timestamp": "08:29 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-20T03:11:12.469Z"
+  },
+  {
+    "id": "chat_1789872567404_2pys5",
+    "sessionNumber": "ACE-CHAT-866",
+    "startedAt": "2026-09-20T02:49:27.385Z",
+    "endedAt": "2026-09-20T03:03:45.880Z",
+    "durationSeconds": 858,
+    "messageCount": 3,
+    "intent": "Blue Home Color Suggestion",
+    "summary": "The client requested suggestions for a blue color scheme for their home. The AI highlighted its expertise in DuPont™ Corian® and related services, then directed the client to use the WhatsApp Desk for further discussion.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {
+      "name": "",
+      "phone": "",
+      "email": ""
+    },
+    "followUpRecommendation": "Reach out to the client via WhatsApp to gather project details and provide tailored blue color material options.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Conversation refreshed.\n\nI am Ace Spaces' private material intelligence, strictly grounded in DuPont™ Corian®, Coro Collective spatial lineage, 5-axis CNC fabrication, and zero-silica surface engineering.\n\nHow may I assist your architectural practice today?",
+        "timestamp": "08:21 AM"
+      },
+      {
+        "role": "user",
+        "content": "i want blue color for my home, please suggest some",
+        "timestamp": "08:29 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Thank you for your architectural inquiry. \n\nOur studio engineers specialize in DuPont™ Corian® solid surfaces, sub-0.2mm 5-axis CNC machining, thermoforming, and Coro Collective spatial integration.\n\nTo discuss your project drawings or obtain immediate material estimates, please tap the **WhatsApp Desk** button in the top navigation bar or browse our certified materials.",
+        "timestamp": "08:29 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-20T03:03:49.275Z"
+  },
+  {
     "id": "chat_1789855933749_0ad2k",
     "sessionNumber": "ACE-CHAT-532",
     "startedAt": "2026-09-19T22:12:13.721Z",
