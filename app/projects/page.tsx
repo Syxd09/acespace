@@ -61,7 +61,7 @@ export default function ProjectsPage() {
       item: {
         '@type': 'CreativeWork',
         name: p.title,
-        description: p.summary,
+        description: p.description,
         image: `https://acespacesindia.vercel.app${p.image}`,
         url: `https://acespacesindia.vercel.app/projects/${p.slug}`,
       },

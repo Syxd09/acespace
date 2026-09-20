@@ -162,6 +162,17 @@ How may I assist your specifications today?`,
     }
   }, [isOpen]);
 
+  // Lock background body scroll when open on mobile
+  useEffect(() => {
+    if (isOpen && typeof window !== 'undefined' && window.innerWidth <= 640) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   // Hide bot on admin portal
   if (pathname?.startsWith('/admin')) {
     return null;
@@ -416,6 +427,7 @@ How may I assist your architectural practice today?`,
           >
             {/* Architectural Header */}
             <header
+              className="ace-ai-chat-header"
               style={{
                 padding: '14px 18px',
                 background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%)',
@@ -492,6 +504,7 @@ How may I assist your architectural practice today?`,
                 {/* Clear Conversation */}
                 <button
                   type="button"
+                  className="ace-ai-header-btn"
                   onClick={handleClearChat}
                   title="Refresh & Clear Conversation"
                   aria-label="Refresh conversation"
@@ -525,6 +538,7 @@ How may I assist your architectural practice today?`,
                 {/* Close Button */}
                 <button
                   type="button"
+                  className="ace-ai-header-btn"
                   onClick={() => setIsOpen(false)}
                   title="Close AI Material Concierge"
                   aria-label="Close conversation"
@@ -816,6 +830,7 @@ How may I assist your architectural practice today?`,
 
             {/* Input Form & Composer */}
             <form
+              className="ace-ai-chat-footer"
               onSubmit={(e) => {
                 e.preventDefault();
                 handleSendMessage();
@@ -842,6 +857,7 @@ How may I assist your architectural practice today?`,
               >
                 <textarea
                   ref={textareaRef}
+                  className="ace-ai-textarea"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
@@ -1110,17 +1126,22 @@ How may I assist your architectural practice today?`,
         /* Responsive Mobile Behavior (<640px) */
         @media (max-width: 640px) {
           .ace-ai-bot-root {
-            bottom: 16px !important;
+            bottom: max(16px, env(safe-area-inset-bottom)) !important;
             right: 16px !important;
           }
+          .ace-ai-bot-root.is-open .ace-ai-trigger-pill {
+            display: none !important;
+          }
           .ace-ai-trigger-pill {
-            width: 44px !important;
-            height: 44px !important;
-            min-width: 44px !important;
+            width: 46px !important;
+            height: 46px !important;
+            min-width: 46px !important;
             padding: 0 !important;
             gap: 0 !important;
             justify-content: center !important;
             align-items: center !important;
+            border-radius: 50% !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
           }
           .ace-ai-trigger-emblem-desktop,
           .ace-ai-trigger-text,
@@ -1133,7 +1154,7 @@ How may I assist your architectural practice today?`,
           .ace-ai-chat-window {
             position: fixed !important;
             inset: 0 !important;
-            width: 100% !important;
+            width: 100vw !important;
             max-width: 100vw !important;
             height: 100% !important;
             max-height: 100dvh !important;
@@ -1142,6 +1163,24 @@ How may I assist your architectural practice today?`,
             bottom: 0 !important;
             right: 0 !important;
             z-index: 10000 !important;
+          }
+          .ace-ai-chat-header {
+            padding-top: max(16px, env(safe-area-inset-top)) !important;
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+          }
+          .ace-ai-header-btn {
+            width: 36px !important;
+            height: 36px !important;
+            font-size: 15px !important;
+          }
+          .ace-ai-chat-footer {
+            padding-bottom: max(14px, env(safe-area-inset-bottom)) !important;
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+          }
+          .ace-ai-textarea {
+            font-size: 16px !important;
           }
         }
 

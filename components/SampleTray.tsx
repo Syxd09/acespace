@@ -103,6 +103,17 @@ export default function SampleTray() {
     return () => clearTimeout(timer);
   }, [formData, shortlist, orderId, formSubmitted]);
 
+  // Lock background body scroll when Sample Tray is open
+  React.useEffect(() => {
+    if (isTrayOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isTrayOpen]);
+
   if (pathname?.startsWith('/admin') || !isTrayOpen) {
     return null;
   }
@@ -197,6 +208,7 @@ export default function SampleTray() {
 
       {/* Side Slide-Over Panel */}
       <div
+        className="sample-tray-panel"
         style={{
           position: 'fixed',
           top: 0,
@@ -215,6 +227,7 @@ export default function SampleTray() {
       >
         {/* Header */}
         <div
+          className="sample-tray-header"
           style={{
             padding: '24px 32px',
             borderBottom: '1px solid var(--line)',
@@ -233,6 +246,7 @@ export default function SampleTray() {
           </div>
           <button
             onClick={() => setIsTrayOpen(false)}
+            className="sample-tray-close"
             style={{
               width: '36px',
               height: '36px',
@@ -253,7 +267,7 @@ export default function SampleTray() {
         </div>
 
         {/* Content Body */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: '32px', display: 'flex', flexDirection: 'column' }}>
+        <div className="sample-tray-body" style={{ flex: 1, overflowY: 'auto', padding: '32px', display: 'flex', flexDirection: 'column' }}>
           {formSubmitted ? (
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '10px 0' }}>
               <div style={{ textAlign: 'center', marginBottom: '24px' }}>
@@ -560,6 +574,7 @@ export default function SampleTray() {
                       {/* Remove Button */}
                       <button
                         type="button"
+                        className="sample-tray-remove-btn"
                         onClick={(e) => {
                           e.stopPropagation();
                           removeSample(mat.slug);
@@ -570,7 +585,7 @@ export default function SampleTray() {
                           cursor: 'pointer',
                           background: 'none',
                           border: 'none',
-                          padding: '4px',
+                          padding: '8px',
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -611,7 +626,7 @@ export default function SampleTray() {
                       onChange={(e) => setFormData({ ...formData, studio: e.target.value })}
                     />
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <div className="sample-tray-form-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                     <input
                       type="email"
                       placeholder="Studio Email *"
@@ -636,7 +651,7 @@ export default function SampleTray() {
                       onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     />
                   </div>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                  <div className="sample-tray-form-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                     <input
                       type="text"
                       placeholder="City *"
@@ -686,6 +701,40 @@ export default function SampleTray() {
           onClose={() => setSelectedMaterial(null)}
         />
       )}
+
+      {/* Sample Tray Mobile Responsiveness */}
+      <style jsx global>{`
+        @media (max-width: 600px) {
+          .sample-tray-panel {
+            width: 100vw !important;
+            max-width: 100vw !important;
+            border-left: none !important;
+          }
+          .sample-tray-header {
+            padding: max(16px, env(safe-area-inset-top)) 18px 16px !important;
+          }
+          .sample-tray-close {
+            width: 44px !important;
+            height: 44px !important;
+            font-size: 20px !important;
+          }
+          .sample-tray-body {
+            padding: 20px 16px max(24px, env(safe-area-inset-bottom)) !important;
+          }
+          .sample-tray-form-2col {
+            grid-template-columns: 1fr !important;
+            gap: 14px !important;
+          }
+          .sample-tray-panel input,
+          .sample-tray-panel textarea {
+            font-size: 16px !important;
+          }
+          .sample-tray-remove-btn {
+            min-width: 44px !important;
+            min-height: 44px !important;
+          }
+        }
+      `}</style>
     </>
   );
 }

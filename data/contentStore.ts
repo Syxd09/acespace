@@ -81,22 +81,37 @@ export function saveSiteContent(content: Partial<SiteContent>): SiteContent {
 
   const payload = JSON.stringify(updated, null, 2);
 
-  // 1. Try writing to local project path
+  // 1. Try writing atomically to local project path
   let written = false;
+  const localDir = path.dirname(localDataPath);
+  const localTmp = path.join(localDir, `.custom-content.tmp.${Date.now()}`);
   try {
-    fs.writeFileSync(localDataPath, payload, 'utf8');
+    if (!fs.existsSync(localDir)) {
+      fs.mkdirSync(localDir, { recursive: true });
+    }
+    fs.writeFileSync(localTmp, payload, 'utf8');
+    fs.renameSync(localTmp, localDataPath);
     written = true;
   } catch (err) {
-    // On Vercel, local filesystem is read-only EROFS
-    console.warn('Local write skipped (likely read-only environment). Trying /tmp path...');
+    try {
+      if (fs.existsSync(localTmp)) fs.unlinkSync(localTmp);
+      fs.writeFileSync(localDataPath, payload, 'utf8');
+      written = true;
+    } catch {
+      // On Vercel, local filesystem is read-only EROFS
+      console.warn('Local write skipped (likely read-only environment). Trying /tmp path...');
+    }
   }
 
   // 2. Try writing to /tmp path if running in serverless / Vercel
   try {
+    const vercelTmpDir = path.dirname(vercelTmpPath);
+    if (!fs.existsSync(vercelTmpDir)) {
+      fs.mkdirSync(vercelTmpDir, { recursive: true });
+    }
     fs.writeFileSync(vercelTmpPath, payload, 'utf8');
     written = true;
   } catch (err) {
-    // Log if /tmp write fails
     if (!written) {
       console.warn('Serverless /tmp write skipped:', err);
     }

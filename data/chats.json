@@ -1,5 +1,544 @@
 [
   {
+    "id": "chat_1789855933749_0ad2k",
+    "sessionNumber": "ACE-CHAT-532",
+    "startedAt": "2026-09-19T22:12:13.721Z",
+    "endedAt": "2026-09-19T22:12:16.003Z",
+    "durationSeconds": 2,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T22:12:30.587Z"
+  },
+  {
+    "id": "chat_1789855936927_cz2xn",
+    "sessionNumber": "ACE-CHAT-296",
+    "startedAt": "2026-09-19T22:12:16.916Z",
+    "endedAt": "2026-09-19T22:12:16.978Z",
+    "durationSeconds": 0,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T22:12:27.745Z"
+  },
+  {
+    "id": "chat_1789855859974_5mf4x",
+    "sessionNumber": "ACE-CHAT-705",
+    "startedAt": "2026-09-19T22:10:59.954Z",
+    "endedAt": "2026-09-19T22:12:02.348Z",
+    "durationSeconds": 62,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T22:12:13.287Z"
+  },
+  {
+    "id": "chat_1789854929978_tuxpg",
+    "sessionNumber": "ACE-CHAT-573",
+    "startedAt": "2026-09-19T21:55:29.949Z",
+    "endedAt": "2026-09-19T22:10:54.956Z",
+    "durationSeconds": 925,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T22:11:00.425Z"
+  },
+  {
+    "id": "chat_1789852851998_2s6r2",
+    "sessionNumber": "ACE-CHAT-933",
+    "startedAt": "2026-09-19T21:20:51.987Z",
+    "endedAt": "2026-09-19T21:55:24.456Z",
+    "durationSeconds": 2072,
+    "messageCount": 7,
+    "intent": "General Information Request",
+    "summary": "The client greeted the assistant without a specific query, and the AI responded with a comprehensive overview of Ace Spaces Studio’s capabilities, material catalog, and contact options. The assistant highlighted the Coro Collective, DuPont™ Corian® slabs, and fabrication services while inviting the client to specify their project needs.",
+    "materialsDiscussed": [
+      "Noma Solids",
+      "Alto Veined",
+      "Obsidian Aggregates",
+      "Lucent Translucent"
+    ],
+    "materialsSuggested": [],
+    "customerContact": {
+      "name": "",
+      "phone": "",
+      "email": ""
+    },
+    "followUpRecommendation": "Ask the client to share details of their project or specific material requirements to provide targeted recommendations.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T21:55:29.234Z"
+  },
+  {
+    "id": "chat_1789852847706_gz6jd",
+    "sessionNumber": "ACE-CHAT-497",
+    "startedAt": "2026-09-19T21:20:47.697Z",
+    "endedAt": "2026-09-19T21:20:48.595Z",
+    "durationSeconds": 1,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T21:20:59.395Z"
+  },
+  {
+    "id": "chat_1789852839110_680zy",
+    "sessionNumber": "ACE-CHAT-174",
+    "startedAt": "2026-09-19T21:20:39.099Z",
+    "endedAt": "2026-09-19T21:20:46.568Z",
+    "durationSeconds": 7,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T21:20:56.853Z"
+  },
+  {
+    "id": "chat_1789852825216_8bd27",
+    "sessionNumber": "ACE-CHAT-312",
+    "startedAt": "2026-09-19T21:20:25.200Z",
+    "endedAt": "2026-09-19T21:20:37.695Z",
+    "durationSeconds": 12,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T21:20:48.810Z"
+  },
+  {
+    "id": "chat_1789852665962_9suwd",
+    "sessionNumber": "ACE-CHAT-307",
+    "startedAt": "2026-09-19T21:17:45.927Z",
+    "endedAt": "2026-09-19T21:20:23.114Z",
+    "durationSeconds": 157,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T21:20:34.158Z"
+  },
+  {
+    "id": "chat_1789849385508_mbl08",
+    "sessionNumber": "ACE-CHAT-737",
+    "startedAt": "2026-09-19T20:23:05.456Z",
+    "endedAt": "2026-09-19T21:17:40.260Z",
+    "durationSeconds": 3275,
+    "messageCount": 7,
+    "intent": "Coro Collective Showroom & Maps Location",
+    "summary": "Visitor inquired about the physical location and directions to the Coro Collective and Ace Spaces studio in Bengaluru. AI provided the Indiranagar address and direct Google Maps link.",
+    "materialsDiscussed": [],
+    "materialsSuggested": [],
+    "customerContact": {},
+    "followUpRecommendation": "Confirm appointment at the Indiranagar studio showroom.",
+    "status": "new",
+    "messages": [
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nI am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.\n\nI can assist with:\n• **Coro Collective Showroom Location & Google Maps directions**\n• **Founders & Leadership (Syed Matheen & Architectural Direction)**\n• **Material Chemistry & Recommending Better Materials for Your Space**\n• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**\n\nHow may I assist your specifications today?",
+        "timestamp": "03:35 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**. \n\nI am your private architectural assistant, grounded directly in our Bangalore workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.\n\nHow can I assist your practice today? You can ask me about:\n1. **The Coro Connection**: How Ace Spaces powers Coro Collective.\n2. **DuPont™ Corian®**: Zero-silica safety, food-contact hygiene, and 10-year warranties.\n3. **Materials & Slabs**: Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit.\n4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), thermoforming down to 25mm radii, and seamless joints.\n5. **Specimen Samples**: Ordering physical 100mm × 100mm curated sample trays across India.\n6. **WhatsApp & Consultation**: Connecting directly with our Bengaluru technical desk via the navbar.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "what is coro",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "assistant",
+        "content": "### What is **Coro Collective**?\n\n**Coro Collective** is the design‑driven arm of **Ace Spaces**, created to translate the raw potential of DuPont™ Corian® into complete spatial experiences, high‑end furniture, and immersive interiors.\n\n| Aspect | Details |\n|--------|---------|\n| **Foundational Relationship** | • **Ace Spaces** supplies the *raw* DuPont™ Corian® slabs, mineral substrates, and precision‑fabricated blanks.<br>• **Coro Collective** conceives the *finished* architecture—reception counters, kitchen islands, vanity systems, illuminated panels, and collectible furniture—using those monolithic planes. |\n| **Design Philosophy** | • Seamless, grout‑free planes that read as a single continuous surface.<br>• Organic, fluid curves achievable only through Corian’s zero‑silica, thermo‑formable chemistry.<br>• Emphasis on durability, hygiene, and reparability (scratches can be renewed in‑situ). |\n| **Typical Deliverables** | • **Integrated kitchen islands** (4 m+ monolithic waterfalls with built‑in sinks).<br>• **Full‑height shower wet walls** and **Coro‑slot vanity basins** formed directly from a single slab.<br>• **Illuminated feature walls** using the Lucent Translucent series (e.g., Opal Lumina, AC‑0401).<br>• **Luxury furniture**—sculpted tables, benches, and display pedestals—where the material’s translucency or veining becomes a visual signature. |\n| **Material Source** | Every Coro piece originates from **Ace Spaces’ certified DuPont™ Corian® inventory** (Noma Solids, Alto Veined, Obsidian Aggregates, Lucent Translucent). All slabs carry the genuine chemical‑composition certification and the 10‑year installed‑product warranty from DuPont. |\n| **Fabrication Backbone** | • 5‑axis CNC milling (≤ 0.2 mm tolerance).<br>• Vacuum‑membrane thermoforming (down to 25 mm radii).<br>• Seamless, color‑matched acrylic molecular welding.<br>• Hand‑finished edge profiles (shark‑nose, waterfall aprons, bullnose, etc.). |\n| **Where to Experience It** | **Showroom & Consultation Studio** – #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038.<br>**Google Maps**: [Open Coro Collective on Google Maps ↗](https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore) |\n| **Contact for Collaboration** | • **WhatsApp Specifier Desk** – +91 98450 12345 (top‑navbar button).<br>• Submit CAD/floor‑plan files via **/contact** for a detailed quotation. |\n\n---\n\n#### Quick Takeaway\nCoro Collective is **the creative expression** of Ace Spaces’ material expertise. It turns the monolithic, zero‑silica DuPont™ Corian® slabs we fabricate into seamless, hygienic, and sculpturally expressive interiors and furniture—delivering the same high‑grade material that architects and designers order directly from our sample tray, but realized as complete, turnkey spatial solutions.\n\nFeel free to explore our **material catalog** (`/materials`), learn more about **the Coro Connection** (`/about#coro`), or request a **physical specifier sample box** for hands‑on evaluation.",
+        "timestamp": "03:37 PM"
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": "02:24 AM"
+      },
+      {
+        "role": "assistant",
+        "content": "Welcome to **Ace Spaces Studio Material Intelligence**.\n\nHow may I assist you today?  \n\nYou can ask about:\n\n- **DuPont™ Corian®** composition, safety, and warranty  \n- **Slab dimensions, colors, and pricing** (Noma Solids, Alto Veined, Lucent Translucent, etc.)  \n- **5‑axis CNC tolerances, thermoforming limits, and edge profiles**  \n- **Integrated kitchen, bathroom, or commercial applications**  \n- **Ordering a physical sample tray** – up to six 100 mm × 100 mm × 12 mm specimens  \n- **Studio location, showroom tour, or WhatsApp technical desk**  \n\nFeel free to let me know the specific information you need.",
+        "timestamp": "02:25 AM"
+      }
+    ],
+    "lastUpdated": "2026-09-19T21:17:47.740Z"
+  },
+  {
     "id": "chat_1789842521557_3jh9b",
     "sessionNumber": "ACE-CHAT-486",
     "startedAt": "2026-09-19T18:28:41.539Z",

@@ -51,23 +51,39 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Determine target upload directory (local public/assets/uploads or /tmp fallback)
-    let uploadsDir = path.join(process.cwd(), 'public', 'assets', 'uploads');
-    let isServerlessTmp = false;
+    // Determine target upload directory (local public/assets/uploads)
+    const uploadsDir = path.join(process.cwd(), 'public', 'assets', 'uploads');
 
     if (process.env.VERCEL) {
+      // In Vercel serverless environment, local filesystem is read-only
+      // Writing to /tmp produces 404s because Next.js does not serve static files from /tmp
       try {
         if (!fs.existsSync(uploadsDir)) {
           fs.mkdirSync(uploadsDir, { recursive: true });
         }
-      } catch (e) {
-        uploadsDir = path.join('/tmp', 'uploads');
-        isServerlessTmp = true;
+      } catch {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Serverless deployment detected. Local file upload is unavailable on read-only serverless filesystems. Please configure cloud storage (e.g. Vercel Blob or Cloudinary) or specify an image URL.',
+          },
+          { status: 501 }
+        );
       }
     }
 
     if (!fs.existsSync(uploadsDir)) {
-      fs.mkdirSync(uploadsDir, { recursive: true });
+      try {
+        fs.mkdirSync(uploadsDir, { recursive: true });
+      } catch (err) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: 'Cannot create upload directory. Cloud storage configuration required.',
+          },
+          { status: 500 }
+        );
+      }
     }
 
     // Sanitize filename strictly: alphanumeric, hyphens, and dots only
@@ -79,7 +95,7 @@ export async function POST(req: NextRequest) {
     const buffer = Buffer.from(bytes);
     fs.writeFileSync(filePath, buffer);
 
-    const publicUrl = isServerlessTmp ? `/assets/uploads/${safeName}` : `/assets/uploads/${safeName}`;
+    const publicUrl = `/assets/uploads/${safeName}`;
     return NextResponse.json({
       success: true,
       url: publicUrl,

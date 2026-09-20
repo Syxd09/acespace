@@ -2,6 +2,7 @@
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
+import { generateWhatsAppUrl, DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 
 export default function ErrorBoundary({
   error,
@@ -65,7 +66,7 @@ export default function ErrorBoundary({
           </Link>
           <a
             className="text-link"
-            href="https://wa.me/919845012345"
+            href={generateWhatsAppUrl(DEFAULT_WHATSAPP_NUMBER)}
             target="_blank"
             rel="noopener noreferrer"
             style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase' }}

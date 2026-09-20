@@ -27,13 +27,13 @@ export const defaultHeroSlides: HeroSlide[] = [
   },
   {
     id: 2,
-    image: '/assets/materials/css-calacatta-greige-sheet.jpg',
+    image: '/assets/applications/stonique-bathroom-vanity.jpg',
     eyebrow: 'Workshop Craft / Seamless Form',
     title: 'Quiet depth,',
     subtitle: 'monolithic form.',
     copy: 'Through-body mineral compositions engineered with zero visible seams, non-porous longevity, and velvety tactile texture.',
-    specimen: 'Noma / Chalk',
-    location: 'Material Specimen / Honed Matte',
+    specimen: 'Stonique / Arctic Grain',
+    location: 'Master Suite / Bangalore',
   },
   {
     id: 3,

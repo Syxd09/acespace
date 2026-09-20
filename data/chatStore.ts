@@ -44,20 +44,33 @@ function getChatsFilePath(): string {
 
 function writeChatsData(data: AIChatSession[]): void {
   const payload = JSON.stringify(data, null, 2);
+  const localTmp = path.join(localDir, `.chats.tmp.${Date.now()}`);
   let written = false;
 
   try {
     if (!fs.existsSync(localDir)) {
       fs.mkdirSync(localDir, { recursive: true });
     }
-    fs.writeFileSync(localDataPath, payload, 'utf8');
+    fs.writeFileSync(localTmp, payload, 'utf8');
+    fs.renameSync(localTmp, localDataPath);
     written = true;
   } catch {
-    // Read-only filesystem on Vercel Serverless
+    // Fallback if atomic rename fails or read-only filesystem
+    try {
+      if (fs.existsSync(localTmp)) fs.unlinkSync(localTmp);
+      fs.writeFileSync(localDataPath, payload, 'utf8');
+      written = true;
+    } catch {
+      // Serverless fallback
+    }
   }
 
   if (!written || process.env.VERCEL) {
     try {
+      const vercelTmpDir = path.dirname(vercelTmpPath);
+      if (!fs.existsSync(vercelTmpDir)) {
+        fs.mkdirSync(vercelTmpDir, { recursive: true });
+      }
       fs.writeFileSync(vercelTmpPath, payload, 'utf8');
     } catch (err) {
       console.warn('Failed to write /tmp backup for chats.json:', err);

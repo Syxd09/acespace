@@ -10,6 +10,24 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const [targetLabel, setTargetLabel] = useState('');
   const prevPathRef = useRef(pathname);
 
+  // Disable browser-native scroll restoration to prevent scroll jitter on
+  // reload, and enable smooth scrolling only after the first paint is stable.
+  useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+    // Delay adding .hydrated to ensure scroll-restoration has settled
+    const raf = requestAnimationFrame(() => {
+      document.documentElement.classList.add('hydrated');
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      document.documentElement.classList.remove('hydrated');
+    };
+  }, []);
+
   const getPageTitle = (path: string) => {
     if (path === '/') return 'ACE SPACES';
     if (path.includes('/materials') || path.includes('/collections/colours')) return '01 / MATERIALS & COLOURS';

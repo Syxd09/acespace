@@ -217,7 +217,7 @@ export async function POST(req: NextRequest) {
     // 1. Try Groq (Ultra-fast LLM inference)
     if (groqKey) {
       try {
-        const groqModel = getEnvValue('AI_MODEL') || 'openai/gpt-oss-120b';
+        const groqModel = getEnvValue('AI_MODEL') || 'llama-3.3-70b-versatile';
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 12000);
 
@@ -339,7 +339,7 @@ export async function GET() {
   const openAiKey = getEnvValue('OPENAI_API_KEY');
   const isGroqActive = Boolean(groqKey);
   const isOpenAiActive = Boolean(openAiKey);
-  const activeModel = getEnvValue('AI_MODEL') || (isGroqActive ? 'openai/gpt-oss-120b' : 'private-rule-engine');
+  const activeModel = getEnvValue('AI_MODEL') || (isGroqActive ? 'llama-3.3-70b-versatile' : 'private-rule-engine');
 
   return NextResponse.json({
     status: 'online',

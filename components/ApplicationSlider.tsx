@@ -19,7 +19,6 @@ export default function ApplicationSlider({
   priority = false,
 }: ApplicationSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const total = images.length;
   const timerRef = useRef<NodeJS.Timeout | null>(null);
@@ -32,9 +31,9 @@ export default function ApplicationSlider({
     setCurrentIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Auto-slide every 4.5s
+  // Continuous auto-slide every 4.5s
   useEffect(() => {
-    if (isPaused || total <= 1) return;
+    if (total <= 1) return;
     timerRef.current = setInterval(() => {
       nextSlide();
     }, 4500);
@@ -42,7 +41,7 @@ export default function ApplicationSlider({
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [isPaused, total, nextSlide, currentIndex]);
+  }, [total, nextSlide, currentIndex]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowLeft') {
@@ -75,8 +74,6 @@ export default function ApplicationSlider({
   return (
     <div
       className="application-slider"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onKeyDown={handleKeyDown}
@@ -296,7 +293,7 @@ export default function ApplicationSlider({
               marginTop: '2px',
             }}
           >
-            {isPaused ? 'Paused (hovered)' : 'Auto-sliding'} • Slide {currentIndex + 1} of {total}
+            Auto-sliding • Slide {currentIndex + 1} of {total}
           </span>
         </div>
 

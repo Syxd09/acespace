@@ -7,8 +7,6 @@ import { projects } from '@/data/projects';
 import { getSiteContent } from '@/data/contentStore';
 import SpecimenZoomViewer from '@/components/SpecimenZoomViewer';
 
-export const dynamic = 'force-dynamic';
-
 export async function generateStaticParams() {
   const { materials } = getSiteContent();
   const source = materials && materials.length > 0 ? materials : defaultMaterials;

@@ -11,7 +11,6 @@ export default function HeroSlider() {
   const slides = (heroSlides && heroSlides.length > 0) ? heroSlides : defaultHeroSlides;
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
 
   // Keep index within bounds if slides count changes
@@ -21,26 +20,32 @@ export default function HeroSlider() {
     }
   }, [slides.length, currentSlide]);
 
-  // 5-second interval timer with smooth progress bar
+  // 5-second interval timer with smooth progress bar - continuous auto-slide
   useEffect(() => {
-    if (isPaused || slides.length === 0) return;
+    if (slides.length === 0) return;
 
-    const intervalTime = 5000;
-    const updateFreq = 50;
-    const step = (updateFreq / intervalTime) * 100;
+    setProgress(0);
+    const duration = 5000;
+    const startTime = Date.now();
 
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          setCurrentSlide((curr) => (curr + 1) % slides.length);
-          return 0;
-        }
-        return prev + step;
-      });
-    }, updateFreq);
+    // Smooth progress bar update (does NOT trigger slide change)
+    const progressTimer = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min((elapsed / duration) * 100, 100);
+      setProgress(pct);
+    }, 50);
 
-    return () => clearInterval(timer);
-  }, [isPaused, currentSlide, slides.length]);
+    // Discrete slide transition timer (fires exactly once after 5s)
+    const slideTimer = setTimeout(() => {
+      setCurrentSlide((curr) => (curr + 1) % slides.length);
+      setProgress(0);
+    }, duration);
+
+    return () => {
+      clearInterval(progressTimer);
+      clearTimeout(slideTimer);
+    };
+  }, [currentSlide, slides.length]);
 
   const goToSlide = (idx: number) => {
     setCurrentSlide(idx);
@@ -62,8 +67,6 @@ export default function HeroSlider() {
   return (
     <section
       className="hero"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
       aria-label="Architectural hero showcase"
     >
       {/* Slide Images with Ken-Burns and Crossfade */}

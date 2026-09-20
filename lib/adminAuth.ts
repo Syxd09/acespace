@@ -13,6 +13,11 @@ if (process.env.NODE_ENV === 'production' && (!process.env.ADMIN_PASSKEY || !pro
 
 export function checkPasskey(input: string): boolean {
   if (!input || typeof input !== 'string') return false;
+  // In production, strictly reject default fallback passkey
+  if (process.env.NODE_ENV === 'production' && !process.env.ADMIN_PASSKEY) {
+    console.error('[SECURITY ALERT] ADMIN_PASSKEY is not configured in production environment variables. Login blocked.');
+    return false;
+  }
   // Constant time comparison to prevent timing attacks
   const a = Buffer.from(input.trim());
   const b = Buffer.from(PASSKEY);
@@ -30,6 +35,9 @@ export function createSessionToken(): string {
 
 export function verifySessionToken(token?: string | null): boolean {
   if (!token || typeof token !== 'string') return false;
+  if (process.env.NODE_ENV === 'production' && !process.env.ADMIN_SECRET) {
+    return false;
+  }
   const parts = token.split('.');
 
   // Enhanced 3-part nonce token

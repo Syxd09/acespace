@@ -22,8 +22,15 @@ html, body {
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Start with auto so browser scroll-restoration on reload is instant.
+     The .hydrated class is added by PageTransition after mount to enable
+     smooth scrolling only for user-initiated navigations. */
+  scroll-behavior: auto;
   scroll-padding-top: 96px;
+}
+
+html.hydrated {
+  scroll-behavior: smooth;
 }
 
 @keyframes targetHighlight {
@@ -1737,8 +1744,8 @@ textarea {
 
 @media (max-width: 800px) {
   .site-header {
-    padding: 0 5vw !important;
-    height: 68px !important;
+    padding: 0 16px !important;
+    height: 64px !important;
   }
   .main-nav,
   .coro-link,
@@ -1748,19 +1755,20 @@ textarea {
   .header-actions {
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
   .sample-tray-btn {
-    padding: 5px 12px !important;
+    padding: 6px 12px !important;
+    min-height: 38px !important;
     gap: 6px !important;
-    font-size: 9px !important;
+    font-size: 10px !important;
   }
   .menu-toggle {
     display: flex !important;
     flex-direction: column !important;
     gap: 5px !important;
-    min-width: 40px !important;
-    min-height: 40px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
     justify-content: center !important;
     align-items: center !important;
     background: transparent !important;
@@ -2170,7 +2178,7 @@ textarea {
   color: var(--ink, #1a1d19);
   display: flex;
   flex-direction: column;
-  padding: 24px 24px 32px;
+  padding: max(20px, env(safe-area-inset-top)) 20px max(24px, env(safe-area-inset-bottom));
   box-shadow: -15px 0 45px rgba(0, 0, 0, 0.25);
   border-left: 1px solid var(--line, rgba(0, 0, 0, 0.12));
   transform: translateX(100%);
@@ -2200,13 +2208,13 @@ textarea {
 }
 
 .drawer-close {
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   border: 1px solid var(--line, rgba(0, 0, 0, 0.15));
   background: transparent;
   color: var(--ink, #1a1d19);
-  font-size: 16px;
+  font-size: 18px;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -2253,7 +2261,8 @@ textarea {
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 12px 14px;
+  padding: 13px 14px;
+  min-height: 48px;
   text-decoration: none;
   color: var(--ink, #1a1d19);
   border-radius: 2px;
@@ -2510,6 +2519,13 @@ textarea {
 html, body {
   overflow-x: hidden !important;
   max-width: 100vw !important;
+}
+
+/* Universal Mobile iOS Safari Auto-Zoom Prevention */
+@media (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
 }
 
 /* Hide overlapping scroll cue on mobile */
@@ -3034,5 +3050,92 @@ main.page-main {
   color: #a3e8b9;
   text-decoration-color: #a3e8b9;
 }
+
+/* ==========================================================================
+   ADVANCED MOBILE POLISH & TOUCH ERGONOMICS
+   ========================================================================== */
+
+/* Universal Section & Typography Clamping on Mobile (<640px) */
+@media (max-width: 640px) {
+  .section-pad {
+    padding: 56px 5vw !important;
+  }
+  
+  h1 {
+    font-size: clamp(28px, 8.5vw, 44px) !important;
+    line-height: 1.08 !important;
+    letter-spacing: -0.04em !important;
+  }
+  
+  h2 {
+    font-size: clamp(22px, 7vw, 34px) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.03em !important;
+  }
+  
+  h3 {
+    font-size: clamp(18px, 5.5vw, 24px) !important;
+    line-height: 1.25 !important;
+  }
+
+  p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+  }
+
+  .button,
+  .button-dark,
+  .button-outline-dark {
+    min-height: 44px !important;
+    padding: 12px 20px !important;
+    font-size: 11px !important;
+  }
+
+  /* Colour Library Mobile Search & Swatch Grid */
+  .colour-library > div:first-child {
+    padding: 18px 14px !important;
+    margin-bottom: 24px !important;
+  }
+
+  .colour-filter-scroll {
+    gap: 6px !important;
+  }
+
+  .colour-filter-scroll button {
+    padding: 7px 11px !important;
+    font-size: 10px !important;
+  }
+
+  /* Enquiry Form on Mobile */
+  .spec-table#enquiry {
+    margin-bottom: 40px !important;
+  }
+
+  .spec-table#enquiry button[type="submit"] {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 16px 20px !important;
+  }
+
+  /* Contact page consultation callout */
+  .page-copy .button-outline-dark,
+  .page-copy .button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* Wordmark on small screens (<360px) */
+@media (max-width: 360px) {
+  .wordmark {
+    font-size: 12px !important;
+  }
+  .wordmark .mark {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 11px !important;
+  }
+}
+
 
 
