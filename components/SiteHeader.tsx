@@ -79,12 +79,22 @@ export default function SiteHeader() {
     }, 200);
   };
 
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
+
   const closeMobileMenu = () => {
+    if (typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
     setMobileOpen(false);
   };
 
   const toggleMobileMenu = () => {
-    setMobileOpen((prev) => !prev);
+    setMobileOpen((prev) => {
+      if (prev && typeof document !== 'undefined' && document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+      return !prev;
+    });
   };
 
   const isLightText = isHome && !isScrolled && !activeMegaMenu;
@@ -370,6 +380,7 @@ export default function SiteHeader() {
             Source for Coro <span>↗</span>
           </a>
           <button
+            ref={menuToggleRef}
             className={`menu-toggle ${mobileOpen ? 'active' : ''}`}
             onClick={toggleMobileMenu}
             aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
@@ -404,7 +415,7 @@ export default function SiteHeader() {
       <aside
         className={`mobile-drawer ${mobileOpen ? 'open' : ''}`}
         aria-label="Mobile menu"
-        aria-hidden={!mobileOpen}
+        inert={!mobileOpen}
       >
         <div className="drawer-header">
           <span className="drawer-eyebrow">EXPLORE ACE SPACES</span>
