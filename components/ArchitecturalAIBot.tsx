@@ -50,54 +50,9 @@ export default function ArchitecturalAIBot() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const pathname = usePathname();
 
-  // Unique session tracking for Admin Panel summaries
-  const sessionIdRef = useRef<string>('');
-  const sessionStartTimeRef = useRef<number>(Date.now());
-
-  useEffect(() => {
-    if (!sessionIdRef.current) {
-      sessionIdRef.current = `chat_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
-    }
-  }, []);
-
-  // Send conversation summary to backend when session closes or unloads
-  const sendSessionSummary = (currentMessages: ChatMessage[]) => {
-    const userMsgs = currentMessages.filter((m) => m.role === 'user');
-    if (userMsgs.length === 0) return;
-
-    try {
-      fetch('/api/ai/session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sessionId: sessionIdRef.current,
-          messages: currentMessages.map((m) => ({
-            role: m.role,
-            content: m.content,
-            timestamp: m.timestamp,
-          })),
-          startedAt: new Date(sessionStartTimeRef.current).toISOString(),
-          endedAt: new Date().toISOString(),
-          durationSeconds: Math.round((Date.now() - sessionStartTimeRef.current) / 1000),
-        }),
-        keepalive: true,
-      }).catch(() => {});
-    } catch (e) {}
-  };
-
   const handleCloseChat = () => {
     setIsOpen(false);
-    sendSessionSummary(messages);
   };
-
-  // Dispatch summary on browser close or tab navigation
-  useEffect(() => {
-    const handleBeforeUnload = () => {
-      sendSessionSummary(messages);
-    };
-    window.addEventListener('beforeunload', handleBeforeUnload);
-    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
-  }, [messages]);
 
   // Load or initialize chat from sessionStorage
   useEffect(() => {
