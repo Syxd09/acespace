@@ -541,19 +541,17 @@ export default function HomePage() {
         </div>
         <div className="enquiry-side">
           01
-          <br />
           <span>
             Material consultation
             <br />
             Fabrication
             <br />
             Project support
-            <br />
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginTop: '10px', color: 'rgba(242, 240, 234, 0.85)', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#73c991', boxShadow: '0 0 6px rgba(115, 201, 145, 0.6)', display: 'inline-block' }} />
-              Direct: {displayPhone}
-            </span>
           </span>
+          <div className="enquiry-direct-indicator">
+            <span className="status-pulse-dot" />
+            <span>Direct: {displayPhone}</span>
+          </div>
         </div>
       </section>
     </main>
