@@ -7,6 +7,7 @@ import { SiteContentProvider } from '@/context/SiteContentContext';
 import SampleTray from '@/components/SampleTray';
 import ArchitecturalAIBot from '@/components/ArchitecturalAIBot';
 import PageTransition from '@/components/PageTransition';
+import SmoothScroll from '@/components/SmoothScroll';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://acespacesindia.vercel.app'),
@@ -236,6 +237,7 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        <SmoothScroll />
         <SiteContentProvider>
           <SampleProvider>
             <SiteHeader />

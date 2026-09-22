@@ -22,15 +22,28 @@ html, body {
 }
 
 html {
-  /* Start with auto so browser scroll-restoration on reload is instant.
-     The .hydrated class is added by PageTransition after mount to enable
-     smooth scrolling only for user-initiated navigations. */
-  scroll-behavior: auto;
   scroll-padding-top: 96px;
 }
 
-html.hydrated {
-  scroll-behavior: smooth;
+/* Lenis Momentum Smooth Scrolling Engine */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 @keyframes targetHighlight {

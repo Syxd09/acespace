@@ -10,22 +10,11 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const [targetLabel, setTargetLabel] = useState('');
   const prevPathRef = useRef(pathname);
 
-  // Disable browser-native scroll restoration to prevent scroll jitter on
-  // reload, and enable smooth scrolling only after the first paint is stable.
+  // Ensure manual scroll restoration to prevent browser scroll jitter
   useEffect(() => {
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
     }
-
-    // Delay adding .hydrated to ensure scroll-restoration has settled
-    const raf = requestAnimationFrame(() => {
-      document.documentElement.classList.add('hydrated');
-    });
-
-    return () => {
-      cancelAnimationFrame(raf);
-      document.documentElement.classList.remove('hydrated');
-    };
   }, []);
 
   const getPageTitle = (path: string) => {
@@ -46,8 +35,9 @@ export default function PageTransition({ children }: { children: React.ReactNode
       setTargetLabel(getPageTitle(pathname));
       setTransitionStage('covering');
 
-      // Scroll to top immediately
+      // Scroll to top immediately on route change
       window.scrollTo({ top: 0, behavior: 'instant' });
+      (window as unknown as { __lenis?: { scrollTo: (target: number, opts: { immediate: boolean }) => void } }).__lenis?.scrollTo(0, { immediate: true });
 
       // Step 1: Curtain covers the screen (350ms)
       const tCover = setTimeout(() => {
