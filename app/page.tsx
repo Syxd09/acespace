@@ -452,7 +452,7 @@ export default function HomePage() {
           </Link>
         </ScrollReveal>
         <div className="journal-grid">
-          <ScrollReveal className="journal-card">
+          <ScrollReveal className="journal-card" delay={80}>
             <div className="journal-image journal-one" />
             <p className="eyebrow">Material knowledge / 06 min read</p>
             <h3>
@@ -462,7 +462,7 @@ export default function HomePage() {
             </h3>
             <Link href="/journal#edge">Read article ↗</Link>
           </ScrollReveal>
-          <ScrollReveal className="journal-card">
+          <ScrollReveal className="journal-card" delay={180}>
             <div className="journal-image journal-two" />
             <p className="eyebrow">Fabrication / 04 min read</p>
             <h3>

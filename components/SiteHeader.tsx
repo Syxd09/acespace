@@ -27,13 +27,18 @@ export default function SiteHeader() {
     setActiveMegaMenu(null);
   }, [pathname]);
 
-  // Handle scroll detection for sticky navbar background transition
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Handle scroll detection for sticky navbar background transition & scroll progress hairline
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 40);
+
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        const progress = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+        setScrollProgress(progress);
       }
     };
 
@@ -401,6 +406,24 @@ export default function SiteHeader() {
             <i />
           </button>
         </div>
+
+        {/* Subtle Architectural Scroll Progress Hairline */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            height: '1.5px',
+            width: `${scrollProgress}%`,
+            background: isLightText
+              ? 'rgba(255, 255, 255, 0.75)'
+              : 'var(--ink, #1e211d)',
+            opacity: scrollProgress > 0.5 ? 1 : 0,
+            transition: 'width 0.08s linear, opacity 0.25s ease, background-color 0.3s ease',
+            pointerEvents: 'none',
+          }}
+        />
       </header>
 
       {/* Mega-Menu Dropdown Panel */}
