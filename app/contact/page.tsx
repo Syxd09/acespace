@@ -8,13 +8,13 @@ import { generateWhatsAppUrl, DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 export const metadata: Metadata = {
   title: 'Contact & Consultation — Studio Briefs, Samples & CAD Submission',
   description:
-    'Start an architectural material consultation, request specifier sample swatches, or submit CAD/BIM shop drawings for 5-axis CNC fabrication with Ace Spaces in Indiranagar, Bengaluru, India.',
+    'Start an architectural material consultation, request specifier sample swatches, or submit CAD/BIM shop drawings for 5-axis CNC fabrication with Ace Spaces in Bengaluru, India.',
   keywords: [
     'contact Ace Spaces',
     'DuPont Corian Bangalore contact',
     'specifier sample box request',
     'CAD drawing submission solid surface',
-    'Indiranagar architecture studio',
+    'Bengaluru architecture studio',
   ],
   alternates: {
     canonical: 'https://acespacesindia.vercel.app/contact',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: '/assets/hero-ace.png',
         width: 1200,
         height: 630,
-        alt: 'Ace Spaces Indiranagar Studio & Specifier Desk',
+        alt: 'Ace Spaces & Coro Collective Studio & Specifier Desk',
       },
     ],
   },
@@ -49,15 +49,15 @@ const contactJsonLd = {
   url: 'https://acespacesindia.vercel.app/contact',
   mainEntity: {
     '@type': 'HomeAndConstructionBusiness',
-    name: 'Ace Spaces',
+    name: 'Ace Spaces & Coro Collective Studio Headquarters',
     telephone: '+919845012345',
     email: 'studio@acespaces.in',
+    hasMap: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar',
+      streetAddress: 'Coro Crafted Collective & Ace Spaces Studio Headquarters',
       addressLocality: 'Bengaluru',
       addressRegion: 'Karnataka',
-      postalCode: '560038',
       addressCountry: 'IN',
     },
     geo: {

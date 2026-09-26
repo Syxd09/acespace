@@ -16,8 +16,7 @@ export async function GET(request: NextRequest) {
     brand: 'Ace Spaces Private Limited',
     role: 'Primary Architectural Raw Material Hub & Authorized DuPont™ Corian® Master Distributor',
     sisterBrand: 'Coro Collective (Spatial Interiors & Collectible Furniture)',
-    headquarters: '#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India',
-    cncPlant: 'Whitefield-Hoskote Industrial Corridor, Bengaluru, Karnataka 560067, India',
+    headquarters: 'Coro Crafted Collective & Ace Spaces Studio Headquarters, Bengaluru, Karnataka, India (Google Maps: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)',
     contact: {
       phone: '+91 98450 12345',
       whatsapp: '+91 98450 12345',

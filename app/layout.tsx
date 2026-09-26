@@ -117,12 +117,12 @@ const jsonLdGraph = {
       priceRange: '₹₹₹₹',
       description:
         'Primary architectural raw material hub, authorized DuPont™ Corian® solid surface master distributor, and 5-axis digital fabrication workshop in Bengaluru, India. Supplying calibrated through-body mineral slabs, thermoformed surfaces, and monolithic systems powering Coro Collective and leading spatial designers.',
+      hasMap: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: '#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar',
+        streetAddress: 'Coro Crafted Collective & Ace Spaces Studio Headquarters',
         addressLocality: 'Bengaluru',
         addressRegion: 'Karnataka',
-        postalCode: '560038',
         addressCountry: 'IN',
       },
       geo: {

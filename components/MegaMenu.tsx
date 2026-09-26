@@ -1210,15 +1210,15 @@ export default function MegaMenu({
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
                       <Link href="/about#locations" onClick={(e) => handleLinkClick(e, '/about#locations')} className="mega-menu-link">
-                        <strong>Indiranagar Gallery</strong>
-                        <small>Tactile specifier gallery in Bangalore</small>
+                        <strong>Studio Headquarters</strong>
+                        <small>Unified Bengaluru gallery &amp; fabrication atelier</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/about#locations" onClick={(e) => handleLinkClick(e, '/about#locations')} className="mega-menu-link">
-                        <strong>15,000 sq.ft Workshop</strong>
-                        <small>Hoskote industrial corridor facility</small>
-                      </Link>
+                      <a href="https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7" target="_blank" rel="noopener noreferrer" className="mega-menu-link">
+                        <strong>Google Maps Navigation ↗</strong>
+                        <small>Coro Collective &amp; Ace Spaces headquarters</small>
+                      </a>
                     </li>
                     <li>
                       <Link href="/about#coro" onClick={(e) => handleLinkClick(e, '/about#coro')} className="mega-menu-link">

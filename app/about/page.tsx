@@ -360,7 +360,7 @@ export default function AboutPage() {
                 <i>the surfaces.</i>
               </h2>
               <p style={{ fontSize: '15px', lineHeight: 1.7, color: '#555e54', margin: '0 0 24px' }}>
-                Our 15,000 sq.ft facility in Bengaluru’s Whitefield-Hoskote corridor operates as an architectural laboratory. Here, industrial machinery is guided by the discerning eyes of computational designers, thermoforming masters, and artisanal finishers.
+                Our integrated facility in Bengaluru operates as an architectural laboratory. Here, industrial machinery is guided by the discerning eyes of computational designers, thermoforming masters, and artisanal finishers.
               </p>
               <div style={{ padding: '20px', background: 'rgba(30, 33, 29, 0.04)', borderLeft: '3px solid var(--ink)' }}>
                 <strong style={{ fontSize: '13px', display: 'block', color: 'var(--ink)', marginBottom: '4px' }}>
@@ -435,7 +435,7 @@ export default function AboutPage() {
                 Continuous 4.2-Meter Island with Integrated Sub-Surface Sink
               </strong>
               <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#d2dad2', margin: 0 }}>
-                Fabricated with 45° mitred waterfalls and zero visible joints at our Hoskote facility.
+                Fabricated with 45° mitred waterfalls and zero visible joints at our Bengaluru studio atelier.
               </p>
             </div>
           </div>
@@ -613,79 +613,94 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Section 05: Locations & Specifier Gallery */}
+      {/* Section 05: Studio Headquarters */}
       <section id="locations" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
             <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <p className="eyebrow" style={{ margin: 0 }}>Chapter 05 · Locations &amp; Specifier Presence</p>
+            <p className="eyebrow" style={{ margin: 0 }}>Chapter 05 · Studio Headquarters</p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 2fr', gap: '48px', alignItems: 'flex-start', marginBottom: '36px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
-                Visit our spaces
+                Visit our studio
                 <br />
                 <i>in Bengaluru.</i>
               </h2>
-              <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#555e54', margin: 0 }}>
-                We welcome architects, interior designers, and clients for tactile consultations, custom mockups, and private material reviews.
+              <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#555e54', margin: '0 0 20px' }}>
+                Ace Spaces and Coro Crafted Collective share one single, unified studio and headquarters in Bengaluru. We welcome architects, interior designers, and clients for tactile consultations, custom mockups, and private material reviews under one roof.
               </p>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
-              {/* Location 1: Gallery */}
-              <div style={{ padding: '28px', background: 'rgba(255, 255, 255, 0.65)', border: '1px solid var(--line)' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
-                  Design Gallery &amp; Sample Library
-                </span>
-                <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--ink)', margin: '0 0 8px' }}>
-                  Indiranagar Studio Gallery
-                </h3>
-                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#555e54', margin: '0 0 16px' }}>
-                  #42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru, Karnataka 560038, India
-                </p>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6e766c', lineHeight: 1.6 }}>
-                  • 20+ Calibrated Full-Scale Slabs on Display
-                  <br />
-                  • Backlit Translucent Light Simulator
-                  <br />
-                  • Complimentary Physical Specifier Trays
-                </div>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <a
+                  href="https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="button button-dark"
+                  style={{ fontSize: '11px', padding: '9px 18px', textDecoration: 'none' }}
+                >
+                  Open on Google Maps ↗
+                </a>
                 <Link
                   href="/contact"
-                  className="button button-dark"
-                  style={{ fontSize: '11px', padding: '8px 16px', marginTop: '20px', display: 'inline-block' }}
+                  className="button"
+                  style={{ fontSize: '11px', padding: '9px 18px', background: 'transparent', border: '1px solid var(--ink)', textDecoration: 'none' }}
                 >
                   Book Studio Visit ↗
                 </Link>
               </div>
+            </div>
 
-              {/* Location 2: Atelier */}
-              <div style={{ padding: '28px', background: 'rgba(255, 255, 255, 0.65)', border: '1px solid var(--line)' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
-                  Fabrication Atelier &amp; Stockyard
-                </span>
-                <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--ink)', margin: '0 0 8px' }}>
-                  Hoskote Industrial Plant
-                </h3>
-                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#555e54', margin: '0 0 16px' }}>
-                  Whitefield-Hoskote Industrial Corridor, Bengaluru, Karnataka, India
-                </p>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6e766c', lineHeight: 1.6 }}>
-                  • 15,000 sq.ft 5-Axis CNC Milling Suite
-                  <br />
-                  • Industrial Vacuum Membrane Thermoforming Ovens
-                  <br />
-                  • Pan-India Dispatch &amp; Installation Logistics
+            {/* Single Unified Headquarters Card */}
+            <div style={{ padding: '32px', background: 'rgba(255, 255, 255, 0.75)', border: '1px solid var(--line)', backdropFilter: 'blur(8px)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
+                <div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
+                    Single Unified Studio Headquarters
+                  </span>
+                  <h3 style={{ fontSize: '22px', fontWeight: 600, color: 'var(--ink)', margin: 0, letterSpacing: '-0.02em' }}>
+                    Coro Crafted Collective &amp; Ace Spaces Studio Headquarters
+                  </h3>
                 </div>
-                <Link
-                  href="/fabrication"
-                  className="button"
-                  style={{ fontSize: '11px', padding: '8px 16px', marginTop: '20px', display: 'inline-block', background: 'transparent', border: '1px solid var(--ink)' }}
-                >
-                  Explore Machinery ↗
-                </Link>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', padding: '4px 10px', background: 'var(--ink)', color: '#fff', borderRadius: '2px', textTransform: 'uppercase' }}>
+                  Bengaluru · Headquarters
+                </span>
+              </div>
+
+              <p style={{ fontSize: '13.5px', lineHeight: 1.6, color: '#444d43', margin: '0 0 24px' }}>
+                Bengaluru, Karnataka, India · Our unified facility brings together the tactile design gallery, full-scale 20+ calibrated slab library, 5-axis CNC digital fabrication suite, and vacuum thermoforming ovens in one singular address.
+              </p>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', paddingTop: '20px', borderTop: '1px solid var(--line)' }}>
+                <div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', fontWeight: 600, marginBottom: '8px' }}>
+                    Design Gallery &amp; Specifier Library
+                  </span>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6e766c', lineHeight: 1.7 }}>
+                    • 20+ Calibrated Full-Scale Slabs on Display
+                    <br />
+                    • Backlit Translucent Light Simulator Suite
+                    <br />
+                    • Complimentary Physical Specifier Sample Trays
+                    <br />
+                    • Dedicated Architect &amp; Designer Consultation Desks
+                  </div>
+                </div>
+
+                <div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', fontWeight: 600, marginBottom: '8px' }}>
+                    Fabrication Atelier &amp; CNC Suite
+                  </span>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6e766c', lineHeight: 1.7 }}>
+                    • 5-Axis CNC Precision Milling &amp; Sub-Surface Joinery
+                    <br />
+                    • Industrial Vacuum Membrane Thermoforming Ovens
+                    <br />
+                    • Monolithic Pre-Assembly &amp; Custom Mockup Testing
+                    <br />
+                    • Direct Pan-India Dispatch &amp; Installation Logistics
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -707,12 +722,16 @@ export default function AboutPage() {
           <div>Authorized DuPont™ Corian® Distributor &amp; Certified Master Fabricator</div>
         </div>
         <div className="spec-row">
-          <span>Central Atelier</span>
-          <div>15,000 sq.ft CNC &amp; Thermoforming Facility, Whitefield-Hoskote Corridor, Bengaluru, India</div>
+          <span>Studio Headquarters</span>
+          <div>Coro Crafted Collective &amp; Ace Spaces Studio Headquarters, Bengaluru, Karnataka, India (Single Unified Facility: Design Gallery, Full-Scale Slab Library &amp; CNC Fabrication Atelier)</div>
         </div>
         <div className="spec-row">
-          <span>Design Gallery</span>
-          <div>#42/1, 100 Feet Road, HAL 2nd Stage, Indiranagar, Bengaluru 560038</div>
+          <span>Google Maps</span>
+          <div>
+            <a href="https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>
+              Direct Navigation: maps.app.goo.gl/eNFxtR7WPqRS8gpd7 ↗
+            </a>
+          </div>
         </div>
         <div className="spec-row">
           <span>Services for Architects</span>

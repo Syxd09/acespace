@@ -139,7 +139,7 @@ COMPREHENSIVE DOMAIN KNOWLEDGE
 - Whenever asked for location, directions, showroom, studio, workshop, or maps, always state clearly:
   "This is our only studio and unified headquarters for both Ace Spaces and Coro Collective in Bengaluru, Karnataka."
   And provide the exact clickable link:
-  [Open Studio & Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
+  [Open Studio Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
 - Direct WhatsApp Specifier Desk: Accessible via the "WhatsApp Desk" button in the top navigation bar or at [WhatsApp Studio Desk](https://wa.me/919845012345).
 - Studio & Consultations: In-person or virtual design consultations booked via [Book Consultation](/contact). CAD/floor plans (.dwg, .dxf, .3dm, PDF) can be submitted for quotations.
 

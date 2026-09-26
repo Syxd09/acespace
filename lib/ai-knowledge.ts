@@ -426,22 +426,22 @@ Renewability & Scratch Repair:
   },
   {
     id: 'coro-maps-location',
-    topic: 'Ace Spaces & Coro Crafted Collective Studio & Headquarters',
+    topic: 'Coro Crafted Collective & Ace Spaces Studio Headquarters',
     keywords: [
       'map', 'maps', 'location', 'directions', 'where is coro', 'where is ace spaces',
       'address', 'showroom', 'visit', 'studio address', 'navigation', 'google maps',
       'where are you', 'how to reach', 'headquarters', 'studio', 'bengaluru'
     ],
-    summary: 'Ace Spaces & Coro Collective share one single unified studio and headquarters in Bengaluru, Karnataka. Direct Google Maps navigation: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
+    summary: 'Coro Crafted Collective & Ace Spaces share one single unified studio headquarters in Bengaluru, Karnataka. Direct Google Maps navigation: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
     details: `Architects, interior designers, and project owners are welcome to experience our monolithic material volumes, full slab catalog, and spatial installations at our studio:
 
-📍 **Ace Spaces & Coro Crafted Collective Studio & Headquarters:**
+📍 **Coro Crafted Collective & Ace Spaces Studio Headquarters:**
 Bengaluru, Karnataka, India.
-*(This is our single, unified studio and headquarters for both Ace Spaces and Coro Collective)*
+*(This is our single, unified studio headquarters for both Ace Spaces and Coro Collective)*
 *Hours: Monday – Saturday, 09:30 – 18:30 IST (Sundays by appointment).*
 
 🗺️ **Direct Google Maps Navigation:**
-[Open Studio & Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
+[Open Studio Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
 
 Here under one roof, you can:
 • Examine our complete DuPont™ Corian® slab catalog across Noma, Alto, Strata, Terra, and Lumen series.
@@ -894,7 +894,7 @@ How can I assist your practice today? You can ask me about:
   if (/\b(map|maps|location|directions|where are you|where is|address|navigate|showroom|studio|headquarters|how to reach|find you)\b/i.test(query)) {
     const mapsSection = STUDIO_KNOWLEDGE_BASE.find((s) => s.id === 'coro-maps-location')!;
     return {
-      answer: `### Ace Spaces & Coro Crafted Collective Studio & Headquarters\n\n${mapsSection.details}`,
+      answer: `### Coro Crafted Collective & Ace Spaces Studio Headquarters\n\n${mapsSection.details}`,
       matchedTopic: 'Studio Location & Navigation',
       suggestedActions: mapsSection.suggestedActions,
     };
