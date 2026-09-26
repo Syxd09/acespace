@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 interface ChatMessage {
@@ -43,16 +43,113 @@ const STARTER_PROMPTS = [
 
 export default function ArchitecturalAIBot() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
+  const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const navigateToSiteLink = (href: string) => {
+    if (!href) return;
+
+    // External link
+    if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//')) {
+      window.open(href, '_blank', 'noopener,noreferrer');
+      return;
+    }
+
+    // Auto close chat on mobile screens so user can see target content
+    if (typeof window !== 'undefined' && window.innerWidth <= 640) {
+      handleCloseChat();
+    }
+
+    const [targetPath, hash] = href.split('#');
+    const cleanTargetPath = targetPath === '' ? pathname : targetPath;
+    const isSamePage = cleanTargetPath === pathname;
+
+    const performScrollToHash = (targetHash: string) => {
+      const el = document.getElementById(targetHash) || document.querySelector(`[id="${targetHash}"]`);
+      if (el) {
+        const lenis = (window as unknown as { __lenis?: { scrollTo: (target: HTMLElement | number, opts?: unknown) => void } }).__lenis;
+        if (lenis) {
+          lenis.scrollTo(el as HTMLElement, { offset: -96, duration: 1.2 });
+        } else {
+          const y = el.getBoundingClientRect().top + window.scrollY - 96;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+        return true;
+      }
+      return false;
+    };
+
+    if (isSamePage) {
+      if (hash) {
+        history.pushState(null, '', href);
+        performScrollToHash(hash);
+      } else {
+        const lenis = (window as unknown as { __lenis?: { scrollTo: (target: number, opts?: unknown) => void } }).__lenis;
+        if (lenis) {
+          lenis.scrollTo(0, { duration: 1.0 });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    } else {
+      router.push(href);
+      if (hash) {
+        let attempts = 0;
+        const interval = setInterval(() => {
+          attempts++;
+          const scrolled = performScrollToHash(hash);
+          if (scrolled || attempts >= 15) {
+            clearInterval(interval);
+          }
+        }, 150);
+      }
+    }
+  };
 
   const handleCloseChat = () => {
-    setIsOpen(false);
+    if (isClosing) return;
+    setIsClosing(true);
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    closeTimeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+      setIsClosing(false);
+    }, 280);
   };
+
+  const handleToggleChat = () => {
+    if (isOpen || isClosing) {
+      handleCloseChat();
+    } else {
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+      setIsClosing(false);
+      setIsOpen(true);
+    }
+  };
+
+  // Keyboard shortcut: ESC to gracefully close chat
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && (isOpen || isClosing)) {
+        handleCloseChat();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, isClosing]);
+
+  // Clean up timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    };
+  }, []);
 
   // Load or initialize chat from sessionStorage
   useEffect(() => {
@@ -228,113 +325,215 @@ How may I assist your architectural practice today?`,
     } catch (e) {}
   };
 
-  // Format markdown-like text (bold, headers, bullets)
+  // Format markdown-like text (bold, headers, bullets, tables)
   const renderFormattedContent = (content: string) => {
     const lines = content.split('\n');
-    return (
-      <div className="ai-message-body">
-        {lines.map((line, idx) => {
-          const trimmed = line.trim();
-          if (!trimmed) {
-            return <div key={idx} style={{ height: '8px' }} />;
-          }
+    const elements: React.ReactNode[] = [];
+    let i = 0;
 
-          // Headers
-          if (trimmed.startsWith('### ')) {
-            return (
-              <h4
-                key={idx}
-                style={{
-                  fontSize: '13px',
-                  fontWeight: 600,
-                  color: '#e5d5be',
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  fontFamily: 'DM Mono, monospace',
-                  margin: '12px 0 6px',
-                }}
-              >
-                {trimmed.replace('### ', '')}
-              </h4>
-            );
-          }
+    while (i < lines.length) {
+      const trimmed = lines[i].trim();
 
-          // Bullet points
-          if (trimmed.startsWith('• ') || trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
-            const text = trimmed.slice(2);
-            return (
-              <div
-                key={idx}
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '8px',
-                  fontSize: '12px',
-                  lineHeight: '1.6',
-                  color: '#d6dcd6',
-                  marginBottom: '4px',
-                }}
-              >
-                <span style={{ color: '#73c991', fontSize: '14px', lineHeight: '1.4' }}>•</span>
-                <span dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
-              </div>
-            );
-          }
-
-          // Numbered lists
-          const numMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
-          if (numMatch) {
-            return (
-              <div
-                key={idx}
-                style={{
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: '8px',
-                  fontSize: '12px',
-                  lineHeight: '1.6',
-                  color: '#d6dcd6',
-                  marginBottom: '4px',
-                }}
-              >
-                <span
-                  style={{
-                    color: '#f2f0ea',
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    minWidth: '16px',
-                  }}
-                >
-                  {numMatch[1]}.
-                </span>
-                <span dangerouslySetInnerHTML={{ __html: formatInline(numMatch[2]) }} />
-              </div>
-            );
-          }
-
-          return (
-            <p
-              key={idx}
-              style={{
-                fontSize: '12px',
-                lineHeight: '1.6',
-                color: '#d6dcd6',
-                margin: '0 0 6px',
-              }}
-              dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }}
-            />
+      // --- TABLE DETECTION ---
+      // A markdown table line starts and ends with `|`, or has multiple `|` chars
+      if (trimmed.startsWith('|') && trimmed.includes('|', 1)) {
+        // Collect all consecutive table lines
+        const tableLines: string[] = [];
+        while (i < lines.length && lines[i].trim().startsWith('|')) {
+          tableLines.push(lines[i].trim());
+          i++;
+        }
+        // Parse rows — skip separator lines (---|---)
+        const rows = tableLines
+          .filter(row => !/^\|[\s|:-]+\|$/.test(row))
+          .map(row =>
+            row
+              .replace(/^\|/, '')
+              .replace(/\|$/, '')
+              .split('|')
+              .map(cell => cell.trim())
           );
-        })}
-      </div>
-    );
+
+        if (rows.length > 0) {
+          const [headerRow, ...bodyRows] = rows;
+          elements.push(
+            <div
+              key={`table-${i}`}
+              style={{ overflowX: 'auto', marginBottom: '10px', marginTop: '4px' }}
+            >
+              <table
+                style={{
+                  width: '100%',
+                  borderCollapse: 'collapse',
+                  fontSize: '11.5px',
+                  fontFamily: 'DM Mono, monospace',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                <thead>
+                  <tr>
+                    {headerRow.map((cell, ci) => (
+                      <th
+                        key={ci}
+                        style={{
+                          padding: '7px 10px',
+                          textAlign: 'left',
+                          color: '#f2f0ea',
+                          fontWeight: 700,
+                          fontSize: '10px',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.08em',
+                          background: 'rgba(242, 240, 234, 0.1)',
+                          borderBottom: '1px solid rgba(242, 240, 234, 0.25)',
+                          borderRight: ci < headerRow.length - 1 ? '1px solid rgba(242,240,234,0.08)' : 'none',
+                          whiteSpace: 'nowrap',
+                        }}
+                        dangerouslySetInnerHTML={{ __html: formatInline(cell) }}
+                      />
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {bodyRows.map((row, ri) => (
+                    <tr
+                      key={ri}
+                      style={{
+                        background: ri % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent',
+                      }}
+                    >
+                      {row.map((cell, ci) => (
+                        <td
+                          key={ci}
+                          style={{
+                            padding: '6px 10px',
+                            color: ci === 0 ? '#e5d5be' : '#c8cec8',
+                            fontWeight: ci === 0 ? 600 : 400,
+                            borderBottom: '1px solid rgba(242, 240, 234, 0.06)',
+                            borderRight: ci < row.length - 1 ? '1px solid rgba(242,240,234,0.06)' : 'none',
+                            verticalAlign: 'top',
+                          }}
+                          dangerouslySetInnerHTML={{ __html: formatInline(cell) }}
+                        />
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
+        continue;
+      }
+
+      if (!trimmed) {
+        elements.push(<div key={i} style={{ height: '8px' }} />);
+        i++;
+        continue;
+      }
+
+      // Headers
+      if (trimmed.startsWith('### ')) {
+        elements.push(
+          <h4
+            key={i}
+            style={{
+              fontSize: '13px',
+              fontWeight: 600,
+              color: '#e5d5be',
+              letterSpacing: '0.04em',
+              textTransform: 'uppercase',
+              fontFamily: 'DM Mono, monospace',
+              margin: '12px 0 6px',
+            }}
+          >
+            {trimmed.replace('### ', '')}
+          </h4>
+        );
+        i++;
+        continue;
+      }
+
+      // Bullet points
+      if (trimmed.startsWith('• ') || trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
+        const text = trimmed.slice(2);
+        elements.push(
+          <div
+            key={i}
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '8px',
+              fontSize: '12px',
+              lineHeight: '1.6',
+              color: '#d6dcd6',
+              marginBottom: '4px',
+            }}
+          >
+            <span style={{ color: '#73c991', fontSize: '14px', lineHeight: '1.4' }}>•</span>
+            <span dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
+          </div>
+        );
+        i++;
+        continue;
+      }
+
+      // Numbered lists
+      const numMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
+      if (numMatch) {
+        elements.push(
+          <div
+            key={i}
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: '8px',
+              fontSize: '12px',
+              lineHeight: '1.6',
+              color: '#d6dcd6',
+              marginBottom: '4px',
+            }}
+          >
+            <span
+              style={{
+                color: '#f2f0ea',
+                fontFamily: 'DM Mono, monospace',
+                fontSize: '11px',
+                fontWeight: 600,
+                minWidth: '16px',
+              }}
+            >
+              {numMatch[1]}.
+            </span>
+            <span dangerouslySetInnerHTML={{ __html: formatInline(numMatch[2]) }} />
+          </div>
+        );
+        i++;
+        continue;
+      }
+
+      elements.push(
+        <p
+          key={i}
+          style={{
+            fontSize: '12px',
+            lineHeight: '1.6',
+            color: '#d6dcd6',
+            margin: '0 0 6px',
+          }}
+          dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }}
+        />
+      );
+      i++;
+    }
+
+    return <div className="ai-message-body">{elements}</div>;
   };
 
   const formatInline = (str: string) => {
     return str
       .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label, href) => {
         const isExternal = href.startsWith('http') || href.startsWith('//');
-        return `<a href="${href}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="ai-inline-nav-link">${label}</a>`;
+        return `<a href="${href}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="ai-inline-nav-link" data-href="${href}">${label}</a>`;
       })
       .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ffffff; font-weight:600;">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em style="color:#f2f0ea;">$1</em>')
@@ -345,7 +544,7 @@ How may I assist your architectural practice today?`,
     <>
       {/* Floating Container (replaces previous floating pill) */}
       <aside
-        className={`ace-ai-bot-root ${isOpen ? 'is-open' : ''}`}
+        className={`ace-ai-bot-root ${isOpen ? 'is-open' : ''} ${isClosing ? 'is-closing' : ''}`}
         aria-label="Ace Spaces Private Studio Material Intelligence"
         style={{
           position: 'fixed',
@@ -355,10 +554,10 @@ How may I assist your architectural practice today?`,
           fontFamily: 'Manrope, sans-serif',
         }}
       >
-        {/* Expanded Chat Pane */}
-        {isOpen && (
+        {/* Expanded Chat Pane with Open and Close Animations */}
+        {(isOpen || isClosing) && (
           <div
-            className="ace-ai-chat-window"
+            className={`ace-ai-chat-window ${isClosing ? 'ai-window-closing' : 'ai-window-opening'}`}
             style={{
               position: 'absolute',
               bottom: '58px',
@@ -375,7 +574,7 @@ How may I assist your architectural practice today?`,
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
-              animation: 'aiWindowPopIn 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+              transformOrigin: 'bottom right',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
             }}
@@ -494,7 +693,7 @@ How may I assist your architectural practice today?`,
                 <button
                   type="button"
                   className="ace-ai-header-btn"
-                  onClick={() => setIsOpen(false)}
+                  onClick={handleCloseChat}
                   title="Close AI Material Concierge"
                   aria-label="Close conversation"
                   style={{
@@ -529,6 +728,7 @@ How may I assist your architectural practice today?`,
             {/* Scrollable Conversation Feed */}
             <div
               className="ace-ai-messages-scroll"
+              data-lenis-prevent
               style={{
                 flex: 1,
                 overflowY: 'auto',
@@ -537,6 +737,17 @@ How may I assist your architectural practice today?`,
                 flexDirection: 'column',
                 gap: '14px',
                 scrollBehavior: 'smooth',
+              }}
+              onWheel={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                const anchor = (e.target as HTMLElement).closest('a');
+                if (anchor) {
+                  const href = anchor.getAttribute('href') || anchor.getAttribute('data-href');
+                  if (href && !href.startsWith('http') && !href.startsWith('//')) {
+                    e.preventDefault();
+                    navigateToSiteLink(href);
+                  }
+                }
               }}
             >
               {messages.map((msg) => (
@@ -594,11 +805,10 @@ How may I assist your architectural practice today?`,
                       >
                         {msg.suggestedActions.map((action, actionIdx) => (
                           action.href ? (
-                            <Link
+                            <button
                               key={actionIdx}
-                              href={action.href}
-                              target={action.href.startsWith('http') ? '_blank' : '_self'}
-                              rel={action.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                              type="button"
+                              onClick={() => navigateToSiteLink(action.href!)}
                               style={{
                                 fontSize: '10px',
                                 fontFamily: 'DM Mono, monospace',
@@ -613,6 +823,7 @@ How may I assist your architectural practice today?`,
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '5px',
+                                cursor: 'pointer',
                                 transition: 'all 0.15s ease',
                               }}
                               onMouseEnter={(e) => {
@@ -626,7 +837,7 @@ How may I assist your architectural practice today?`,
                             >
                               <span>{action.label}</span>
                               <span style={{ fontSize: '9px' }}>↗</span>
-                            </Link>
+                            </button>
                           ) : (
                             <button
                               key={actionIdx}
@@ -883,29 +1094,30 @@ How may I assist your architectural practice today?`,
         )}
 
         {/* Floating Trigger Plaque (Architectural Specifier Plaque) */}
+        {/* Bottom Floating Trigger Button */}
         <button
           type="button"
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={handleToggleChat}
           aria-expanded={isOpen}
           aria-label="Ace Spaces Private AI Material Intelligence"
           className="ace-ai-trigger-pill"
           style={{
-            background: isOpen ? '#141714' : 'rgba(18, 21, 18, 0.94)',
+            background: (isOpen && !isClosing) ? '#141714' : 'rgba(18, 21, 18, 0.94)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             color: '#f4f3ef',
-            border: isOpen ? '1px solid rgba(242, 240, 234, 0.65)' : '1px solid rgba(242, 240, 234, 0.24)',
+            border: (isOpen && !isClosing) ? '1px solid rgba(242, 240, 234, 0.65)' : '1px solid rgba(242, 240, 234, 0.24)',
             borderRadius: '0px',
             padding: '10px 16px',
             display: 'inline-flex',
             alignItems: 'center',
             gap: '12px',
             cursor: 'pointer',
-            boxShadow: isOpen
+            boxShadow: (isOpen && !isClosing)
               ? '0 16px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(242, 240, 234, 0.15)'
               : '0 12px 32px rgba(0, 0, 0, 0.45)',
             transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-            transform: isOpen ? 'scale(0.98)' : 'scale(1)',
+            transform: (isOpen && !isClosing) ? 'scale(0.98)' : 'scale(1)',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.7)';
@@ -914,7 +1126,7 @@ How may I assist your architectural practice today?`,
             e.currentTarget.style.transform = 'translateY(-3px)';
           }}
           onMouseLeave={(e) => {
-            if (!isOpen) {
+            if (!isOpen || isClosing) {
               e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.24)';
               e.currentTarget.style.background = 'rgba(18, 21, 18, 0.94)';
               e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.45)';
@@ -937,9 +1149,11 @@ How may I assist your architectural practice today?`,
               fontSize: '11px',
               fontFamily: 'DM Mono, monospace',
               letterSpacing: 0,
+              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: (isOpen && !isClosing) ? 'rotate(45deg)' : 'rotate(0deg)',
             }}
           >
-            {isOpen ? '✕' : '+'}
+            +
           </div>
 
           {/* Architectural Mobile Emblem (Compact 44x44 trigger badge) */}
@@ -952,9 +1166,11 @@ How may I assist your architectural practice today?`,
               position: 'relative',
               width: '100%',
               height: '100%',
+              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: (isOpen && !isClosing) ? 'rotate(90deg)' : 'rotate(0deg)',
             }}
           >
-            {isOpen ? (
+            {(isOpen && !isClosing) ? (
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '15px', color: '#f4f3ef' }}>✕</span>
             ) : (
               <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
@@ -1023,24 +1239,52 @@ How may I assist your architectural practice today?`,
               color: '#f4f3ef',
               marginLeft: '4px',
               lineHeight: 1,
+              display: 'inline-block',
+              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: (isOpen && !isClosing) ? 'rotate(45deg)' : 'rotate(0deg)',
             }}
           >
-            {isOpen ? '✕' : '↗'}
+            ↗
           </span>
         </button>
       </aside>
 
       {/* Global CSS for Animations and Full Responsiveness */}
       <style jsx global>{`
+        /* Desktop Architectural Open / Close Animations */
         @keyframes aiWindowPopIn {
-          from {
+          0% {
             opacity: 0;
-            transform: translateY(14px) scale(0.97);
+            transform: translateY(18px) scale(0.95);
+            filter: blur(4px);
           }
-          to {
+          100% {
             opacity: 1;
             transform: translateY(0) scale(1);
+            filter: blur(0px);
           }
+        }
+
+        @keyframes aiWindowPopOut {
+          0% {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0px);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(14px) scale(0.96);
+            filter: blur(3px);
+          }
+        }
+
+        .ace-ai-chat-window.ai-window-opening {
+          animation: aiWindowPopIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .ace-ai-chat-window.ai-window-closing {
+          animation: aiWindowPopOut 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          pointer-events: none;
         }
 
         .ai-dot-pulse {
@@ -1076,6 +1320,28 @@ How may I assist your architectural practice today?`,
         }
         .ace-ai-messages-scroll::-webkit-scrollbar-thumb:hover {
           background: rgba(242, 240, 234, 0.35);
+        }
+
+        @keyframes aiMobileSlideUp {
+          from {
+            transform: translateY(100%);
+            opacity: 0.4;
+          }
+          to {
+            transform: translateY(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes aiMobileSlideDown {
+          from {
+            transform: translateY(0);
+            opacity: 1;
+          }
+          to {
+            transform: translateY(100%);
+            opacity: 0.4;
+          }
         }
 
         /* Responsive Mobile Behavior (<640px) */
@@ -1118,6 +1384,12 @@ How may I assist your architectural practice today?`,
             bottom: 0 !important;
             right: 0 !important;
             z-index: 10000 !important;
+          }
+          .ace-ai-chat-window.ai-window-opening {
+            animation: aiMobileSlideUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+          }
+          .ace-ai-chat-window.ai-window-closing {
+            animation: aiMobileSlideDown 0.26s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
           }
           .ace-ai-chat-header {
             padding-top: max(16px, env(safe-area-inset-top)) !important;

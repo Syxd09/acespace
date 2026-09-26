@@ -46,7 +46,26 @@ export default function SmoothScroll() {
     }
     rafId = requestAnimationFrame(raf);
 
-    // 3. Intercept anchor links across the site for smooth, header-aware gliding
+    const scrollToHashElement = (hash: string) => {
+      const targetId = hash.replace(/^#/, '');
+      if (!targetId) return;
+      const el = document.getElementById(targetId) || document.querySelector(`[id="${targetId}"]`);
+      if (el) {
+        lenis.scrollTo(el as HTMLElement, {
+          offset: -96,
+          duration: 1.2,
+        });
+      }
+    };
+
+    // If loaded with a hash in URL, scroll smoothly to it after initial render
+    if (window.location.hash) {
+      setTimeout(() => {
+        scrollToHashElement(window.location.hash);
+      }, 350);
+    }
+
+    // 3. Intercept anchor links across the site (both relative #hash and /page#hash)
     const handleAnchorClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('a');
       if (!target) return;
@@ -54,24 +73,39 @@ export default function SmoothScroll() {
       const href = target.getAttribute('href');
       if (!href) return;
 
-      // Check if it's an on-page hash link (e.g., "#materials", "#contact")
-      if (href.startsWith('#') && href.length > 1) {
-        const element = document.querySelector(href);
-        if (element) {
-          e.preventDefault();
-          lenis.scrollTo(element as HTMLElement, {
-            offset: -96, // Account for 96px fixed SiteHeader
-            duration: 1.2,
-          });
+      // Extract path and hash
+      if (href.includes('#')) {
+        const [linkPath, hash] = href.split('#');
+        const currentPath = window.location.pathname;
+        const isCurrentPage = !linkPath || linkPath === currentPath || (linkPath === '/' && currentPath === '/');
+
+        if (isCurrentPage && hash) {
+          const element = document.getElementById(hash) || document.querySelector(`[id="${hash}"]`);
+          if (element) {
+            e.preventDefault();
+            history.pushState(null, '', href);
+            lenis.scrollTo(element as HTMLElement, {
+              offset: -96,
+              duration: 1.2,
+            });
+          }
         }
       }
     };
 
+    const handleHashChange = () => {
+      if (window.location.hash) {
+        scrollToHashElement(window.location.hash);
+      }
+    };
+
     document.addEventListener('click', handleAnchorClick, { passive: false });
+    window.addEventListener('hashchange', handleHashChange);
 
     return () => {
       cancelAnimationFrame(rafId);
       document.removeEventListener('click', handleAnchorClick);
+      window.removeEventListener('hashchange', handleHashChange);
       lenis.destroy();
       lenisRef.current = null;
       delete (window as unknown as { __lenis?: Lenis }).__lenis;

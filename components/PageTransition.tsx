@@ -45,6 +45,11 @@ export default function PageTransition({ children }: { children: React.ReactNode
         prevPathRef.current = pathname;
         setTransitionStage('revealing');
 
+        // Scroll new page to top immediately if no hash
+        if (!window.location.hash) {
+          (window as unknown as { __lenis?: { scrollTo: (target: number, opts: { immediate: boolean }) => void } }).__lenis?.scrollTo(0, { immediate: true });
+        }
+
         // Step 2: Curtain sweeps away (400ms)
         const tReveal = setTimeout(() => {
           setTransitionStage('idle');
@@ -53,7 +58,12 @@ export default function PageTransition({ children }: { children: React.ReactNode
             if (hash) {
               const el = document.getElementById(hash);
               if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
+                const lenis = (window as unknown as { __lenis?: { scrollTo: (target: HTMLElement, opts?: unknown) => void } }).__lenis;
+                if (lenis) {
+                  lenis.scrollTo(el, { offset: -96, duration: 1.2 });
+                } else {
+                  el.scrollIntoView({ behavior: 'smooth' });
+                }
               }
             }
           }
