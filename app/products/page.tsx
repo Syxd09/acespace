@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     url: 'https://acespacesindia.vercel.app/products',
     images: [
       {
-        url: '/assets/applications/artista-mist-bathroom.jpg',
+        url: '/images/images/app_residential_artista_mist_1.jpg',
         width: 1200,
         height: 630,
         alt: 'Ace Spaces Architectural Products Catalog',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: 'Architectural Products | Ace Spaces',
     description:
       'Explore monolithic benchtops, seamlessly fused sinks, commercial washplanes, and bespoke architectural fixtures.',
-    images: ['/assets/applications/artista-mist-bathroom.jpg'],
+    images: ['/images/images/app_residential_artista_mist_1.jpg'],
   },
 };
 
@@ -192,7 +192,7 @@ export default function ProductsCatalogPage() {
         {/* Hero Architectural Image Frame */}
         <div className="hero-image-frame">
           <Image
-            src="/assets/applications/calacatta-greige-kitchen.jpg"
+            src="/images/images/app_residential_calacatta_greige_1.jpg"
             alt="Seamless architectural solid surface benchtop with integrated coved sink"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"

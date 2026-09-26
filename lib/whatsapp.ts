@@ -3,8 +3,10 @@
  * Utilities for formatting phone numbers and creating customized WhatsApp consultation links.
  */
 
-export const DEFAULT_WHATSAPP_NUMBER = '+91 98450 12345';
-export const DEFAULT_WHATSAPP_DISPLAY = '+91 98450 12345';
+export const DEFAULT_WHATSAPP_NUMBER =
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '+91 98450 12345';
+export const DEFAULT_WHATSAPP_DISPLAY =
+  process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY || DEFAULT_WHATSAPP_NUMBER;
 export const DEFAULT_WHATSAPP_MESSAGE =
   'Hello Ace Spaces Studio, I would like to consult on architectural material specification for an upcoming project.';
 

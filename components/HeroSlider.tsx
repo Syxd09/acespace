@@ -11,7 +11,6 @@ export default function HeroSlider() {
   const slides = (heroSlides && heroSlides.length > 0) ? heroSlides : defaultHeroSlides;
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [progress, setProgress] = useState(0);
 
   // Keep index within bounds if slides count changes
   useEffect(() => {
@@ -20,46 +19,30 @@ export default function HeroSlider() {
     }
   }, [slides.length, currentSlide]);
 
-  // 5-second interval timer with smooth progress bar - continuous auto-slide
+  // 5-second slide auto-advance timer
   useEffect(() => {
-    if (slides.length === 0) return;
+    if (slides.length <= 1) return;
 
-    setProgress(0);
     const duration = 5000;
-    const startTime = Date.now();
-
-    // Smooth progress bar update (does NOT trigger slide change)
-    const progressTimer = setInterval(() => {
-      const elapsed = Date.now() - startTime;
-      const pct = Math.min((elapsed / duration) * 100, 100);
-      setProgress(pct);
-    }, 50);
-
-    // Discrete slide transition timer (fires exactly once after 5s)
     const slideTimer = setTimeout(() => {
       setCurrentSlide((curr) => (curr + 1) % slides.length);
-      setProgress(0);
     }, duration);
 
     return () => {
-      clearInterval(progressTimer);
       clearTimeout(slideTimer);
     };
   }, [currentSlide, slides.length]);
 
   const goToSlide = (idx: number) => {
     setCurrentSlide(idx);
-    setProgress(0);
   };
 
   const prevSlide = () => {
     setCurrentSlide((curr) => (curr - 1 + slides.length) % slides.length);
-    setProgress(0);
   };
 
   const nextSlide = () => {
     setCurrentSlide((curr) => (curr + 1) % slides.length);
-    setProgress(0);
   };
 
   const activeSlide = slides[currentSlide] || slides[0] || defaultHeroSlides[0];
@@ -189,14 +172,17 @@ export default function HeroSlider() {
               }}
             >
               <div
+                key={currentSlide}
+                className="hero-progress-bar"
                 style={{
                   position: 'absolute',
                   left: 0,
                   top: 0,
                   bottom: 0,
-                  width: `${progress}%`,
+                  width: '100%',
                   background: '#fff',
-                  transition: 'width 0.05s linear',
+                  transformOrigin: 'left',
+                  animation: 'heroProgress 5000ms linear forwards',
                 }}
               />
             </div>

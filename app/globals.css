@@ -61,6 +61,10 @@ html.lenis, html.lenis body {
   }
 }
 
+#architectural-solids:target,
+#architectural-veined:target,
+#terrazzo-aggregates:target,
+#onyx-translucent:target,
 #noma-solids:target,
 #alto-veined:target,
 #strata-textures:target,
@@ -3189,6 +3193,41 @@ main.page-main {
     width: 22px !important;
     height: 22px !important;
     font-size: 11px !important;
+  }
+}
+
+/* Hero Progress Bar GPU Acceleration */
+@keyframes heroProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+/* Architectural ScrollReveal System */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .hero-progress-bar {
+    animation: none !important;
+    transform: scaleX(1) !important;
   }
 }
 

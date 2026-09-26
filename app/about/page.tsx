@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: 'https://acespacesindia.vercel.app/about',
     images: [
       {
-        url: '/assets/applications/excavage-education.jpg',
+        url: '/images/images/app_commercial_bleached_nuwood.jpg',
         width: 1200,
         height: 630,
         alt: 'Ace Spaces Atelier Craft & Philosophy',
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: 'About Us | Ace Spaces',
     description:
       'Architectural fabrication atelier, DuPont™ Corian® partnership, and the lineage powering Coro Collective in India.',
-    images: ['/assets/applications/excavage-education.jpg'],
+    images: ['/images/images/app_commercial_bleached_nuwood.jpg'],
   },
 };
 
@@ -179,7 +179,7 @@ export default function AboutPage() {
         {/* Hero Architectural Image Frame */}
         <div className="hero-image-frame" style={{ height: '100%', minHeight: '380px', maxHeight: '480px' }}>
           <Image
-            src="/assets/applications/stonecrest-smoke-hotel-lobby.jpg"
+            src="/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg"
             alt="Monolithic architectural counter crafted by Ace Spaces"
             fill
             sizes="(max-width: 860px) 100vw, 45vw"
@@ -410,7 +410,7 @@ export default function AboutPage() {
             }}
           >
             <Image
-              src="/assets/applications/calacatta-greige-kitchen.jpg"
+              src="/images/images/app_residential_calacatta_greige_1.jpg"
               alt="Ace Spaces fabrication workshop and finished monolithic installation"
               fill
               sizes="100vw"

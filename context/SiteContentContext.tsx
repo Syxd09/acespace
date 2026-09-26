@@ -67,7 +67,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
   const [studioContact, setStudioContact] = useState<StudioContactConfig>(defaultStudioContact);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 1. Instant client-side hydration from localStorage (prevents any serverless / cold start delay)
+  // 1. Safe client-side hydration from localStorage with freshness validation
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
@@ -78,13 +78,21 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
 
         const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (cached) {
-          const parsed: SiteContent = JSON.parse(cached);
-          if (parsed.heroSlides && parsed.heroSlides.length > 0) setHeroSlides(parsed.heroSlides);
-          if (parsed.materials && parsed.materials.length > 0) setMaterials(parsed.materials);
-          if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
-          if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);
-          if (parsed.projects && parsed.projects.length > 0) setProjects(parsed.projects);
-          if (parsed.studioContact) setStudioContact(parsed.studioContact);
+          const parsed = JSON.parse(cached);
+          const cachedTime = parsed._cachedAt ? Number(parsed._cachedAt) : 0;
+          const isStale = !cachedTime || (Date.now() - cachedTime > 6 * 60 * 60 * 1000);
+
+          if (!isStale) {
+            if (parsed.heroSlides && parsed.heroSlides.length > 0) setHeroSlides(parsed.heroSlides);
+            if (parsed.materials && parsed.materials.length > 0) setMaterials(parsed.materials);
+            if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
+            if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);
+            if (parsed.projects && parsed.projects.length > 0) setProjects(parsed.projects);
+            if (parsed.studioContact) setStudioContact(parsed.studioContact);
+          } else {
+            // Remove expired cache so fresh server data takes priority
+            localStorage.removeItem(LOCAL_STORAGE_KEY);
+          }
         }
       } catch (err) {
         console.warn('LocalStorage read error:', err);
@@ -113,9 +121,9 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         if (data.projects && data.projects.length > 0) setProjects(data.projects);
         if (data.studioContact) setStudioContact(data.studioContact);
 
-        // Keep local storage synchronized
+        // Keep local storage synchronized with timestamp
         if (typeof window !== 'undefined') {
-          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(data));
+          localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ ...data, _cachedAt: Date.now() }));
         }
       }
     } catch (err) {
@@ -207,9 +215,9 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         updatedAt: new Date().toISOString(),
       };
 
-      // Instant LocalStorage persistence
+      // Instant LocalStorage persistence with timestamp
       if (typeof window !== 'undefined') {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(currentData));
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify({ ...currentData, _cachedAt: Date.now() }));
       }
 
       // Broadcast immediately to all open storefront tabs

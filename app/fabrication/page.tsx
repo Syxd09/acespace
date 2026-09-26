@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     url: 'https://acespacesindia.vercel.app/fabrication',
     images: [
       {
-        url: '/assets/applications/calacatta-greige-kitchen-detail.jpg',
+        url: '/images/images/app_residential_calacatta_greige_2.jpg',
         width: 1200,
         height: 630,
         alt: 'Ace Spaces 5-Axis CNC & Fabrication Facility',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: 'Fabrication Craft & Machinery | Ace Spaces',
     description:
       'Precision CNC routing, thermoforming, and monolithic joint chemistry for solid surfaces in India.',
-    images: ['/assets/applications/calacatta-greige-kitchen-detail.jpg'],
+    images: ['/images/images/app_residential_calacatta_greige_2.jpg'],
   },
 };
 

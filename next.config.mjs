@@ -58,12 +58,12 @@ const nextConfig = {
       },
       {
         source: '/colours',
-        destination: '/materials',
+        destination: '/materials#library',
         permanent: true,
       },
       {
         source: '/collections/colours',
-        destination: '/materials',
+        destination: '/materials#library',
         permanent: true,
       },
       {

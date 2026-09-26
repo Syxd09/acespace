@@ -53,54 +53,51 @@ export async function POST(req: NextRequest) {
 
     // Determine target upload directory (local public/assets/uploads)
     const uploadsDir = path.join(process.cwd(), 'public', 'assets', 'uploads');
+    let canWriteLocal = true;
 
-    if (process.env.VERCEL) {
-      // In Vercel serverless environment, local filesystem is read-only
-      // Writing to /tmp produces 404s because Next.js does not serve static files from /tmp
-      try {
-        if (!fs.existsSync(uploadsDir)) {
-          fs.mkdirSync(uploadsDir, { recursive: true });
-        }
-      } catch {
-        return NextResponse.json(
-          {
-            success: false,
-            error: 'Serverless deployment detected. Local file upload is unavailable on read-only serverless filesystems. Please configure cloud storage (e.g. Vercel Blob or Cloudinary) or specify an image URL.',
-          },
-          { status: 501 }
-        );
-      }
-    }
-
-    if (!fs.existsSync(uploadsDir)) {
-      try {
+    try {
+      if (!fs.existsSync(uploadsDir)) {
         fs.mkdirSync(uploadsDir, { recursive: true });
-      } catch (err) {
-        return NextResponse.json(
-          {
-            success: false,
-            error: 'Cannot create upload directory. Cloud storage configuration required.',
-          },
-          { status: 500 }
-        );
       }
+    } catch {
+      canWriteLocal = false;
     }
-
-    // Sanitize filename strictly: alphanumeric, hyphens, and dots only
-    const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9_-]/g, '').toLowerCase();
-    const safeName = `${Date.now()}_${baseName || 'specimen'}${ext}`;
-    const filePath = path.join(uploadsDir, safeName);
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    fs.writeFileSync(filePath, buffer);
 
-    const publicUrl = `/assets/uploads/${safeName}`;
+    // If local disk is writable and not in read-only serverless environment
+    if (canWriteLocal && !process.env.VERCEL) {
+      try {
+        const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9_-]/g, '').toLowerCase();
+        const safeName = `${Date.now()}_${baseName || 'specimen'}${ext}`;
+        const filePath = path.join(uploadsDir, safeName);
+
+        fs.writeFileSync(filePath, buffer);
+        const publicUrl = `/assets/uploads/${safeName}`;
+
+        return NextResponse.json({
+          success: true,
+          url: publicUrl,
+          fileName: safeName,
+          size: file.size,
+          storage: 'local',
+        });
+      } catch (err) {
+        console.warn('Local filesystem write failed, using base64 fallback:', err);
+      }
+    }
+
+    // Serverless fallback: Return encoded Data URL so images render immediately without static hosting dependency
+    const base64Data = buffer.toString('base64');
+    const dataUrl = `data:${file.type};base64,${base64Data}`;
+
     return NextResponse.json({
       success: true,
-      url: publicUrl,
-      fileName: safeName,
+      url: dataUrl,
+      fileName: file.name,
       size: file.size,
+      storage: 'inline-base64',
     });
   } catch (error) {
     return NextResponse.json(

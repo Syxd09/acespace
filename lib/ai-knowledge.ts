@@ -41,21 +41,22 @@ export const STUDIO_KNOWLEDGE_BASE: KnowledgeSection[] = [
 • **Backlit Gauge (6 mm)**: Available in the Lumen Translucent series for illuminated columns and feature walls.
 
 ### 2. Commercial Pricing Breakdown by Collection (12 mm Standard)
-• **Noma Solids** (White Chalk, Linen, Parchment, Bone, Concrete Ash):
+• **Architectural Solids** (Stonique, Cirrus White, River Pearl, Whipped Cream, Linen, Natural Gray):
   - Raw Slab Material: **₹650 – ₹850 / sq. ft.** (~₹19,500 – ₹25,500 per full sheet)
   - Installed & Finished: **₹1,100 – ₹1,450 / sq. ft.**
-• **Terra Earth** (Sienna, Sage, Umber):
+• **Artista Series & Nuwood Heritage** (Artista Mist, Artista Sage, Artista Drift, Artista Mocha, Bleached Nuwood, Provence Nuwood):
   - Raw Slab Material: **₹750 – ₹950 / sq. ft.** (~₹22,500 – ₹28,500 per full sheet)
   - Installed & Finished: **₹1,250 – ₹1,600 / sq. ft.**
-• **Alto Veined** (Bianco Vein, Calacatta Gold, Fior di Bosco):
+• **Architectural Veined** (Calacatta Greige, Travertine Roma, Travertine Firenze, Vasto Greige, Carrara Crema, Carrara Lino, Venaro White):
   - Raw Slab Material: **₹950 – ₹1,400 / sq. ft.** (~₹28,500 – ₹42,000 per full sheet)
   - Installed & Finished: **₹1,600 – ₹2,200 / sq. ft.** (includes precision vein alignment)
-• **Strata Textures & Obsidian Noir** (Sand Fine, Terrazzo Ash, Still, Coal, Basalt):
+• **Aggregates, Terrazzo & Grinds** (Stonecrest Smoke, Excavage, Archeologic, Pebble Lane, Terrazzo Laguna, Terrazzo Peppered, Basalt Terrazzo):
   - Raw Slab Material: **₹1,100 – ₹1,650 / sq. ft.** (~₹33,000 – ₹49,500 per full sheet)
   - Installed & Finished: **₹1,800 – ₹2,500 / sq. ft.**
-• **Lumen Translucent** (Shell, Ice, Opal - Backlit Series):
+• **Onyx & Translucent Series** (Golden Onyx, Jade Onyx, White Onyx, Gray Onyx - Backlit Series):
   - Raw Slab Material: **₹1,250 – ₹1,850 / sq. ft.** (~₹37,500 – ₹55,500 per full sheet)
   - Installed & Finished: **₹2,100 – ₹2,850 / sq. ft.** (includes rear optical cavity framing)
+
 
 ### 3. Fabrication & Bespoke Feature Add-ons
 • **Mitred Waterfall Edge Apron (40mm–100mm drop)**: ₹350 – ₹650 / linear ft.
@@ -209,30 +210,37 @@ Edge Profiles Available:
     id: 'collections-colours',
     topic: 'Material Collections, Slabs & Color Palettes',
     keywords: [
-      'colours', 'colors', 'collections', 'palette', 'swatch', 'noma', 'alto', 'obsidian',
-      'lucent', 'white chalk', 'linen', 'parchment', 'ivory vein', 'calacatta', 'translucent',
-      'backlit', 'terrazzo', 'slabs', 'thickness', '12mm', '19mm', 'dimensions'
+      'colours', 'colors', 'collections', 'palette', 'swatch', 'calacatta greige', 'stonique', 'stonecrest',
+      'golden onyx', 'cirrus white', 'artista', 'nuwood', 'terrazzo', 'excavage', 'translucent',
+      'backlit', 'slabs', 'thickness', '12mm', '19mm', 'dimensions'
     ],
-    summary: 'Curated architectural palettes across Noma Solids, Alto Veined, Obsidian Aggregates, and Lucent Backlit series.',
-    details: `Ace Spaces curates mineral surfaces across 4 core architectural series:
+    summary: 'Curated architectural palettes across Architectural Solids, Architectural Veined, Artista Series, Terrazzo & Aggregates, and Onyx Translucent series.',
+    details: `Ace Spaces curates genuine DuPont™ Corian® solid surfaces across 5 core architectural series:
 
-1. Noma Solids (Mineral & Monolithic):
-- White Chalk (AC-0101): Pure, light-absorbing ultra-matte chalk white. Zero grain.
-- Linen (AC-0102): Warm, velvety cream echoing natural unbleached textiles.
-- Parchment (AC-0103): Subtle warm ecru grounding natural timber and patinated bronze.
-- Bone (AC-0104): Muted architectural alabaster for calm residential sanctuaries.
+1. Architectural Solids (Pure & Monolithic):
+- Stonique (COR-ST03): Pure clinical chalk white with zero visible grain.
+- Cirrus White (COR-CW08): Light-diffusing, ethereal soft white matrix.
+- Whipped Cream (COR-WC43): Velvet warm white that absorbs glare.
+- River Pearl (COR-RP42): Luminous pearlescent off-white with delicate mineral depth.
+- Natural Gray (COR-NG41): Pure neutral architectural grey for quiet monolithic geometry.
 
-2. Alto Veined (Directional & Sculptural):
-- Ivory Vein (AC-0201): Fine, warm mineral veining simulating gentle geological sedimentation.
-- Calacatta Greige (AC-0202): Dramatic yet restrained marble movement with warm grey ribbons.
-- Grigio Ripple (AC-0203): Deep smoky undertones with soft horizontal mineral drifts.
+2. Architectural Veined (Directional & Sculptural):
+- Calacatta Greige (COR-CG01): Ethereal warm greige ribbons over a soft mineral canvas.
+- Travertine Roma (COR-TR11) & Travertine Firenze (COR-TF12): Classical striated mineral currents.
+- Carrara Crema (COR-CC21) & Carrara Lino (COR-CL22): Muted Carrara marble veining with organic movement.
+- Venaro White (COR-VW44) & Windswept (COR-WS45): Micro-fine organic vein accents and sweeping currents.
 
-3. Obsidian Aggregates (Terrazzo & Deep Mineral):
-- Carbon Aggregate (AC-0301): Deep obsidian matrix embedded with micro-quartz and brass flecks.
-- Basalt Dune (AC-0302): Tactile volcanic grey with rich aggregate depth.
+3. Artista Series & Nuwood Heritage:
+- Artista Mist (COR-AM04), Artista Sage (COR-AS05), Artista Drift (COR-AD06), Artista Mocha (COR-AM07).
+- Bleached Nuwood (COR-BN09) & Provence Nuwood (COR-PN10): Natural architectural timber grain translated into non-porous solid surface.
 
-4. Lucent Translucent (Backlit & Illuminating):
-- Opal Lumina (AC-0401): Up to 38% light transmission. Glows warmly under concealed 2700K–3500K LED matrices.
+4. Terrazzo, Aggregates & Grinds:
+- Stonecrest Smoke (COR-SS02): Monolithic graphite mineral with micro-aggregate textures.
+- Excavage (COR-EX17), Archeologic (COR-AR18), Pebble Lane (COR-PL19): Tactile geological excavations.
+- Terrazzo Laguna (COR-TL14), Terrazzo Peppered (COR-TP15), Basalt Terrazzo (COR-BT16).
+
+5. Onyx & Translucent Series (Backlit & Illuminating):
+- Golden Onyx (COR-GO23), Jade Onyx (COR-JO24), White Onyx (COR-WO25), Gray Onyx (COR-GO26): Up to 38% light transmission. Glows warmly under concealed 2700K–3500K LED matrices.
 
 Standard Slab Specs:
 - Standard Dimensions: 3660 mm length × 760 mm width
@@ -240,8 +248,8 @@ Standard Slab Specs:
     specs: {
       'Standard Slab Dimensions': '3660 mm × 760 mm (12.0 ft × 2.5 ft)',
       'Available Gauges': '12 mm (primary), 19 mm (heavy-duty)',
-      'Finishes': 'Ultra-Matte, Velvet Matte, Satin Smooth, Polished',
-      'Light Transmission': 'From 6% (solids) up to 38% (Lucent series)'
+      'Finishes': 'Ultra-Matte, Velvet Matte, Satin Smooth, Polished Honed',
+      'Light Transmission': 'From 3% (solids) up to 38% (Onyx series)'
     },
     suggestedActions: [
       { label: 'View Colour Library', href: '/materials#library' },
@@ -575,24 +583,57 @@ export function findMatchingMaterial(query: string): Material | null {
 
   // 3. Check specific iconic color / finish names (exact phrase matches only)
   const specificTerms: [string, string][] = [
-    ['white chalk', 'noma-white-chalk'],
-    ['chalk', 'noma-white-chalk'],
-    ['calacatta gold', 'alto-calacatta-gold'],
-    ['calacatta', 'alto-calacatta-gold'],
-    ['bianco vein', 'alto-bianco-vein'],
-    ['fior di bosco', 'alto-fior-di-bosco'],
-    ['sand fine', 'strata-sand-fine'],
-    ['terrazzo ash', 'strata-terrazzo-ash'],
-    ['terra sienna', 'terra-sienna'],
-    ['terra sage', 'terra-sage'],
-    ['terra umber', 'terra-umber'],
-    ['obsidian still', 'obsidian-still'],
-    ['obsidian coal', 'obsidian-coal'],
-    ['obsidian basalt', 'obsidian-basalt'],
-    ['lumen shell', 'lumen-shell'],
-    ['lumen ice', 'lumen-ice'],
-    ['lumen opal', 'lumen-opal'],
-    ['opal lumina', 'lumen-opal'],
+    ['calacatta greige', 'calacatta-greige'],
+    ['calacatta', 'calacatta-greige'],
+    ['stonecrest smoke', 'stonecrest-smoke'],
+    ['stonecrest', 'stonecrest-smoke'],
+    ['stonique', 'stonique'],
+    ['artista mist', 'artista-mist'],
+    ['artista sage', 'artista-sage'],
+    ['artista drift', 'artista-drift'],
+    ['artista mocha', 'artista-mocha'],
+    ['cirrus white', 'cirrus-white'],
+    ['bleached nuwood', 'bleached-nuwood'],
+    ['nuwood', 'bleached-nuwood'],
+    ['provence nuwood', 'provence-nuwood'],
+    ['travertine roma', 'travertine-roma'],
+    ['travertine firenze', 'travertine-firenze'],
+    ['vasto greige', 'vasto-greige'],
+    ['vasto laguna', 'vasto-laguna'],
+    ['terrazzo laguna', 'terrazzo-laguna'],
+    ['terrazzo peppered', 'terrazzo-peppered'],
+    ['basalt terrazzo', 'basalt-terrazzo'],
+    ['pebble terrazzo', 'pebble-terrazzo'],
+    ['excavage', 'excavage'],
+    ['archeologic', 'archeologic'],
+    ['pebble lane', 'pebble-lane'],
+    ['carrara crema', 'carrara-crema'],
+    ['carrara lino', 'carrara-lino'],
+    ['golden onyx', 'golden-onyx'],
+    ['jade onyx', 'jade-onyx'],
+    ['white onyx', 'white-onyx'],
+    ['gray onyx', 'gray-onyx'],
+    ['ash aggregate', 'ash-aggregate'],
+    ['carbon aggregate', 'carbon-aggregate'],
+    ['lava rock', 'lava-rock'],
+    ['witch hazel', 'witch-hazel'],
+    ['rosemary', 'rosemary'],
+    ['sagebrush', 'sagebrush'],
+    ['sandalwood', 'sandalwood'],
+    ['rain cloud', 'rain-cloud'],
+    ['smoke drift prima', 'smoke-drift-prima'],
+    ['dune prima', 'dune-prima'],
+    ['carbon concrete', 'carbon-concrete'],
+    ['neutral concrete', 'neutral-concrete'],
+    ['weathered concrete', 'weathered-concrete'],
+    ['natural gray', 'natural-gray'],
+    ['river pearl', 'river-pearl'],
+    ['whipped cream', 'whipped-cream'],
+    ['venaro white', 'venaro-white'],
+    ['windswept', 'windswept'],
+    ['linen', 'linen'],
+    ['sandstorm', 'sandstorm'],
+    ['sparkling white', 'sparkling-white'],
   ];
 
   for (const [term, slug] of specificTerms) {
@@ -616,7 +657,7 @@ export interface MaterialPricingInfo {
 export function getMaterialPricing(material: Material): MaterialPricingInfo {
   const col = material.collection.toLowerCase();
 
-  if (col.includes('noma')) {
+  if (col.includes('solid')) {
     return {
       rawSqFt: '₹650 – ₹850 / sq. ft.',
       rawSheet: '₹19,500 – ₹25,500 per full 12mm sheet (~30 sq. ft)',
@@ -630,7 +671,7 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
     };
   }
 
-  if (col.includes('alto')) {
+  if (col.includes('veined') || col.includes('prima')) {
     return {
       rawSqFt: '₹950 – ₹1,400 / sq. ft.',
       rawSheet: '₹28,500 – ₹42,000 per full 12mm sheet (~30 sq. ft)',
@@ -644,7 +685,7 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
     };
   }
 
-  if (col.includes('strata') || col.includes('obsidian')) {
+  if (col.includes('aggregate') || col.includes('terrazzo') || col.includes('grinds') || col.includes('concrete')) {
     return {
       rawSqFt: '₹1,100 – ₹1,650 / sq. ft.',
       rawSheet: '₹33,000 – ₹49,500 per full 12mm sheet (~30 sq. ft)',
@@ -658,7 +699,7 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
     };
   }
 
-  if (col.includes('terra')) {
+  if (col.includes('artista') || col.includes('nuwood') || col.includes('botanical')) {
     return {
       rawSqFt: '₹750 – ₹950 / sq. ft.',
       rawSheet: '₹22,500 – ₹28,500 per full 12mm sheet (~30 sq. ft)',
@@ -672,7 +713,7 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
     };
   }
 
-  // Lumen Translucent
+  // Onyx & Translucent / Crystalline
   return {
     rawSqFt: '₹1,250 – ₹1,850 / sq. ft. (12mm) | ₹900 – ₹1,350 / sq. ft. (6mm Backlit)',
     rawSheet: '₹37,500 – ₹55,500 per full 12mm sheet (~30 sq. ft) | ₹27,000 – ₹40,500 (6mm sheet)',
@@ -761,33 +802,35 @@ How can I assist your practice today? You can ask me about:
     let advisory = `### Architectural Material & Colour Selection for Residential Spaces\n\n`;
 
     if (mentionsRed || (mentionsBlue && mentionsRed)) {
-      advisory += `#### 1. Red & Warm Terracotta Surfaces\n`;
-      advisory += `• **[Terra / Sienna (AC-0401)](/materials#library)**: Our primary stocked architectural red — a deep, earthy burnt sienna and Mediterranean clay mineral slab (3660 × 760 mm, 12mm & 19mm). Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
-      advisory += `• **DuPont™ Corian® Indent Reds**: As the authorized DuPont™ Corian® distributor in Bangalore, we supply specialized saturated architectural reds such as *Imperial Red* and *Hot* on project indent for high-impact commercial or residential focal points.\n\n`;
+      advisory += `#### 1. Red, Warm Earth & Terracotta Surfaces\n`;
+      advisory += `• **[Sandstorm (COR-SS47)](/materials#library)**: A dynamic swirl particulate evoking desert earth and warm clay tones. Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
+      advisory += `• **[Lava Rock (COR-LR29)](/materials#library)**: Deep charcoal and warm terracotta-hued volcanic mineral matrix with tactile aggregate depth.\n\n`;
     }
 
     if (mentionsBlue || (mentionsBlue && mentionsRed)) {
       advisory += `#### 2. Blue & Cool Oceanic Surfaces\n`;
-      advisory += `• **DuPont™ Corian® Specialized Indent Blues**: Classic solid surface blues including **Laguna**, **Deep Nocturne**, **Marine Blue**, and **Celestial** can be custom-ordered and 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins and integrated washplane basins.\n`;
-      advisory += `• **[Lumen / Opal (AC-0603)](/materials#library) & [Lumen / Ice (AC-0602)](/materials#library)**: 6mm and 12mm translucent mineral surfaces that diffuse light with up to 40% transmission. When illuminated from behind with cool-spectrum (4500K–6500K) or RGB LED matrices, they glow with radiant sapphire, cyan, or azure architectural light.\n\n`;
+      advisory += `• **[Vasto Laguna (COR-VL13)](/materials#library) & [Terrazzo Laguna (COR-TL14)](/materials#library)**: Deep oceanic minerals with cool teal and blue particulate accents, 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins and integrated washplane basins.\n`;
+      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)**: Translucent mineral surface that diffuses light with up to 38% transmission. When illuminated from behind with cool-spectrum (4500K–6500K) LED matrices, it glows with radiant crystalline depth.\n\n`;
     }
 
     if (mentionsGreen && !mentionsBlue && !mentionsRed) {
       advisory += `#### Botanic & Earthy Green Surfaces\n`;
-      advisory += `• **[Terra / Sage (AC-0402)](/materials#library)**: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n\n`;
+      advisory += `• **[Artista Sage (COR-AS05)](/materials#library)**: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n`;
+      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)**: Translucent green-tinted mineral matrix ideal for backlit botanical feature walls.\n\n`;
     }
 
     if (!mentionsBlue && !mentionsRed && !mentionsGreen) {
       advisory += `#### Recommended Architectural Collections\n`;
-      advisory += `• **[Noma Solids](/materials#library)**: Pure monolithic planes in White Chalk, Linen, Parchment, and Bone.\n`;
-      advisory += `• **[Alto Veined](/materials#library)**: Sculptural marble movement in Calacatta Gold and Bianco Vein.\n`;
-      advisory += `• **[Terra Earth](/materials#library)**: Earthy pigments in Sienna (terracotta red), Sage (botanic green), and Umber (warm soil).\n\n`;
+      advisory += `• **[Architectural Solids](/materials#library)**: Pure monolithic planes in Stonique, Cirrus White, River Pearl, Whipped Cream, and Linen.\n`;
+      advisory += `• **[Architectural Veined](/materials#library)**: Sculptural marble movement in Calacatta Greige, Travertine Roma, and Carrara Crema.\n`;
+      advisory += `• **[Artista Series & Nuwood](/materials#library)**: Subtle earth pigments in Artista Sage, Artista Mist, and Bleached Nuwood.\n\n`;
     }
 
     advisory += `#### Balanced Architectural Pairings\n`;
-    advisory += `To ensure bold saturated colours enhance rather than overwhelm residential volumes, we recommend pairing statement red or blue surfaces with calm grounding neutrals:\n`;
-    advisory += `• **[Noma / Linen (AC-0102)](/materials#library)**: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
-    advisory += `• **[Alto / Calacatta Gold (AC-0202)](/materials#library)**: Directional veining with honey-gold ribbons that subtly unifies warm terracotta and cool accents.\n\n`;
+    advisory += `To ensure bold saturated colours enhance rather than overwhelm residential volumes, we recommend pairing statement surfaces with calm grounding neutrals:\n`;
+    advisory += `• **[Linen (COR-LN46)](/materials#library)**: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
+    advisory += `• **[Calacatta Greige (COR-CG01)](/materials#library)**: Directional veining with warm grey ribbons that subtly unifies earthy accents.\n\n`;
+
     advisory += `All Ace Spaces solid surfaces feature **100% zero crystalline silica** (silicosis-safe), seamless inconspicuous joins, and vacuum thermoforming capabilities down to 25mm radii.\n\n`;
     advisory += `Would you like to curate physical 100 × 100 mm specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919845012345)?`;
 

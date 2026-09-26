@@ -44,6 +44,11 @@ const STARTER_PROMPTS = [
 export default function ArchitecturalAIBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [isHalfScreen, setIsHalfScreen] = useState(false);
+  const [customWidth, setCustomWidth] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const startXRef = useRef(0);
+  const startWidthRef = useRef(0);
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState('');
@@ -52,6 +57,49 @@ export default function ArchitecturalAIBot() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const pathname = usePathname();
   const router = useRouter();
+
+  const toggleHalfScreen = () => {
+    if (isHalfScreen) {
+      setIsHalfScreen(false);
+      setCustomWidth(420);
+    } else {
+      setIsHalfScreen(true);
+      setCustomWidth(null); // CSS defaults to 50vw
+    }
+  };
+
+  const handleMouseDownResize = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+    startXRef.current = e.clientX;
+    const chatEl = document.querySelector('.ace-ai-chat-window') as HTMLElement | null;
+    const currentW = chatEl
+      ? chatEl.getBoundingClientRect().width
+      : customWidth || (isHalfScreen ? window.innerWidth * 0.5 : 420);
+    startWidthRef.current = currentW;
+
+    const handleMouseMove = (moveEvent: MouseEvent) => {
+      const deltaX = startXRef.current - moveEvent.clientX;
+      const minW = 380;
+      const maxW = Math.min(window.innerWidth * 0.88, 1280);
+      const newWidth = Math.max(minW, Math.min(maxW, startWidthRef.current + deltaX));
+      setCustomWidth(newWidth);
+      if (newWidth >= window.innerWidth * 0.45) {
+        setIsHalfScreen(true);
+      } else {
+        setIsHalfScreen(false);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+  };
 
   const navigateToSiteLink = (href: string) => {
     if (!href) return;
@@ -557,28 +605,70 @@ How may I assist your architectural practice today?`,
         {/* Expanded Chat Pane with Open and Close Animations */}
         {(isOpen || isClosing) && (
           <div
-            className={`ace-ai-chat-window ${isClosing ? 'ai-window-closing' : 'ai-window-opening'}`}
+            className={`ace-ai-chat-window ${isClosing ? 'ai-window-closing' : 'ai-window-opening'} ${isHalfScreen ? 'is-half-screen' : ''}`}
             style={{
               position: 'absolute',
               bottom: '58px',
               right: '0',
-              width: '420px',
+              width: customWidth
+                ? `${customWidth}px`
+                : isHalfScreen
+                ? '50vw'
+                : '420px',
+              minWidth: '380px',
               maxWidth: 'calc(100vw - 32px)',
-              height: '620px',
-              maxHeight: 'calc(100vh - 110px)',
+              height: isHalfScreen ? 'calc(100vh - 96px)' : '620px',
+              maxHeight: 'calc(100vh - 96px)',
               background: '#121512',
               color: '#f4f3ef',
               border: '1px solid rgba(242, 240, 234, 0.22)',
               borderRadius: '0px',
-              boxShadow: '0 24px 60px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(242, 240, 234, 0.12)',
+              boxShadow: isHalfScreen
+                ? '0 28px 80px rgba(0, 0, 0, 0.85), -14px 0 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(242, 240, 234, 0.16)'
+                : '0 24px 60px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(242, 240, 234, 0.12)',
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
               transformOrigin: 'bottom right',
               backdropFilter: 'blur(20px)',
               WebkitBackdropFilter: 'blur(20px)',
+              transition: isDragging
+                ? 'none'
+                : 'width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease',
             }}
           >
+            {/* Left Edge Drag / Spread Handle */}
+            <div
+              className="ace-ai-resize-handle"
+              onMouseDown={handleMouseDownResize}
+              onDoubleClick={toggleHalfScreen}
+              title="Drag left to spread across the screen (Double-click to toggle 50% half-screen)"
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: '12px',
+                cursor: 'ew-resize',
+                zIndex: 60,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                userSelect: 'none',
+              }}
+            >
+              <div
+                style={{
+                  width: '3px',
+                  height: isDragging ? '46px' : '26px',
+                  borderRadius: '2px',
+                  background: isDragging ? '#73c991' : 'rgba(242, 240, 234, 0.22)',
+                  boxShadow: isDragging ? '0 0 8px rgba(115, 201, 145, 0.8)' : 'none',
+                  transition: 'background 0.2s ease, height 0.2s ease',
+                }}
+              />
+            </div>
+
             {/* Architectural Header */}
             <header
               className="ace-ai-chat-header"
@@ -646,9 +736,27 @@ How may I assist your architectural practice today?`,
                       fontFamily: 'DM Mono, monospace',
                       letterSpacing: '0.04em',
                       marginTop: '1px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px',
                     }}
                   >
-                    Private Material Intelligence · Grounded
+                    <span>Private Material Intelligence · Grounded</span>
+                    {isHalfScreen && (
+                      <span
+                        style={{
+                          fontSize: '8.5px',
+                          color: '#73c991',
+                          border: '1px solid rgba(115, 201, 145, 0.4)',
+                          padding: '0 4px',
+                          borderRadius: '0px',
+                          letterSpacing: '0.06em',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        50% Spread
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -687,6 +795,41 @@ How may I assist your architectural practice today?`,
                   }}
                 >
                   ↻
+                </button>
+
+                {/* Half-Screen Spread Toggle Button */}
+                <button
+                  type="button"
+                  className="ace-ai-header-btn"
+                  onClick={toggleHalfScreen}
+                  title={isHalfScreen ? 'Compact View (420px)' : 'Spread to Half-Screen (50% View)'}
+                  aria-label={isHalfScreen ? 'Compact View' : 'Spread to Half-Screen View'}
+                  style={{
+                    background: isHalfScreen ? 'rgba(242, 240, 234, 0.14)' : 'rgba(255, 255, 255, 0.04)',
+                    border: isHalfScreen ? '1px solid rgba(242, 240, 234, 0.45)' : '1px solid rgba(242, 240, 234, 0.18)',
+                    color: isHalfScreen ? '#ffffff' : '#f2f0ea',
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '0px',
+                    display: 'grid',
+                    placeItems: 'center',
+                    cursor: 'pointer',
+                    fontSize: '11px',
+                    fontFamily: 'DM Mono, monospace',
+                    transition: 'all 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = '#ffffff';
+                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
+                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.14)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = isHalfScreen ? '#ffffff' : '#f2f0ea';
+                    e.currentTarget.style.borderColor = isHalfScreen ? 'rgba(242, 240, 234, 0.45)' : 'rgba(242, 240, 234, 0.18)';
+                    e.currentTarget.style.background = isHalfScreen ? 'rgba(242, 240, 234, 0.14)' : 'rgba(255, 255, 255, 0.04)';
+                  }}
+                >
+                  {isHalfScreen ? '⤡' : '⤢'}
                 </button>
 
                 {/* Close Button */}
@@ -1342,6 +1485,11 @@ How may I assist your architectural practice today?`,
             transform: translateY(100%);
             opacity: 0.4;
           }
+        }
+
+        .ace-ai-resize-handle:hover > div {
+          background: rgba(242, 240, 234, 0.6) !important;
+          height: 42px !important;
         }
 
         /* Responsive Mobile Behavior (<640px) */

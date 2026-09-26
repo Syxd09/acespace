@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     url: 'https://acespacesindia.vercel.app/projects',
     images: [
       {
-        url: '/assets/applications/stonecrest-smoke-hotel-lobby.jpg',
+        url: '/images/images/app_residential_stonecrest_smoke_1.jpg',
         width: 1200,
         height: 630,
         alt: 'Ace Spaces Architectural Case Studies',
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: 'Architectural Projects | Ace Spaces',
     description:
       'Monolithic solid surface case studies and completed spatial projects across India.',
-    images: ['/assets/applications/stonecrest-smoke-hotel-lobby.jpg'],
+    images: ['/images/images/app_residential_stonecrest_smoke_1.jpg'],
   },
 };
 

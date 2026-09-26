@@ -143,26 +143,26 @@ export default function MegaMenu({
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <li>
-                      <Link href="/materials#noma-solids" onClick={(e) => handleLinkClick(e, '/materials#noma-solids')} className="mega-menu-link">
-                        <strong>Noma Solids</strong>
-                        <small>Pure monolithic mineral chalks</small>
+                      <Link href="/materials#architectural-solids" onClick={(e) => handleLinkClick(e, '/materials#architectural-solids')} className="mega-menu-link">
+                        <strong>Architectural Solids</strong>
+                        <small>Pure monolithic mineral planes</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#alto-veined" onClick={(e) => handleLinkClick(e, '/materials#alto-veined')} className="mega-menu-link">
-                        <strong>Alto Veined</strong>
+                      <Link href="/materials#architectural-veined" onClick={(e) => handleLinkClick(e, '/materials#architectural-veined')} className="mega-menu-link">
+                        <strong>Architectural Veined</strong>
                         <small>Directional fluid marble movement</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#strata-textures" onClick={(e) => handleLinkClick(e, '/materials#strata-textures')} className="mega-menu-link">
-                        <strong>Strata Textures</strong>
-                        <small>Sedimentary micro-terrazzo aggregates</small>
+                      <Link href="/materials#terrazzo-aggregates" onClick={(e) => handleLinkClick(e, '/materials#terrazzo-aggregates')} className="mega-menu-link">
+                        <strong>Terrazzo &amp; Aggregates</strong>
+                        <small>Sedimentary micro-terrazzo &amp; grinds</small>
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#lumen-optics" onClick={(e) => handleLinkClick(e, '/materials#lumen-optics')} className="mega-menu-link">
-                        <strong>Lumen Optics</strong>
+                      <Link href="/materials#onyx-translucent" onClick={(e) => handleLinkClick(e, '/materials#onyx-translucent')} className="mega-menu-link">
+                        <strong>Onyx &amp; Translucent</strong>
                         <small>Translucent fields for backlit halos</small>
                       </Link>
                     </li>
@@ -532,7 +532,7 @@ export default function MegaMenu({
             <div className="mega-menu-feature-card">
               <div className="mega-menu-feature-image">
                 <Image
-                  src="/assets/applications/artista-mist-bathroom.jpg"
+                  src="/images/images/app_residential_artista_mist_1.jpg"
                   alt="Monolithic floating double vanity and seamlessly integrated basins"
                   fill
                   sizes="400px"
@@ -787,7 +787,7 @@ export default function MegaMenu({
             <div className="mega-menu-feature-card">
               <div className="mega-menu-feature-image">
                 <Image
-                  src="/assets/applications/stonecrest-smoke-hotel-lobby.jpg"
+                  src="/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg"
                   alt="Monolithic grand reception desk in hospitality interior"
                   fill
                   sizes="400px"
@@ -1022,7 +1022,7 @@ export default function MegaMenu({
             <div className="mega-menu-feature-card">
               <div className="mega-menu-feature-image">
                 <Image
-                  src="/assets/applications/calacatta-greige-kitchen-detail.jpg"
+                  src="/images/images/app_residential_calacatta_greige_2.jpg"
                   alt="Seamless 45-degree mitred waterfall edge and surface join close-up"
                   fill
                   sizes="400px"
@@ -1269,7 +1269,7 @@ export default function MegaMenu({
             <div className="mega-menu-feature-card">
               <div className="mega-menu-feature-image">
                 <Image
-                  src="/assets/applications/excavage-education.jpg"
+                  src="/images/images/app_commercial_bleached_nuwood.jpg"
                   alt="Ace Spaces architectural studio practice and monolithic craft"
                   fill
                   sizes="400px"

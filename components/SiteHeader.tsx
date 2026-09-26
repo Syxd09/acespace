@@ -31,14 +31,22 @@ export default function SiteHeader() {
 
   // Handle scroll detection for sticky navbar background transition & scroll progress hairline
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 40);
+    let ticking = false;
 
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight > 0) {
-        const progress = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
-        setScrollProgress(progress);
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          setIsScrolled(scrollY > 40);
+
+          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (docHeight > 0) {
+            const progress = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+            setScrollProgress(progress);
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 

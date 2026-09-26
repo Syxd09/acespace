@@ -27,22 +27,22 @@ export const productsData: ProductItem[] = [
       'Engineered for residential kitchens, luxury hospitality, and high-performance commercial reception counters. Ace Spaces solid surface benchtops feature inconspicuous chemically welded joints, mitred apron drop fronts, and continuous coved splashbacks that permanently eliminate silicone mould rims.',
     overview:
       'Unlike stone or laminate, solid surface benchtops can be joined on-site to create infinite continuous work surfaces with zero visible seams. Heat-formed waterfall ends flow gracefully to the floor, while thermo-welded joints provide an impervious, hygienic barrier against moisture and bacteria.',
-    image: '/assets/applications/calacatta-greige-kitchen.jpg',
+    image: '/images/images/app_residential_calacatta_greige_1.jpg',
     galleryImages: [
       {
-        src: '/assets/applications/calacatta-greige-kitchen.jpg',
-        alt: 'Monolithic kitchen island benchtop with seamless waterfall gable end',
+        src: '/images/images/app_residential_calacatta_greige_1.jpg',
+        alt: 'Monolithic kitchen island benchtop with seamless waterfall gable end in Calacatta Greige',
         caption: 'Seamless Calacatta Greige kitchen island with mitred 60mm apron drop edge.'
       },
       {
-        src: '/assets/applications/minimal-kitchen-penninsula.jpg',
-        alt: 'Curved solid surface island with integrated sink',
-        caption: 'Soft 50mm radius curved breakfast bar with seamless under-mount sink.'
+        src: '/images/images/app_residential_calacatta_greige_2.jpg',
+        alt: 'Close-up of seamless 45-degree waterfall mitre join',
+        caption: 'Precision mitred waterfall gable end with unbroken grain continuation.'
       },
       {
-        src: '/assets/applications/stonique-bathroom-vanity.jpg',
-        alt: 'Integrated solid surface work surface',
-        caption: 'Matte mineral surface with flush-mount appliance detailing.'
+        src: '/images/images/app_residential_stonecrest_smoke_1.jpg',
+        alt: 'Integrated Stonecrest Smoke solid surface kitchen island',
+        caption: 'Tactile Stonecrest Smoke monolithic island with continuous under-mount basin.'
       }
     ],
     keyFeatures: [
@@ -58,21 +58,28 @@ export const productsData: ProductItem[] = [
       { label: 'Edge Profiles', value: 'Mitred square, 3mm bevel, pencil round, full bullnose' },
       { label: 'Splashback Junction', value: '10mm radius seamless coved upstand' },
       { label: 'Hygiene Rating', value: 'NSF/ANSI 51 certified for food contact zones' },
-      { label: 'Fire Rating', value: 'Class 1 / Class A (ASTM E84)' }
+      { label: 'Heat Resistance', value: 'Tolerates up to 100°C dry heat (use built-in trivets for cookware)' }
     ],
     applications: [
       'Residential Kitchen Islands & Countertops',
-      'Commercial Reception Desks & Consoles',
-      'Cocktail Bars & Hospitality Pass Counters',
-      'Corporate Pantry & Breakout Benches'
+      'Commercial Reception Counters & Desks',
+      'Hospitality Cocktail Bars & Restaurant Service Lines',
+      'Executive Boardroom Meeting Tables',
+      'Laboratory & Healthcare Workstations'
     ],
     compatibleMaterials: [
-      'Noma / White Chalk',
-      'Alto / Ivory Vein',
-      'Strata / Terrazzo Ash',
-      'Alto / Fior di Bosco'
+      'Calacatta Greige',
+      'Stonique',
+      'Stonecrest Smoke',
+      'Cirrus White',
+      'Travertine Roma'
     ],
-    certifications: ['NSF/ANSI 51', 'GREENGUARD Gold', 'ASTM E84 Class A', 'ISO 9001'],
+    certifications: [
+      'NSF/ANSI 51 Certified',
+      'GREENGUARD Gold',
+      'EN 13501-1 Fire Rating B-s1, d0',
+      'ISO 846 Microbial Resistance Rating 0'
+    ],
     cadAvailable: true
   },
   {
@@ -85,16 +92,16 @@ export const productsData: ProductItem[] = [
       'Seamlessly integrated kitchen and utility sinks chemically bonded directly to solid surface benchtops. The absence of top-mount rims, silicone sealants, and grout lines ensures that food debris and water can be wiped directly into the bowl with effortless hygiene.',
     overview:
       'Fabricated from the same high-performance mineral acrylic composite as the surrounding worktop, Ace Spaces integrated sinks become one monolithic entity. Heat-resistant cast bottoms and gently curved internal corners prevent dirt accumulation, while thermal shock resistance withstands boiling liquids and daily culinary use.',
-    image: '/assets/applications/minimal-kitchen-penninsula.jpg',
+    image: '/images/images/app_residential_cirrus_white_1.jpg',
     galleryImages: [
       {
-        src: '/assets/applications/minimal-kitchen-penninsula.jpg',
-        alt: 'Under-mount integrated solid surface sink',
+        src: '/images/images/app_residential_cirrus_white_1.jpg',
+        alt: 'Under-mount integrated solid surface sink in Cirrus White',
         caption: 'Seamless sink-to-benchtop transition with precision drainage grooves.'
       },
       {
-        src: '/assets/applications/calacatta-greige-kitchen.jpg',
-        alt: 'Double bowl integrated sink installation',
+        src: '/images/images/app_residential_stonique_1.jpg',
+        alt: 'Double bowl integrated sink installation in Stonique',
         caption: 'Twin-bowl kitchen preparation sink with integrated waste disposal collar.'
       }
     ],
@@ -110,7 +117,7 @@ export const productsData: ProductItem[] = [
       { label: 'Bowl Depth', value: '180 mm to 240 mm' },
       { label: 'Internal Corner Radius', value: '10 mm radius coved hygiene profile' },
       { label: 'Waste Outlet', value: 'Standard 90 mm basket waste & garbage disposal compatible' },
-      { label: 'Colour Options', value: 'Pure White, Bone, Warm Linen, Cameo White' }
+      { label: 'Colour Options', value: 'Stonique, Cirrus White, Whipped Cream, Linen' }
     ],
     applications: [
       'Architectural Kitchen Workstations',
@@ -118,7 +125,7 @@ export const productsData: ProductItem[] = [
       'Commercial Preparation Kitchens',
       'Laboratories & Clean Rooms'
     ],
-    compatibleMaterials: ['Noma / White Chalk', 'Noma / Linen', 'Cameo White'],
+    compatibleMaterials: ['Stonique', 'Cirrus White', 'Linen', 'Whipped Cream'],
     certifications: ['NSF/ANSI 51', 'CE Certified EN 13310', 'CUPC Listed'],
     cadAvailable: true
   },
@@ -132,16 +139,16 @@ export const productsData: ProductItem[] = [
       'Engineered for premium commercial amenities, corporate headquarters, airports, and luxury hospitality venues. Ace Spaces linear washplanes feature gentle sloping planes that guide water toward a concealed continuous trough drain, delivering a dramatic, minimalist aesthetic paired with high-volume capacity.',
     overview:
       'Traditional individual basins in commercial restrooms frequently trap water and cause puddling around faucets. Ace Spaces solid surface washplanes provide a clean, monolithic horizontal plane spanning up to 5 meters without joints. Designed for wall-mounted sensor taps and soap dispensers, they optimize flow rate, eliminate standing water, and reduce maintenance costs.',
-    image: '/assets/applications/commercial-restroom-washplane.jpg',
+    image: '/images/images/app_commercial_grinds_excavage.jpg',
     galleryImages: [
       {
-        src: '/assets/applications/commercial-restroom-washplane.jpg',
-        alt: 'Multi-station linear solid surface washplane in luxury corporate washroom',
-        caption: 'Triple-station 3.2m continuous washplane with integrated sensor faucets.'
+        src: '/images/images/app_commercial_grinds_excavage.jpg',
+        alt: 'Multi-station linear solid surface washplane in Excavage',
+        caption: 'Triple-station continuous commercial washplane with integrated sensor faucets.'
       },
       {
-        src: '/assets/applications/artista-mist-bathroom.jpg',
-        alt: 'Single basin sloped washplane',
+        src: '/images/images/app_commercial_grinds_pebble_lane.jpg',
+        alt: 'Single basin sloped washplane in Pebble Lane',
         caption: 'Wall-hung executive washplane with removable access tray for trap cleaning.'
       }
     ],
@@ -166,10 +173,11 @@ export const productsData: ProductItem[] = [
       'High-End Restaurants & Hotel Restrooms'
     ],
     compatibleMaterials: [
-      'Noma / White Chalk',
-      'Alto / Ivory Vein',
-      'Alto / Fior di Bosco',
-      'Strata / Terrazzo Ash'
+      'Excavage',
+      'Pebble Lane',
+      'Stonecrest Smoke',
+      'Archeologic',
+      'Terrazzo Laguna'
     ],
     certifications: ['DDA / ADA Compliant options', 'GREENGUARD Gold', 'BREEAM / LEED credits'],
     cadAvailable: true
@@ -184,16 +192,16 @@ export const productsData: ProductItem[] = [
       'Tailored for master bathrooms, boutique hotels, and guest powder suites. Ace Spaces basins and vanities feature seamlessly integrated solid surface washbowls welded directly to the vanity top, creating a monolithic, zero-grout sculpted fixture that resists makeup, cosmetics, and standing water.',
     overview:
       'From floating wall-hung cantilevered slabs with soft apron skirts to double-basin vanity suites with concealed tissue slots and integrated towel rails, our bathroom vanities unite horizontal countertop and vertical bowl into a fluid single piece. Scratches buff out easily, ensuring everlasting elegance.',
-    image: '/assets/applications/stonique-bathroom-vanity.jpg',
+    image: '/images/images/app_residential_artista_mist_1.jpg',
     galleryImages: [
       {
-        src: '/assets/applications/stonique-bathroom-vanity.jpg',
-        alt: 'Monolithic wall-hung bathroom vanity with integrated basin',
-        caption: 'Matte white solid surface vanity with 120mm mitred apron and integrated coved basin.'
+        src: '/images/images/app_residential_artista_mist_1.jpg',
+        alt: 'Monolithic wall-hung bathroom vanity with integrated basin in Artista Mist',
+        caption: 'Bespoke floating vanity console with 120mm mitred apron and integrated coved basin.'
       },
       {
-        src: '/assets/applications/artista-mist-bathroom.jpg',
-        alt: 'Warm linen tone floating vanity suite',
+        src: '/images/images/app_residential_stonique_2.jpg',
+        alt: 'Pure white floating vanity suite in Stonique',
         caption: 'Double basin vanity console with seamless drawer fronts and integrated finger-pulls.'
       }
     ],
@@ -218,10 +226,11 @@ export const productsData: ProductItem[] = [
       'Spa & Wellness Centres'
     ],
     compatibleMaterials: [
-      'Noma / White Chalk',
-      'Noma / Linen',
-      'Alto / Ivory Vein',
-      'Lumen / Amber Glow'
+      'Artista Mist',
+      'Stonique',
+      'Cirrus White',
+      'Golden Onyx',
+      'Linen'
     ],
     certifications: ['WaterMark Approved', 'EN 14688 Sanitary Appliances', 'GREENGUARD Gold'],
     cadAvailable: true
@@ -236,16 +245,16 @@ export const productsData: ProductItem[] = [
       'High-performance commercial washroom and End-of-Trip (EOT) grooming stations designed for active corporate lifestyle facilities, fitness clubs, and commercial property towers. Non-porous solid surface structures resist heavy daily impacts, moisture saturation, and graffiti.',
     overview:
       'Modern commercial developments compete on the quality of their End-of-Trip (EOT) commuter facilities. Ace Spaces provides turn-key vanity suites, grooming islands with built-in hair styling appliance holders, wireless charging points, and full-height wet wall linings that withstand heavy steam, damp towels, and intense multi-shift cleaning regimens.',
-    image: '/assets/applications/commercial-restroom-washplane.jpg',
+    image: '/images/images/app_commercial_terrazzo_laguna.jpg',
     galleryImages: [
       {
-        src: '/assets/applications/commercial-restroom-washplane.jpg',
-        alt: 'Corporate end-of-trip grooming counter with vanity mirror illumination',
+        src: '/images/images/app_commercial_terrazzo_laguna.jpg',
+        alt: 'Corporate end-of-trip grooming counter with vanity mirror illumination in Terrazzo Laguna',
         caption: 'Executive EOT groom station featuring heat-resistant appliance cradles and coved edges.'
       },
       {
-        src: '/assets/applications/health-clinical-prep.jpg',
-        alt: 'Heavy duty commercial washroom bank',
+        src: '/images/images/app_commercial_grinds_stonique.jpg',
+        alt: 'Heavy duty commercial washroom bank in Stonique',
         caption: 'Vandal-resistant solid surface vanity bank with under-counter service access panels.'
       }
     ],
@@ -270,10 +279,10 @@ export const productsData: ProductItem[] = [
       'Convention Centers & Sporting Stadium Suites'
     ],
     compatibleMaterials: [
-      'Alto / Fior di Bosco',
-      'Strata / Terrazzo Ash',
-      'Noma / White Chalk',
-      'Alto / Bianco Vein'
+      'Terrazzo Laguna',
+      'Stonecrest Smoke',
+      'Stonique',
+      'Basalt Terrazzo'
     ],
     certifications: ['ASTM E84 Class A', 'NSF 51 Non-porous', 'Green Star & WELL compliant'],
     cadAvailable: true
@@ -288,16 +297,16 @@ export const productsData: ProductItem[] = [
       'Purpose-engineered for acute hospitals, medical surgeries, surgical suites, and aged-care residences. Solid surface is the premier clinical material specified globally for surgical scrub sinks, clean-utility benches, and wheelchair-accessible DDA vanities because it is 100% non-porous, inherently antimicrobial, and void of grout lines.',
     overview:
       'Healthcare infections frequently originate in micro-crevices around sink silicones and tile grout. Ace Spaces clinical fixtures eliminate these failure points with continuous coved radiuses, thermoformed anti-splash scrub troughs, and chemical resistance against harsh hospital cleansers including chlorine bleach, betadine, and isopropyl alcohol.',
-    image: '/assets/applications/health-clinical-prep.jpg',
+    image: '/images/images/app_commercial_grinds_stonique.jpg',
     galleryImages: [
       {
-        src: '/assets/applications/health-clinical-prep.jpg',
-        alt: 'Surgical scrub sink with coved splashback and anti-splash sloping front',
+        src: '/images/images/app_commercial_grinds_stonique.jpg',
+        alt: 'Surgical scrub sink with coved splashback and anti-splash sloping front in Stonique',
         caption: 'Double-bay surgical scrub trough with zero-joint wall integration.'
       },
       {
-        src: '/assets/applications/artista-mist-bathroom.jpg',
-        alt: 'Accessible DDA compliant bathroom vanity',
+        src: '/images/images/app_commercial_grinds_archeologic.jpg',
+        alt: 'Accessible DDA compliant bathroom vanity in Archeologic',
         caption: 'Wheelchair-accessible front contour vanity with concealed protective pipe cover.'
       }
     ],
@@ -322,7 +331,7 @@ export const productsData: ProductItem[] = [
       'Aged Care & Assisted Living Communal Bathrooms',
       'Dental Operatory Cabinets & Sterilization Rooms'
     ],
-    compatibleMaterials: ['Noma / White Chalk', 'Noma / Linen'],
+    compatibleMaterials: ['Stonique', 'Cirrus White', 'Whipped Cream', 'Archeologic'],
     certifications: ['NSF/ANSI 51', 'ASTM G21 Fungus Resistant', 'ASTM G22 Bacteria Resistant'],
     cadAvailable: true
   },
@@ -336,17 +345,17 @@ export const productsData: ProductItem[] = [
       'Pushing the boundary between architectural joinery and sculptural artwork. Ace Spaces bespoke fabrication studio transforms 2D solid surface sheets into compound-curved organic desks, illuminated retail plinths, acoustic ceiling ribbons, and backlit interior monuments using 5-axis CNC machining and calibrated thermoforming.',
     overview:
       'Solid surface exhibits unique thermoplastic properties: when heated to 160°C in our computer-controlled platen ovens, it achieves the flexibility of leather and can be vacuum-formed over custom timber bucks down to tight 25mm radii without structural blanching. Once cooled, it returns to stone-like permanence.',
-    image: '/assets/applications/hospitality-bar-counter.jpg',
+    image: '/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg',
     galleryImages: [
       {
-        src: '/assets/applications/hospitality-bar-counter.jpg',
+        src: '/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg',
         alt: 'Compound curved solid surface cocktail bar with integrated mood lighting',
         caption: 'Dual-axis thermoformed bar counter with organic fluted texture and LED underglow.'
       },
       {
-        src: '/assets/applications/commercial-restroom-washplane.jpg',
-        alt: 'Sculptural reception desk monolith',
-        caption: 'Monolithic seamless reception desk with internal steel skeleton.'
+        src: '/images/images/coriansolidsurface-goldenonyx-application.jpg',
+        alt: 'Sculptural illuminated reception desk monolith in Golden Onyx',
+        caption: 'Monolithic illuminated reception desk with internal optical diffuser cavity.'
       }
     ],
     keyFeatures: [
@@ -370,10 +379,10 @@ export const productsData: ProductItem[] = [
       'Bespoke Residential Furniture & Feature Stair Linings'
     ],
     compatibleMaterials: [
-      'Alto / Ivory Vein',
-      'Noma / White Chalk',
-      'Lumen / Amber Glow',
-      'Alto / Fior di Bosco'
+      'Golden Onyx',
+      'Bleached Nuwood',
+      'Calacatta Greige',
+      'Stonecrest Smoke'
     ],
     certifications: ['Custom engineered per project specifications'],
     cadAvailable: true
@@ -388,16 +397,16 @@ export const productsData: ProductItem[] = [
       'Eliminating technical risk for architects, interior designers, and head contractors. Our Design Certainty Service provides end-to-end engineering support from initial concept sketches and digital 3D templating through to CNC nesting, structural framing certification, and guaranteed site fitment.',
     overview:
       'Complex solid surface architecture requires meticulous detailing. With our Design Certainty Service, our senior fabrication engineers partner with your design studio to draft submittal-ready CAD shop drawings, optimize sheet yield to reduce project costs, verify expansion joints and thermal movement, and conduct precision laser 3D scanning on site before fabrication begins.',
-    image: '/assets/applications/calacatta-greige-kitchen.jpg',
+    image: '/images/images/app_commercial_bleached_nuwood.jpg',
     galleryImages: [
       {
-        src: '/assets/applications/calacatta-greige-kitchen.jpg',
-        alt: 'Architectural shop drawings and precision fabrication planning',
-        caption: 'Parametric CAD model cross-sections showing substrate and steel reinforcement.'
+        src: '/images/images/app_commercial_bleached_nuwood.jpg',
+        alt: 'Architectural studio review and precision fabrication planning',
+        caption: 'Parametric CAD review table with continuous Bleached Nuwood surface.'
       },
       {
-        src: '/assets/applications/hospitality-bar-counter.jpg',
-        alt: 'On-site laser 3D templating',
+        src: '/images/images/app_residential_calacatta_greige_1.jpg',
+        alt: 'On-site laser 3D templating in Calacatta Greige residence',
         caption: 'Sub-millimetre digital scanning ensuring flawless installation fit.'
       }
     ],
@@ -420,7 +429,7 @@ export const productsData: ProductItem[] = [
       'Commercial Fit-Out Contractors & Project Managers',
       'Hospitality Developers & Luxury Residential Builders'
     ],
-    compatibleMaterials: ['All Ace Spaces & DuPont™ Corian® Solid Surface Collections'],
+    compatibleMaterials: ['All 48 Authentic DuPont™ Corian® Solid Surface Materials'],
     certifications: ['Certified Master Fabricator Network', 'DuPont™ Corian® Quality Network'],
     cadAvailable: true
   }

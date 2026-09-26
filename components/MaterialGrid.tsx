@@ -26,18 +26,18 @@ export default function MaterialGrid() {
 
   // Curated 4 Featured Material Substrates / Slabs
   const featuredMaterialSlugs = [
-    'alto-bianco-vein',
-    'noma-white-chalk',
-    'strata-terrazzo-ash',
-    'alto-fior-di-bosco',
+    'calacatta-greige',
+    'stonecrest-smoke',
+    'stonique',
+    'bleached-nuwood',
   ];
 
   // Curated 4 Featured Color Swatches / Palette Hues
   const featuredColourSlugs = [
-    'noma-linen',
-    'terra-sienna',
-    'obsidian-coal',
-    'lumen-shell',
+    'artista-sage',
+    'golden-onyx',
+    'terrazzo-laguna',
+    'cirrus-white',
   ];
 
   const featuredMaterials = featuredMaterialSlugs

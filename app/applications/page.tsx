@@ -79,8 +79,8 @@ export default function ApplicationsPage() {
         {/* Hero Architectural Accent */}
         <div className="hero-image-frame">
           <Image
-            src="/assets/applications/calacatta-greige-kitchen.jpg"
-            alt="Seamless curved solid surface kitchen island installation"
+            src="/images/images/app_residential_calacatta_greige_1.jpg"
+            alt="Seamless curved solid surface kitchen island installation in Calacatta Greige"
             fill
             sizes="(max-width: 800px) 100vw, 40vw"
             style={{ objectFit: 'cover' }}

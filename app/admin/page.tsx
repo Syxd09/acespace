@@ -8,7 +8,7 @@ import { HeroSlide } from '@/data/contentTypes';
 import { Material } from '@/data/materials';
 import { ApplicationSector, ApplicationImage } from '@/data/applications';
 import { JournalArticle, Project, StudioContactConfig, defaultStudioContact } from '@/data/contentTypes';
-import { generateWhatsAppUrl } from '@/lib/whatsapp';
+import { generateWhatsAppUrl, cleanWhatsAppNumber } from '@/lib/whatsapp';
 import {
   SampleOrder,
   ProjectInquiry,
@@ -104,8 +104,8 @@ export default function AdminPage() {
     hexColor: '#f4f3ef',
     dimensions: '3660 mm × 760 mm',
     thicknessOptions: '12mm, 19mm',
-    textureImage: '/assets/materials/css-stonique-sheet.jpg',
-    image: '/assets/applications/stonique-bathroom-vanity.jpg',
+    textureImage: '/images/images/app_residential_stonique_1.jpg',
+    image: '/images/images/app_residential_stonique_1.jpg',
     applications: 'Kitchen Worktops, Wall Cladding, Bespoke Monoliths',
     lightTransmission: 'Low (6%)',
     fireRating: 'Class 1 / Class A (ASTM E84)',
@@ -149,10 +149,10 @@ export default function AdminPage() {
     materialSlug: '',
     application: '',
     fabrication: '',
-    image: '/assets/applications/calacatta-greige-kitchen.jpg',
+    image: '/images/images/app_residential_calacatta_greige_1.jpg',
     challenge: '',
     solution: '',
-    specs: 'Surface Material: Alto / Ivory Vein (12mm)\nEdge Profile: 45° Mitred Waterfall\nJoinery Type: Thermo-welded Matrix',
+    specs: 'Surface Material: Calacatta Greige (12mm)\nEdge Profile: 45° Mitred Waterfall\nJoinery Type: Thermo-welded Matrix',
   };
   const [newProjectForm, setNewProjectForm] = useState(initialProjectForm);
 
@@ -272,17 +272,16 @@ export default function AdminPage() {
           });
         }
         const defaults = [
-          '/assets/applications/calacatta-greige-kitchen.jpg',
-          '/assets/applications/calacatta-greige-kitchen-detail.jpg',
-          '/assets/materials/css-calacatta-greige-sheet.jpg',
-          '/assets/applications/stonecrest-smoke-hotel-lobby.jpg',
-          '/assets/applications/excavage-education.jpg',
-          '/assets/applications/artista-sage-hotel-elevator.jpg',
-          '/assets/applications/artista-mist-bathroom.jpg',
-          '/assets/applications/laguna-terrazzo-bathroom.jpg',
-          '/assets/applications/laguna-terrazzo-vanity-detail.jpg',
-          '/assets/applications/excavage-bathroom.jpg',
-          '/assets/applications/excavage-bathroom-vanity-detail.jpg',
+          '/images/images/app_residential_calacatta_greige_1.jpg',
+          '/images/images/app_residential_calacatta_greige_2.jpg',
+          '/images/images/app_residential_stonecrest_smoke_1.jpg',
+          '/images/images/app_commercial_bleached_nuwood.jpg',
+          '/images/images/app_residential_artista_sage_1.jpg',
+          '/images/images/app_residential_artista_mist_1.jpg',
+          '/images/images/app_commercial_terrazzo_laguna.jpg',
+          '/images/images/app_commercial_grinds_excavage.jpg',
+          '/images/images/app_commercial_grinds_pebble_lane.jpg',
+          '/images/images/coriansolidsurface-goldenonyx-application.jpg',
         ];
         defaults.forEach(d => found.add(d));
         setMediaAssets(Array.from(found));
@@ -514,6 +513,18 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
     showToast(`✓ Copied Courier Delivery Label for ${order.orderNumber}`, 'success');
   };
 
+  const handleCopySpecimenList = (order: SampleOrder) => {
+    const list = `ACE SPACES — SPECIMEN PICKING LIST
+Order Ref: ${order.orderNumber}
+Architect / Client: ${order.customer.name} (${order.customer.studio || 'Private'})
+Total Specimens: ${order.items.length}
+---------------------------------------------
+${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish || 'Honed'} | 100mm × 100mm`).join('\n')}
+---------------------------------------------`;
+    navigator.clipboard.writeText(list);
+    showToast(`✓ Copied specimen pick list for Order #${order.orderNumber}`, 'success');
+  };
+
   const handleCopyAllSubscriberEmails = () => {
     const emails = subscribers.map((s) => s.email).join(', ');
     navigator.clipboard.writeText(emails);
@@ -645,7 +656,8 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
       const data = await res.json();
       if (res.ok && data.url) {
         setMediaAssets(prev => [data.url, ...prev]);
-        showToast(`✓ Image uploaded successfully: ${data.name}`, 'success');
+        const storageLabel = data.storage === 'inline-base64' ? ' (Inline Cloud Data URL)' : ' (Local Storage)';
+        showToast(`✓ Image uploaded successfully${storageLabel}: ${data.fileName || 'Asset'}`, 'success');
       } else {
         showToast(`Upload failed: ${data.error || 'Unknown error'}`, 'error');
       }
@@ -677,7 +689,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
     const newId = localHeroSlides.length > 0 ? Math.max(...localHeroSlides.map(s => s.id)) + 1 : 1;
     const newSlide: HeroSlide = {
       id: newId,
-      image: '/assets/applications/calacatta-greige-kitchen.jpg',
+      image: '/images/images/app_residential_calacatta_greige_1.jpg',
       eyebrow: 'Architectural Specimen / New Addition',
       title: 'Crafted monolith,',
       subtitle: 'sculpted purity.',
@@ -780,10 +792,10 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
       finish: newMaterialForm.finish.trim() || 'Honed Satin Matte',
       colour: newMaterialForm.colour.trim() || newMaterialForm.name.trim(),
       hexColor: newMaterialForm.hexColor || '#f4f3ef',
-      textureImage: newMaterialForm.textureImage.trim() || '/assets/materials/css-stonique-sheet.jpg',
+      textureImage: newMaterialForm.textureImage.trim() || '/images/images/app_residential_stonique_1.jpg',
       description: newMaterialForm.description.trim() || 'Engineered solid surface architectural slab with seamless thermoformable capability and non-porous hygiene performance.',
       swatch: 'one',
-      image: newMaterialForm.image.trim() || '/assets/applications/stonique-bathroom-vanity.jpg',
+      image: newMaterialForm.image.trim() || '/images/images/app_residential_stonique_1.jpg',
       applications: applicationsArray.length > 0 ? applicationsArray : ['Kitchen Worktops', 'Wall Cladding', 'Bespoke Monoliths'],
       thicknessOptions: thicknessArray.length > 0 ? thicknessArray : ['12mm', '19mm'],
       dimensions: newMaterialForm.dimensions.trim() || '3660 mm × 760 mm',
@@ -826,10 +838,10 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
       finish: newColorForm.finish,
       colour: newColorForm.name,
       hexColor: newColorForm.hexColor,
-      textureImage: newColorForm.textureImage || '/assets/materials/css-calacatta-greige-sheet.jpg',
+      textureImage: newColorForm.textureImage || '/images/images/pattern_calacatta_greige.jpg',
       description: 'Bespoke architectural solid surface slab with seamless thermoformable capability.',
-      swatch: newColorForm.textureImage || '/assets/materials/css-calacatta-greige-sheet.jpg',
-      image: newColorForm.textureImage || '/assets/materials/css-calacatta-greige-sheet.jpg',
+      swatch: newColorForm.textureImage || '/images/images/lshape_calacatta_greige.png',
+      image: newColorForm.textureImage || '/images/images/app_residential_calacatta_greige_1.jpg',
       applications: ['Countertops', 'Wall Cladding', 'Bespoke Monoliths'],
       thicknessOptions: ['12mm', '20mm'],
       dimensions: '3660 × 760 mm',
@@ -1162,11 +1174,11 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
       architect: newProjectForm.architect.trim() || 'Ace Spaces Collaboration',
       area: newProjectForm.area.trim() || 'Bespoke Pavilion',
       description: newProjectForm.description.trim() || 'Selected architectural case study showcasing custom mineral surface fabrication.',
-      materialUsed: newProjectForm.materialUsed.trim() || 'Alto / Ivory Vein',
-      materialSlug: newProjectForm.materialSlug.trim() || 'alto-bianco-vein',
+      materialUsed: newProjectForm.materialUsed.trim() || 'Calacatta Greige',
+      materialSlug: newProjectForm.materialSlug.trim() || 'calacatta-greige',
       application: newProjectForm.application.trim() || 'Monolithic Island & Wall Cladding',
       fabrication: newProjectForm.fabrication.trim() || 'Seamless Inconspicuous Jointing & Thermoforming',
-      image: newProjectForm.image.trim() || '/assets/applications/calacatta-greige-kitchen.jpg',
+      image: newProjectForm.image.trim() || '/images/images/app_residential_calacatta_greige_1.jpg',
       challenge: newProjectForm.challenge.trim() || 'Achieving monolithic architectural continuity with zero visible seams.',
       solution: newProjectForm.solution.trim() || 'Engineered workshop pre-assembly with laser templating and color-matched adhesive curing.',
       specs: specsArray.length > 0 ? specsArray : [
@@ -2095,6 +2107,126 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                 </div>
               </div>
             </div>
+
+            {/* AI Assistant Intelligence & Multi-Channel Dispatch Hub */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px', marginTop: '24px' }}>
+              {/* Card 1: Architectural AI Assistant Status */}
+              <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '2px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#73c991', display: 'inline-block' }} />
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
+                      AI Studio Assistant · Active
+                    </span>
+                  </div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#eef7ee', color: '#1e5f22', padding: '3px 8px', borderRadius: '2px', border: '1px solid #c2e2c5' }}>
+                    Groq LPU / OpenAI Ready
+                  </span>
+                </div>
+                <h3 style={{ fontSize: '16px', fontWeight: 500, margin: '0 0 8px 0' }}>
+                  Architectural Intelligence Engine
+                </h3>
+                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', lineHeight: 1.6, margin: '0 0 16px 0' }}>
+                  Powers the floating client concierge with grounded material knowledge, thermoforming specs, comparison tables, and sample shortcuts.
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '6px', borderBottom: '1px solid #f0efe8' }}>
+                    <span style={{ color: '#788078' }}>Interface Layout:</span>
+                    <span style={{ fontWeight: 600 }}>Half-Screen Spreadable & Full-Screen Dock</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '6px', borderBottom: '1px solid #f0efe8' }}>
+                    <span style={{ color: '#788078' }}>Formatting Engine:</span>
+                    <span style={{ fontWeight: 600 }}>Interactive Comparison Tables & Chip Badges</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '6px', borderBottom: '1px solid #f0efe8' }}>
+                    <span style={{ color: '#788078' }}>Grounded Knowledge:</span>
+                    <span style={{ fontWeight: 600 }}>{localMaterials.length} Materials · {localSectors.length} Typologies</span>
+                  </div>
+                </div>
+                <div style={{ marginTop: '18px' }}>
+                  <Link
+                    href="/"
+                    target="_blank"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '8px 14px',
+                      background: '#1a1d19',
+                      color: '#ffffff',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    Open Live Storefront to Test Bot ↗
+                  </Link>
+                </div>
+              </div>
+
+              {/* Card 2: Multi-Channel Order & Consultation Dispatch */}
+              <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)', borderRadius: '2px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#25D366', display: 'inline-block' }} />
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
+                      Multi-Channel Dispatch Hub
+                    </span>
+                  </div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#f5f4ee', color: '#4a504a', padding: '3px 8px', borderRadius: '2px' }}>
+                    Auto-Alerts
+                  </span>
+                </div>
+                <h3 style={{ fontSize: '16px', fontWeight: 500, margin: '0 0 8px 0' }}>
+                  Instant Specifier Order Alerts
+                </h3>
+                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', lineHeight: 1.6, margin: '0 0 16px 0' }}>
+                  Every sample box request and project brief dispatches structured notifications across studio communication channels.
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '6px', borderBottom: '1px solid #f0efe8' }}>
+                    <span style={{ color: '#788078' }}>Direct WhatsApp Forwarding:</span>
+                    <span style={{ color: '#25D366', fontWeight: 600 }}>Active (1-Click Liaison Link)</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '6px', borderBottom: '1px solid #f0efe8' }}>
+                    <span style={{ color: '#788078' }}>Email Dispatch (Resend):</span>
+                    <span style={{ fontWeight: 600 }}>Configurable via RESEND_API_KEY</span>
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '6px', borderBottom: '1px solid #f0efe8' }}>
+                    <span style={{ color: '#788078' }}>Webhook Push (Slack/Discord):</span>
+                    <span style={{ fontWeight: 600 }}>Configurable via NOTIFICATION_WEBHOOK_URL</span>
+                  </div>
+                </div>
+                <div style={{ marginTop: '18px', display: 'flex', gap: '10px' }}>
+                  <button
+                    onClick={() => setActiveTab('orders')}
+                    style={{
+                      padding: '8px 14px',
+                      background: '#f5f4ee',
+                      border: '1px solid rgba(0,0,0,0.15)',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    View Sample Orders ({orders.length}) →
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('inquiries')}
+                    style={{
+                      padding: '8px 14px',
+                      background: '#f5f4ee',
+                      border: '1px solid rgba(0,0,0,0.15)',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    View Consultations ({inquiries.length}) →
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -2701,7 +2833,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                         <input
                           type="text"
-                          placeholder="/assets/materials/css-stonique-sheet.jpg"
+                          placeholder="/images/images/pattern_calacatta_greige.jpg"
                           value={newMaterialForm.textureImage}
                           onChange={e => setNewMaterialForm(prev => ({ ...prev, textureImage: e.target.value }))}
                           style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
@@ -2741,7 +2873,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                         <input
                           type="text"
-                          placeholder="/assets/applications/stonique-bathroom-vanity.jpg"
+                          placeholder="/images/images/app_residential_stonique_1.jpg"
                           value={newMaterialForm.image}
                           onChange={e => setNewMaterialForm(prev => ({ ...prev, image: e.target.value }))}
                           style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
@@ -3760,7 +3892,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                             <input
                               type="text"
                               required
-                              placeholder="/assets/applications/..."
+                              placeholder="/images/images/..."
                               value={newSectorPhotoForm.src}
                               onChange={e => setNewSectorPhotoForm(prev => ({ ...prev, src: e.target.value }))}
                               style={{ flex: 1, padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
@@ -4416,7 +4548,7 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                     <div style={{ display: 'flex', gap: '8px' }}>
                       <input
                         type="text"
-                        placeholder="/assets/applications/..."
+                        placeholder="/images/images/..."
                         value={newProjectForm.image}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, image: e.target.value }))}
                         style={{ flex: 1, padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -5532,17 +5664,37 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                       gap: '8px',
                     }}
                   >
-                    <div style={{ width: '100%', height: '130px', position: 'relative', background: '#222' }}>
-                      <Image
-                        src={img}
-                        alt="media asset"
-                        fill
-                        sizes="200px"
-                        style={{ objectFit: 'cover' }}
-                      />
+                    <div style={{ width: '100%', height: '130px', position: 'relative', background: '#222', overflow: 'hidden' }}>
+                      {img.startsWith('data:') ? (
+                        <img
+                          src={img}
+                          alt="media asset"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+                        />
+                      ) : (
+                        <Image
+                          src={img}
+                          alt="media asset"
+                          fill
+                          sizes="200px"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      )}
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '9px',
+                        padding: '1px 5px',
+                        background: img.startsWith('data:') ? 'rgba(33, 150, 243, 0.1)' : 'rgba(76, 175, 80, 0.1)',
+                        color: img.startsWith('data:') ? '#1565c0' : '#2e7d32',
+                        border: `1px solid ${img.startsWith('data:') ? 'rgba(33, 150, 243, 0.3)' : 'rgba(76, 175, 80, 0.3)'}`,
+                      }}>
+                        {img.startsWith('data:') ? 'Inline Data URL' : 'Local Storage'}
+                      </span>
                     </div>
                     <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#555', wordBreak: 'break-all', minHeight: '28px' }}>
-                      {img.split('/').pop()}
+                      {img.startsWith('data:') ? `Embedded Base64 (~${Math.round(img.length / 1024)} KB)` : img.split('/').pop()}
                     </div>
                     <div style={{ display: 'flex', gap: '6px', marginTop: 'auto' }}>
                       <button
@@ -5796,6 +5948,22 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                               📋 Copy Courier Label
                             </button>
                             <button
+                              onClick={() => handleCopySpecimenList(order)}
+                              style={{
+                                padding: '6px 14px',
+                                background: '#f5f4ee',
+                                border: '1px solid rgba(0,0,0,0.15)',
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '11px',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '6px',
+                              }}
+                            >
+                              📦 Specimen Pick List
+                            </button>
+                            <button
                               onClick={() => handleDeleteOrder(order.id)}
                               style={{
                                 padding: '6px 12px',
@@ -5950,11 +6118,37 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                             ))}
                           </div>
 
-                          {order.notes && (
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
-                              Note: {order.notes}
-                            </div>
-                          )}
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                            {order.customer.phone && (
+                              <a
+                                href={`https://wa.me/${cleanWhatsAppNumber(order.customer.phone)}?text=${encodeURIComponent(
+                                  `Hello ${order.customer.name}, this is Ace Spaces Architectural Studio regarding your Specimen Sample Order #${order.orderNumber} (Status: ${order.status.toUpperCase()}).`
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  padding: '5px 12px',
+                                  background: '#25D366',
+                                  color: '#ffffff',
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '10px',
+                                  fontWeight: 600,
+                                  textDecoration: 'none',
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  borderRadius: '2px',
+                                }}
+                              >
+                                💬 WhatsApp Client
+                              </a>
+                            )}
+                            {order.notes && (
+                              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                                Note: {order.notes}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       </div>
                     );
@@ -6169,6 +6363,30 @@ ${order.items.map((it, idx) => `${idx + 1}. ${it.name} (${it.finish} - 100mm × 
                             >
                               ✉ Reply to {inq.name.split(' ')[0]}
                             </a>
+                            {inq.phone && (
+                              <a
+                                href={`https://wa.me/${cleanWhatsAppNumber(inq.phone)}?text=${encodeURIComponent(
+                                  `Hello ${inq.name.split(' ')[0]}, this is Ace Spaces Architectural Studio regarding your project consultation brief [Ref: #${inq.inquiryNumber}].`
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                style={{
+                                  padding: '6px 14px',
+                                  background: '#25D366',
+                                  color: '#ffffff',
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '11px',
+                                  fontWeight: 600,
+                                  textDecoration: 'none',
+                                  display: 'inline-flex',
+                                  alignItems: 'center',
+                                  gap: '6px',
+                                  borderRadius: '2px',
+                                }}
+                              >
+                                💬 WhatsApp {inq.name.split(' ')[0]}
+                              </a>
+                            )}
                             <button
                               onClick={() => handleDeleteInquiry(inq.id)}
                               style={{

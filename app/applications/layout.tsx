@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     url: 'https://acespacesindia.vercel.app/applications',
     images: [
       {
-        url: '/assets/applications/stonecrest-smoke-hotel-lobby.jpg',
+        url: '/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg',
         width: 1200,
         height: 630,
         alt: 'Ace Spaces — Architectural Typology Applications',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: 'Applications & Spatial Typologies — Ace Spaces',
     description:
       'Seamless solid surface installations across luxury residential, hospitality, commercial, and healthcare typologies in India.',
-    images: ['/assets/applications/stonecrest-smoke-hotel-lobby.jpg'],
+    images: ['/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg'],
   },
   alternates: {
     canonical: 'https://acespacesindia.vercel.app/applications',

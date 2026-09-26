@@ -10,6 +10,7 @@ import {
 } from '@/data/orderStore';
 import { verifyAdminRequest } from '@/lib/adminAuth';
 import { checkRateLimit } from '@/lib/rateLimit';
+import { notifyOrderSubmitted } from '@/lib/notifications';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -100,6 +101,15 @@ export async function POST(req: NextRequest) {
     const isAdmin = verifyAdminRequest(req);
     const savedOrder = saveSampleOrder(body as Partial<SampleOrder>, isAdmin);
 
+    let notificationInfo: { whatsappUrl?: string } = {};
+    if (savedOrder.status === 'submitted') {
+      try {
+        notificationInfo = await notifyOrderSubmitted(savedOrder);
+      } catch (notifErr) {
+        console.warn('Order notification dispatch warning:', notifErr);
+      }
+    }
+
     return NextResponse.json(
       {
         success: true,
@@ -107,6 +117,7 @@ export async function POST(req: NextRequest) {
         orderNumber: savedOrder.orderNumber,
         status: savedOrder.status,
         order: savedOrder,
+        whatsappUrl: notificationInfo.whatsappUrl,
       },
       { status: 200, headers: noCacheHeaders }
     );

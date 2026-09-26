@@ -48,34 +48,34 @@ export const applicationSectors: ApplicationSector[] = [
       'Floor-to-Ceiling Seamless Shower Enclosures & Coved Wall Transitions'
     ],
     recommendedMaterials: [
-      { name: 'Alto / Ivory Vein', slug: 'alto-bianco-vein', finish: 'Satin Honed' },
-      { name: 'Noma / Chalk', slug: 'noma-white-chalk', finish: 'Ultra-Matte' },
-      { name: 'Alto / Fior di Bosco', slug: 'alto-fior-di-bosco', finish: 'Velvet Matte' }
+      { name: 'Calacatta Greige', slug: 'calacatta-greige', finish: 'Satin Honed' },
+      { name: 'Cirrus White', slug: 'cirrus-white', finish: 'Ultra-Matte' },
+      { name: 'Stonecrest Smoke', slug: 'stonecrest-smoke', finish: 'Velvet Matte' }
     ],
     fabricationNote:
       'Color-matched acrylic thermo-welded joints ensure zero grout lines, 100% moisture barrier, and zero bacterial harborage.',
     images: [
       {
-        src: '/assets/applications/calacatta-greige-kitchen.jpg',
+        src: '/images/images/app_residential_calacatta_greige_1.jpg',
         alt: 'Monolithic Calacatta Greige kitchen island and continuous splashback in residential interior',
-        caption: 'Monolithic Kitchen Island & Continuous Splashback in Alto Calacatta Greige',
+        caption: 'Monolithic Kitchen Island & Continuous Splashback in Calacatta Greige',
         tag: 'Monolithic Island'
       },
       {
-        src: '/assets/applications/calacatta-greige-kitchen-detail.jpg',
+        src: '/images/images/app_residential_calacatta_greige_2.jpg',
         alt: 'Seamless 45-degree mitred waterfall edge and surface join close-up',
         caption: 'Seamless 45° Mitred Waterfall Gable Join with Zero Silicones',
         tag: 'Waterfall Mitre Detail'
       },
       {
-        src: '/assets/applications/stonecrest-smoke-kitchen.jpg',
+        src: '/images/images/app_residential_stonecrest_smoke_1.jpg',
         alt: 'Architectural Stonecrest Smoke kitchen island with integrated undermount basin',
         caption: 'Tactile Graphite Island with Continuous Integrated Undermount Basin',
         tag: 'Integrated Sink'
       },
       {
-        src: '/assets/applications/stonecrest-smoke-kitchen-detail.jpg',
-        alt: 'Thermo-welded sink transition and seamless drainage detail',
+        src: '/images/images/app_residential_cirrus_white_1.jpg',
+        alt: 'Thermo-welded sink transition and seamless drainage detail in Cirrus White',
         caption: 'Thermo-Welded Basin Transition with Coved Internal Corners',
         tag: 'Coved Basin Detail'
       }
@@ -120,27 +120,27 @@ export const applicationSectors: ApplicationSector[] = [
       'Multi-User Public Washroom Trough Sinks with Concealed Sloped Drains'
     ],
     recommendedMaterials: [
-      { name: 'Obsidian / Still', slug: 'obsidian-still', finish: 'Tactile Matte' },
-      { name: 'Lumen / Shell', slug: 'lumen-shell', finish: 'Translucent Satin' },
-      { name: 'Terra / Sage', slug: 'terra-sage', finish: 'Velvet Honed' }
+      { name: 'Stonecrest Smoke', slug: 'stonecrest-smoke', finish: 'Tactile Matte' },
+      { name: 'Golden Onyx', slug: 'golden-onyx', finish: 'Translucent Satin' },
+      { name: 'Artista Sage', slug: 'artista-sage', finish: 'Velvet Honed' }
     ],
     fabricationNote:
       'Multi-radius oven thermoforming and internal optical light cavities deliver soft, diffused illumination without hot-spots.',
     images: [
       {
-        src: '/assets/applications/stonecrest-smoke-hotel-lobby.jpg',
-        alt: 'Monolithic grand hotel reception desk and lobby surface in Stonecrest Smoke',
-        caption: 'Monolithic Reception Desk & Lobby Cladding in Stonecrest Smoke',
+        src: '/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg',
+        alt: 'Monolithic grand hotel reception desk and lobby surface in hospitality interior',
+        caption: 'Monolithic Reception Desk & Lobby Cladding in Silver Linear',
         tag: 'Reception Monolith'
       },
       {
-        src: '/assets/applications/artista-sage-hotel-elevator.jpg',
+        src: '/images/images/app_residential_artista_sage_1.jpg',
         alt: 'Continuous curved elevator lobby and architectural corridor cladding in Artista Sage',
         caption: 'Curved Elevator Portal & Corridor Cladding in Artista Sage',
         tag: 'Curved Cladding'
       },
       {
-        src: '/assets/applications/artista-mist-bathroom.jpg',
+        src: '/images/images/app_residential_artista_mist_1.jpg',
         alt: 'Luxury boutique hotel suite double vanity in Artista Mist',
         caption: 'Bespoke Boutique Suite Double Basin Floating Vanity in Artista Mist',
         tag: 'Suite Vanities'
@@ -149,7 +149,7 @@ export const applicationSectors: ApplicationSector[] = [
     specifications: [
       {
         title: 'Sub-Surface Optical Light Cavities',
-        description: 'Lumen series sheets are calibrated to 6mm thickness and backed by dimmable 2700K optical diffusion panels for shadowless monolithic glow.'
+        description: 'Translucent onyx and crystal sheets are backed by dimmable 2700K optical diffusion panels for shadowless monolithic glow.'
       },
       {
         title: 'Heavy Impact Edge Built-ups',
@@ -186,28 +186,28 @@ export const applicationSectors: ApplicationSector[] = [
       'Auditorium Rostrums and Reception Feature Walls'
     ],
     recommendedMaterials: [
-      { name: 'Noma / Chalk', slug: 'noma-white-chalk', finish: 'Ultra-Matte' },
-      { name: 'Strata / Sand Fine', slug: 'strata-sand-fine', finish: 'Fine Textured' },
-      { name: 'Obsidian / Coal', slug: 'obsidian-coal', finish: 'Honed Matte' }
+      { name: 'Bleached Nuwood', slug: 'bleached-nuwood', finish: 'Natural Matte' },
+      { name: 'Excavage', slug: 'excavage', finish: 'Fine Textured' },
+      { name: 'Pebble Lane', slug: 'pebble-lane', finish: 'Honed Matte' }
     ],
     fabricationNote:
       'Sub-surface 5-axis CNC milling allows Qi wireless charging electromagnetic fields to pass directly through the solid surface.',
     images: [
       {
-        src: '/assets/applications/excavage-education.jpg',
-        alt: 'Collaborative workshop and architectural studio review island in Excavage Mineral',
-        caption: 'Collaborative Studio Review Island & Communal Workstation in Excavage',
+        src: '/images/images/app_commercial_bleached_nuwood.jpg',
+        alt: 'Collaborative workshop and architectural studio review island in Bleached Nuwood',
+        caption: 'Collaborative Studio Review Island & Communal Workstation in Bleached Nuwood',
         tag: 'Collaboration Island'
       },
       {
-        src: '/assets/applications/excavage-bathroom.jpg',
+        src: '/images/images/app_commercial_grinds_excavage.jpg',
         alt: 'Wall-to-wall seamless commercial washroom trough vanity in Excavage',
         caption: 'Continuous Wall-to-Wall Commercial Washroom Trough in Excavage',
         tag: 'Commercial Trough'
       },
       {
-        src: '/assets/applications/excavage-bathroom-vanity-detail.jpg',
-        alt: 'Seamless basin junction and concealed sloped drain detail in Excavage solid surface',
+        src: '/images/images/app_commercial_grinds_pebble_lane.jpg',
+        alt: 'Seamless basin junction and concealed sloped drain detail in Pebble Lane solid surface',
         caption: 'Precision CNC-Milled Sloped Drain Detail with Zero Bacterial Traps',
         tag: 'Sloped Drain Detail'
       }
@@ -252,29 +252,29 @@ export const applicationSectors: ApplicationSector[] = [
       'VIP Client Consultation Salons & Jewelry Display Trays'
     ],
     recommendedMaterials: [
-      { name: 'Strata / Terrazzo Ash', slug: 'strata-terrazzo-ash', finish: 'Satin Smooth' },
-      { name: 'Lumen / Shell', slug: 'lumen-shell', finish: 'Translucent Polish' },
-      { name: 'Noma / Linen', slug: 'noma-linen', finish: 'Fine Honed' }
+      { name: 'Terrazzo Laguna', slug: 'terrazzo-laguna', finish: 'Satin Smooth' },
+      { name: 'Golden Onyx', slug: 'golden-onyx', finish: 'Translucent Polish' },
+      { name: 'Provence Nuwood', slug: 'provence-nuwood', finish: 'Fine Honed' }
     ],
     fabricationNote:
       'High-precision 5-axis CNC routing enables intricate typography, logo relief engravings, and microscopic backlit light perforations.',
     images: [
       {
-        src: '/assets/applications/laguna-terrazzo-bathroom.jpg',
-        alt: 'Sculptural Terrazzo luxury display pavilion and washstand in Laguna Terrazzo',
-        caption: 'Bespoke Display Pavilion & Monolithic Washstand in Laguna Terrazzo',
-        tag: 'Terrazzo Pavilion'
+        src: '/images/images/coriansolidsurface-goldenonyx-application.jpg',
+        alt: 'Sculptural illuminated luxury display pavilion and washstand in Golden Onyx',
+        caption: 'Bespoke Display Pavilion & Monolithic Washstand in Golden Onyx',
+        tag: 'Illuminated Pavilion'
       },
       {
-        src: '/assets/applications/laguna-terrazzo-vanity-detail.jpg',
+        src: '/images/images/app_commercial_terrazzo_laguna.jpg',
         alt: 'Close-up of curved terrazzo radii and precision-finished joint',
         caption: 'Curved Internal Radius & Inconspicuous Terrazzo Joint Detail',
         tag: 'Terrazzo Joint Detail'
       },
       {
-        src: '/assets/applications/stonique-bathroom-vanity.jpg',
-        alt: 'Sculptural floating display plinth and vanity in pure white Stonique',
-        caption: 'Sculptural Floating Display Plinth & Basin in Pure White Stonique',
+        src: '/images/images/app_commercial_provence_nuwood.jpg',
+        alt: 'Sculptural floating display plinth and vanity in Provence Nuwood',
+        caption: 'Sculptural Floating Display Plinth & Basin in Provence Nuwood',
         tag: 'Floating Plinth'
       }
     ],
@@ -319,32 +319,32 @@ export const applicationSectors: ApplicationSector[] = [
       'Patient Room Seamless Vanity Bowls & Coved Shower Surrounds'
     ],
     recommendedMaterials: [
-      { name: 'Noma / White Chalk (Stonique)', slug: 'noma-white-chalk', finish: 'Clinical Matte' },
-      { name: 'Alto / Bianco Vein', slug: 'alto-bianco-vein', finish: 'Satin Pure' },
-      { name: 'Strata / Sand Fine', slug: 'strata-sand-fine', finish: 'Fine Textured' },
-      { name: 'Noma / Linen', slug: 'noma-linen', finish: 'Velvet Matte' },
-      { name: 'Strata / Terrazzo Ash', slug: 'strata-terrazzo-ash', finish: 'Satin Polished' },
-      { name: 'Obsidian / Still', slug: 'obsidian-still', finish: 'Tactile Matte' }
+      { name: 'Stonique', slug: 'stonique', finish: 'Clinical Matte' },
+      { name: 'Cirrus White', slug: 'cirrus-white', finish: 'Satin Pure' },
+      { name: 'Archeologic', slug: 'archeologic', finish: 'Hygienic Matte' },
+      { name: 'Carrara Crema', slug: 'carrara-crema', finish: 'Velvet Matte' },
+      { name: 'Terrazzo Peppered', slug: 'terrazzo-peppered', finish: 'Satin Polished' },
+      { name: 'Stonecrest Smoke', slug: 'stonecrest-smoke', finish: 'Tactile Matte' }
     ],
     fabricationNote:
       'Custom thermoformed integral coved corners and silicone-free chemical welding guarantee zero bacterial harborage points.',
     images: [
       {
-        src: '/assets/applications/stonique-healthcare-clinic-1.jpg',
+        src: '/images/images/app_commercial_grinds_stonique.jpg',
         alt: 'Hygienic dental clinic consultation and reception space in Stonique solid surface',
         caption: 'Non-Porous Clinical Consultation & Reception Counter in Stonique',
         tag: 'Clinical Reception'
       },
       {
-        src: '/assets/applications/stonique-healthcare-clinic-2.jpg',
+        src: '/images/images/app_residential_stonique_1.jpg',
         alt: 'Specialist operatory treatment room countertops and splashbacks in seamless solid surface',
-        caption: 'Hygienic Operatory Countertops & Integrated Splashbacks',
+        caption: 'Hygienic Operatory Countertops & Integrated Splashbacks in Stonique',
         tag: 'Operatory Surfaces'
       },
       {
-        src: '/assets/applications/stonique-bathroom-vanity.jpg',
+        src: '/images/images/app_commercial_grinds_archeologic.jpg',
         alt: 'Sterile scrub sink with thermo-welded basin and zero silicone seals',
-        caption: 'Seamless Scrub Basin with Continuous Wall Splash Transition',
+        caption: 'Seamless Scrub Basin with Continuous Wall Splash Transition in Archeologic',
         tag: 'Scrub Station'
       }
     ],

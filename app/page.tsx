@@ -182,7 +182,7 @@ export default function HomePage() {
       <section id="fabrication" className="fabrication dark-section">
         <div className="fabrication-image" style={{ position: 'relative' }}>
           <Image
-            src="/assets/applications/calacatta-greige-kitchen-detail.jpg"
+            src="/images/images/app_residential_calacatta_greige_2.jpg"
             alt="Close-up of seamless 45-degree mitred waterfall edge and surface join"
             fill
             sizes="(max-width: 800px) 100vw, 50vw"
@@ -238,7 +238,7 @@ export default function HomePage() {
         <ScrollReveal className="project-feature">
           <div className="project-photo photo-one" style={{ position: 'relative' }}>
             <Image
-              src="/assets/applications/calacatta-greige-kitchen.jpg"
+              src="/images/images/app_residential_calacatta_greige_1.jpg"
               alt="Calacatta Greige monolithic kitchen island"
               fill
               sizes="(max-width: 800px) 100vw, 55vw"
@@ -256,7 +256,7 @@ export default function HomePage() {
             <p>A continuous mineral surface moves from island to wall, letting the architecture speak in one measured gesture.</p>
             <div className="project-meta">
               <span>Material</span>
-              <strong>Alto / Ivory Vein</strong>
+              <strong>Calacatta Greige</strong>
               <span>Application</span>
               <strong>Kitchen island / backsplash</strong>
             </div>

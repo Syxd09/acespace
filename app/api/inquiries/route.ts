@@ -8,6 +8,7 @@ import {
 } from '@/data/orderStore';
 import { verifyAdminRequest } from '@/lib/adminAuth';
 import { checkRateLimit } from '@/lib/rateLimit';
+import { notifyInquirySubmitted } from '@/lib/notifications';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -97,12 +98,20 @@ export async function POST(req: NextRequest) {
       message: message.trim(),
     });
 
+    let notificationInfo: { whatsappUrl?: string } = {};
+    try {
+      notificationInfo = await notifyInquirySubmitted(inquiry);
+    } catch (notifErr) {
+      console.warn('Inquiry notification warning:', notifErr);
+    }
+
     return NextResponse.json(
       {
         success: true,
         inquiryId: inquiry.id,
         inquiryNumber: inquiry.inquiryNumber,
         inquiry,
+        whatsappUrl: notificationInfo.whatsappUrl,
       },
       { status: 200, headers: noCacheHeaders }
     );
