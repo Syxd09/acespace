@@ -265,7 +265,6 @@ export default function SampleTray() {
               cursor: 'pointer',
               transition: 'background 0.2s ease',
             }}
-            aria-label="Close Sample Tray"
           >
             ✕
           </button>
