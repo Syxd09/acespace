@@ -45,9 +45,18 @@ export function getSiteContent(): SiteContent {
         fileData = fileData.slice(1);
       }
       const parsed = JSON.parse(fileData.trim());
+      let resolvedMaterials = parsed.materials || defaultMaterials;
+      if (Array.isArray(parsed.materials)) {
+        const existingSlugs = new Set(parsed.materials.map((m: any) => m.slug));
+        const missingDefaultMaterials = defaultMaterials.filter(m => !existingSlugs.has(m.slug));
+        if (missingDefaultMaterials.length > 0) {
+          resolvedMaterials = [...parsed.materials, ...missingDefaultMaterials];
+        }
+      }
+
       return {
         heroSlides: parsed.heroSlides || defaultHeroSlides,
-        materials: parsed.materials || defaultMaterials,
+        materials: resolvedMaterials,
         applicationSectors: parsed.applicationSectors || defaultSectors,
         journalArticles: parsed.journalArticles || defaultJournalArticles,
         projects: parsed.projects || defaultProjects,

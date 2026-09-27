@@ -1,4 +1,5 @@
-import { materials, Material } from '@/data/materials';
+import { materials as defaultMaterials, Material } from '@/data/materials';
+import { getSiteContent } from '@/data/contentStore';
 
 /**
  * Ace Spaces & Coro Collective — Private Studio Material Intelligence
@@ -551,96 +552,161 @@ function matchesPhrase(text: string, phrase: string): boolean {
 }
 
 /**
- * Helper to look up a specific material from the catalog based on user query
+ * Dynamically retrieves live materials present on the website.
+ * Pulls from contentStore (which reflects custom-content.json / CMS edits),
+ * falling back to defaultMaterials. This ensures the AI instantly knows newly added materials.
  */
-export function findMatchingMaterial(query: string): Material | null {
+export function getLiveMaterials(): Material[] {
+  try {
+    const content = getSiteContent();
+    if (content?.materials && Array.isArray(content.materials) && content.materials.length > 0) {
+      return content.materials;
+    }
+  } catch (err) {
+    console.warn('Error reading dynamic live materials in AI knowledge base, using default catalog:', err);
+  }
+  return defaultMaterials;
+}
+
+/**
+ * Helper to look up a specific material from the live catalog based on user query
+ */
+export function findMatchingMaterial(query: string, currentMaterials?: Material[]): Material | null {
   const q = query.toLowerCase().trim();
   if (!q) return null;
 
-  // 1. Check exact or stripped material code (e.g. AC-0101, ac0101, ac-0202)
-  for (const mat of materials) {
+  const liveMats = currentMaterials || getLiveMaterials();
+
+  // 1. Check exact or stripped material code (e.g. COR-CG01, CG01, COR-AS05, AS05, COR-VW64, VW64)
+  const qAlphanumeric = q.replace(/[^a-z0-9]/g, '');
+  for (const mat of liveMats) {
     const codeClean = mat.code.toLowerCase().replace(/[^a-z0-9]/g, '');
-    const qClean = q.replace(/[^a-z0-9]/g, '');
-    if (codeClean.length >= 5 && qClean.includes(codeClean)) {
+    if (codeClean.length >= 4 && (qAlphanumeric.includes(codeClean) || q.includes(mat.code.toLowerCase()))) {
+      return mat;
+    }
+    // Also check short suffix like CG01, AS05, VW64
+    const shortCode = codeClean.replace(/^cor/, '');
+    if (shortCode.length >= 4 && qAlphanumeric.includes(shortCode)) {
       return mat;
     }
   }
 
-  // 2. Check full material specific name (e.g. "white chalk", "calacatta gold", "fior di bosco")
-  for (const mat of materials) {
-    // Check specific name part after the collection slash (e.g., "White Chalk" from "Noma / White Chalk")
-    const specificName = mat.name.split('/')[1]?.trim().toLowerCase();
-    if (specificName && specificName.length >= 4 && matchesPhrase(q, specificName)) {
-      return mat;
-    }
-    if (matchesPhrase(q, mat.name.toLowerCase())) {
+  // 2. Check full material specific name and slug
+  for (const mat of liveMats) {
+    const matNameLower = mat.name.toLowerCase();
+    if (matchesPhrase(q, matNameLower)) {
       return mat;
     }
     if (q.includes(mat.slug)) {
       return mat;
     }
+    // If name contains slash (e.g. "Collection / Name"), check specific name part
+    if (mat.name.includes('/')) {
+      const specificName = mat.name.split('/')[1]?.trim().toLowerCase();
+      if (specificName && specificName.length >= 4 && matchesPhrase(q, specificName)) {
+        return mat;
+      }
+    }
   }
 
-  // 3. Check specific iconic color / finish names (exact phrase matches only)
-  const specificTerms: [string, string][] = [
-    ['calacatta greige', 'calacatta-greige'],
-    ['calacatta', 'calacatta-greige'],
-    ['stonecrest smoke', 'stonecrest-smoke'],
-    ['stonecrest', 'stonecrest-smoke'],
-    ['stonique', 'stonique'],
-    ['artista mist', 'artista-mist'],
-    ['artista sage', 'artista-sage'],
-    ['artista drift', 'artista-drift'],
-    ['artista mocha', 'artista-mocha'],
-    ['cirrus white', 'cirrus-white'],
-    ['bleached nuwood', 'bleached-nuwood'],
-    ['nuwood', 'bleached-nuwood'],
-    ['provence nuwood', 'provence-nuwood'],
-    ['travertine roma', 'travertine-roma'],
-    ['travertine firenze', 'travertine-firenze'],
-    ['vasto greige', 'vasto-greige'],
-    ['vasto laguna', 'vasto-laguna'],
-    ['terrazzo laguna', 'terrazzo-laguna'],
-    ['terrazzo peppered', 'terrazzo-peppered'],
-    ['basalt terrazzo', 'basalt-terrazzo'],
-    ['pebble terrazzo', 'pebble-terrazzo'],
-    ['excavage', 'excavage'],
-    ['archeologic', 'archeologic'],
-    ['pebble lane', 'pebble-lane'],
-    ['carrara crema', 'carrara-crema'],
-    ['carrara lino', 'carrara-lino'],
-    ['golden onyx', 'golden-onyx'],
-    ['jade onyx', 'jade-onyx'],
-    ['white onyx', 'white-onyx'],
-    ['gray onyx', 'gray-onyx'],
-    ['ash aggregate', 'ash-aggregate'],
-    ['carbon aggregate', 'carbon-aggregate'],
-    ['lava rock', 'lava-rock'],
-    ['witch hazel', 'witch-hazel'],
-    ['rosemary', 'rosemary'],
-    ['sagebrush', 'sagebrush'],
-    ['sandalwood', 'sandalwood'],
-    ['rain cloud', 'rain-cloud'],
-    ['smoke drift prima', 'smoke-drift-prima'],
-    ['dune prima', 'dune-prima'],
-    ['carbon concrete', 'carbon-concrete'],
-    ['neutral concrete', 'neutral-concrete'],
-    ['weathered concrete', 'weathered-concrete'],
-    ['natural gray', 'natural-gray'],
-    ['river pearl', 'river-pearl'],
-    ['whipped cream', 'whipped-cream'],
-    ['venaro white', 'venaro-white'],
-    ['windswept', 'windswept'],
-    ['linen', 'linen'],
-    ['sandstorm', 'sandstorm'],
-    ['sparkling white', 'sparkling-white'],
-  ];
-
-  for (const [term, slug] of specificTerms) {
-    if (matchesPhrase(q, term)) {
-      const found = materials.find((m) => m.slug === slug);
-      if (found) return found;
+  // 3. Check distinctive multi-word or single-word titles
+  for (const mat of liveMats) {
+    const nameLower = mat.name.toLowerCase();
+    // Words of length >= 4 that are unique identifiers
+    const words = nameLower.split(/\s+/).filter(w => w.length >= 5 && !['white', 'black', 'cream', 'solid', 'matte', 'stone', 'clear'].includes(w));
+    for (const w of words) {
+      if (matchesPhrase(q, w)) {
+        return mat;
+      }
     }
+  }
+
+  return null;
+}
+
+export interface NonStockDetection {
+  detectedTerm: string;
+  category: 'natural-marble' | 'engineered-quartz' | 'granite' | 'ceramic-sintered' | 'unlisted-material';
+  reason: string;
+  suggestedAlternative: Material;
+}
+
+/**
+ * Detects whether the user is inquiring about an external / non-stock material
+ * (such as Italian marble, quartz, granite, ceramic tiles, or unlisted colors).
+ */
+export function detectNonStockMaterial(query: string, currentMaterials?: Material[]): NonStockDetection | null {
+  const q = query.toLowerCase().trim();
+  const liveMats = currentMaterials || getLiveMaterials();
+
+  // Helper to safely get an alternative from live catalog
+  const getAlternative = (slug: string, fallbackIdx = 0): Material => {
+    return liveMats.find(m => m.slug === slug) || liveMats[fallbackIdx] || defaultMaterials[0];
+  };
+
+  // 1. Natural Marble inquiries (Italian Marble, Carrara Marble, Statuario, Calacatta Marble)
+  const isMarbleQuery = /\b(marble|italian marble|carrara marble|statuario|calacatta marble|botticino|makrana|natural marble|real marble)\b/i.test(q);
+  // Ensure user is not asking for an in-stock solid surface with "carrara" or "calacatta" in its name
+  const matchesInStockVeined = /\b(calacatta greige|carrara crema|carrara lino)\b/i.test(q);
+
+  if (isMarbleQuery && !matchesInStockVeined) {
+    const matchedTerm = q.match(/\b(italian marble|carrara marble|statuario|calacatta marble|botticino|makrana|natural marble|real marble|marble)\b/i)?.[0] || 'Natural Marble';
+    return {
+      detectedTerm: matchedTerm.toUpperCase(),
+      category: 'natural-marble',
+      reason: `Natural marble is porous (0.2%–0.6% water absorption). Acidic liquids (citrus, vinegar, wine) cause irreversible chemical etching, while Indian spices (turmeric, cooking oils) penetrate deeply and permanently stain. Furthermore, natural marble requires visible, dirt-trapping grout joints and cannot be thermoformed into monolithic curves.`,
+      suggestedAlternative: getAlternative('calacatta-greige', 0),
+    };
+  }
+
+  // 2. Engineered Quartz inquiries (Silestone, Caesarstone, Cambria, Kalinga Stone)
+  const isQuartzQuery = /\b(quartz|silestone|caesarstone|cambria|kalinga stone|engineered quartz)\b/i.test(q);
+  if (isQuartzQuery) {
+    const matchedTerm = q.match(/\b(silestone|caesarstone|cambria|kalinga stone|engineered quartz|quartz)\b/i)?.[0] || 'Engineered Quartz';
+    return {
+      detectedTerm: matchedTerm.toUpperCase(),
+      category: 'engineered-quartz',
+      reason: `Engineered quartz contains up to 90% crystalline silica. Cutting, polishing, and fabricating quartz generates dangerous respirable crystalline silica (RCS) dust that causes irreversible silicosis. In addition, quartz CANNOT be vacuum thermoformed into fluid curves and leaves visible, dark resin joint lines.`,
+      suggestedAlternative: getAlternative('stonique', 2),
+    };
+  }
+
+  // 3. Natural Granite inquiries
+  const isGraniteQuery = /\b(granite|black galaxy|natural granite)\b/i.test(q);
+  if (isGraniteQuery) {
+    const matchedTerm = q.match(/\b(black galaxy|natural granite|granite)\b/i)?.[0] || 'Natural Granite';
+    return {
+      detectedTerm: matchedTerm.toUpperCase(),
+      category: 'granite',
+      reason: `Natural granite is extremely heavy, rigid, cold to the touch, and micro-fissured, requiring frequent chemical sealing. It cannot be joined seamlessly without visible dirt lines, cannot be thermoformed, and is not certified for cleanroom non-porous hygiene.`,
+      suggestedAlternative: getAlternative('stonecrest-smoke', 1),
+    };
+  }
+
+  // 4. Sintered Stone / Ceramic / Porcelain inquiries
+  const isCeramicQuery = /\b(dekton|neolith|laminam|porcelain slab|ceramic tiles|vitrified tiles|ceramic countertop)\b/i.test(q);
+  if (isCeramicQuery) {
+    const matchedTerm = q.match(/\b(dekton|neolith|laminam|porcelain slab|ceramic tiles|vitrified tiles|ceramic countertop)\b/i)?.[0] || 'Sintered Stone / Ceramic';
+    return {
+      detectedTerm: matchedTerm.toUpperCase(),
+      category: 'ceramic-sintered',
+      reason: `Sintered stone and porcelain slabs are brittle under tension, prone to edge chipping, cannot be thermoformed into organic radii, and cannot be renewed or repaired on-site if damaged.`,
+      suggestedAlternative: getAlternative('calacatta-greige', 0),
+    };
+  }
+
+  // 5. Explicit "in stock" query for a specific unlisted material not in the catalog
+  // Exclude general inventory/count queries like "how many materials are in stock", "what materials do you have"
+  const isGeneralInventoryQuestion = /\b(how many|what materials|which materials|list|all materials|show materials|total materials|how many material|count of material)\b/i.test(q);
+  const isAskingStockStatus = /\b(in stock|available in stock|do you have|stock of ace spaces)\b/i.test(q);
+  if (isAskingStockStatus && !isGeneralInventoryQuestion && !findMatchingMaterial(q, liveMats)) {
+    // Extract the noun if possible
+    return {
+      detectedTerm: 'The requested external surface / color',
+      category: 'unlisted-material',
+      reason: `This specific material or unlisted color is not part of Ace Spaces' certified 100% zero-silica solid surface inventory. Ace Spaces maintains verified stock exclusively for the materials listed in our live catalog.`,
+      suggestedAlternative: liveMats[0] || defaultMaterials[0],
+    };
   }
 
   return null;
@@ -728,8 +794,139 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
 }
 
 /**
+ * Formats a comprehensive, all-inclusive architectural specification for an in-stock material.
+ * Fulfills the requirement to explain EVERYTHING about the material,
+ * and explicitly declares that it is present in the stock of Ace Spaces.
+ */
+export function formatFullMaterialExplanation(mat: Material, pricing: MaterialPricingInfo): string {
+  let doc = `### ${mat.name} (${mat.code}) — Architectural Specification\n\n`;
+  doc += `**Stock Status**: ✅ **Present in Stock at Ace Spaces**\n`;
+  doc += `*Available at Ace Spaces Bengaluru stockyard for immediate full-sheet supply, 5-axis CNC digital routing, vacuum thermoforming, and physical sample tray dispatch.*\n\n`;
+  doc += `${mat.description}\n\n`;
+
+  doc += `#### 1. Material Identity & Aesthetic Nuance\n`;
+  doc += `• **Official Material Name**: ${mat.name}\n`;
+  doc += `• **Specification Code**: \`${mat.code}\`\n`;
+  doc += `• **Collection**: ${mat.collection}\n`;
+  doc += `• **Color Classification**: ${mat.colorFamily.toUpperCase()} — *${mat.colour}*\n`;
+  doc += `• **Hex Color Reference**: \`${mat.hexColor}\`\n`;
+  doc += `• **Pattern & Matrix**: ${mat.pattern} (${mat.type})\n`;
+  doc += `• **Surface Finish**: ${mat.finish}\n`;
+  doc += `• **Light Transmission**: ${mat.lightTransmission}\n\n`;
+
+  doc += `#### 2. Physical Dimensions & Slab Yield\n`;
+  doc += `• **Standard Slab Dimensions**: **${mat.dimensions}** (12.0 ft × 2.5 ft)\n`;
+  doc += `• **Surface Area Yield**: **~30 sq. ft (2.78 m²)** per full sheet\n`;
+  doc += `• **Available Thickness Gauges**: **${mat.thicknessOptions.join(', ')}**\n`;
+  doc += `  - **12 mm**: Standard architectural benchmark for kitchen countertops, monolithic waterfall islands, vanity tops, and vertical wall cladding.\n`;
+  if (mat.thicknessOptions.includes('19mm')) {
+    doc += `  - **19 mm**: Heavy-duty structural gauge for freestanding reception plinths, cantilevered dining tables, and high-traffic thresholds.\n`;
+  }
+  if (mat.thicknessOptions.includes('6mm') || mat.lightTransmission.toLowerCase().includes('high') || mat.lightTransmission.toLowerCase().includes('medium')) {
+    doc += `  - **6 mm**: Backlit gauge engineered for illuminated vertical screens, bar counters, and diffuse lighting columns.\n`;
+  }
+  doc += `\n`;
+
+  doc += `#### 3. Composition & 100% Zero-Silica Health Safety\n`;
+  doc += `• **Chemical Composition**: ~66% Aluminium Trihydrate (ATH) natural mineral matrix refined from bauxite ore, blended with ~33% high-purity acrylic polymer (PMMA) and stable mineral pigments.\n`;
+  doc += `• **100% Zero Crystalline Silica**: 0.0% respirable crystalline silica (RCS). Completely silicosis-safe for craftsmen, stone fabricators, and residents.\n`;
+  doc += `• **Hygienic Non-Porous Integrity**: Solid through-body composition with zero microscopic fissures or pores. Liquids, oils, mold, and bacteria cannot penetrate.\n`;
+  doc += `• **Environmental & Food Contact Certifications**:\n`;
+  doc += `  - **Greenguard Gold Certified**: Ultra-low chemical emissions (VOC), safe for schools, pediatric care, and residential bedrooms.\n`;
+  doc += `  - **NSF/ANSI 51 Food Zone Certified**: Completely safe for direct commercial food preparation.\n`;
+  doc += `  - **Fire Rating**: **${mat.fireRating}** (Class 1 / Class A flame spread).\n\n`;
+
+  doc += `#### 4. Commercial Pricing & Investment Matrix\n`;
+  doc += `• **Raw Slab Material Supply**: **${pricing.rawSqFt}** (${pricing.rawSheet})\n`;
+  doc += `• **Fabricated & Installed Rate**: **${pricing.installedSqFt}**\n`;
+  doc += `• **19mm Heavy Gauge Surcharge**: ${pricing.gauge19mm}\n\n`;
+
+  doc += `#### 5. Workshop Fabrication Craft & Detailing Add-ons\n`;
+  doc += `• **5-Axis CNC Milling**: Tolerances under 0.2mm for flush undermount sinks, drainage runnels, and wireless charging recesses.\n`;
+  doc += `• **Inconspicuous Molecular Welds**: Two-part color-matched acrylic adhesive creates continuous, jointless planes with zero dirt traps.\n`;
+  doc += `• **Vacuum Thermoforming**: Can be heated to 160°C and vacuum-formed over custom timber bucks down to a tight 25mm radius without blanching.\n`;
+  for (const note of pricing.fabricationNotes) {
+    doc += `• ${note}\n`;
+  }
+  doc += `\n`;
+
+  doc += `#### 6. Recommended Architectural Applications\n`;
+  for (const app of mat.applications) {
+    doc += `• ${app}\n`;
+  }
+  doc += `\n`;
+
+  doc += `#### 7. Care, Maintenance & 10-Year DuPont™ Warranty\n`;
+  doc += `• **Care Guide**: ${mat.careGuide}\n`;
+  doc += `• **Stain Immunity**: Wine, turmeric, coffee, and vinegar wipe clean with water and mild detergent.\n`;
+  doc += `• **Renewable Surface**: 100% homogeneous through-body color. Any minor surface scuffs can be renewed on-site with fine micro-abrasive pads without slab replacement.\n`;
+  doc += `• **Warranty**: Covered by official 10-Year Manufacturer Installed Product Warranty.\n\n`;
+
+  doc += `Explore this surface in our [Material Library](/materials#library), review engineering specifications on [Technical Specifications](/materials#specs), or share your CAD drawings via our [WhatsApp Studio Desk](https://wa.me/919845012345) for an itemized estimate.`;
+
+  return doc.trim();
+}
+
+/**
+ * Formats an explanation when user asks about an external material NOT in stock at Ace Spaces,
+ * and recommends the closest in-stock alternative.
+ */
+export function formatNonStockExplanation(detected: NonStockDetection, pricing: MaterialPricingInfo): string {
+  let doc = `### Stock Status: ❌ NOT Present in Stock at Ace Spaces\n\n`;
+  doc += `**Material Inquired**: **${detected.detectedTerm}**\n`;
+  doc += `**Stock Availability**: **Not present in the stock of Ace Spaces.**\n\n`;
+  doc += `Ace Spaces operates exclusively as a master solid surface fabricator and authorized DuPont™ Corian® partner. We do not stock or supply ${detected.detectedTerm.toLowerCase()}.\n\n`;
+
+  doc += `**Why This Material Is Not Stocked at Ace Spaces:**\n`;
+  doc += `${detected.reason}\n\n`;
+
+  doc += `---\n\n`;
+  doc += `### Recommended In-Stock Alternative: ✅ Present in Stock at Ace Spaces\n\n`;
+  doc += `To achieve this aesthetic with **100% zero-silica safety**, zero porosity, and seamless joining, Ace Spaces maintains in-stock inventory of:\n\n`;
+
+  const alt = detected.suggestedAlternative;
+  doc += formatFullMaterialExplanation(alt, pricing);
+
+  return doc;
+}
+
+/**
+ * Formats a categorized overview of ALL materials currently in stock at Ace Spaces.
+ */
+export function formatCatalogStockInventory(liveMats?: Material[]): string {
+  const materialsList = liveMats || getLiveMaterials();
+  const count = materialsList.length;
+
+  // Group by collection
+  const collections: Record<string, Material[]> = {};
+  for (const m of materialsList) {
+    if (!collections[m.collection]) {
+      collections[m.collection] = [];
+    }
+    collections[m.collection].push(m);
+  }
+
+  let doc = `### Ace Spaces Live In-Stock Materials Inventory (${count} Certified Surfaces)\n\n`;
+  doc += `**Stock Status**: ✅ **All ${count} materials listed below are present in stock at Ace Spaces Bengaluru stockyard.**\n`;
+  doc += `Every specimen is available for immediate full-sheet supply (3660 × 760 mm), 5-axis CNC digital routing, vacuum thermoforming, and physical sample tray dispatch.\n\n`;
+
+  for (const [colName, items] of Object.entries(collections)) {
+    doc += `#### ${colName} (${items.length} In-Stock)\n`;
+    for (const item of items) {
+      doc += `• **[${item.name} (${item.code})](/materials#library)** — *${item.finish} | ${item.colour}*\n`;
+    }
+    doc += `\n`;
+  }
+
+  doc += `All ${count} materials are **100% Zero-Silica** (silicosis-safe), Greenguard Gold certified, and backed by DuPont's 10-year installed warranty.\n\n`;
+  doc += `Would you like to curate up to 6 physical specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919845012345)?`;
+
+  return doc.trim();
+}
+
+/**
  * Intelligent Offline Natural Language Reasoner & Knowledge Retriever
- * Synthesizes grounded answers when no external API key is active.
+ * Synthesizes grounded answers strictly respecting live inventory.
  */
 export function getPrivateAIResponse(userQuery: string, history: { role: string; content: string }[] = []): {
   answer: string;
@@ -738,6 +935,7 @@ export function getPrivateAIResponse(userQuery: string, history: { role: string;
   isGuardrailTriggered?: boolean;
 } {
   const query = userQuery.trim().toLowerCase();
+  const liveMaterials = getLiveMaterials();
 
   // 1. Check for greeting / identity questions
   const isGreeting = /^(hi|hello|hey|good morning|good afternoon|good evening|namaste|who are you|what can you do|help)\b/i.test(query);
@@ -745,19 +943,19 @@ export function getPrivateAIResponse(userQuery: string, history: { role: string;
     return {
       answer: `Welcome to **Ace Spaces Studio Material Intelligence**. 
 
-I am your private architectural consultant, grounded directly in our Bengaluru central workshop data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and digital fabrication capabilities.
+I am your private architectural consultant, grounded directly in our Bengaluru central stockyard containing **${liveMaterials.length} certified materials currently in stock**, authorized DuPont™ Corian® solid surface engineering, Coro Collective spatial lineage, and 5-axis CNC digital fabrication.
 
 How can I assist your practice today? You can ask me about:
-1. **Full Sheet Sizing & Pricing**: Exact dimensions (3660 × 760 mm), thickness options, and collection price rates.
-2. **Specific Materials**: Sizing and pricing for [White Chalk](/materials#library), [Calacatta Gold](/materials#library), [Opal Lumina](/materials#library), and 15+ others.
-3. **The Coro Connection**: How Ace Spaces powers Coro Collective's spatial installations ([Learn More](/about#coro)).
-4. **Workshop Craft**: 5-axis CNC routing (<0.2mm), 160°C thermoforming down to 25mm radii, and seamless joints ([Fabrication Hub](/fabrication)).
-5. **Studio & Google Maps**: Visiting our unified studio and headquarters in Bengaluru ([Open on Maps](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)).
-6. **Physical Specimens**: Curating sample trays for delivery across India.`,
-      matchedTopic: 'Welcome & Capabilities',
+1. **In-Stock Materials**: Check which of our ${liveMaterials.length} materials are currently in stock at Ace Spaces ([View Inventory](/materials#library)).
+2. **Specific Material Specs**: Sizing, thicknesses, zero-silica composition, and pricing for any in-stock specimen (e.g. *Calacatta Greige*, *Artista Sage*, *Stonique*, or *Venaro White*).
+3. **Stone & Quartz Comparisons**: Why natural marble and quartz are NOT stocked at Ace Spaces, and our certified in-stock solid surface alternatives.
+4. **The Coro Connection**: How Ace Spaces powers Coro Collective's spatial installations ([Learn More](/about#coro)).
+5. **Workshop Craft**: 5-axis CNC routing (<0.2mm), 160°C thermoforming down to 25mm radii, and seamless joins ([Fabrication Hub](/fabrication)).
+6. **Studio & Google Maps**: Visiting our unified studio and headquarters in Bengaluru ([Open on Maps](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)).`,
+      matchedTopic: 'Welcome & Live Capabilities',
       suggestedActions: [
-        { label: 'Full Sheet Size & Price', prompt: 'What is the size of a full sheet and approx price?' },
-        { label: 'Pricing for White Chalk', prompt: 'What is the size and price of White Chalk?' },
+        { label: `View ${liveMaterials.length} In-Stock Materials`, prompt: 'Which materials are in stock at Ace Spaces?' },
+        { label: 'Calacatta Greige Specs', prompt: 'Tell me everything about Calacatta Greige (COR-CG01) and if it is in stock' },
         { label: 'Open Studio on Google Maps', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
       ],
     };
@@ -790,7 +988,58 @@ How can I assist your practice today? You can ask me about:
     }
   }
 
-  // 3. COLOR PALETTE & ARCHITECTURAL RECOMMENDATION ENGINE
+  // 3. INVENTORY / "WHAT MATERIALS ARE IN STOCK" LOOKUP (must run BEFORE non-stock detection)
+  // This catches queries like "how many materials do you have", "what's in stock", "show all materials"
+  const isInventoryQuery = /\b(what materials|which materials|how many materials|list of materials|all materials|materials in stock|stock list|stock inventory|in stock materials|show materials|how many material|total materials|count of materials|what surfaces|how many surfaces)\b/i.test(query);
+  if (isInventoryQuery) {
+    const responseText = formatCatalogStockInventory(liveMaterials);
+    return {
+      answer: responseText,
+      matchedTopic: `Ace Spaces Live In-Stock Catalog (${liveMaterials.length} Materials)`,
+      suggestedActions: [
+        { label: 'Explore Material Library', href: '/materials#library' },
+        { label: 'Order Sample Tray', href: '/materials' },
+        { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' },
+      ],
+    };
+  }
+
+  // 4. NON-STOCK MATERIAL DETECTION (e.g. Italian marble, Silestone quartz, granite, ceramic)
+  // Explains that it is NOT in stock at Ace Spaces and recommends in-stock alternative
+  const nonStockDetected = detectNonStockMaterial(query, liveMaterials);
+  if (nonStockDetected) {
+    const pricing = getMaterialPricing(nonStockDetected.suggestedAlternative);
+    const responseText = formatNonStockExplanation(nonStockDetected, pricing);
+    return {
+      answer: responseText,
+      matchedTopic: `Stock Advisory: ${nonStockDetected.detectedTerm} (Not in Stock)`,
+      suggestedActions: [
+        { label: `View In-Stock ${nonStockDetected.suggestedAlternative.name}`, href: '/materials#library' },
+        { label: 'Order Sample Specimen', href: '/materials' },
+        { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919845012345' },
+      ],
+    };
+  }
+
+  // 5. SPECIFIC IN-STOCK MATERIAL LOOKUP
+  // Matches any of the live materials from the website catalog
+  const matchedMaterial = findMatchingMaterial(query, liveMaterials);
+  if (matchedMaterial) {
+    const pricing = getMaterialPricing(matchedMaterial);
+    const responseText = formatFullMaterialExplanation(matchedMaterial, pricing);
+
+    return {
+      answer: responseText,
+      matchedTopic: `${matchedMaterial.name} (${matchedMaterial.code}) — In Stock`,
+      suggestedActions: [
+        { label: `View ${matchedMaterial.name} in Library`, href: `/materials#library` },
+        { label: 'Order Sample Specimen', href: '/materials' },
+        { label: 'WhatsApp for CAD Quote', href: 'https://wa.me/919845012345' },
+      ],
+    };
+  }
+
+  // 6. COLOR PALETTE & ARCHITECTURAL RECOMMENDATION ENGINE
   const isColorQuery = /\b(blue|red|green|colour|color|colours|colors|palette|shade|shades|terracotta|sienna|sage|umber|amber)\b/i.test(query);
   const isSuggestionQuery = /\b(suggest|recommend|advice|which material|options|best material)\b/i.test(query);
 
@@ -803,94 +1052,49 @@ How can I assist your practice today? You can ask me about:
 
     if (mentionsRed || (mentionsBlue && mentionsRed)) {
       advisory += `#### 1. Red, Warm Earth & Terracotta Surfaces\n`;
-      advisory += `• **[Sandstorm (COR-SS47)](/materials#library)**: A dynamic swirl particulate evoking desert earth and warm clay tones. Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
-      advisory += `• **[Lava Rock (COR-LR29)](/materials#library)**: Deep charcoal and warm terracotta-hued volcanic mineral matrix with tactile aggregate depth.\n\n`;
+      advisory += `• **[Sandstorm (COR-SS47)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: A dynamic swirl particulate evoking desert earth and warm clay tones. Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
+      advisory += `• **[Lava Rock (COR-LR29)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Deep charcoal and warm terracotta-hued volcanic mineral matrix with tactile aggregate depth.\n\n`;
     }
 
     if (mentionsBlue || (mentionsBlue && mentionsRed)) {
       advisory += `#### 2. Blue & Cool Oceanic Surfaces\n`;
-      advisory += `• **[Vasto Laguna (COR-VL13)](/materials#library) & [Terrazzo Laguna (COR-TL14)](/materials#library)**: Deep oceanic minerals with cool teal and blue particulate accents, 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins and integrated washplane basins.\n`;
-      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)**: Translucent mineral surface that diffuses light with up to 38% transmission. When illuminated from behind with cool-spectrum (4500K–6500K) LED matrices, it glows with radiant crystalline depth.\n\n`;
+      advisory += `• **[Vasto Laguna (COR-VL13)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Deep oceanic minerals with cool teal and blue particulate accents, 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins.\n`;
+      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Translucent mineral surface that diffuses light with up to 38% transmission. When illuminated from behind with cool-spectrum (4500K–6500K) LED matrices, it glows with radiant crystalline depth.\n\n`;
     }
 
     if (mentionsGreen && !mentionsBlue && !mentionsRed) {
       advisory += `#### Botanic & Earthy Green Surfaces\n`;
-      advisory += `• **[Artista Sage (COR-AS05)](/materials#library)**: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n`;
-      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)**: Translucent green-tinted mineral matrix ideal for backlit botanical feature walls.\n\n`;
+      advisory += `• **[Artista Sage (COR-AS05)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n`;
+      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Translucent green-tinted mineral matrix ideal for backlit botanical feature walls.\n\n`;
     }
 
     if (!mentionsBlue && !mentionsRed && !mentionsGreen) {
       advisory += `#### Recommended Architectural Collections\n`;
-      advisory += `• **[Architectural Solids](/materials#library)**: Pure monolithic planes in Stonique, Cirrus White, River Pearl, Whipped Cream, and Linen.\n`;
-      advisory += `• **[Architectural Veined](/materials#library)**: Sculptural marble movement in Calacatta Greige, Travertine Roma, and Carrara Crema.\n`;
-      advisory += `• **[Artista Series & Nuwood](/materials#library)**: Subtle earth pigments in Artista Sage, Artista Mist, and Bleached Nuwood.\n\n`;
+      advisory += `• **[Calacatta Greige (COR-CG01)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Sculptural warm greige marble movement with continuous bookmatching.\n`;
+      advisory += `• **[Stonique (COR-SQ03)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Pure monolithic architectural solid surface with zero visible seams.\n`;
+      advisory += `• **[Bleached Nuwood (COR-BN06)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Warm mineral wood-grain surface with non-porous resilience.\n\n`;
     }
 
     advisory += `#### Balanced Architectural Pairings\n`;
-    advisory += `To ensure bold saturated colours enhance rather than overwhelm residential volumes, we recommend pairing statement surfaces with calm grounding neutrals:\n`;
-    advisory += `• **[Linen (COR-LN46)](/materials#library)**: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
-    advisory += `• **[Calacatta Greige (COR-CG01)](/materials#library)**: Directional veining with warm grey ribbons that subtly unifies earthy accents.\n\n`;
+    advisory += `To ensure bold statement surfaces harmonize with interior volumes, we recommend pairing them with neutral grounds:\n`;
+    advisory += `• **[Linen (COR-LN46)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
+    advisory += `• **[Venaro White (COR-VW64)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Luminous crisp white with gossamer linear veining.\n\n`;
 
-    advisory += `All Ace Spaces solid surfaces feature **100% zero crystalline silica** (silicosis-safe), seamless inconspicuous joins, and vacuum thermoforming capabilities down to 25mm radii.\n\n`;
+    advisory += `**Stock Confirmation**: All ${liveMaterials.length} materials in our catalog are **currently present in stock at Ace Spaces** Bengaluru stockyard, featuring **100% zero crystalline silica** (silicosis-safe), seamless inconspicuous joins, and vacuum thermoforming capabilities down to 25mm radii.\n\n`;
     advisory += `Would you like to curate physical 100 × 100 mm specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919845012345)?`;
 
     return {
       answer: advisory.trim(),
       matchedTopic: 'Material Colour & Architectural Advisory',
       suggestedActions: [
-        { label: 'View Terra / Sienna', href: '/materials#library' },
+        { label: 'Browse In-Stock Materials', href: '/materials#library' },
         { label: 'Order Sample Tray', href: '/materials' },
         { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919845012345' },
       ],
     };
   }
 
-  // 4. SPECIFIC MATERIAL LOOKUP
-  // Check if current query specifies a particular material
-  const matchedMaterial = findMatchingMaterial(query);
-
-  if (matchedMaterial) {
-    const pricing = getMaterialPricing(matchedMaterial);
-
-    let responseText = `### ${matchedMaterial.name} (${matchedMaterial.code}) — Architectural Specification\n\n`;
-    responseText += `${matchedMaterial.description}\n\n`;
-
-    responseText += `**Full Sheet Sizing & Dimensions:**\n`;
-    responseText += `• **Full Slab Dimensions**: **${matchedMaterial.dimensions}** (12.0 ft × 2.5 ft)\n`;
-    responseText += `• **Surface Area Yield**: ~30 sq. ft (2.78 m²) per slab\n`;
-    responseText += `• **Available Thicknesses**: ${matchedMaterial.thicknessOptions.join(', ')}\n`;
-    responseText += `• **Finish & Color**: ${matchedMaterial.finish} — ${matchedMaterial.colour}\n`;
-    responseText += `• **Light Transmission**: ${matchedMaterial.lightTransmission}\n`;
-    responseText += `• **Fire Rating**: ${matchedMaterial.fireRating}\n\n`;
-
-    responseText += `**Commercial Pricing:**\n`;
-    responseText += `• **Raw Slab Material Supply**: **${pricing.rawSqFt}** (${pricing.rawSheet})\n`;
-    responseText += `• **Fabricated & Installed Rate**: **${pricing.installedSqFt}**\n`;
-    responseText += `• **19mm Heavy-Duty Surcharge**: ${pricing.gauge19mm}\n\n`;
-
-    responseText += `**Fabrication & Detailing Add-ons:**\n`;
-    for (const note of pricing.fabricationNotes) {
-      responseText += `• ${note}\n`;
-    }
-    responseText += `\n`;
-
-    responseText += `**Recommended Applications:**\n`;
-    responseText += `• ${matchedMaterial.applications.join(', ')}\n\n`;
-
-    responseText += `Explore this surface in our [Material Library](/materials#library), review engineering tolerances on [Technical Specifications](/materials#specs), or share your drawings directly via our [WhatsApp Studio Desk](https://wa.me/919845012345) for an itemized CAD take-off.`;
-
-    return {
-      answer: responseText.trim(),
-      matchedTopic: `${matchedMaterial.name} (${matchedMaterial.code})`,
-      suggestedActions: [
-        { label: `View ${matchedMaterial.name}`, href: `/materials#library` },
-        { label: 'Order Material Sample', href: '/materials' },
-        { label: 'WhatsApp for Quote', href: 'https://wa.me/919845012345' },
-      ],
-    };
-  }
-
-  // 4. MAPS & NAVIGATION LOOKUP
+  // 7. MAPS & NAVIGATION LOOKUP
   if (/\b(map|maps|location|directions|where are you|where is|address|navigate|showroom|studio|headquarters|how to reach|find you)\b/i.test(query)) {
     const mapsSection = STUDIO_KNOWLEDGE_BASE.find((s) => s.id === 'coro-maps-location')!;
     return {
@@ -900,7 +1104,7 @@ How can I assist your practice today? You can ask me about:
     };
   }
 
-  // 5. GENERAL PRICING & SIZING LOOKUP
+  // 8. GENERAL PRICING & SIZING LOOKUP
   if (/\b(price|pricing|cost|quote|rate|rates|how much|sqft|square foot|per sq ft|slab cost|sheet price|sheet size|full sheet|dimensions|slab dimensions|size|sizing|approx price)\b/i.test(query)) {
     const pricingSection = STUDIO_KNOWLEDGE_BASE.find((s) => s.id === 'pricing-sizing')!;
     return {
@@ -910,21 +1114,19 @@ How can I assist your practice today? You can ask me about:
     };
   }
 
-  // 6. DOMAIN SCORING ENGINE for other topics
+  // 9. DOMAIN SCORING ENGINE for other topics (Founders, Coro Synergy, Fabrication, etc.)
   let bestMatch: KnowledgeSection | null = null;
   let highestScore = 0;
 
   for (const section of STUDIO_KNOWLEDGE_BASE) {
     let score = 0;
 
-    // Check keywords
     for (const kw of section.keywords) {
       if (query.includes(kw)) {
-        score += kw.includes(' ') ? 4 : 2; // multi-word matches weighted higher
+        score += kw.includes(' ') ? 4 : 2;
       }
     }
 
-    // Direct section topic match
     if (query.includes(section.id)) {
       score += 5;
     }
@@ -935,7 +1137,6 @@ How can I assist your practice today? You can ask me about:
     }
   }
 
-  // If score is high enough, construct a tailored architectural response
   if (bestMatch && highestScore >= 2) {
     let responseText = `### ${bestMatch.topic}\n\n${bestMatch.details}\n\n`;
 
@@ -963,22 +1164,22 @@ How can I assist your practice today? You can ask me about:
     };
   }
 
-  // 7. Default polite domain-bound response with active links
+  // 10. Default domain-bound fallback
   return {
     answer: `Thank you for your inquiry regarding Ace Spaces and our architectural surface ecosystem.
 
 As your private studio intelligence, I specialize in:
-• **DuPont™ Corian® Specifications**: Non-porous zero-silica mineral surfaces, ATH + acrylic composition, and certified warranties ([Explore Materials](/materials#library)).
-• **Full Sheet Sizing & Pricing**: Standard 3660 mm × 760 mm slabs across Noma, Alto, Strata, and Lumen series ([Technical Specifications](/materials#specs)).
+• **In-Stock Materials (${liveMaterials.length} Specimens)**: All ${liveMaterials.length} materials currently in stock at our Bengaluru stockyard ([Explore Materials](/materials#library)).
+• **DuPont™ Corian® Specifications**: Non-porous zero-silica mineral surfaces, ATH + acrylic composition, and certified warranties.
+• **Full Sheet Sizing & Pricing**: Standard 3660 mm × 760 mm slabs across solids, veined, terrazzo, and backlit translucent series ([Technical Specifications](/materials#specs)).
 • **Coro Collective Synergy**: How Ace Spaces acts as the parent company and raw material source for Coro's spatial designs ([The Coro Synergy](/about#coro)).
 • **Fabrication Capabilities**: Sub-0.2mm 5-axis CNC machining, 160°C vacuum thermoforming, and seamless joining ([Fabrication Hub](/fabrication)).
-• **Applications**: Monolithic kitchen waterfall islands, integrated basins, clinical healthcare surfaces, and backlit facades ([Kitchen Applications](/applications/kitchen)).
 • **Physical Specimens**: Curating sample trays for delivery across India ([Order Samples](/materials)).
 
 Could you please specify your architectural requirement or material of interest, or connect directly with our Bengaluru studio engineers via the [WhatsApp Studio Desk](https://wa.me/919845012345)?`,
     matchedTopic: 'Studio Advisory',
     suggestedActions: [
-      { label: 'Explore Materials', href: '/materials#library' },
+      { label: `View ${liveMaterials.length} In-Stock Materials`, href: '/materials#library' },
       { label: 'Coro Collective Connection', href: '/about#coro' },
       { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' },
     ],

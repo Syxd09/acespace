@@ -16,28 +16,28 @@ interface ChatMessage {
 
 const STARTER_PROMPTS = [
   {
-    title: '📍 Coro Maps Location',
-    prompt: 'Where is the Coro Collective showroom located in Bangalore, and can you share Google Maps directions?',
+    title: '📦 In-Stock Materials',
+    prompt: 'Which materials are currently in stock at Ace Spaces?',
   },
   {
-    title: '🏛️ Founders & Leadership',
-    prompt: 'Who founded Ace Spaces and Coro Collective?',
+    title: '🔬 Calacatta Greige Specs',
+    prompt: 'Tell me everything about Calacatta Greige (COR-CG01) and if it is in stock',
   },
   {
-    title: '✨ Better Material Advice',
-    prompt: 'Can you compare Italian marble vs Corian solid surface and suggest a better material for a kitchen island?',
+    title: '⚖️ Marble vs Corian Stock',
+    prompt: 'Is Italian marble in stock at Ace Spaces, or what in-stock alternative do you recommend?',
   },
   {
-    title: 'Zero-Silica Safety',
+    title: '✨ Kitchen Island Advice',
+    prompt: 'Suggest the best in-stock material for a luxury seamless kitchen island with waterfall edges',
+  },
+  {
+    title: '📍 Studio Maps Location',
+    prompt: 'Where is the Ace Spaces & Coro Collective showroom located in Bangalore, and can you share Google Maps directions?',
+  },
+  {
+    title: '🛡️ Zero-Silica Safety',
     prompt: 'What makes DuPont™ Corian® 100% zero-silica and safe?',
-  },
-  {
-    title: 'Coro Synergy',
-    prompt: 'How are Ace Spaces and Coro Collective related?',
-  },
-  {
-    title: 'Physical Sample Box',
-    prompt: 'How do I order a physical specifier sample box across India?',
   },
 ];
 
@@ -212,20 +212,21 @@ export default function ArchitecturalAIBot() {
           role: 'assistant',
           content: `Welcome to **Ace Spaces Studio Material Intelligence**.
 
-I am your private architectural assistant, grounded exclusively in our Bangalore fabrication data, certified DuPont™ Corian® slab catalog, Coro Collective spatial lineage, and zero-silica mineral specifications.
+I am your private architectural consultant, grounded directly in our Bengaluru central stockyard inventory, certified DuPont™ Corian® solid surface engineering, and 5-axis CNC digital fabrication.
 
 I can assist with:
-• **Coro Collective Showroom Location & Google Maps directions**
-• **Founders & Leadership (Syed Matheen & Architectural Direction)**
-• **Material Chemistry & Recommending Better Materials for Your Space**
-• **DuPont™ Corian® Zero-Silica Safety & 5-Axis CNC Fabrication**
+• **Live In-Stock Inventory & Stock Availability Verification**
+• **Comprehensive Material Specifications (Dimensions, Thicknesses, Zero-Silica ATH Chemistry, Finishes & Pricing)**
+• **Why Natural Marble & Quartz Are NOT Stocked, and Certified In-Stock Alternatives**
+• **Unified Studio Headquarters & Google Maps Directions**
+• **Sub-0.2mm 5-Axis CNC Precision & 160°C Vacuum Thermoforming**
 
 How may I assist your specifications today?`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           suggestedActions: [
-            { label: 'Open in Google Maps ↗', href: 'https://maps.google.com/?q=Ace+Spaces+Coro+Collective+Bangalore' },
-            { label: 'The Coro Synergy', href: '/about#coro' },
-            { label: 'Explore Materials', href: '/materials' },
+            { label: 'View In-Stock Materials', prompt: 'Which materials are currently in stock at Ace Spaces?' },
+            { label: 'Calacatta Greige Specs', prompt: 'Tell me everything about Calacatta Greige (COR-CG01) and if it is in stock' },
+            { label: 'Open Studio on Google Maps ↗', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
           ],
         };
         setMessages([welcomeMessage]);
