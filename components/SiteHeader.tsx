@@ -310,6 +310,8 @@ export default function SiteHeader() {
             type="button"
             onClick={toggleTray}
             className="sample-tray-btn"
+            aria-label={`Open sample tray (${shortlist.length} items shortlisted)`}
+            aria-controls="sample-tray-drawer"
             style={{
               background: isLightText ? 'rgba(255,255,255,0.1)' : 'rgba(30,33,29,0.06)',
               border: '1px solid currentColor',

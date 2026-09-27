@@ -641,8 +641,22 @@ export default function ColourLibrary() {
               <div
                 key={mat.slug}
                 className="material-card"
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${mat.name} (${mat.code}) material specifications`}
+                data-agent-target="material-card"
+                data-material-slug={mat.slug}
+                data-material-code={mat.code}
+                data-material-name={mat.name}
+                data-material-collection={mat.collection}
                 style={{ position: 'relative', cursor: 'pointer' }}
                 onClick={() => setActiveModalMaterial(mat)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveModalMaterial(mat);
+                  }
+                }}
               >
                 <div
                   className="swatch"
@@ -656,7 +670,7 @@ export default function ColourLibrary() {
                   {mat.textureImage && (
                     <Image
                       src={mat.textureImage}
-                      alt={mat.name}
+                      alt={`${mat.name} solid surface texture swatch`}
                       fill
                       sizes="(max-width: 768px) 100vw, 30vw"
                       style={{ objectFit: 'cover' }}
@@ -668,6 +682,10 @@ export default function ColourLibrary() {
                 {/* Sample Shortlist Quick Button */}
                 <button
                   type="button"
+                  aria-label={inTray ? `Remove ${mat.name} sample from tray` : `Add ${mat.name} sample to tray`}
+                  data-agent-action="sample-toggle"
+                  data-material-slug={mat.slug}
+                  data-material-code={mat.code}
                   onClick={(e) => {
                     e.stopPropagation();
                     if (inTray) {
@@ -887,6 +905,14 @@ export default function ColourLibrary() {
             return (
               <div
                 key={mat.slug}
+                role="button"
+                tabIndex={0}
+                aria-label={`View ${mat.name} (${mat.code}) specifications`}
+                data-agent-target="material-list-row"
+                data-material-slug={mat.slug}
+                data-material-code={mat.code}
+                data-material-name={mat.name}
+                data-material-collection={mat.collection}
                 style={{
                   background: '#dcd7cd',
                   border: '1px solid var(--line)',
@@ -898,6 +924,12 @@ export default function ColourLibrary() {
                   cursor: 'pointer',
                 }}
                 onClick={() => setActiveModalMaterial(mat)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveModalMaterial(mat);
+                  }
+                }}
               >
                 <div
                   style={{

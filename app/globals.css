@@ -17,6 +17,75 @@
   box-sizing: border-box;
 }
 
+/* -------------------------------------------------------------
+   ACCESSIBILITY & KEYBOARD NAVIGATION (WCAG 2.1 AA/AAA)
+------------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 20px;
+  z-index: 100000;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 24px;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid #c2a878;
+  border-radius: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 16px;
+  outline: 2px solid #c2a878;
+  outline-offset: 3px;
+}
+
+/* Universal Accessible Screen Reader Utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Architectural Focus-Visible Indicator */
+:focus-visible {
+  outline: 2px solid #b89758;
+  outline-offset: 3px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #b89758;
+  outline-offset: 3px;
+}
+
+/* Vestibular Safety & Reduced Motion Guarantee */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 html, body {
   overflow-x: hidden;
 }

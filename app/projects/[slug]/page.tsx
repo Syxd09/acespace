@@ -25,9 +25,50 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const projects = getLiveProjects();
   const project = projects.find((p) => p.slug === params.slug);
   if (!project) return { title: 'Project Not Found — Ace Spaces' };
+
+  const canonicalUrl = `https://acespacesindia.vercel.app/projects/${project.slug}`;
+  const materialName = project.materialUsed || 'DuPont Corian Solid Surface';
+  const categoryName = project.category || 'Architectural';
+  const pageTitle = `${project.title} (${project.location}, ${project.year}) — Architectural Case Study`;
+  const pageDesc = `${project.description} Custom architectural fabrication using ${materialName} in ${project.location}.`;
+  const imageUrl = project.image || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
+
   return {
-    title: `${project.title} — Case Study — Ace Spaces`,
-    description: project.description,
+    title: pageTitle,
+    description: pageDesc,
+    keywords: [
+      project.title,
+      project.location,
+      materialName,
+      categoryName,
+      `${project.title} architecture`,
+      'solid surface case study India',
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDesc,
+      url: canonicalUrl,
+      siteName: 'Ace Spaces',
+      locale: 'en_IN',
+      type: 'website',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${project.title} architectural case study`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDesc,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -38,8 +79,34 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
 
   const otherProjects = projects.filter((p) => p.slug !== project.slug);
 
+  const projectSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.title,
+    headline: project.title,
+    description: project.description,
+    image: project.image || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    dateCreated: project.year,
+    locationCreated: {
+      '@type': 'Place',
+      name: project.location,
+    },
+    creator: {
+      '@type': 'Organization',
+      name: 'Ace Spaces Private Limited',
+      url: 'https://acespacesindia.vercel.app',
+    },
+    genre: project.category,
+    material: project.materialUsed || 'Solid Surface',
+  };
+
   return (
     <main>
+      {/* Schema.org CreativeWork Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectSchema) }}
+      />
       <section className="detail-hero">
         <div>
           <div style={{ marginBottom: '18px' }}>

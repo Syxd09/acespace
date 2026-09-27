@@ -1,14 +1,20 @@
 import { MetadataRoute } from 'next';
-import { materials } from '@/data/materials';
+import { materials as defaultMaterials } from '@/data/materials';
 import { productsData } from '@/data/products';
 import { applicationSectors } from '@/data/applications';
-import { projects } from '@/data/projects';
-import { journalArticles } from '@/data/journal';
+import { projects as defaultProjects } from '@/data/projects';
+import { journalArticles as defaultArticles } from '@/data/journal';
+import { getSiteContent } from '@/data/contentStore';
 
 const BASE_URL = 'https://acespacesindia.vercel.app';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
+  const content = getSiteContent();
+
+  const materials = content.materials && content.materials.length > 0 ? content.materials : defaultMaterials;
+  const projects = content.projects && content.projects.length > 0 ? content.projects : defaultProjects;
+  const journalArticles = content.journalArticles && content.journalArticles.length > 0 ? content.journalArticles : defaultArticles;
 
   // Static core routes
   const staticRoutes: MetadataRoute.Sitemap = [

@@ -174,8 +174,9 @@ export function getSampleOrders(): SampleOrder[] {
   const filePath = getFilePath('orders.json');
   try {
     if (fs.existsSync(filePath)) {
-      const raw = fs.readFileSync(filePath, 'utf8');
-      return JSON.parse(raw);
+      let raw = fs.readFileSync(filePath, 'utf8');
+      if (raw.charCodeAt(0) === 0xFEFF) raw = raw.slice(1);
+      return JSON.parse(raw.trim());
     }
   } catch (err) {
     console.warn('Error reading orders.json, using defaults:', err);
@@ -297,8 +298,9 @@ export function getInquiries(): ProjectInquiry[] {
   const filePath = getFilePath('inquiries.json');
   try {
     if (fs.existsSync(filePath)) {
-      const raw = fs.readFileSync(filePath, 'utf8');
-      return JSON.parse(raw);
+      let raw = fs.readFileSync(filePath, 'utf8');
+      if (raw.charCodeAt(0) === 0xFEFF) raw = raw.slice(1);
+      return JSON.parse(raw.trim());
     }
   } catch (err) {
     console.warn('Error reading inquiries.json, using defaults:', err);
@@ -368,8 +370,9 @@ export function getDispatchSubscribers(): DispatchSubscriber[] {
   const filePath = getFilePath('subscribers.json');
   try {
     if (fs.existsSync(filePath)) {
-      const raw = fs.readFileSync(filePath, 'utf8');
-      return JSON.parse(raw);
+      let raw = fs.readFileSync(filePath, 'utf8');
+      if (raw.charCodeAt(0) === 0xFEFF) raw = raw.slice(1);
+      return JSON.parse(raw.trim());
     }
   } catch (err) {
     console.warn('Error reading subscribers.json, using defaults:', err);

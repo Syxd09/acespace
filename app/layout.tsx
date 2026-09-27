@@ -237,6 +237,10 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
+        {/* WCAG 2.1 AAA Accessible Skip Link */}
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <SmoothScroll />
         <SiteContentProvider>
           <SampleProvider>

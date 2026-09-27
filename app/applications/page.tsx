@@ -1,18 +1,86 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { applicationSectors as defaultSectors } from '@/data/applications';
 import ApplicationSlider from '@/components/ApplicationSlider';
-import { useSiteContent } from '@/context/SiteContentContext';
+import { getSiteContent } from '@/data/contentStore';
+
+export const metadata: Metadata = {
+  title: 'Architectural Applications — Spatial Typologies & Surface Context',
+  description:
+    'Explore the six architectural typologies formed with Ace Spaces solid mineral surfaces: Residential kitchens & monoliths, Luxury Hospitality, Corporate Atriums, Retail Flagships, Clinical Healthcare, and Public Infrastructure in Bengaluru, India.',
+  keywords: [
+    'solid surface architectural applications',
+    'hospitality reception desk Corian Bangalore',
+    'monolithic kitchen island India',
+    'healthcare surgical scrub sinks',
+    'seamless washplane airports',
+    'thermoformed curved wall cladding',
+  ],
+  alternates: {
+    canonical: 'https://acespacesindia.vercel.app/applications',
+  },
+  openGraph: {
+    title: 'Architectural Applications — Spatial Typologies | Ace Spaces',
+    description:
+      'Seamless hygiene, thermal stability, and 5-axis CNC digital fabrication across six distinct spatial sectors in India.',
+    url: 'https://acespacesindia.vercel.app/applications',
+    siteName: 'Ace Spaces',
+    locale: 'en_IN',
+    type: 'website',
+    images: [
+      {
+        url: '/assets/hero-ace.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ace Spaces Architectural Solid Surface Typologies',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Architectural Applications — Spatial Typologies | Ace Spaces',
+    description:
+      'Formed for every volume. Monolithic solid surface systems across residential, commercial, hospitality and clinical typologies.',
+    images: ['/assets/hero-ace.png'],
+  },
+};
 
 export default function ApplicationsPage() {
-  const { applicationSectors: liveSectors } = useSiteContent();
-  const sectors = (liveSectors && liveSectors.length > 0) ? liveSectors : defaultSectors;
+  const content = getSiteContent();
+  const sectors = content.applicationSectors && content.applicationSectors.length > 0
+    ? content.applicationSectors
+    : defaultSectors;
+
+  const collectionSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Ace Spaces Architectural Typologies & Applications',
+    url: 'https://acespacesindia.vercel.app/applications',
+    description:
+      'Architectural solid surface applications spanning Residential, Hospitality, Corporate, Retail, Healthcare, and Public Infrastructure.',
+    provider: {
+      '@type': 'Organization',
+      name: 'Ace Spaces Private Limited',
+      url: 'https://acespacesindia.vercel.app',
+    },
+    hasPart: sectors.map((s) => ({
+      '@type': 'Service',
+      name: s.title,
+      description: s.heroDescription || s.overview,
+      url: `https://acespacesindia.vercel.app/applications/${s.id}`,
+    })),
+  };
 
   return (
     <main className="page-main">
+      {/* Schema.org CollectionPage Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }}
+      />
+
       {/* Applications Editorial Hero */}
       <section className="page-split-hero">
         <div>

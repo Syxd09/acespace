@@ -26,9 +26,50 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const articles = getLiveArticles();
   const article = articles.find((a) => a.slug === params.slug);
   if (!article) return { title: 'Essay Not Found — Ace Spaces Journal' };
+
+  const canonicalUrl = `https://acespacesindia.vercel.app/journal/${article.slug}`;
+  const pageTitle = `${article.title} — Architectural Journal`;
+  const pageDesc = `${article.summary} Written by ${article.author}. Material science, zero-silica fabrication, and spatial essays.`;
+  const imageUrl = article.coverImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
+
   return {
-    title: `${article.title} — Ace Spaces Journal`,
-    description: article.summary,
+    title: pageTitle,
+    description: pageDesc,
+    keywords: [
+      article.title,
+      article.category,
+      article.author,
+      'solid surface essays',
+      'architectural material philosophy India',
+      'Corian fabrication journal',
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDesc,
+      url: canonicalUrl,
+      siteName: 'Ace Spaces',
+      locale: 'en_IN',
+      type: 'article',
+      publishedTime: article.date,
+      authors: [article.author],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDesc,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -39,8 +80,33 @@ export default function JournalArticlePage({ params }: { params: { slug: string 
 
   const otherArticles = articles.filter((a) => a.slug !== article.slug);
 
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.summary,
+    image: article.coverImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    datePublished: article.date,
+    author: {
+      '@type': 'Person',
+      name: article.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Ace Spaces Private Limited',
+      url: 'https://acespacesindia.vercel.app',
+      logo: 'https://acespacesindia.vercel.app/favicon.svg',
+    },
+    articleSection: article.category,
+  };
+
   return (
     <main>
+      {/* Schema.org Article Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
       {/* Editorial Header Section */}
       <section className="detail-hero" style={{ background: '#1c201b', color: '#fff', padding: '140px 9vw 60px' }}>
         <div>

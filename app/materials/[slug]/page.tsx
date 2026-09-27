@@ -20,9 +20,49 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const source = materials && materials.length > 0 ? materials : defaultMaterials;
   const material = source.find((m) => m.slug === params.slug);
   if (!material) return { title: 'Material Not Found — Ace Spaces' };
+
+  const canonicalUrl = `https://acespacesindia.vercel.app/materials/${material.slug}`;
+  const imageUrl = material.image || material.textureImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
+  const pageTitle = `${material.name} (${material.code}) — Solid Surface Material Specimen`;
+  const pageDesc = `${material.description} Available in ${material.thicknessOptions.join(', ')} thickness (${material.dimensions}). Calibrated zero-silica through-body solid surface in Bengaluru, India.`;
+
   return {
-    title: `${material.name} — Material Specimen — Ace Spaces`,
-    description: material.description,
+    title: pageTitle,
+    description: pageDesc,
+    keywords: [
+      material.name,
+      material.code,
+      material.collection,
+      `${material.name} Corian India`,
+      'solid surface material',
+      'zero silica slab Bangalore',
+      material.finish,
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDesc,
+      url: canonicalUrl,
+      siteName: 'Ace Spaces',
+      locale: 'en_IN',
+      type: 'website',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${material.name} architectural solid surface specimen`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDesc,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -34,8 +74,44 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
 
   const relatedProjects = projects.filter((p) => p.materialSlug === material.slug);
 
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: material.name,
+    productID: material.code,
+    sku: material.code,
+    image: material.image || material.textureImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    description: material.description,
+    brand: {
+      '@type': 'Brand',
+      name: 'DuPont™ Corian® / Ace Spaces',
+    },
+    manufacturer: {
+      '@type': 'Organization',
+      name: 'Ace Spaces Private Limited',
+      url: 'https://acespacesindia.vercel.app',
+    },
+    color: material.colour || material.colorFamily,
+    material: 'Acrylic Solid Surface (ATH-PMMA Matrix, Zero Silica)',
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        priceCurrency: 'INR',
+        valueAddedTaxIncluded: true,
+      },
+    },
+  };
+
   return (
     <main>
+      {/* Schema.org Product Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       <section className="detail-hero">
         <div>
           <p className="eyebrow light">{material.collection} / Material Specification</p>

@@ -208,6 +208,10 @@ export default function SampleTray() {
 
       {/* Side Slide-Over Panel */}
       <div
+        id="sample-tray-drawer"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Sample Specimen Tray"
         className="sample-tray-panel"
         style={{
           position: 'fixed',
@@ -247,6 +251,7 @@ export default function SampleTray() {
           <button
             onClick={() => setIsTrayOpen(false)}
             className="sample-tray-close"
+            aria-label="Close sample tray"
             style={{
               width: '36px',
               height: '36px',

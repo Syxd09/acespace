@@ -25,9 +25,48 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
     };
   }
 
+  const canonicalUrl = `https://acespacesindia.vercel.app/products/${product.slug}`;
+  const pageTitle = `${product.name} [${product.code}] — Architectural Solid Surface Systems`;
+  const pageDesc = `${product.heroDescription} Fabricated from calibrated DuPont™ Corian® solid surfaces with 5-axis CNC precision and seamless molecular joinery in Bengaluru, India.`;
+  const imageUrl = product.heroImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
+
   return {
-    title: `${product.name} — Architectural Solid Surface Products — Ace Spaces`,
-    description: product.heroDescription,
+    title: pageTitle,
+    description: pageDesc,
+    keywords: [
+      product.name,
+      product.code,
+      product.categoryName,
+      `${product.name} solid surface`,
+      'seamless integrated washbasin India',
+      'Corian countertop Bangalore',
+      ...product.keyFeatures.slice(0, 4),
+    ],
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: pageTitle,
+      description: pageDesc,
+      url: canonicalUrl,
+      siteName: 'Ace Spaces',
+      locale: 'en_IN',
+      type: 'website',
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${product.name} architectural solid surface system`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: pageTitle,
+      description: pageDesc,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -44,8 +83,39 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const prevProduct = productsData[(currentIndex - 1 + productsData.length) % productsData.length];
   const nextProduct = productsData[(currentIndex + 1) % productsData.length];
 
+  const productSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: product.name,
+    productID: product.code,
+    sku: product.code,
+    image: product.heroImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    description: product.heroDescription,
+    category: product.categoryName,
+    brand: {
+      '@type': 'Brand',
+      name: 'Ace Spaces',
+    },
+    manufacturer: {
+      '@type': 'Organization',
+      name: 'Ace Spaces Private Limited',
+      url: 'https://acespacesindia.vercel.app',
+    },
+    material: 'DuPont™ Corian® Solid Surface (Zero Silica)',
+    offers: {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'INR',
+      availability: 'https://schema.org/InStock',
+    },
+  };
+
   return (
     <main className="page-main">
+      {/* Schema.org Product Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       {/* Split Architectural Hero */}
       <section className="page-split-hero">
         <div>

@@ -150,11 +150,14 @@ export default function PageTransition({ children }: { children: React.ReactNode
 
       {/* Main Page Container with Smooth Scale & Fade */}
       <div
+        id="main-content"
+        tabIndex={-1}
         className="page-content-wrapper"
         style={{
           opacity: transitionStage === 'covering' ? 0.7 : 1,
           transform: transitionStage === 'covering' ? 'scale(0.98)' : 'none',
           transition: 'opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          outline: 'none',
         }}
       >
         {displayChildren}

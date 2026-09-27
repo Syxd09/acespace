@@ -8,7 +8,11 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  compress: true,
+  poweredByHeader: false,
   images: {
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 86400,
     remotePatterns: [
       {
         protocol: 'https',
@@ -22,6 +26,42 @@ const nextConfig = {
   },
   async headers() {
     return [
+      {
+        source: '/_next/static/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/assets/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/fonts/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
       {
         source: '/(.*)',
         headers: [
@@ -38,8 +78,16 @@ const nextConfig = {
             value: 'nosniff',
           },
           {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+          {
             key: 'Referrer-Policy',
             value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
           },
           {
             key: 'Permissions-Policy',
@@ -48,6 +96,20 @@ const nextConfig = {
         ],
       },
     ];
+  },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/llms.txt',
+          destination: '/api/agent/catalog?format=md',
+        },
+        {
+          source: '/llms-full.txt',
+          destination: '/api/agent/catalog?format=md',
+        },
+      ],
+    };
   },
   async redirects() {
     return [
