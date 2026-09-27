@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const canonicalUrl = `https://acespacesindia.vercel.app/products/${product.slug}`;
   const pageTitle = `${product.name} [${product.code}] — Architectural Solid Surface Systems`;
   const pageDesc = `${product.heroDescription} Fabricated from calibrated DuPont™ Corian® solid surfaces with 5-axis CNC precision and seamless molecular joinery in Bengaluru, India.`;
-  const imageUrl = product.heroImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
+  const imageUrl = product.image || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
 
   return {
     title: pageTitle,
@@ -89,7 +89,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     name: product.name,
     productID: product.code,
     sku: product.code,
-    image: product.heroImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    image: product.image || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
     description: product.heroDescription,
     category: product.categoryName,
     brand: {

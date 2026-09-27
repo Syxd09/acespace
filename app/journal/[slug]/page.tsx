@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const canonicalUrl = `https://acespacesindia.vercel.app/journal/${article.slug}`;
   const pageTitle = `${article.title} — Architectural Journal`;
   const pageDesc = `${article.summary} Written by ${article.author}. Material science, zero-silica fabrication, and spatial essays.`;
-  const imageUrl = article.coverImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
+  const imageUrl = article.image || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
 
   return {
     title: pageTitle,
@@ -85,7 +85,7 @@ export default function JournalArticlePage({ params }: { params: { slug: string 
     '@type': 'Article',
     headline: article.title,
     description: article.summary,
-    image: article.coverImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    image: article.image || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
     datePublished: article.date,
     author: {
       '@type': 'Person',

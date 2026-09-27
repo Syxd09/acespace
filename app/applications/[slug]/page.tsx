@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const canonicalUrl = `https://acespacesindia.vercel.app/applications/${sector.id}`;
   const pageTitle = `${sector.title} Applications — Architectural Solid Surfaces`;
   const pageDesc = `${sector.heroDescription} Tailored DuPont™ Corian® solid surface installations, zero-joint hygiene, and 5-axis CNC fabrication in Bengaluru, India.`;
-  const imageUrl = sector.heroImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
+  const imageUrl = sector.images?.[0]?.src || 'https://acespacesindia.vercel.app/assets/hero-ace.png';
 
   return {
     title: pageTitle,
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       `${sector.title} Corian India`,
       'architectural applications solid surface',
       'commercial solid surface fabrication',
-      ...sector.applicationsList.map((a) => a.name).slice(0, 4),
+      ...(sector.elements || []).slice(0, 4),
     ],
     alternates: {
       canonical: canonicalUrl,
