@@ -97,20 +97,6 @@ const nextConfig = {
       },
     ];
   },
-  async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: '/llms.txt',
-          destination: '/api/agent/catalog?format=md',
-        },
-        {
-          source: '/llms-full.txt',
-          destination: '/api/agent/catalog?format=md',
-        },
-      ],
-    };
-  },
   async redirects() {
     return [
       {
