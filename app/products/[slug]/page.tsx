@@ -84,10 +84,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="button button-dark" href="/contact">
-              Request CAD &amp; Pricing <span>&nearr;</span>
+              Request CAD &amp; Pricing <span>↗</span>
             </Link>
             <Link className="text-link" href="/materials">
-              Order Material Samples <span>&nearr;</span>
+              Order Material Samples <span>↗</span>
             </Link>
           </div>
 
@@ -171,7 +171,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               </strong>
             </div>
             <Link href="#specifications" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
-              View Specs <span>&darr;</span>
+              View Specs <span>↓</span>
             </Link>
           </div>
         </div>
@@ -347,7 +347,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', gap: '4px' }}
         >
           <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
-            &larr; Previous Product
+            ← Previous Product
           </span>
           <strong style={{ fontSize: '18px', color: 'var(--ink)' }}>{prevProduct.name}</strong>
         </Link>
@@ -365,7 +365,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'right' }}
         >
           <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
-            Next Product &rarr;
+            Next Product →
           </span>
           <strong style={{ fontSize: '18px', color: 'var(--ink)' }}>{nextProduct.name}</strong>
         </Link>
@@ -383,7 +383,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           Need custom dimensions, integrated power pop-ups, or custom basin configurations? Our engineering team works directly with architects to prepare project-specific submittal packages.
         </p>
         <Link className="button button-dark" href="/contact">
-          Inquire About {product.name} <span>&nearr;</span>
+          Inquire About {product.name} <span>↗</span>
         </Link>
       </section>
     </main>

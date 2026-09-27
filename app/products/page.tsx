@@ -318,7 +318,7 @@ export default function ProductsCatalogPage() {
                 <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
                   View Slabs &amp; Swatches
                 </span>
-                <span style={{ fontSize: '14px' }}>&nearr;</span>
+                <span style={{ fontSize: '14px' }}>↗</span>
               </div>
             </div>
           </Link>
@@ -396,7 +396,7 @@ export default function ProductsCatalogPage() {
                   <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
                     Technical Specs &amp; Drawings
                   </span>
-                  <span style={{ fontSize: '14px' }}>&nearr;</span>
+                  <span style={{ fontSize: '14px' }}>↗</span>
                 </div>
               </div>
             </Link>
@@ -433,10 +433,10 @@ export default function ProductsCatalogPage() {
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
               <Link className="button button-light" href="/products/design-certainty">
-                Learn About Design Certainty <span>&nearr;</span>
+                Learn About Design Certainty <span>↗</span>
               </Link>
               <Link className="text-link" href="/contact" style={{ color: '#fff' }}>
-                Book Engineering Consultation <span>&nearr;</span>
+                Book Engineering Consultation <span>↗</span>
               </Link>
             </div>
           </div>
@@ -484,7 +484,7 @@ export default function ProductsCatalogPage() {
           Upload your DWG, PDF, or 3D CAD models. Our senior fabrication team will review joinery details, advise on seamless joint placements, and provide guaranteed trade pricing within 48 hours.
         </p>
         <Link className="button button-dark" href="/contact">
-          Submit Drawings for Quotation <span>&nearr;</span>
+          Submit Drawings for Quotation <span>↗</span>
         </Link>
       </section>
     </main>

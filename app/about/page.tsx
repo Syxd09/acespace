@@ -117,67 +117,56 @@ export default function AboutPage() {
   return (
     <main className="page-main">
       <JsonLd data={aboutJsonLd} />
-      {/* Editorial Split Hero */}
-      <section className="page-split-hero" style={{ padding: '16px 0 40px', alignItems: 'stretch' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: 'auto' }}>
-          <div>
-            <p className="eyebrow" style={{ marginBottom: '14px' }}>
-              07 / About Us · The Practice, Atelier &amp; Architectural Ethos
-            </p>
+      {/* Rich Split Architectural Hero */}
+      <section className="page-split-hero">
+        <div>
+          <p className="eyebrow" style={{ marginBottom: '24px' }}>
+            About Us / Notes on Practice, Craft &amp; Lineage
+          </p>
 
-            <h1 style={{ fontSize: 'clamp(32px, 3.8vw, 54px)', lineHeight: 1.05, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
-              Form, continuity &amp;
-              <br />
-              <i>the seamless plane.</i>
-            </h1>
+          <h1 style={{ fontSize: 'clamp(48px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+            Form &amp;
+            <br />
+            <i>continuity.</i>
+          </h1>
 
-            <p style={{ fontSize: '15px', lineHeight: 1.6, color: '#4a5249', maxWidth: '520px', marginBottom: '20px' }}>
-              Ace Spaces is a Bengaluru-based architectural fabrication atelier and design practice. We unite computational 5-axis digital precision with master artisan joinery, crafting monolithic, zero-silica solid surfaces that eliminate the visual friction of seams in modern space.
-            </p>
+          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
+            Ace Spaces is a Bengaluru-based architectural fabrication atelier and master solid surface practice. We unite computational 5-axis digital precision with master artisan joinery, crafting monolithic, zero-silica architectural planes.
+          </p>
 
-            <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '24px' }}>
-              <Link className="button button-dark" href="#story">
-                Our Architectural Story <span>↓</span>
-              </Link>
-              <Link className="button" href="/contact" style={{ background: 'transparent', border: '1px solid var(--ink)' }}>
-                Visit Bangalore Atelier <span>↗</span>
-              </Link>
-              <Link className="text-link" href="#foundation" style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
-                DuPont™ Material Foundation <span>↓</span>
-              </Link>
-            </div>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+            <Link className="button button-dark" href="#story">
+              Our Architectural Story <span>↓</span>
+            </Link>
+            <Link className="text-link" href="/contact">
+              Visit Bengaluru Atelier <span>↗</span>
+            </Link>
           </div>
 
-          <div className="hero-stats-row" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '12px', paddingTop: '16px', marginTop: 'auto' }}>
+          <div className="hero-stats-row">
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Origin
               </span>
-              <strong style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Bengaluru</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Bengaluru</strong>
             </div>
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Discipline
-              </span>
-              <strong style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Solid Surfaces</strong>
-            </div>
-            <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Atelier
               </span>
-              <strong style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>15,000 sq.ft</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>15,000 sq.ft</strong>
             </div>
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Standard
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Material Standard
               </span>
-              <strong style={{ fontSize: '14px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>0% Silica</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>0% Silica</strong>
             </div>
           </div>
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div className="hero-image-frame" style={{ height: '100%', minHeight: '380px', maxHeight: '480px' }}>
+        <div className="hero-image-frame">
           <Image
             src="/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg"
             alt="Monolithic architectural counter crafted by Ace Spaces"
@@ -191,10 +180,13 @@ export default function AboutPage() {
               <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Studio Discipline
               </span>
-              <strong style={{ fontSize: '12px', color: 'var(--ink)', display: 'block' }}>
-                Architectural Monoliths
+              <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
+                Architectural Monoliths &amp; Joinery
               </strong>
             </div>
+            <Link href="#philosophy" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+              Philosophy <span>↓</span>
+            </Link>
           </div>
         </div>
       </section>
@@ -743,7 +735,7 @@ export default function AboutPage() {
         </div>
         <div className="spec-row">
           <span>Ecosystem Synergy</span>
-          <div>Ace Spaces (Material &amp; Fabrication Atelier) &rarr; Coro Collective (Turnkey Spatial &amp; Collectible Furniture Studio)</div>
+          <div>Ace Spaces (Material &amp; Fabrication Atelier) → Coro Collective (Turnkey Spatial &amp; Collectible Furniture Studio)</div>
         </div>
       </section>
 

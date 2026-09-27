@@ -198,6 +198,8 @@ export default function MaterialGrid() {
       {selectedMaterial && (
         <MaterialModal
           material={selectedMaterial}
+          materialsList={materials}
+          onSelectMaterial={(mat) => setSelectedMaterial(mat)}
           onClose={() => setSelectedMaterial(null)}
         />
       )}

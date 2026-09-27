@@ -309,7 +309,7 @@ export default function ApplicationMaterialGallery({
                   }}
                 >
                   <span>Inspection Specimen</span>
-                  <span>Click to Zoom &rarr;</span>
+                  <span>Click to Zoom →</span>
                 </div>
               </div>
 

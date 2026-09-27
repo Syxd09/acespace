@@ -310,7 +310,7 @@ export default function MaterialsAndColoursPage() {
           Experience our mineral depth in your studio under natural daylight. Select up to 6 colour specimens from our library above and order a complimentary 100mm &times; 100mm specimen box delivered directly to your studio.
         </p>
         <Link className="button button-dark" href="/contact">
-          Request Studio Specimen Box <span>&nearr;</span>
+          Request Studio Specimen Box <span>↗</span>
         </Link>
       </section>
     </main>
