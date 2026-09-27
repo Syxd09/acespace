@@ -40,8 +40,11 @@ export function getSiteContent(): SiteContent {
     // Check primary path or fallback
     const targetPath = fs.existsSync(primaryPath) ? primaryPath : (fs.existsSync(localDataPath) ? localDataPath : (fs.existsSync(vercelTmpPath) ? vercelTmpPath : null));
     if (targetPath) {
-      const fileData = fs.readFileSync(targetPath, 'utf8');
-      const parsed = JSON.parse(fileData);
+      let fileData = fs.readFileSync(targetPath, 'utf8');
+      if (fileData.charCodeAt(0) === 0xFEFF) {
+        fileData = fileData.slice(1);
+      }
+      const parsed = JSON.parse(fileData.trim());
       return {
         heroSlides: parsed.heroSlides || defaultHeroSlides,
         materials: parsed.materials || defaultMaterials,
