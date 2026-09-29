@@ -337,7 +337,7 @@ To discuss your project drawings or obtain immediate material estimates, please 
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         suggestedActions: [
           { label: 'Browse Materials', href: '/materials' },
-          { label: 'WhatsApp in Navbar', href: 'https://wa.me/919845012345' },
+          { label: 'WhatsApp in Navbar', href: 'https://wa.me/919741044776' },
         ],
       };
       setMessages((prev) => [...prev, fallbackMessage]);
@@ -1225,7 +1225,7 @@ How may I assist your architectural practice today?`,
               >
                 <span>Press Enter to send · Shift+Enter for newline</span>
                 <Link
-                  href="https://wa.me/919845012345"
+                  href="https://wa.me/919741044776"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color: '#73c991', textDecoration: 'none' }}

@@ -64,7 +64,7 @@ export const STUDIO_KNOWLEDGE_BASE: KnowledgeSection[] = [
 • **Integrated Seamless Corian Sink / Vanity Basin**: ₹12,000 – ₹22,000 / bowl.
 • **Thermoformed Curved Radii (down to 25mm R)**: ₹1,800 – ₹3,200 / sq. ft. of curved surface.
 
-You can inspect technical data on our [Technical Specifications](/materials#specs) page, explore swatches in our [Material Library](/materials#library), or submit drawings via the [WhatsApp Studio Desk](https://wa.me/919845012345) for an itemized estimate.`,
+You can inspect technical data on our [Technical Specifications](/materials#specs) page, explore swatches in our [Material Library](/materials#library), or submit drawings via the [WhatsApp Studio Desk](https://wa.me/919741044776) for an itemized estimate.`,
     specs: {
       'Full Sheet Dimensions': '3660 mm × 760 mm (12.0 ft × 2.5 ft)',
       'Sheet Area Yield': '~30 sq. ft. / 2.78 m²',
@@ -75,7 +75,7 @@ You can inspect technical data on our [Technical Specifications](/materials#spec
     suggestedActions: [
       { label: 'View Material Library', href: '/materials#library' },
       { label: 'View Specifications', href: '/materials#specs' },
-      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' }
+      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' }
     ]
   },
   {
@@ -100,7 +100,7 @@ Every slab is backed by genuine DuPont™ chemical composition certifications, G
     suggestedActions: [
       { label: 'Browse Materials', href: '/materials#library' },
       { label: 'DuPont Alliance Details', href: '/about#dupont' },
-      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' }
+      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' }
     ]
   },
   {
@@ -204,7 +204,7 @@ Edge Profiles Available:
     },
     suggestedActions: [
       { label: 'Explore Fabrication Page', href: '/fabrication' },
-      { label: 'Send Architectural CAD', href: 'https://wa.me/919845012345' }
+      { label: 'Send Architectural CAD', href: 'https://wa.me/919741044776' }
     ]
   },
   {
@@ -364,7 +364,7 @@ Sample Box Contents:
     },
     suggestedActions: [
       { label: 'View All Projects', href: '/projects' },
-      { label: 'Submit Your Project Drawings', href: 'https://wa.me/919845012345' }
+      { label: 'Submit Your Project Drawings', href: 'https://wa.me/919741044776' }
     ]
   },
   {
@@ -396,7 +396,7 @@ Renewability & Scratch Repair:
     },
     suggestedActions: [
       { label: 'Review Materials Care', href: '/materials' },
-      { label: 'Speak with Workshop Specialist', href: 'https://wa.me/919845012345' }
+      { label: 'Speak with Workshop Specialist', href: 'https://wa.me/919741044776' }
     ]
   },
   {
@@ -409,19 +409,19 @@ Renewability & Scratch Repair:
     summary: 'Studio workshop in Bangalore, active Mon–Sat 09:30–18:30 IST. Direct WhatsApp available in the top navbar.',
     details: `Connect with our architectural advisory desk:
 
-- Direct WhatsApp Specifier Line: Accessible directly from the top navigation bar or via +91 98450 12345.
+- Direct WhatsApp Specifier Line: Accessible directly from the top navigation bar or via +91 97410 44776.
 - Central Workshop & Stockyard: Bangalore, Karnataka, India.
 - Studio Desk Availability: Monday – Saturday, 09:30 – 18:30 IST (UTC+5:30).
 - Consultation Booking: Schedule physical or virtual design consultations via our Contact page (/contact).
 - CAD & Floor Plan Submission: Share AutoCAD .dwg, Rhino .3dm, or PDF drawings directly via WhatsApp or the contact form for rapid material take-offs and quotation.`,
     specs: {
-      'WhatsApp Studio Line': '+91 98450 12345',
+      'WhatsApp Studio Line': '+91 97410 44776',
       'Studio Location': 'Bangalore (Bengaluru), Karnataka, India',
       'Operating Hours': 'Mon–Sat, 09:30–18:30 IST (UTC+5:30)',
       'Drawings Accepted': 'CAD .dwg, .dxf, .3dm, .skp, and dimensional PDFs'
     },
     suggestedActions: [
-      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' },
+      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' },
       { label: 'Book Showroom Consultation', href: '/contact' }
     ]
   },
@@ -450,7 +450,7 @@ Here under one roof, you can:
 • Curate and collect physical 100mm × 100mm × 12mm specifier sample boxes.
 • Consult with our fabrication engineers on CAD drawings, CNC nested cuts, and thermoforming tooling.
 
-You can book an architectural walkthrough on our [Contact Page](/contact), explore our [Fabrication Capabilities](/fabrication), or message our specifier desk directly via the [WhatsApp Studio Desk](https://wa.me/919845012345).`,
+You can book an architectural walkthrough on our [Contact Page](/contact), explore our [Fabrication Capabilities](/fabrication), or message our specifier desk directly via the [WhatsApp Studio Desk](https://wa.me/919741044776).`,
     specs: {
       'Studio & Headquarters': 'Coro Crafted Collective & Ace Spaces, Bengaluru',
       'Scope': 'Single unified studio & headquarters for both Ace Spaces and Coro Collective',
@@ -460,31 +460,36 @@ You can book an architectural walkthrough on our [Contact Page](/contact), explo
     suggestedActions: [
       { label: 'Open Studio on Google Maps ↗', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
       { label: 'Book Studio Visit', href: '/contact' },
-      { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919845012345' }
+      { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919741044776' }
     ]
   },
   {
     id: 'founders-leadership',
-    topic: 'Founders & Leadership: Syed Matheen & Architectural Direction',
+    topic: 'Founders & Leadership: Vithal Savant & Prashant Vinayak Naik',
     keywords: [
-      'founder', 'founders', 'who started', 'who founded', 'owner', 'leadership', 'syed',
-      'syed matheen', 'director', 'team', 'management', 'story', 'history'
+      'founder', 'founders', 'who started', 'who founded', 'owner', 'leadership', 'vithal',
+      'vithal savant', 'prashant', 'prashant naik', 'prashant vinayak naik', 'director',
+      'team', 'management', 'story', 'history', 'partners', 'partner'
     ],
-    summary: 'Founded in Bengaluru by material technologist Syed Matheen and a multidisciplinary collective of spatial architects.',
-    details: `Ace Spaces and Coro Collective were founded in Bengaluru with a unified vision: to disrupt brittle, silica-hazardous stone processing and establish a master foundry for monolithic, non-porous mineral architecture.
+    summary: 'Founded in Bengaluru by two partners — Vithal Savant and Prashant Vinayak Naik — with a shared vision for zero-silica monolithic mineral architecture.',
+    details: `Ace Spaces and Coro Collective were co-founded in Bengaluru by two partners with a unified vision: to disrupt brittle, silica-hazardous stone processing and establish a master foundry for monolithic, non-porous mineral architecture.
 
-**Key Leadership & Founders:**
-• **Syed Matheen** — Co-Founder & Director of Material Engineering & Advanced Fabrication:
-  - Spearheads Ace Spaces’ digital manufacturing infrastructure, 5-axis CNC routing systems (<0.2mm tolerance), and industrial vacuum thermoforming technology.
+**Founding Partners & Leadership:**
+• **Vithal Savant** — Co-Founder & Director:
+  - Spearheads Ace Spaces' strategic partnerships, distribution alliances, and business development across India.
   - Architected the authorized distribution alliance with DuPont™ Corian® across India.
-  - Directs raw material research into zero-silica mineral matrices and proprietary resin formulations.
+  - Oversees the material supply chain, stockyard operations, and pan-India specifier dispatch network.
 
-• **The Founding Architectural Collective**:
-  - Composed of visionary spatial architects, luxury interior designers, and computational fabricators who sought seamless, continuous planes without joint lines or grout.
-  - Established **Ace Spaces** to serve as the foundational raw material authority, and founded **Coro Collective** as the spatial design wing to manifest what is possible when these advanced materials are shaped into bespoke private residences, hotel atriums, and collectible furniture.`,
+• **Prashant Vinayak Naik** — Co-Founder & Director:
+  - Leads Ace Spaces' digital manufacturing infrastructure, 5-axis CNC routing systems (<0.2mm tolerance), and industrial vacuum thermoforming technology.
+  - Directs raw material research into zero-silica mineral matrices and proprietary resin formulations.
+  - Oversees fabrication quality, bespoke installation projects, and the Coro Collective spatial design wing.
+
+Together, they established **Ace Spaces** as the foundational raw material authority and **Coro Collective** as the spatial design wing — manifesting what is possible when advanced mineral surfaces are shaped into bespoke private residences, hotel atriums, and collectible furniture.`,
     specs: {
-      'Co-Founder & Director': 'Syed Matheen (Material Engineering & Digital Fabrication)',
-      'Founding Collective': 'Spatial Architects, Computational Joiners & Material Scientists',
+      'Co-Founder & Director': 'Vithal Savant',
+      'Co-Founder & Director (2)': 'Prashant Vinayak Naik',
+      'Founding Partners': 'Vithal Savant & Prashant Vinayak Naik',
       'Origin City': 'Bengaluru, Karnataka, India',
       'Mission': 'Zero-Silica Monolithic Architecture & Precision Digital Fabrication'
     },
@@ -527,7 +532,7 @@ You can book an architectural walkthrough on our [Contact Page](/contact), explo
     suggestedActions: [
       { label: 'Explore Noma & Alto Series', href: '/materials' },
       { label: 'Order Curated Sample Tray', href: '/materials' },
-      { label: 'WhatsApp Consultation', href: 'https://wa.me/919845012345' }
+      { label: 'WhatsApp Consultation', href: 'https://wa.me/919741044776' }
     ]
   }
 ];
@@ -862,7 +867,7 @@ export function formatFullMaterialExplanation(mat: Material, pricing: MaterialPr
   doc += `• **Renewable Surface**: 100% homogeneous through-body color. Any minor surface scuffs can be renewed on-site with fine micro-abrasive pads without slab replacement.\n`;
   doc += `• **Warranty**: Covered by official 10-Year Manufacturer Installed Product Warranty.\n\n`;
 
-  doc += `Explore this surface in our [Material Library](/materials#library), review engineering specifications on [Technical Specifications](/materials#specs), or share your CAD drawings via our [WhatsApp Studio Desk](https://wa.me/919845012345) for an itemized estimate.`;
+  doc += `Explore this surface in our [Material Library](/materials#library), review engineering specifications on [Technical Specifications](/materials#specs), or share your CAD drawings via our [WhatsApp Studio Desk](https://wa.me/919741044776) for an itemized estimate.`;
 
   return doc.trim();
 }
@@ -919,7 +924,7 @@ export function formatCatalogStockInventory(liveMats?: Material[]): string {
   }
 
   doc += `All ${count} materials are **100% Zero-Silica** (silicosis-safe), Greenguard Gold certified, and backed by DuPont's 10-year installed warranty.\n\n`;
-  doc += `Would you like to curate up to 6 physical specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919845012345)?`;
+  doc += `Would you like to curate up to 6 physical specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919741044776)?`;
 
   return doc.trim();
 }
@@ -982,7 +987,7 @@ How can I assist your practice today? You can ask me about:
         suggestedActions: [
           { label: 'Browse Certified Materials', href: '/materials#library' },
           { label: 'Coro Collective Connection', href: '/about#coro' },
-          { label: 'Chat on WhatsApp', href: 'https://wa.me/919845012345' },
+          { label: 'Chat on WhatsApp', href: 'https://wa.me/919741044776' },
         ],
       };
     }
@@ -999,7 +1004,7 @@ How can I assist your practice today? You can ask me about:
       suggestedActions: [
         { label: 'Explore Material Library', href: '/materials#library' },
         { label: 'Order Sample Tray', href: '/materials' },
-        { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' },
+        { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' },
       ],
     };
   }
@@ -1016,7 +1021,7 @@ How can I assist your practice today? You can ask me about:
       suggestedActions: [
         { label: `View In-Stock ${nonStockDetected.suggestedAlternative.name}`, href: '/materials#library' },
         { label: 'Order Sample Specimen', href: '/materials' },
-        { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919845012345' },
+        { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919741044776' },
       ],
     };
   }
@@ -1034,7 +1039,7 @@ How can I assist your practice today? You can ask me about:
       suggestedActions: [
         { label: `View ${matchedMaterial.name} in Library`, href: `/materials#library` },
         { label: 'Order Sample Specimen', href: '/materials' },
-        { label: 'WhatsApp for CAD Quote', href: 'https://wa.me/919845012345' },
+        { label: 'WhatsApp for CAD Quote', href: 'https://wa.me/919741044776' },
       ],
     };
   }
@@ -1081,7 +1086,7 @@ How can I assist your practice today? You can ask me about:
     advisory += `• **[Venaro White (COR-VW64)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Luminous crisp white with gossamer linear veining.\n\n`;
 
     advisory += `**Stock Confirmation**: All ${liveMaterials.length} materials in our catalog are **currently present in stock at Ace Spaces** Bengaluru stockyard, featuring **100% zero crystalline silica** (silicosis-safe), seamless inconspicuous joins, and vacuum thermoforming capabilities down to 25mm radii.\n\n`;
-    advisory += `Would you like to curate physical 100 × 100 mm specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919845012345)?`;
+    advisory += `Would you like to curate physical 100 × 100 mm specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919741044776)?`;
 
     return {
       answer: advisory.trim(),
@@ -1089,7 +1094,7 @@ How can I assist your practice today? You can ask me about:
       suggestedActions: [
         { label: 'Browse In-Stock Materials', href: '/materials#library' },
         { label: 'Order Sample Tray', href: '/materials' },
-        { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919845012345' },
+        { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919741044776' },
       ],
     };
   }
@@ -1176,12 +1181,12 @@ As your private studio intelligence, I specialize in:
 • **Fabrication Capabilities**: Sub-0.2mm 5-axis CNC machining, 160°C vacuum thermoforming, and seamless joining ([Fabrication Hub](/fabrication)).
 • **Physical Specimens**: Curating sample trays for delivery across India ([Order Samples](/materials)).
 
-Could you please specify your architectural requirement or material of interest, or connect directly with our Bengaluru studio engineers via the [WhatsApp Studio Desk](https://wa.me/919845012345)?`,
+Could you please specify your architectural requirement or material of interest, or connect directly with our Bengaluru studio engineers via the [WhatsApp Studio Desk](https://wa.me/919741044776)?`,
     matchedTopic: 'Studio Advisory',
     suggestedActions: [
       { label: `View ${liveMaterials.length} In-Stock Materials`, href: '/materials#library' },
       { label: 'Coro Collective Connection', href: '/about#coro' },
-      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919845012345' },
+      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' },
     ],
   };
 }

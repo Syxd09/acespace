@@ -6,7 +6,7 @@ Ace Spaces serves as the foundational material provider and engineering infrastr
 
 - **Studio Headquarters**: Coro Crafted Collective & Ace Spaces Studio Headquarters, Bengaluru, Karnataka, India (Single Unified Facility: Design Gallery, Full-Scale Slab Library & CNC Fabrication Atelier)
 - **Google Maps Navigation**: [Open on Google Maps](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
-- **Contact Desk**: +91 98450 12345 / studio@acespaces.in
+- **Contact Desk**: +91 97410 44776 / studio@acespaces.in
 - **Website**: https://acespacesindia.vercel.app
 
 ## 2. Chemical Formulation & Health Profile
@@ -90,4 +90,4 @@ Ace Spaces serves as the technical backbone and primary material supply for Coro
 
 ## 8. Specifier Sample Tray & Consultation
 - **Sampling**: Up to 6 curated 100mm × 100mm × 12mm material swatches dispatched pan-India with specifier technical data cards.
-- **Digital CAD / BIM Submission**: Architects can submit `.dwg`, `.dxf`, `.step`, or `.rvt` drawings directly through https://acespacesindia.vercel.app/contact or via WhatsApp at +91 98450 12345.
+- **Digital CAD / BIM Submission**: Architects can submit `.dwg`, `.dxf`, `.step`, or `.rvt` drawings directly through https://acespacesindia.vercel.app/contact or via WhatsApp at +91 97410 44776.

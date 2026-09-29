@@ -150,17 +150,20 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 - This is the only studio and headquarters for both Ace Spaces and Coro Collective.
 - Exact Google Maps Link: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7
 - Clickable link: [Open Studio Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
-- Direct WhatsApp Specifier Desk: [WhatsApp Studio Desk](https://wa.me/919845012345)
+- Direct WhatsApp Specifier Desk: [WhatsApp Studio Desk](https://wa.me/919741044776)
 - Studio & Consultations: In-person or virtual design consultations booked via [Book Consultation](/contact).
 
 9. FOUNDERS & LEADERSHIP
-- Syed Matheen — Co-Founder & Director of Material Engineering & Advanced Fabrication:
-  • Spearheads Ace Spaces’ digital manufacturing infrastructure, 5-axis CNC routing systems (<0.2mm tolerance), and industrial vacuum thermoforming technology.
-  • Architected the authorized distribution alliance with DuPont™ Corian® across India.
-  • Directs raw material research into zero-silica mineral matrices and proprietary resin formulations.
-- The Founding Architectural Collective:
-  • Composed of visionary spatial architects, luxury interior designers, and computational fabricators in Bengaluru who sought seamless, continuous planes without joint lines or grout.
-  • Established Ace Spaces to serve as the foundational raw material authority, and founded Coro Collective as the spatial design wing to manifest what is possible when these advanced materials are shaped into bespoke private residences, hotel atriums, and collectible furniture.
+- Ace Spaces was co-founded by two partners: **Vithal Savant** and **Prashant Vinayak Naik**. Both are male; refer to each of them as him/he.
+- **Vithal Savant** -- Co-Founder & Director:
+  * Spearheads Ace Spaces' strategic partnerships, distribution alliances, and business development across India.
+  * Architected the authorized distribution alliance with DuPont(TM) Corian(R) across India.
+  * Oversees the material supply chain, stockyard operations, and pan-India specifier dispatch network.
+- **Prashant Vinayak Naik** -- Co-Founder & Director:
+  * Leads Ace Spaces' digital manufacturing infrastructure, 5-axis CNC routing systems (<0.2mm tolerance), and industrial vacuum thermoforming technology.
+  * Directs raw material research into zero-silica mineral matrices and proprietary resin formulations.
+  * Oversees fabrication quality, bespoke installation projects, and the Coro Collective spatial design wing.
+- Together they established Ace Spaces as the foundational raw material authority and Coro Collective as the spatial design wing in Bengaluru.
 
 10. CLICKABLE NAVIGATION LINKS GUIDELINES
 - ALWAYS embed clickable markdown links [Label](url) so the user can directly navigate:
@@ -172,7 +175,7 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
   • Kitchen Applications: [Kitchen Applications](/applications/kitchen)
   • Bathroom Applications: [Bathroom Vanities](/applications/bathroom)
   • Consultations: [Book Studio Consultation](/contact)
-  • WhatsApp Desk: [WhatsApp Studio Desk](https://wa.me/919845012345)
+  • WhatsApp Desk: [WhatsApp Studio Desk](https://wa.me/919741044776)
 
 =======================================================
 CRITICAL PRIVACY & SCOPE GUARDRAILS
@@ -182,7 +185,7 @@ CRITICAL PRIVACY & SCOPE GUARDRAILS
 3. If the user asks about ANYTHING outside this scope (e.g. general sports, world news, politics, weather outside context, coding tutorials, recipes, stock prices, other unrelated companies like Apple or Nike):
    You MUST politely and firmly decline with dignity:
    "${GUARDRAIL_DECLINE_MESSAGE}"
-4. Always invite the user to explore our in-stock materials ([Material Library](/materials#library)), view the Coro connection ([The Coro Synergy](/about#coro)), or connect with our Bengaluru engineers via the [WhatsApp Desk](https://wa.me/919845012345).`;
+4. Always invite the user to explore our in-stock materials ([Material Library](/materials#library)), view the Coro connection ([The Coro Synergy](/about#coro)), or connect with our Bengaluru engineers via the [WhatsApp Desk](https://wa.me/919741044776).`;
 }
 
 export async function POST(req: NextRequest) {
@@ -355,7 +358,7 @@ export async function POST(req: NextRequest) {
         provider: 'fallback-error',
         suggestedActions: [
           { label: 'Browse Materials', href: '/materials' },
-          { label: 'WhatsApp in Navbar', href: 'https://wa.me/919845012345' },
+          { label: 'WhatsApp in Navbar', href: 'https://wa.me/919741044776' },
         ],
       },
       { status: 200 }
@@ -411,13 +414,13 @@ function generateSuggestedActions(reply: string, query: string) {
     actions.push({ label: 'Fabrication Workshop', href: '/fabrication' });
   }
   if (text.includes('whatsapp') || text.includes('quote') || text.includes('cad') || text.includes('drawings')) {
-    actions.push({ label: 'WhatsApp Studio Desk', href: 'https://wa.me/919845012345' });
+    actions.push({ label: 'WhatsApp Studio Desk', href: 'https://wa.me/919741044776' });
   }
 
   // Ensure at least 2 relevant links
   if (actions.length === 0) {
     actions.push({ label: 'Material Library', href: '/materials#library' });
-    actions.push({ label: 'WhatsApp Studio Desk', href: 'https://wa.me/919845012345' });
+    actions.push({ label: 'WhatsApp Studio Desk', href: 'https://wa.me/919741044776' });
   }
 
   return actions.slice(0, 3);

@@ -65,8 +65,8 @@ export interface StudioContactConfig {
 }
 
 export const defaultStudioContact: StudioContactConfig = {
-  whatsappNumber: '+91 98450 12345',
-  whatsappDisplay: '+91 98450 12345',
+  whatsappNumber: '+91 97410 44776',
+  whatsappDisplay: '+91 97410 44776',
   whatsappDefaultMessage: 'Hello Ace Spaces Studio, I would like to consult on material specifications for an upcoming architectural project.',
   availabilityStatus: 'Studio Online · Material Advisory',
 };

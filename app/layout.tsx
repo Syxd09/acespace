@@ -112,7 +112,7 @@ const jsonLdGraph = {
       image: 'https://acespacesindia.vercel.app/assets/hero-ace.png',
       logo: 'https://acespacesindia.vercel.app/favicon.svg',
       url: 'https://acespacesindia.vercel.app',
-      telephone: '+919845012345',
+      telephone: '+919741044776',
       email: 'studio@acespaces.in',
       priceRange: '₹₹₹₹',
       description:

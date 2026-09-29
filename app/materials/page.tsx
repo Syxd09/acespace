@@ -97,7 +97,7 @@ const materialsJsonLd = {
           name: 'How do architects order the Specifier Sample Tray in India?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Practicing architects and interior designers can request up to 6 curated 100mm × 100mm × 12mm material swatches directly through the online sample tray or via WhatsApp at +91 98450 12345.',
+            text: 'Practicing architects and interior designers can request up to 6 curated 100mm × 100mm × 12mm material swatches directly through the online sample tray or via WhatsApp at +91 97410 44776.',
           },
         },
       ],

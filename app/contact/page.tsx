@@ -50,7 +50,7 @@ const contactJsonLd = {
   mainEntity: {
     '@type': 'HomeAndConstructionBusiness',
     name: 'Ace Spaces & Coro Collective Studio Headquarters',
-    telephone: '+919845012345',
+    telephone: '+919741044776',
     email: 'studio@acespaces.in',
     hasMap: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
     address: {

@@ -18,8 +18,8 @@ export async function GET(request: NextRequest) {
     sisterBrand: 'Coro Collective (Spatial Interiors & Collectible Furniture)',
     headquarters: 'Coro Crafted Collective & Ace Spaces Studio Headquarters, Bengaluru, Karnataka, India (Google Maps: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)',
     contact: {
-      phone: '+91 98450 12345',
-      whatsapp: '+91 98450 12345',
+      phone: '+91 97410 44776',
+      whatsapp: '+91 97410 44776',
       email: 'studio@acespaces.in',
       website: 'https://acespacesindia.vercel.app',
     },
