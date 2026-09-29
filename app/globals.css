@@ -3302,3 +3302,508 @@ main.page-main {
 
 
 
+/* ==========================================================================
+   COMPREHENSIVE MOBILE ENHANCEMENT LAYER — v2
+   Applied on top of existing breakpoints for polished mobile UX
+   ========================================================================== */
+
+/* ── 1. HEADER ─────────────────────────────────────────────────────────── */
+@media (max-width: 800px) {
+  .site-header {
+    height: 60px !important;
+    padding: 0 18px !important;
+  }
+  .mark {
+    width: 26px !important;
+    height: 26px !important;
+    font-size: 16px !important;
+  }
+  .wordmark {
+    gap: 7px !important;
+  }
+  .sample-tray-btn {
+    padding: 7px 12px !important;
+    min-height: 40px !important;
+    font-size: 10px !important;
+    gap: 5px !important;
+  }
+  .menu-toggle {
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+  html {
+    scroll-padding-top: 72px !important;
+  }
+}
+
+/* ── 2. HERO SECTION ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 580px !important;
+    height: 100svh !important;
+  }
+  .hero-content {
+    left: 5vw !important;
+    right: 5vw !important;
+    bottom: 90px !important;
+    top: auto !important;
+    max-width: 100% !important;
+  }
+  .hero-content h1 {
+    font-size: clamp(28px, 8vw, 42px) !important;
+    line-height: 1.07 !important;
+    margin-bottom: 12px !important;
+    letter-spacing: -0.04em !important;
+  }
+  .hero-copy {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 16px !important;
+    max-width: 100% !important;
+    line-clamp: 3 !important;
+    -webkit-line-clamp: 3 !important;
+    display: -webkit-box !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+  }
+  .hero-buttons {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  .hero-buttons .button,
+  .hero-buttons .button-dark,
+  .hero-buttons .text-link {
+    font-size: 11px !important;
+    padding: 12px 18px !important;
+    gap: 14px !important;
+  }
+  .hero-slider-controls {
+    left: 5vw !important;
+    right: auto !important;
+    bottom: 18px !important;
+    align-items: flex-start !important;
+    flex-direction: row !important;
+  }
+  .hero-index {
+    display: none !important;
+  }
+}
+
+/* ── 3. GLOBAL SECTION PADDING ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 60px 5vw !important;
+  }
+}
+@media (max-width: 480px) {
+  .section-pad {
+    padding: 48px 5vw !important;
+  }
+}
+
+/* ── 4. INTRO / FOUNDATION SECTION ────────────────────────────────────── */
+@media (max-width: 768px) {
+  .intro-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+    margin-top: 32px !important;
+  }
+  .lead {
+    font-size: 18px !important;
+    line-height: 1.4 !important;
+  }
+}
+
+/* ── 5. STATEMENT SECTION ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .statement {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+  }
+  .statement h2 {
+    font-size: clamp(28px, 8vw, 42px) !important;
+    margin: 30px 0 40px !important;
+    line-height: 1.1 !important;
+    max-width: 100% !important;
+  }
+  .statement-bottom {
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: flex-start !important;
+  }
+  .statement-bottom .text-link {
+    padding-bottom: 10px !important;
+    min-height: 44px !important;
+  }
+}
+
+/* ── 6. FABRICATION SECTION ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .fabrication {
+    grid-template-columns: 1fr !important;
+  }
+  .fabrication-image {
+    min-height: 300px !important;
+    order: -1 !important;
+  }
+  .fabrication-copy {
+    padding: 48px 5vw !important;
+    align-items: flex-start !important;
+  }
+  .fabrication-copy h2 {
+    font-size: clamp(28px, 8vw, 44px) !important;
+    margin-bottom: 18px !important;
+  }
+  .fabrication-copy > p {
+    margin-bottom: 30px !important;
+  }
+  .process {
+    grid-template-columns: repeat(2, 1fr) !important;
+    margin-bottom: 30px !important;
+  }
+  .fabrication-copy .button {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+  }
+}
+
+/* ── 7. PROJECTS SECTION ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .project-feature {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .project-photo {
+    min-height: 300px !important;
+    order: -1 !important;
+  }
+  .project-info h3 {
+    font-size: clamp(28px, 7vw, 40px) !important;
+    line-height: 1.05 !important;
+  }
+  .project-info > p {
+    max-width: 100% !important;
+    margin: 18px 0 24px !important;
+  }
+  .project-meta {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    margin-bottom: 24px !important;
+  }
+  .project-info .text-link {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+}
+
+/* ── 8. APPLICATIONS LIST ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .application-intro {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+    margin: 36px 0 48px !important;
+  }
+  .application-intro h2 {
+    font-size: clamp(28px, 8vw, 44px) !important;
+  }
+  .app-list a {
+    padding: 18px 0 !important;
+    grid-template-columns: 60px 1fr 26px !important;
+    min-height: 56px !important;
+  }
+  .app-list strong {
+    font-size: 20px !important;
+  }
+}
+
+/* ── 9. CORO SECTION ───────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .coro {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+    padding: 48px 5vw !important;
+  }
+  .coro-brand-showcase {
+    max-width: 320px !important;
+    margin: 0 auto !important;
+    padding: 24px 20px !important;
+  }
+  .coro h2 {
+    font-size: clamp(26px, 7vw, 38px) !important;
+    margin-bottom: 18px !important;
+  }
+}
+
+/* ── 10. JOURNAL SECTION ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .journal-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+  .journal-image {
+    aspect-ratio: 16 / 9 !important;
+  }
+  .journal-card h3 {
+    font-size: clamp(18px, 5vw, 24px) !important;
+    line-height: 1.15 !important;
+    margin-bottom: 14px !important;
+  }
+  .journal-card > a {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .section-head {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 14px !important;
+    margin-bottom: 36px !important;
+  }
+  .section-head .text-link {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+}
+
+/* ── 11. ENQUIRY / CTA SECTION ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .enquiry {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    min-height: auto !important;
+    padding: 48px 5vw !important;
+  }
+  .enquiry-side {
+    display: none !important;
+  }
+  .enquiry-copy h2 {
+    font-size: clamp(28px, 8vw, 44px) !important;
+    margin-bottom: 14px !important;
+  }
+  .specifier-chip {
+    padding: 9px 13px !important;
+    font-size: 10px !important;
+    min-height: 38px !important;
+  }
+}
+
+/* ── 12. FOOTER ────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .footer {
+    padding-top: 48px !important;
+    padding-bottom: max(36px, env(safe-area-inset-bottom, 36px)) !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
+  .footer-top {
+    flex-direction: column !important;
+    gap: 28px !important;
+    min-height: auto !important;
+    align-items: flex-start !important;
+  }
+  .footer-coro {
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: 10px !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+/* ── 13. MATERIAL GRID ─────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .material-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+  }
+  .material-card {
+    min-height: 240px !important;
+  }
+  .card-info h3 {
+    font-size: 14px !important;
+  }
+}
+@media (max-width: 380px) {
+  .material-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+  .material-card {
+    min-height: 260px !important;
+  }
+}
+
+/* ── 14. TEXT LINKS — minimum touch target ─────────────────────────────── */
+@media (max-width: 768px) {
+  .text-link {
+    min-height: 44px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+}
+
+/* ── 15. MODAL — bottom sheet on mobile ────────────────────────────────── */
+@media (max-width: 600px) {
+  .modal-backdrop {
+    padding: 0 !important;
+    align-items: flex-end !important;
+  }
+  .modal,
+  .material-modal-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 92dvh !important;
+    border-radius: 12px 12px 0 0 !important;
+  }
+  .modal > img,
+  .material-modal-media {
+    height: 220px !important;
+    min-height: 220px !important;
+    border-radius: 12px 12px 0 0 !important;
+  }
+  .modal-details,
+  .material-modal-body {
+    padding: 20px 18px 28px !important;
+  }
+  .modal-details h2 {
+    font-size: clamp(22px, 6vw, 30px) !important;
+  }
+  .modal-specs {
+    flex-wrap: wrap !important;
+    gap: 14px !important;
+  }
+}
+
+/* ── 16. MOBILE DRAWER ─────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .mobile-drawer {
+    width: 92vw !important;
+    padding: max(18px, env(safe-area-inset-top, 18px)) 18px max(20px, env(safe-area-inset-bottom, 20px)) !important;
+  }
+  .mobile-nav-text strong {
+    font-size: 18px !important;
+  }
+}
+
+/* ── 17. SUBPAGE LAYOUTS ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  main.page-main {
+    padding-top: 76px !important;
+    padding-left: 5vw !important;
+    padding-right: 5vw !important;
+  }
+  .page-hero {
+    padding: 24px 0 40px !important;
+  }
+  .page-hero h1 {
+    font-size: clamp(30px, 8vw, 48px) !important;
+    line-height: 1.05 !important;
+    letter-spacing: -0.04em !important;
+  }
+  .page-hero p:not(.eyebrow) {
+    font-size: 15px !important;
+    margin-top: 16px !important;
+  }
+  .page-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+    padding: 48px 0 !important;
+  }
+  .page-copy p {
+    font-size: 15px !important;
+    max-width: 100% !important;
+  }
+  .card-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    padding-bottom: 48px !important;
+  }
+  .info-card {
+    min-height: 220px !important;
+    padding: 18px !important;
+  }
+  .info-card h3 {
+    font-size: 22px !important;
+  }
+  .callout {
+    margin: 36px 0 !important;
+    padding: 32px 18px !important;
+  }
+  .callout h2 {
+    font-size: clamp(26px, 7vw, 40px) !important;
+  }
+  .spec-table {
+    margin-bottom: 48px !important;
+  }
+  .detail-hero {
+    min-height: 360px !important;
+    padding: 100px 5vw 36px !important;
+  }
+  .detail-hero h1 {
+    font-size: clamp(28px, 7vw, 44px) !important;
+    line-height: 1.06 !important;
+  }
+}
+@media (max-width: 420px) {
+  .card-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .info-card {
+    min-height: 180px !important;
+  }
+}
+
+/* ── 18. TYPOGRAPHY SAFETY NET ─────────────────────────────────────────── */
+@media (max-width: 420px) {
+  h1 {
+    font-size: clamp(26px, 8vw, 36px) !important;
+    letter-spacing: -0.04em !important;
+  }
+  h2 {
+    font-size: clamp(22px, 7vw, 30px) !important;
+    letter-spacing: -0.03em !important;
+  }
+  h3 {
+    font-size: clamp(18px, 5.5vw, 24px) !important;
+  }
+  p {
+    font-size: 14px !important;
+    line-height: 1.65 !important;
+  }
+  .eyebrow {
+    font-size: 9px !important;
+  }
+}
+
+/* ── 19. OVERFLOW GUARD ────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  img,
+  video,
+  iframe,
+  table {
+    max-width: 100% !important;
+  }
+  pre,
+  code {
+    overflow-x: auto !important;
+    white-space: pre-wrap !important;
+    word-break: break-all !important;
+  }
+}
+
+/* ── 20. REDUCED MOTION SAFETY ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-drawer,
+  .mobile-overlay,
+  .hero-content,
+  .reveal {
+    transition: none !important;
+    animation: none !important;
+  }
+}

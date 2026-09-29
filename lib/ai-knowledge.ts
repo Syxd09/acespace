@@ -82,7 +82,7 @@ You can inspect technical data on our [Technical Specifications](/materials#spec
     id: 'company-identity',
     topic: 'Ace Spaces Identity & DuPont™ Partnership',
     keywords: [
-      'ace spaces', 'who are you', 'company', 'what is ace spaces', 'dupont', 'corian',
+      'ace spaces', 'who are you', 'company', 'what is ace spaces',
       'partner', 'authorized', 'distributor', 'bangalore', 'bengaluru', 'location', 'address'
     ],
     summary: 'Ace Spaces is the parent enterprise, authorized DuPont™ Corian® distributor, and master architectural fabrication hub in Bangalore, India.',
@@ -128,6 +128,55 @@ Key Synergy:
     suggestedActions: [
       { label: 'Learn About The Coro Synergy', href: '/about#coro' },
       { label: 'Explore Selected Projects', href: '/projects' }
+    ]
+  },
+  {
+    id: 'dupont-intro',
+    topic: 'What is DuPont™ — The Company & Corian®',
+    keywords: [
+      'what is dupont', 'dupont company', 'who is dupont', 'about dupont', 'dupont history',
+      'dupont brand', 'dupont science', 'tell me about dupont', 'dupont corporation',
+      'what does dupont do', 'dupont corian', 'what is corian', 'who makes corian',
+      'dupont', 'du pont'
+    ],
+    summary: 'DuPont™ is an American multinational science and technology company founded in 1802. Their Corian® brand is the world\'s leading solid surface material, exclusively distributed in India by Ace Spaces.',
+    details: `**DuPont™ — The Company**
+
+DuPont (officially E.I. du Pont de Nemours and Company) is an American multinational science and specialty materials corporation founded in **1802** in Wilmington, Delaware, USA. With over two centuries of materials innovation, DuPont is one of the world's largest and most respected science-driven companies, operating across sectors including:
+
+• **Advanced Materials** — high-performance polymers, films, and specialty surfaces
+• **Electronics & Interconnect** — semiconductor materials and circuit board solutions
+• **Safety & Construction** — Kevlar®, Tyvek®, and architectural surface materials
+• **Water & Industrial** — filtration and separation technologies
+
+---
+
+**DuPont™ Corian® — The Solid Surface Material**
+
+In **1967**, DuPont scientists invented **Corian®**, the world's first solid surface material. It is engineered from:
+- ~66% **Aluminium Trihydrate (ATH)** — a natural purified mineral derived from bauxite ore
+- ~33% **High-purity acrylic polymer (PMMA)**
+- Stable mineral pigments for through-body color consistency
+
+Corian® is 100% crystalline-silica free, non-porous, renewable, and thermoformable — making it the world benchmark for hygienic, seamless architectural surfaces.
+
+---
+
+**DuPont™ & Ace Spaces**
+
+Ace Spaces is the **authorized DuPont™ Corian® distributor and master fabrication foundry in India**, holding the genuine manufacturer alliance, complete certification chain, and full warranty coverage on every slab supplied.`,
+    specs: {
+      'Founded': '1802, Wilmington, Delaware, USA',
+      'Headquarters': 'Wilmington, Delaware, USA (Global)',
+      'Key Innovation': 'Corian® Solid Surface — invented 1967',
+      'Corian® Composition': '~66% ATH mineral + ~33% PMMA acrylic polymer',
+      'India Distributor': 'Ace Spaces — Authorized DuPont™ Corian® Partner',
+      'Warranty': '10-Year Manufacturer Installed Product Warranty'
+    },
+    suggestedActions: [
+      { label: 'View Corian® Materials', href: '/materials#library' },
+      { label: 'DuPont Alliance at Ace Spaces', href: '/about#dupont' },
+      { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' }
     ]
   },
   {
