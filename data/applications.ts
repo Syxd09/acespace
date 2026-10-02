@@ -34,7 +34,7 @@ export const applicationSectors: ApplicationSector[] = [
   {
     id: 'residential',
     sectorNumber: '01',
-    title: 'Residential Architecture',
+    title: 'Luxury Residentials',
     tagline: 'Quiet luxury for daily living',
     heroDescription:
       'In private homes, surfaces must balance effortless tactile beauty with complete non-porous resilience against cooking oils, heat, and daily life.',
@@ -104,9 +104,75 @@ export const applicationSectors: ApplicationSector[] = [
     leadTime: '2 to 3 weeks from approved shop drawings'
   },
   {
-    id: 'hospitality',
+    id: 'spiritual',
     sectorNumber: '02',
-    title: 'Hospitality & Dining',
+    title: 'Spiritual',
+    tagline: 'Sacred geometries and luminous tranquility',
+    heroDescription:
+      'In sacred and contemplative architecture, solid mineral surfaces bring reverent purity—sculpting monolithic mandir altars, backlit transcendent jali screens, and seamless sanctum walls with zero joints.',
+    overview:
+      'Spiritual spaces demand materials of pristine visual stillness, monolithic integrity, and delicate light translucence. From bespoke home pooja mandirs to expansive spiritual retreat halls, Ace Spaces engineers solid mineral surfaces into sculptural deity plinths, CNC-perforated lattice screens (jalis), and oil-resistant ritual ablution basins.',
+    elements: [
+      'Monolithic Pooja Mandirs & Prayer Shrines',
+      'Backlit Translucent Jali (Lattice) Screens with Intricate Sacred Geometry',
+      'Sculptural Deity Plinths & Sanctum Altar Steps',
+      'Seamless Ritual Water & Oil Ablution Basins',
+      'Continuous Floor-to-Ceiling Sanctuary Wall Cladding'
+    ],
+    recommendedMaterials: [
+      { name: 'Cirrus White', slug: 'cirrus-white', finish: 'Satin Pure' },
+      { name: 'Golden Onyx', slug: 'golden-onyx', finish: 'Translucent Backlit' },
+      { name: 'Calacatta Greige', slug: 'calacatta-greige', finish: 'Honed Satin' }
+    ],
+    fabricationNote:
+      'Precision 5-axis CNC router carving produces microscopic 0.5mm lattice filigree, while sub-surface LED cavities emit uniform, shadowless halo illumination.',
+    images: [
+      {
+        src: '/images/images/coriansolidsurface-goldenonyx-application.jpg',
+        alt: 'Translucent illuminated spiritual sanctum and altar feature in Golden Onyx',
+        caption: 'Backlit Translucent Altar Monolith & Illuminated Sanctum in Golden Onyx',
+        tag: 'Backlit Sanctum'
+      },
+      {
+        src: '/images/images/app_residential_cirrus_white_1.jpg',
+        alt: 'Pristine seamless mandir prayer shrine with zero joints in Cirrus White',
+        caption: 'Monolithic Pooja Shrine with Seamless Coved Transitions in Cirrus White',
+        tag: 'Pooja Shrine'
+      },
+      {
+        src: '/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg',
+        alt: 'Sculptural temple feature wall and deity plinth in monolithic solid surface',
+        caption: 'Curved Sanctuary Feature Wall & Sculptural Deity Plinth',
+        tag: 'Sanctuary Wall'
+      }
+    ],
+    specifications: [
+      {
+        title: 'High-Precision 5-Axis CNC Jali Carving',
+        description: 'Intricate traditional and contemporary sacred lattice patterns milled down to 0.5mm detail without edge chipping, delamination, or visible fastener points.'
+      },
+      {
+        title: 'Sub-Surface Warm Illumination (2700K)',
+        description: 'Translucent mineral formulations diffused from within, creating a warm, ethereal sub-surface glow behind sacred icons and ornamental panels.'
+      },
+      {
+        title: 'Incense, Oil & Kumkum Resistance',
+        description: '100% non-porous mineral matrix prevents oily camphor, agarbatti soot, kumkum powders, and milk offerings from penetrating or staining.'
+      }
+    ],
+    hygieneAndPerformance: [
+      { feature: 'Oil & Soot Resistance', standard: 'Non-Porous Mineral Matrix', benefit: 'Ghee, oil lamps, and incense smoke residue wipe clean without discoloration.' },
+      { feature: 'Purity Certification', standard: 'NSF Standard 51 Clean Surface', benefit: 'Certified sanitary composition free from microbial or fungal absorption.' },
+      { feature: 'Acoustic Reverberation', standard: 'Mineral Composite Damping', benefit: 'Absorbs flutter echoes for a deeper, more peaceful meditative acoustic ambiance.' }
+    ],
+    typicalThickness: '12mm / 19mm with integrated backlighting diffusion cavity',
+    jointVisibility: '< 0.05mm (Hermetically welded)',
+    leadTime: '3 to 4 weeks for bespoke CNC jali carving'
+  },
+  {
+    id: 'hospitality',
+    sectorNumber: '03',
+    title: 'Hospitalities (Food Places)',
     tagline: 'Sculptural arrival and ambient depth',
     heroDescription:
       'High-traffic hotels, lounge bars, and restaurants demand surfaces that hold up to rigorous commercial cleaning while creating dramatic ambient lighting moments.',
@@ -170,141 +236,9 @@ export const applicationSectors: ApplicationSector[] = [
     leadTime: '3 to 4 weeks for curved thermoformed geometries'
   },
   {
-    id: 'commercial',
-    sectorNumber: '03',
-    title: 'Commercial & Workplaces',
-    tagline: 'Precision environments for focused collaboration',
-    heroDescription:
-      'Modern studio spaces and corporate headquarters require durable, refined work surfaces that seamlessly conceal technology and wiring infrastructure.',
-    overview:
-      'Workplace architecture has evolved beyond sterile cubicles into crafted mineral environments. Ace Spaces surfaces integrate flush power management, seamless collaboration islands, and non-reflective finishes for glare-free visual comfort.',
-    elements: [
-      'Executive Boardroom Collaboration Monoliths',
-      'Sub-Surface Wireless Charging Desks with Concealed Qi Transmitters',
-      'Acoustic Mineral Wall Panelling & Elevator Portals',
-      'High-Traffic Team Pantry Bars with Integrated Draining Boards',
-      'Auditorium Rostrums and Reception Feature Walls'
-    ],
-    recommendedMaterials: [
-      { name: 'Bleached Nuwood', slug: 'bleached-nuwood', finish: 'Natural Matte' },
-      { name: 'Excavage', slug: 'excavage', finish: 'Fine Textured' },
-      { name: 'Pebble Lane', slug: 'pebble-lane', finish: 'Honed Matte' }
-    ],
-    fabricationNote:
-      'Sub-surface 5-axis CNC milling allows Qi wireless charging electromagnetic fields to pass directly through the solid surface.',
-    images: [
-      {
-        src: '/images/images/app_commercial_bleached_nuwood.jpg',
-        alt: 'Collaborative workshop and architectural studio review island in Bleached Nuwood',
-        caption: 'Collaborative Studio Review Island & Communal Workstation in Bleached Nuwood',
-        tag: 'Collaboration Island'
-      },
-      {
-        src: '/images/images/app_commercial_grinds_excavage.jpg',
-        alt: 'Wall-to-wall seamless commercial washroom trough vanity in Excavage',
-        caption: 'Continuous Wall-to-Wall Commercial Washroom Trough in Excavage',
-        tag: 'Commercial Trough'
-      },
-      {
-        src: '/images/images/app_commercial_grinds_pebble_lane.jpg',
-        alt: 'Seamless basin junction and concealed sloped drain detail in Pebble Lane solid surface',
-        caption: 'Precision CNC-Milled Sloped Drain Detail with Zero Bacterial Traps',
-        tag: 'Sloped Drain Detail'
-      }
-    ],
-    specifications: [
-      {
-        title: 'Invisible Induction Charging Embeds',
-        description: 'Underside pocket milling leaves a 3mm membrane above the charging coil, allowing smartphones to charge simply by resting on the bare surface.'
-      },
-      {
-        title: 'Concealed Cable Pass-Throughs',
-        description: 'Flush removable mineral caps fit with 0.5mm tolerances, hiding cables while maintaining an uninterrupted monolithic surface.'
-      },
-      {
-        title: 'Anti-Glare Low Gloss Finish',
-        description: 'Diamond-pad honed to 8-12 gloss units to prevent eye fatigue from overhead LED office lighting and monitors.'
-      }
-    ],
-    hygieneAndPerformance: [
-      { feature: 'Scratch Resistance', standard: 'Barcol Hardness > 60', benefit: 'Resists laptop cases, metal buckles, and daily office accessories.' },
-      { feature: 'Zero VOC Emissions', standard: 'UL GREENGUARD Gold', benefit: 'Compliant with LEED v4, WELL Building, and IGBC green building standards.' },
-      { feature: 'Sound Dampening', standard: 'Mineral Composite Matrix', benefit: 'Softer acoustic impact than stainless steel, glass, or polished porcelain.' }
-    ],
-    typicalThickness: '12mm / 19mm with structural under-frame',
-    jointVisibility: '< 0.08mm',
-    leadTime: '2 to 3 weeks'
-  },
-  {
-    id: 'retail',
-    sectorNumber: '04',
-    title: 'Retail & Experience Centres',
-    tagline: 'Curated stages for brand expression',
-    heroDescription:
-      'Luxury retail interiors use solid surfaces as monolithic sculptural plinths and display counters that focus attention entirely on the product.',
-    overview:
-      'High-end retail and brand pavilions require bespoke textures, sculptural arches, and illuminated display pedestals that invite touch while maintaining complete brand prestige.',
-    elements: [
-      'Translucent Illuminated Product Display Pedestals',
-      'Point-of-Sale Monolithic Counters with Concealed Cash Drawers',
-      'Curved Architectural Feature Archways & Portals',
-      'Branded Visual Merchandising Fixtures with Relief Engravings',
-      'VIP Client Consultation Salons & Jewelry Display Trays'
-    ],
-    recommendedMaterials: [
-      { name: 'Terrazzo Laguna', slug: 'terrazzo-laguna', finish: 'Satin Smooth' },
-      { name: 'Golden Onyx', slug: 'golden-onyx', finish: 'Translucent Polish' },
-      { name: 'Provence Nuwood', slug: 'provence-nuwood', finish: 'Fine Honed' }
-    ],
-    fabricationNote:
-      'High-precision 5-axis CNC routing enables intricate typography, logo relief engravings, and microscopic backlit light perforations.',
-    images: [
-      {
-        src: '/images/images/coriansolidsurface-goldenonyx-application.jpg',
-        alt: 'Sculptural illuminated luxury display pavilion and washstand in Golden Onyx',
-        caption: 'Bespoke Display Pavilion & Monolithic Washstand in Golden Onyx',
-        tag: 'Illuminated Pavilion'
-      },
-      {
-        src: '/images/images/app_commercial_terrazzo_laguna.jpg',
-        alt: 'Close-up of curved terrazzo radii and precision-finished joint',
-        caption: 'Curved Internal Radius & Inconspicuous Terrazzo Joint Detail',
-        tag: 'Terrazzo Joint Detail'
-      },
-      {
-        src: '/images/images/app_commercial_provence_nuwood.jpg',
-        alt: 'Sculptural floating display plinth and vanity in Provence Nuwood',
-        caption: 'Sculptural Floating Display Plinth & Basin in Provence Nuwood',
-        tag: 'Floating Plinth'
-      }
-    ],
-    specifications: [
-      {
-        title: 'CNC Relief Branding',
-        description: 'Brand marks, typography, and texture patterns milled to 0.1mm tolerances directly into the stone body without decals.'
-      },
-      {
-        title: 'Internal Steel Framework',
-        description: 'Cantilevered cashwraps and floating pedestals built with integrated powder-coated steel space-frames to support heavy loads.'
-      },
-      {
-        title: 'Micro-Radius Chamfering',
-        description: 'Edges hand-worked to 2mm radius to ensure safety for customers while preserving crisp architectural geometry.'
-      }
-    ],
-    hygieneAndPerformance: [
-      { feature: 'UV Color Fastness', standard: 'Delta E < 1.0 after 1000h Xenon', benefit: 'Zero fading or yellowing under intense retail display halogen and LED spots.' },
-      { feature: 'Surface Cleanliness', standard: 'Wipe-Clean Non-Porous', benefit: 'Fingerprints and cosmetic pigments wipe away effortlessly with water and microfiber.' },
-      { feature: 'Modularity', standard: 'Demountable Joint Engineering', benefit: 'Fixtures can be disassembled and re-deployed across seasonal store rollouts.' }
-    ],
-    typicalThickness: '12mm / 24mm built-up profile',
-    jointVisibility: '< 0.05mm',
-    leadTime: '3 weeks'
-  },
-  {
     id: 'healthcare',
-    sectorNumber: '05',
-    title: 'Hospitals & Healthcare Spaces',
+    sectorNumber: '04',
+    title: 'Healthcare',
     tagline: 'Non-porous hygienic precision & infection control',
     heroDescription:
       'Hospitals, surgical suites, sterile dental operatories, and diagnostic laboratories demand certified non-porous mineral surfaces immune to bacterial and fungal harboring.',
@@ -370,6 +304,138 @@ export const applicationSectors: ApplicationSector[] = [
     typicalThickness: '12mm solid throughout',
     jointVisibility: '< 0.05mm (Hermetically sealed)',
     leadTime: '2 to 3 weeks'
+  },
+  {
+    id: 'commercial',
+    sectorNumber: '05',
+    title: 'Commercial Interiors',
+    tagline: 'Precision environments for focused collaboration',
+    heroDescription:
+      'Modern studio spaces and corporate headquarters require durable, refined work surfaces that seamlessly conceal technology and wiring infrastructure.',
+    overview:
+      'Workplace architecture has evolved beyond sterile cubicles into crafted mineral environments. Ace Spaces surfaces integrate flush power management, seamless collaboration islands, and non-reflective finishes for glare-free visual comfort.',
+    elements: [
+      'Executive Boardroom Collaboration Monoliths',
+      'Sub-Surface Wireless Charging Desks with Concealed Qi Transmitters',
+      'Acoustic Mineral Wall Panelling & Elevator Portals',
+      'High-Traffic Team Pantry Bars with Integrated Draining Boards',
+      'Auditorium Rostrums and Reception Feature Walls'
+    ],
+    recommendedMaterials: [
+      { name: 'Bleached Nuwood', slug: 'bleached-nuwood', finish: 'Natural Matte' },
+      { name: 'Excavage', slug: 'excavage', finish: 'Fine Textured' },
+      { name: 'Pebble Lane', slug: 'pebble-lane', finish: 'Honed Matte' }
+    ],
+    fabricationNote:
+      'Sub-surface 5-axis CNC milling allows Qi wireless charging electromagnetic fields to pass directly through the solid surface.',
+    images: [
+      {
+        src: '/images/images/app_commercial_bleached_nuwood.jpg',
+        alt: 'Collaborative workshop and architectural studio review island in Bleached Nuwood',
+        caption: 'Collaborative Studio Review Island & Communal Workstation in Bleached Nuwood',
+        tag: 'Collaboration Island'
+      },
+      {
+        src: '/images/images/app_commercial_grinds_excavage.jpg',
+        alt: 'Wall-to-wall seamless commercial washroom trough vanity in Excavage',
+        caption: 'Continuous Wall-to-Wall Commercial Washroom Trough in Excavage',
+        tag: 'Commercial Trough'
+      },
+      {
+        src: '/images/images/app_commercial_grinds_pebble_lane.jpg',
+        alt: 'Seamless basin junction and concealed sloped drain detail in Pebble Lane solid surface',
+        caption: 'Precision CNC-Milled Sloped Drain Detail with Zero Bacterial Traps',
+        tag: 'Sloped Drain Detail'
+      }
+    ],
+    specifications: [
+      {
+        title: 'Invisible Induction Charging Embeds',
+        description: 'Underside pocket milling leaves a 3mm membrane above the charging coil, allowing smartphones to charge simply by resting on the bare surface.'
+      },
+      {
+        title: 'Concealed Cable Pass-Throughs',
+        description: 'Flush removable mineral caps fit with 0.5mm tolerances, hiding cables while maintaining an uninterrupted monolithic surface.'
+      },
+      {
+        title: 'Anti-Glare Low Gloss Finish',
+        description: 'Diamond-pad honed to 8-12 gloss units to prevent eye fatigue from overhead LED office lighting and monitors.'
+      }
+    ],
+    hygieneAndPerformance: [
+      { feature: 'Scratch Resistance', standard: 'Barcol Hardness > 60', benefit: 'Resists laptop cases, metal buckles, and daily office accessories.' },
+      { feature: 'Zero VOC Emissions', standard: 'UL GREENGUARD Gold', benefit: 'Compliant with LEED v4, WELL Building, and IGBC green building standards.' },
+      { feature: 'Sound Dampening', standard: 'Mineral Composite Matrix', benefit: 'Softer acoustic impact than stainless steel, glass, or polished porcelain.' }
+    ],
+    typicalThickness: '12mm / 19mm with structural under-frame',
+    jointVisibility: '< 0.08mm',
+    leadTime: '2 to 3 weeks'
+  },
+  {
+    id: 'exterior-cladding',
+    sectorNumber: '06',
+    title: 'Exterior Cladding',
+    tagline: 'Monolithic architectural facades & weather envelopes',
+    heroDescription:
+      'Engineered to withstand tropical sun, driving monsoon rains, and thermal expansion, Ace Spaces solid surface ventilated facades create fluid, seamless building envelopes with zero moisture penetration.',
+    overview:
+      'Exterior architectural cladding demands exceptional UV resistance, thermal stability, and low flame-spread ratings. Utilizing advanced DuPont™ Corian® mineral formulations, Ace Spaces fabricates 3-dimensional thermoformed panels, curved soffits, and rain-screen facade cassettes with invisible mechanical undercut anchor fixtures.',
+    elements: [
+      'Ventilated Rain-Screen Facade Cassettes',
+      'Curved 3D Thermoformed Building Portals & Soffits',
+      'Perforated Solar Shading & Architectural Brise-Soleil',
+      'Seamless Canopy Linings & Column Encasements',
+      'UV-Stable Architectural Parapet & Coping Profiles'
+    ],
+    recommendedMaterials: [
+      { name: 'Bleached Nuwood', slug: 'bleached-nuwood', finish: 'Natural Matte' },
+      { name: 'Stonecrest Smoke', slug: 'stonecrest-smoke', finish: 'Tactile Matte' },
+      { name: 'Cirrus White', slug: 'cirrus-white', finish: 'Ultra-Matte' }
+    ],
+    fabricationNote:
+      'Keil undercut rear anchor system and precision CNC expansion joints allow thermal movement while presenting a flawless monolithic facade.',
+    images: [
+      {
+        src: '/images/images/coriansolidsurface-beechnuwood-application.jpg',
+        alt: 'Exterior architectural facade cladding and canopy soffits in durable solid surface',
+        caption: 'Ventilated Facade Cassettes & Thermoformed Soffit in Beech Nuwood',
+        tag: 'Facade Cassettes'
+      },
+      {
+        src: '/images/images/app_commercial_bleached_nuwood.jpg',
+        alt: 'Exterior architectural rain-screen panel detail and UV-resistant finish',
+        caption: 'Seamless Architectural Weather Envelope with Concealed Mechanical Anchors',
+        tag: 'Rain-Screen System'
+      },
+      {
+        src: '/images/images/coriansolidsurface-carbonaggregate-application.jpg',
+        alt: 'Thermoformed exterior curved column encasement in monolithic composite',
+        caption: 'Thermoformed Monolithic Column Encasement & Portal Cladding',
+        tag: 'Column Cladding'
+      }
+    ],
+    specifications: [
+      {
+        title: 'Undercut Anchor Mechanical Fixing',
+        description: 'Keil undercut rear anchor system ensures completely invisible facade fastenings tested for high wind-load engineering.'
+      },
+      {
+        title: 'Ventilated Rain-Screen Thermal Barrier',
+        description: 'Continuous air cavity allows natural moisture dissipation and enhances building thermal insulation (R-value).'
+      },
+      {
+        title: 'UV & Weatherproof Integrity',
+        description: 'Tested under intense Xenon-arc weathering for 10-year colorfast stability against UV radiation and monsoonal humidity.'
+      }
+    ],
+    hygieneAndPerformance: [
+      { feature: 'UV Stability', standard: 'ASTM G155 Delta E < 2.0', benefit: 'Immune to solar bleaching, chalking, or thermal degradation.' },
+      { feature: 'Wind Load Resistance', standard: 'ASTM E330 / IS 875', benefit: 'Withstands severe typhoon pressures and structural dynamic building movements.' },
+      { feature: 'Fire Rating', standard: 'EN 13501-1 Class B-s1,d0', benefit: 'Self-extinguishing with minimal smoke toxicity for high-rise facade codes.' }
+    ],
+    typicalThickness: '12mm through-body solid surface with aluminum rail substructure',
+    jointVisibility: '< 0.05mm (Flush sealed or open ventilated joint)',
+    leadTime: '3 to 5 weeks depending on facade engineering shop drawings'
   }
 ];
 
@@ -378,10 +444,40 @@ export function getApplicationSector(idOrSlug: string): ApplicationSector | unde
   return applicationSectors.find((s) => {
     if (s.id === norm) return true;
     if (s.title.toLowerCase().replace(/\s+/g, '-') === norm) return true;
-    // Flexible alias resolution for healthcare / hospital / custom / clinical
+    // Flexible alias resolution across all 6 applications:
+    if (
+      s.id === 'residential' &&
+      ['residential', 'luxury-residentials', 'luxury-residential', 'residentials', 'residential-architecture'].includes(norm)
+    ) {
+      return true;
+    }
+    if (
+      s.id === 'spiritual' &&
+      ['spiritual', 'mandir', 'pooja', 'temple', 'spiritual-spaces', 'sacred-spaces'].includes(norm)
+    ) {
+      return true;
+    }
+    if (
+      s.id === 'hospitality' &&
+      ['hospitality', 'hospitalities', 'food-places', 'dining', 'food', 'restaurants', 'cafes'].includes(norm)
+    ) {
+      return true;
+    }
     if (
       s.id === 'healthcare' &&
-      ['custom', 'healthcare', 'hospital', 'hospitals', 'clinical', 'clinical-specialist-spaces'].includes(norm)
+      ['custom', 'healthcare', 'hospital', 'hospitals', 'clinical', 'clinical-specialist-spaces', 'medical'].includes(norm)
+    ) {
+      return true;
+    }
+    if (
+      s.id === 'commercial' &&
+      ['commercial', 'commercial-interiors', 'workplace', 'offices', 'corporate', 'retail'].includes(norm)
+    ) {
+      return true;
+    }
+    if (
+      s.id === 'exterior-cladding' &&
+      ['exterior-cladding', 'cladding', 'exterior', 'facades', 'facade', 'exteriors'].includes(norm)
     ) {
       return true;
     }

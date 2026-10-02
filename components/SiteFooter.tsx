@@ -304,12 +304,12 @@ export default function SiteFooter() {
           </div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
-              { label: 'Residential Pavilions', href: '/applications/residential' },
-              { label: 'Commercial Atriums', href: '/applications/commercial' },
-              { label: 'Hospitality & Bars', href: '/applications/hospitality' },
-              { label: 'Retail Plinths & Flagships', href: '/applications/retail' },
-              { label: 'Hospitals & Healthcare Spaces', href: '/applications/healthcare' },
-              { label: 'Cultural & Academic Studios', href: '/applications' },
+              { label: '01 / Luxury Residentials', href: '/applications/residential' },
+              { label: '02 / Spiritual', href: '/applications/spiritual' },
+              { label: '03 / Hospitalities (Food Places)', href: '/applications/hospitality' },
+              { label: '04 / Healthcare', href: '/applications/healthcare' },
+              { label: '05 / Commercial Interiors', href: '/applications/commercial' },
+              { label: '06 / Exterior Cladding', href: '/applications/exterior-cladding' },
             ].map(item => (
               <li key={item.label}>
                 <Link

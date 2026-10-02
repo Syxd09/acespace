@@ -613,7 +613,7 @@ export default function MegaMenu({
                   marginBottom: '36px',
                 }}
               >
-                {/* Column 1: Spatial Sectors */}
+                {/* Column 1: Sectors 01 - 03 */}
                 <div>
                   <span
                     style={{
@@ -627,7 +627,7 @@ export default function MegaMenu({
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Architectural Sectors
+                    Typologies 01 – 03
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
@@ -636,54 +636,34 @@ export default function MegaMenu({
                         onClick={(e) => handleLinkClick(e, '/applications/residential')}
                         className="mega-menu-link"
                       >
-                        <strong>Sector 01: Residential Architecture</strong>
+                        <strong>01 / Luxury Residentials</strong>
                         <small>Kitchen islands, continuous gables & vanities</small>
                       </Link>
                     </li>
                     <li>
                       <Link
+                        href="/applications/spiritual"
+                        onClick={(e) => handleLinkClick(e, '/applications/spiritual')}
+                        className="mega-menu-link"
+                      >
+                        <strong>02 / Spiritual</strong>
+                        <small>Monolithic mandir altars, illuminated jali screens & sanctums</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
                         href="/applications/hospitality"
                         onClick={(e) => handleLinkClick(e, '/applications/hospitality')}
                         className="mega-menu-link"
                       >
-                        <strong>Sector 02: Hospitality & Dining</strong>
-                        <small>Curved reception desks, cocktail bars & suites</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/applications/commercial"
-                        onClick={(e) => handleLinkClick(e, '/applications/commercial')}
-                        className="mega-menu-link"
-                      >
-                        <strong>Sector 03: Commercial & Workplaces</strong>
-                        <small>Boardrooms, wireless charging & wash troughs</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/applications/retail"
-                        onClick={(e) => handleLinkClick(e, '/applications/retail')}
-                        className="mega-menu-link"
-                      >
-                        <strong>Sector 04: Retail & Experience Centres</strong>
-                        <small>Display plinths, point-of-sale & brand portals</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/applications/healthcare"
-                        onClick={(e) => handleLinkClick(e, '/applications/healthcare')}
-                        className="mega-menu-link"
-                      >
-                        <strong>Sector 05: Hospitals & Healthcare</strong>
-                        <small>Hygienic scrub sinks, clinical operatory & non-porous surfaces</small>
+                        <strong>03 / Hospitalities (Food Places)</strong>
+                        <small>Curved reception desks, cocktail bars & dining spaces</small>
                       </Link>
                     </li>
                   </ul>
                 </div>
 
-                {/* Column 2: Fabricated Elements */}
+                {/* Column 2: Sectors 04 - 06 */}
                 <div>
                   <span
                     style={{
@@ -697,27 +677,17 @@ export default function MegaMenu({
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Bespoke Fabrications
+                    Typologies 04 – 06
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
                       <Link
-                        href="/applications/residential"
-                        onClick={(e) => handleLinkClick(e, '/applications/residential')}
+                        href="/applications/healthcare"
+                        onClick={(e) => handleLinkClick(e, '/applications/healthcare')}
                         className="mega-menu-link"
                       >
-                        <strong>Monolithic Kitchen Islands</strong>
-                        <small>Mitred 45° waterfalls with zero silicones</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/applications/hospitality"
-                        onClick={(e) => handleLinkClick(e, '/applications/hospitality')}
-                        className="mega-menu-link"
-                      >
-                        <strong>Backlit Translucent Cocktail Bars</strong>
-                        <small>Diffused sub-surface ambient illumination</small>
+                        <strong>04 / Healthcare</strong>
+                        <small>Hygienic scrub sinks, clinical operatory & non-porous surfaces</small>
                       </Link>
                     </li>
                     <li>
@@ -726,28 +696,18 @@ export default function MegaMenu({
                         onClick={(e) => handleLinkClick(e, '/applications/commercial')}
                         className="mega-menu-link"
                       >
-                        <strong>Continuous Washroom Troughs</strong>
-                        <small>Multi-user seamless basins with sloped drains</small>
+                        <strong>05 / Commercial Interiors</strong>
+                        <small>Boardrooms, wireless charging & continuous wash troughs</small>
                       </Link>
                     </li>
                     <li>
                       <Link
-                        href="/applications/retail"
-                        onClick={(e) => handleLinkClick(e, '/applications/retail')}
+                        href="/applications/exterior-cladding"
+                        onClick={(e) => handleLinkClick(e, '/applications/exterior-cladding')}
                         className="mega-menu-link"
                       >
-                        <strong>Curved Wall Cladding & Portals</strong>
-                        <small>Thermoformed 3D architectural envelopes</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        href="/applications/healthcare"
-                        onClick={(e) => handleLinkClick(e, '/applications/healthcare')}
-                        className="mega-menu-link"
-                      >
-                        <strong>Zero-Silicone Integrated Sinks</strong>
-                        <small>Chemical thermo-welding eliminates mould traps</small>
+                        <strong>06 / Exterior Cladding</strong>
+                        <small>Thermoformed rain-screens, facade cassettes & portals</small>
                       </Link>
                     </li>
                   </ul>
@@ -770,7 +730,7 @@ export default function MegaMenu({
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
-                  Explore All Applications <span>↗</span>
+                  Explore All 6 Typologies <span>↗</span>
                 </Link>
                 <Link
                   href="/contact"
@@ -794,25 +754,25 @@ export default function MegaMenu({
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="mega-menu-badge">
-                  Typology Focus
+                  Typologies 01–06
                 </span>
               </div>
               <div className="mega-menu-feature-body">
                 <div>
                   <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                    Sculptural Hospitality Monoliths
+                    Formed Across 6 Typologies
                   </strong>
                   <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                    High-traffic reception desks, bars, and lobbies engineered with internal steel sub-frames and stain immunity.
+                    From luxury residences and sacred spiritual sanctums to high-traffic dining, certified healthcare, corporate workspaces, and exterior cladding.
                   </p>
                 </div>
                 <Link
-                  href="/applications/hospitality"
-                  onClick={(e) => handleLinkClick(e, '/applications/hospitality')}
+                  href="/applications"
+                  onClick={(e) => handleLinkClick(e, '/applications')}
                   className="button button-dark"
                   style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
-                  View Hospitality Case <span>↗</span>
+                  View All Typologies <span>↗</span>
                 </Link>
               </div>
             </div>

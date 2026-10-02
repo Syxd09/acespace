@@ -23,6 +23,11 @@ export function generateStaticParams() {
     { slug: 'custom' },
     { slug: 'hospital' },
     { slug: 'hospitals' },
+    { slug: 'luxury-residentials' },
+    { slug: 'hospitalities' },
+    { slug: 'commercial-interiors' },
+    { slug: 'cladding' },
+    { slug: 'mandir' },
   ];
   return [...base, ...aliases].filter(
     (item, index, self) => index === self.findIndex((t) => t.slug === item.slug)

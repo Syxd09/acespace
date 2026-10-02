@@ -553,7 +553,7 @@ export default function SiteHeader() {
             <span className="drawer-num">03</span>
             <div className="drawer-link-text">
               <strong>Applications</strong>
-              <small>Residential, hospitality, commercial &amp; clinical spaces</small>
+              <small>Luxury residentials, spiritual, hospitalities, healthcare, commercial &amp; exterior cladding</small>
             </div>
             <span className="drawer-arrow">↗</span>
           </Link>

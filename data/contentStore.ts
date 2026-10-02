@@ -54,10 +54,16 @@ export function getSiteContent(): SiteContent {
         }
       }
 
+      let resolvedSectors = defaultSectors;
+      if (Array.isArray(parsed.applicationSectors) && parsed.applicationSectors.length > 0) {
+        const parsedMap = new Map(parsed.applicationSectors.map((s: any) => [s.id, s]));
+        resolvedSectors = defaultSectors.map(def => ({ ...def, ...(parsedMap.get(def.id) || {}) }));
+      }
+
       return {
         heroSlides: parsed.heroSlides || defaultHeroSlides,
         materials: resolvedMaterials,
-        applicationSectors: parsed.applicationSectors || defaultSectors,
+        applicationSectors: resolvedSectors,
         journalArticles: parsed.journalArticles || defaultJournalArticles,
         projects: parsed.projects || defaultProjects,
         studioContact: parsed.studioContact || defaultStudioContact,
