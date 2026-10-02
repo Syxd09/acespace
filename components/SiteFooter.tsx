@@ -102,7 +102,7 @@ export default function SiteFooter() {
             margin: '0 0 16px 0',
           }}>
             The Raw Material Source for Architects, Specifiers & Interior Designers.
-            Foundry for mineral composites, seamless solid surfaces, and the foundational material powering Coro Collective.
+            Foundry for mineral composites, seamless solid surfaces, and the foundational material powering Coro Crafted Collective.
           </p>
           <div style={{
             display: 'inline-flex',
@@ -228,7 +228,7 @@ export default function SiteFooter() {
               { label: 'Design Philosophy & Craft', href: '/about#philosophy' },
               { label: 'The Atelier & Craftsmen', href: '/about#team' },
               { label: 'DuPont™ Material Foundation', href: '/about#foundation' },
-              { label: 'Powering Coro Collective ↗', href: 'https://corocollective.com' },
+              { label: 'Powering Coro Crafted Collective ↗', href: 'https://corocollective.com' },
             ].map(item => (
               <li key={item.label}>
                 <Link

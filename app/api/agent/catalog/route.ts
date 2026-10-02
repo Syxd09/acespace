@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
   const studioData = {
     brand: 'Ace Spaces Private Limited',
     role: 'Primary Architectural Raw Material Hub & Authorized DuPont™ Corian® Master Distributor',
-    sisterBrand: 'Coro Collective (Spatial Interiors & Collectible Furniture)',
+    sisterBrand: 'Coro Crafted Collective (Spatial Interiors & Collectible Furniture)',
     headquarters: 'Coro Crafted Collective & Ace Spaces Studio Headquarters, Bengaluru, Karnataka, India (Google Maps: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)',
     contact: {
       phone: '+91 97410 44776',

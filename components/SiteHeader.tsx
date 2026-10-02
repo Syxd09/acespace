@@ -402,7 +402,7 @@ export default function SiteHeader() {
             <b style={{ fontWeight: 400, opacity: 0.7 }}>↗</b>
           </a>
 
-          <a className="coro-link" href="#coro" title="Ace Spaces is the parent company and material source for Coro Collective">
+          <a className="coro-link" href="#coro" title="Ace Spaces is the parent company and material source for Coro Crafted Collective">
             Source for Coro <span>↗</span>
           </a>
           <button
@@ -475,7 +475,7 @@ export default function SiteHeader() {
         <div className="drawer-brand-note">
           <span className="drawer-mono-label">SOURCE & PARENT COMPANY</span>
           <p>
-            Ace Spaces is the raw material origin and architectural engineering house for Coro Collective.
+            Ace Spaces is the raw material origin and architectural engineering house for Coro Crafted Collective.
           </p>
         </div>
 
@@ -651,7 +651,7 @@ export default function SiteHeader() {
           <div className="drawer-coro-box">
             <span className="drawer-mono-label">Ecosystem Relationship</span>
             <p>
-              Ace Spaces provides through-body mineral sheets, custom thermoforming, and joint fabrication to Coro Collective projects.
+              Ace Spaces provides through-body mineral sheets, custom thermoforming, and joint fabrication to Coro Crafted Collective projects.
             </p>
           </div>
 

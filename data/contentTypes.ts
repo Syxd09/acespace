@@ -21,7 +21,7 @@ export const defaultHeroSlides: HeroSlide[] = [
     eyebrow: 'Ace Spaces / Parent Company & Raw Material Source',
     title: 'The source of material,',
     subtitle: 'where spaces begin.',
-    copy: 'The primary raw material hub for architects, interior designers, and bespoke builders — supplying solid surfaces, mineral slabs, and the foundational material powering Coro Collective.',
+    copy: 'The primary raw material hub for architects, interior designers, and bespoke builders — supplying solid surfaces, mineral slabs, and the foundational material powering Coro Crafted Collective.',
     specimen: 'Calacatta Greige',
     location: 'Private Residence / Bengaluru',
   },

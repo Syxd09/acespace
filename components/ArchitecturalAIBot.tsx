@@ -33,7 +33,7 @@ const STARTER_PROMPTS = [
   },
   {
     title: '📍 Studio Maps Location',
-    prompt: 'Where is the Ace Spaces & Coro Collective showroom located in Bangalore, and can you share Google Maps directions?',
+    prompt: 'Where is the Ace Spaces & Coro Crafted Collective showroom located in Bangalore, and can you share Google Maps directions?',
   },
   {
     title: '🛡️ Zero-Silica Safety',
@@ -331,7 +331,7 @@ How may I assist your specifications today?`,
         role: 'assistant',
         content: `Thank you for your architectural inquiry. 
 
-Our studio engineers specialize in DuPont™ Corian® solid surfaces, sub-0.2mm 5-axis CNC machining, thermoforming, and Coro Collective spatial integration.
+Our studio engineers specialize in DuPont™ Corian® solid surfaces, sub-0.2mm 5-axis CNC machining, thermoforming, and Coro Crafted Collective spatial integration.
 
 To discuss your project drawings or obtain immediate material estimates, please tap the **WhatsApp Desk** button in the top navigation bar or browse our certified materials.`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -359,7 +359,7 @@ To discuss your project drawings or obtain immediate material estimates, please 
       role: 'assistant',
       content: `Conversation refreshed.
 
-I am Ace Spaces' private material intelligence, strictly grounded in DuPont™ Corian®, Coro Collective spatial lineage, 5-axis CNC fabrication, and zero-silica surface engineering.
+I am Ace Spaces' private material intelligence, strictly grounded in DuPont™ Corian®, Coro Crafted Collective spatial lineage, 5-axis CNC fabrication, and zero-silica surface engineering.
 
 How may I assist your architectural practice today?`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),

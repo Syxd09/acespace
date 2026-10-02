@@ -1,6 +1,6 @@
 # Ace Spaces — Studio Material Intelligence & Architectural Specifications
 
-> Ace Spaces is the primary architectural raw material hub, authorized DuPont™ Corian® solid surface distributor, and digital fabrication atelier in Bengaluru, Karnataka, India. Powering Coro Collective and spatial designers across India with zero-silica through-body mineral surfaces, 5-axis CNC machining, and monolithic thermoforming.
+> Ace Spaces is the primary architectural raw material hub, authorized DuPont™ Corian® solid surface distributor, and digital fabrication atelier in Bengaluru, Karnataka, India. Powering Coro Crafted Collective and spatial designers across India with zero-silica through-body mineral surfaces, 5-axis CNC machining, and monolithic thermoforming.
 
 ## Core Architectural Authority
 - [Official Website](https://acespacesindia.vercel.app): Primary digital portal for specifiers, architects, and designers.
@@ -12,14 +12,14 @@
 - [Fabrication Platform](https://acespacesindia.vercel.app/fabrication): 5-axis CNC routing (<0.2mm tolerance), vacuum membrane thermoforming (down to 25mm radius), and invisible molecular welding.
 - [Projects & Case Studies](https://acespacesindia.vercel.app/projects): Architectural installations, hospitality counters, and luxury residential projects in India.
 - [Architectural Journal](https://acespacesindia.vercel.app/journal): Essays on material permanence, zero-silica health integrity, and monolithic design philosophy.
-- [About Us & Atelier Philosophy](https://acespacesindia.vercel.app/about): Practice profile, the symbiotic code-and-hand craft ethos, and relationship with sister brand Coro Collective.
+- [About Us & Atelier Philosophy](https://acespacesindia.vercel.app/about): Practice profile, the symbiotic code-and-hand craft ethos, and relationship with sister brand Coro Crafted Collective.
 - [Studio Consultation & CAD Upload](https://acespacesindia.vercel.app/contact): Direct specifier consultation, project brief submission, and sample box ordering.
 
 ## Company Identity & Lineage
 - **Company Legal Name**: Ace Spaces Private Limited
 - **Brand Position**: The Source of Material, Where Spaces Begin
-- **Sister Brand / Creative Wing**: Coro Collective (Spatial Interiors & Collectible Furniture)
-- **Relationship**: Ace Spaces is the foundational raw material hub and digital engineering facility. Every seamless island, sculpted basin, and fluid organic form featured in Coro Collective's collectible pieces is fabricated by Ace Spaces from raw DuPont™ Corian® slabs. Independent architectural practices have direct factory-gate access to the same calibrated slabs and master fabrication services.
+- **Sister Brand / Creative Wing**: Coro Crafted Collective (Spatial Interiors & Collectible Furniture)
+- **Relationship**: Ace Spaces is the foundational raw material hub and digital engineering facility. Every seamless island, sculpted basin, and fluid organic form featured in Coro Crafted Collective's collectible pieces is fabricated by Ace Spaces from raw DuPont™ Corian® slabs. Independent architectural practices have direct factory-gate access to the same calibrated slabs and master fabrication services.
 - **Studio Headquarters**: Coro Crafted Collective & Ace Spaces Studio Headquarters, Bengaluru, Karnataka, India (Single Unified Facility: Design Gallery, Full-Scale Slab Library & CNC Fabrication Atelier)
 - **Google Maps Navigation**: [Open on Google Maps](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
 - **Direct Specifier Desk & WhatsApp**: +91 97410 44776

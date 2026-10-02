@@ -5,12 +5,12 @@ import type { Metadata } from 'next';
 import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'About Us — Architectural Atelier, Lineage & Coro Collective Partnership',
+  title: 'About Us — Architectural Atelier, Lineage & Coro Crafted Collective Partnership',
   description:
-    'Ace Spaces is a Bengaluru-based architectural fabrication atelier and master raw material distributor for DuPont™ Corian®. Discover our code-meets-craft philosophy, 0% silica commitment, and symbiotic partnership powering Coro Collective.',
+    'Ace Spaces is a Bengaluru-based architectural fabrication atelier and master raw material distributor for DuPont™ Corian®. Discover our code-meets-craft philosophy, 0% silica commitment, and symbiotic partnership powering Coro Crafted Collective.',
   keywords: [
     'about Ace Spaces',
-    'Coro Collective sister brand',
+    'Coro Crafted Collective sister brand',
     'DuPont Corian partner India',
     'architectural solid surface foundry',
     'zero-silica atelier Bengaluru',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'About Us | Ace Spaces',
     description:
-      'Architectural fabrication atelier, DuPont™ Corian® partnership, and the lineage powering Coro Collective in India.',
+      'Architectural fabrication atelier, DuPont™ Corian® partnership, and the lineage powering Coro Crafted Collective in India.',
     images: ['/images/images/app_commercial_bleached_nuwood.jpg'],
   },
 };
@@ -57,7 +57,7 @@ const aboutJsonLd = {
     knowsAbout: ['DuPont™ Corian® Solid Surface', 'Zero-Silica Mineral Craft', '5-Axis CNC Milling', 'Thermoforming'],
     subOrganization: {
       '@type': 'Organization',
-      name: 'Coro Collective',
+      name: 'Coro Crafted Collective',
       description: 'Bespoke spatial interiors and collectible monolithic furniture powered by Ace Spaces.',
     },
   },
@@ -594,7 +594,7 @@ export default function AboutPage() {
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
                     Spatial Living Brand
                   </span>
-                  <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '6px 0 4px' }}>Coro Collective</h4>
+                  <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '6px 0 4px' }}>Coro Crafted Collective</h4>
                   <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
                     Our sister spatial studio and collectible furniture label, creating bespoke interior architecture powered by Ace Spaces.
                   </p>
@@ -735,25 +735,25 @@ export default function AboutPage() {
         </div>
         <div className="spec-row">
           <span>Ecosystem Synergy</span>
-          <div>Ace Spaces (Material &amp; Fabrication Atelier) → Coro Collective (Turnkey Spatial &amp; Collectible Furniture Studio)</div>
+          <div>Ace Spaces (Material &amp; Fabrication Atelier) → Coro Crafted Collective (Turnkey Spatial &amp; Collectible Furniture Studio)</div>
         </div>
       </section>
 
-      {/* Coro Collective Synergy Callout */}
+      {/* Coro Crafted Collective Synergy Callout */}
       <section className="callout" id="coro" style={{ display: 'grid', gridTemplateColumns: 'minmax(220px, 1fr) 2fr', gap: '36px', alignItems: 'center' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', background: 'rgba(255,255,255,0.45)', border: '1px solid var(--line)', padding: '28px 20px', borderRadius: '4px' }}>
-          <img src="/images/coro-emblem.png" alt="Coro Collective Architectural Emblem" style={{ width: '80px', height: '100px', objectFit: 'contain', marginBottom: '12px', display: 'block' }} />
-          <img src="/images/coro-wordmark.png" alt="Coro Collective Wordmark" style={{ width: '130px', height: '36px', objectFit: 'contain', display: 'block' }} />
+          <img src="/images/coro-emblem.png" alt="Coro Crafted Collective Architectural Emblem" style={{ width: '80px', height: '100px', objectFit: 'contain', marginBottom: '12px', display: 'block' }} />
+          <img src="/images/coro-wordmark.png" alt="Coro Crafted Collective Wordmark" style={{ width: '130px', height: '36px', objectFit: 'contain', display: 'block' }} />
         </div>
         <div>
           <p className="eyebrow">Studio Synergy · Sister Spatial Brand</p>
           <h2>
             Powering
             <br />
-            <i>Coro Collective.</i>
+            <i>Coro Crafted Collective.</i>
           </h2>
           <p>
-            Coro Collective was born out of Ace Spaces to showcase what is possible when our monolithic surfaces are shaped into turnkey living spaces, sculptural reception monoliths, and bespoke collectible furniture.
+            Coro Crafted Collective was born out of Ace Spaces to showcase what is possible when our monolithic surfaces are shaped into turnkey living spaces, sculptural reception monoliths, and bespoke collectible furniture.
           </p>
           <p style={{ marginTop: '14px', color: '#6e766c', fontSize: '15px' }}>
             Independent architects and designers enjoy direct access to the very same precision fabrication atelier and raw mineral materials that make Coro’s spaces celebrated.

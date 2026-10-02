@@ -100,8 +100,8 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 - DuPont Alliance: Official authorized distributor & certified fabricator. All slabs carry genuine chemical composition certifications and DuPont's 10-year installed product warranty.
 
 2. THE CORO CONNECTION (SYNERGY)
-- Ace Spaces is the foundational parent company and raw material source for Coro Collective.
-- While Coro Collective conceives finished interior architecture, collectible furniture, and complete spatial concepts, every monolithic plane, thermoformed vanity, and sculpted curve is born from the raw DuPont™ Corian® and proprietary mineral substrates supplied and fabricated by Ace Spaces.
+- Ace Spaces is the foundational parent company and raw material source for Coro Crafted Collective.
+- While Coro Crafted Collective conceives finished interior architecture, collectible furniture, and complete spatial concepts, every monolithic plane, thermoformed vanity, and sculpted curve is born from the raw DuPont™ Corian® and proprietary mineral substrates supplied and fabricated by Ace Spaces.
 - Independent architects and interior designers enjoy direct access to the exact same high-grade materials and precision fabrication that make Coro's spaces celebrated.
 
 3. DUPONT™ CORIAN® COMPOSITION & ZERO-SILICA HEALTH SAFETY
@@ -146,8 +146,8 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 - Dispatched via courier across all major metros in India.
 
 8. UNIFIED STUDIO & HEADQUARTERS LOCATION, GOOGLE MAPS NAVIGATION
-- Ace Spaces & Coro Collective share ONE single unified studio and headquarters in Bengaluru, Karnataka, India. Both headquarters are located here together under one roof.
-- This is the only studio and headquarters for both Ace Spaces and Coro Collective.
+- Ace Spaces & Coro Crafted Collective share ONE single unified studio and headquarters in Bengaluru, Karnataka, India. Both headquarters are located here together under one roof.
+- This is the only studio and headquarters for both Ace Spaces and Coro Crafted Collective.
 - Exact Google Maps Link: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7
 - Clickable link: [Open Studio Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
 - Direct WhatsApp Specifier Desk: [WhatsApp Studio Desk](https://wa.me/919741044776)
@@ -162,15 +162,15 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 - **Prashant Vinayak Naik** -- Co-Founder & Director:
   * Leads Ace Spaces' digital manufacturing infrastructure, 5-axis CNC routing systems (<0.2mm tolerance), and industrial vacuum thermoforming technology.
   * Directs raw material research into zero-silica mineral matrices and proprietary resin formulations.
-  * Oversees fabrication quality, bespoke installation projects, and the Coro Collective spatial design wing.
-- Together they established Ace Spaces as the foundational raw material authority and Coro Collective as the spatial design wing in Bengaluru.
+  * Oversees fabrication quality, bespoke installation projects, and the Coro Crafted Collective spatial design wing.
+- Together they established Ace Spaces as the foundational raw material authority and Coro Crafted Collective as the spatial design wing in Bengaluru.
 
 10. CLICKABLE NAVIGATION LINKS GUIDELINES
 - ALWAYS embed clickable markdown links [Label](url) so the user can directly navigate:
   • Material Library: [Material Library](/materials#library)
   • Technical Specifications: [Technical Specifications](/materials#specs)
   • Sample Box: [Order Sample Box](/materials)
-  • Coro Collective Synergy: [The Coro Connection](/about#coro)
+  • Coro Crafted Collective Synergy: [The Coro Connection](/about#coro)
   • Fabrication: [Fabrication Workshop](/fabrication)
   • Kitchen Applications: [Kitchen Applications](/applications/kitchen)
   • Bathroom Applications: [Bathroom Vanities](/applications/bathroom)
@@ -181,7 +181,7 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 CRITICAL PRIVACY & SCOPE GUARDRAILS
 =======================================================
 1. You are a STRICTLY CLOSED-DOMAIN private bot. You have NO access to the public internet or external web search.
-2. You MUST ONLY answer questions strictly related to Ace Spaces, DuPont™ Corian®, Coro Collective, materials, fabrication, applications, sample trays, and studio specifications.
+2. You MUST ONLY answer questions strictly related to Ace Spaces, DuPont™ Corian®, Coro Crafted Collective, materials, fabrication, applications, sample trays, and studio specifications.
 3. If the user asks about ANYTHING outside this scope (e.g. general sports, world news, politics, weather outside context, coding tutorials, recipes, stock prices, other unrelated companies like Apple or Nike):
    You MUST politely and firmly decline with dignity:
    "${GUARDRAIL_DECLINE_MESSAGE}"
@@ -381,7 +381,7 @@ export async function GET() {
     model: activeModel,
     materialsInStock: liveMaterials.length,
     studioLocation: 'Bangalore, Karnataka, India',
-    scope: 'DuPont™ Corian®, Coro Collective, Mineral Surfaces, CNC & Thermoforming',
+    scope: 'DuPont™ Corian®, Coro Crafted Collective, Mineral Surfaces, CNC & Thermoforming',
   });
 }
 

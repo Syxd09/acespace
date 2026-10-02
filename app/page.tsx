@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: 'Ace Spaces — The Source of Material, Where Spaces Begin | DuPont™ Corian® Partner',
   description:
-    'Primary architectural raw material hub, authorized DuPont™ Corian® distributor, and digital fabrication workshop in Bengaluru, India. Powering Coro Collective with calibrated through-body mineral slabs, 5-axis CNC machining, and bespoke thermoforming.',
+    'Primary architectural raw material hub, authorized DuPont™ Corian® distributor, and digital fabrication workshop in Bengaluru, India. Powering Coro Crafted Collective with calibrated through-body mineral slabs, 5-axis CNC machining, and bespoke thermoforming.',
   alternates: {
     canonical: 'https://acespacesindia.vercel.app',
   },
@@ -60,7 +60,7 @@ export default function HomePage() {
               Surfaces carry the light and the silence of a room. As the parent company and authorized partner for <strong>DuPont™ Corian®</strong>, Ace Spaces develops solid surfaces and mineral substrates that reward touch and outlast time.
             </p>
             <p style={{ maxWidth: '100%', marginBottom: '26px' }}>
-              Operating our central stockyard and precision workshop in Bangalore, we are the direct material source for architects and designers across India — powering Coro Collective with full-dimension slabs, bespoke thermoforming, and precision fabrication.
+              Operating our central stockyard and precision workshop in Bangalore, we are the direct material source for architects and designers across India — powering Coro Crafted Collective with full-dimension slabs, bespoke thermoforming, and precision fabrication.
             </p>
 
             {/* Architectural Credential Strip */}
@@ -307,7 +307,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Coro Collective Ecosystem Section */}
+      {/* Coro Crafted Collective Ecosystem Section */}
       <section id="coro" className="coro section-pad">
         <ScrollReveal>
           <div
@@ -344,7 +344,7 @@ export default function HomePage() {
             >
               <img
                 src="/images/coro-emblem.png"
-                alt="Coro Collective Emblem"
+                alt="Coro Crafted Collective Emblem"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -369,7 +369,7 @@ export default function HomePage() {
             >
               <img
                 src="/images/coro-wordmark.png"
-                alt="Coro Collective Wordmark"
+                alt="Coro Crafted Collective Wordmark"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -417,10 +417,10 @@ export default function HomePage() {
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', lineHeight: 1.05, margin: '16px 0 24px' }}>
             The source where
             <br />
-            Coro Collective <i>begins.</i>
+            Coro Crafted Collective <i>begins.</i>
           </h2>
           <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'rgba(30,33,29,0.9)', marginBottom: '16px' }}>
-            Ace Spaces is the parent company and the foundational material source behind Coro Collective. While Coro conceives complete, finished interior environments, every monolithic surface, mineral slab, and seamless join originates from the Ace Spaces raw material library.
+            Ace Spaces is the parent company and the foundational material source behind Coro Crafted Collective. While Coro conceives complete, finished interior environments, every monolithic surface, mineral slab, and seamless join originates from the Ace Spaces raw material library.
           </p>
           <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'rgba(30,33,29,0.75)', marginBottom: '32px' }}>
             We supply the very same architectural-grade raw materials directly to independent architects, interior designers, and contractors for their own bespoke projects.

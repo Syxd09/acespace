@@ -1217,13 +1217,13 @@ export default function MegaMenu({
                     <li>
                       <a href="https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7" target="_blank" rel="noopener noreferrer" className="mega-menu-link">
                         <strong>Google Maps Navigation ↗</strong>
-                        <small>Coro Collective &amp; Ace Spaces headquarters</small>
+                        <small>Coro Crafted Collective &amp; Ace Spaces headquarters</small>
                       </a>
                     </li>
                     <li>
                       <Link href="/about#coro" onClick={(e) => handleLinkClick(e, '/about#coro')} className="mega-menu-link">
                         <strong>The Coro Connection</strong>
-                        <small>Powering Coro Collective spatial living</small>
+                        <small>Powering Coro Crafted Collective spatial living</small>
                       </Link>
                     </li>
                     <li>

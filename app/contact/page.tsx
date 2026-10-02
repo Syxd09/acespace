@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: '/assets/hero-ace.png',
         width: 1200,
         height: 630,
-        alt: 'Ace Spaces & Coro Collective Studio & Specifier Desk',
+        alt: 'Ace Spaces & Coro Crafted Collective Studio & Specifier Desk',
       },
     ],
   },
@@ -49,7 +49,7 @@ const contactJsonLd = {
   url: 'https://acespacesindia.vercel.app/contact',
   mainEntity: {
     '@type': 'HomeAndConstructionBusiness',
-    name: 'Ace Spaces & Coro Collective Studio Headquarters',
+    name: 'Ace Spaces & Coro Crafted Collective Studio Headquarters',
     telephone: '+919741044776',
     email: 'studio@acespaces.in',
     hasMap: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',

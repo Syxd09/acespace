@@ -2,11 +2,11 @@ import { materials as defaultMaterials, Material } from '@/data/materials';
 import { getSiteContent } from '@/data/contentStore';
 
 /**
- * Ace Spaces & Coro Collective — Private Studio Material Intelligence
+ * Ace Spaces & Coro Crafted Collective — Private Studio Material Intelligence
  * 
  * Strict Closed-Domain Knowledge Base & Private Grounded Response Engine.
  * Grounded exclusively in Ace Spaces website data, DuPont™ Corian® specifications,
- * Coro Collective spatial applications, workshop machinery, and sample services.
+ * Coro Crafted Collective spatial applications, workshop machinery, and sample services.
  * 
  * Enforces airtight guardrails: refuses general non-architectural / external web queries.
  */
@@ -107,21 +107,21 @@ Every slab is backed by genuine DuPont™ chemical composition certifications, G
     id: 'coro-connection',
     topic: 'The Coro Connection & Ecosystem Synergy',
     keywords: [
-      'coro', 'coro collective', 'what is coro', 'connection', 'relationship', 'parent company',
+      'coro', 'Coro Crafted Collective', 'what is coro', 'connection', 'relationship', 'parent company',
       'sister', 'furniture', 'spatial', 'collective', 'who owns coro'
     ],
-    summary: 'Ace Spaces is the parent enterprise and exclusive raw material provider for Coro Collective.',
-    details: `Ace Spaces stands as the foundational parent entity and raw material authority powering Coro Collective.
+    summary: 'Ace Spaces is the parent enterprise and exclusive raw material provider for Coro Crafted Collective.',
+    details: `Ace Spaces stands as the foundational parent entity and raw material authority powering Coro Crafted Collective.
 
-While Coro Collective conceives finished interior architecture, collectible furniture, and complete spatial concepts, every monolithic plane, thermoformed vanity, and sculpted curve is born from the raw DuPont™ Corian® and proprietary mineral substrates engineered and fabricated right here at Ace Spaces.
+While Coro Crafted Collective conceives finished interior architecture, collectible furniture, and complete spatial concepts, every monolithic plane, thermoformed vanity, and sculpted curve is born from the raw DuPont™ Corian® and proprietary mineral substrates engineered and fabricated right here at Ace Spaces.
 
 Key Synergy:
 1. Raw Material Source: Ace Spaces maintains the continuous slab stock, tooling, and 5-axis CNC machining.
-2. Spatial Design: Coro Collective applies these materials into signature spaces, retail flagships, and residential sanctuaries.
+2. Spatial Design: Coro Crafted Collective applies these materials into signature spaces, retail flagships, and residential sanctuaries.
 3. Architect Access: Independent architects and designers enjoy the exact same high-grade materials and fabrication precision used in Coro's celebrated spaces.`,
     specs: {
       'Parent Company': 'Ace Spaces',
-      'Spatial Brand': 'Coro Collective',
+      'Spatial Brand': 'Coro Crafted Collective',
       'Shared Facility': 'Bangalore CNC & Thermoforming Workshop',
       'Material Lineage': 'Authentic DuPont™ Corian® & Proprietary Mineral Blends'
     },
@@ -388,7 +388,7 @@ Sample Box Contents:
       'projects', 'portfolio', 'case studies', 'glass villa', 'whitefield', 'koramangala',
       'indiranagar', 'mumbai', 'quiet arrival', 'residential', 'hospitality'
     ],
-    summary: 'Benchmark monolithic installations in Bengaluru and Mumbai designed with Studio Vardhan, Atelier Kora, and Coro Collective.',
+    summary: 'Benchmark monolithic installations in Bengaluru and Mumbai designed with Studio Vardhan, Atelier Kora, and Coro Crafted Collective.',
     details: `Ace Spaces has fabricated key benchmark projects across residential, hospitality, and commercial categories:
 
 1. Private Residence — "A Quieter Kind of Luxury" (Bengaluru):
@@ -487,7 +487,7 @@ Renewability & Scratch Repair:
 
 📍 **Coro Crafted Collective & Ace Spaces Studio Headquarters:**
 Bengaluru, Karnataka, India.
-*(This is our single, unified studio headquarters for both Ace Spaces and Coro Collective)*
+*(This is our single, unified studio headquarters for both Ace Spaces and Coro Crafted Collective)*
 *Hours: Monday – Saturday, 09:30 – 18:30 IST (Sundays by appointment).*
 
 🗺️ **Direct Google Maps Navigation:**
@@ -502,7 +502,7 @@ Here under one roof, you can:
 You can book an architectural walkthrough on our [Contact Page](/contact), explore our [Fabrication Capabilities](/fabrication), or message our specifier desk directly via the [WhatsApp Studio Desk](https://wa.me/919741044776).`,
     specs: {
       'Studio & Headquarters': 'Coro Crafted Collective & Ace Spaces, Bengaluru',
-      'Scope': 'Single unified studio & headquarters for both Ace Spaces and Coro Collective',
+      'Scope': 'Single unified studio & headquarters for both Ace Spaces and Coro Crafted Collective',
       'Google Maps Link': 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
       'Operating Hours': 'Monday – Saturday, 09:30 – 18:30 IST'
     },
@@ -521,7 +521,7 @@ You can book an architectural walkthrough on our [Contact Page](/contact), explo
       'team', 'management', 'story', 'history', 'partners', 'partner'
     ],
     summary: 'Founded in Bengaluru by two partners — Vithal Savant and Prashant Vinayak Naik — with a shared vision for zero-silica monolithic mineral architecture.',
-    details: `Ace Spaces and Coro Collective were co-founded in Bengaluru by two partners with a unified vision: to disrupt brittle, silica-hazardous stone processing and establish a master foundry for monolithic, non-porous mineral architecture.
+    details: `Ace Spaces and Coro Crafted Collective were co-founded in Bengaluru by two partners with a unified vision: to disrupt brittle, silica-hazardous stone processing and establish a master foundry for monolithic, non-porous mineral architecture.
 
 **Founding Partners & Leadership:**
 • **Vithal Savant** — Co-Founder & Director:
@@ -532,9 +532,9 @@ You can book an architectural walkthrough on our [Contact Page](/contact), explo
 • **Prashant Vinayak Naik** — Co-Founder & Director:
   - Leads Ace Spaces' digital manufacturing infrastructure, 5-axis CNC routing systems (<0.2mm tolerance), and industrial vacuum thermoforming technology.
   - Directs raw material research into zero-silica mineral matrices and proprietary resin formulations.
-  - Oversees fabrication quality, bespoke installation projects, and the Coro Collective spatial design wing.
+  - Oversees fabrication quality, bespoke installation projects, and the Coro Crafted Collective spatial design wing.
 
-Together, they established **Ace Spaces** as the foundational raw material authority and **Coro Collective** as the spatial design wing — manifesting what is possible when advanced mineral surfaces are shaped into bespoke private residences, hotel atriums, and collectible furniture.`,
+Together, they established **Ace Spaces** as the foundational raw material authority and **Coro Crafted Collective** as the spatial design wing — manifesting what is possible when advanced mineral surfaces are shaped into bespoke private residences, hotel atriums, and collectible furniture.`,
     specs: {
       'Co-Founder & Director': 'Vithal Savant',
       'Co-Founder & Director (2)': 'Prashant Vinayak Naik',
@@ -592,7 +592,7 @@ export const GUARDRAIL_DECLINE_MESSAGE = `I am Ace Spaces' private material inte
 Because I am a secure, private studio bot, I do not search the public internet or answer unrelated general inquiries (such as world news, politics, entertainment, coding, or unrelated brands).
 
 Please feel free to ask me anything about:
-• Ace Spaces & Coro Collective synergy
+• Ace Spaces & Coro Crafted Collective synergy
 • DuPont™ Corian® composition & zero-silica safety
 • Slab dimensions, colors & translucent backlit series
 • 5-Axis CNC tolerances, seamless joining & thermoforming
@@ -997,13 +997,13 @@ export function getPrivateAIResponse(userQuery: string, history: { role: string;
     return {
       answer: `Welcome to **Ace Spaces Studio Material Intelligence**. 
 
-I am your private architectural consultant, grounded directly in our Bengaluru central stockyard containing **${liveMaterials.length} certified materials currently in stock**, authorized DuPont™ Corian® solid surface engineering, Coro Collective spatial lineage, and 5-axis CNC digital fabrication.
+I am your private architectural consultant, grounded directly in our Bengaluru central stockyard containing **${liveMaterials.length} certified materials currently in stock**, authorized DuPont™ Corian® solid surface engineering, Coro Crafted Collective spatial lineage, and 5-axis CNC digital fabrication.
 
 How can I assist your practice today? You can ask me about:
 1. **In-Stock Materials**: Check which of our ${liveMaterials.length} materials are currently in stock at Ace Spaces ([View Inventory](/materials#library)).
 2. **Specific Material Specs**: Sizing, thicknesses, zero-silica composition, and pricing for any in-stock specimen (e.g. *Calacatta Greige*, *Artista Sage*, *Stonique*, or *Venaro White*).
 3. **Stone & Quartz Comparisons**: Why natural marble and quartz are NOT stocked at Ace Spaces, and our certified in-stock solid surface alternatives.
-4. **The Coro Connection**: How Ace Spaces powers Coro Collective's spatial installations ([Learn More](/about#coro)).
+4. **The Coro Connection**: How Ace Spaces powers Coro Crafted Collective's spatial installations ([Learn More](/about#coro)).
 5. **Workshop Craft**: 5-axis CNC routing (<0.2mm), 160°C thermoforming down to 25mm radii, and seamless joins ([Fabrication Hub](/fabrication)).
 6. **Studio & Google Maps**: Visiting our unified studio and headquarters in Bengaluru ([Open on Maps](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)).`,
       matchedTopic: 'Welcome & Live Capabilities',
@@ -1035,7 +1035,7 @@ How can I assist your practice today? You can ask me about:
         isGuardrailTriggered: true,
         suggestedActions: [
           { label: 'Browse Certified Materials', href: '/materials#library' },
-          { label: 'Coro Collective Connection', href: '/about#coro' },
+          { label: 'Coro Crafted Collective Connection', href: '/about#coro' },
           { label: 'Chat on WhatsApp', href: 'https://wa.me/919741044776' },
         ],
       };
@@ -1212,7 +1212,7 @@ How can I assist your practice today? You can ask me about:
   if (query.includes('coro')) {
     const coroSection = STUDIO_KNOWLEDGE_BASE.find((s) => s.id === 'coro-connection')!;
     return {
-      answer: `### Ace Spaces & Coro Collective Synergy\n\n${coroSection.details}`,
+      answer: `### Ace Spaces & Coro Crafted Collective Synergy\n\n${coroSection.details}`,
       matchedTopic: 'Coro Connection',
       suggestedActions: coroSection.suggestedActions,
     };
@@ -1226,7 +1226,7 @@ As your private studio intelligence, I specialize in:
 • **In-Stock Materials (${liveMaterials.length} Specimens)**: All ${liveMaterials.length} materials currently in stock at our Bengaluru stockyard ([Explore Materials](/materials#library)).
 • **DuPont™ Corian® Specifications**: Non-porous zero-silica mineral surfaces, ATH + acrylic composition, and certified warranties.
 • **Full Sheet Sizing & Pricing**: Standard 3660 mm × 760 mm slabs across solids, veined, terrazzo, and backlit translucent series ([Technical Specifications](/materials#specs)).
-• **Coro Collective Synergy**: How Ace Spaces acts as the parent company and raw material source for Coro's spatial designs ([The Coro Synergy](/about#coro)).
+• **Coro Crafted Collective Synergy**: How Ace Spaces acts as the parent company and raw material source for Coro's spatial designs ([The Coro Synergy](/about#coro)).
 • **Fabrication Capabilities**: Sub-0.2mm 5-axis CNC machining, 160°C vacuum thermoforming, and seamless joining ([Fabrication Hub](/fabrication)).
 • **Physical Specimens**: Curating sample trays for delivery across India ([Order Samples](/materials)).
 
@@ -1234,7 +1234,7 @@ Could you please specify your architectural requirement or material of interest,
     matchedTopic: 'Studio Advisory',
     suggestedActions: [
       { label: `View ${liveMaterials.length} In-Stock Materials`, href: '/materials#library' },
-      { label: 'Coro Collective Connection', href: '/about#coro' },
+      { label: 'Coro Crafted Collective Connection', href: '/about#coro' },
       { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' },
     ],
   };

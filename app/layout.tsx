@@ -16,13 +16,13 @@ export const metadata: Metadata = {
     template: '%s | Ace Spaces',
   },
   description:
-    'Ace Spaces is the primary architectural raw material hub and authorized DuPont™ Corian® solid surface distributor in Bengaluru, India. Supplying calibrated mineral slabs (3660×760mm, 12mm & 19mm), 5-axis CNC digital fabrication, thermoforming, and foundational materials powering Coro Collective.',
+    'Ace Spaces is the primary architectural raw material hub and authorized DuPont™ Corian® solid surface distributor in Bengaluru, India. Supplying calibrated mineral slabs (3660×760mm, 12mm & 19mm), 5-axis CNC digital fabrication, thermoforming, and foundational materials powering Coro Crafted Collective.',
   keywords: [
     'architectural materials',
     'DuPont Corian',
     'DuPont Corian Bangalore',
     'solid surface slabs India',
-    'Coro Collective',
+    'Coro Crafted Collective',
     'through-body mineral surfaces',
     '5-axis CNC fabrication',
     'vacuum thermoforming',
@@ -84,7 +84,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Ace Spaces — Material, made architectural',
     description:
-      'Master architectural material hub and certified DuPont™ Corian® fabrication workshop in Bengaluru, India. Powering Coro Collective with zero-silica solid surfaces.',
+      'Master architectural material hub and certified DuPont™ Corian® fabrication workshop in Bengaluru, India. Powering Coro Crafted Collective with zero-silica solid surfaces.',
     images: ['/assets/hero-ace.png'],
   },
   alternates: {
@@ -116,7 +116,7 @@ const jsonLdGraph = {
       email: 'studio@acespaces.in',
       priceRange: '₹₹₹₹',
       description:
-        'Primary architectural raw material hub, authorized DuPont™ Corian® solid surface master distributor, and 5-axis digital fabrication workshop in Bengaluru, India. Supplying calibrated through-body mineral slabs, thermoformed surfaces, and monolithic systems powering Coro Collective and leading spatial designers.',
+        'Primary architectural raw material hub, authorized DuPont™ Corian® solid surface master distributor, and 5-axis digital fabrication workshop in Bengaluru, India. Supplying calibrated through-body mineral slabs, thermoformed surfaces, and monolithic systems powering Coro Crafted Collective and leading spatial designers.',
       hasMap: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
       address: {
         '@type': 'PostalAddress',
@@ -137,7 +137,7 @@ const jsonLdGraph = {
       ],
       subOrganization: {
         '@type': 'Organization',
-        name: 'Coro Collective',
+        name: 'Coro Crafted Collective',
         description: 'Bespoke collectible spatial furniture and monolithic interior systems fabricated by Ace Spaces.',
       },
       knowsAbout: [
