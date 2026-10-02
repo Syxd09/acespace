@@ -491,37 +491,23 @@ export default function AboutPage() {
 
                 <div
                   style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr auto 1fr',
+                    display: 'flex',
                     alignItems: 'center',
-                    gap: '16px',
+                    justifyContent: 'center',
                     padding: '8px 0',
                     width: '100%',
-                    maxWidth: '340px',
+                    maxWidth: '280px',
                     margin: '0 auto',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Image
-                      src="/images/dupont-logo.svg"
-                      alt="DuPont Official Trademark Logo"
-                      width={130}
-                      height={36}
-                      style={{ height: '30px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-                      priority
-                    />
-                  </div>
-                  <div style={{ width: '1px', height: '28px', background: 'var(--line)' }} />
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Image
-                      src="/images/corian-solid-surface-logo.svg"
-                      alt="Corian Solid Surface Official Trademark Logo"
-                      width={130}
-                      height={36}
-                      style={{ height: '30px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-                      priority
-                    />
-                  </div>
+                  <Image
+                    src="/assets/Corian-Red-logo.png.webp"
+                    alt="Corian® Solid Surface"
+                    width={220}
+                    height={88}
+                    style={{ height: '58px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                    priority
+                  />
                 </div>
 
                 <div
@@ -558,26 +544,18 @@ export default function AboutPage() {
                     <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
                       Material Origin
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px', margin: '12px 0 14px', flexWrap: 'wrap' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', margin: '12px 0 14px' }}>
                       <Image
-                        src="/images/dupont-logo.svg"
-                        alt="DuPont Logo"
-                        width={80}
-                        height={24}
-                        style={{ height: '22px', width: 'auto', objectFit: 'contain' }}
-                      />
-                      <div style={{ width: '1px', height: '22px', background: 'var(--line)' }} />
-                      <Image
-                        src="/images/corian-solid-surface-logo.svg"
-                        alt="Corian Solid Surface Logo"
-                        width={80}
-                        height={24}
-                        style={{ height: '22px', width: 'auto', objectFit: 'contain' }}
+                        src="/assets/Corian-Red-logo.png.webp"
+                        alt="Corian® Solid Surface"
+                        width={140}
+                        height={56}
+                        style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
                       />
                     </div>
-                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>DuPont™ Corian®</h4>
+                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Corian® Solid Surface</h4>
                     <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                      Global mineral manufacturer. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
+                      The benchmark solid surface mineral substrate. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
                     </p>
                   </div>
                 </div>
