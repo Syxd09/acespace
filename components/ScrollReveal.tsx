@@ -93,6 +93,7 @@ export default function ScrollReveal({
   return (
     <div
       ref={ref}
+      suppressHydrationWarning
       className={`reveal ${isVisible ? 'visible' : ''} ${className}`}
       style={{
         transitionDelay: `${delay}ms`,

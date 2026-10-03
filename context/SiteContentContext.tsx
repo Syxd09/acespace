@@ -17,8 +17,9 @@ import {
 
 import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
 
-const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v2';
-const LEGACY_STORAGE_KEY = 'acespaces_custom_content_v1';
+const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v3';
+const LEGACY_STORAGE_KEY_V2 = 'acespaces_custom_content_v2';
+const LEGACY_STORAGE_KEY_V1 = 'acespaces_custom_content_v1';
 
 interface SiteContentContextType {
   heroSlides: HeroSlide[];
@@ -71,9 +72,12 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
   useEffect(() => {
     if (typeof window !== 'undefined') {
       try {
-        // Purge legacy v1 cache to prevent stale data
-        if (localStorage.getItem(LEGACY_STORAGE_KEY)) {
-          localStorage.removeItem(LEGACY_STORAGE_KEY);
+        // Purge legacy caches to prevent stale data
+        if (localStorage.getItem(LEGACY_STORAGE_KEY_V1)) {
+          localStorage.removeItem(LEGACY_STORAGE_KEY_V1);
+        }
+        if (localStorage.getItem(LEGACY_STORAGE_KEY_V2)) {
+          localStorage.removeItem(LEGACY_STORAGE_KEY_V2);
         }
 
         const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
