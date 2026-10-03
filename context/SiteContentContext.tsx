@@ -17,9 +17,12 @@ import {
 
 import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
 
-const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v3';
-const LEGACY_STORAGE_KEY_V2 = 'acespaces_custom_content_v2';
-const LEGACY_STORAGE_KEY_V1 = 'acespaces_custom_content_v1';
+const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v4';
+const LEGACY_STORAGE_KEYS = [
+  'acespaces_custom_content_v1',
+  'acespaces_custom_content_v2',
+  'acespaces_custom_content_v3',
+];
 
 interface SiteContentContextType {
   heroSlides: HeroSlide[];
@@ -73,12 +76,11 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
     if (typeof window !== 'undefined') {
       try {
         // Purge legacy caches to prevent stale data
-        if (localStorage.getItem(LEGACY_STORAGE_KEY_V1)) {
-          localStorage.removeItem(LEGACY_STORAGE_KEY_V1);
-        }
-        if (localStorage.getItem(LEGACY_STORAGE_KEY_V2)) {
-          localStorage.removeItem(LEGACY_STORAGE_KEY_V2);
-        }
+        LEGACY_STORAGE_KEYS.forEach((k) => {
+          try {
+            if (localStorage.getItem(k)) localStorage.removeItem(k);
+          } catch {}
+        });
 
         const cached = localStorage.getItem(LOCAL_STORAGE_KEY);
         if (cached) {
@@ -92,7 +94,14 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
             if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
             if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);
             if (parsed.projects && parsed.projects.length > 0) setProjects(parsed.projects);
-            if (parsed.studioContact) setStudioContact(parsed.studioContact);
+            if (parsed.studioContact) {
+              // Ensure dummy placeholder number from older builds is never used
+              if (parsed.studioContact.whatsappNumber?.includes('98450')) {
+                setStudioContact(defaultStudioContact);
+              } else {
+                setStudioContact(parsed.studioContact);
+              }
+            }
           } else {
             // Remove expired cache so fresh server data takes priority
             localStorage.removeItem(LOCAL_STORAGE_KEY);

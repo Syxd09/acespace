@@ -19,7 +19,12 @@ export default function SiteHeader() {
   const { shortlist, toggleTray } = useSampleShortlist();
   const { content } = useSiteContent();
 
-  const whatsappNumber = content.studioContact?.whatsappNumber || DEFAULT_WHATSAPP_NUMBER;
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const whatsappNumber = mounted ? (content.studioContact?.whatsappNumber || DEFAULT_WHATSAPP_NUMBER) : DEFAULT_WHATSAPP_NUMBER;
 
   // Close menus on route change
   useEffect(() => {
