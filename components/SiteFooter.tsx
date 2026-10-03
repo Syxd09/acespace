@@ -439,7 +439,7 @@ export default function SiteFooter() {
               BENGALURU STUDIO {mounted && bengaluruTime ? `${bengaluruTime} IST` : '15:00 IST'} (UTC +05:30)
             </span>
           </span>
-          <span>12.9716 deg  N, 77.5946 deg  E</span>
+          <span>12.9716° N, 77.5946° E</span>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
