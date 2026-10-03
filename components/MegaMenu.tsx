@@ -498,7 +498,7 @@ export default function MegaMenu({
                     Monolithic Floating Vanities &amp; Sinks
                   </strong>
                   <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                    Seamlessly fused washplane basins, 45° mitred waterfall aprons, and bespoke vanities fabricated without silicone seams or grime lines.
+                    Seamlessly fused washplane basins, 45 deg  mitred waterfall aprons, and bespoke vanities fabricated without silicone seams or grime lines.
                   </p>
                 </div>
                 <Link
@@ -577,7 +577,7 @@ export default function MegaMenu({
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Typologies 01 – 03
+                    Typologies 01 - 03
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
@@ -637,7 +637,7 @@ export default function MegaMenu({
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Typologies 04 – 06
+                    Typologies 04 - 06
                   </span>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
@@ -724,7 +724,7 @@ export default function MegaMenu({
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="mega-menu-badge">
-                  Typologies 01–06
+                  Typologies 01-06
                 </span>
               </div>
               <div className="mega-menu-feature-body">
@@ -832,7 +832,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>Multi-Radius Thermoforming</strong>
-                        <small>Controlled heating to 160°C over CNC timber bucks</small>
+                        <small>Controlled heating to 160 deg C over CNC timber bucks</small>
                       </Link>
                     </li>
                     <li>
@@ -965,7 +965,7 @@ export default function MegaMenu({
               <div className="mega-menu-feature-body">
                 <div>
                   <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                    The 45° Mitred Waterfall
+                    The 45 deg  Mitred Waterfall
                   </strong>
                   <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
                     Hand-dressed acrylic thermo-welds maintain pattern grain continuity from horizontal islands down to finished floor planes.
@@ -1021,7 +1021,7 @@ export default function MegaMenu({
                     letterSpacing: '-0.02em',
                   }}
                 >
-                  About Us — The Practice &amp; Atelier
+                  About Us - The Practice &amp; Atelier
                 </h3>
               </div>
 

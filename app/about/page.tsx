@@ -5,7 +5,7 @@ import type { Metadata } from 'next';
 import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
-  title: 'About Us — Architectural Atelier, Lineage & Coro Crafted Collective Partnership',
+  title: 'About Us - Architectural Atelier, Lineage & Coro Crafted Collective Partnership',
   description:
     'Ace Spaces is a Bengaluru-based architectural fabrication atelier and master raw material distributor for DuPont™ Corian®. Discover our code-meets-craft philosophy, 0% silica commitment, and symbiotic partnership powering Coro Crafted Collective.',
   keywords: [
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     canonical: 'https://acespacesindia.vercel.app/about',
   },
   openGraph: {
-    title: 'About Us — Architectural Practice & Atelier | Ace Spaces',
+    title: 'About Us - Architectural Practice & Atelier | Ace Spaces',
     description:
       'We are architects, digital fabricators, and master joiners founded in Bengaluru to dissolve the seams that divide contemporary space.',
     url: 'https://acespacesindia.vercel.app/about',
@@ -86,7 +86,7 @@ export default function AboutPage() {
     {
       num: '04',
       title: 'Architect-to-Architect Co-Creation',
-      subtitle: 'Your Studio’s Technical Extension',
+      subtitle: 'Your Studio's Technical Extension',
       body: 'We are not a distant building supply outlet. We act as an active fabrication partner for architects and interior designers across India. From initial CAD shop drawings and structural sub-framing calculations to laser templating and on-site assembly, we bring ambitious concepts to reality.',
     },
   ];
@@ -100,7 +100,7 @@ export default function AboutPage() {
     {
       role: 'Master Thermoformers',
       focus: 'Thermal Platen Ovens & Vacuum Pressing',
-      description: 'Form heated 160°C mineral acrylic sheets over custom CNC timber bucks to achieve organic compound curves, gentle flutes, and tight 25mm radii without blanching or structural stress.',
+      description: 'Form heated 160 deg C mineral acrylic sheets over custom CNC timber bucks to achieve organic compound curves, gentle flutes, and tight 25mm radii without blanching or structural stress.',
     },
     {
       role: 'Precision Joinery Technicians',
@@ -427,7 +427,7 @@ export default function AboutPage() {
                 Continuous 4.2-Meter Island with Integrated Sub-Surface Sink
               </strong>
               <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#d2dad2', margin: 0 }}>
-                Fabricated with 45° mitred waterfalls and zero visible joints at our Bengaluru studio atelier.
+                Fabricated with 45 deg  mitred waterfalls and zero visible joints at our Bengaluru studio atelier.
               </p>
             </div>
           </div>
@@ -457,7 +457,7 @@ export default function AboutPage() {
                   Official DuPont™ Corian® Quality Network Industrial Partner
                 </div>
                 <div style={{ fontSize: '12px', color: '#6e766c', marginTop: '6px', lineHeight: 1.5 }}>
-                  Certified industrial master fabricator and stockist backed by DuPont’s official 10-year installed manufacturer warranty.
+                  Certified industrial master fabricator and stockist backed by DuPont's official 10-year installed manufacturer warranty.
                 </div>
               </div>
 
@@ -747,7 +747,7 @@ export default function AboutPage() {
       <section className="spec-table">
         <div className="spec-row">
           <span>Practice Name</span>
-          <div>Ace Spaces — Architectural Solid Surface Atelier &amp; Precision Fabrication Practice</div>
+          <div>Ace Spaces - Architectural Solid Surface Atelier &amp; Precision Fabrication Practice</div>
         </div>
         <div className="spec-row">
           <span>Founding Ethos</span>
@@ -800,7 +800,7 @@ export default function AboutPage() {
             Coro Crafted Collective was born out of Ace Spaces to showcase what is possible when our monolithic surfaces are shaped into turnkey living spaces, sculptural reception monoliths, and bespoke collectible furniture.
           </p>
           <p style={{ marginTop: '14px', color: '#6e766c', fontSize: '15px' }}>
-            Independent architects and designers enjoy direct access to the very same precision fabrication atelier and raw mineral materials that make Coro’s spaces celebrated.
+            Independent architects and designers enjoy direct access to the very same precision fabrication atelier and raw mineral materials that make Coro's spaces celebrated.
           </p>
           <div style={{ display: 'flex', gap: '16px', marginTop: '28px', flexWrap: 'wrap' }}>
             <Link className="button button-dark" href="/materials">

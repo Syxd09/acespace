@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
 
     if (wantsMarkdown) {
       const md = [
-        '# Ace Spaces — Materials & Colour Catalog',
+        '# Ace Spaces - Materials & Colour Catalog',
         `> ${studioData.brand} | ${studioData.role}`,
         '',
         '## Material Formats & Guarantee',
@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
 
     if (wantsMarkdown) {
       const md = [
-        '# Ace Spaces — Precision Architectural Products',
+        '# Ace Spaces - Precision Architectural Products',
         `> ${studioData.brand} | Monolithic Solid Surface Systems`,
         '',
         '## Product Catalog',
@@ -102,7 +102,7 @@ export async function GET(request: NextRequest) {
     const fabricationSpecs = {
       capabilities: [
         '5-Axis CNC Milling (<0.2mm tolerance, nested CAD cutouts, Qi charger cavities)',
-        'Vacuum Membrane Thermoforming (calibrated platen heating to 160°C, tight 25mm radii)',
+        'Vacuum Membrane Thermoforming (calibrated platen heating to 160 deg C, tight 25mm radii)',
         'Inconspicuous Molecular Seaming (two-part color-matched acrylic resins, zero dirt lines)',
         'Integral Coved Junctions (10mm internal radii eliminating mold traps)',
         'On-Site Seam Honing & In-Situ Repair by Master Fabricators',
@@ -113,7 +113,7 @@ export async function GET(request: NextRequest) {
 
     if (wantsMarkdown) {
       const md = [
-        '# Ace Spaces — Digital Fabrication Technical Specifications',
+        '# Ace Spaces - Digital Fabrication Technical Specifications',
         `> Automated 5-Axis CNC & Thermoforming Facility in Bengaluru, India`,
         '',
         '## Machinery & Capabilities',
@@ -151,7 +151,7 @@ export async function GET(request: NextRequest) {
 
   if (wantsMarkdown) {
     const md = [
-      '# Ace Spaces — Studio Material Intelligence API',
+      '# Ace Spaces - Studio Material Intelligence API',
       `> ${studioData.role}`,
       '',
       `- **Headquarters**: ${studioData.headquarters}`,

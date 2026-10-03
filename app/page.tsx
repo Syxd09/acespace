@@ -13,14 +13,14 @@ import {
 } from '@/lib/whatsapp';
 
 export const metadata: Metadata = {
-  title: 'Ace Spaces — The Source of Material, Where Spaces Begin | DuPont™ Corian® Partner',
+  title: 'Ace Spaces - The Source of Material, Where Spaces Begin | DuPont™ Corian® Partner',
   description:
     'Primary architectural raw material hub, authorized DuPont™ Corian® distributor, and digital fabrication workshop in Bengaluru, India. Powering Coro Crafted Collective with calibrated through-body mineral slabs, 5-axis CNC machining, and bespoke thermoforming.',
   alternates: {
     canonical: 'https://acespacesindia.vercel.app',
   },
   openGraph: {
-    title: 'Ace Spaces — Material, made architectural',
+    title: 'Ace Spaces - Material, made architectural',
     description:
       'The foundational material hub for architects, designers, and bespoke fabricators in Bengaluru, India. Certified DuPont™ Corian® solid surfaces and 5-axis CNC precision.',
     url: 'https://acespacesindia.vercel.app',
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
         url: '/assets/hero-ace.png',
         width: 1200,
         height: 630,
-        alt: 'Ace Spaces — Architectural Solid Surface Foundry',
+        alt: 'Ace Spaces - Architectural Solid Surface Foundry',
       },
     ],
   },
@@ -60,7 +60,7 @@ export default function HomePage() {
               Surfaces carry the light and the silence of a room. As the parent company and authorized partner for <strong>DuPont™ Corian®</strong>, Ace Spaces develops solid surfaces and mineral substrates that reward touch and outlast time.
             </p>
             <p style={{ maxWidth: '100%', marginBottom: '26px' }}>
-              Operating our central stockyard and precision workshop in Bangalore, we are the direct material source for architects and designers across India — powering Coro Crafted Collective with full-dimension slabs, bespoke thermoforming, and precision fabrication.
+              Operating our central stockyard and precision workshop in Bangalore, we are the direct material source for architects and designers across India - powering Coro Crafted Collective with full-dimension slabs, bespoke thermoforming, and precision fabrication.
             </p>
 
             {/* Architectural Credential Strip */}
@@ -198,7 +198,7 @@ export default function HomePage() {
             <i>way you imagine.</i>
           </h2>
           <p>
-            We shape solid surfaces into seamless, sculptural and deeply considered architectural elements — with craft at every scale.
+            We shape solid surfaces into seamless, sculptural and deeply considered architectural elements - with craft at every scale.
           </p>
           <div className="process">
             <div>

@@ -2,7 +2,7 @@ import { materials as defaultMaterials, Material } from '@/data/materials';
 import { getSiteContent } from '@/data/contentStore';
 
 /**
- * Ace Spaces & Coro Crafted Collective — Private Studio Material Intelligence
+ * Ace Spaces & Coro Crafted Collective - Private Studio Material Intelligence
  * 
  * Strict Closed-Domain Knowledge Base & Private Grounded Response Engine.
  * Grounded exclusively in Ace Spaces website data, DuPont™ Corian® specifications,
@@ -43,26 +43,26 @@ export const STUDIO_KNOWLEDGE_BASE: KnowledgeSection[] = [
 
 ### 2. Commercial Pricing Breakdown by Collection (12 mm Standard)
 • **Architectural Solids** (Stonique, Cirrus White, River Pearl, Whipped Cream, Linen, Natural Gray):
-  - Raw Slab Material: **₹650 – ₹850 / sq. ft.** (~₹19,500 – ₹25,500 per full sheet)
-  - Installed & Finished: **₹1,100 – ₹1,450 / sq. ft.**
+  - Raw Slab Material: **₹650 - ₹850 / sq. ft.** (~₹19,500 - ₹25,500 per full sheet)
+  - Installed & Finished: **₹1,100 - ₹1,450 / sq. ft.**
 • **Artista Series & Nuwood Heritage** (Artista Mist, Artista Sage, Artista Drift, Artista Mocha, Bleached Nuwood, Provence Nuwood):
-  - Raw Slab Material: **₹750 – ₹950 / sq. ft.** (~₹22,500 – ₹28,500 per full sheet)
-  - Installed & Finished: **₹1,250 – ₹1,600 / sq. ft.**
+  - Raw Slab Material: **₹750 - ₹950 / sq. ft.** (~₹22,500 - ₹28,500 per full sheet)
+  - Installed & Finished: **₹1,250 - ₹1,600 / sq. ft.**
 • **Architectural Veined** (Calacatta Greige, Travertine Roma, Travertine Firenze, Vasto Greige, Carrara Crema, Carrara Lino, Venaro White):
-  - Raw Slab Material: **₹950 – ₹1,400 / sq. ft.** (~₹28,500 – ₹42,000 per full sheet)
-  - Installed & Finished: **₹1,600 – ₹2,200 / sq. ft.** (includes precision vein alignment)
+  - Raw Slab Material: **₹950 - ₹1,400 / sq. ft.** (~₹28,500 - ₹42,000 per full sheet)
+  - Installed & Finished: **₹1,600 - ₹2,200 / sq. ft.** (includes precision vein alignment)
 • **Aggregates, Terrazzo & Grinds** (Stonecrest Smoke, Excavage, Archeologic, Pebble Lane, Terrazzo Laguna, Terrazzo Peppered, Basalt Terrazzo):
-  - Raw Slab Material: **₹1,100 – ₹1,650 / sq. ft.** (~₹33,000 – ₹49,500 per full sheet)
-  - Installed & Finished: **₹1,800 – ₹2,500 / sq. ft.**
+  - Raw Slab Material: **₹1,100 - ₹1,650 / sq. ft.** (~₹33,000 - ₹49,500 per full sheet)
+  - Installed & Finished: **₹1,800 - ₹2,500 / sq. ft.**
 • **Onyx & Translucent Series** (Golden Onyx, Jade Onyx, White Onyx, Gray Onyx - Backlit Series):
-  - Raw Slab Material: **₹1,250 – ₹1,850 / sq. ft.** (~₹37,500 – ₹55,500 per full sheet)
-  - Installed & Finished: **₹2,100 – ₹2,850 / sq. ft.** (includes rear optical cavity framing)
+  - Raw Slab Material: **₹1,250 - ₹1,850 / sq. ft.** (~₹37,500 - ₹55,500 per full sheet)
+  - Installed & Finished: **₹2,100 - ₹2,850 / sq. ft.** (includes rear optical cavity framing)
 
 
 ### 3. Fabrication & Bespoke Feature Add-ons
-• **Mitred Waterfall Edge Apron (40mm–100mm drop)**: ₹350 – ₹650 / linear ft.
-• **Integrated Seamless Corian Sink / Vanity Basin**: ₹12,000 – ₹22,000 / bowl.
-• **Thermoformed Curved Radii (down to 25mm R)**: ₹1,800 – ₹3,200 / sq. ft. of curved surface.
+• **Mitred Waterfall Edge Apron (40mm-100mm drop)**: ₹350 - ₹650 / linear ft.
+• **Integrated Seamless Corian Sink / Vanity Basin**: ₹12,000 - ₹22,000 / bowl.
+• **Thermoformed Curved Radii (down to 25mm R)**: ₹1,800 - ₹3,200 / sq. ft. of curved surface.
 
 You can inspect technical data on our [Technical Specifications](/materials#specs) page, explore swatches in our [Material Library](/materials#library), or submit drawings via the [WhatsApp Studio Desk](https://wa.me/919741044776) for an itemized estimate.`,
     specs: {
@@ -132,7 +132,7 @@ Key Synergy:
   },
   {
     id: 'dupont-intro',
-    topic: 'What is DuPont™ — The Company & Corian®',
+    topic: 'What is DuPont™ - The Company & Corian®',
     keywords: [
       'what is dupont', 'dupont company', 'who is dupont', 'about dupont', 'dupont history',
       'dupont brand', 'dupont science', 'tell me about dupont', 'dupont corporation',
@@ -140,25 +140,25 @@ Key Synergy:
       'dupont', 'du pont'
     ],
     summary: 'DuPont™ is an American multinational science and technology company founded in 1802. Their Corian® brand is the world\'s leading solid surface material, exclusively distributed in India by Ace Spaces.',
-    details: `**DuPont™ — The Company**
+    details: `**DuPont™ - The Company**
 
 DuPont (officially E.I. du Pont de Nemours and Company) is an American multinational science and specialty materials corporation founded in **1802** in Wilmington, Delaware, USA. With over two centuries of materials innovation, DuPont is one of the world's largest and most respected science-driven companies, operating across sectors including:
 
-• **Advanced Materials** — high-performance polymers, films, and specialty surfaces
-• **Electronics & Interconnect** — semiconductor materials and circuit board solutions
-• **Safety & Construction** — Kevlar®, Tyvek®, and architectural surface materials
-• **Water & Industrial** — filtration and separation technologies
+• **Advanced Materials** - high-performance polymers, films, and specialty surfaces
+• **Electronics & Interconnect** - semiconductor materials and circuit board solutions
+• **Safety & Construction** - Kevlar®, Tyvek®, and architectural surface materials
+• **Water & Industrial** - filtration and separation technologies
 
 ---
 
-**DuPont™ Corian® — The Solid Surface Material**
+**DuPont™ Corian® - The Solid Surface Material**
 
 In **1967**, DuPont scientists invented **Corian®**, the world's first solid surface material. It is engineered from:
-- ~66% **Aluminium Trihydrate (ATH)** — a natural purified mineral derived from bauxite ore
+- ~66% **Aluminium Trihydrate (ATH)** - a natural purified mineral derived from bauxite ore
 - ~33% **High-purity acrylic polymer (PMMA)**
 - Stable mineral pigments for through-body color consistency
 
-Corian® is 100% crystalline-silica free, non-porous, renewable, and thermoformable — making it the world benchmark for hygienic, seamless architectural surfaces.
+Corian® is 100% crystalline-silica free, non-porous, renewable, and thermoformable - making it the world benchmark for hygienic, seamless architectural surfaces.
 
 ---
 
@@ -168,9 +168,9 @@ Ace Spaces is the **authorized DuPont™ Corian® distributor and master fabrica
     specs: {
       'Founded': '1802, Wilmington, Delaware, USA',
       'Headquarters': 'Wilmington, Delaware, USA (Global)',
-      'Key Innovation': 'Corian® Solid Surface — invented 1967',
+      'Key Innovation': 'Corian® Solid Surface - invented 1967',
       'Corian® Composition': '~66% ATH mineral + ~33% PMMA acrylic polymer',
-      'India Distributor': 'Ace Spaces — Authorized DuPont™ Corian® Partner',
+      'India Distributor': 'Ace Spaces - Authorized DuPont™ Corian® Partner',
       'Warranty': '10-Year Manufacturer Installed Product Warranty'
     },
     suggestedActions: [
@@ -220,7 +220,7 @@ Key Health & Architectural Benefits:
       'oven', 'vacuum', 'radius', 'joints', 'joining', 'seams', 'seamless', 'honing', 'finish',
       'edge', 'profiles', 'shark nose', 'chamfer', 'apron'
     ],
-    summary: 'Sub-0.2mm 5-axis CNC routing, 160°C vacuum membrane thermoforming down to 25mm radii, and imperceptible thermo-welded joints.',
+    summary: 'Sub-0.2mm 5-axis CNC routing, 160 deg C vacuum membrane thermoforming down to 25mm radii, and imperceptible thermo-welded joints.',
     details: `Our Bengaluru workshop pairs digital robotics with master artisanal joinery across 4 systematic stages:
 
 01 / 5-Axis CNC & Precision Cutting:
@@ -232,7 +232,7 @@ Key Health & Architectural Benefits:
 - Molecular chemical weld creates a continuous homogenous surface with zero dirt traps and invisible seams.
 
 03 / Vacuum Membrane Thermoforming:
-- Sheets heated uniformly to 160°C in industrial platen ovens.
+- Sheets heated uniformly to 160 deg C in industrial platen ovens.
 - Vacuum pressed over CNC-machined timber tooling to achieve 2D and 3D fluid radii down to 25mm without surface blanching.
 
 04 / Progressive Hand Honing:
@@ -247,7 +247,7 @@ Edge Profiles Available:
     specs: {
       'CNC Tolerance': '< 0.2 mm repeatability',
       'Min Thermoform Radius': '25 mm inside radius',
-      'Forming Temperature': '160°C industrial platen oven',
+      'Forming Temperature': '160 deg C industrial platen oven',
       'Finishing Sequence': '120 to 600-grit hand-honed micro-abrasive',
       'Joint Performance': 'Chemically welded, non-porous, inconspicuous'
     },
@@ -290,7 +290,7 @@ Edge Profiles Available:
 - Terrazzo Laguna (COR-TL14), Terrazzo Peppered (COR-TP15), Basalt Terrazzo (COR-BT16).
 
 5. Onyx & Translucent Series (Backlit & Illuminating):
-- Golden Onyx (COR-GO23), Jade Onyx (COR-JO24), White Onyx (COR-WO25), Gray Onyx (COR-GO26): Up to 38% light transmission. Glows warmly under concealed 2700K–3500K LED matrices.
+- Golden Onyx (COR-GO23), Jade Onyx (COR-JO24), White Onyx (COR-WO25), Gray Onyx (COR-GO26): Up to 38% light transmission. Glows warmly under concealed 2700K-3500K LED matrices.
 
 Standard Slab Specs:
 - Standard Dimensions: 3660 mm length × 760 mm width
@@ -325,7 +325,7 @@ Standard Slab Specs:
 
 2. Luxury Bathrooms & Spas:
 - Monolithic vanity tops with integrated Coro slot basins or thermoformed ramps.
-- Full-height shower wet walls with seamless corners — no grout to discolour or harbour mildew.
+- Full-height shower wet walls with seamless corners - no grout to discolour or harbour mildew.
 - Warm to the touch compared to cold natural granite or marble.
 
 3. Commercial, Retail & Hospitality:
@@ -391,12 +391,12 @@ Sample Box Contents:
     summary: 'Benchmark monolithic installations in Bengaluru and Mumbai designed with Studio Vardhan, Atelier Kora, and Coro Crafted Collective.',
     details: `Ace Spaces has fabricated key benchmark projects across residential, hospitality, and commercial categories:
 
-1. Private Residence — "A Quieter Kind of Luxury" (Bengaluru):
+1. Private Residence - "A Quieter Kind of Luxury" (Bengaluru):
 - Architect: Studio Vardhan Architects (2024, 420 sq.m).
 - Material: Alto / Ivory Vein (12mm).
-- Application: 4.2-meter monolithic kitchen island with 45° mitred waterfall edges and continuous vertical backsplash grain.
+- Application: 4.2-meter monolithic kitchen island with 45 deg  mitred waterfall edges and continuous vertical backsplash grain.
 
-2. Quiet Arrival — Hospitality Reception (Mumbai):
+2. Quiet Arrival - Hospitality Reception (Mumbai):
 - Architect: Atelier Kora (2024, 650 sq.m).
 - Material: Obsidian / Still.
 - Application: Multi-radius thermoformed reception desk, backlit feature screen, and washroom vanities with concealed steel substructure.
@@ -455,18 +455,18 @@ Renewability & Scratch Repair:
       'contact', 'whatsapp', 'phone', 'call', 'consultation', 'book', 'visit',
       'showroom', 'factory', 'workshop', 'hours', 'timing', 'email', 'specifier'
     ],
-    summary: 'Studio workshop in Bangalore, active Mon–Sat 09:30–18:30 IST. Direct WhatsApp available in the top navbar.',
+    summary: 'Studio workshop in Bangalore, active Mon-Sat 09:30-18:30 IST. Direct WhatsApp available in the top navbar.',
     details: `Connect with our architectural advisory desk:
 
 - Direct WhatsApp Specifier Line: Accessible directly from the top navigation bar or via +91 97410 44776.
 - Central Workshop & Stockyard: Bangalore, Karnataka, India.
-- Studio Desk Availability: Monday – Saturday, 09:30 – 18:30 IST (UTC+5:30).
+- Studio Desk Availability: Monday - Saturday, 09:30 - 18:30 IST (UTC+5:30).
 - Consultation Booking: Schedule physical or virtual design consultations via our Contact page (/contact).
 - CAD & Floor Plan Submission: Share AutoCAD .dwg, Rhino .3dm, or PDF drawings directly via WhatsApp or the contact form for rapid material take-offs and quotation.`,
     specs: {
       'WhatsApp Studio Line': '+91 97410 44776',
       'Studio Location': 'Bangalore (Bengaluru), Karnataka, India',
-      'Operating Hours': 'Mon–Sat, 09:30–18:30 IST (UTC+5:30)',
+      'Operating Hours': 'Mon-Sat, 09:30-18:30 IST (UTC+5:30)',
       'Drawings Accepted': 'CAD .dwg, .dxf, .3dm, .skp, and dimensional PDFs'
     },
     suggestedActions: [
@@ -488,7 +488,7 @@ Renewability & Scratch Repair:
 📍 **Coro Crafted Collective & Ace Spaces Studio Headquarters:**
 Bengaluru, Karnataka, India.
 *(This is our single, unified studio headquarters for both Ace Spaces and Coro Crafted Collective)*
-*Hours: Monday – Saturday, 09:30 – 18:30 IST (Sundays by appointment).*
+*Hours: Monday - Saturday, 09:30 - 18:30 IST (Sundays by appointment).*
 
 🗺️ **Direct Google Maps Navigation:**
 [Open Studio Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
@@ -504,7 +504,7 @@ You can book an architectural walkthrough on our [Contact Page](/contact), explo
       'Studio & Headquarters': 'Coro Crafted Collective & Ace Spaces, Bengaluru',
       'Scope': 'Single unified studio & headquarters for both Ace Spaces and Coro Crafted Collective',
       'Google Maps Link': 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
-      'Operating Hours': 'Monday – Saturday, 09:30 – 18:30 IST'
+      'Operating Hours': 'Monday - Saturday, 09:30 - 18:30 IST'
     },
     suggestedActions: [
       { label: 'Open Studio on Google Maps ↗', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
@@ -520,21 +520,21 @@ You can book an architectural walkthrough on our [Contact Page](/contact), explo
       'vithal savant', 'prashant', 'prashant naik', 'prashant vinayak naik', 'director',
       'team', 'management', 'story', 'history', 'partners', 'partner'
     ],
-    summary: 'Founded in Bengaluru by two partners — Vithal Savant and Prashant Vinayak Naik — with a shared vision for zero-silica monolithic mineral architecture.',
+    summary: 'Founded in Bengaluru by two partners - Vithal Savant and Prashant Vinayak Naik - with a shared vision for zero-silica monolithic mineral architecture.',
     details: `Ace Spaces and Coro Crafted Collective were co-founded in Bengaluru by two partners with a unified vision: to disrupt brittle, silica-hazardous stone processing and establish a master foundry for monolithic, non-porous mineral architecture.
 
 **Founding Partners & Leadership:**
-• **Vithal Savant** — Co-Founder & Director:
+• **Vithal Savant** - Co-Founder & Director:
   - Spearheads Ace Spaces' strategic partnerships, distribution alliances, and business development across India.
   - Architected the authorized distribution alliance with DuPont™ Corian® across India.
   - Oversees the material supply chain, stockyard operations, and pan-India specifier dispatch network.
 
-• **Prashant Vinayak Naik** — Co-Founder & Director:
+• **Prashant Vinayak Naik** - Co-Founder & Director:
   - Leads Ace Spaces' digital manufacturing infrastructure, 5-axis CNC routing systems (<0.2mm tolerance), and industrial vacuum thermoforming technology.
   - Directs raw material research into zero-silica mineral matrices and proprietary resin formulations.
   - Oversees fabrication quality, bespoke installation projects, and the Coro Crafted Collective spatial design wing.
 
-Together, they established **Ace Spaces** as the foundational raw material authority and **Coro Crafted Collective** as the spatial design wing — manifesting what is possible when advanced mineral surfaces are shaped into bespoke private residences, hotel atriums, and collectible furniture.`,
+Together, they established **Ace Spaces** as the foundational raw material authority and **Coro Crafted Collective** as the spatial design wing - manifesting what is possible when advanced mineral surfaces are shaped into bespoke private residences, hotel atriums, and collectible furniture.`,
     specs: {
       'Co-Founder & Director': 'Vithal Savant',
       'Co-Founder & Director (2)': 'Prashant Vinayak Naik',
@@ -565,7 +565,7 @@ Together, they established **Ace Spaces** as the foundational raw material autho
 
 2. **Corian® Solid Surface vs Engineered Quartz:**
    • *The Quartz Hazard*: Contains up to 90% crystalline silica. Cutting it releases deadly airborne silica dust (silicosis hazard). Quartz CANNOT be thermoformed into organic curves and shows dark, noticeable joint lines.
-   • *The Corian® Advantage*: 100% Zero-Silica safe. Can be thermoformed into compound curves down to 25mm radii at 160°C and joined with invisible color-matched molecular welds.
+   • *The Corian® Advantage*: 100% Zero-Silica safe. Can be thermoformed into compound curves down to 25mm radii at 160 deg C and joined with invisible color-matched molecular welds.
 
 **Proactive Material Suggestions by Use Case:**
 • *Heavy Kitchen Islands*: Instead of cold, stain-prone marble, specify **Alto / Ivory Vein (AC-0201)** or **Noma / Linen (AC-0102)** in 12mm with a 50mm mitred apron and integrated coved sink.
@@ -708,7 +708,7 @@ export function detectNonStockMaterial(query: string, currentMaterials?: Materia
     return {
       detectedTerm: matchedTerm.toUpperCase(),
       category: 'natural-marble',
-      reason: `Natural marble is porous (0.2%–0.6% water absorption). Acidic liquids (citrus, vinegar, wine) cause irreversible chemical etching, while Indian spices (turmeric, cooking oils) penetrate deeply and permanently stain. Furthermore, natural marble requires visible, dirt-trapping grout joints and cannot be thermoformed into monolithic curves.`,
+      reason: `Natural marble is porous (0.2%-0.6% water absorption). Acidic liquids (citrus, vinegar, wine) cause irreversible chemical etching, while Indian spices (turmeric, cooking oils) penetrate deeply and permanently stain. Furthermore, natural marble requires visible, dirt-trapping grout joints and cannot be thermoformed into monolithic curves.`,
       suggestedAlternative: getAlternative('calacatta-greige', 0),
     };
   }
@@ -779,13 +779,13 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
 
   if (col.includes('solid')) {
     return {
-      rawSqFt: '₹650 – ₹850 / sq. ft.',
-      rawSheet: '₹19,500 – ₹25,500 per full 12mm sheet (~30 sq. ft)',
-      installedSqFt: '₹1,100 – ₹1,450 / sq. ft. (including CNC routing, seamless joins & 5-stage hand honing)',
-      gauge19mm: '+35% surcharge (~₹880 – ₹1,150 / sq. ft. raw)',
+      rawSqFt: '₹650 - ₹850 / sq. ft.',
+      rawSheet: '₹19,500 - ₹25,500 per full 12mm sheet (~30 sq. ft)',
+      installedSqFt: '₹1,100 - ₹1,450 / sq. ft. (including CNC routing, seamless joins & 5-stage hand honing)',
+      gauge19mm: '+35% surcharge (~₹880 - ₹1,150 / sq. ft. raw)',
       fabricationNotes: [
-        'Mitred waterfall edge apron (40–100mm drop): ₹350 – ₹550 / lin. ft.',
-        'Seamless integrated Corian kitchen/vanity sink: ₹12,000 – ₹18,000 / bowl',
+        'Mitred waterfall edge apron (40-100mm drop): ₹350 - ₹550 / lin. ft.',
+        'Seamless integrated Corian kitchen/vanity sink: ₹12,000 - ₹18,000 / bowl',
         'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
       ],
     };
@@ -793,13 +793,13 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
 
   if (col.includes('veined') || col.includes('prima')) {
     return {
-      rawSqFt: '₹950 – ₹1,400 / sq. ft.',
-      rawSheet: '₹28,500 – ₹42,000 per full 12mm sheet (~30 sq. ft)',
-      installedSqFt: '₹1,600 – ₹2,200 / sq. ft. (includes continuous vein-matching & molecular weld joints)',
-      gauge19mm: '+35% surcharge (~₹1,280 – ₹1,890 / sq. ft. raw)',
+      rawSqFt: '₹950 - ₹1,400 / sq. ft.',
+      rawSheet: '₹28,500 - ₹42,000 per full 12mm sheet (~30 sq. ft)',
+      installedSqFt: '₹1,600 - ₹2,200 / sq. ft. (includes continuous vein-matching & molecular weld joints)',
+      gauge19mm: '+35% surcharge (~₹1,280 - ₹1,890 / sq. ft. raw)',
       fabricationNotes: [
-        'Mitred waterfall apron with continuous vein drop: ₹450 – ₹650 / lin. ft.',
-        'Seamless integrated vanity slot-basin: ₹14,000 – ₹22,000 / bowl',
+        'Mitred waterfall apron with continuous vein drop: ₹450 - ₹650 / lin. ft.',
+        'Seamless integrated vanity slot-basin: ₹14,000 - ₹22,000 / bowl',
         'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
       ],
     };
@@ -807,13 +807,13 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
 
   if (col.includes('aggregate') || col.includes('terrazzo') || col.includes('grinds') || col.includes('concrete')) {
     return {
-      rawSqFt: '₹1,100 – ₹1,650 / sq. ft.',
-      rawSheet: '₹33,000 – ₹49,500 per full 12mm sheet (~30 sq. ft)',
-      installedSqFt: '₹1,800 – ₹2,500 / sq. ft. (diamond CNC routing & micro-honed finish)',
-      gauge19mm: '+40% surcharge (~₹1,540 – ₹2,310 / sq. ft. raw)',
+      rawSqFt: '₹1,100 - ₹1,650 / sq. ft.',
+      rawSheet: '₹33,000 - ₹49,500 per full 12mm sheet (~30 sq. ft)',
+      installedSqFt: '₹1,800 - ₹2,500 / sq. ft. (diamond CNC routing & micro-honed finish)',
+      gauge19mm: '+40% surcharge (~₹1,540 - ₹2,310 / sq. ft. raw)',
       fabricationNotes: [
-        'Heavy-duty commercial plinth edge: ₹400 – ₹600 / lin. ft.',
-        'Seamless integrated dark aggregate basin: ₹16,000 – ₹24,000 / bowl',
+        'Heavy-duty commercial plinth edge: ₹400 - ₹600 / lin. ft.',
+        'Seamless integrated dark aggregate basin: ₹16,000 - ₹24,000 / bowl',
         'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
       ],
     };
@@ -821,13 +821,13 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
 
   if (col.includes('artista') || col.includes('nuwood') || col.includes('botanical')) {
     return {
-      rawSqFt: '₹750 – ₹950 / sq. ft.',
-      rawSheet: '₹22,500 – ₹28,500 per full 12mm sheet (~30 sq. ft)',
-      installedSqFt: '₹1,250 – ₹1,600 / sq. ft. (architectural velvet-matte finish)',
-      gauge19mm: '+35% surcharge (~₹1,010 – ₹1,280 / sq. ft. raw)',
+      rawSqFt: '₹750 - ₹950 / sq. ft.',
+      rawSheet: '₹22,500 - ₹28,500 per full 12mm sheet (~30 sq. ft)',
+      installedSqFt: '₹1,250 - ₹1,600 / sq. ft. (architectural velvet-matte finish)',
+      gauge19mm: '+35% surcharge (~₹1,010 - ₹1,280 / sq. ft. raw)',
       fabricationNotes: [
-        'Mitred edge detail (40–80mm): ₹350 – ₹500 / lin. ft.',
-        'Custom coved sanitary splashback: ₹300 – ₹450 / lin. ft.',
+        'Mitred edge detail (40-80mm): ₹350 - ₹500 / lin. ft.',
+        'Custom coved sanitary splashback: ₹300 - ₹450 / lin. ft.',
         'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
       ],
     };
@@ -835,13 +835,13 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
 
   // Onyx & Translucent / Crystalline
   return {
-    rawSqFt: '₹1,250 – ₹1,850 / sq. ft. (12mm) | ₹900 – ₹1,350 / sq. ft. (6mm Backlit)',
-    rawSheet: '₹37,500 – ₹55,500 per full 12mm sheet (~30 sq. ft) | ₹27,000 – ₹40,500 (6mm sheet)',
-    installedSqFt: '₹2,100 – ₹2,850 / sq. ft. (including rear light-diffuser cavity framing)',
+    rawSqFt: '₹1,250 - ₹1,850 / sq. ft. (12mm) | ₹900 - ₹1,350 / sq. ft. (6mm Backlit)',
+    rawSheet: '₹37,500 - ₹55,500 per full 12mm sheet (~30 sq. ft) | ₹27,000 - ₹40,500 (6mm sheet)',
+    installedSqFt: '₹2,100 - ₹2,850 / sq. ft. (including rear light-diffuser cavity framing)',
     gauge19mm: 'Special order on request',
     fabricationNotes: [
       'Translucent invisible adhesive weld (zero shadow seams)',
-      'Recommended LED cavity depth: 75–120mm with 2700K–3500K LED matrix',
+      'Recommended LED cavity depth: 75-120mm with 2700K-3500K LED matrix',
       'Standard 3660 × 760 mm slab yield: ~30 sq. ft. (2.78 m²)',
     ],
   };
@@ -853,7 +853,7 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
  * and explicitly declares that it is present in the stock of Ace Spaces.
  */
 export function formatFullMaterialExplanation(mat: Material, pricing: MaterialPricingInfo): string {
-  let doc = `### ${mat.name} (${mat.code}) — Architectural Specification\n\n`;
+  let doc = `### ${mat.name} (${mat.code}) - Architectural Specification\n\n`;
   doc += `**Stock Status**: ✅ **Present in Stock at Ace Spaces**\n`;
   doc += `*Available at Ace Spaces Bengaluru stockyard for immediate full-sheet supply, 5-axis CNC digital routing, vacuum thermoforming, and physical sample tray dispatch.*\n\n`;
   doc += `${mat.description}\n\n`;
@@ -862,7 +862,7 @@ export function formatFullMaterialExplanation(mat: Material, pricing: MaterialPr
   doc += `• **Official Material Name**: ${mat.name}\n`;
   doc += `• **Specification Code**: \`${mat.code}\`\n`;
   doc += `• **Collection**: ${mat.collection}\n`;
-  doc += `• **Color Classification**: ${mat.colorFamily.toUpperCase()} — *${mat.colour}*\n`;
+  doc += `• **Color Classification**: ${mat.colorFamily.toUpperCase()} - *${mat.colour}*\n`;
   doc += `• **Hex Color Reference**: \`${mat.hexColor}\`\n`;
   doc += `• **Pattern & Matrix**: ${mat.pattern} (${mat.type})\n`;
   doc += `• **Surface Finish**: ${mat.finish}\n`;
@@ -898,7 +898,7 @@ export function formatFullMaterialExplanation(mat: Material, pricing: MaterialPr
   doc += `#### 5. Workshop Fabrication Craft & Detailing Add-ons\n`;
   doc += `• **5-Axis CNC Milling**: Tolerances under 0.2mm for flush undermount sinks, drainage runnels, and wireless charging recesses.\n`;
   doc += `• **Inconspicuous Molecular Welds**: Two-part color-matched acrylic adhesive creates continuous, jointless planes with zero dirt traps.\n`;
-  doc += `• **Vacuum Thermoforming**: Can be heated to 160°C and vacuum-formed over custom timber bucks down to a tight 25mm radius without blanching.\n`;
+  doc += `• **Vacuum Thermoforming**: Can be heated to 160 deg C and vacuum-formed over custom timber bucks down to a tight 25mm radius without blanching.\n`;
   for (const note of pricing.fabricationNotes) {
     doc += `• ${note}\n`;
   }
@@ -967,7 +967,7 @@ export function formatCatalogStockInventory(liveMats?: Material[]): string {
   for (const [colName, items] of Object.entries(collections)) {
     doc += `#### ${colName} (${items.length} In-Stock)\n`;
     for (const item of items) {
-      doc += `• **[${item.name} (${item.code})](/materials#library)** — *${item.finish} | ${item.colour}*\n`;
+      doc += `• **[${item.name} (${item.code})](/materials#library)** - *${item.finish} | ${item.colour}*\n`;
     }
     doc += `\n`;
   }
@@ -1004,7 +1004,7 @@ How can I assist your practice today? You can ask me about:
 2. **Specific Material Specs**: Sizing, thicknesses, zero-silica composition, and pricing for any in-stock specimen (e.g. *Calacatta Greige*, *Artista Sage*, *Stonique*, or *Venaro White*).
 3. **Stone & Quartz Comparisons**: Why natural marble and quartz are NOT stocked at Ace Spaces, and our certified in-stock solid surface alternatives.
 4. **The Coro Connection**: How Ace Spaces powers Coro Crafted Collective's spatial installations ([Learn More](/about#coro)).
-5. **Workshop Craft**: 5-axis CNC routing (<0.2mm), 160°C thermoforming down to 25mm radii, and seamless joins ([Fabrication Hub](/fabrication)).
+5. **Workshop Craft**: 5-axis CNC routing (<0.2mm), 160 deg C thermoforming down to 25mm radii, and seamless joins ([Fabrication Hub](/fabrication)).
 6. **Studio & Google Maps**: Visiting our unified studio and headquarters in Bengaluru ([Open on Maps](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)).`,
       matchedTopic: 'Welcome & Live Capabilities',
       suggestedActions: [
@@ -1084,7 +1084,7 @@ How can I assist your practice today? You can ask me about:
 
     return {
       answer: responseText,
-      matchedTopic: `${matchedMaterial.name} (${matchedMaterial.code}) — In Stock`,
+      matchedTopic: `${matchedMaterial.name} (${matchedMaterial.code}) - In Stock`,
       suggestedActions: [
         { label: `View ${matchedMaterial.name} in Library`, href: `/materials#library` },
         { label: 'Order Sample Specimen', href: '/materials' },
@@ -1106,33 +1106,33 @@ How can I assist your practice today? You can ask me about:
 
     if (mentionsRed || (mentionsBlue && mentionsRed)) {
       advisory += `#### 1. Red, Warm Earth & Terracotta Surfaces\n`;
-      advisory += `• **[Sandstorm (COR-SS47)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: A dynamic swirl particulate evoking desert earth and warm clay tones. Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
-      advisory += `• **[Lava Rock (COR-LR29)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Deep charcoal and warm terracotta-hued volcanic mineral matrix with tactile aggregate depth.\n\n`;
+      advisory += `• **[Sandstorm (COR-SS47)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: A dynamic swirl particulate evoking desert earth and warm clay tones. Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
+      advisory += `• **[Lava Rock (COR-LR29)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Deep charcoal and warm terracotta-hued volcanic mineral matrix with tactile aggregate depth.\n\n`;
     }
 
     if (mentionsBlue || (mentionsBlue && mentionsRed)) {
       advisory += `#### 2. Blue & Cool Oceanic Surfaces\n`;
-      advisory += `• **[Vasto Laguna (COR-VL13)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Deep oceanic minerals with cool teal and blue particulate accents, 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins.\n`;
-      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Translucent mineral surface that diffuses light with up to 38% transmission. When illuminated from behind with cool-spectrum (4500K–6500K) LED matrices, it glows with radiant crystalline depth.\n\n`;
+      advisory += `• **[Vasto Laguna (COR-VL13)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Deep oceanic minerals with cool teal and blue particulate accents, 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins.\n`;
+      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Translucent mineral surface that diffuses light with up to 38% transmission. When illuminated from behind with cool-spectrum (4500K-6500K) LED matrices, it glows with radiant crystalline depth.\n\n`;
     }
 
     if (mentionsGreen && !mentionsBlue && !mentionsRed) {
       advisory += `#### Botanic & Earthy Green Surfaces\n`;
-      advisory += `• **[Artista Sage (COR-AS05)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n`;
-      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Translucent green-tinted mineral matrix ideal for backlit botanical feature walls.\n\n`;
+      advisory += `• **[Artista Sage (COR-AS05)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n`;
+      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Translucent green-tinted mineral matrix ideal for backlit botanical feature walls.\n\n`;
     }
 
     if (!mentionsBlue && !mentionsRed && !mentionsGreen) {
       advisory += `#### Recommended Architectural Collections\n`;
-      advisory += `• **[Calacatta Greige (COR-CG01)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Sculptural warm greige marble movement with continuous bookmatching.\n`;
-      advisory += `• **[Stonique (COR-SQ03)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Pure monolithic architectural solid surface with zero visible seams.\n`;
-      advisory += `• **[Bleached Nuwood (COR-BN06)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Warm mineral wood-grain surface with non-porous resilience.\n\n`;
+      advisory += `• **[Calacatta Greige (COR-CG01)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Sculptural warm greige marble movement with continuous bookmatching.\n`;
+      advisory += `• **[Stonique (COR-SQ03)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Pure monolithic architectural solid surface with zero visible seams.\n`;
+      advisory += `• **[Bleached Nuwood (COR-BN06)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Warm mineral wood-grain surface with non-porous resilience.\n\n`;
     }
 
     advisory += `#### Balanced Architectural Pairings\n`;
     advisory += `To ensure bold statement surfaces harmonize with interior volumes, we recommend pairing them with neutral grounds:\n`;
-    advisory += `• **[Linen (COR-LN46)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
-    advisory += `• **[Venaro White (COR-VW64)](/materials#library)** — ✅ **Present in Stock at Ace Spaces**: Luminous crisp white with gossamer linear veining.\n\n`;
+    advisory += `• **[Linen (COR-LN46)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
+    advisory += `• **[Venaro White (COR-VW64)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Luminous crisp white with gossamer linear veining.\n\n`;
 
     advisory += `**Stock Confirmation**: All ${liveMaterials.length} materials in our catalog are **currently present in stock at Ace Spaces** Bengaluru stockyard, featuring **100% zero crystalline silica** (silicosis-safe), seamless inconspicuous joins, and vacuum thermoforming capabilities down to 25mm radii.\n\n`;
     advisory += `Would you like to curate physical 100 × 100 mm specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919741044776)?`;
@@ -1227,7 +1227,7 @@ As your private studio intelligence, I specialize in:
 • **DuPont™ Corian® Specifications**: Non-porous zero-silica mineral surfaces, ATH + acrylic composition, and certified warranties.
 • **Full Sheet Sizing & Pricing**: Standard 3660 mm × 760 mm slabs across solids, veined, terrazzo, and backlit translucent series ([Technical Specifications](/materials#specs)).
 • **Coro Crafted Collective Synergy**: How Ace Spaces acts as the parent company and raw material source for Coro's spatial designs ([The Coro Synergy](/about#coro)).
-• **Fabrication Capabilities**: Sub-0.2mm 5-axis CNC machining, 160°C vacuum thermoforming, and seamless joining ([Fabrication Hub](/fabrication)).
+• **Fabrication Capabilities**: Sub-0.2mm 5-axis CNC machining, 160 deg C vacuum thermoforming, and seamless joining ([Fabrication Hub](/fabrication)).
 • **Physical Specimens**: Curating sample trays for delivery across India ([Order Samples](/materials)).
 
 Could you please specify your architectural requirement or material of interest, or connect directly with our Bengaluru studio engineers via the [WhatsApp Studio Desk](https://wa.me/919741044776)?`,

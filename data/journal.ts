@@ -26,7 +26,7 @@ export const journalArticles: JournalArticle[] = [
     image: '/assets/material-macro.png',
     quote: 'An edge is not where a material simply stops; it is where the relationship between light, shadow, and touch is declared.',
     content: [
-      'In architectural joinery, surfaces are often judged by their faces—their color, vein structure, and specular reflection. But in truth, it is the edge that reveals the true integrity of the craft.',
+      'In architectural joinery, surfaces are often judged by their faces-their color, vein structure, and specular reflection. But in truth, it is the edge that reveals the true integrity of the craft.',
       'When working with monolithic solid surfaces, the edge transitions from being an afterthought to a primary design tool. Because solid surfaces are through-body materials with uniform mineral density, they can be carved, chamfered, shark-nosed, or thermo-bent without exposing an unsightly substrate.',
       'A sharp 45-degree mitre creates an illusion of monumental stone density, while a subtle 2mm micro-radius softens the light transition, inviting the hand to rest upon it. Understanding how shadow falls across these micro-geometries allows designers to sculpt space with extraordinary nuance.'
     ],
@@ -46,7 +46,7 @@ export const journalArticles: JournalArticle[] = [
     summary: 'When two planes meet without interruption, material ceases to feel assembled and begins to feel carved from continuous geological bedrock.',
     imageClass: 'journal-two',
     image: '/assets/hero-ace.png',
-    quote: 'Eliminating the seam is not merely a technical triumph—it is a visual liberation from modular limitations.',
+    quote: 'Eliminating the seam is not merely a technical triumph-it is a visual liberation from modular limitations.',
     content: [
       'Traditional natural stone and composite slabs are inherently bound by quarry sizes and transport limitations. Grout lines and silicone expansion joints interrupt the eye, compartmentalizing architecture into discrete tiles and slabs.',
       'Our seamless joining technique utilizes a chemically active, color-matched acrylic adhesive matrix that chemically welds adjacent solid surface panels together. Once cured and hand-honed to a unified grain structure, the joint becomes completely invisible to both the eye and the touch.',
@@ -116,7 +116,7 @@ export const journalArticles: JournalArticle[] = [
     content: [
       'Composed of approximately two-thirds natural bauxite minerals (aluminium trihydrate) and one-third advanced acrylic resin, solid surfaces represent one of the most versatile materials in modern architecture.',
       'Being 100% non-porous, liquids cannot penetrate below the surface, rendering it completely impervious to bacterial growth, mold, and stubborn stains like turmeric, red wine, and coffee.',
-      'Unlike coated materials or engineered quartz, solid surface is fully renewable—scratches, stains, or surface wear can be sanded and hand-buffed on site back to original factory condition, ensuring decades of service life.'
+      'Unlike coated materials or engineered quartz, solid surface is fully renewable-scratches, stains, or surface wear can be sanded and hand-buffed on site back to original factory condition, ensuring decades of service life.'
     ],
     takeaways: [
       'NSF/ANSI 51 certified non-porous composition for food and medical hygiene',
@@ -136,8 +136,8 @@ export const journalArticles: JournalArticle[] = [
     image: '/assets/hero-ace.png',
     quote: 'Heat unlocks fluidity; precision molds restore structural permanence.',
     content: [
-      'Solid surface sheets heated uniformly to between 155°C and 165°C become as flexible as leather. In this malleable state, sheets are rapidly transferred to bespoke CNC-machined wooden or high-density foam bucks inside our industrial membrane vacuum presses.',
-      'As air is evacuated, atmospheric pressure forces the heated sheet uniformly against the contours of the buck. The material is held under vacuum until it cools below 80°C, locking the organic 3-dimensional form permanently into place without structural stress.',
+      'Solid surface sheets heated uniformly to between 155 deg C and 165 deg C become as flexible as leather. In this malleable state, sheets are rapidly transferred to bespoke CNC-machined wooden or high-density foam bucks inside our industrial membrane vacuum presses.',
+      'As air is evacuated, atmospheric pressure forces the heated sheet uniformly against the contours of the buck. The material is held under vacuum until it cools below 80 deg C, locking the organic 3-dimensional form permanently into place without structural stress.',
       'This process enables seamless spiral stair balustrades, sweeping reception monoliths, and organic ergonomic furniture without a single visible seam.'
     ],
     takeaways: [
@@ -160,7 +160,7 @@ export const journalArticles: JournalArticle[] = [
     content: [
       'In contemporary spatial design, there is often a separation between the studio that imagines a space and the raw substrate from which that space is built. Ace Spaces was founded to dissolve that division.',
       'As a parent company and primary raw material provider, Ace Spaces provides interior designers and architects with direct access to through-body mineral compositions, solid surface slabs, and unyielding fabrication standards. Rather than selecting from disconnected sample rings, designers work directly with the source.',
-      'This foundation is also why Coro Crafted Collective exists. Born directly out of Ace Spaces, Coro Crafted Collective serves as our sister spatial and interior design brand—taking the very raw materials we formulate and engineering them into complete living environments, sculptural reception monoliths, and bespoke furniture pieces.',
+      'This foundation is also why Coro Crafted Collective exists. Born directly out of Ace Spaces, Coro Crafted Collective serves as our sister spatial and interior design brand-taking the very raw materials we formulate and engineering them into complete living environments, sculptural reception monoliths, and bespoke furniture pieces.',
       'Whether specifying raw slabs for an independent architectural commission or collaborating on full spatial fabrication, the principle remains constant: the material is the foundation of everything that follows.'
     ],
     takeaways: [

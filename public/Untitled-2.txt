@@ -1,0 +1,130 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[Skip to main content](http://localhost:3000/applications#main-content)
+[AACESPACES](http://localhost:3000/)
+[01Materials & ColoursSubstrates, slabs & palette▼↗](http://localhost:3000/materials)
+[02ProductsSinks, benchtops & vanities▼↗](http://localhost:3000/products)
+[03ApplicationsMaterial in context▼↗](http://localhost:3000/applications)
+[04FabricationFrom sheet to space▼↗](http://localhost:3000/fabrication)
+[05ProjectsSelected work↗](http://localhost:3000/projects)
+[06JournalNotes on making↗](http://localhost:3000/journal)
+[07About UsStudio, philosophy & team▼↗](http://localhost:3000/about)
+[WhatsApp↗](https://wa.me/919845012345?text=Hello%20Ace%20Spaces%20Studio%2C%20I%20would%20like%20to%20consult%20on%20architectural%20material%20specification%20for%20an%20upcoming%20project.)
+[Source for Coro ↗](http://localhost:3000/applications#coro)
+Ace Spaces is the raw material origin and architectural engineering house for Coro Collective.
+[WhatsApp Studio LineDirect Material Advisory · BengaluruChat ↗](https://wa.me/919845012345?text=Hello%20Ace%20Spaces%20Studio%2C%20I%20would%20like%20to%20consult%20on%20architectural%20material%20specification%20for%20an%20upcoming%20project.)
+[01Materials & ColoursSubstrates, slabs & 20+ architectural colour swatches↗](http://localhost:3000/materials)
+[02ProductsSinks, benchtops, washplanes, vanities & bespoke fixtures↗](http://localhost:3000/products)
+[03ApplicationsResidential, hospitality, commercial & clinical spaces↗](http://localhost:3000/applications)
+[04FabricationThermoforming, 5-axis CNC & seamless joining↗](http://localhost:3000/fabrication)
+[05ProjectsSelected architectural case studies↗](http://localhost:3000/projects)
+[06JournalNotes on making & materiality↗](http://localhost:3000/journal)
+[07About UsStudio philosophy, craftspeople, vision & Bengaluru atelier↗](http://localhost:3000/about)
+[08Start a ProjectConsultation, shop drawings & material specification↗](http://localhost:3000/contact)
+[WhatsApp Studio LineDirect Specifier Advisory · Bangalore↗](https://wa.me/919845012345?text=Hello%20Ace%20Spaces%20Studio%2C%20I%20would%20like%20to%20consult%20on%20architectural%20material%20specification%20for%20an%20upcoming%20project.)
+Ace Spaces provides through-body mineral sheets, custom thermoforming, and joint fabrication to Coro Collective projects.
+Applications / Spatial Typologies
+
+# Formed forevery volume.
+
+From quiet residential monoliths to high-traffic commercial atriums, Ace Spaces solid mineral surfaces bring seamless hygiene, thermal stability, and bespoke fabrication to six distinct architectural typologies.
+[Explore Sectors ↓](http://localhost:3000/applications#sectors)
+[View Materials ↗](http://localhost:3000/materials)
+[Explore Sectors ↓](http://localhost:3000/applications#sectors)
+Monolithic Kitchen Island & Continuous Splashback in Calacatta Greige
+[Explore Application ↗](http://localhost:3000/applications/residential)
+
+## Residential Architecture
+In private homes, surfaces must balance effortless tactile beauty with complete non-porous resilience against cooking oils, heat, and daily life.
+[View Residential Architecture Sector Spec →](http://localhost:3000/applications/residential)
+Monolithic Reception Desk & Lobby Cladding in Silver Linear
+[Explore Application ↗](http://localhost:3000/applications/hospitality)
+
+## Hospitality & Dining
+High-traffic hotels, lounge bars, and restaurants demand surfaces that hold up to rigorous commercial cleaning while creating dramatic ambient lighting moments.
+[View Hospitality & Dining Sector Spec →](http://localhost:3000/applications/hospitality)
+Collaborative Studio Review Island & Communal Workstation in Bleached Nuwood
+[Explore Application ↗](http://localhost:3000/applications/commercial)
+
+## Commercial & Workplaces
+Modern studio spaces and corporate headquarters require durable, refined work surfaces that seamlessly conceal technology and wiring infrastructure.
+[View Commercial & Workplaces Sector Spec →](http://localhost:3000/applications/commercial)
+Bespoke Display Pavilion & Monolithic Washstand in Golden Onyx
+[Explore Application ↗](http://localhost:3000/applications/retail)
+
+## Retail & Experience Centres
+Luxury retail interiors use solid surfaces as monolithic sculptural plinths and display counters that focus attention entirely on the product.
+[View Retail & Experience Centres Sector Spec →](http://localhost:3000/applications/retail)
+Non-Porous Clinical Consultation & Reception Counter in Stonique
+[Explore Application ↗](http://localhost:3000/applications/healthcare)
+
+## Hospitals & Healthcare Spaces
+
+Hospitals, surgical suites, sterile dental operatories, and diagnostic laboratories demand certified non-porous mineral surfaces immune to bacterial and fungal harboring.
+[View Hospitals & Healthcare Spaces Sector Spec →](http://localhost:3000/applications/healthcare)
+[AACESPACES](http://localhost:3000/)
+The Raw Material Source for Architects, Specifiers & Interior Designers. Foundry for mineral composites, seamless solid surfaces, and the foundational material powering Coro Collective.
+- [About Us (Story & Ethos)](http://localhost:3000/about)
+- [Design Philosophy & Craft](http://localhost:3000/about#philosophy)
+- [The Atelier & Craftsmen](http://localhost:3000/about#team)
+- [DuPont™ Material Foundation](http://localhost:3000/about#foundation)
+- [Powering Coro Collective ↗](https://corocollective.com)
+[About Us (Story & Ethos)](http://localhost:3000/about)
+[Design Philosophy & Craft](http://localhost:3000/about#philosophy)
+[The Atelier & Craftsmen](http://localhost:3000/about#team)
+[DuPont™ Material Foundation](http://localhost:3000/about#foundation)
+[Powering Coro Collective ↗](https://corocollective.com)
+- [Solid Surface Monoliths](http://localhost:3000/materials)
+- [Curated Architectural Palette](http://localhost:3000/materials#library)
+- [Fabricated Products & Sinks](http://localhost:3000/products)
+- [Design Certainty Service](http://localhost:3000/products/design-certainty)
+- [Custom Specimen Box Order](http://localhost:3000/materials)
+[Solid Surface Monoliths](http://localhost:3000/materials)
+[Curated Architectural Palette](http://localhost:3000/materials#library)
+[Fabricated Products & Sinks](http://localhost:3000/products)
+[Design Certainty Service](http://localhost:3000/products/design-certainty)
+[Custom Specimen Box Order](http://localhost:3000/materials)
+- [Residential Pavilions](http://localhost:3000/applications/residential)
+- [Commercial Atriums](http://localhost:3000/applications/commercial)
+- [Hospitality & Bars](http://localhost:3000/applications/hospitality)
+- [Retail Plinths & Flagships](http://localhost:3000/applications/retail)
+- [Hospitals & Healthcare Spaces](http://localhost:3000/applications/healthcare)
+- [Cultural & Academic Studios](http://localhost:3000/applications)
+[Residential Pavilions](http://localhost:3000/applications/residential)
+[Commercial Atriums](http://localhost:3000/applications/commercial)
+[Hospitality & Bars](http://localhost:3000/applications/hospitality)
+[Retail Plinths & Flagships](http://localhost:3000/applications/retail)
+[Hospitals & Healthcare Spaces](http://localhost:3000/applications/healthcare)
+[Cultural & Academic Studios](http://localhost:3000/applications)
+- [WhatsApp Studio Advisory ↗](https://wa.me/919845012345?text=Hello%20Ace%20Spaces%20Studio%2C%20I%20would%20like%20to%20consult%20on%20architectural%20material%20specification%20for%20an%20upcoming%20project.)
+- [GREENGUARD Gold Certified](http://localhost:3000/fabrication)
+- [NSF/ANSI 51 Food Safe](http://localhost:3000/fabrication)
+- [ASTM Class 1 Fire Rated](http://localhost:3000/fabrication)
+- [Project Consultation Form →](http://localhost:3000/contact)
+- [10-Year Renewable Guarantee](http://localhost:3000/about)
+- [Studio Management Console ↗](http://localhost:3000/admin)
+[WhatsApp Studio Advisory ↗](https://wa.me/919845012345?text=Hello%20Ace%20Spaces%20Studio%2C%20I%20would%20like%20to%20consult%20on%20architectural%20material%20specification%20for%20an%20upcoming%20project.)
+[GREENGUARD Gold Certified](http://localhost:3000/fabrication)
+[NSF/ANSI 51 Food Safe](http://localhost:3000/fabrication)
+[ASTM Class 1 Fire Rated](http://localhost:3000/fabrication)
+[Project Consultation Form →](http://localhost:3000/contact)
+[10-Year Renewable Guarantee](http://localhost:3000/about)
+[Studio Management Console ↗](http://localhost:3000/admin)
+[Contact Form ↗](http://localhost:3000/contact)
+[Privacy Policy](http://localhost:3000/privacy)
+[Terms of Supply](http://localhost:3000/terms)
+[Studio Console ↗](http://localhost:3000/admin)

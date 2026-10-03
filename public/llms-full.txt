@@ -1,4 +1,4 @@
-# Ace Spaces — Complete Technical & Material Specification Reference (LLMs Full)
+# Ace Spaces - Complete Technical & Material Specification Reference (LLMs Full)
 
 ## 1. Executive Summary & Corporate Architecture
 Ace Spaces Private Limited is the authorized DuPont™ Corian® solid surface master distributor, mineral slab stockyard, and advanced digital fabrication facility based in Bengaluru (Bangalore), Karnataka, India.
@@ -26,15 +26,15 @@ Ace Spaces serves as the foundational material provider and engineering infrastr
 ## 3. Mechanical & Physical Properties
 | Property | Test Method | Typical Value |
 | :--- | :--- | :--- |
-| Specific Gravity | ASTM D792 | 1.73 – 1.78 g/cm³ |
-| Tensile Strength | ASTM D638 | 40 – 50 MPa |
-| Tensile Modulus | ASTM D638 | 8,000 – 9,500 MPa |
-| Flexural Strength | ASTM D790 | 65 – 75 MPa |
-| Flexural Modulus | ASTM D790 | 8,500 – 10,000 MPa |
-| Rockwell Hardness | ASTM D785 (M Scale) | 85 – 92 |
-| Barcol Hardness | ASTM D2583 | 55 – 62 |
-| Thermal Expansion Coefficient | ASTM D696 | 3.0 × 10⁻⁵ / °C |
-| Heat Resistance | NEMA LD3-3.06 | No effect up to 100°C continuous |
+| Specific Gravity | ASTM D792 | 1.73 - 1.78 g/cm³ |
+| Tensile Strength | ASTM D638 | 40 - 50 MPa |
+| Tensile Modulus | ASTM D638 | 8,000 - 9,500 MPa |
+| Flexural Strength | ASTM D790 | 65 - 75 MPa |
+| Flexural Modulus | ASTM D790 | 8,500 - 10,000 MPa |
+| Rockwell Hardness | ASTM D785 (M Scale) | 85 - 92 |
+| Barcol Hardness | ASTM D2583 | 55 - 62 |
+| Thermal Expansion Coefficient | ASTM D696 | 3.0 × 10⁻⁵ /  deg C |
+| Heat Resistance | NEMA LD3-3.06 | No effect up to 100 deg C continuous |
 | Fire Rating / Surface Burning | ASTM E84 | Class 1 / Class A (Flame Spread <25, Smoke <450) |
 | Food Contact Safety | NSF/ANSI Standard 51 | Certified for all commercial and residential food zones |
 | Indoor Air Quality | GREENGUARD Gold | Certified ultra-low VOC emissions (CDPH Standard Method v1.2) |
@@ -49,7 +49,7 @@ Ace Spaces serves as the foundational material provider and engineering infrastr
 
 ## 5. Architectural Product Systems & Typologies
 1. **Monolithic Benchtops & Kitchen Islands**:
-   - 45° mitred continuous waterfall returns.
+   - 45 deg  mitred continuous waterfall returns.
    - Hand-honed seamless joints with color-matched methacrylate resin.
    - Heat deflection underlayment around cooktop cutouts.
 2. **Integrated Sinks & Seamless Basins**:
@@ -77,7 +77,7 @@ Ace Spaces serves as the foundational material provider and engineering infrastr
   - Positional repeatability < 0.15 mm.
   - Nesting optimization delivering >92% slab yield efficiency.
 - **Industrial Vacuum Membrane Thermoforming**:
-  - Precision infrared and silicone platen heating tunnels to 160°C ± 3°C.
+  - Precision infrared and silicone platen heating tunnels to 160 deg C ± 3 deg C.
   - High-pressure double-membrane vacuum presses forming over CNC-milled MDF/timber bucks.
   - Minimum internal bend radius: 25 mm (12mm sheet) without color whitening or surface micro-fissuring.
 - **Molecular Inconspicuous Joint Chemistry**:
@@ -85,8 +85,8 @@ Ace Spaces serves as the foundational material provider and engineering infrastr
   - Structural bond strength exceeds the shear strength of the virgin substrate.
   - Seam lines buffed to match ambient 600-grit matte architectural sheen.
 
-## 7. Sister Brand Integration — Coro Crafted Collective
-Ace Spaces serves as the technical backbone and primary material supply for Coro Crafted Collective. Coro Crafted Collective’s bespoke spatial furniture and sculptural commissions are precision-milled, thermoformed, and hand-finished within Ace Spaces’ Bengaluru manufacturing plant. Architectural practices work with Ace Spaces to specify identical material formulations and fabrication rigor for their private projects.
+## 7. Sister Brand Integration - Coro Crafted Collective
+Ace Spaces serves as the technical backbone and primary material supply for Coro Crafted Collective. Coro Crafted Collective's bespoke spatial furniture and sculptural commissions are precision-milled, thermoformed, and hand-finished within Ace Spaces' Bengaluru manufacturing plant. Architectural practices work with Ace Spaces to specify identical material formulations and fabrication rigor for their private projects.
 
 ## 8. Specifier Sample Tray & Consultation
 - **Sampling**: Up to 6 curated 100mm × 100mm × 12mm material swatches dispatched pan-India with specifier technical data cards.

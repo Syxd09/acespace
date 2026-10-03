@@ -12,7 +12,7 @@ import SmoothScroll from '@/components/SmoothScroll';
 export const metadata: Metadata = {
   metadataBase: new URL('https://acespacesindia.vercel.app'),
   title: {
-    default: 'Ace Spaces — Material, made architectural',
+    default: 'Ace Spaces - Material, made architectural',
     template: '%s | Ace Spaces',
   },
   description:
@@ -64,9 +64,9 @@ export const metadata: Metadata = {
     apple: '/favicon.svg',
   },
   openGraph: {
-    title: 'Ace Spaces — The Source of Material, Where Spaces Begin',
+    title: 'Ace Spaces - The Source of Material, Where Spaces Begin',
     description:
-      'The primary raw material hub for architects, interior designers, and bespoke builders — supplying certified DuPont™ Corian® solid surfaces, mineral slabs, and digital fabrication in Bengaluru, India.',
+      'The primary raw material hub for architects, interior designers, and bespoke builders - supplying certified DuPont™ Corian® solid surfaces, mineral slabs, and digital fabrication in Bengaluru, India.',
     url: 'https://acespacesindia.vercel.app',
     siteName: 'Ace Spaces',
     locale: 'en_IN',
@@ -76,13 +76,13 @@ export const metadata: Metadata = {
         url: '/assets/hero-ace.png',
         width: 1200,
         height: 630,
-        alt: 'Ace Spaces — Architectural Solid Surfaces & Material Foundry',
+        alt: 'Ace Spaces - Architectural Solid Surfaces & Material Foundry',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ace Spaces — Material, made architectural',
+    title: 'Ace Spaces - Material, made architectural',
     description:
       'Master architectural material hub and certified DuPont™ Corian® fabrication workshop in Bengaluru, India. Powering Coro Crafted Collective with zero-silica solid surfaces.',
     images: ['/assets/hero-ace.png'],
@@ -146,7 +146,7 @@ const jsonLdGraph = {
         '5-Axis CNC Digital Fabrication',
         'Vacuum Membrane Thermoforming (down to 25mm radius)',
         'Inconspicuous Molecular Seam Chemistry',
-        'Monolithic Kitchen Islands & 45° Mitred Waterfalls',
+        'Monolithic Kitchen Islands & 45 deg  Mitred Waterfalls',
         'Integrated Zero-Silicone Washplane Basins',
       ],
       hasOfferCatalog: {

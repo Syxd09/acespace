@@ -219,7 +219,7 @@ I can assist with:
 • **Comprehensive Material Specifications (Dimensions, Thicknesses, Zero-Silica ATH Chemistry, Finishes & Pricing)**
 • **Why Natural Marble & Quartz Are NOT Stocked, and Certified In-Stock Alternatives**
 • **Unified Studio Headquarters & Google Maps Directions**
-• **Sub-0.2mm 5-Axis CNC Precision & 160°C Vacuum Thermoforming**
+• **Sub-0.2mm 5-Axis CNC Precision & 160 deg C Vacuum Thermoforming**
 
 How may I assist your specifications today?`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
@@ -392,7 +392,7 @@ How may I assist your architectural practice today?`,
           tableLines.push(lines[i].trim());
           i++;
         }
-        // Parse rows — skip separator lines (---|---)
+        // Parse rows - skip separator lines (---|---)
         const rows = tableLines
           .filter(row => !/^\|[\s|:-]+\|$/.test(row))
           .map(row =>

@@ -1,4 +1,4 @@
-# Ace Spaces — Studio Material Intelligence & Architectural Specifications
+# Ace Spaces - Studio Material Intelligence & Architectural Specifications
 
 > Ace Spaces is the primary architectural raw material hub, authorized DuPont™ Corian® solid surface distributor, and digital fabrication atelier in Bengaluru, Karnataka, India. Powering Coro Crafted Collective and spatial designers across India with zero-silica through-body mineral surfaces, 5-axis CNC machining, and monolithic thermoforming.
 
@@ -53,10 +53,10 @@
    - Carbon Aggregate (AC-0301): Deep obsidian base infused with fine mineral flecks.
    - Basalt Dune (AC-0302): Tactile volcanic grey with rich aggregate grain.
 4. **Lucent Translucent (Sub-Surface Illumination)**:
-   - Opal Lumina (AC-0401): Up to 38% light transmittance when backlit with 2700K–4000K LED matrices.
+   - Opal Lumina (AC-0401): Up to 38% light transmittance when backlit with 2700K-4000K LED matrices.
 
 ## Architectural Products & Systems
-- **Benchtops & Islands**: Monolithic kitchen islands, 45° mitred waterfall ends, coved upstands, and flush cooktop rebates.
+- **Benchtops & Islands**: Monolithic kitchen islands, 45 deg  mitred waterfall ends, coved upstands, and flush cooktop rebates.
 - **Integrated Sinks & Basins**: Molecularly fused into worktops without rims or silicone joints, preventing mould growth and grime traps.
 - **Linear Washplanes**: Commercial concealed trough drains for airports, offices, and luxury restaurants.
 - **Floating Vanities**: Cantilevered solid surface consoles engineered with internal powder-coated steel sub-frames.

@@ -6,7 +6,7 @@ import { getSiteContent } from '@/data/contentStore';
 import { generateWhatsAppUrl, DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 
 export const metadata: Metadata = {
-  title: 'Contact & Consultation — Studio Briefs, Samples & CAD Submission',
+  title: 'Contact & Consultation - Studio Briefs, Samples & CAD Submission',
   description:
     'Start an architectural material consultation, request specifier sample swatches, or submit CAD/BIM shop drawings for 5-axis CNC fabrication with Ace Spaces in Bengaluru, India.',
   keywords: [
