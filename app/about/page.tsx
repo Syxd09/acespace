@@ -577,13 +577,21 @@ export default function AboutPage() {
                     <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
                       Material Origin &amp; Accreditation
                     </span>
-                    <div style={{ display: 'flex', alignItems: 'center', margin: '12px 0 14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '12px 0 14px', flexWrap: 'wrap' }}>
                       <Image
                         src="/assets/dupont-corian-quality-network-partner.png"
                         alt="DuPont™ Corian® Quality Network Industrial Partner"
-                        width={200}
-                        height={68}
-                        style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+                        width={180}
+                        height={60}
+                        style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
+                      />
+                      <div style={{ width: '1px', height: '24px', background: 'var(--line)' }} />
+                      <Image
+                        src="/assets/Corian-Red-logo.png.webp"
+                        alt="Corian® Solid Surface"
+                        width={120}
+                        height={48}
+                        style={{ height: '30px', width: 'auto', objectFit: 'contain' }}
                       />
                     </div>
                     <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Quality Network Partner</h4>
@@ -592,23 +600,48 @@ export default function AboutPage() {
                     </p>
                   </div>
                 </div>
-                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                    Practice &amp; Atelier
-                  </span>
-                  <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '6px 0 4px' }}>Ace Spaces</h4>
-                  <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                    The architectural atelier, 5-axis CNC router, thermoforming workshop, stockyard, and nationwide installer.
-                  </p>
+                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                      Practice &amp; Atelier
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', height: '34px', margin: '12px 0 14px' }}>
+                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '14px', fontWeight: 700, letterSpacing: '0.08em', color: 'var(--ink)' }}>
+                        ACE SPACES
+                      </span>
+                    </div>
+                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Ace Spaces</h4>
+                    <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
+                      The architectural atelier, 5-axis CNC router, thermoforming workshop, stockyard, and nationwide installer.
+                    </p>
+                  </div>
                 </div>
-                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                    Spatial Living Brand
-                  </span>
-                  <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '6px 0 4px' }}>Coro Crafted Collective</h4>
-                  <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                    Our sister spatial studio and collectible furniture label, creating bespoke interior architecture powered by Ace Spaces.
-                  </p>
+                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                  <div>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                      Spatial Living Brand
+                    </span>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', height: '34px', margin: '12px 0 14px' }}>
+                      <Image
+                        src="/images/coro-emblem.png"
+                        alt="Coro Crafted Collective Emblem"
+                        width={30}
+                        height={36}
+                        style={{ height: '28px', width: 'auto', objectFit: 'contain' }}
+                      />
+                      <Image
+                        src="/images/coro-wordmark.png"
+                        alt="Coro Crafted Collective Wordmark"
+                        width={90}
+                        height={26}
+                        style={{ height: '18px', width: 'auto', objectFit: 'contain' }}
+                      />
+                    </div>
+                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Coro Crafted Collective</h4>
+                    <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
+                      Our sister spatial studio and collectible furniture label, creating bespoke interior architecture powered by Ace Spaces.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
