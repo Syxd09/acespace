@@ -90,7 +90,7 @@ export default function MegaMenu({
           >
             {/* Left Nav Columns */}
             <div>
-              <div style={{ marginBottom: '24px' }}>
+              <div style={{ marginBottom: '28px' }}>
                 <span
                   style={{
                     fontSize: '10px',
@@ -120,12 +120,12 @@ export default function MegaMenu({
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '24px',
-                  marginBottom: '28px',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '36px',
+                  marginBottom: '36px',
                 }}
               >
-                {/* Column 1: Core Substrates */}
+                {/* Column 1: Substrates & Slabs */}
                 <div>
                   <span
                     style={{
@@ -134,36 +134,36 @@ export default function MegaMenu({
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
-                      marginBottom: '14px',
+                      marginBottom: '16px',
                       paddingBottom: '8px',
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Core Substrates
+                    Substrates &amp; Formats
                   </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
                       <Link href="/materials#architectural-solids" onClick={(e) => handleLinkClick(e, '/materials#architectural-solids')} className="mega-menu-link">
-                        <strong>Architectural Solids</strong>
-                        <small>Pure monolithic mineral planes</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/materials#architectural-veined" onClick={(e) => handleLinkClick(e, '/materials#architectural-veined')} className="mega-menu-link">
-                        <strong>Architectural Veined</strong>
-                        <small>Directional fluid marble movement</small>
+                        <strong>ARCHITECTURAL SOLIDS &amp; VEINED</strong>
+                        <small>Monolithic mineral slabs &bull; Directional marble grain</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials#terrazzo-aggregates" onClick={(e) => handleLinkClick(e, '/materials#terrazzo-aggregates')} className="mega-menu-link">
-                        <strong>Terrazzo &amp; Aggregates</strong>
-                        <small>Sedimentary micro-terrazzo &amp; grinds</small>
+                        <strong>TERRAZZO &amp; AGGREGATES</strong>
+                        <small>Sedimentary micro-terrazzo &bull; Architectural grinds</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials#onyx-translucent" onClick={(e) => handleLinkClick(e, '/materials#onyx-translucent')} className="mega-menu-link">
-                        <strong>Onyx &amp; Translucent</strong>
-                        <small>Translucent fields for backlit halos</small>
+                        <strong>ONYX &amp; TRANSLUCENT</strong>
+                        <small>Translucent mineral fields &bull; Backlit halo effects</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link href="/materials#specs" onClick={(e) => handleLinkClick(e, '/materials#specs')} className="mega-menu-link">
+                        <strong>CALIBRATED SLABS &amp; SHEETS</strong>
+                        <small>3660 &times; 760mm &bull; 12mm &amp; 19mm zero-porosity core</small>
                       </Link>
                     </li>
                   </ul>
@@ -178,86 +178,36 @@ export default function MegaMenu({
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
-                      marginBottom: '14px',
+                      marginBottom: '16px',
                       paddingBottom: '8px',
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Colour Families (20+)
+                    Curated Palette (20+)
                   </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
                       <Link href="/materials?family=white#library" onClick={(e) => handleLinkClick(e, '/materials?family=white#library')} className="mega-menu-link">
-                        <strong>Whites &amp; Chalk</strong>
-                        <small>Soft light-diffusing chalks &amp; alabaster</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/materials?family=cream#library" onClick={(e) => handleLinkClick(e, '/materials?family=cream#library')} className="mega-menu-link">
-                        <strong>Linen &amp; Warm Creams</strong>
-                        <small>Tactile, calming natural linen hues</small>
+                        <strong>WHITES &amp; WARM CHALKS</strong>
+                        <small>Soft light-diffusing alabaster &bull; Linen undertones</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials?family=grey#library" onClick={(e) => handleLinkClick(e, '/materials?family=grey#library')} className="mega-menu-link">
-                        <strong>Greiges &amp; Concrete</strong>
-                        <small>Understated architectural grey tones</small>
+                        <strong>NATURAL GREIGES &amp; CONCRETE</strong>
+                        <small>Understated architectural greys &bull; Earthy neutrals</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials?family=earth#library" onClick={(e) => handleLinkClick(e, '/materials?family=earth#library')} className="mega-menu-link">
-                        <strong>Warm Earth &amp; Terras</strong>
-                        <small>Geological sand, clay &amp; terracotta</small>
+                        <strong>WARM EARTH &amp; TERRAS</strong>
+                        <small>Geological sand, desert clay &bull; Raw terracotta</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials?family=black#library" onClick={(e) => handleLinkClick(e, '/materials?family=black#library')} className="mega-menu-link">
-                        <strong>Obsidian Noir &amp; Inks</strong>
-                        <small>Deep light-absorbing dark charcoals</small>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Column 3: Formats & Performance */}
-                <div>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
-                      textTransform: 'uppercase',
-                      color: 'var(--muted)',
-                      display: 'block',
-                      marginBottom: '14px',
-                      paddingBottom: '8px',
-                      borderBottom: '1px solid var(--line)',
-                    }}
-                  >
-                    Calibrated Slabs
-                  </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <li>
-                      <Link href="/materials#specs" onClick={(e) => handleLinkClick(e, '/materials#specs')} className="mega-menu-link">
-                        <strong>Full Slabs: 3660 × 760mm</strong>
-                        <small>Calibrated architectural sheets</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/materials#specs" onClick={(e) => handleLinkClick(e, '/materials#specs')} className="mega-menu-link">
-                        <strong>Thickness: 12mm &amp; 19mm</strong>
-                        <small>Zero-porosity homogeneous core</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/fabrication#thermoforming" onClick={(e) => handleLinkClick(e, '/fabrication#thermoforming')} className="mega-menu-link">
-                        <strong>Thermoforming Substrates</strong>
-                        <small>Curve down to 75mm organic radii</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/fabrication#seamless" onClick={(e) => handleLinkClick(e, '/fabrication#seamless')} className="mega-menu-link">
-                        <strong>Inconspicuous Seams</strong>
-                        <small>Jointless monolithic installations</small>
+                        <strong>OBSIDIAN NOIR &amp; INKS</strong>
+                        <small>Deep light-absorbing charcoals &bull; Graphic blacks</small>
                       </Link>
                     </li>
                   </ul>
@@ -270,7 +220,7 @@ export default function MegaMenu({
                   display: 'flex',
                   gap: '16px',
                   alignItems: 'center',
-                  paddingTop: '16px',
+                  paddingTop: '20px',
                   borderTop: '1px solid var(--line)',
                 }}
               >
@@ -280,7 +230,7 @@ export default function MegaMenu({
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
-                  Explore Materials &amp; Palette <span>↗</span>
+                  EXPLORE MATERIALS &amp; PALETTE <span>↗</span>
                 </Link>
                 <Link
                   href="/contact"
@@ -288,7 +238,7 @@ export default function MegaMenu({
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
-                  Order Studio Sample Box <span>↗</span>
+                  ORDER STUDIO SAMPLE BOX <span>↗</span>
                 </Link>
               </div>
             </div>
@@ -313,7 +263,7 @@ export default function MegaMenu({
                     Through-Body Mineral Monoliths
                   </strong>
                   <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                    Two-thirds natural mineral bauxite bonded with high-grade acrylic polymer. 100% non-porous, zero-silica through-body colour with seamless continuity.
+                    Non-porous mineral bauxite bonded with high-grade acrylic polymer. Zero-silica through-body colour with seamless continuity.
                   </p>
                 </div>
                 <Link
@@ -1078,8 +1028,8 @@ export default function MegaMenu({
               <div
                 style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(3, 1fr)',
-                  gap: '28px',
+                  gridTemplateColumns: '1fr 1fr',
+                  gap: '36px',
                   marginBottom: '36px',
                 }}
               >
@@ -1092,86 +1042,42 @@ export default function MegaMenu({
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
-                      marginBottom: '14px',
+                      marginBottom: '16px',
                       paddingBottom: '8px',
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    The Practice
+                    The Practice &amp; Philosophy
                   </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
                       <Link href="/about#story" onClick={(e) => handleLinkClick(e, '/about#story')} className="mega-menu-link">
-                        <strong>Our Architectural Story</strong>
-                        <small>Dissolving seams in modern space</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/about#philosophy" onClick={(e) => handleLinkClick(e, '/about#philosophy')} className="mega-menu-link">
-                        <strong>Design Philosophy</strong>
-                        <small>Monolithic continuity &amp; tactile honesty</small>
+                        <strong>OUR ARCHITECTURAL STORY</strong>
+                        <small>Dissolving seams &bull; Monolithic spatial continuity</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/about#team" onClick={(e) => handleLinkClick(e, '/about#team')} className="mega-menu-link">
-                        <strong>The Atelier &amp; Craftsmen</strong>
-                        <small>Joiners, thermoformers &amp; CAD modelers</small>
+                        <strong>THE ATELIER &amp; CRAFTSMEN</strong>
+                        <small>Master joiners, thermoformers &bull; In-house CAD team</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/about#philosophy" onClick={(e) => handleLinkClick(e, '/about#philosophy')} className="mega-menu-link">
-                        <strong>Core Studio Values</strong>
-                        <small>Radical permanence &amp; zero-silica safety</small>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                {/* Column 2: Craft & Standards */}
-                <div>
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
-                      textTransform: 'uppercase',
-                      color: 'var(--muted)',
-                      display: 'block',
-                      marginBottom: '14px',
-                      paddingBottom: '8px',
-                      borderBottom: '1px solid var(--line)',
-                    }}
-                  >
-                    Craft &amp; Standards
-                  </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <li>
-                      <Link href="/about#team" onClick={(e) => handleLinkClick(e, '/about#team')} className="mega-menu-link">
-                        <strong>Robot Meets Artisan Hand</strong>
-                        <small>5-axis CNC paired with hand-honed edges</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/about#philosophy" onClick={(e) => handleLinkClick(e, '/about#philosophy')} className="mega-menu-link">
-                        <strong>Zero-Silica Integrity</strong>
-                        <small>Non-hazardous mineral matrix for health</small>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link href="/fabrication#seamless" onClick={(e) => handleLinkClick(e, '/fabrication#seamless')} className="mega-menu-link">
-                        <strong>Seamless Chemistry</strong>
-                        <small>Molecularly fused inconspicuous joints</small>
+                        <strong>CORE DESIGN INTEGRITY</strong>
+                        <small>Radical permanence &bull; Zero-silica safe mineral matrix</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/about#foundation" onClick={(e) => handleLinkClick(e, '/about#foundation')} className="mega-menu-link">
-                        <strong>DuPont™ Alliance</strong>
-                        <small>Certified ATH substrate lineage &amp; warranty</small>
+                        <strong>DUPONT™ QUALITY ALLIANCE</strong>
+                        <small>Certified ATH substrate lineage &bull; 10-year warranty</small>
                       </Link>
                     </li>
                   </ul>
                 </div>
 
-                {/* Column 3: Studio & Network */}
+                {/* Column 2: Studio & Network */}
                 <div>
                   <span
                     style={{
@@ -1180,36 +1086,36 @@ export default function MegaMenu({
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
-                      marginBottom: '14px',
+                      marginBottom: '16px',
                       paddingBottom: '8px',
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Atelier &amp; Network
+                    Atelier &amp; Studio Network
                   </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
                       <Link href="/about#locations" onClick={(e) => handleLinkClick(e, '/about#locations')} className="mega-menu-link">
-                        <strong>Studio Headquarters</strong>
-                        <small>Unified Bengaluru gallery &amp; fabrication atelier</small>
+                        <strong>BENGALURU HEADQUARTERS</strong>
+                        <small>Unified gallery, mockup labs &bull; Precision workshop</small>
                       </Link>
                     </li>
                     <li>
-                      <a href="https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7" target="_blank" rel="noopener noreferrer" className="mega-menu-link">
-                        <strong>Google Maps Navigation ↗</strong>
-                        <small>Coro Crafted Collective &amp; Ace Spaces headquarters</small>
-                      </a>
+                      <Link href="/about#team" onClick={(e) => handleLinkClick(e, '/about#team')} className="mega-menu-link">
+                        <strong>5-AXIS CNC &amp; ARTISAN FINISH</strong>
+                        <small>Digital precision paired with master hand-honed craft</small>
+                      </Link>
                     </li>
                     <li>
                       <Link href="/about#coro" onClick={(e) => handleLinkClick(e, '/about#coro')} className="mega-menu-link">
-                        <strong>The Coro Connection</strong>
+                        <strong>THE CORO CONNECTION</strong>
                         <small>Powering Coro Crafted Collective spatial living</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/contact" onClick={(e) => handleLinkClick(e, '/contact')} className="mega-menu-link">
-                        <strong>Schedule Studio Visit</strong>
-                        <small>Meet our architects &amp; examine mockups</small>
+                        <strong>SCHEDULE STUDIO VISIT</strong>
+                        <small>Meet our architects &bull; Review 1:1 scale mockups</small>
                       </Link>
                     </li>
                   </ul>
@@ -1232,7 +1138,7 @@ export default function MegaMenu({
                   className="button button-dark"
                   style={{ fontSize: '11px', padding: '10px 20px' }}
                 >
-                  Read About Us <span>↗</span>
+                  READ ABOUT US <span>↗</span>
                 </Link>
                 <Link
                   href="/contact"
@@ -1240,7 +1146,7 @@ export default function MegaMenu({
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
-                  Visit Our Bangalore Atelier <span>↗</span>
+                  VISIT OUR BANGALORE ATELIER <span>↗</span>
                 </Link>
               </div>
             </div>
@@ -1265,7 +1171,7 @@ export default function MegaMenu({
                     Form Follows Continuity
                   </strong>
                   <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                    We are architects, digital fabricators, and master joiners. Founded in Bengaluru to dissolve the seams that divide contemporary space.
+                    Architects, digital fabricators, and master joiners. Founded in Bengaluru to dissolve the seams that divide contemporary space.
                   </p>
                 </div>
                 <Link
