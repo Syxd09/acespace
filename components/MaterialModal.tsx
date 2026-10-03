@@ -674,12 +674,12 @@ export default function MaterialModal({
           border: 1px solid var(--line);
           box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
           border-radius: 2px;
-          padding: 14px 20px 16px;
+          padding: 16px 20px;
           display: flex;
           flex-direction: column;
-          gap: 10px;
+          gap: 12px;
           box-sizing: border-box;
-          overflow: hidden;
+          overflow: visible;
           animation: slideUpFade 0.25s ease-out;
         }
 
@@ -690,7 +690,9 @@ export default function MaterialModal({
           flex-wrap: wrap;
           gap: 8px;
           border-bottom: 1px solid var(--line);
-          padding-bottom: 8px;
+          padding-bottom: 10px;
+          position: relative;
+          z-index: 1;
         }
 
         .recommendations-eyebrow {
@@ -722,25 +724,32 @@ export default function MaterialModal({
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           grid-template-rows: 1fr;
-          overflow: hidden;
+          overflow: visible;
           gap: 12px;
+          padding-top: 6px;
+          padding-bottom: 6px;
+          margin-top: -2px;
         }
 
         .recommendation-item {
           background: #e4dfd5;
           border: 1px solid var(--line);
+          border-radius: 2px;
           cursor: pointer;
           overflow: hidden;
-          transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+          transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
           display: flex;
           flex-direction: column;
+          position: relative;
+          z-index: 1;
         }
 
         .recommendation-item:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+          transform: translateY(-4px);
+          box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
           border-color: var(--ink);
           background: #ede9e1;
+          z-index: 10;
         }
 
         .recommendation-swatch {
