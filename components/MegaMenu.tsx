@@ -578,7 +578,7 @@ export default function MegaMenu({
           >
             {/* Left Nav Columns */}
             <div>
-              <div style={{ marginBottom: '28px' }}>
+              <div style={{ marginBottom: '24px' }}>
                 <span
                   style={{
                     fontSize: '10px',
@@ -590,19 +590,30 @@ export default function MegaMenu({
                     marginBottom: '6px',
                   }}
                 >
-                  03 / Spatial Typologies & Architectural Context
+                  03 / Spatial Typologies &amp; Architectural Context
                 </span>
                 <h3
                   style={{
                     fontSize: '22px',
-                    margin: 0,
+                    margin: '0 0 6px',
                     fontWeight: 500,
                     color: 'var(--ink)',
                     letterSpacing: '-0.02em',
                   }}
                 >
-                  Material in Spatial Practice
+                  Material in Spatial Practice — Sector Typologies
                 </h3>
+                <p
+                  style={{
+                    fontSize: '13px',
+                    color: '#656d62',
+                    margin: 0,
+                    lineHeight: 1.5,
+                    maxWidth: '680px',
+                  }}
+                >
+                  Engineered non-porous mineral solid surfaces calibrated for seamless execution across luxury private estates, sacred cultural sanctums, high-traffic hospitality, and certified clinical environments.
+                </p>
               </div>
 
               <div
@@ -610,10 +621,10 @@ export default function MegaMenu({
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
                   gap: '36px',
-                  marginBottom: '36px',
+                  marginBottom: '28px',
                 }}
               >
-                {/* Column 1: Sectors 01 - 03 */}
+                {/* Column 1: Sectors 01 - 03 & Bespoke Joinery */}
                 <div>
                   <span
                     style={{
@@ -627,17 +638,17 @@ export default function MegaMenu({
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Typologies 01 – 03
+                    Private, Sacred &amp; Hospitality
                   </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <li>
                       <Link
                         href="/applications/residential"
                         onClick={(e) => handleLinkClick(e, '/applications/residential')}
                         className="mega-menu-link"
                       >
-                        <strong>01 / Luxury Residentials</strong>
-                        <small>Kitchen islands, continuous gables & vanities</small>
+                        <strong>01 / LUXURY RESIDENTIAL ESTATES</strong>
+                        <small>Monolithic waterfall kitchen islands &bull; Counter-to-ceiling seamless splashbacks &bull; Integrated thermoformed vanity basins</small>
                       </Link>
                     </li>
                     <li>
@@ -646,8 +657,8 @@ export default function MegaMenu({
                         onClick={(e) => handleLinkClick(e, '/applications/spiritual')}
                         className="mega-menu-link"
                       >
-                        <strong>02 / Spiritual</strong>
-                        <small>Monolithic mandir altars, illuminated jali screens & sanctums</small>
+                        <strong>02 / SACRED &amp; SPIRITUAL SANCTUMS</strong>
+                        <small>Seamless monolithic mandir altars &bull; Backlit translucent jali fretwork &bull; Stain-proof incense &amp; oil resistant surfaces</small>
                       </Link>
                     </li>
                     <li>
@@ -656,14 +667,24 @@ export default function MegaMenu({
                         onClick={(e) => handleLinkClick(e, '/applications/hospitality')}
                         className="mega-menu-link"
                       >
-                        <strong>03 / Hospitalities (Food Places)</strong>
-                        <small>Curved reception desks, cocktail bars & dining spaces</small>
+                        <strong>03 / HOSPITALITY &amp; FINE DINING</strong>
+                        <small>Thermoformed curved reception bars &bull; Stain-resistant cocktail &amp; culinary counters &bull; Monolithic food-safe buffet wells</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/fabrication#thermoforming"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#thermoforming')}
+                        className="mega-menu-link"
+                      >
+                        <strong>07 / BESPOKE SPATIAL JOINERY</strong>
+                        <small>Custom thermoformed curves down to 25mm radius &bull; Sculptural banquettes &bull; Zero-joint organic reception pods</small>
                       </Link>
                     </li>
                   </ul>
                 </div>
 
-                {/* Column 2: Sectors 04 - 06 */}
+                {/* Column 2: Sectors 04 - 06 & Technical Spec Desk */}
                 <div>
                   <span
                     style={{
@@ -677,17 +698,17 @@ export default function MegaMenu({
                       borderBottom: '1px solid var(--line)',
                     }}
                   >
-                    Typologies 04 – 06
+                    Clinical, Commercial &amp; Exterior
                   </span>
-                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <li>
                       <Link
                         href="/applications/healthcare"
                         onClick={(e) => handleLinkClick(e, '/applications/healthcare')}
                         className="mega-menu-link"
                       >
-                        <strong>04 / Healthcare</strong>
-                        <small>Hygienic scrub sinks, clinical operatory & non-porous surfaces</small>
+                        <strong>04 / CLINICAL HEALTHCARE &amp; LABS</strong>
+                        <small>Zero-silicone surgical scrub bays &bull; NSF/ANSI 51 non-porous operatory decks &bull; Infection-controlled coved wall joints</small>
                       </Link>
                     </li>
                     <li>
@@ -696,8 +717,8 @@ export default function MegaMenu({
                         onClick={(e) => handleLinkClick(e, '/applications/commercial')}
                         className="mega-menu-link"
                       >
-                        <strong>05 / Commercial Interiors</strong>
-                        <small>Boardrooms, wireless charging & continuous wash troughs</small>
+                        <strong>05 / COMMERCIAL &amp; WORKSPACE INTERIORS</strong>
+                        <small>Continuous boardroom tables &bull; Sub-surface Qi wireless charging cavities &bull; Multi-user public washplane troughs</small>
                       </Link>
                     </li>
                     <li>
@@ -706,8 +727,18 @@ export default function MegaMenu({
                         onClick={(e) => handleLinkClick(e, '/applications/exterior-cladding')}
                         className="mega-menu-link"
                       >
-                        <strong>06 / Exterior Cladding</strong>
-                        <small>Thermoformed rain-screens, facade cassettes & portals</small>
+                        <strong>06 / EXTERIOR CLADDING &amp; FACADES</strong>
+                        <small>Thermoformed ventilated rain-screen panels &bull; ASTM Class 1 fire-rated cassettes &bull; UV-stable entry portals &amp; canopies</small>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        href="/fabrication#process"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#process')}
+                        className="mega-menu-link"
+                      >
+                        <strong>08 / ARCHITECTURAL SPECIFIER DESK</strong>
+                        <small>CAD/BIM joint layouts &bull; Structural steel sub-frame engineering &bull; Certified DuPont™ Quality Network installation</small>
                       </Link>
                     </li>
                   </ul>
@@ -718,17 +749,18 @@ export default function MegaMenu({
               <div
                 style={{
                   display: 'flex',
-                  gap: '16px',
+                  gap: '18px',
                   alignItems: 'center',
                   paddingTop: '20px',
                   borderTop: '1px solid var(--line)',
+                  flexWrap: 'wrap',
                 }}
               >
                 <Link
                   href="/applications"
                   onClick={(e) => handleLinkClick(e, '/applications')}
                   className="button button-dark"
-                  style={{ fontSize: '11px', padding: '10px 20px' }}
+                  style={{ fontSize: '11px', padding: '10px 22px' }}
                 >
                   Explore All 6 Typologies <span>↗</span>
                 </Link>
@@ -739,6 +771,14 @@ export default function MegaMenu({
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
                   Discuss a Project Brief <span>↗</span>
+                </Link>
+                <Link
+                  href="/materials#sample-tray"
+                  onClick={(e) => handleLinkClick(e, '/materials#sample-tray')}
+                  className="text-link"
+                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}
+                >
+                  Request Physical Specimens <span>↗</span>
                 </Link>
               </div>
             </div>
@@ -754,17 +794,22 @@ export default function MegaMenu({
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="mega-menu-badge">
-                  Typologies 01–06
+                  Typologies 01–06 &bull; Context
                 </span>
               </div>
               <div className="mega-menu-feature-body">
                 <div>
                   <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                    Formed Across 6 Typologies
+                    Cross-Sector Material Mastery
                   </strong>
                   <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                    From luxury residences and sacred spiritual sanctums to high-traffic dining, certified healthcare, corporate workspaces, and exterior cladding.
+                    From high-traffic dining counters and sterile healthcare scrub bays to sacred mandir altars and seamless ventilated facades, Ace Spaces engineers solid surfaces to sub-millimeter tolerances.
                   </p>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '16px', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#656d62' }}>
+                    <span>&bull; Zero Silicone Joints &bull; 100% Non-Porous</span>
+                    <span>&bull; ASTM E84 Class 1 / A Fire Rated</span>
+                    <span>&bull; NSF/ANSI 51 &amp; GREENGUARD Gold</span>
+                  </div>
                 </div>
                 <Link
                   href="/applications"
