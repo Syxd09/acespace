@@ -330,6 +330,7 @@ export default function SiteHeader() {
             }}
           >
             <span
+              suppressHydrationWarning
               className="sample-tray-count"
               style={{
                 width: '18px',

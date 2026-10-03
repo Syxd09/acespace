@@ -14,9 +14,11 @@ export default function SiteFooter() {
 
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [bengaluruTime, setBengaluruTime] = useState('');
+  const [mounted, setMounted] = useState(false);
 
   // Live Studio Clock (Bengaluru UTC+5:30)
   useEffect(() => {
+    setMounted(true);
     const updateTime = () => {
       const options: Intl.DateTimeFormatOptions = {
         timeZone: 'Asia/Kolkata',
@@ -419,17 +421,22 @@ export default function SiteFooter() {
 
         {/* Live Studio Clock & Geo Coordinates */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '6px',
-            background: 'rgba(255, 255, 255, 0.05)',
-            padding: '4px 10px',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            color: '#b0bcb0',
-          }}>
+          <span
+            suppressHydrationWarning
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              background: 'rgba(255, 255, 255, 0.05)',
+              padding: '4px 10px',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              color: '#b0bcb0',
+            }}
+          >
             <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#73c991' }}></span>
-            BENGALURU STUDIO {bengaluruTime ? `${bengaluruTime} IST` : '15:00 IST'} (UTC +05:30)
+            <span suppressHydrationWarning>
+              BENGALURU STUDIO {mounted && bengaluruTime ? `${bengaluruTime} IST` : '15:00 IST'} (UTC +05:30)
+            </span>
           </span>
           <span>12.9716° N, 77.5946° E</span>
         </div>
