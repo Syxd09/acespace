@@ -126,6 +126,7 @@ export default function HomePage() {
                   Direct Studio Desk
                 </span>
                 <a
+                  suppressHydrationWarning
                   href={whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -514,6 +515,7 @@ export default function HomePage() {
               Quick Specifier Inquiries:
             </span>
             <a
+              suppressHydrationWarning
               href={generateWhatsAppUrl(whatsappNumber, 'Hello Ace Spaces Studio, I would like to request physical material specimen samples for my project specification.')}
               target="_blank"
               rel="noopener noreferrer"
@@ -522,6 +524,7 @@ export default function HomePage() {
               Request Material Samples <span>↗</span>
             </a>
             <a
+              suppressHydrationWarning
               href={generateWhatsAppUrl(whatsappNumber, 'Hello Ace Spaces Studio, I have architectural drawings / CAD files ready and would like a fabrication & material quotation.')}
               target="_blank"
               rel="noopener noreferrer"
@@ -530,6 +533,7 @@ export default function HomePage() {
               Share CAD / Drawings <span>↗</span>
             </a>
             <a
+              suppressHydrationWarning
               href={generateWhatsAppUrl(whatsappNumber, 'Hello Ace Spaces Studio, I would like to inquire about full-slab sheet dimensions, pricing, and current stockyard inventory in Bangalore.')}
               target="_blank"
               rel="noopener noreferrer"

@@ -358,6 +358,7 @@ export default function SiteFooter() {
               <li key={item.label}>
                 {item.external ? (
                   <a
+                    suppressHydrationWarning
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"

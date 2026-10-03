@@ -355,6 +355,7 @@ export default function SiteHeader() {
 
           {/* WhatsApp Direct Advisory Button */}
           <a
+            suppressHydrationWarning
             href={generateWhatsAppUrl(whatsappNumber)}
             target="_blank"
             rel="noopener noreferrer"
@@ -483,6 +484,7 @@ export default function SiteHeader() {
         {/* Direct WhatsApp Studio Mobile Card */}
         <div style={{ margin: '14px 0 18px' }}>
           <a
+            suppressHydrationWarning
             href={generateWhatsAppUrl(whatsappNumber)}
             target="_blank"
             rel="noopener noreferrer"
@@ -608,6 +610,7 @@ export default function SiteHeader() {
         <div className="drawer-footer">
           {/* Mobile WhatsApp Quick Action */}
           <a
+            suppressHydrationWarning
             href={generateWhatsAppUrl(whatsappNumber)}
             target="_blank"
             rel="noopener noreferrer"
