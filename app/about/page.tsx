@@ -454,10 +454,10 @@ export default function AboutPage() {
                   Strategic Alliance Status
                 </div>
                 <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>
-                  Authorized DuPont™ Corian® Solid Surface Partner &amp; Fabricator
+                  Official DuPont™ Corian® Quality Network Industrial Partner
                 </div>
                 <div style={{ fontSize: '12px', color: '#6e766c', marginTop: '6px', lineHeight: 1.5 }}>
-                  Authentic ATH mineral substrates backed by DuPont’s official 10-year installed manufacturer warranty.
+                  Certified industrial master fabricator and stockist backed by DuPont’s official 10-year installed manufacturer warranty.
                 </div>
               </div>
 
@@ -477,36 +477,68 @@ export default function AboutPage() {
                   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
                 }}
               >
-                <span
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span
+                    style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: '#22c55e',
+                      boxShadow: '0 0 8px rgba(34, 197, 94, 0.6)',
+                      display: 'inline-block',
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '9px',
+                      letterSpacing: '0.12em',
+                      textTransform: 'uppercase',
+                      color: 'var(--muted)',
+                    }}
+                  >
+                    Official Partner Endorsement
+                  </span>
+                </div>
+
+                {/* Official Quality Network Industrial Partner Badge */}
+                <div
                   style={{
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: '9px',
-                    letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
-                    color: 'var(--muted)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    padding: '4px 0',
+                    width: '100%',
+                    maxWidth: '300px',
+                    margin: '0 auto',
                   }}
                 >
-                  Official Material Partner &amp; Distributor
-                </span>
+                  <Image
+                    src="/assets/dupont-corian-quality-network-partner.png"
+                    alt="DuPont™ Corian® Quality Network Industrial Partner Official Badge"
+                    width={320}
+                    height={110}
+                    style={{ height: 'auto', width: '100%', maxWidth: '270px', objectFit: 'contain' }}
+                    priority
+                  />
+                </div>
 
                 <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '8px 0',
                     width: '100%',
-                    maxWidth: '280px',
-                    margin: '0 auto',
+                    paddingTop: '14px',
+                    borderTop: '1px solid var(--line)',
                   }}
                 >
                   <Image
                     src="/assets/Corian-Red-logo.png.webp"
                     alt="Corian® Solid Surface"
-                    width={220}
-                    height={88}
-                    style={{ height: '58px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-                    priority
+                    width={160}
+                    height={64}
+                    style={{ height: '40px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
                   />
                 </div>
 
@@ -519,22 +551,23 @@ export default function AboutPage() {
                     paddingTop: '12px',
                     width: '100%',
                     letterSpacing: '0.04em',
+                    lineHeight: 1.5,
                   }}
                 >
-                  Certified ATH Mineral Chemistry · Pan-India Supply
+                  Authorized Master Fabricator · 10-Year Installed Warranty
                 </div>
               </div>
             </div>
 
             <div>
               <p className="lead" style={{ fontSize: '17px', lineHeight: 1.7, color: 'var(--ink)', marginBottom: '18px' }}>
-                To achieve true architectural permanence, craftsmanship must be grounded in verified material science. Ace Spaces partners directly with DuPont™ to supply and fabricate genuine <strong>DuPont™ Corian®</strong> solid surfaces across India.
+                To achieve true architectural permanence, craftsmanship must be grounded in verified material science. Ace Spaces is an official <strong>Quality Network Industrial Partner of DuPont™ Corian®</strong>, supplying and fabricating genuine solid surfaces across India.
               </p>
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#555e54', marginBottom: '18px' }}>
                 Invented by DuPont scientists, Corian® blends approximately two-thirds natural Aluminium Trihydrate (ATH, purified bauxite mineral) with high-grade acrylic polymer (PMMA). This precise formula guarantees through-body consistency, complete non-porosity, and total freedom from crystalline silica hazards.
               </p>
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#555e54', marginBottom: '28px' }}>
-                While Ace Spaces serves as the design practice, CNC fabricator, and custom engineering house, DuPont™ provides the world’s most rigorously tested mineral substrate. Every raw slab dispatched from our stockyard carries genuine chemical traceability, NSF/ANSI 51 food-contact safety certification, and Greenguard Gold compliance.
+                As an accredited Quality Network partner, our fabrication foundry adheres strictly to DuPont's technical specifications. Every raw slab dispatched from our stockyard carries genuine chemical traceability, NSF/ANSI 51 food-contact safety certification, Greenguard Gold compliance, and DuPont's 10-year installed warranty.
               </p>
 
               {/* The 3-Entity Ecosystem Clarification */}
@@ -542,20 +575,20 @@ export default function AboutPage() {
                 <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                     <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                      Material Origin
+                      Material Origin &amp; Accreditation
                     </span>
                     <div style={{ display: 'flex', alignItems: 'center', margin: '12px 0 14px' }}>
                       <Image
-                        src="/assets/Corian-Red-logo.png.webp"
-                        alt="Corian® Solid Surface"
-                        width={140}
-                        height={56}
+                        src="/assets/dupont-corian-quality-network-partner.png"
+                        alt="DuPont™ Corian® Quality Network Industrial Partner"
+                        width={200}
+                        height={68}
                         style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
                       />
                     </div>
-                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Corian® Solid Surface</h4>
+                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Quality Network Partner</h4>
                     <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                      The benchmark solid surface mineral substrate. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
+                      Official DuPont™ Corian® Industrial Partner. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
                     </p>
                   </div>
                 </div>
