@@ -177,7 +177,8 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
           >
             <SpecimenZoomViewer
               textureImage={material.textureImage}
-              applicationImage={material.image}
+              applicationImage={material.inSituImage || material.image}
+              applicationImages={material.inSituImages}
               materialName={material.name}
               materialFinish={material.finish}
               materialColour={material.colour}

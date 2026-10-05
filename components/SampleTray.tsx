@@ -244,7 +244,7 @@ export default function SampleTray() {
         <div
           className="sample-tray-header"
           style={{
-            padding: '24px 32px',
+            padding: formSubmitted ? '16px 24px' : '24px 32px',
             borderBottom: '1px solid var(--line)',
             display: 'flex',
             justifyContent: 'space-between',
@@ -252,10 +252,10 @@ export default function SampleTray() {
           }}
         >
           <div>
-            <span className="eyebrow" style={{ color: 'var(--muted)', display: 'block', marginBottom: '4px' }}>
+            <span className="eyebrow" style={{ color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
               Architectural Palette
             </span>
-            <h2 style={{ fontSize: '20px', fontWeight: 500, margin: 0 }}>
+            <h2 style={{ fontSize: '18px', fontWeight: 500, margin: 0 }}>
               Sample Specimen Tray ({shortlist.length})
             </h2>
           </div>
@@ -264,13 +264,13 @@ export default function SampleTray() {
             className="sample-tray-close"
             aria-label="Close sample tray"
             style={{
-              width: '36px',
-              height: '36px',
+              width: '32px',
+              height: '32px',
               borderRadius: '50%',
               border: '1px solid var(--line)',
               background: 'transparent',
               color: 'var(--ink)',
-              fontSize: '18px',
+              fontSize: '16px',
               display: 'grid',
               placeItems: 'center',
               cursor: 'pointer',
@@ -282,100 +282,102 @@ export default function SampleTray() {
         </div>
 
         {/* Content Body */}
-        <div className="sample-tray-body" style={{ flex: 1, overflowY: 'auto', padding: '32px', display: 'flex', flexDirection: 'column' }}>
+        <div
+          className="sample-tray-body"
+          style={{
+            flex: 1,
+            overflowY: formSubmitted ? 'hidden' : 'auto',
+            padding: formSubmitted ? '16px 24px' : '32px',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
           {formSubmitted ? (
-            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '10px 0' }}>
-              <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', minHeight: 0 }}>
+              <div style={{ textAlign: 'center', marginBottom: '6px' }}>
                 <div
                   style={{
-                    width: '60px',
-                    height: '60px',
+                    width: '36px',
+                    height: '36px',
                     borderRadius: '50%',
                     background: 'var(--ink)',
                     color: '#fff',
                     display: 'grid',
                     placeItems: 'center',
-                    margin: '0 auto 18px',
-                    fontSize: '24px',
+                    margin: '0 auto 6px',
+                    fontSize: '16px',
                   }}
                 >
                   ✓
                 </div>
-                <p className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '6px' }}>Sample Order Dispatched</p>
-                {orderNumber && (
-                  <div style={{ display: 'inline-block', margin: '0 auto 14px', background: '#dcd7cd', border: '1px solid var(--line)', padding: '6px 14px', fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-                    Reference: <strong>{orderNumber}</strong>
-                  </div>
-                )}
-                <h2 style={{ fontSize: '24px', fontWeight: 400, margin: '0 0 12px', lineHeight: 1.25 }}>
-                  Specimen box on its way to <i>{formData.studio || formData.name}.</i>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
+                  <span className="eyebrow" style={{ color: 'var(--muted)', margin: 0 }}>Sample Order Dispatched</span>
+                  {orderNumber && (
+                    <span style={{ background: '#dcd7cd', border: '1px solid var(--line)', padding: '2px 8px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                      Ref: <strong>{orderNumber}</strong>
+                    </span>
+                  )}
+                </div>
+                <h2 style={{ fontSize: '17px', fontWeight: 500, margin: '0 0 4px', lineHeight: 1.25 }}>
+                  Specimen box on its way to <i>{((formData.studio && formData.studio.trim().toLowerCase() !== 'none') ? formData.studio.trim() : (formData.name && formData.name.trim().toLowerCase() !== 'none') ? formData.name.trim() : 'your studio')}.</i>
                 </h2>
-                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#5d665c', margin: '0 auto 16px', maxWidth: '420px' }}>
-                  We have logged your order for {shortlist.length} material specimen{shortlist.length > 1 ? 's' : ''} (100mm × 100mm). Our courier partner will deliver the sample box to <strong>{formData.address}, {formData.city}</strong> within 48–72 hours.
+                <p style={{ fontSize: '11.5px', lineHeight: 1.4, color: '#5d665c', margin: '0 auto 6px', maxWidth: '440px' }}>
+                  We have logged your order for {shortlist.length} specimen{shortlist.length > 1 ? 's' : ''} (100mm × 100mm). Delivery to <strong>{formData.address}, {formData.city}</strong> within 48–72h.
                 </p>
 
-                {/* Office Representative Reassurance Callout */}
+                {/* Office Representative Reassurance Callout - Compact */}
                 <div
                   style={{
-                    margin: '18px auto 0',
-                    maxWidth: '430px',
+                    margin: '6px 0 0',
                     background: 'rgba(255, 255, 255, 0.65)',
                     border: '1px solid var(--line)',
                     borderLeft: '3px solid var(--ink)',
-                    padding: '14px 16px',
+                    padding: '6px 12px',
                     textAlign: 'left',
                     display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '12px',
+                    alignItems: 'center',
+                    gap: '10px',
                     borderRadius: '2px',
                   }}
                 >
                   <div
                     style={{
-                      width: '24px',
-                      height: '24px',
+                      width: '18px',
+                      height: '18px',
                       borderRadius: '50%',
                       background: 'var(--ink)',
                       color: '#fff',
                       display: 'grid',
                       placeItems: 'center',
-                      fontSize: '11px',
+                      fontSize: '9px',
                       flexShrink: 0,
-                      marginTop: '2px',
                     }}
                   >
                     ✓
                   </div>
-                  <div>
-                    <div
-                      style={{
-                        fontFamily: 'DM Mono, monospace',
-                        fontSize: '10px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.08em',
-                        color: 'var(--muted)',
-                        marginBottom: '3px',
-                      }}
-                    >
-                      Studio Concierge Follow-Up
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6px' }}>
+                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)' }}>
+                        Studio Concierge Follow-Up
+                      </span>
+                      <span style={{ fontSize: '9.5px', color: '#6e766c', fontFamily: 'DM Mono, monospace' }}>
+                        +91 (80) 4122-8900
+                      </span>
                     </div>
-                    <p style={{ margin: 0, fontSize: '13px', lineHeight: 1.5, color: 'var(--ink)', fontWeight: 500 }}>
-                      An Ace Spaces office representative will be contacting you shortly to confirm your sample requirements, verify dispatch details, and assist with your project specifications.
+                    <p style={{ margin: '1px 0 0', fontSize: '10.5px', lineHeight: 1.3, color: 'var(--ink)', fontWeight: 500 }}>
+                      An Ace Spaces representative will contact you shortly to verify dispatch and specifications.
                     </p>
-                    <div style={{ marginTop: '6px', fontSize: '11px', color: '#6e766c', fontFamily: 'DM Mono, monospace' }}>
-                      Helpline: +91 (80) 4122-8900 · studio@acespaces.in
-                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Specimens list in confirmation screen - Clicking opens the details modal */}
+              {/* Specimens list in confirmation screen - Compact rows */}
               {shortlist.length > 0 && (
-                <div style={{ marginBottom: '24px' }}>
-                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '10px', letterSpacing: '0.05em' }}>
+                <div style={{ margin: '6px 0 8px', flex: '0 1 auto', minHeight: 0, overflow: 'hidden' }}>
+                  <span style={{ fontSize: '9.5px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '5px', letterSpacing: '0.05em' }}>
                     Specimens in this dispatch ({shortlist.length}) · Click to inspect
                   </span>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', maxHeight: '130px', overflowY: 'auto', paddingRight: '2px' }}>
                     {shortlist.map((mat) => {
                       const fullMat = getFullMaterial(mat);
                       const imageSrc = fullMat.textureImage || fullMat.image;
@@ -385,12 +387,12 @@ export default function SampleTray() {
                           onClick={() => setSelectedMaterial(fullMat)}
                           style={{
                             background: '#dcd7cd',
-                            padding: '10px 12px',
+                            padding: '6px 10px',
                             border: '1px solid var(--line)',
                             display: 'grid',
-                            gridTemplateColumns: '44px 1fr auto',
+                            gridTemplateColumns: '32px 1fr auto',
                             alignItems: 'center',
-                            gap: '12px',
+                            gap: '10px',
                             cursor: 'pointer',
                             transition: 'background 0.15s ease',
                           }}
@@ -404,8 +406,8 @@ export default function SampleTray() {
                         >
                           <div
                             style={{
-                              width: '44px',
-                              height: '44px',
+                              width: '32px',
+                              height: '32px',
                               border: '1px solid rgba(0,0,0,0.18)',
                               borderRadius: '2px',
                               overflow: 'hidden',
@@ -422,14 +424,14 @@ export default function SampleTray() {
                             ) : null}
                           </div>
                           <div style={{ minWidth: 0 }}>
-                            <strong style={{ display: 'block', fontSize: '13px', fontWeight: 500, color: 'var(--ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            <strong style={{ display: 'block', fontSize: '12px', fontWeight: 500, color: 'var(--ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                               {fullMat.name}
                             </strong>
-                            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
+                            <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
                               {fullMat.finish} · 12mm Specimen
                             </span>
                           </div>
-                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '3px' }}>
+                          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '2px' }}>
                             Inspect ↗
                           </span>
                         </div>
@@ -439,7 +441,7 @@ export default function SampleTray() {
                 </div>
               )}
 
-              <button className="button button-dark" onClick={handleReset} style={{ justifyContent: 'center', width: '100%', padding: '16px 24px' }}>
+              <button className="button button-dark" onClick={handleReset} style={{ justifyContent: 'center', width: '100%', padding: '12px 20px', fontSize: '12px', marginTop: 'auto' }}>
                 Done / Return to Palette <span>↗</span>
               </button>
             </div>

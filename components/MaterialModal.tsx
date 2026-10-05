@@ -206,7 +206,8 @@ export default function MaterialModal({
           <div className="material-modal-media">
             <SpecimenZoomViewer
               textureImage={currentMaterial.textureImage}
-              applicationImage={currentMaterial.image}
+              applicationImage={currentMaterial.inSituImage || currentMaterial.image}
+              applicationImages={currentMaterial.inSituImages}
               materialName={currentMaterial.name}
               materialFinish={currentMaterial.finish}
               materialColour={currentMaterial.colour}

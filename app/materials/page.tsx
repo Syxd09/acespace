@@ -2,9 +2,18 @@ import React, { Suspense } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import ColourLibrary from '@/components/ColourLibrary';
+import dynamic from 'next/dynamic';
 import JsonLd from '@/components/JsonLd';
 import { materials } from '@/data/materials';
+
+const ColourLibrary = dynamic(() => import('@/components/ColourLibrary'), {
+  ssr: false,
+  loading: () => (
+    <div style={{ padding: '60px 0', textAlign: 'center', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
+      Loading Material Library...
+    </div>
+  ),
+});
 
 export const metadata: Metadata = {
   title: 'Materials & Colours — Substrates, Slabs & Architectural Palette',

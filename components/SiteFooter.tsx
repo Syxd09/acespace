@@ -116,7 +116,7 @@ export default function SiteFooter() {
           }}>
             <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#73c991' }}></span>
             <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#c4cdc4', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              Parent Company & Solid Surface Foundry
+              Master Material Source &amp; Solid Surface Foundry
             </span>
           </div>
         </div>

@@ -480,7 +480,7 @@ export default function SiteHeader() {
         </div>
 
         <div className="drawer-brand-note">
-          <span className="drawer-mono-label">SOURCE & PARENT COMPANY</span>
+          <span className="drawer-mono-label">MATERIAL FOUNDRY &amp; SOURCE</span>
           <p>
             Ace Spaces is the raw material origin and architectural engineering house for Coro Crafted Collective.
           </p>

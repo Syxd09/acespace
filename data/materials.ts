@@ -14,6 +14,8 @@ export interface Material {
   description: string;
   swatch: string;
   image: string;
+  inSituImage?: string;
+  inSituImages?: string[];
   applications: string[];
   thicknessOptions: string[];
   dimensions: string;
@@ -38,7 +40,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Artista Beige. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_artista_beige.jpg",
-    "image": "/materials/corian_artista_beige.jpg",
+    "image": "/images/images/app_residential_artista_beige.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -52,7 +54,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_artista_beige.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_artista_beige.jpg",
+      "/images/images/app_commercial_artista_beige.jpg"
+    ]
   },
   {
     "slug": "corian-artista-canvas",
@@ -69,7 +76,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Artista Canvas. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_artista_canvas.jpg",
-    "image": "/materials/corian_artista_canvas.jpg",
+    "image": "/images/images/app_residential_artista_canvas.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -83,7 +90,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_artista_canvas.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_artista_canvas.jpg",
+      "/images/images/artista-canvas-application-1.jpg"
+    ]
   },
   {
     "slug": "corian-artista-dust",
@@ -100,7 +112,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Artista Dust. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_artista_dust.jpg",
-    "image": "/materials/corian_artista_dust.jpg",
+    "image": "/images/images/app_residential_artista_dust.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -114,7 +126,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_artista_dust.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_artista_dust.jpg",
+      "/images/images/app_commercial_artista_dust.jpg"
+    ]
   },
   {
     "slug": "corian-artista-gray",
@@ -131,7 +148,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Artista Gray. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_artista_gray.jpg",
-    "image": "/materials/corian_artista_gray.jpg",
+    "image": "/images/images/app_residential_artista_gray.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -145,7 +162,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_artista_gray.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_artista_gray.jpg",
+      "/images/images/app_commercial_artista_gray.jpg"
+    ]
   },
   {
     "slug": "corian-ash-aggregate",
@@ -162,7 +184,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Ash Aggregate. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_ash_aggregate.jpg",
-    "image": "/materials/corian_ash_aggregate.jpg",
+    "image": "/images/images/coriansolidsurface-ashaggregate-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -176,7 +198,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-ashaggregate-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-ashaggregate-application.jpg"
+    ]
   },
   {
     "slug": "corian-basalt-terrazzo",
@@ -193,7 +219,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Basalt Terrazzo. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_basalt_terrazzo.jpg",
-    "image": "/materials/corian_basalt_terrazzo.jpg",
+    "image": "/images/images/coriansolidsurface-basaltterrazzo-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -207,7 +233,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-basaltterrazzo-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-basaltterrazzo-application.jpg"
+    ]
   },
   {
     "slug": "corian-bleached-nuwood",
@@ -224,7 +254,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Bleached Nuwood. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_bleached_nuwood.jpg",
-    "image": "/materials/corian_bleached_nuwood.jpg",
+    "image": "/images/images/app_commercial_bleached_nuwood.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -238,7 +268,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_commercial_bleached_nuwood.jpg",
+    "inSituImages": [
+      "/images/images/app_commercial_bleached_nuwood.jpg",
+      "/images/images/bleached-nuwood-application-2.jpg"
+    ]
   },
   {
     "slug": "corian-carbon-aggregate",
@@ -255,7 +290,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Carbon Aggregate. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_carbon_aggregate.jpg",
-    "image": "/materials/corian_carbon_aggregate.jpg",
+    "image": "/images/images/carbon-aggregate-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -269,7 +304,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/carbon-aggregate-application-1.jpg",
+    "inSituImages": [
+      "/images/images/carbon-aggregate-application-1.jpg",
+      "/images/images/coriansolidsurface-carbonaggregate-application.jpg"
+    ]
   },
   {
     "slug": "corian-carrara-crema",
@@ -286,7 +326,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Carrara Crema. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_carrara_crema.jpg",
-    "image": "/materials/corian_carrara_crema.jpg",
+    "image": "/images/images/app_residential_carrara_crema.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -300,7 +340,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_carrara_crema.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_carrara_crema.jpg",
+      "/images/images/app_commercial_carrara_crema.jpg"
+    ]
   },
   {
     "slug": "corian-carrara-lino",
@@ -317,7 +362,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Carrara Lino. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_carrara_lino.jpg",
-    "image": "/materials/corian_carrara_lino.jpg",
+    "image": "/images/images/app_residential_carrara_lino.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -331,7 +376,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_carrara_lino.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_carrara_lino.jpg",
+      "/images/images/carrara-lino-application-1.jpg"
+    ]
   },
   {
     "slug": "corian-domino-terrazzo",
@@ -348,7 +398,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Domino Terrazzo. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_domino_terrazzo.jpg",
-    "image": "/materials/corian_domino_terrazzo.jpg",
+    "image": "/images/images/domino-terrazzo-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -362,7 +412,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/domino-terrazzo-application-1.jpg",
+    "inSituImages": [
+      "/images/images/domino-terrazzo-application-1.jpg",
+      "/images/images/coriansolidsurface-dominoterrazzo-application.jpg"
+    ]
   },
   {
     "slug": "corian-golden-onyx",
@@ -379,7 +434,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #dbe8ea 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Golden Onyx. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_golden_onyx.jpg",
-    "image": "/materials/corian_golden_onyx.jpg",
+    "image": "/images/images/coriansolidsurface-goldenonyx-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -393,7 +448,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "High (22%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-goldenonyx-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-goldenonyx-application.jpg"
+    ]
   },
   {
     "slug": "corian-jade-onyx",
@@ -441,7 +500,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Laguna. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_laguna.jpg",
-    "image": "/materials/corian_laguna.jpg",
+    "image": "/images/images/coriansolidsurface-verdantlaguna-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -455,7 +514,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-verdantlaguna-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-verdantlaguna-application.jpg"
+    ]
   },
   {
     "slug": "corian-neutral-aggregate",
@@ -472,7 +535,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Neutral Aggregate. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_neutral_aggregate.jpg",
-    "image": "/materials/corian_neutral_aggregate.jpg",
+    "image": "/images/images/coriansolidsurface-neutralaggregate-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -486,7 +549,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-neutralaggregate-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-neutralaggregate-application.jpg"
+    ]
   },
   {
     "slug": "corian-pebble-terrazzo",
@@ -503,7 +570,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Pebble Terrazzo. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_pebble_terrazzo.jpg",
-    "image": "/materials/corian_pebble_terrazzo.jpg",
+    "image": "/images/images/coriansolidsurface-pebbleterrazzo-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -517,7 +584,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-pebbleterrazzo-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-pebbleterrazzo-application.jpg"
+    ]
   },
   {
     "slug": "corian-provence-nuwood",
@@ -534,7 +605,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Provence Nuwood. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_provence_nuwood.jpg",
-    "image": "/materials/corian_provence_nuwood.jpg",
+    "image": "/images/images/provence-nuwood-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -548,7 +619,13 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/provence-nuwood-application-1.jpg",
+    "inSituImages": [
+      "/images/images/provence-nuwood-application-1.jpg",
+      "/images/images/app_commercial_provence_nuwood_2.jpg",
+      "/images/images/app_commercial_provence_nuwood.jpg"
+    ]
   },
   {
     "slug": "corian-sand-storm",
@@ -565,7 +642,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Sand Storm. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_sand_storm.jpg",
-    "image": "/materials/corian_sand_storm.jpg",
+    "image": "/images/images/app_residential_sand-storm.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -579,7 +656,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_sand-storm.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_sand-storm.jpg",
+      "/images/images/sandstorm-application-1.jpg"
+    ]
   },
   {
     "slug": "corian-sandalwood-rgb-1800x1350",
@@ -627,7 +709,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Sepia Linear. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_sepia_linear.jpg",
-    "image": "/materials/corian_sepia_linear.jpg",
+    "image": "/images/images/coriansolidsurface-sepialinear-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -641,7 +723,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-sepialinear-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-sepialinear-application.jpg"
+    ]
   },
   {
     "slug": "corian-silver-linear",
@@ -658,7 +744,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Silver Linear. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_silver_linear.jpg",
-    "image": "/materials/corian_silver_linear.jpg",
+    "image": "/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -672,7 +758,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg"
+    ]
   },
   {
     "slug": "corian-sparkling-granita",
@@ -689,7 +779,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Sparkling Granita. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_sparkling_granita.jpg",
-    "image": "/materials/corian_sparkling_granita.jpg",
+    "image": "/images/images/app_residential_sparkling-granita.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -703,7 +793,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_sparkling-granita.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_sparkling-granita.jpg",
+      "/images/images/sparkling-granita-application-1.jpg"
+    ]
   },
   {
     "slug": "corian-verdant",
@@ -720,7 +815,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Verdant. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_verdant.jpg",
-    "image": "/materials/corian_verdant.jpg",
+    "image": "/images/images/coriansolidsurface-verdant-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -734,7 +829,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-verdant-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-verdant-application.jpg"
+    ]
   },
   {
     "slug": "corian-weathered-aggregate",
@@ -751,7 +850,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Weathered Aggregate. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/corian_weathered_aggregate.jpg",
-    "image": "/materials/corian_weathered_aggregate.jpg",
+    "image": "/images/images/coriansolidsurface-weatheredaggregate-application.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -765,7 +864,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/coriansolidsurface-weatheredaggregate-application.jpg",
+    "inSituImages": [
+      "/images/images/coriansolidsurface-weatheredaggregate-application.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-abalone",
@@ -1061,7 +1164,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Ash Concrete. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_ash_concrete.jpg",
-    "image": "/materials/dupont_corian_ash_concrete.jpg",
+    "image": "/images/images/corian-colors-ash-concrete-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -1075,7 +1178,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-ash-concrete-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-ash-concrete-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-aspen",
@@ -1712,7 +1819,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Canvas. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_canvas.jpg",
-    "image": "/materials/dupont_corian_canvas.jpg",
+    "image": "/images/images/canvas-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -1726,7 +1833,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/canvas-application-1.jpg",
+    "inSituImages": [
+      "/images/images/canvas-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-canyon",
@@ -1774,7 +1885,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Carbon Concrete. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_carbon_concrete.jpg",
-    "image": "/materials/dupont_corian_carbon_concrete.jpg",
+    "image": "/images/images/corian-colors-carbon-concrete-1-2.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -1788,7 +1899,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-carbon-concrete-1-2.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-carbon-concrete-1-2.jpg",
+      "/images/images/corian-colors-carbon-concrete-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-chic-aubergine",
@@ -1867,7 +1983,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #f5f5f2 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Cirrus White. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_cirrus_white.jpg",
-    "image": "/materials/dupont_corian_cirrus_white.jpg",
+    "image": "/images/images/app_residential_cirrus_white_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -1881,7 +1997,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Medium (12%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_cirrus_white_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_cirrus_white_1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-citrus-orange",
@@ -2084,7 +2204,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Concrete. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_concrete.jpg",
-    "image": "/materials/dupont_corian_concrete.jpg",
+    "image": "/images/images/concrete-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2098,7 +2218,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/concrete-application-1.jpg",
+    "inSituImages": [
+      "/images/images/concrete-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-cool-gray",
@@ -2146,7 +2270,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Cosmos Prima. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_cosmos_prima.jpg",
-    "image": "/materials/dupont_corian_cosmos_prima.jpg",
+    "image": "/images/images/corian-colors-cosmos-prima-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2160,7 +2284,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-cosmos-prima-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-cosmos-prima-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-costa",
@@ -2487,7 +2615,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Deepblackquartz. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_deepblackquartz.jpg",
-    "image": "/materials/dupont_corian_deepblackquartz.jpg",
+    "image": "/images/images/deep-black-quartz-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2501,7 +2629,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/deep-black-quartz-application-1.jpg",
+    "inSituImages": [
+      "/images/images/deep-black-quartz-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-deepcaviar",
@@ -2549,7 +2681,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Deepcloud. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_deepcloud.jpg",
-    "image": "/materials/dupont_corian_deepcloud.jpg",
+    "image": "/images/images/deep-cloud-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2563,7 +2695,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/deep-cloud-application-1.jpg",
+    "inSituImages": [
+      "/images/images/deep-cloud-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-deepespresso",
@@ -2611,7 +2747,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Deepmink. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_deepmink.jpg",
-    "image": "/materials/dupont_corian_deepmink.jpg",
+    "image": "/images/images/deep-mink-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2625,7 +2761,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/deep-mink-application-1.jpg",
+    "inSituImages": [
+      "/images/images/deep-mink-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-deepnightsky",
@@ -2673,7 +2813,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Deepsable. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_deepsable.jpg",
-    "image": "/materials/dupont_corian_deepsable.jpg",
+    "image": "/images/images/deep-sable-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2687,7 +2827,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/deep-sable-application-1.jpg",
+    "inSituImages": [
+      "/images/images/deep-sable-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-deepstorm",
@@ -2704,7 +2848,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Deepstorm. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_deepstorm.jpg",
-    "image": "/materials/dupont_corian_deepstorm.jpg",
+    "image": "/images/images/deep-storm-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2718,7 +2862,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/deep-storm-application-1.jpg",
+    "inSituImages": [
+      "/images/images/deep-storm-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-deeptitanium",
@@ -2766,7 +2914,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #f5f5f2 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Designer White. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_designer_white.jpg",
-    "image": "/materials/dupont_corian_designer_white.jpg",
+    "image": "/images/images/designer-white-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2780,7 +2928,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Medium (12%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/designer-white-application-1.jpg",
+    "inSituImages": [
+      "/images/images/designer-white-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-diamond-blue",
@@ -2890,7 +3042,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Dove. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_dove.jpg",
-    "image": "/materials/dupont_corian_dove.jpg",
+    "image": "/images/images/dove-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2904,7 +3056,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/dove-application-1.jpg",
+    "inSituImages": [
+      "/images/images/dove-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-duna",
@@ -2952,7 +3108,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Dune Prima. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_dune_prima.jpg",
-    "image": "/materials/dupont_corian_dune_prima.jpg",
+    "image": "/images/images/corian-colors-dune-prima-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -2966,7 +3122,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-dune-prima-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-dune-prima-1.jpg",
+      "/images/images/corian-colors-dune-prima-2.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-dusk",
@@ -3138,7 +3299,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Elegant Gray. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_elegant_gray.jpg",
-    "image": "/materials/dupont_corian_elegant_gray.jpg",
+    "image": "/images/images/elegant-gray-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -3152,7 +3313,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/elegant-gray-application-1.jpg",
+    "inSituImages": [
+      "/images/images/elegant-gray-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-ethereal-azure",
@@ -3231,7 +3396,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Evening Prima. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_evening_prima.jpg",
-    "image": "/materials/dupont_corian_evening_prima.jpg",
+    "image": "/images/images/evening-prima-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -3245,7 +3410,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/evening-prima-application-1.jpg",
+    "inSituImages": [
+      "/images/images/evening-prima-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-everest",
@@ -3386,7 +3555,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #dbe8ea 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Glacier Ice. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_glacier_ice.jpg",
-    "image": "/materials/dupont_corian_glacier_ice.jpg",
+    "image": "/images/images/glacier-ice-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -3400,7 +3569,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "High (22%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/glacier-ice-application-1.jpg",
+    "inSituImages": [
+      "/images/images/glacier-ice-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-glacier-white",
@@ -3417,7 +3590,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #f5f5f2 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Glacier White. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_glacier_white.jpg",
-    "image": "/materials/dupont_corian_glacier_white.jpg",
+    "image": "/images/images/glacier-white-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -3431,7 +3604,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Medium (12%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/glacier-white-application-1.jpg",
+    "inSituImages": [
+      "/images/images/glacier-white-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-glasa-solid-white",
@@ -3603,7 +3780,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #dbe8ea 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Gray Onyx. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_gray_onyx.jpg",
-    "image": "/materials/dupont_corian_gray_onyx.jpg",
+    "image": "/images/images/corian-colors-gray-onyx-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -3617,7 +3794,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "High (22%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-gray-onyx-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-gray-onyx-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-gray-ripple",
@@ -3758,7 +3939,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Hot. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_hot.jpg",
-    "image": "/materials/dupont_corian_hot.jpg",
+    "image": "/images/images/hot-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -3772,7 +3953,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/hot-application-1.jpg",
+    "inSituImages": [
+      "/images/images/hot-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-ice-white",
@@ -3975,7 +4160,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Lava Drift. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_lava_drift.jpg",
-    "image": "/materials/dupont_corian_lava_drift.jpg",
+    "image": "/images/images/application_lavadrift_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -3989,7 +4174,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_lavadrift_1.jpg",
+    "inSituImages": [
+      "/images/images/application_lavadrift_1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-lava-rock",
@@ -4099,7 +4288,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Limestone Prima. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_limestone_prima.jpg",
-    "image": "/materials/dupont_corian_limestone_prima.jpg",
+    "image": "/images/images/corian-colors-limestone-prima-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -4113,7 +4302,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-limestone-prima-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-limestone-prima-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-linen",
@@ -4130,7 +4323,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Linen. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_linen.jpg",
-    "image": "/materials/dupont_corian_linen.jpg",
+    "image": "/images/images/linen-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -4144,7 +4337,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/linen-application-1.jpg",
+    "inSituImages": [
+      "/images/images/linen-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-luna-jade",
@@ -4440,7 +4637,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #f5f5f2 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Modern White. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_modern_white.jpg",
-    "image": "/materials/dupont_corian_modern_white.jpg",
+    "image": "/images/images/modern-white-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -4454,7 +4651,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Medium (12%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/modern-white-application-1.jpg",
+    "inSituImages": [
+      "/images/images/modern-white-application-1.jpg",
+      "/images/images/modern-white-application-2.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-mojave-2",
@@ -4626,7 +4828,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Natural Gray. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_natural_gray.jpg",
-    "image": "/materials/dupont_corian_natural_gray.jpg",
+    "image": "/images/images/app_residential_natural_gray_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -4640,7 +4842,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_natural_gray_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_natural_gray_1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-neutral-concrete",
@@ -4657,7 +4863,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Neutral Concrete. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_neutral_concrete.jpg",
-    "image": "/materials/dupont_corian_neutral_concrete.jpg",
+    "image": "/images/images/corian-colors-neutral-concrete-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -4671,7 +4877,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-neutral-concrete-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-neutral-concrete-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-nightfall",
@@ -4719,7 +4929,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Nimbus Prima. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_nimbus_prima.jpg",
-    "image": "/materials/dupont_corian_nimbus_prima.jpg",
+    "image": "/images/images/nimbus-prima-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -4733,7 +4943,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/nimbus-prima-application-1.jpg",
+    "inSituImages": [
+      "/images/images/nimbus-prima-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-nocturne",
@@ -4750,7 +4964,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #282b28 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Nocturne. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_nocturne.jpg",
-    "image": "/materials/dupont_corian_nocturne.jpg",
+    "image": "/images/images/deep-nocturne-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -4764,7 +4978,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/deep-nocturne-application-1.jpg",
+    "inSituImages": [
+      "/images/images/deep-nocturne-application-1.jpg",
+      "/images/images/deep-nocturne-application-2.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-oat",
@@ -5060,7 +5279,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Rain Cloud. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_rain_cloud.jpg",
-    "image": "/materials/dupont_corian_rain_cloud.jpg",
+    "image": "/images/images/rain-cloud-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -5074,7 +5293,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/rain-cloud-application-1.jpg",
+    "inSituImages": [
+      "/images/images/rain-cloud-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-rain-streak",
@@ -5091,7 +5314,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Rain Streak. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_rain_streak.jpg",
-    "image": "/materials/dupont_corian_rain_streak.jpg",
+    "image": "/images/images/application_rain_streak_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -5105,7 +5328,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_rain_streak_1.jpg",
+    "inSituImages": [
+      "/images/images/application_rain_streak_1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-ravine",
@@ -5277,7 +5504,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Rosemary. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_rosemary.jpg",
-    "image": "/materials/dupont_corian_rosemary.jpg",
+    "image": "/images/images/rosemary-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -5291,7 +5518,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/rosemary-application-1.jpg",
+    "inSituImages": [
+      "/images/images/rosemary-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-royal-red",
@@ -5370,7 +5601,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Sagebrush. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_sagebrush.jpg",
-    "image": "/materials/dupont_corian_sagebrush.jpg",
+    "image": "/images/images/sagebrush-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -5384,7 +5615,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/sagebrush-application-1.jpg",
+    "inSituImages": [
+      "/images/images/sagebrush-application-1.jpg",
+      "/images/images/sagebrush-application-2.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-sahara",
@@ -5525,7 +5761,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Sandalwood. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_sandalwood.jpg",
-    "image": "/materials/dupont_corian_sandalwood.jpg",
+    "image": "/images/images/sandalwood-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -5539,7 +5775,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/sandalwood-application-1.jpg",
+    "inSituImages": [
+      "/images/images/sandalwood-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-sandstone",
@@ -5556,7 +5796,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Sandstone. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_sandstone.jpg",
-    "image": "/materials/dupont_corian_sandstone.jpg",
+    "image": "/images/images/corian-colours-kitchen-sandstone-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -5570,7 +5810,14 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colours-kitchen-sandstone-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colours-kitchen-sandstone-1.jpg",
+      "/images/images/corian-colours-kitchen-sandstone-3.jpg",
+      "/images/images/corian-colours-kitchen-sandstone-4.jpg",
+      "/images/images/corian-colours-kitchen-sandstone-5.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-savannah",
@@ -5959,7 +6206,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Smoke Drift Prima. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_smoke_drift_prima.jpg",
-    "image": "/materials/dupont_corian_smoke_drift_prima.jpg",
+    "image": "/images/images/corian-colors-smoke-drift-prima-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -5973,7 +6220,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-smoke-drift-prima-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-smoke-drift-prima-1.jpg",
+      "/images/images/smoke-drift-prima-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-snow-flake",
@@ -6083,7 +6335,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #f5f5f2 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Sparkling White. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_sparkling_white.jpg",
-    "image": "/materials/dupont_corian_sparkling_white.jpg",
+    "image": "/images/images/sparkling-white-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6097,7 +6349,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Medium (12%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/sparkling-white-application-1.jpg",
+    "inSituImages": [
+      "/images/images/sparkling-white-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-stardust",
@@ -6486,7 +6742,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Weathered Concrete. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_weathered_concrete.jpg",
-    "image": "/materials/dupont_corian_weathered_concrete.jpg",
+    "image": "/images/images/corian-colors-weathered-concrete-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6500,7 +6756,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/corian-colors-weathered-concrete-1.jpg",
+    "inSituImages": [
+      "/images/images/corian-colors-weathered-concrete-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-whipped-cream",
@@ -6765,7 +7025,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Windswept Prima. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_windswept_prima.jpg",
-    "image": "/materials/dupont_corian_windswept_prima.jpg",
+    "image": "/images/images/windswept-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6779,7 +7039,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/windswept-application-1.jpg",
+    "inSituImages": [
+      "/images/images/windswept-application-1.jpg"
+    ]
   },
   {
     "slug": "dupont-corian-witch-hazel",
@@ -6796,7 +7060,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Witch Hazel. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/dupont_corian_witch_hazel.jpg",
-    "image": "/materials/dupont_corian_witch_hazel.jpg",
+    "image": "/images/images/witch-hazel-application-1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6810,7 +7074,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/witch-hazel-application-1.jpg",
+    "inSituImages": [
+      "/images/images/witch-hazel-application-1.jpg"
+    ]
   },
   {
     "slug": "pattern-artista-drift",
@@ -6827,7 +7095,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Artista Drift. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_artista_drift.jpg",
-    "image": "/materials/pattern_artista_drift.jpg",
+    "image": "/images/images/application_artista-drift.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6841,7 +7109,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_artista-drift.jpg",
+    "inSituImages": [
+      "/images/images/application_artista-drift.jpg"
+    ]
   },
   {
     "slug": "pattern-artista-mist",
@@ -6858,7 +7130,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Artista Mist. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_artista_mist.jpg",
-    "image": "/materials/pattern_artista_mist.jpg",
+    "image": "/images/images/app_residential_artista_mist_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6872,7 +7144,14 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_artista_mist_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_artista_mist_1.jpg",
+      "/images/images/app_residential_artista_mist_2.jpg",
+      "/images/images/app_residential_artista_mist_3.jpg",
+      "/images/images/app_residential_artista_mist_4.jpg"
+    ]
   },
   {
     "slug": "pattern-artista-mocha",
@@ -6889,7 +7168,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Artista Mocha. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_artista_mocha.jpg",
-    "image": "/materials/pattern_artista_mocha.jpg",
+    "image": "/images/images/application_artista-mocha.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6903,7 +7182,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_artista-mocha.jpg",
+    "inSituImages": [
+      "/images/images/application_artista-mocha.jpg"
+    ]
   },
   {
     "slug": "pattern-artista-sage-2",
@@ -6951,7 +7234,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Artista Sage. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_artista_sage.jpg",
-    "image": "/materials/pattern_artista_sage.jpg",
+    "image": "/images/images/app_residential_artista_sage_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6965,7 +7248,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_artista_sage_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_artista_sage_1.jpg",
+      "/images/images/app_residential_artista_sage_2.jpg"
+    ]
   },
   {
     "slug": "pattern-calacatta-greige",
@@ -6982,7 +7270,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Calacatta Greige. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_calacatta_greige.jpg",
-    "image": "/materials/pattern_calacatta_greige.jpg",
+    "image": "/images/images/app_residential_calacatta_greige_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -6996,7 +7284,14 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_calacatta_greige_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_calacatta_greige_1.jpg",
+      "/images/images/app_residential_calacatta_greige_2.jpg",
+      "/images/images/app_residential_calacatta_greige_3.jpg",
+      "/images/images/app_residential_calacatta_greige_4.jpg"
+    ]
   },
   {
     "slug": "pattern-city-roast",
@@ -7013,7 +7308,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in City Roast. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_city_roast.jpg",
-    "image": "/materials/pattern_city_roast.jpg",
+    "image": "/images/images/application_city-roast.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7027,7 +7322,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_city-roast.jpg",
+    "inSituImages": [
+      "/images/images/application_city-roast.jpg"
+    ]
   },
   {
     "slug": "pattern-creme-royale",
@@ -7044,7 +7343,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Creme Royale. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_creme_royale.jpg",
-    "image": "/materials/pattern_creme_royale.jpg",
+    "image": "/images/images/application_creme_royale_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7058,7 +7357,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_creme_royale_1.jpg",
+    "inSituImages": [
+      "/images/images/application_creme_royale_1.jpg"
+    ]
   },
   {
     "slug": "pattern-grinds-archeologic",
@@ -7075,7 +7378,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Grinds Archeologic. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_grinds_archeologic.jpg",
-    "image": "/materials/pattern_grinds_archeologic.jpg",
+    "image": "/images/images/app_residential_archeologic_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7089,7 +7392,12 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_archeologic_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_archeologic_1.jpg",
+      "/images/images/app_commercial_grinds_archeologic.jpg"
+    ]
   },
   {
     "slug": "pattern-grinds-excavage",
@@ -7106,7 +7414,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Grinds Excavage. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_grinds_excavage.jpg",
-    "image": "/materials/pattern_grinds_excavage.jpg",
+    "image": "/images/images/app_residential_excavage_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7120,7 +7428,13 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_excavage_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_excavage_1.jpg",
+      "/images/images/app_residential_excavage_2.jpg",
+      "/images/images/app_commercial_grinds_excavage.jpg"
+    ]
   },
   {
     "slug": "pattern-grinds-pebble-lane",
@@ -7137,7 +7451,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Grinds Pebble Lane. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_grinds_pebble_lane.jpg",
-    "image": "/materials/pattern_grinds_pebble_lane.jpg",
+    "image": "/images/images/app_residential_pebble_lane_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7151,7 +7465,13 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_pebble_lane_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_pebble_lane_1.jpg",
+      "/images/images/app_residential_pebble_lane_2.jpg",
+      "/images/images/app_commercial_grinds_pebble_lane.jpg"
+    ]
   },
   {
     "slug": "pattern-grinds-stonique",
@@ -7168,7 +7488,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Grinds Stonique. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_grinds_stonique.jpg",
-    "image": "/materials/pattern_grinds_stonique.jpg",
+    "image": "/images/images/app_residential_stonique_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7182,7 +7502,14 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_stonique_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_stonique_1.jpg",
+      "/images/images/app_residential_stonique_2.jpg",
+      "/images/images/app_residential_stonique_3.jpg",
+      "/images/images/app_commercial_grinds_stonique.jpg"
+    ]
   },
   {
     "slug": "pattern-lavadrift",
@@ -7261,7 +7588,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #9a9d9c 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Stonecrest Smoke. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_stonecrest_smoke.jpg",
-    "image": "/materials/pattern_stonecrest_smoke.jpg",
+    "image": "/images/images/app_residential_stonecrest_smoke_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7275,7 +7602,13 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_stonecrest_smoke_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_stonecrest_smoke_1.jpg",
+      "/images/images/app_residential_stonecrest_smoke_2.jpg",
+      "/images/images/app_residential_stonecrest_smoke_3.jpg"
+    ]
   },
   {
     "slug": "pattern-terrazzo-laguna",
@@ -7292,7 +7625,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Terrazzo Laguna. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_terrazzo_laguna.jpg",
-    "image": "/materials/pattern_terrazzo_laguna.jpg",
+    "image": "/images/images/app_residential_laguna_terrazzo_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7306,7 +7639,13 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_laguna_terrazzo_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_laguna_terrazzo_1.jpg",
+      "/images/images/app_residential_laguna_terrazzo_2.jpg",
+      "/images/images/app_commercial_terrazzo_laguna.jpg"
+    ]
   },
   {
     "slug": "pattern-terrazzo-peppered",
@@ -7323,7 +7662,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Terrazzo Peppered. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_terrazzo_peppered.jpg",
-    "image": "/materials/pattern_terrazzo_peppered.jpg",
+    "image": "/images/images/app_residential_peppered_terrazzo_1.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7337,7 +7676,15 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/app_residential_peppered_terrazzo_1.jpg",
+    "inSituImages": [
+      "/images/images/app_residential_peppered_terrazzo_1.jpg",
+      "/images/images/app_residential_peppered_terrazzo_2.jpg",
+      "/images/images/app_residential_peppered_terrazzo_3.jpg",
+      "/images/images/app_residential_peppered_terrazzo_4.jpg",
+      "/images/images/app_residential_terrazzo_peppered.jpg"
+    ]
   },
   {
     "slug": "pattern-travertin-firenze",
@@ -7354,7 +7701,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Travertin Firenze. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_travertin_firenze.jpg",
-    "image": "/materials/pattern_travertin_firenze.jpg",
+    "image": "/images/images/application_travertine-firenze.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7368,7 +7715,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_travertine-firenze.jpg",
+    "inSituImages": [
+      "/images/images/application_travertine-firenze.jpg"
+    ]
   },
   {
     "slug": "pattern-travertin-roma",
@@ -7385,7 +7736,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Travertin Roma. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_travertin_roma.jpg",
-    "image": "/materials/pattern_travertin_roma.jpg",
+    "image": "/images/images/application_travertine-roma.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7399,7 +7750,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_travertine-roma.jpg",
+    "inSituImages": [
+      "/images/images/application_travertine-roma.jpg"
+    ]
   },
   {
     "slug": "pattern-vasto-greige",
@@ -7416,7 +7771,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Vasto Greige. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_vasto_greige.jpg",
-    "image": "/materials/pattern_vasto_greige.jpg",
+    "image": "/images/images/application_vasto-greige.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7430,7 +7785,11 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_vasto-greige.jpg",
+    "inSituImages": [
+      "/images/images/application_vasto-greige.jpg"
+    ]
   },
   {
     "slug": "pattern-vasto-laguna",
@@ -7447,7 +7806,7 @@ export const materials: Material[] = [
     "textureCss": "linear-gradient(135deg, #a68c78 0%, rgba(20,23,19,0.06) 100%)",
     "description": "Architectural solid surface in Vasto Laguna. Calibrated zero-silica through-body mineral formulation providing continuous thermoformed curvature, invisible seams, and certified non-porous hygiene.",
     "swatch": "/materials/pattern_vasto_laguna.jpg",
-    "image": "/materials/pattern_vasto_laguna.jpg",
+    "image": "/images/images/application_vasto-laguna.jpg",
     "applications": [
       "Monolithic Island Worktops",
       "Waterfall Countertops",
@@ -7461,6 +7820,10 @@ export const materials: Material[] = [
     "dimensions": "3660 mm × 760 mm",
     "lightTransmission": "Low (5%)",
     "fireRating": "Class 1 / Class A (ASTM E84)",
-    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite."
+    "careGuide": "100% non-porous solid surface. Daily clean with microfibre cloth and neutral soapy water; renewably buffable with Scotch-Brite.",
+    "inSituImage": "/images/images/application_vasto-laguna.jpg",
+    "inSituImages": [
+      "/images/images/application_vasto-laguna.jpg"
+    ]
   }
 ];

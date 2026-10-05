@@ -415,9 +415,8 @@ export default function HomePage() {
           </div>
         </ScrollReveal>
         <ScrollReveal>
-          <p className="eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--ink)', display: 'inline-block' }}></span>
-            Parent Company &amp; Material Source
+          <p className="eyebrow" style={{ marginBottom: '16px' }}>
+            Foundational Foundry · Material Origin
           </p>
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', lineHeight: 1.05, margin: '16px 0 24px' }}>
             The source where
@@ -425,7 +424,7 @@ export default function HomePage() {
             Coro Crafted Collective <i>begins.</i>
           </h2>
           <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'rgba(30,33,29,0.9)', marginBottom: '16px' }}>
-            Ace Spaces is the parent company and the foundational material source behind Coro Crafted Collective. While Coro conceives complete, finished interior environments, every monolithic surface, mineral slab, and seamless join originates from the Ace Spaces raw material library.
+            Ace Spaces is the foundational authority and master material foundry behind Coro Crafted Collective. While Coro conceives complete, finished interior environments, every monolithic surface, mineral slab, and seamless join originates from the Ace Spaces raw material library.
           </p>
           <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'rgba(30,33,29,0.75)', marginBottom: '32px' }}>
             We supply the very same architectural-grade raw materials directly to independent architects, interior designers, and contractors for their own bespoke projects.

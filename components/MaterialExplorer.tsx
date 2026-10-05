@@ -233,26 +233,26 @@ export default function MaterialExplorer() {
                 onClick={() => setActiveModalMaterial(material)}
                 style={{ cursor: 'pointer', zIndex: 2 }}
               >
-                <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '9px', marginBottom: '2px', display: 'block' }}>
-                  {material.code} • {material.collection}
-                </span>
-                <h3>
-                  {(() => {
-                    const match = material.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
-                    if (match) {
-                      return (
-                        <>
-                          <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.72, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
-                            {match[1]}
-                          </span>
-                          <span>{match[2]}</span>
-                        </>
-                      );
-                    }
-                    return material.name;
-                  })()}
-                </h3>
-                <p>{material.finish} / {material.colour}</p>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6px' }}>
+                  <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                    {material.name.replace(/^(DuPont™\s*Corian®|DuPont\s*Corian|Corian®|Corian)\s+/i, '')}
+                  </h3>
+                  <span
+                    style={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '50%',
+                      background: material.hexColor,
+                      border: '1px solid rgba(255,255,255,0.7)',
+                      display: 'inline-block',
+                      flexShrink: 0,
+                    }}
+                    title={`Hex: ${material.hexColor}`}
+                  />
+                </div>
+                <p style={{ marginTop: '2px' }}>
+                  {material.code} · {material.finish}
+                </p>
               </div>
             </div>
           );

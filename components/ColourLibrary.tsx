@@ -721,40 +721,27 @@ export default function ColourLibrary() {
                   {inTray ? 'In Tray ✓' : '+ Sample'}
                 </button>
 
-                <div className="card-info" style={{ zIndex: 2 }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                    <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.9)', fontSize: '9px', margin: 0 }}>
-                      {mat.code} · {mat.collection}
-                    </span>
+                <div className="card-info" style={{ zIndex: 2 }} suppressHydrationWarning>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6px' }}>
+                    <h3 style={{ margin: 0, fontSize: '15px', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {mat.name.replace(/^(DuPont™\s*Corian®|DuPont\s*Corian|Corian®|Corian)\s+/i, '')}
+                    </h3>
                     <span
                       style={{
-                        width: '12px',
-                        height: '12px',
+                        width: '10px',
+                        height: '10px',
                         borderRadius: '50%',
                         background: mat.hexColor,
-                        border: '1px solid rgba(255,255,255,0.6)',
+                        border: '1px solid rgba(255,255,255,0.7)',
                         display: 'inline-block',
+                        flexShrink: 0,
                       }}
                       title={`Hex: ${mat.hexColor}`}
                     />
                   </div>
-                  <h3>
-                    {(() => {
-                      const match = mat.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
-                      if (match) {
-                        return (
-                          <>
-                            <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.72, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
-                              {match[1]}
-                            </span>
-                            <span>{match[2]}</span>
-                          </>
-                        );
-                      }
-                      return mat.name;
-                    })()}
-                  </h3>
-                  <p>{mat.finish} / {mat.colour}</p>
+                  <p style={{ marginTop: '2px' }}>
+                    {mat.code} · {mat.finish}
+                  </p>
                 </div>
               </div>
             );

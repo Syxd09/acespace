@@ -17,12 +17,14 @@ import {
 
 import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
 
-const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v5';
+const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v7';
 const LEGACY_STORAGE_KEYS = [
   'acespaces_custom_content_v1',
   'acespaces_custom_content_v2',
   'acespaces_custom_content_v3',
   'acespaces_custom_content_v4',
+  'acespaces_custom_content_v5',
+  'acespaces_custom_content_v6',
 ];
 
 interface SiteContentContextType {
@@ -90,7 +92,14 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
           const isStale = !cachedTime || (Date.now() - cachedTime > 6 * 60 * 60 * 1000);
 
           if (!isStale) {
-            if (parsed.heroSlides && parsed.heroSlides.length > 0) setHeroSlides(parsed.heroSlides);
+            if (parsed.heroSlides && parsed.heroSlides.length >= defaultHeroSlides.length) {
+              const hasOldDraft = parsed.heroSlides.some((s: HeroSlide) => s.title?.includes('Quiet depth'));
+              if (!hasOldDraft) {
+                setHeroSlides(parsed.heroSlides);
+              } else {
+                setHeroSlides(defaultHeroSlides);
+              }
+            }
             if (parsed.materials && parsed.materials.length >= initialMaterials.length) setMaterials(parsed.materials);
             if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
             if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);

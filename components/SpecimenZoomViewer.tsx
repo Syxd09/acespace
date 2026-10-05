@@ -6,6 +6,7 @@ import { createPortal } from 'react-dom';
 interface SpecimenZoomViewerProps {
   textureImage?: string;
   applicationImage?: string;
+  applicationImages?: string[];
   materialName: string;
   materialFinish?: string;
   materialColour?: string;
@@ -20,6 +21,7 @@ interface SpecimenZoomViewerProps {
 export default function SpecimenZoomViewer({
   textureImage,
   applicationImage,
+  applicationImages,
   materialName,
   materialFinish = 'Polished Honed',
   materialColour = '',
@@ -28,16 +30,31 @@ export default function SpecimenZoomViewer({
   initialView = 'texture',
   minHeight = '320px',
 }: SpecimenZoomViewerProps) {
-  // Toggle between 1:1 macro texture and architectural in-situ application
-  const hasBoth = Boolean(textureImage && applicationImage);
+  // Check whether a distinct in-situ application image exists
+  const hasInSitu = Boolean(applicationImage && applicationImage !== textureImage);
+  const hasBoth = Boolean(textureImage && hasInSitu);
   const [activeView, setActiveView] = useState<'texture' | 'application'>(
     textureImage ? initialView : 'application'
   );
 
+  // Gallery of application / in-situ images
+  const inSituList = applicationImages && applicationImages.length > 0
+    ? applicationImages
+    : (hasInSitu && applicationImage ? [applicationImage] : []);
+
+  const [inSituIndex, setInSituIndex] = useState(0);
+
+  // Reset in-situ index if material changes
+  useEffect(() => {
+    setInSituIndex(0);
+  }, [applicationImage, materialName]);
+
+  const activeInSituImage = inSituList[inSituIndex] || applicationImage || textureImage;
+
   const currentImage =
     activeView === 'texture'
-      ? textureImage || applicationImage
-      : applicationImage || textureImage;
+      ? textureImage || activeInSituImage
+      : activeInSituImage || textureImage;
 
   // Zoom & Pan state
   const [scale, setScale] = useState(1);
@@ -338,8 +355,63 @@ export default function SpecimenZoomViewer({
                 transition: 'all 0.2s ease',
               }}
             >
-              In-Situ
+              In-Situ {inSituList.length > 1 ? `(${inSituIndex + 1}/${inSituList.length})` : ''}
             </button>
+            {activeView === 'application' && inSituList.length > 1 && (
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '2px',
+                  padding: '0 4px',
+                  borderLeft: '1px solid var(--line)',
+                  marginLeft: '2px',
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setInSituIndex((prev) => (prev - 1 + inSituList.length) % inSituList.length);
+                    handleResetZoom();
+                  }}
+                  title="Previous in-situ angle"
+                  aria-label="Previous in-situ angle"
+                  style={{
+                    border: 'none',
+                    background: 'transparent',
+                    cursor: 'pointer',
+                    fontSize: '12px',
+                    padding: '0 3px',
+                    color: 'var(--ink)',
+                    lineHeight: 1,
+                  }}
+                >
+                  ‹
+                </button>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setInSituIndex((prev) => (prev + 1) % inSituList.length);
+                    handleResetZoom();
+                  }}
+                  title="Next in-situ angle"
+                  aria-label="Next in-situ angle"
+                  style={{
+                    border: 'none',
+                    background: 'transparent',
+                    cursor: 'pointer',
+                    fontSize: '12px',
+                    padding: '0 3px',
+                    color: 'var(--ink)',
+                    lineHeight: 1,
+                  }}
+                >
+                  ›
+                </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -619,8 +691,63 @@ export default function SpecimenZoomViewer({
                       transition: 'all 0.15s ease',
                     }}
                   >
-                    In-Situ Architectural
+                    In-Situ Architectural {inSituList.length > 1 ? `(${inSituIndex + 1}/${inSituList.length})` : ''}
                   </button>
+                  {activeView === 'application' && inSituList.length > 1 && (
+                    <div
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        padding: '0 6px',
+                        borderLeft: '1px solid rgba(255,255,255,0.2)',
+                        marginLeft: '2px',
+                      }}
+                    >
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setInSituIndex((prev) => (prev - 1 + inSituList.length) % inSituList.length);
+                          handleResetZoom();
+                        }}
+                        title="Previous in-situ angle"
+                        aria-label="Previous in-situ angle"
+                        style={{
+                          border: 'none',
+                          background: 'transparent',
+                          cursor: 'pointer',
+                          fontSize: '14px',
+                          padding: '0 4px',
+                          color: '#fff',
+                          lineHeight: 1,
+                        }}
+                      >
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setInSituIndex((prev) => (prev + 1) % inSituList.length);
+                          handleResetZoom();
+                        }}
+                        title="Next in-situ angle"
+                        aria-label="Next in-situ angle"
+                        style={{
+                          border: 'none',
+                          background: 'transparent',
+                          cursor: 'pointer',
+                          fontSize: '14px',
+                          padding: '0 4px',
+                          color: '#fff',
+                          lineHeight: 1,
+                        }}
+                      >
+                        ›
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
 

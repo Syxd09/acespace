@@ -8,7 +8,13 @@ import { defaultHeroSlides } from '@/data/contentTypes';
 
 export default function HeroSlider() {
   const { heroSlides } = useSiteContent();
-  const slides = (heroSlides && heroSlides.length > 0) ? heroSlides : defaultHeroSlides;
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const slides = mounted && heroSlides && heroSlides.length > 0 ? heroSlides : defaultHeroSlides;
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -79,7 +85,7 @@ export default function HeroSlider() {
               {slide.image && (
                 <Image
                   src={slide.image}
-                  alt={slide.title}
+                  alt={`${slide.specimen || 'Ace Spaces'} architectural solid surface - ${slide.title} ${slide.subtitle}`}
                   fill
                   priority={index === 0}
                   sizes="100vw"
@@ -112,11 +118,11 @@ export default function HeroSlider() {
         </p>
 
         <div className="hero-buttons">
-          <Link className="button button-light" href="/materials">
-            Explore materials <span>↗</span>
+          <Link className="button button-light" href={activeSlide.ctaPrimaryHref || '/materials'}>
+            {activeSlide.ctaPrimaryText || 'Explore materials'} <span>↗</span>
           </Link>
-          <Link className="text-link light" href="/projects">
-            View projects <span>↗</span>
+          <Link className="text-link light" href={activeSlide.ctaSecondaryHref || '/projects'}>
+            {activeSlide.ctaSecondaryText || 'View projects'} <span>↗</span>
           </Link>
         </div>
       </div>
