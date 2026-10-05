@@ -129,12 +129,17 @@ export default function MaterialGrid() {
             </h3>
             <span
               style={{
+                display: 'block',
                 width: '10px',
                 height: '10px',
+                minWidth: '10px',
+                minHeight: '10px',
+                maxWidth: '10px',
+                maxHeight: '10px',
+                aspectRatio: '1 / 1',
                 borderRadius: '50%',
                 background: m.hexColor,
-                border: '1px solid rgba(255,255,255,0.7)',
-                display: 'inline-block',
+                boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.85)',
                 flexShrink: 0,
               }}
               title={`Hex: ${m.hexColor}`}

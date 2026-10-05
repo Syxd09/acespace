@@ -3813,3 +3813,225 @@ main.page-main {
     animation: none !important;
   }
 }
+
+/* ── 21. ABOUT US PAGE RESPONSIVE ARCHITECTURAL LAYOUTS ─────────────────── */
+.about-two-col {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 1.6fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.about-two-col-wide {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 2fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.about-two-col-team {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.2fr) 1.8fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.about-units-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.about-coro-callout {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 2fr;
+  gap: 36px;
+  align-items: center;
+}
+
+@media (max-width: 960px) {
+  .about-two-col,
+  .about-two-col-wide,
+  .about-two-col-team,
+  .about-coro-callout {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .about-units-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .about-two-col,
+  .about-two-col-wide,
+  .about-two-col-team,
+  .about-coro-callout {
+    gap: 24px !important;
+  }
+}
+
+/* ── 22. PHILOSOPHY RESPONSIVE ACCORDION / GRID ────────────────────────── */
+.philosophy-accordion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.philosophy-detail-card {
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 280px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.philosophy-detail-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: var(--ink);
+}
+
+.philosophy-summary {
+  display: block;
+  list-style: none;
+  cursor: default;
+}
+
+.philosophy-summary::-webkit-details-marker {
+  display: none;
+}
+
+.philosophy-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 12px;
+}
+
+.philosophy-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 6px;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.philosophy-subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #7a8479;
+  margin-bottom: 14px;
+  letter-spacing: 0.04em;
+}
+
+.philosophy-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: #555e54;
+  margin: 0;
+}
+
+.philosophy-indicator {
+  display: none;
+}
+
+/* On Desktop: Always open & expanded, fixed non-collapsible cards */
+@media (min-width: 769px) {
+  .philosophy-detail-card .philosophy-content {
+    display: block !important;
+  }
+  .philosophy-summary {
+    pointer-events: none !important;
+    cursor: default !important;
+  }
+}
+
+/* On Mobile (<= 768px): Transforms into sleek interactive accordion */
+@media (max-width: 768px) {
+  .philosophy-accordion-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .philosophy-detail-card {
+    min-height: auto;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid var(--line);
+    border-radius: 2px;
+  }
+
+  .philosophy-detail-card[open] {
+    background: #ffffff;
+    border-color: var(--ink);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .philosophy-summary {
+    padding: 16px 18px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+  }
+
+  .philosophy-num {
+    margin-bottom: 3px;
+    font-size: 10px;
+  }
+
+  .philosophy-title {
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .philosophy-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: rgba(30, 33, 29, 0.05);
+    color: var(--ink);
+    flex-shrink: 0;
+    margin-left: 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    line-height: 1;
+    transition: all 0.2s ease;
+  }
+
+  .philosophy-indicator::before {
+    content: '+';
+  }
+
+  .philosophy-detail-card[open] .philosophy-indicator {
+    background: var(--ink);
+    color: #ffffff;
+    border-color: var(--ink);
+  }
+
+  .philosophy-detail-card[open] .philosophy-indicator::before {
+    content: '−';
+  }
+
+  .philosophy-content {
+    padding: 0 18px 18px;
+    border-top: 1px dashed var(--line);
+    padding-top: 12px;
+  }
+}
+
+

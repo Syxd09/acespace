@@ -343,12 +343,18 @@ export default function ColourLibrary() {
                   {fam.id !== 'all' && (
                     <span
                       style={{
-                        width: '12px',
-                        height: '12px',
+                        display: 'block',
+                        width: '10px',
+                        height: '10px',
+                        minWidth: '10px',
+                        minHeight: '10px',
+                        maxWidth: '10px',
+                        maxHeight: '10px',
+                        aspectRatio: '1 / 1',
                         borderRadius: '50%',
                         background: fam.color,
-                        border: '1px solid rgba(0,0,0,0.2)',
-                        display: 'inline-block',
+                        boxShadow: '0 0 0 1px rgba(0,0,0,0.2)',
+                        flexShrink: 0,
                       }}
                     />
                   )}
@@ -728,12 +734,17 @@ export default function ColourLibrary() {
                     </h3>
                     <span
                       style={{
+                        display: 'block',
                         width: '10px',
                         height: '10px',
+                        minWidth: '10px',
+                        minHeight: '10px',
+                        maxWidth: '10px',
+                        maxHeight: '10px',
+                        aspectRatio: '1 / 1',
                         borderRadius: '50%',
                         background: mat.hexColor,
-                        border: '1px solid rgba(255,255,255,0.7)',
-                        display: 'inline-block',
+                        boxShadow: '0 0 0 1px rgba(255, 255, 255, 0.85)',
                         flexShrink: 0,
                       }}
                       title={`Hex: ${mat.hexColor}`}

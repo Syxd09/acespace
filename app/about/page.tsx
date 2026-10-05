@@ -2,6 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
+import fs from 'fs';
+import path from 'path';
 import JsonLd from '@/components/JsonLd';
 import AboutScrollHandler from '@/components/AboutScrollHandler';
 
@@ -89,6 +91,18 @@ export default function AboutPage() {
       title: 'Architect-to-Architect Co-Creation',
       subtitle: "Your Studio's Technical Extension",
       body: 'We are not a distant building supply outlet. We act as an active fabrication partner for architects and interior designers across India. From initial CAD shop drawings and structural sub-framing calculations to laser templating and on-site assembly, we bring ambitious concepts to reality.',
+    },
+    {
+      num: '05',
+      title: 'Thermoformed Spatial Fluidity',
+      subtitle: 'Curvature Beyond the Cartesian Grid',
+      body: 'Architecture is not confined to rigid 90-degree planes. Through precise thermoforming at 160°C over custom CNC formwork, we shape mineral acrylic into seamless curved plinths, organic fluted islands, and ergonomic coved wall transitions that embrace natural human movement.',
+    },
+    {
+      num: '06',
+      title: 'Circular Longevity & In-Situ Renewal',
+      subtitle: 'Restored to Day-One Stillness',
+      body: 'A luxury surface should outlast transient design trends. Because our material is homogeneous throughout, it never delaminates. Decades of heavy commercial or residential wear, minor scratches, or accidental blemishes can be effortlessly renewed on-site to factory-fresh perfection.',
     },
   ];
 
@@ -198,7 +212,7 @@ export default function AboutPage() {
         style={{
           display: 'flex',
           gap: 'clamp(12px, 3vw, 36px)',
-          padding: '16px 0',
+          padding: '16px 5vw',
           borderBottom: '1px solid var(--line)',
           overflowX: 'auto',
           whiteSpace: 'nowrap',
@@ -225,7 +239,7 @@ export default function AboutPage() {
             <p className="eyebrow" style={{ margin: 0 }}>Chapter 01 · Origin &amp; Vision</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1.6fr', gap: '48px', alignItems: 'flex-start' }}>
+          <div className="about-two-col">
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 20px', letterSpacing: '-0.04em' }}>
                 Why we exist:
@@ -234,9 +248,176 @@ export default function AboutPage() {
                 <br />
                 <i>of the joint.</i>
               </h2>
-              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.6 }}>
+              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.6, margin: '0 0 4px' }}>
                 Founded in Bengaluru to bridge the divide between pure architectural intent and physical craft.
               </p>
+
+              {/* Company Family & Leadership Photo Space */}
+              {(() => {
+                const familyPhotoDir = path.join(process.cwd(), 'public', 'images', 'about');
+                const supportedFamilyExts = ['jpg', 'jpeg', 'png', 'webp'];
+                let familyPhotoSrc: string | null = null;
+                for (const ext of supportedFamilyExts) {
+                  if (fs.existsSync(path.join(familyPhotoDir, `company-family.${ext}`))) {
+                    familyPhotoSrc = `/images/about/company-family.${ext}`;
+                    break;
+                  }
+                }
+
+                return (
+                  <div
+                    style={{
+                      marginTop: '28px',
+                      background: 'rgba(255, 255, 255, 0.85)',
+                      border: '1px solid var(--line)',
+                      borderRadius: '2px',
+                      overflow: 'hidden',
+                      boxShadow: '0 2px 16px rgba(0, 0, 0, 0.04)',
+                    }}
+                  >
+                    {/* Photo Frame */}
+                    <div
+                      style={{
+                        position: 'relative',
+                        width: '100%',
+                        aspectRatio: '4 / 3',
+                        background: '#f4f0e8',
+                        overflow: 'hidden',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {familyPhotoSrc ? (
+                        <Image
+                          src={familyPhotoSrc}
+                          alt="Ace Spaces Founding Family and Atelier Leadership"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 480px"
+                          style={{
+                            objectFit: 'cover',
+                          }}
+                        />
+                      ) : (
+                        /* Architectural Placeholder Frame if image file not placed yet */
+                        <div
+                          style={{
+                            padding: '24px 20px',
+                            textAlign: 'center',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            width: '100%',
+                            height: '100%',
+                            border: '2px dashed rgba(26, 29, 25, 0.18)',
+                            margin: '8px',
+                            background: 'rgba(255, 255, 255, 0.4)',
+                            boxSizing: 'border-box',
+                          }}
+                        >
+                          <div
+                            style={{
+                              width: '42px',
+                              height: '42px',
+                              borderRadius: '50%',
+                              background: 'rgba(30, 33, 29, 0.06)',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              marginBottom: '10px',
+                              color: 'var(--ink)',
+                            }}
+                          >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                              <circle cx="9" cy="7" r="4" />
+                              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                            </svg>
+                          </div>
+
+                          <span
+                            style={{
+                              fontFamily: 'DM Mono, monospace',
+                              fontSize: '10px',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.1em',
+                              color: 'var(--muted)',
+                              marginBottom: '4px',
+                            }}
+                          >
+                            Family Portrait Space
+                          </span>
+
+                          <strong style={{ fontSize: '13px', color: 'var(--ink)', fontWeight: 600, marginBottom: '6px' }}>
+                            Ready for Your Family Photo
+                          </strong>
+
+                          <p style={{ fontSize: '11px', lineHeight: 1.45, color: '#6e766c', margin: '0 0 8px', maxWidth: '280px' }}>
+                            Drop your photo at:
+                          </p>
+                          <code style={{ background: 'rgba(0,0,0,0.06)', padding: '4px 8px', borderRadius: '2px', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)', wordBreak: 'break-all', display: 'inline-block', maxWidth: '100%' }}>
+                            public/images/about/company-family.jpg
+                          </code>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Caption & Context Block */}
+                    <div style={{ padding: '16px 18px', borderTop: '1px solid var(--line)', background: 'rgba(255, 255, 255, 0.95)' }}>
+                      <span
+                        style={{
+                          fontFamily: 'DM Mono, monospace',
+                          fontSize: '9px',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.12em',
+                          color: 'var(--muted)',
+                          display: 'block',
+                          marginBottom: '4px',
+                        }}
+                      >
+                        01.A · Origin &amp; Stewardship
+                      </span>
+
+                      <strong
+                        style={{
+                          display: 'block',
+                          fontSize: '15px',
+                          fontWeight: 600,
+                          color: 'var(--ink)',
+                          marginBottom: '2px',
+                          letterSpacing: '-0.02em',
+                        }}
+                      >
+                        The Family Behind Ace Spaces
+                      </strong>
+
+                      <div
+                        style={{
+                          fontFamily: 'DM Mono, monospace',
+                          fontSize: '11px',
+                          color: '#7a8479',
+                          marginBottom: '6px',
+                        }}
+                      >
+                        Founders &amp; Atelier Leadership · Bengaluru
+                      </div>
+
+                      <p
+                        style={{
+                          fontSize: '12px',
+                          lineHeight: 1.5,
+                          color: '#555e54',
+                          margin: 0,
+                        }}
+                      >
+                        United by a generational commitment to architectural stillness, physical craft, and personal stewardship.
+                      </p>
+                    </div>
+                  </div>
+                );
+              })()}
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '16px', lineHeight: 1.7, color: '#4a5249' }}>
@@ -289,7 +470,7 @@ export default function AboutPage() {
             <p className="eyebrow" style={{ margin: 0 }}>Chapter 02 · Architectural Philosophy</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 2fr', gap: '48px', alignItems: 'flex-start', marginBottom: '40px' }}>
+          <div className="about-two-col-wide" style={{ marginBottom: '40px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: 0, letterSpacing: '-0.04em' }}>
                 Principles of
@@ -299,42 +480,59 @@ export default function AboutPage() {
             </div>
             <div>
               <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', margin: 0 }}>
-                Every counter, sink, plinth, and wall plane crafted in our workshop is governed by four core architectural convictions. We do not chase decorative trends; we pursue timeless geometry, tactile warmth, and permanent structural honesty.
+                Every counter, sink, plinth, and wall plane crafted in our workshop is governed by six core architectural convictions. We do not chase decorative trends; we pursue timeless geometry, tactile warmth, and permanent structural honesty.
               </p>
             </div>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
+          <div className="philosophy-accordion-grid">
             {philosophyPillars.map((pillar) => (
-              <div
-                key={pillar.num}
-                style={{
-                  padding: '28px',
-                  background: 'rgba(255, 255, 255, 0.7)',
-                  border: '1px solid var(--line)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  minHeight: '280px',
-                }}
-              >
-                <div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>
-                    {pillar.num} / Philosophy
-                  </span>
-                  <h3 style={{ fontSize: '18px', fontWeight: 600, color: 'var(--ink)', margin: '0 0 6px', letterSpacing: '-0.02em' }}>
-                    {pillar.title}
-                  </h3>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#7a8479', marginBottom: '14px' }}>
-                    {pillar.subtitle}
+              <details key={pillar.num} className="philosophy-detail-card" open>
+                <summary className="philosophy-summary">
+                  <div>
+                    <span className="philosophy-num">{pillar.num} / Philosophy</span>
+                    <h3 className="philosophy-title">{pillar.title}</h3>
                   </div>
-                  <p style={{ fontSize: '13px', lineHeight: 1.65, color: '#555e54', margin: 0 }}>
-                    {pillar.body}
-                  </p>
+                  <span className="philosophy-indicator" aria-hidden="true" />
+                </summary>
+                <div className="philosophy-content">
+                  <div className="philosophy-subtitle">{pillar.subtitle}</div>
+                  <p className="philosophy-body">{pillar.body}</p>
                 </div>
-              </div>
+              </details>
             ))}
           </div>
+
+          {/* Client enhancement: On mobile, collapse cards 02-06 into compact accordion */}
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  function syncPhilosophyCards() {
+                    try {
+                      if (window.innerWidth <= 768) {
+                        var cards = document.querySelectorAll('.philosophy-detail-card');
+                        for (var i = 1; i < cards.length; i++) {
+                          cards[i].removeAttribute('open');
+                        }
+                      } else {
+                        var cards = document.querySelectorAll('.philosophy-detail-card');
+                        for (var j = 0; j < cards.length; j++) {
+                          cards[j].setAttribute('open', '');
+                        }
+                      }
+                    } catch(e) {}
+                  }
+                  if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', syncPhilosophyCards);
+                  } else {
+                    syncPhilosophyCards();
+                  }
+                  window.addEventListener('resize', syncPhilosophyCards);
+                })();
+              `,
+            }}
+          />
         </div>
       </section>
 
@@ -346,7 +544,7 @@ export default function AboutPage() {
             <p className="eyebrow" style={{ margin: 0 }}>Chapter 03 · The Atelier &amp; Makers</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1.2fr) 1.8fr', gap: '48px', alignItems: 'flex-start', marginBottom: '44px' }}>
+          <div className="about-two-col-team" style={{ marginBottom: '44px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 18px', letterSpacing: '-0.04em' }}>
                 The hands behind
@@ -366,7 +564,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+            <div className="about-units-grid">
               {atelierTeams.map((team, idx) => (
                 <div
                   key={team.role}
@@ -396,40 +594,78 @@ export default function AboutPage() {
           {/* Workshop Visual Feature */}
           <div
             style={{
-              position: 'relative',
-              height: '380px',
-              width: '100%',
-              overflow: 'hidden',
               border: '1px solid var(--line)',
+              borderRadius: '2px',
+              overflow: 'hidden',
+              background: '#fff',
             }}
           >
-            <Image
-              src="/images/images/app_residential_calacatta_greige_1.jpg"
-              alt="Ace Spaces fabrication workshop and finished monolithic installation"
-              fill
-              sizes="100vw"
-              style={{ objectFit: 'cover' }}
-            />
             <div
               style={{
-                position: 'absolute',
-                bottom: '24px',
-                left: '24px',
-                background: 'rgba(20, 23, 19, 0.88)',
-                backdropFilter: 'blur(12px)',
-                color: '#fff',
-                padding: '16px 24px',
-                maxWidth: '480px',
+                position: 'relative',
+                height: 'clamp(280px, 42vw, 480px)',
+                width: '100%',
+                overflow: 'hidden',
+                background: '#ece8df',
               }}
             >
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#9da79d', display: 'block', marginBottom: '4px' }}>
-                Fabrication Atelier · Bengaluru
-              </span>
-              <strong style={{ fontSize: '14px', display: 'block', marginBottom: '4px' }}>
-                Continuous 4.2-Meter Island with Integrated Sub-Surface Sink
-              </strong>
-              <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#d2dad2', margin: 0 }}>
-                Fabricated with 45 deg  mitred waterfalls and zero visible joints at our Bengaluru studio atelier.
+              <Image
+                src="/images/images/app_residential_calacatta_greige_1.jpg"
+                alt="Ace Spaces fabrication workshop and finished monolithic installation"
+                fill
+                sizes="100vw"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+
+            <div
+              style={{
+                padding: '16px 20px',
+                background: 'rgba(255, 255, 255, 0.95)',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                gap: '12px',
+                borderTop: '1px solid var(--line)',
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '9px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: 'var(--muted)',
+                    display: 'block',
+                    marginBottom: '3px',
+                  }}
+                >
+                  Fabrication Atelier · Bengaluru
+                </span>
+                <strong
+                  style={{
+                    fontSize: '14px',
+                    fontWeight: 600,
+                    color: 'var(--ink)',
+                    display: 'block',
+                    letterSpacing: '-0.01em',
+                  }}
+                >
+                  Continuous 4.2-Meter Island with Integrated Sub-Surface Sink
+                </strong>
+              </div>
+              <p
+                style={{
+                  fontSize: '12px',
+                  lineHeight: 1.5,
+                  color: '#555e54',
+                  margin: 0,
+                  maxWidth: '460px',
+                }}
+              >
+                Fabricated with 45° mitred waterfalls and zero visible joints at our Bengaluru studio atelier.
               </p>
             </div>
           </div>
@@ -493,7 +729,7 @@ export default function AboutPage() {
             <p className="eyebrow" style={{ margin: 0 }}>Chapter 04 · Material Foundation &amp; Sourcing Alliance</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 1.6fr', gap: '48px', alignItems: 'flex-start', marginBottom: '36px' }}>
+          <div className="about-two-col" style={{ marginBottom: '36px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 20px', letterSpacing: '-0.04em' }}>
                 Our studio is the vision.
@@ -708,7 +944,7 @@ export default function AboutPage() {
             <p className="eyebrow" style={{ margin: 0 }}>Chapter 05 · Studio Headquarters</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(280px, 1fr) 2fr', gap: '48px', alignItems: 'flex-start', marginBottom: '36px' }}>
+          <div className="about-two-col-wide" style={{ marginBottom: '36px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
                 Visit our studio
@@ -835,7 +1071,7 @@ export default function AboutPage() {
       </section>
 
       {/* Coro Crafted Collective Synergy Callout */}
-      <section className="callout" id="coro" style={{ display: 'grid', gridTemplateColumns: 'minmax(220px, 1fr) 2fr', gap: '36px', alignItems: 'center' }}>
+      <section className="callout about-coro-callout" id="coro">
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', background: 'rgba(255,255,255,0.45)', border: '1px solid var(--line)', padding: '28px 20px', borderRadius: '4px' }}>
           <img src="/images/coro-emblem.png" alt="Coro Crafted Collective Architectural Emblem" style={{ width: '80px', height: '100px', objectFit: 'contain', marginBottom: '12px', display: 'block' }} />
           <img src="/images/coro-wordmark.png" alt="Coro Crafted Collective Wordmark" style={{ width: '130px', height: '36px', objectFit: 'contain', display: 'block' }} />
