@@ -44,7 +44,22 @@ export function getSiteContent(): SiteContent {
       if (fileData.charCodeAt(0) === 0xFEFF) {
         fileData = fileData.slice(1);
       }
-      const parsed = JSON.parse(fileData.trim());
+      let parsed: any;
+      try {
+        parsed = JSON.parse(fileData.trim());
+      } catch (err: any) {
+        try {
+          const sanitized = fileData
+            .replace(/â€"/g, '—')
+            .replace(/â€™/g, '’')
+            .replace(/â€˜/g, '‘')
+            .replace(/â€œ/g, '“')
+            .replace(/Â /g, ' ');
+          parsed = JSON.parse(sanitized.trim());
+        } catch {
+          throw err;
+        }
+      }
       let resolvedMaterials = parsed.materials || defaultMaterials;
       if (Array.isArray(parsed.materials)) {
         const existingSlugs = new Set(parsed.materials.map((m: any) => m.slug));

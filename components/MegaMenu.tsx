@@ -31,16 +31,55 @@ export default function MegaMenu({
     const [urlWithoutHash, hash] = href.split('#');
     const [targetPath, queryString] = urlWithoutHash.split('?');
 
+    if (hash) {
+      try {
+        sessionStorage.setItem('pendingHashScroll', hash);
+        (window as unknown as { __pendingHashScroll?: string }).__pendingHashScroll = hash;
+      } catch {
+        // ignore
+      }
+    }
+
     if (pathname === targetPath) {
       if (queryString) {
         router.push(href);
       }
       if (hash) {
         e.preventDefault();
-        const el = document.getElementById(hash);
+        const clean = hash.toLowerCase().trim();
+        let el = document.getElementById(clean) || document.querySelector(`[id="${clean}"]`);
+        if (!el && (clean === 'dupont' || clean === 'foundation' || clean === 'partnership' || clean === 'alliance')) {
+          el =
+            document.getElementById('dupont') ||
+            document.getElementById('foundation') ||
+            document.getElementById('partnership') ||
+            document.querySelector('section[id="dupont"]') ||
+            document.querySelector('section[id="foundation"]');
+        }
         if (el) {
-          el.scrollIntoView({ behavior: 'smooth' });
-          window.history.pushState(null, '', href);
+          const lenis = (
+            window as unknown as {
+              __lenis?: {
+                resize: () => void;
+                scrollTo: (target: HTMLElement, opts?: unknown) => void;
+              };
+            }
+          ).__lenis;
+          if (lenis) {
+            try {
+              lenis.resize();
+            } catch {
+              // ignore
+            }
+            lenis.scrollTo(el as HTMLElement, { offset: -96, duration: 1.2 });
+          } else {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+          try {
+            window.history.pushState(null, '', href);
+          } catch {
+            // ignore
+          }
         }
       }
     }

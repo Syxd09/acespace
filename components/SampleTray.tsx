@@ -19,6 +19,8 @@ export default function SampleTray() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [orderId, setOrderId] = useState<string | null>(null);
+  const orderIdRef = React.useRef<string | null>(null);
+  const isSavingRef = React.useRef<boolean>(false);
   const [orderNumber, setOrderNumber] = useState<string>('');
   const [formData, setFormData] = useState({
     name: '',
@@ -49,16 +51,20 @@ export default function SampleTray() {
     return item;
   };
 
-  // Instant real-time draft capture ("also if he is entering")
+  // Safe real-time draft capture with race-condition prevention & reasonable debounce
   React.useEffect(() => {
     if (formSubmitted || shortlist.length === 0) return;
     if (!formData.name && !formData.email && !formData.phone && !formData.studio && !formData.address) return;
 
-    // Fast 350ms debounce for immediate real-time sync
+    // 1200ms debounce to prevent spamming server and hitting rate limits during typing
     const timer = setTimeout(async () => {
+      if (isSavingRef.current) return;
+      isSavingRef.current = true;
+
       try {
+        const currentId = orderIdRef.current || orderId || undefined;
         const payload = {
-          id: orderId || undefined,
+          id: currentId,
           status: 'in-progress',
           customer: formData,
           items: shortlist.map((m) => {
@@ -86,7 +92,8 @@ export default function SampleTray() {
 
         if (res.ok) {
           const data = await res.json();
-          if (data.orderId && !orderId) {
+          if (data.orderId) {
+            orderIdRef.current = data.orderId;
             setOrderId(data.orderId);
           }
           if (data.orderNumber) {
@@ -97,8 +104,10 @@ export default function SampleTray() {
         }
       } catch (err) {
         console.warn('Draft auto-save sync error:', err);
+      } finally {
+        isSavingRef.current = false;
       }
-    }, 350);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, [formData, shortlist, orderId, formSubmitted]);
@@ -126,8 +135,9 @@ export default function SampleTray() {
     setErrorMessage(null);
 
     try {
+      const currentId = orderIdRef.current || orderId || undefined;
       const payload = {
-        id: orderId || undefined,
+        id: currentId,
         status: 'submitted',
         customer: formData,
         items: shortlist.map((m) => {
@@ -175,6 +185,7 @@ export default function SampleTray() {
   const handleReset = () => {
     setFormSubmitted(false);
     setOrderId(null);
+    orderIdRef.current = null;
     setOrderNumber('');
     setErrorMessage(null);
     clearShortlist();

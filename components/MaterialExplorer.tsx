@@ -236,7 +236,22 @@ export default function MaterialExplorer() {
                 <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '9px', marginBottom: '2px', display: 'block' }}>
                   {material.code} • {material.collection}
                 </span>
-                <h3>{material.name}</h3>
+                <h3>
+                  {(() => {
+                    const match = material.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
+                    if (match) {
+                      return (
+                        <>
+                          <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.72, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
+                            {match[1]}
+                          </span>
+                          <span>{match[2]}</span>
+                        </>
+                      );
+                    }
+                    return material.name;
+                  })()}
+                </h3>
                 <p>{material.finish} / {material.colour}</p>
               </div>
             </div>

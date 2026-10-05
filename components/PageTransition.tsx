@@ -45,22 +45,69 @@ export default function PageTransition({ children }: { children: React.ReactNode
         prevPathRef.current = pathname;
         setTransitionStage('revealing');
 
-        // Scroll new page to top immediately if no hash
-        if (!window.location.hash) {
+        // Check if there is an intended hash target
+        let hasPendingHash = false;
+        try {
+          hasPendingHash = Boolean(
+            window.location.hash ||
+            sessionStorage.getItem('pendingHashScroll') ||
+            (window as unknown as { __pendingHashScroll?: string }).__pendingHashScroll
+          );
+        } catch {
+          hasPendingHash = Boolean(window.location.hash);
+        }
+
+        // Scroll new page to top immediately only if no hash target is intended
+        if (!hasPendingHash) {
           (window as unknown as { __lenis?: { scrollTo: (target: number, opts: { immediate: boolean }) => void } }).__lenis?.scrollTo(0, { immediate: true });
         }
 
-        // Step 2: Curtain sweeps away (400ms)
+        // Step 2: Curtain sweeps away (450ms)
         const tReveal = setTimeout(() => {
           setTransitionStage('idle');
-          if (typeof window !== 'undefined' && window.location.hash) {
-            const hash = window.location.hash.substring(1);
+          if (typeof window !== 'undefined') {
+            let hash = window.location.hash ? window.location.hash.substring(1) : '';
+            if (!hash) {
+              try {
+                const stored =
+                  sessionStorage.getItem('pendingHashScroll') ||
+                  (window as unknown as { __pendingHashScroll?: string }).__pendingHashScroll;
+                if (stored) {
+                  hash = stored.replace(/^#/, '');
+                }
+              } catch {
+                // ignore
+              }
+            }
+
             if (hash) {
-              const el = document.getElementById(hash);
+              const clean = hash.toLowerCase().trim();
+              let el = document.getElementById(clean) || document.querySelector(`[id="${clean}"]`);
+              if (!el && (clean === 'dupont' || clean === 'foundation' || clean === 'partnership' || clean === 'alliance')) {
+                el =
+                  document.getElementById('dupont') ||
+                  document.getElementById('foundation') ||
+                  document.getElementById('partnership') ||
+                  document.querySelector('section[id="dupont"]') ||
+                  document.querySelector('section[id="foundation"]');
+              }
               if (el) {
-                const lenis = (window as unknown as { __lenis?: { scrollTo: (target: HTMLElement, opts?: unknown) => void } }).__lenis;
+                const lenis = (
+                  window as unknown as {
+                    __lenis?: {
+                      resize: () => void;
+                      scrollTo: (target: HTMLElement, opts?: unknown) => void;
+                    };
+                  }
+                ).__lenis;
+                const isDupont = clean === 'dupont' || clean === 'partnership' || clean === 'foundation' || clean === 'alliance';
                 if (lenis) {
-                  lenis.scrollTo(el, { offset: -96, duration: 1.2 });
+                  try {
+                    lenis.resize();
+                  } catch {
+                    // ignore
+                  }
+                  lenis.scrollTo(el as HTMLElement, { offset: isDupont ? 60 : -96, duration: 1.2 });
                 } else {
                   el.scrollIntoView({ behavior: 'smooth' });
                 }

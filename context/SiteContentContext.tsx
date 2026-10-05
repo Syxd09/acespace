@@ -17,11 +17,12 @@ import {
 
 import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
 
-const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v4';
+const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v5';
 const LEGACY_STORAGE_KEYS = [
   'acespaces_custom_content_v1',
   'acespaces_custom_content_v2',
   'acespaces_custom_content_v3',
+  'acespaces_custom_content_v4',
 ];
 
 interface SiteContentContextType {
@@ -90,7 +91,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
 
           if (!isStale) {
             if (parsed.heroSlides && parsed.heroSlides.length > 0) setHeroSlides(parsed.heroSlides);
-            if (parsed.materials && parsed.materials.length > 0) setMaterials(parsed.materials);
+            if (parsed.materials && parsed.materials.length >= initialMaterials.length) setMaterials(parsed.materials);
             if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
             if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);
             if (parsed.projects && parsed.projects.length > 0) setProjects(parsed.projects);

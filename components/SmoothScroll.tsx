@@ -47,12 +47,26 @@ export default function SmoothScroll() {
     rafId = requestAnimationFrame(raf);
 
     const scrollToHashElement = (hash: string) => {
-      const targetId = hash.replace(/^#/, '');
+      const targetId = hash.replace(/^#/, '').toLowerCase().trim();
       if (!targetId) return;
-      const el = document.getElementById(targetId) || document.querySelector(`[id="${targetId}"]`);
+      let el = document.getElementById(targetId) || document.querySelector(`[id="${targetId}"]`);
+      if (!el && (targetId === 'dupont' || targetId === 'foundation' || targetId === 'partnership' || targetId === 'alliance')) {
+        el =
+          document.getElementById('dupont') ||
+          document.getElementById('foundation') ||
+          document.getElementById('partnership') ||
+          document.querySelector('section[id="dupont"]') ||
+          document.querySelector('section[id="foundation"]');
+      }
       if (el) {
+        const isDupont = targetId === 'dupont' || targetId === 'foundation' || targetId === 'partnership' || targetId === 'alliance';
+        try {
+          lenis.resize();
+        } catch {
+          // ignore
+        }
         lenis.scrollTo(el as HTMLElement, {
-          offset: -96,
+          offset: isDupont ? 60 : -96,
           duration: 1.2,
         });
       }
@@ -62,7 +76,13 @@ export default function SmoothScroll() {
     if (window.location.hash) {
       setTimeout(() => {
         scrollToHashElement(window.location.hash);
-      }, 350);
+      }, 150);
+      setTimeout(() => {
+        scrollToHashElement(window.location.hash);
+      }, 450);
+      setTimeout(() => {
+        scrollToHashElement(window.location.hash);
+      }, 950);
     }
 
     // 3. Intercept anchor links across the site (both relative #hash and /page#hash)
@@ -80,14 +100,40 @@ export default function SmoothScroll() {
         const isCurrentPage = !linkPath || linkPath === currentPath || (linkPath === '/' && currentPath === '/');
 
         if (isCurrentPage && hash) {
-          const element = document.getElementById(hash) || document.querySelector(`[id="${hash}"]`);
+          const targetId = hash.replace(/^#/, '').toLowerCase().trim();
+          let element = document.getElementById(targetId) || document.querySelector(`[id="${targetId}"]`);
+          if (!element && (targetId === 'dupont' || targetId === 'foundation' || targetId === 'partnership' || targetId === 'alliance')) {
+            element =
+              document.getElementById('dupont') ||
+              document.getElementById('foundation') ||
+              document.getElementById('partnership') ||
+              document.querySelector('section[id="dupont"]') ||
+              document.querySelector('section[id="foundation"]');
+          }
           if (element) {
             e.preventDefault();
-            history.pushState(null, '', href);
+            try {
+              history.pushState(null, '', href);
+            } catch {
+              // ignore
+            }
+            try {
+              lenis.resize();
+            } catch {
+              // ignore
+            }
+            const isDupont = targetId === 'dupont' || targetId === 'foundation' || targetId === 'partnership' || targetId === 'alliance';
             lenis.scrollTo(element as HTMLElement, {
-              offset: -96,
+              offset: isDupont ? 60 : -96,
               duration: 1.2,
             });
+          }
+        } else if (!isCurrentPage && hash) {
+          try {
+            sessionStorage.setItem('pendingHashScroll', hash);
+            (window as unknown as { __pendingHashScroll?: string }).__pendingHashScroll = hash;
+          } catch {
+            // ignore
           }
         }
       }

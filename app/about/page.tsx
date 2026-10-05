@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import JsonLd from '@/components/JsonLd';
+import AboutScrollHandler from '@/components/AboutScrollHandler';
 
 export const metadata: Metadata = {
   title: 'About Us - Architectural Atelier, Lineage & Coro Crafted Collective Partnership',
@@ -86,7 +87,7 @@ export default function AboutPage() {
     {
       num: '04',
       title: 'Architect-to-Architect Co-Creation',
-      subtitle: 'Your Studio's Technical Extension',
+      subtitle: "Your Studio's Technical Extension",
       body: 'We are not a distant building supply outlet. We act as an active fabrication partner for architects and interior designers across India. From initial CAD shop drawings and structural sub-framing calculations to laser templating and on-site assembly, we bring ambitious concepts to reality.',
     },
   ];
@@ -116,6 +117,7 @@ export default function AboutPage() {
 
   return (
     <main className="page-main">
+      <AboutScrollHandler />
       <JsonLd data={aboutJsonLd} />
       {/* Rich Split Architectural Hero */}
       <section className="page-split-hero">
@@ -211,7 +213,7 @@ export default function AboutPage() {
         <a href="#story" style={{ color: 'inherit', textDecoration: 'none' }}>01 / Our Story</a>
         <a href="#philosophy" style={{ color: 'inherit', textDecoration: 'none' }}>02 / Design Philosophy</a>
         <a href="#team" style={{ color: 'inherit', textDecoration: 'none' }}>03 / The Atelier &amp; Makers</a>
-        <a href="#foundation" style={{ color: 'inherit', textDecoration: 'none' }}>04 / DuPont™ Alliance</a>
+        <a href="#dupont" style={{ color: 'inherit', textDecoration: 'none' }}>04 / DuPont™ Alliance</a>
         <a href="#locations" style={{ color: 'inherit', textDecoration: 'none' }}>05 / Locations &amp; Gallery</a>
       </nav>
 
@@ -435,7 +437,56 @@ export default function AboutPage() {
       </section>
 
       {/* Section 04: Material Foundation & DuPont™ Alliance */}
-      <section id="foundation" className="section-pad" style={{ borderBottom: '1px solid var(--line)', background: '#ece8df' }}>
+      <section
+        id="dupont"
+        className="section-pad"
+        style={{
+          position: 'relative',
+          borderBottom: '1px solid var(--line)',
+          background: '#ece8df',
+          scrollMarginTop: '20px',
+        }}
+      >
+        {/* Anchor aliases for #foundation, #partnership, and #alliance */}
+        <div
+          id="foundation"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '1px',
+            height: '1px',
+            pointerEvents: 'none',
+            opacity: 0,
+            scrollMarginTop: '96px',
+          }}
+        />
+        <div
+          id="partnership"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '1px',
+            height: '1px',
+            pointerEvents: 'none',
+            opacity: 0,
+            scrollMarginTop: '96px',
+          }}
+        />
+        <div
+          id="alliance"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '1px',
+            height: '1px',
+            pointerEvents: 'none',
+            opacity: 0,
+            scrollMarginTop: '96px',
+          }}
+        />
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
             <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />

@@ -287,15 +287,14 @@ export default function MaterialModal({
               <p
                 style={{
                   fontSize: '12.5px',
-                  lineHeight: 1.45,
+                  lineHeight: 1.5,
                   color: '#4a5249',
-                  margin: '0 0 8px',
+                  margin: '0 0 12px',
                   display: '-webkit-box',
-                  WebkitLineClamp: 2,
+                  WebkitLineClamp: 3,
                   WebkitBoxOrient: 'vertical',
                   overflow: 'hidden',
                   textOverflow: 'ellipsis',
-                  minHeight: '36px',
                   flexShrink: 0,
                 }}
               >
@@ -308,11 +307,11 @@ export default function MaterialModal({
                 style={{
                   display: 'grid',
                   gridTemplateColumns: '1fr 1fr',
-                  gap: '8px 14px',
+                  gap: '10px 16px',
                   borderTop: '1px solid var(--line)',
                   borderBottom: '1px solid var(--line)',
-                  padding: '9px 0',
-                  marginBottom: '8px',
+                  padding: '12px 0',
+                  marginBottom: '12px',
                   flexShrink: 0,
                 }}
               >
@@ -353,11 +352,11 @@ export default function MaterialModal({
               </div>
 
               {/* Primary Applications Pills */}
-              <div style={{ marginBottom: '4px', flexShrink: 0 }}>
-                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '3px' }}>
+              <div style={{ marginBottom: '10px', flexShrink: 0 }}>
+                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '6px', letterSpacing: '0.06em' }}>
                   Primary Applications
                 </span>
-                <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap', maxHeight: '28px', overflow: 'hidden' }}>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   {(currentMaterial.applications && currentMaterial.applications.length > 0
                     ? currentMaterial.applications
                     : ['Architectural Surfaces', 'Interior Joinery']
@@ -365,9 +364,9 @@ export default function MaterialModal({
                     <span
                       key={app}
                       style={{
-                        fontSize: '8.5px',
+                        fontSize: '9.5px',
                         fontFamily: 'DM Mono, monospace',
-                        padding: '2px 6px',
+                        padding: '3px 8px',
                         background: '#dcd7cd',
                         border: '1px solid var(--line)',
                         color: 'var(--ink)',
@@ -608,6 +607,7 @@ export default function MaterialModal({
           padding: 2px 6px;
           border: 1px solid var(--line);
           border-radius: 2px;
+          margin-right: 32px;
         }
 
         .inline-nav-btn {
@@ -848,6 +848,10 @@ export default function MaterialModal({
 
           .modal-body-top {
             overflow: visible !important;
+          }
+
+          .modal-inline-nav {
+            margin-right: 0 !important;
           }
 
           .recommendations-grid {

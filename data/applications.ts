@@ -48,9 +48,9 @@ export const applicationSectors: ApplicationSector[] = [
       'Floor-to-Ceiling Seamless Shower Enclosures & Coved Wall Transitions'
     ],
     recommendedMaterials: [
-      { name: 'Calacatta Greige', slug: 'calacatta-greige', finish: 'Satin Honed' },
-      { name: 'Cirrus White', slug: 'cirrus-white', finish: 'Ultra-Matte' },
-      { name: 'Stonecrest Smoke', slug: 'stonecrest-smoke', finish: 'Velvet Matte' }
+      { name: 'Calacatta Greige Sheet', slug: 'css-calacatta-greige-sheet', finish: 'Satin Honed' },
+      { name: 'Artista Sage Sheet', slug: 'css-artista-sage-sheet', finish: 'Tactile Satin' },
+      { name: 'Stonecrest Smoke Sheet', slug: 'css-stonecrest-smoke-sheet', finish: 'Velvet Matte' }
     ],
     fabricationNote:
       'Color-matched acrylic thermo-welded joints ensure zero grout lines, 100% moisture barrier, and zero bacterial harborage.',
@@ -120,9 +120,9 @@ export const applicationSectors: ApplicationSector[] = [
       'Continuous Floor-to-Ceiling Sanctuary Wall Cladding'
     ],
     recommendedMaterials: [
-      { name: 'Cirrus White', slug: 'cirrus-white', finish: 'Satin Pure' },
-      { name: 'Golden Onyx', slug: 'golden-onyx', finish: 'Translucent Backlit' },
-      { name: 'Calacatta Greige', slug: 'calacatta-greige', finish: 'Honed Satin' }
+      { name: 'Stonique Sheet', slug: 'css-stonique-sheet', finish: 'Clinical Matte' },
+      { name: 'Calacatta Greige Sheet', slug: 'css-calacatta-greige-sheet', finish: 'Honed Satin' },
+      { name: 'Artista Mist Sheet', slug: 'css-artista-mist-sheet', finish: 'Velvet Honed' }
     ],
     fabricationNote:
       'Precision 5-axis CNC router carving produces microscopic 0.5mm lattice filigree, while sub-surface LED cavities emit uniform, shadowless halo illumination.',
@@ -186,9 +186,9 @@ export const applicationSectors: ApplicationSector[] = [
       'Multi-User Public Washroom Trough Sinks with Concealed Sloped Drains'
     ],
     recommendedMaterials: [
-      { name: 'Stonecrest Smoke', slug: 'stonecrest-smoke', finish: 'Tactile Matte' },
-      { name: 'Golden Onyx', slug: 'golden-onyx', finish: 'Translucent Satin' },
-      { name: 'Artista Sage', slug: 'artista-sage', finish: 'Velvet Honed' }
+      { name: 'Stonecrest Smoke Sheet', slug: 'css-stonecrest-smoke-sheet', finish: 'Tactile Matte' },
+      { name: 'Laguna Terrazzo Sheet', slug: 'css-laguna-terrazzo-sheet', finish: 'Satin Smooth' },
+      { name: 'Artista Sage Sheet', slug: 'css-artista-sage-sheet', finish: 'Tactile Satin' }
     ],
     fabricationNote:
       'Multi-radius oven thermoforming and internal optical light cavities deliver soft, diffused illumination without hot-spots.',
@@ -253,12 +253,9 @@ export const applicationSectors: ApplicationSector[] = [
       'Patient Room Seamless Vanity Bowls & Coved Shower Surrounds'
     ],
     recommendedMaterials: [
-      { name: 'Stonique', slug: 'stonique', finish: 'Clinical Matte' },
-      { name: 'Cirrus White', slug: 'cirrus-white', finish: 'Satin Pure' },
-      { name: 'Archeologic', slug: 'archeologic', finish: 'Hygienic Matte' },
-      { name: 'Carrara Crema', slug: 'carrara-crema', finish: 'Velvet Matte' },
-      { name: 'Terrazzo Peppered', slug: 'terrazzo-peppered', finish: 'Satin Polished' },
-      { name: 'Stonecrest Smoke', slug: 'stonecrest-smoke', finish: 'Tactile Matte' }
+      { name: 'Stonique Sheet', slug: 'css-stonique-sheet', finish: 'Clinical Matte' },
+      { name: 'Excavage Sheet', slug: 'css-excavage-sheet', finish: 'Fine Honed Matte' },
+      { name: 'Artista Mist Sheet', slug: 'css-artista-mist-sheet', finish: 'Velvet Honed' }
     ],
     fabricationNote:
       'Custom thermoformed integral coved corners and silicone-free chemical welding guarantee zero bacterial harborage points.',
@@ -322,9 +319,9 @@ export const applicationSectors: ApplicationSector[] = [
       'Auditorium Rostrums and Reception Feature Walls'
     ],
     recommendedMaterials: [
-      { name: 'Bleached Nuwood', slug: 'bleached-nuwood', finish: 'Natural Matte' },
-      { name: 'Excavage', slug: 'excavage', finish: 'Fine Textured' },
-      { name: 'Pebble Lane', slug: 'pebble-lane', finish: 'Honed Matte' }
+      { name: 'Excavage Sheet', slug: 'css-excavage-sheet', finish: 'Fine Honed Matte' },
+      { name: 'Stonecrest Smoke Sheet', slug: 'css-stonecrest-smoke-sheet', finish: 'Velvet Matte' },
+      { name: 'Artista Mist Sheet', slug: 'css-artista-mist-sheet', finish: 'Velvet Honed' }
     ],
     fabricationNote:
       'Sub-surface 5-axis CNC milling allows Qi wireless charging electromagnetic fields to pass directly through the solid surface.',
@@ -388,9 +385,9 @@ export const applicationSectors: ApplicationSector[] = [
       'UV-Stable Architectural Parapet & Coping Profiles'
     ],
     recommendedMaterials: [
-      { name: 'Bleached Nuwood', slug: 'bleached-nuwood', finish: 'Natural Matte' },
-      { name: 'Stonecrest Smoke', slug: 'stonecrest-smoke', finish: 'Tactile Matte' },
-      { name: 'Cirrus White', slug: 'cirrus-white', finish: 'Ultra-Matte' }
+      { name: 'Stonique Sheet', slug: 'css-stonique-sheet', finish: 'Clinical Matte' },
+      { name: 'Stonecrest Smoke Sheet', slug: 'css-stonecrest-smoke-sheet', finish: 'Tactile Matte' },
+      { name: 'Calacatta Greige Sheet', slug: 'css-calacatta-greige-sheet', finish: 'Honed Satin' }
     ],
     fabricationNote:
       'Keil undercut rear anchor system and precision CNC expansion joints allow thermal movement while presenting a flawless monolithic facade.',

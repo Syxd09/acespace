@@ -126,7 +126,22 @@ export default function MaterialGrid() {
           <span className="eyebrow" style={{ color: 'rgba(255,255,255,0.85)', fontSize: '9px', marginBottom: '2px', display: 'block' }}>
             {badgeLabel ? badgeLabel : `${m.code} • ${m.collection}`}
           </span>
-          <h3>{m.name}</h3>
+          <h3>
+            {(() => {
+              const match = m.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
+              if (match) {
+                return (
+                  <>
+                    <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.72, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
+                      {match[1]}
+                    </span>
+                    <span>{match[2]}</span>
+                  </>
+                );
+              }
+              return m.name;
+            })()}
+          </h3>
           <p>{m.finish} / {m.colour}</p>
         </div>
       </article>

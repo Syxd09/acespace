@@ -21,15 +21,26 @@ if (typeof setInterval !== 'undefined') {
 }
 
 export function getClientIp(req: NextRequest): string {
-  const forwarded = req.headers.get('x-forwarded-for');
-  if (forwarded) {
-    const first = forwarded.split(',')[0].trim();
-    if (first) return first;
-  }
-  const realIp = req.headers.get('x-real-ip');
-  if (realIp) return realIp.trim();
+  // 1. Next.js platform-provided IP (e.g. Vercel edge/node)
+  if (req.ip) return req.ip.trim();
+
+  // 2. Trusted proxy / platform headers
+  const vercelIp = req.headers.get('x-vercel-ip');
+  if (vercelIp) return vercelIp.trim();
+
   const cfConnectingIp = req.headers.get('cf-connecting-ip');
   if (cfConnectingIp) return cfConnectingIp.trim();
+
+  const realIp = req.headers.get('x-real-ip');
+  if (realIp) return realIp.trim();
+
+  // 3. Fallback to forwarded header
+  const forwarded = req.headers.get('x-forwarded-for');
+  if (forwarded) {
+    const parts = forwarded.split(',').map((p) => p.trim()).filter(Boolean);
+    if (parts.length > 0) return parts[parts.length - 1]; // Last hop is closest to server
+  }
+
   return '127.0.0.1';
 }
 

@@ -18,7 +18,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { materials } = getSiteContent();
   const source = materials && materials.length > 0 ? materials : defaultMaterials;
-  const material = source.find((m) => m.slug === params.slug);
+  const material = source.find(
+    (m) =>
+      m.slug === params.slug ||
+      m.slug === `css-${params.slug}-sheet` ||
+      m.slug.replace(/^css-/, '').replace(/-sheet$/, '') === params.slug
+  );
   if (!material) return { title: 'Material Not Found — Ace Spaces' };
 
   const canonicalUrl = `https://acespacesindia.vercel.app/materials/${material.slug}`;
@@ -69,7 +74,12 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default function MaterialDetailPage({ params }: { params: { slug: string } }) {
   const { materials } = getSiteContent();
   const source = materials && materials.length > 0 ? materials : defaultMaterials;
-  const material = source.find((m) => m.slug === params.slug);
+  const material = source.find(
+    (m) =>
+      m.slug === params.slug ||
+      m.slug === `css-${params.slug}-sheet` ||
+      m.slug.replace(/^css-/, '').replace(/-sheet$/, '') === params.slug
+  );
   if (!material) notFound();
 
   const relatedProjects = projects.filter((p) => p.materialSlug === material.slug);

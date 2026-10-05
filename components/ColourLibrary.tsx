@@ -12,12 +12,17 @@ import { useSampleShortlist } from '@/context/SampleContext';
 export default function ColourLibrary() {
   const searchParams = useSearchParams();
   const { materials: liveMaterials } = useSiteContent();
-  const materials = (liveMaterials && liveMaterials.length > 0) ? liveMaterials : defaultMaterials;
+  const materials = (liveMaterials && liveMaterials.length >= defaultMaterials.length) ? liveMaterials : defaultMaterials;
+  const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedColorFamily, setSelectedColorFamily] = useState<string>('all');
   const [selectedPattern, setSelectedPattern] = useState<string>('all');
   const [viewMode, setViewMode] = useState<'grid' | 'compact' | 'list'>('grid');
   const [activeModalMaterial, setActiveModalMaterial] = useState<Material | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const PAGE_SIZE = 16;
   const [visibleCount, setVisibleCount] = useState<number>(PAGE_SIZE);
@@ -349,6 +354,7 @@ export default function ColourLibrary() {
                   )}
                   <span>{fam.label}</span>
                   <span
+                    suppressHydrationWarning
                     style={{
                       fontSize: '9px',
                       opacity: isActive ? 0.75 : 0.55,
@@ -426,6 +432,7 @@ export default function ColourLibrary() {
                   </span>
                   <span>{pat.label}</span>
                   <span
+                    suppressHydrationWarning
                     style={{
                       fontSize: '9px',
                       opacity: isActive ? 0.75 : 0.55,
@@ -553,7 +560,7 @@ export default function ColourLibrary() {
 
       {/* Results Header Counter */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-        <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
+        <span suppressHydrationWarning style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
           Showing {filteredMaterials.length} of {materials.length} Architectural Colours
         </span>
         {(searchQuery || selectedColorFamily !== 'all' || selectedPattern !== 'all') && (
@@ -731,7 +738,22 @@ export default function ColourLibrary() {
                       title={`Hex: ${mat.hexColor}`}
                     />
                   </div>
-                  <h3>{mat.name}</h3>
+                  <h3>
+                    {(() => {
+                      const match = mat.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
+                      if (match) {
+                        return (
+                          <>
+                            <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.72, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
+                              {match[1]}
+                            </span>
+                            <span>{match[2]}</span>
+                          </>
+                        );
+                      }
+                      return mat.name;
+                    })()}
+                  </h3>
                   <p>{mat.finish} / {mat.colour}</p>
                 </div>
               </div>
@@ -831,7 +853,20 @@ export default function ColourLibrary() {
                     {mat.code}
                   </span>
                   <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)', display: 'block', lineHeight: 1.2 }}>
-                    {mat.name}
+                    {(() => {
+                      const match = mat.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
+                      if (match) {
+                        return (
+                          <>
+                            <span style={{ display: 'block', fontSize: '8px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.65, textTransform: 'uppercase', marginBottom: '2px' }}>
+                              {match[1]}
+                            </span>
+                            <span>{match[2]}</span>
+                          </>
+                        );
+                      }
+                      return mat.name;
+                    })()}
                   </strong>
                   <span style={{ fontSize: '10px', color: '#667066', display: 'block', marginTop: '2px' }}>
                     {mat.finish}
@@ -958,7 +993,20 @@ export default function ColourLibrary() {
                     {mat.code} · {mat.collection}
                   </span>
                   <h4 style={{ fontSize: '18px', fontWeight: 400, margin: '2px 0 0', color: 'var(--ink)' }}>
-                    {mat.name}
+                    {(() => {
+                      const match = mat.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
+                      if (match) {
+                        return (
+                          <>
+                            <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.65, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
+                              {match[1]}
+                            </span>
+                            <span>{match[2]}</span>
+                          </>
+                        );
+                      }
+                      return mat.name;
+                    })()}
                   </h4>
                 </div>
 
@@ -1131,7 +1179,7 @@ export default function ColourLibrary() {
                       transition: 'all 0.25s ease',
                     }}
                   >
-                    <span style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace' }}>
+                    <span suppressHydrationWarning style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace' }}>
                       {isLoadingMore ? 'Expanding Catalog...' : `View All (${filteredMaterials.length})`}
                     </span>
                   </button>

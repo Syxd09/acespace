@@ -150,7 +150,11 @@ export default function HomePage() {
               <Link className="text-link dark" href="/about" style={{ marginTop: 0 }}>
                 Read our studio approach <span>↗</span>
               </Link>
-              <Link className="text-link dark" href="/about#dupont" style={{ marginTop: 0, color: 'var(--muted)' }}>
+              <Link
+                className="text-link dark"
+                href="/about#dupont"
+                style={{ marginTop: 0, color: 'var(--muted)' }}
+              >
                 DuPont™ Partnership <span>↗</span>
               </Link>
             </div>
