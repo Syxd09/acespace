@@ -283,6 +283,8 @@ export default function SpecimenZoomViewer({
             <img
               src={currentImage}
               alt={`${materialName} - ${activeView}`}
+              decoding="async"
+              loading="eager"
               style={{
                 width: '100%',
                 height: '100%',
@@ -817,6 +819,8 @@ export default function SpecimenZoomViewer({
                   <img
                     src={currentImage}
                     alt={`${materialName} - Fullscreen`}
+                    decoding="async"
+                    loading="eager"
                     style={{
                       maxWidth: '100%',
                       maxHeight: '100%',

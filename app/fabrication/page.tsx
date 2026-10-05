@@ -189,6 +189,8 @@ export default function FabricationPage() {
             alt="Hand honing and CNC carving of monolithic mineral surface"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"
+            quality={75}
+            decoding="async"
             style={{ objectFit: 'cover' }}
             priority
           />

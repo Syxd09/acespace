@@ -122,6 +122,8 @@ export default function JournalPage() {
             alt="Macro detail of architectural mineral surface edge profile"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"
+            quality={75}
+            decoding="async"
             style={{ objectFit: 'cover' }}
             priority
           />

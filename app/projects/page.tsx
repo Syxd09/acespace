@@ -124,6 +124,8 @@ export default function ProjectsPage() {
             alt="Completed private residence kitchen island by Studio Vardhan Architects"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"
+            quality={75}
+            decoding="async"
             style={{ objectFit: 'cover' }}
             priority
           />

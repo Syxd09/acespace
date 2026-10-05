@@ -290,6 +290,9 @@ export default function MegaMenu({
                   alt="Through-body mineral solid surface monolith in architectural pavilion"
                   fill
                   sizes="400px"
+                  quality={70}
+                  loading="lazy"
+                  decoding="async"
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="mega-menu-badge">
@@ -525,6 +528,9 @@ export default function MegaMenu({
                   alt="Monolithic floating double vanity and seamlessly integrated basins"
                   fill
                   sizes="400px"
+                  quality={70}
+                  loading="lazy"
+                  decoding="async"
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="mega-menu-badge">
@@ -760,6 +766,9 @@ export default function MegaMenu({
                   alt="Monolithic grand reception desk in hospitality interior"
                   fill
                   sizes="400px"
+                  quality={70}
+                  loading="lazy"
+                  decoding="async"
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="mega-menu-badge">
@@ -995,6 +1004,9 @@ export default function MegaMenu({
                   alt="Seamless 45-degree mitred waterfall edge and surface join close-up"
                   fill
                   sizes="400px"
+                  quality={70}
+                  loading="lazy"
+                  decoding="async"
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="mega-menu-badge">
@@ -1198,6 +1210,9 @@ export default function MegaMenu({
                   alt="Ace Spaces architectural studio practice and monolithic craft"
                   fill
                   sizes="400px"
+                  quality={70}
+                  loading="lazy"
+                  decoding="async"
                   style={{ objectFit: 'cover' }}
                 />
                 <span className="mega-menu-badge">

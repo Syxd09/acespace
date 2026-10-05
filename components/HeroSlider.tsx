@@ -88,6 +88,9 @@ export default function HeroSlider() {
                   alt={`${slide.specimen || 'Ace Spaces'} architectural solid surface - ${slide.title} ${slide.subtitle}`}
                   fill
                   priority={index === 0}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                  quality={75}
                   sizes="100vw"
                   style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />

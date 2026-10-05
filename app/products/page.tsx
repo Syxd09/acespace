@@ -196,6 +196,8 @@ export default function ProductsCatalogPage() {
             alt="Seamless architectural solid surface benchtop with integrated coved sink"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"
+            quality={75}
+            decoding="async"
             style={{ objectFit: 'cover' }}
             priority
           />
@@ -266,7 +268,10 @@ export default function ProductsCatalogPage() {
                 src="/assets/material-macro.png"
                 alt="Corian solid surface mineral slabs and colour palette"
                 fill
-                sizes="(max-width: 768px) 100vw, 33vw"
+                sizes="(max-width: 640px) 100vw, 360px"
+                quality={75}
+                loading="lazy"
+                decoding="async"
                 style={{ objectFit: 'cover' }}
               />
               <div
@@ -344,7 +349,10 @@ export default function ProductsCatalogPage() {
                   src={product.image}
                   alt={product.name}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, 360px"
+                  quality={75}
+                  loading="lazy"
+                  decoding="async"
                   style={{ objectFit: 'cover' }}
                 />
                 <div

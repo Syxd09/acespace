@@ -191,6 +191,9 @@ export default function HomePage() {
             alt="Close-up of seamless 45-degree mitred waterfall edge and surface join"
             fill
             sizes="(max-width: 800px) 100vw, 50vw"
+            quality={75}
+            loading="lazy"
+            decoding="async"
             style={{ objectFit: 'cover' }}
           />
         </div>
@@ -247,6 +250,9 @@ export default function HomePage() {
               alt="Calacatta Greige monolithic kitchen island"
               fill
               sizes="(max-width: 800px) 100vw, 55vw"
+              quality={75}
+              loading="lazy"
+              decoding="async"
               style={{ objectFit: 'cover' }}
             />
             <div className="project-tag" style={{ position: 'absolute', bottom: '24px', left: '24px', zIndex: 2 }}>Residential / Bengaluru</div>

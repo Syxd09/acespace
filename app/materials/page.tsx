@@ -184,6 +184,8 @@ export default function MaterialsAndColoursPage() {
             alt="Macro detail of through-body architectural mineral surface and colour swatches"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"
+            quality={75}
+            decoding="async"
             style={{ objectFit: 'cover' }}
             priority
           />

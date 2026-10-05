@@ -64,6 +64,12 @@ export default function MaterialGrid() {
             setSelectedMaterial(m);
           }
         }}
+        onMouseEnter={() => {
+          if (typeof window !== 'undefined' && m.textureImage) {
+            const preloadImg = new window.Image();
+            preloadImg.src = m.textureImage;
+          }
+        }}
         style={{ position: 'relative', cursor: 'pointer' }}
       >
         <div
@@ -80,9 +86,11 @@ export default function MaterialGrid() {
               src={m.textureImage}
               alt={m.name}
               fill
-              sizes="(max-width: 768px) 100vw, 30vw"
-              style={{ objectFit: 'cover' }}
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
+              quality={68}
+              decoding="async"
               loading="lazy"
+              style={{ objectFit: 'cover' }}
             />
           )}
         </div>

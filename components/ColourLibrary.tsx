@@ -648,7 +648,7 @@ export default function ColourLibrary() {
       {/* View Mode 1: Standard 4-Col Grid with Direct Click to Open Modal */}
       {viewMode === 'grid' && (
         <div className="material-grid" style={{ marginBottom: '40px' }}>
-          {visibleMaterials.map((mat) => {
+          {visibleMaterials.map((mat, idx) => {
             const inTray = isShortlisted(mat.slug);
             return (
               <div
@@ -664,6 +664,12 @@ export default function ColourLibrary() {
                 data-material-collection={mat.collection}
                 style={{ position: 'relative', cursor: 'pointer' }}
                 onClick={() => setActiveModalMaterial(mat)}
+                onMouseEnter={() => {
+                  if (typeof window !== 'undefined' && mat.textureImage) {
+                    const preloadImg = new window.Image();
+                    preloadImg.src = mat.textureImage;
+                  }
+                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -685,9 +691,12 @@ export default function ColourLibrary() {
                       src={mat.textureImage}
                       alt={`${mat.name} solid surface texture swatch`}
                       fill
-                      sizes="(max-width: 768px) 100vw, 30vw"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
+                      quality={68}
+                      priority={idx < 4}
+                      loading={idx < 4 ? 'eager' : 'lazy'}
+                      decoding="async"
                       style={{ objectFit: 'cover' }}
-                      loading="lazy"
                     />
                   )}
                 </div>
@@ -842,8 +851,10 @@ export default function ColourLibrary() {
                         alt={mat.name}
                         fill
                         sizes="180px"
-                        style={{ objectFit: 'cover' }}
+                        quality={65}
+                        decoding="async"
                         loading="lazy"
+                        style={{ objectFit: 'cover' }}
                       />
                     )}
                   </div>
@@ -980,8 +991,10 @@ export default function ColourLibrary() {
                       alt={mat.name}
                       fill
                       sizes="60px"
-                      style={{ objectFit: 'cover' }}
+                      quality={60}
+                      decoding="async"
                       loading="lazy"
+                      style={{ objectFit: 'cover' }}
                     />
                   )}
                 </div>

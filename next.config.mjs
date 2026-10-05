@@ -11,8 +11,10 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   images: {
-    formats: ['image/avif', 'image/webp'],
-    minimumCacheTTL: 86400,
+    formats: ['image/webp'],
+    minimumCacheTTL: 2592000,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [64, 128, 256, 384],
     remotePatterns: [
       {
         protocol: 'https',
@@ -46,6 +48,15 @@ const nextConfig = {
       },
       {
         source: '/images/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/materials/(.*)',
         headers: [
           {
             key: 'Cache-Control',

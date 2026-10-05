@@ -167,10 +167,20 @@ export default function MaterialExplorer() {
         </div>
       ) : (
         <div className="material-grid" style={{ marginBottom: '60px' }}>
-          {filteredMaterials.map((material) => {
+          {filteredMaterials.map((material, idx) => {
           const inTray = isShortlisted(material.slug);
           return (
-            <div key={material.slug} className="material-card" style={{ position: 'relative' }}>
+            <div
+              key={material.slug}
+              className="material-card"
+              style={{ position: 'relative' }}
+              onMouseEnter={() => {
+                if (typeof window !== 'undefined' && material.textureImage) {
+                  const preloadImg = new window.Image();
+                  preloadImg.src = material.textureImage;
+                }
+              }}
+            >
               <div
                 className="swatch"
                 onClick={() => setActiveModalMaterial(material)}
@@ -189,9 +199,12 @@ export default function MaterialExplorer() {
                     src={material.textureImage}
                     alt={material.name}
                     fill
-                    sizes="(max-width: 768px) 100vw, 30vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
+                    quality={68}
+                    priority={idx < 4}
+                    loading={idx < 4 ? 'eager' : 'lazy'}
+                    decoding="async"
                     style={{ objectFit: 'cover' }}
-                    loading="lazy"
                   />
                 )}
               </div>

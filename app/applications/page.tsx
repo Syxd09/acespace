@@ -151,6 +151,8 @@ export default function ApplicationsPage() {
             alt="Seamless curved solid surface kitchen island installation in Calacatta Greige"
             fill
             sizes="(max-width: 800px) 100vw, 40vw"
+            quality={75}
+            decoding="async"
             style={{ objectFit: 'cover' }}
             priority
           />

@@ -188,6 +188,8 @@ export default function AboutPage() {
             alt="Monolithic architectural counter crafted by Ace Spaces"
             fill
             sizes="(max-width: 860px) 100vw, 45vw"
+            quality={75}
+            decoding="async"
             style={{ objectFit: 'cover' }}
             priority
           />
@@ -613,7 +615,10 @@ export default function AboutPage() {
                 src="/images/images/app_residential_calacatta_greige_1.jpg"
                 alt="Ace Spaces fabrication workshop and finished monolithic installation"
                 fill
-                sizes="100vw"
+                sizes="(max-width: 900px) 100vw, 85vw"
+                quality={75}
+                loading="lazy"
+                decoding="async"
                 style={{ objectFit: 'cover' }}
               />
             </div>

@@ -228,7 +228,10 @@ export default function ApplicationMaterialGallery({
                     src={mat.textureImage}
                     alt={`${mat.name} architectural solid surface macro texture`}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
+                    quality={70}
+                    loading="lazy"
+                    decoding="async"
                     style={{
                       objectFit: 'cover',
                       transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
