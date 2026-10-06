@@ -223,30 +223,33 @@ export default function ApplicationMaterialGallery({
                 onClick={() => setInspectingMaterial(mat)}
                 title="Click to inspect macro texture & specs"
               >
-                {mat.textureImage ? (
-                  <Image
-                    src={mat.textureImage}
-                    alt={`${mat.name} architectural solid surface macro texture`}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
-                    quality={70}
-                    loading="lazy"
-                    decoding="async"
-                    style={{
-                      objectFit: 'cover',
-                      transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                    }}
-                    className="gallery-zoom-img"
-                  />
-                ) : (
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      background: mat.textureCss || mat.hexColor,
-                    }}
-                  />
-                )}
+                {(() => {
+                  const specimenPhoto = mat.textureImage || mat.swatch || mat.image || (mat.inSituImages && mat.inSituImages[0]);
+                  return specimenPhoto ? (
+                    <Image
+                      src={specimenPhoto}
+                      alt={`${mat.name} architectural solid surface specimen`}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 320px"
+                      quality={70}
+                      loading="lazy"
+                      decoding="async"
+                      style={{
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                      }}
+                      className="gallery-zoom-img"
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        background: mat.textureCss || mat.hexColor || '#e0dfd5',
+                      }}
+                    />
+                  );
+                })()}
 
                 {/* Top Badge: Technical Certification */}
                 <div
@@ -535,23 +538,26 @@ export default function ApplicationMaterialGallery({
                 background: inspectingMaterial.hexColor || '#dcd7cd',
               }}
             >
-              {inspectingMaterial.textureImage ? (
-                <Image
-                  src={inspectingMaterial.textureImage}
-                  alt={inspectingMaterial.name}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  priority
-                />
-              ) : (
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    background: inspectingMaterial.textureCss || inspectingMaterial.hexColor,
-                  }}
-                />
-              )}
+              {(() => {
+                const inspectPhoto = inspectingMaterial.textureImage || inspectingMaterial.swatch || inspectingMaterial.image || (inspectingMaterial.inSituImages && inspectingMaterial.inSituImages[0]);
+                return inspectPhoto ? (
+                  <Image
+                    src={inspectPhoto}
+                    alt={inspectingMaterial.name}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    priority
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      background: inspectingMaterial.textureCss || inspectingMaterial.hexColor || '#e0dfd5',
+                    }}
+                  />
+                );
+              })()}
               <div
                 style={{
                   position: 'absolute',

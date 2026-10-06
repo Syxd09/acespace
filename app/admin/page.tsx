@@ -4,10 +4,18 @@ import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useSiteContent } from '@/context/SiteContentContext';
-import { HeroSlide } from '@/data/contentTypes';
+import { HeroSlide, SiteContent } from '@/data/contentTypes';
 import { Material } from '@/data/materials';
 import { ApplicationSector, ApplicationImage } from '@/data/applications';
-import { JournalArticle, Project, StudioContactConfig, defaultStudioContact } from '@/data/contentTypes';
+import {
+  JournalArticle,
+  Project,
+  StudioContactConfig,
+  defaultStudioContact,
+  AboutContentConfig,
+  AboutPhilosophyPillar,
+  defaultAboutContent,
+} from '@/data/contentTypes';
 import { generateWhatsAppUrl, cleanWhatsAppNumber } from '@/lib/whatsapp';
 import {
   SampleOrder,
@@ -18,7 +26,19 @@ import {
 } from '@/data/orderStore';
 import { REALTIME_CHANNEL_NAME, broadcastRealtimeEvent } from '@/lib/realtime';
 
-type TabKey = 'overview' | 'hero' | 'materials' | 'colors' | 'applications' | 'projects' | 'journal' | 'media' | 'orders' | 'inquiries' | 'dispatch';
+type TabKey =
+  | 'overview'
+  | 'hero'
+  | 'materials'
+  | 'colors'
+  | 'applications'
+  | 'projects'
+  | 'journal'
+  | 'about'
+  | 'media'
+  | 'orders'
+  | 'inquiries'
+  | 'dispatch';
 
 export default function AdminPage() {
   const {
@@ -28,12 +48,14 @@ export default function AdminPage() {
     journalArticles: contextJournals,
     projects: contextProjects,
     studioContact: contextStudioContact,
+    about: contextAbout,
     isLoading: isContextLoading,
     saveContent,
     resetToDefaults,
   } = useSiteContent();
 
   const [localStudioContact, setLocalStudioContact] = useState<StudioContactConfig>(defaultStudioContact);
+  const [localAboutContent, setLocalAboutContent] = useState<AboutContentConfig>(defaultAboutContent);
 
   // Authentication
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -84,6 +106,7 @@ export default function AdminPage() {
 
   // Material filters
   const [materialSearchQuery, setMaterialSearchQuery] = useState<string>('');
+  const [materialFamilyFilter, setMaterialFamilyFilter] = useState<string>('all');
   const [colorSearchQuery, setColorSearchQuery] = useState<string>('');
 
   // New item modal states
@@ -102,10 +125,13 @@ export default function AdminPage() {
     finish: 'Honed Satin Matte',
     colour: '',
     hexColor: '#f4f3ef',
+    textureCss: 'linear-gradient(135deg, #f4f3ef 0%, rgba(20,23,19,0.06) 100%)',
     dimensions: '3660 mm × 760 mm',
     thicknessOptions: '12mm, 19mm',
     textureImage: '/images/images/app_residential_stonique_1.jpg',
     image: '/images/images/app_residential_stonique_1.jpg',
+    inSituImage: '/images/images/app_residential_stonique_1.jpg',
+    inSituImagesText: '/images/images/app_residential_stonique_1.jpg',
     applications: 'Kitchen Worktops, Wall Cladding, Bespoke Monoliths',
     lightTransmission: 'Low (6%)',
     fireRating: 'Class 1 / Class A (ASTM E84)',
@@ -236,13 +262,16 @@ export default function AdminPage() {
     if (contextStudioContact) {
       setLocalStudioContact(contextStudioContact);
     }
-  }, [contextHeroSlides, contextMaterials, contextSectors, contextJournals, contextProjects, contextStudioContact, selectedMaterialSlug, selectedJournalSlug, selectedProjectSlug]);
+    if (contextAbout) {
+      setLocalAboutContent(contextAbout);
+    }
+  }, [contextHeroSlides, contextMaterials, contextSectors, contextJournals, contextProjects, contextStudioContact, contextAbout, selectedMaterialSlug, selectedJournalSlug, selectedProjectSlug]);
 
   // Load media assets
-  const isValidImageSrc = (src?: string): boolean => {
+  const isValidImageSrc = (src?: string): src is string => {
     if (!src || typeof src !== 'string') return false;
     if (src.startsWith('#') || src.includes('gradient')) return false;
-    return (src.startsWith('/') || src.startsWith('http')) && /\.(jpg|jpeg|png|webp|svg)/i.test(src);
+    return (src.startsWith('/') || src.startsWith('http') || src.startsWith('data:image/')) && (/\.(jpg|jpeg|png|webp|svg)/i.test(src) || src.startsWith('data:image/'));
   };
 
   const loadMedia = async () => {
@@ -260,7 +289,27 @@ export default function AdminPage() {
           data.materials.forEach((m: Material) => {
             if (isValidImageSrc(m.image)) found.add(m.image);
             if (isValidImageSrc(m.textureImage)) found.add(m.textureImage);
+            if (isValidImageSrc(m.inSituImage)) found.add(m.inSituImage);
+            if (Array.isArray(m.inSituImages)) {
+              m.inSituImages.forEach((img: string) => {
+                if (isValidImageSrc(img)) found.add(img);
+              });
+            }
           });
+        }
+        if (data.projects) {
+          data.projects.forEach((p: Project) => {
+            if (isValidImageSrc(p.image)) found.add(p.image);
+          });
+        }
+        if (data.journalArticles) {
+          data.journalArticles.forEach((j: JournalArticle) => {
+            if (isValidImageSrc(j.image)) found.add(j.image);
+          });
+        }
+        if (data.about) {
+          if (isValidImageSrc(data.about.familyPhotoUrl)) found.add(data.about.familyPhotoUrl);
+          if (isValidImageSrc(data.about.workshopPhotoUrl)) found.add(data.about.workshopPhotoUrl);
         }
         if (data.applicationSectors) {
           data.applicationSectors.forEach((sec: ApplicationSector) => {
@@ -272,6 +321,7 @@ export default function AdminPage() {
           });
         }
         const defaults = [
+          '/images/about/company-family.jpg',
           '/images/images/app_residential_calacatta_greige_1.jpg',
           '/images/images/app_residential_calacatta_greige_2.jpg',
           '/images/images/app_residential_stonecrest_smoke_1.jpg',
@@ -597,19 +647,30 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
     showToast('Signed out of Studio Console.', 'info');
   };
 
-  // Save changes to backend
-  const handleSaveAll = async () => {
-    const success = await saveContent({
+  // Core unified persistence helper that guarantees all content models are kept intact
+  const handlePersistContent = async (overrides: Partial<SiteContent> = {}): Promise<boolean> => {
+    const payload: Partial<SiteContent> = {
       heroSlides: localHeroSlides,
       materials: localMaterials,
       applicationSectors: localSectors,
       journalArticles: localJournalArticles,
       projects: localProjects,
       studioContact: localStudioContact,
-    });
+      about: localAboutContent,
+      ...overrides,
+    };
+    const success = await saveContent(payload);
+    if (success) {
+      loadMedia();
+    }
+    return success;
+  };
+
+  // Save changes to backend
+  const handleSaveAll = async () => {
+    const success = await handlePersistContent();
     if (success) {
       showToast('✓ All changes saved to custom-content.json & active on site!', 'success');
-      loadMedia();
     } else {
       showToast('Error saving changes. Please check server log.', 'error');
     }
@@ -617,7 +678,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
   const handleSaveWhatsAppConfig = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    const success = await saveContent({
+    const success = await handlePersistContent({
       studioContact: localStudioContact,
     });
     if (success) {
@@ -639,14 +700,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
     }
   };
 
-  // File upload handler
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
+  // Direct image upload helper returning the uploaded asset URL
+  const uploadImageFile = async (file: File): Promise<string | null> => {
     const formData = new FormData();
     formData.append('file', file);
-
     setUploading(true);
     try {
       const res = await fetch('/api/admin/upload', {
@@ -658,16 +715,26 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
         setMediaAssets(prev => [data.url, ...prev]);
         const storageLabel = data.storage === 'inline-base64' ? ' (Inline Cloud Data URL)' : ' (Local Storage)';
         showToast(`✓ Image uploaded successfully${storageLabel}: ${data.fileName || 'Asset'}`, 'success');
+        return data.url;
       } else {
         showToast(`Upload failed: ${data.error || 'Unknown error'}`, 'error');
+        return null;
       }
     } catch (err) {
       console.error('Upload error:', err);
       showToast('Network error during file upload.', 'error');
+      return null;
     } finally {
       setUploading(false);
-      if (fileInputRef.current) fileInputRef.current.value = '';
     }
+  };
+
+  // File upload handler
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    await uploadImageFile(file);
+    if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
   // Clipboard copy
@@ -739,11 +806,8 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       const remaining = localMaterials.filter(m => m.slug !== slug);
       setLocalMaterials(remaining);
       if (remaining[0]) setSelectedMaterialSlug(remaining[0].slug);
-      await saveContent({
-        heroSlides: localHeroSlides,
+      await handlePersistContent({
         materials: remaining,
-        applicationSectors: localSectors,
-        journalArticles: localJournalArticles,
       });
       showToast(`Material ${slug} deleted & updated live.`, 'info');
     }
@@ -781,6 +845,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       .map(s => s.trim())
       .filter(Boolean);
 
+    const inSituArray = newMaterialForm.inSituImagesText
+      ? newMaterialForm.inSituImagesText.split(',').map(s => s.trim()).filter(Boolean)
+      : [];
+
     const newMaterial: Material = {
       slug,
       name: newMaterialForm.name.trim(),
@@ -792,10 +860,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       finish: newMaterialForm.finish.trim() || 'Honed Satin Matte',
       colour: newMaterialForm.colour.trim() || newMaterialForm.name.trim(),
       hexColor: newMaterialForm.hexColor || '#f4f3ef',
+      textureCss: newMaterialForm.textureCss.trim() || `linear-gradient(135deg, ${newMaterialForm.hexColor || '#f4f3ef'} 0%, rgba(20,23,19,0.06) 100%)`,
       textureImage: newMaterialForm.textureImage.trim() || '/images/images/app_residential_stonique_1.jpg',
       description: newMaterialForm.description.trim() || 'Engineered solid surface architectural slab with seamless thermoformable capability and non-porous hygiene performance.',
       swatch: 'one',
       image: newMaterialForm.image.trim() || '/images/images/app_residential_stonique_1.jpg',
+      inSituImage: newMaterialForm.inSituImage.trim() || newMaterialForm.image.trim() || '/images/images/app_residential_stonique_1.jpg',
+      inSituImages: inSituArray.length > 0 ? inSituArray : [newMaterialForm.image.trim() || '/images/images/app_residential_stonique_1.jpg'],
       applications: applicationsArray.length > 0 ? applicationsArray : ['Kitchen Worktops', 'Wall Cladding', 'Bespoke Monoliths'],
       thicknessOptions: thicknessArray.length > 0 ? thicknessArray : ['12mm', '19mm'],
       dimensions: newMaterialForm.dimensions.trim() || '3660 mm × 760 mm',
@@ -810,11 +881,8 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
     setIsAddingMaterial(false);
     setNewMaterialForm(initialMaterialForm);
 
-    await saveContent({
-      heroSlides: localHeroSlides,
+    await handlePersistContent({
       materials: updated,
-      applicationSectors: localSectors,
-      journalArticles: localJournalArticles,
     });
     showToast(`✓ Material slab "${newMaterial.name}" (${newMaterial.code}) registered and live across site!`, 'success');
   };
@@ -838,10 +906,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       finish: newColorForm.finish,
       colour: newColorForm.name,
       hexColor: newColorForm.hexColor,
+      textureCss: `linear-gradient(135deg, ${newColorForm.hexColor || '#e5e4de'} 0%, rgba(20,23,19,0.06) 100%)`,
       textureImage: newColorForm.textureImage || '/images/images/pattern_calacatta_greige.jpg',
       description: 'Bespoke architectural solid surface slab with seamless thermoformable capability.',
       swatch: newColorForm.textureImage || '/images/images/lshape_calacatta_greige.png',
       image: newColorForm.textureImage || '/images/images/app_residential_calacatta_greige_1.jpg',
+      inSituImage: newColorForm.textureImage || '/images/images/app_residential_calacatta_greige_1.jpg',
+      inSituImages: [newColorForm.textureImage || '/images/images/app_residential_calacatta_greige_1.jpg'],
       applications: ['Countertops', 'Wall Cladding', 'Bespoke Monoliths'],
       thicknessOptions: ['12mm', '20mm'],
       dimensions: '3660 × 760 mm',
@@ -853,11 +924,8 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
     setLocalMaterials(updated);
     setSelectedMaterialSlug(newMaterial.slug);
     setIsAddingColor(false);
-    await saveContent({
-      heroSlides: localHeroSlides,
+    await handlePersistContent({
       materials: updated,
-      applicationSectors: localSectors,
-      journalArticles: localJournalArticles,
     });
     showToast(`✓ Colour swatch "${newMaterial.name}" registered & live across site!`, 'success');
   };
@@ -1135,11 +1203,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       const remaining = localProjects.filter(p => p.slug !== slug);
       setLocalProjects(remaining);
       if (remaining[0]) setSelectedProjectSlug(remaining[0].slug);
-      await saveContent({
-        heroSlides: localHeroSlides,
-        materials: localMaterials,
-        applicationSectors: localSectors,
-        journalArticles: localJournalArticles,
+      await handlePersistContent({
         projects: remaining,
       });
       showToast(`Case study "${slug}" deleted & updated live.`, 'info');
@@ -1193,14 +1257,45 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
     setIsAddingProject(false);
     setNewProjectForm(initialProjectForm);
 
-    await saveContent({
-      heroSlides: localHeroSlides,
-      materials: localMaterials,
-      applicationSectors: localSectors,
-      journalArticles: localJournalArticles,
+    await handlePersistContent({
       projects: updated,
     });
     showToast(`✓ Project case study "${newProj.title}" registered & live on /projects!`, 'success');
+  };
+
+  // =========================================================================
+  // ABOUT PAGE & STUDIO STORY OPERATIONS
+  // =========================================================================
+  const updateAboutField = <K extends keyof AboutContentConfig>(field: K, value: AboutContentConfig[K]) => {
+    setLocalAboutContent(prev => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const updateAboutPillar = (index: number, field: keyof AboutPhilosophyPillar, value: string) => {
+    setLocalAboutContent(prev => {
+      const currentPillars = prev.pillars && prev.pillars.length >= 6 ? [...prev.pillars] : [...(defaultAboutContent.pillars || [])];
+      if (currentPillars[index]) {
+        currentPillars[index] = {
+          ...currentPillars[index],
+          [field]: value,
+        };
+      }
+      return {
+        ...prev,
+        pillars: currentPillars,
+      };
+    });
+  };
+
+  const handleSaveAbout = async () => {
+    const success = await handlePersistContent({ about: localAboutContent });
+    if (success) {
+      showToast('✓ Studio Story & About Page updated & live on /about!', 'success');
+    } else {
+      showToast('Error saving Studio Story.', 'error');
+    }
   };
 
   const updateProjectSpec = (slug: string, index: number, field: 'label' | 'value', value: string) => {
@@ -1618,14 +1713,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               {[
                 { key: 'overview', num: '01', title: 'Overview Matrix' },
                 { key: 'hero', num: '02', title: 'Hero Slider & Images' },
-                { key: 'materials', num: '03', title: 'Materials & Slabs' },
-                { key: 'colors', num: '04', title: 'Colours & Swatches' },
-                { key: 'applications', num: '05', title: 'Applications & Typologies' },
-                { key: 'projects', num: '06', title: 'Projects & Case Studies', count: localProjects.length, badgeColor: '#68b5e8' },
-                { key: 'journal', num: '07', title: 'Journal & Essays' },
+                { key: 'materials', num: '03', title: 'Materials & Colours Catalog', count: localMaterials.length },
+                { key: 'applications', num: '04', title: 'Applications & Typologies' },
+                { key: 'projects', num: '05', title: 'Projects & Case Studies', count: localProjects.length, badgeColor: '#68b5e8' },
+                { key: 'journal', num: '06', title: 'Journal & Essays' },
+                { key: 'about', num: '07', title: 'Studio Story & Family Photo' },
                 { key: 'media', num: '08', title: 'Media Asset Library' },
               ].map((item) => {
-                const isActive = activeTab === item.key;
+                const isActive = activeTab === item.key || (item.key === 'materials' && activeTab === 'colors');
                 return (
                   <button
                     key={item.key}
@@ -1677,21 +1772,21 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               {[
                 {
                   key: 'orders',
-                  num: '09',
+                  num: '10',
                   title: 'Sample Orders',
                   count: orders.filter((o) => o.status === 'submitted' || o.status === 'in-progress').length,
                   badgeColor: '#e5a93b',
                 },
                 {
                   key: 'inquiries',
-                  num: '10',
+                  num: '11',
                   title: 'Enquiries',
                   count: inquiries.filter((i) => i.status === 'new').length,
                   badgeColor: '#73c991',
                 },
                 {
                   key: 'dispatch',
-                  num: '11',
+                  num: '12',
                   title: 'Dispatch Journal',
                   count: subscribers.length,
                   badgeColor: '#6da5c0',
@@ -1825,11 +1920,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 { title: 'Client Enquiries', count: inquiries.length, desc: `${inquiries.filter(i => i.status === 'new').length} new consultations`, tab: 'inquiries' },
                 { title: 'Dispatch Readers', count: subscribers.length, desc: `${subscribers.filter(s => s.status === 'active').length} active subscribers`, tab: 'dispatch' },
                 { title: 'Hero Slides', count: localHeroSlides.length, desc: 'Active carousel sequences', tab: 'hero' },
-                { title: 'Materials & Slabs', count: localMaterials.length, desc: 'Curated solid surfaces & slabs', tab: 'materials' },
-                { title: 'Colours & Swatches', count: localMaterials.length, desc: 'Honed, matte & veined chips', tab: 'colors' },
+                { title: 'Materials & Colours Catalog', count: localMaterials.length, desc: 'Curated slabs, tones & swatches', tab: 'materials' },
                 { title: 'Application Sectors', count: localSectors.length, desc: 'Hospitals, residential, retail, etc.', tab: 'applications' },
                 { title: 'Case Studies & Projects', count: localProjects.length, desc: 'Selected architectural work', tab: 'projects' },
                 { title: 'Journal Essays', count: localJournalArticles.length, desc: 'Architectural research & essays', tab: 'journal' },
+                { title: 'Studio Story & Lineage', count: 1, desc: 'Family photo & 6 philosophy pillars', tab: 'about' },
                 { title: 'Media Assets', count: mediaAssets.length, desc: 'Architectural images in storage', tab: 'media' },
               ].map(stat => (
                 <div
@@ -2046,21 +2141,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       cursor: 'pointer',
                     }}
                   >
-                    + Register New Material Slab to Foundry Catalog
-                  </button>
-                  <button
-                    onClick={() => { setActiveTab('colors'); setIsAddingColor(true); }}
-                    style={{
-                      textAlign: 'left',
-                      padding: '10px 14px',
-                      background: '#f5f4ee',
-                      border: '1px solid rgba(0,0,0,0.08)',
-                      fontFamily: 'DM Mono, monospace',
-                      fontSize: '11px',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    + Register New Color Swatch / Architectural Tone
+                    + Register New Material Slab / Colour Swatch
                   </button>
                   <button
                     onClick={() => { setActiveTab('projects'); setIsAddingProject(true); }}
@@ -2089,6 +2170,20 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     }}
                   >
                     + Publish New Architectural Journal Essay
+                  </button>
+                  <button
+                    onClick={() => { setActiveTab('about'); }}
+                    style={{
+                      textAlign: 'left',
+                      padding: '10px 14px',
+                      background: '#f5f4ee',
+                      border: '1px solid rgba(0,0,0,0.08)',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    + Update Company Family Photo & Studio Story
                   </button>
                   <button
                     onClick={() => { setActiveTab('media'); }}
@@ -2511,50 +2606,159 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
         )}
 
         {/* =========================================================================
-            TAB 3: MATERIALS & SLABS MANAGER
+            TAB 3: MATERIALS & COLOURS CATALOG (UNIFIED)
         ========================================================================= */}
-        {activeTab === 'materials' && (
+        {(activeTab === 'materials' || activeTab === 'colors') && (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-              <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
-                  Foundry Inventory & Slab Catalog
+            {/* Header with Title, Search, Family Filter Pills and Actions */}
+            <div style={{ marginBottom: '24px', background: '#ffffff', padding: '22px 24px', border: '1px solid rgba(0,0,0,0.08)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '20px', flexWrap: 'wrap', marginBottom: '18px' }}>
+                <div>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    03 / Unified Specimen & Swatch Catalog
+                  </div>
+                  <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
+                    Materials, Finishes & Colour Swatches ({localMaterials.length})
+                  </h2>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', marginTop: '4px' }}>
+                    Comprehensive architectural slab dimensions, mineral formulations, high-res photography, and color tones.
+                  </div>
                 </div>
-                <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
-                  Materials & Architectural Slabs ({localMaterials.length})
-                </h2>
+
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <div style={{ position: 'relative' }}>
+                    <input
+                      type="text"
+                      placeholder="Search name, code, hue, finish..."
+                      value={materialSearchQuery}
+                      onChange={e => setMaterialSearchQuery(e.target.value)}
+                      style={{
+                        padding: '8px 12px',
+                        border: '1px solid #ccc',
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '11px',
+                        width: '260px',
+                        background: '#faf9f5',
+                      }}
+                    />
+                    {materialSearchQuery && (
+                      <button
+                        onClick={() => setMaterialSearchQuery('')}
+                        style={{
+                          position: 'absolute',
+                          right: '6px',
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          color: '#888',
+                          fontSize: '14px',
+                        }}
+                      >
+                        ×
+                      </button>
+                    )}
+                  </div>
+
+                  <button
+                    onClick={() => setIsAddingMaterial(true)}
+                    style={{
+                      padding: '8px 16px',
+                      background: '#1a1d19',
+                      color: '#fff',
+                      border: 'none',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                    }}
+                  >
+                    <span>+</span>
+                    <span>Add New Material / Swatch</span>
+                  </button>
+
+                  <button
+                    onClick={handleSaveAll}
+                    disabled={isContextLoading}
+                    style={{
+                      padding: '8px 18px',
+                      background: '#233021',
+                      color: '#ffffff',
+                      border: 'none',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      cursor: isContextLoading ? 'wait' : 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                    }}
+                  >
+                    <span>💾</span>
+                    <span>{isContextLoading ? 'Saving...' : 'Save Catalog & Push Live ✓'}</span>
+                  </button>
+                </div>
               </div>
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <input
-                  type="text"
-                  placeholder="Search material or code..."
-                  value={materialSearchQuery}
-                  onChange={e => setMaterialSearchQuery(e.target.value)}
-                  style={{
-                    padding: '8px 12px',
-                    border: '1px solid #ccc',
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: '11px',
-                  }}
-                />
-                <button
-                  onClick={() => setIsAddingMaterial(true)}
-                  style={{
-                    padding: '8px 16px',
-                    background: '#1a1d19',
-                    color: '#fff',
-                    border: 'none',
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: '11px',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                  }}
-                >
-                  <span>+</span>
-                  <span>Add New Material Slab</span>
-                </button>
+
+              {/* Color Family Filter Pills */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', paddingTop: '14px', borderTop: '1px solid #f0efe8' }}>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginRight: '6px' }}>
+                  Filter by Palette:
+                </span>
+                {[
+                  { key: 'all', label: 'All Palettes', count: localMaterials.length, dot: null },
+                  { key: 'white', label: 'White', count: localMaterials.filter(m => m.colorFamily === 'white').length, dot: '#f7f6f2' },
+                  { key: 'cream', label: 'Cream', count: localMaterials.filter(m => m.colorFamily === 'cream').length, dot: '#ece6d8' },
+                  { key: 'grey', label: 'Grey', count: localMaterials.filter(m => m.colorFamily === 'grey').length, dot: '#9c9b96' },
+                  { key: 'earth', label: 'Earth', count: localMaterials.filter(m => m.colorFamily === 'earth').length, dot: '#9c7b5b' },
+                  { key: 'black', label: 'Black', count: localMaterials.filter(m => m.colorFamily === 'black').length, dot: '#232323' },
+                  { key: 'translucent', label: 'Translucent', count: localMaterials.filter(m => m.colorFamily === 'translucent').length, dot: '#d6e4e8' },
+                ].map(pill => {
+                  const isActive = materialFamilyFilter === pill.key;
+                  return (
+                    <button
+                      key={pill.key}
+                      onClick={() => setMaterialFamilyFilter(pill.key)}
+                      style={{
+                        padding: '5px 12px',
+                        background: isActive ? '#1a1d19' : '#f4f3ed',
+                        color: isActive ? '#ffffff' : '#333333',
+                        border: isActive ? '1px solid #1a1d19' : '1px solid rgba(0,0,0,0.06)',
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '11px',
+                        cursor: 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        transition: 'all 0.15s ease',
+                      }}
+                    >
+                      {pill.dot && (
+                        <span style={{
+                          width: '10px',
+                          height: '10px',
+                          borderRadius: '50%',
+                          background: pill.dot,
+                          border: '1px solid rgba(0,0,0,0.2)',
+                          display: 'inline-block',
+                        }} />
+                      )}
+                      <span>{pill.label}</span>
+                      <span style={{
+                        fontSize: '9px',
+                        opacity: isActive ? 0.9 : 0.6,
+                        padding: '1px 5px',
+                        background: isActive ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.06)',
+                        borderRadius: '10px',
+                      }}>
+                        {pill.count}
+                      </span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -2824,7 +3028,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
                   </div>
 
-                  {/* Row 6: Imagery - Texture Specimen & Spatial In-Situ Photo */}
+                  {/* Row 6: Imagery & In-Situ Gallery */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
                       <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
@@ -2833,7 +3037,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                         <input
                           type="text"
-                          placeholder="/images/images/pattern_calacatta_greige.jpg"
+                          placeholder="/materials/sample_macro.jpg"
                           value={newMaterialForm.textureImage}
                           onChange={e => setNewMaterialForm(prev => ({ ...prev, textureImage: e.target.value }))}
                           style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
@@ -2860,7 +3064,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
                           />
                           <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
-                            Live Texture Specimen Preview
+                            Macro Texture Specimen Preview
                           </span>
                         </div>
                       )}
@@ -2868,20 +3072,20 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                     <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
                       <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
-                        In-Situ Spatial Application Photo
+                        Primary In-Situ Spatial Application Photo
                       </label>
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                         <input
                           type="text"
                           placeholder="/images/images/app_residential_stonique_1.jpg"
-                          value={newMaterialForm.image}
-                          onChange={e => setNewMaterialForm(prev => ({ ...prev, image: e.target.value }))}
+                          value={newMaterialForm.inSituImage || newMaterialForm.image}
+                          onChange={e => setNewMaterialForm(prev => ({ ...prev, inSituImage: e.target.value, image: e.target.value }))}
                           style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
                         />
                         <select
                           value=""
                           onChange={e => {
-                            if (e.target.value) setNewMaterialForm(prev => ({ ...prev, image: e.target.value }));
+                            if (e.target.value) setNewMaterialForm(prev => ({ ...prev, inSituImage: e.target.value, image: e.target.value }));
                           }}
                           style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
                         >
@@ -2891,19 +3095,83 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           ))}
                         </select>
                       </div>
-                      {newMaterialForm.image && (
+                      {(newMaterialForm.inSituImage || newMaterialForm.image) && (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                           <img
-                            src={newMaterialForm.image}
+                            src={newMaterialForm.inSituImage || newMaterialForm.image}
                             alt="Application preview"
                             style={{ width: '64px', height: '48px', objectFit: 'cover', border: '1px solid #ccc' }}
                             onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
                           />
                           <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
-                            Live In-Situ Spatial Preview
+                            Primary In-Situ Installation Preview
                           </span>
                         </div>
                       )}
+                    </div>
+                  </div>
+
+                  {/* Row 6B: Specimen Zoom Multi-Angle Gallery & CSS Fallback Gradient */}
+                  <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '16px' }}>
+                    <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                        Specimen Zoom Multi-Angle Gallery URLs (comma separated)
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="e.g. /images/images/app_1.jpg, /images/images/app_2.jpg"
+                        value={newMaterialForm.inSituImagesText}
+                        onChange={e => setNewMaterialForm(prev => ({ ...prev, inSituImagesText: e.target.value }))}
+                        style={{ width: '100%', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', marginBottom: '6px' }}
+                      />
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                        Powers the interactive multi-angle specimen carousel on the specimen detail page.
+                      </div>
+                    </div>
+
+                    <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                        <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.05em' }}>
+                          Live CSS Gradient Fallback
+                        </label>
+                        <button
+                          type="button"
+                          onClick={() => setNewMaterialForm(prev => ({
+                            ...prev,
+                            textureCss: `linear-gradient(135deg, ${prev.hexColor || '#f4f3ef'} 0%, rgba(20,23,19,0.06) 100%)`,
+                          }))}
+                          style={{
+                            background: '#1a1d19',
+                            color: '#ffffff',
+                            border: 'none',
+                            padding: '2px 8px',
+                            fontFamily: 'DM Mono, monospace',
+                            fontSize: '9px',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          Auto from Hex
+                        </button>
+                      </div>
+                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                        <div
+                          style={{
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: '50%',
+                            background: newMaterialForm.textureCss || newMaterialForm.hexColor,
+                            border: '1px solid rgba(0,0,0,0.15)',
+                            flexShrink: 0,
+                          }}
+                        />
+                        <input
+                          type="text"
+                          placeholder="linear-gradient(135deg, #f4f3ef 0%, rgba(20,23,19,0.06) 100%)"
+                          value={newMaterialForm.textureCss}
+                          onChange={e => setNewMaterialForm(prev => ({ ...prev, textureCss: e.target.value }))}
+                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        />
+                      </div>
                     </div>
                   </div>
 
@@ -2967,12 +3235,44 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             {/* Two column: List of Materials & Full Material Editor */}
             <div className="admin-two-col" style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: '24px' }}>
               {/* Materials Filter and List */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '750px', overflowY: 'auto', paddingRight: '4px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '780px', overflowY: 'auto', paddingRight: '6px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 2px 8px 2px', borderBottom: '1px solid #f0efe8', marginBottom: '2px' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
+                    Specimens ({
+                      localMaterials.filter(m => {
+                        if (materialFamilyFilter !== 'all' && (m.colorFamily || '').toLowerCase() !== materialFamilyFilter.toLowerCase()) return false;
+                        const q = materialSearchQuery.trim().toLowerCase();
+                        if (!q) return true;
+                        return (
+                          (m.name && m.name.toLowerCase().includes(q)) ||
+                          (m.code && m.code.toLowerCase().includes(q)) ||
+                          (m.collection && m.collection.toLowerCase().includes(q)) ||
+                          (m.colour && m.colour.toLowerCase().includes(q)) ||
+                          (m.finish && m.finish.toLowerCase().includes(q)) ||
+                          (m.colorFamily && m.colorFamily.toLowerCase().includes(q)) ||
+                          (m.hexColor && m.hexColor.toLowerCase().includes(q))
+                        );
+                      }).length
+                    })
+                  </span>
+                  {materialFamilyFilter !== 'all' && (
+                    <button
+                      onClick={() => setMaterialFamilyFilter('all')}
+                      style={{ background: 'none', border: 'none', color: '#788078', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer', textDecoration: 'underline' }}
+                    >
+                      Reset filter
+                    </button>
+                  )}
+                </div>
+
                 {localMaterials
                   .filter(m => {
+                    if (materialFamilyFilter !== 'all' && (m.colorFamily || '').toLowerCase() !== materialFamilyFilter.toLowerCase()) {
+                      return false;
+                    }
                     const q = materialSearchQuery.trim().toLowerCase();
+                    if (!q) return true;
                     return (
-                      !q ||
                       (m.name && m.name.toLowerCase().includes(q)) ||
                       (m.code && m.code.toLowerCase().includes(q)) ||
                       (m.collection && m.collection.toLowerCase().includes(q)) ||
@@ -2982,42 +3282,94 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       (m.hexColor && m.hexColor.toLowerCase().includes(q))
                     );
                   })
-                  .map(mat => (
-                    <div
-                      key={mat.slug}
-                      onClick={() => setSelectedMaterialSlug(mat.slug)}
-                      style={{
-                        background: selectedMaterialSlug === mat.slug ? '#1a1d19' : '#ffffff',
-                        color: selectedMaterialSlug === mat.slug ? '#ffffff' : '#1a1d19',
-                        padding: '12px 14px',
-                        border: '1px solid rgba(0,0,0,0.08)',
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '12px',
-                      }}
-                    >
-                      <div style={{
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        background: mat.hexColor || '#ccc',
-                        border: '1px solid rgba(0,0,0,0.15)',
-                        flexShrink: 0,
-                      }} />
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '13px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                          {mat.name}
+                  .map(mat => {
+                    const isSelected = selectedMaterialSlug === mat.slug;
+                    const previewThumb = mat.textureImage || mat.swatch || mat.image || (mat.inSituImages && mat.inSituImages[0]);
+                    return (
+                      <div
+                        key={mat.slug}
+                        onClick={() => setSelectedMaterialSlug(mat.slug)}
+                        style={{
+                          background: isSelected ? '#1a1d19' : '#ffffff',
+                          color: isSelected ? '#ffffff' : '#1a1d19',
+                          padding: '12px 14px',
+                          border: isSelected ? '1px solid #1a1d19' : '1px solid rgba(0,0,0,0.08)',
+                          boxShadow: isSelected ? '0 4px 12px rgba(0,0,0,0.08)' : 'none',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '12px',
+                          transition: 'all 0.15s ease',
+                        }}
+                      >
+                        {/* Perfect Circular Swatch Dot */}
+                        <div
+                          style={{
+                            width: '38px',
+                            height: '38px',
+                            borderRadius: '50%',
+                            aspectRatio: '1 / 1',
+                            background: mat.hexColor || '#e0dfd5',
+                            border: isSelected ? '2px solid #ffffff' : '1px solid rgba(0,0,0,0.15)',
+                            flexShrink: 0,
+                            position: 'relative',
+                            overflow: 'hidden',
+                            boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.06)',
+                          }}
+                        >
+                          {previewThumb ? (
+                            <img
+                              src={previewThumb}
+                              alt={mat.name}
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                objectFit: 'cover',
+                                display: 'block',
+                              }}
+                              onError={e => {
+                                (e.target as HTMLElement).style.display = 'none';
+                              }}
+                            />
+                          ) : (
+                            <div
+                              style={{
+                                width: '100%',
+                                height: '100%',
+                                background: mat.textureCss || mat.hexColor || '#e0dfd5',
+                              }}
+                            />
+                          )}
                         </div>
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: selectedMaterialSlug === mat.slug ? '#9ca59b' : '#788078' }}>
-                          {mat.code} · {mat.collection}
+
+                        <div style={{ flex: 1, minWidth: 0 }}>
+                          <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            {mat.name}
+                          </div>
+                          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: isSelected ? '#a3aea0' : '#788078', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                            {mat.code || 'SLAB'} · {mat.finish || mat.collection}
+                          </div>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '3px', flexShrink: 0 }}>
+                          <span style={{
+                            fontFamily: 'DM Mono, monospace',
+                            fontSize: '9px',
+                            textTransform: 'uppercase',
+                            padding: '2px 6px',
+                            background: isSelected ? '#2d332c' : '#f0efe8',
+                            color: isSelected ? '#d8ded5' : '#555555',
+                            borderRadius: '2px',
+                          }}>
+                            {mat.colorFamily}
+                          </span>
+                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: isSelected ? '#8c9689' : '#888888' }}>
+                            {mat.hexColor}
+                          </span>
                         </div>
                       </div>
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', padding: '2px 6px', background: selectedMaterialSlug === mat.slug ? '#333' : '#f0efe8', color: selectedMaterialSlug === mat.slug ? '#ccc' : '#666' }}>
-                        {mat.colorFamily}
-                      </span>
-                    </div>
-                  ))}
+                    );
+                  })}
               </div>
 
               {/* Material Editor */}
@@ -3085,270 +3437,519 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
                   </div>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Material Name
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.name}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'name', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    {/* CARD 1: Swatch & Visual Color Tone */}
+                    <div style={{ background: '#faf9f5', border: '1px solid #e8e6df', padding: '18px 20px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #e5e3dc' }}>
+                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                          01 / Swatch & Visual Color Tone
+                        </div>
+                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                          Live Preview & Tone Formula
+                        </span>
+                      </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Material Code
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.code}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'code', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr 1fr', gap: '16px', alignItems: 'center', marginBottom: '16px' }}>
+                        {/* Perfect Circle Swatch Preview */}
+                        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '6px' }}>
+                          <div
+                            style={{
+                              width: '56px',
+                              height: '56px',
+                              borderRadius: '50%',
+                              aspectRatio: '1 / 1',
+                              background: selectedMaterial.hexColor || '#e5e4de',
+                              border: '2px solid rgba(0,0,0,0.15)',
+                              overflow: 'hidden',
+                              position: 'relative',
+                              boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+                            }}
+                          >
+                            {(selectedMaterial.textureImage || selectedMaterial.swatch || selectedMaterial.image) ? (
+                              <img
+                                src={selectedMaterial.textureImage || selectedMaterial.swatch || selectedMaterial.image}
+                                alt={selectedMaterial.name}
+                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
+                              />
+                            ) : (
+                              <div style={{ width: '100%', height: '100%', background: selectedMaterial.textureCss || selectedMaterial.hexColor }} />
+                            )}
+                          </div>
+                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#788078' }}>
+                            Swatch
+                          </span>
+                        </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Collection Series
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.collection}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'collection', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                        {/* Hex Picker & Input */}
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Hex Tone & Color Picker
+                          </label>
+                          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                            <input
+                              type="color"
+                              value={selectedMaterial.hexColor || '#e5e4de'}
+                              onChange={e => updateMaterialField(selectedMaterial.slug, 'hexColor', e.target.value)}
+                              style={{ width: '38px', height: '36px', border: '1px solid #ccc', cursor: 'pointer', padding: 0 }}
+                            />
+                            <input
+                              type="text"
+                              value={selectedMaterial.hexColor || ''}
+                              onChange={e => updateMaterialField(selectedMaterial.slug, 'hexColor', e.target.value)}
+                              placeholder="#e5e4de"
+                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#ffffff' }}
+                            />
+                          </div>
+                        </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Finish Spec
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.finish}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'finish', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                        {/* Color Family */}
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Color Family
+                          </label>
+                          <select
+                            value={selectedMaterial.colorFamily}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'colorFamily', e.target.value)}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                          >
+                            <option value="white">White</option>
+                            <option value="cream">Cream</option>
+                            <option value="grey">Grey</option>
+                            <option value="earth">Earth</option>
+                            <option value="black">Black</option>
+                            <option value="translucent">Translucent</option>
+                          </select>
+                        </div>
+                      </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Hex Colour Code & Swatch
-                      </label>
-                      <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                        <input
-                          type="color"
-                          value={selectedMaterial.hexColor || '#e5e4de'}
-                          onChange={e => updateMaterialField(selectedMaterial.slug, 'hexColor', e.target.value)}
-                          style={{ width: '40px', height: '36px', border: '1px solid #ddd', cursor: 'pointer', padding: 0 }}
-                        />
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Finish Surface Spec
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.finish || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'finish', e.target.value)}
+                            placeholder="e.g. Honed Satin Matte"
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#ffffff' }}
+                          />
+                        </div>
+
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Substrate Type
+                          </label>
+                          <select
+                            value={selectedMaterial.type || 'mineral'}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'type', e.target.value)}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                          >
+                            <option value="mineral">Mineral</option>
+                            <option value="veined">Veined</option>
+                            <option value="textured">Textured</option>
+                            <option value="translucent">Translucent</option>
+                          </select>
+                        </div>
+
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Pattern / Aesthetic
+                          </label>
+                          <select
+                            value={selectedMaterial.pattern || 'solid'}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'pattern', e.target.value)}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                          >
+                            <option value="solid">Solid</option>
+                            <option value="veined">Veined</option>
+                            <option value="particulate">Particulate</option>
+                            <option value="translucent">Translucent</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      {/* Live CSS Gradient Swatch Fallback */}
+                      <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px solid #e5e3dc' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                          <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
+                            Live CSS Gradient Fallback (Instant Specimen Texture)
+                          </label>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const grad = `linear-gradient(135deg, ${selectedMaterial.hexColor || '#f4f3ef'} 0%, rgba(20,23,19,0.06) 100%)`;
+                              updateMaterialField(selectedMaterial.slug, 'textureCss', grad);
+                            }}
+                            style={{
+                              background: '#1a1d19',
+                              color: '#ffffff',
+                              border: 'none',
+                              padding: '3px 8px',
+                              fontFamily: 'DM Mono, monospace',
+                              fontSize: '9px',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            Auto-Generate from Hex ({selectedMaterial.hexColor || '#e5e4de'})
+                          </button>
+                        </div>
                         <input
                           type="text"
-                          value={selectedMaterial.hexColor || ''}
-                          onChange={e => updateMaterialField(selectedMaterial.slug, 'hexColor', e.target.value)}
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          value={selectedMaterial.textureCss || ''}
+                          onChange={e => updateMaterialField(selectedMaterial.slug, 'textureCss', e.target.value)}
+                          placeholder="e.g. linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)"
+                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#ffffff' }}
                         />
                       </div>
                     </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Color Family
-                      </label>
-                      <select
-                        value={selectedMaterial.colorFamily}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'colorFamily', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
-                      >
-                        <option value="white">White</option>
-                        <option value="cream">Cream</option>
-                        <option value="grey">Grey</option>
-                        <option value="earth">Earth</option>
-                        <option value="black">Black</option>
-                        <option value="translucent">Translucent</option>
-                      </select>
-                    </div>
+                    {/* CARD 2: Slab Specifications & Sizing */}
+                    <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', padding: '18px 20px' }}>
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
+                        02 / Architectural Specifications & Sizing
+                      </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Pattern / Aesthetic
-                      </label>
-                      <select
-                        value={selectedMaterial.pattern || 'solid'}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'pattern', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
-                      >
-                        <option value="solid">Solid</option>
-                        <option value="veined">Veined</option>
-                        <option value="particulate">Particulate</option>
-                        <option value="translucent">Translucent</option>
-                      </select>
-                    </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Material Name
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.name}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'name', e.target.value)}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Substrate Type
-                      </label>
-                      <select
-                        value={selectedMaterial.type || 'mineral'}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'type', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
-                      >
-                        <option value="mineral">Mineral</option>
-                        <option value="veined">Veined</option>
-                        <option value="textured">Textured</option>
-                        <option value="translucent">Translucent</option>
-                      </select>
-                    </div>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Material Code
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.code}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'code', e.target.value)}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Color Tone Nuance / Hue Description
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.colour || ''}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'colour', e.target.value)}
-                        placeholder="e.g. Pure Chalk White / Warm Alabaster"
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Collection Series
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.collection}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'collection', e.target.value)}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Light Transmission
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.lightTransmission || ''}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'lightTransmission', e.target.value)}
-                        placeholder="e.g. Low (6%) or Opaque"
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Color Tone Nuance / Hue Description
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.colour || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'colour', e.target.value)}
+                            placeholder="e.g. Pure Chalk White / Warm Alabaster"
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Fire Performance Rating
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.fireRating || ''}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'fireRating', e.target.value)}
-                        placeholder="e.g. Class 1 / Class A (ASTM E84)"
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Light Transmission
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.lightTransmission || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'lightTransmission', e.target.value)}
+                            placeholder="e.g. Low (6%) or Opaque"
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
 
-                    <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Slab Dimensions & Standard Thicknesses
-                      </label>
-                      <div style={{ display: 'flex', gap: '12px' }}>
-                        <input
-                          type="text"
-                          placeholder="Dimensions (e.g. 3660 mm × 760 mm)"
-                          value={selectedMaterial.dimensions || ''}
-                          onChange={e => updateMaterialField(selectedMaterial.slug, 'dimensions', e.target.value)}
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                        />
-                        <input
-                          type="text"
-                          placeholder="Thicknesses (comma separated: 12mm, 20mm)"
-                          value={selectedMaterial.thicknessOptions?.join(', ') || ''}
-                          onChange={e => updateMaterialField(selectedMaterial.slug, 'thicknessOptions', e.target.value.split(',').map(s => s.trim()))}
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                        />
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Fire Performance Rating
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.fireRating || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'fireRating', e.target.value)}
+                            placeholder="e.g. Class 1 / Class A (ASTM E84)"
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Dimensions (e.g. 3660 mm × 760 mm)
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.dimensions || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'dimensions', e.target.value)}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
+
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Thicknesses (comma separated: 12mm, 20mm)
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.thicknessOptions?.join(', ') || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'thicknessOptions', e.target.value.split(',').map(s => s.trim()))}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
                       </div>
                     </div>
 
-                    <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Recommended Applications (comma separated)
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.applications?.join(', ') || ''}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'applications', e.target.value.split(',').map(s => s.trim()))}
-                        placeholder="e.g. Kitchen Worktops, Wall Cladding, Bespoke Monoliths"
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                    {/* CARD 3: Photography & High-Res Specimens */}
+                    <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', padding: '18px 20px' }}>
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
+                        03 / Photography & High-Res Specimens
+                      </div>
 
-                    <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Architectural Care & Maintenance Guide
-                      </label>
-                      <input
-                        type="text"
-                        value={selectedMaterial.careGuide || ''}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'careGuide', e.target.value)}
-                        placeholder="e.g. Daily cleaning with damp microfibre cloth and mild neutral detergent."
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
+                        {/* Macro Texture */}
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Macro Slab Texture Specimen Image URL
+                          </label>
+                          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                            <input
+                              type="text"
+                              value={selectedMaterial.textureImage || ''}
+                              onChange={e => updateMaterialField(selectedMaterial.slug, 'textureImage', e.target.value)}
+                              placeholder="/assets/..."
+                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            />
+                            <select
+                              onChange={e => { if (e.target.value) updateMaterialField(selectedMaterial.slug, 'textureImage', e.target.value); }}
+                              value=""
+                              style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                            >
+                              <option value="">Media...</option>
+                              {mediaAssets.map(img => (
+                                <option key={`edit-tex-${img}`} value={img}>{img.split('/').pop()}</option>
+                              ))}
+                            </select>
+                          </div>
+                          {selectedMaterial.textureImage && (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <img
+                                src={selectedMaterial.textureImage}
+                                alt="Texture"
+                                style={{ width: '40px', height: '30px', objectFit: 'cover', border: '1px solid #ddd' }}
+                                onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
+                              />
+                              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                                Texture Macro Specimen
+                              </span>
+                            </div>
+                          )}
+                        </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Macro Slab Texture Specimen Image URL
-                      </label>
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        <input
-                          type="text"
-                          value={selectedMaterial.textureImage || ''}
-                          onChange={e => updateMaterialField(selectedMaterial.slug, 'textureImage', e.target.value)}
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                        />
-                        <select
-                          onChange={e => { if (e.target.value) updateMaterialField(selectedMaterial.slug, 'textureImage', e.target.value); }}
-                          value=""
-                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
-                        >
-                          <option value="">Media...</option>
-                          {mediaAssets.map(img => (
-                            <option key={`edit-tex-${img}`} value={img}>{img.split('/').pop()}</option>
+                        {/* Primary In-Situ / Application Photo */}
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Primary In-Situ Installation Photo URL
+                          </label>
+                          <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                            <input
+                              type="text"
+                              value={selectedMaterial.inSituImage || selectedMaterial.image || ''}
+                              onChange={e => {
+                                updateMaterialField(selectedMaterial.slug, 'inSituImage', e.target.value);
+                                updateMaterialField(selectedMaterial.slug, 'image', e.target.value);
+                              }}
+                              placeholder="/assets/..."
+                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            />
+                            <select
+                              onChange={e => {
+                                if (e.target.value) {
+                                  updateMaterialField(selectedMaterial.slug, 'inSituImage', e.target.value);
+                                  updateMaterialField(selectedMaterial.slug, 'image', e.target.value);
+                                }
+                              }}
+                              value=""
+                              style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                            >
+                              <option value="">Media...</option>
+                              {mediaAssets.map(img => (
+                                <option key={`edit-app-${img}`} value={img}>{img.split('/').pop()}</option>
+                              ))}
+                            </select>
+                          </div>
+                          {(selectedMaterial.inSituImage || selectedMaterial.image) && (
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                              <img
+                                src={selectedMaterial.inSituImage || selectedMaterial.image}
+                                alt="In-situ application"
+                                style={{ width: '40px', height: '30px', objectFit: 'cover', border: '1px solid #ddd' }}
+                                onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
+                              />
+                              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                                Primary Installation Preview
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Interactive Specimen Zoom Gallery */}
+                      <div style={{ padding: '14px', background: '#faf9f6', border: '1px solid #e5e4de' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                          <div>
+                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
+                              Interactive Specimen Zoom Gallery (Multi-Angle Photography)
+                            </div>
+                            <div style={{ fontFamily: 'system-ui, sans-serif', fontSize: '11px', color: '#555', marginTop: '2px' }}>
+                              Powers the multi-angle zoom viewer (<code style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>SpecimenZoomViewer</code>) on public specimen detail pages.
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const current = Array.isArray(selectedMaterial.inSituImages) ? [...selectedMaterial.inSituImages] : (selectedMaterial.image ? [selectedMaterial.image] : []);
+                              updateMaterialField(selectedMaterial.slug, 'inSituImages', [...current, '/images/images/app_residential_calacatta_greige_1.jpg']);
+                            }}
+                            style={{
+                              background: '#1a1d19',
+                              color: '#ffffff',
+                              border: 'none',
+                              padding: '4px 10px',
+                              fontFamily: 'DM Mono, monospace',
+                              fontSize: '10px',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            + Add Angle Photo
+                          </button>
+                        </div>
+
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                          {((selectedMaterial.inSituImages && selectedMaterial.inSituImages.length > 0)
+                            ? selectedMaterial.inSituImages
+                            : (selectedMaterial.image ? [selectedMaterial.image] : [])
+                          ).map((angleImg, idx) => (
+                            <div key={`mat-angle-${idx}`} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#fff', padding: '8px 12px', border: '1px solid #ddd' }}>
+                              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', width: '60px', color: '#888' }}>
+                                Angle #{idx + 1}
+                              </span>
+                              <img
+                                src={angleImg}
+                                alt={`Angle ${idx + 1}`}
+                                style={{ width: '40px', height: '30px', objectFit: 'cover', border: '1px solid #ccc' }}
+                                onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
+                              />
+                              <input
+                                type="text"
+                                value={angleImg}
+                                onChange={e => {
+                                  const current = Array.isArray(selectedMaterial.inSituImages) ? [...selectedMaterial.inSituImages] : [selectedMaterial.image || ''];
+                                  current[idx] = e.target.value;
+                                  updateMaterialField(selectedMaterial.slug, 'inSituImages', current);
+                                }}
+                                style={{ flex: 1, padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                              />
+                              <select
+                                onChange={e => {
+                                  if (e.target.value) {
+                                    const current = Array.isArray(selectedMaterial.inSituImages) ? [...selectedMaterial.inSituImages] : [selectedMaterial.image || ''];
+                                    current[idx] = e.target.value;
+                                    updateMaterialField(selectedMaterial.slug, 'inSituImages', current);
+                                  }
+                                }}
+                                value=""
+                                style={{ padding: '6px 8px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#f8f7f2' }}
+                              >
+                                <option value="">Media...</option>
+                                {mediaAssets.map(img => (
+                                  <option key={`angle-sel-${idx}-${img}`} value={img}>{img.split('/').pop()}</option>
+                                ))}
+                              </select>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const current = (Array.isArray(selectedMaterial.inSituImages) ? [...selectedMaterial.inSituImages] : [selectedMaterial.image || '']).filter((_, i) => i !== idx);
+                                  updateMaterialField(selectedMaterial.slug, 'inSituImages', current);
+                                }}
+                                style={{
+                                  background: 'transparent',
+                                  border: '1px solid #e57373',
+                                  color: '#d32f2f',
+                                  padding: '4px 8px',
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '10px',
+                                  cursor: 'pointer',
+                                }}
+                              >
+                                Remove
+                              </button>
+                            </div>
                           ))}
-                        </select>
+                        </div>
                       </div>
                     </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        In-Situ Spatial Application Photo URL
-                      </label>
-                      <div style={{ display: 'flex', gap: '8px' }}>
-                        <input
-                          type="text"
-                          value={selectedMaterial.image || ''}
-                          onChange={e => updateMaterialField(selectedMaterial.slug, 'image', e.target.value)}
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                        />
-                        <select
-                          onChange={e => { if (e.target.value) updateMaterialField(selectedMaterial.slug, 'image', e.target.value); }}
-                          value=""
-                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
-                        >
-                          <option value="">Media...</option>
-                          {mediaAssets.map(img => (
-                            <option key={`edit-app-${img}`} value={img}>{img.split('/').pop()}</option>
-                          ))}
-                        </select>
+                    {/* CARD 4: Applications, Care & Description */}
+                    <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', padding: '18px 20px' }}>
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
+                        04 / Architectural Applications & Care
                       </div>
-                    </div>
 
-                    <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                        Architectural Description & Specification Narrative
-                      </label>
-                      <textarea
-                        rows={3}
-                        value={selectedMaterial.description || ''}
-                        onChange={e => updateMaterialField(selectedMaterial.slug, 'description', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.5 }}
-                      />
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Recommended Applications (comma separated)
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.applications?.join(', ') || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'applications', e.target.value.split(',').map(s => s.trim()))}
+                            placeholder="e.g. Kitchen Worktops, Wall Cladding, Bespoke Monoliths"
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
+
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Architectural Care & Maintenance Guide
+                          </label>
+                          <input
+                            type="text"
+                            value={selectedMaterial.careGuide || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'careGuide', e.target.value)}
+                            placeholder="e.g. Daily cleaning with damp microfibre cloth and mild neutral detergent."
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          />
+                        </div>
+
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                            Architectural Description & Specification Narrative
+                          </label>
+                          <textarea
+                            rows={3}
+                            value={selectedMaterial.description || ''}
+                            onChange={e => updateMaterialField(selectedMaterial.slug, 'description', e.target.value)}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.5 }}
+                          />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -3357,312 +3958,6 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           </div>
         )}
 
-        {/* =========================================================================
-            TAB 4: COLOURS & SWATCHES MANAGER
-        ========================================================================= */}
-        {activeTab === 'colors' && (
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-              <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
-                  Curated Architectural Palette
-                </div>
-                <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
-                  Colours & Material Swatches
-                </h2>
-              </div>
-              <button
-                onClick={() => setIsAddingColor(true)}
-                style={{
-                  padding: '8px 16px',
-                  background: '#1a1d19',
-                  color: '#fff',
-                  border: 'none',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
-                  cursor: 'pointer',
-                }}
-              >
-                + Register New Colour Swatch
-              </button>
-            </div>
-
-            {/* Swatches Search and Quick Save Bar */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '16px', marginBottom: '20px', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flex: 1, maxWidth: '440px' }}>
-                <input
-                  type="text"
-                  placeholder="Search swatches by name, code, finish, or hue..."
-                  value={colorSearchQuery}
-                  onChange={e => setColorSearchQuery(e.target.value)}
-                  style={{
-                    flex: 1,
-                    padding: '8px 12px',
-                    border: '1px solid #ccc',
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: '11px',
-                    background: '#ffffff',
-                  }}
-                />
-                {colorSearchQuery && (
-                  <button
-                    onClick={() => setColorSearchQuery('')}
-                    style={{
-                      background: '#1a1d19',
-                      color: '#ffffff',
-                      border: 'none',
-                      padding: '8px 12px',
-                      fontFamily: 'DM Mono, monospace',
-                      fontSize: '10px',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    Clear
-                  </button>
-                )}
-              </div>
-              <button
-                onClick={handleSaveAll}
-                disabled={isContextLoading}
-                style={{
-                  padding: '8px 16px',
-                  background: '#1a1d19',
-                  color: '#ffffff',
-                  border: 'none',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  cursor: isContextLoading ? 'wait' : 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                }}
-              >
-                <span>💾</span>
-                <span>{isContextLoading ? 'Saving...' : 'Save Swatches & Push Live ✓'}</span>
-              </button>
-            </div>
-
-            {/* Swatch Registration Modal Form */}
-            {isAddingColor && (
-              <div style={{
-                background: '#ffffff',
-                padding: '24px',
-                border: '2px solid #1a1d19',
-                marginBottom: '24px',
-              }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                  <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', margin: 0 }}>
-                    Add Architectural Colour Swatch
-                  </h3>
-                  <button
-                    onClick={() => setIsAddingColor(false)}
-                    style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '16px' }}
-                  >
-                    ×
-                  </button>
-                </div>
-
-                <form onSubmit={handleCreateColor} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
-                  <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                      Colour Name (e.g. Alto / Ivory Vein)
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={newColorForm.name}
-                      onChange={e => setNewColorForm(prev => ({ ...prev, name: e.target.value }))}
-                      placeholder="Material name"
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                      Code (e.g. AC-2204)
-                    </label>
-                    <input
-                      type="text"
-                      value={newColorForm.code}
-                      onChange={e => setNewColorForm(prev => ({ ...prev, code: e.target.value }))}
-                      placeholder="Auto-generated if blank"
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                    />
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                      Color Family
-                    </label>
-                    <select
-                      value={newColorForm.colorFamily}
-                      onChange={e => setNewColorForm(prev => ({ ...prev, colorFamily: e.target.value as any }))}
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
-                    >
-                      <option value="white">White</option>
-                      <option value="cream">Cream</option>
-                      <option value="grey">Grey</option>
-                      <option value="earth">Earth</option>
-                      <option value="black">Black</option>
-                      <option value="translucent">Translucent</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                      Hex Tone & Color Chip
-                    </label>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                      <input
-                        type="color"
-                        value={newColorForm.hexColor}
-                        onChange={e => setNewColorForm(prev => ({ ...prev, hexColor: e.target.value }))}
-                        style={{ width: '36px', height: '36px', border: '1px solid #ddd', cursor: 'pointer', padding: 0 }}
-                      />
-                      <input
-                        type="text"
-                        value={newColorForm.hexColor}
-                        onChange={e => setNewColorForm(prev => ({ ...prev, hexColor: e.target.value }))}
-                        style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                      Finish Surface
-                    </label>
-                    <select
-                      value={newColorForm.finish}
-                      onChange={e => setNewColorForm(prev => ({ ...prev, finish: e.target.value }))}
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
-                    >
-                      <option value="Honed Matte">Honed Matte</option>
-                      <option value="Satin Mineral">Satin Mineral</option>
-                      <option value="Polished Gloss">Polished Gloss</option>
-                      <option value="Translucent Backlit">Translucent Backlit</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
-                      Texture Specimen URL
-                    </label>
-                    <input
-                      type="text"
-                      value={newColorForm.textureImage}
-                      onChange={e => setNewColorForm(prev => ({ ...prev, textureImage: e.target.value }))}
-                      placeholder="Optional /assets/..."
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
-                    />
-                  </div>
-
-                  <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'flex-end', gap: '10px', marginTop: '8px' }}>
-                    <button
-                      type="button"
-                      onClick={() => setIsAddingColor(false)}
-                      style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer' }}
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      type="submit"
-                      style={{ padding: '8px 18px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer' }}
-                    >
-                      Save Swatch to Foundry →
-                    </button>
-                  </div>
-                </form>
-              </div>
-            )}
-
-            {/* Visual Swatches Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '16px' }}>
-              {localMaterials
-                .filter(mat => {
-                  const q = colorSearchQuery.trim().toLowerCase();
-                  if (!q) return true;
-                  return (
-                    (mat.name && mat.name.toLowerCase().includes(q)) ||
-                    (mat.code && mat.code.toLowerCase().includes(q)) ||
-                    (mat.colour && mat.colour.toLowerCase().includes(q)) ||
-                    (mat.finish && mat.finish.toLowerCase().includes(q)) ||
-                    (mat.collection && mat.collection.toLowerCase().includes(q)) ||
-                    (mat.colorFamily && mat.colorFamily.toLowerCase().includes(q)) ||
-                    (mat.hexColor && mat.hexColor.toLowerCase().includes(q))
-                  );
-                })
-                .map(mat => (
-                <div
-                  key={mat.slug}
-                  style={{
-                    background: '#ffffff',
-                    border: '1px solid rgba(0,0,0,0.08)',
-                    padding: '16px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '12px',
-                  }}
-                >
-                  <div style={{
-                    width: '100%',
-                    height: '90px',
-                    background: mat.hexColor || '#ccc',
-                    border: '1px solid rgba(0,0,0,0.1)',
-                    position: 'relative',
-                    display: 'flex',
-                    alignItems: 'flex-end',
-                    padding: '8px',
-                  }}>
-                    <span style={{
-                      fontFamily: 'DM Mono, monospace',
-                      fontSize: '9px',
-                      background: 'rgba(0,0,0,0.6)',
-                      color: '#fff',
-                      padding: '2px 6px',
-                    }}>
-                      {mat.hexColor || '#e5e4de'}
-                    </span>
-                  </div>
-
-                  <div>
-                    <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '15px' }}>
-                      {mat.name}
-                    </div>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', marginTop: '2px' }}>
-                      {mat.code} · {mat.finish}
-                    </div>
-                  </div>
-
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: 'auto', paddingTop: '8px', borderTop: '1px solid #f0efe8' }}>
-                    <input
-                      type="color"
-                      value={mat.hexColor || '#e5e4de'}
-                      onChange={e => updateMaterialField(mat.slug, 'hexColor', e.target.value)}
-                      title="Adjust tone"
-                      style={{ width: '28px', height: '28px', border: '1px solid #ddd', cursor: 'pointer', padding: 0 }}
-                    />
-                    <button
-                      onClick={() => { setSelectedMaterialSlug(mat.slug); setActiveTab('materials'); }}
-                      style={{
-                        flex: 1,
-                        padding: '6px',
-                        background: '#f5f4ee',
-                        border: '1px solid rgba(0,0,0,0.08)',
-                        fontFamily: 'DM Mono, monospace',
-                        fontSize: '10px',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      Edit Specimen →
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* =========================================================================
             TAB 5: APPLICATIONS & CASE STUDY PHOTOGRAPHY
@@ -4039,7 +4334,23 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     {/* Material Cards Grid */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '14px' }}>
                       {(selectedSector.recommendedMaterials || []).map(rec => {
-                        const matDetail = localMaterials.find(m => m.slug === rec.slug);
+                        const cleanSlug = (rec.slug || '').toLowerCase().trim();
+                        const cleanName = (rec.name || '').toLowerCase().trim();
+                        const strip = (s: string) => s.replace(/^(dupont-corian-|pattern-|corian-|css-)/, '').replace(/-sheet$/, '');
+
+                        const matDetail = localMaterials.find(m => {
+                          const mSlug = m.slug.toLowerCase();
+                          const mName = m.name.toLowerCase();
+                          if (mSlug === cleanSlug) return true;
+                          if (strip(mSlug) === strip(cleanSlug)) return true;
+                          if (cleanSlug && (mSlug.includes(cleanSlug) || cleanSlug.includes(mSlug))) return true;
+                          if (cleanName && (mName.includes(cleanName) || cleanName.includes(mName))) return true;
+                          return false;
+                        });
+
+                        const swatchImage = [matDetail?.textureImage, matDetail?.swatch, matDetail?.image, matDetail?.inSituImage]
+                          .find(src => src && isValidImageSrc(src));
+
                         return (
                           <div
                             key={rec.slug}
@@ -4066,10 +4377,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   overflow: 'hidden',
                                 }}
                               >
-                                {matDetail?.image && isValidImageSrc(matDetail.image) && (
+                                {swatchImage && (
                                   <Image
-                                    src={matDetail.image}
-                                    alt={matDetail.name || rec.name}
+                                    src={swatchImage}
+                                    alt={matDetail?.name || rec.name}
                                     fill
                                     sizes="42px"
                                     style={{ objectFit: 'cover' }}
@@ -4081,7 +4392,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   {matDetail?.name || rec.name}
                                 </div>
                                 <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#788078', textTransform: 'uppercase' }}>
-                                  {matDetail?.collection || 'Curated Spec'} • /{rec.slug}
+                                  {matDetail?.collection || 'Curated Spec'} • /{matDetail?.slug || rec.slug}
                                 </div>
                               </div>
                             </div>
@@ -4108,7 +4419,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '4px', borderTop: '1px solid #ecebe4' }}>
                               <Link
-                                href={`/materials/${rec.slug}`}
+                                href={`/materials/${matDetail?.slug || rec.slug}`}
                                 target="_blank"
                                 style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#2a3029', textDecoration: 'none' }}
                               >
@@ -5577,7 +5888,495 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
         )}
 
         {/* =========================================================================
-            TAB 7: MEDIA ASSET LIBRARY & DIRECT UPLOADER
+            TAB 8: STUDIO STORY, FAMILY PHOTO & ABOUT PAGE MANAGER
+        ========================================================================= */}
+        {activeTab === 'about' && (
+          <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
+              <div>
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                  Foundry Lineage & Brand Identity
+                </div>
+                <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
+                  Studio Story, Family Photo & Architectural Philosophy
+                </h2>
+                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#687068', margin: '6px 0 0 0' }}>
+                  Manage the company team photo, mission manifesto, 6 architectural pillars, and Bangalore workshop story live on <code style={{ color: '#1a1d19' }}>/about</code>.
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <Link
+                  href="/about"
+                  target="_blank"
+                  style={{
+                    padding: '8px 14px',
+                    background: '#f0efe8',
+                    color: '#1a1d19',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    border: '1px solid rgba(0,0,0,0.1)',
+                  }}
+                >
+                  <span>View Public /about ↗</span>
+                </Link>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.confirm('Reset Studio Story & About Page to factory defaults?')) {
+                      setLocalAboutContent(defaultAboutContent);
+                      showToast('Reverted About content to factory defaults. Click Save to persist.', 'info');
+                    }
+                  }}
+                  style={{
+                    padding: '8px 14px',
+                    background: 'transparent',
+                    border: '1px solid #ccc',
+                    color: '#555',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    cursor: 'pointer',
+                  }}
+                >
+                  ↺ Reset Defaults
+                </button>
+                <button
+                  onClick={handleSaveAbout}
+                  disabled={isContextLoading}
+                  style={{
+                    padding: '8px 18px',
+                    background: '#1a1d19',
+                    color: '#ffffff',
+                    border: 'none',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    cursor: isContextLoading ? 'wait' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  <span>💾</span>
+                  <span>{isContextLoading ? 'Saving...' : 'Save Studio Story & Push Live ✓'}</span>
+                </button>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+              {/* SECTION 1: COMPANY FAMILY PHOTO */}
+              <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div style={{ borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '20px' }}>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    Chapter 00 • Visual Lineage & Leadership
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
+                    Company Family & Craft Team Photo
+                  </h3>
+                  <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: '13px', color: '#555', margin: '4px 0 0 0' }}>
+                    Featured prominently on the About page header, representing the founders and master craftsmen behind Ace Spaces.
+                  </p>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '24px', alignItems: 'start' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Family Photo URL
+                      </label>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                        <input
+                          type="text"
+                          value={localAboutContent.familyPhotoUrl || ''}
+                          onChange={e => updateAboutField('familyPhotoUrl', e.target.value)}
+                          placeholder="/images/about/company-family.jpg"
+                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        />
+                        <select
+                          value=""
+                          onChange={e => { if (e.target.value) updateAboutField('familyPhotoUrl', e.target.value); }}
+                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                        >
+                          <option value="">Media Asset...</option>
+                          {mediaAssets.map(img => (
+                            <option key={`about-fam-${img}`} value={img}>{img.split('/').pop()}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* Direct Upload Trigger */}
+                      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', background: '#f0efe8', border: '1px solid #ddd', cursor: 'pointer', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                        <span>📁</span>
+                        <span>Upload New Family Photo from Computer</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          style={{ display: 'none' }}
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const url = await uploadImageFile(file);
+                              if (url) {
+                                updateAboutField('familyPhotoUrl', url);
+                                showToast('✓ Family photo uploaded and updated!', 'success');
+                              }
+                            }
+                          }}
+                        />
+                      </label>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Photo Headline / Caption
+                      </label>
+                      <input
+                        type="text"
+                        value={localAboutContent.familyPhotoCaption || ''}
+                        onChange={e => updateAboutField('familyPhotoCaption', e.target.value)}
+                        placeholder="Ace Spaces Foundry & Craft Team"
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Subtitle / Location Narrative
+                      </label>
+                      <input
+                        type="text"
+                        value={localAboutContent.familyPhotoSubtitle || ''}
+                        onChange={e => updateAboutField('familyPhotoSubtitle', e.target.value)}
+                        placeholder="The artisanal hands behind continuous monolithic mineral architecture in Bengaluru"
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Photo Live Preview Frame */}
+                  <div style={{ background: '#faf9f6', padding: '16px', border: '1px solid #e5e4de' }}>
+                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '10px' }}>
+                      Live Header Preview on /about
+                    </div>
+                    <div style={{ position: 'relative', width: '100%', height: '240px', background: '#1a1d19', overflow: 'hidden', border: '1px solid #ddd' }}>
+                      {localAboutContent.familyPhotoUrl ? (
+                        <img
+                          src={localAboutContent.familyPhotoUrl}
+                          alt="Company Family"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
+                        />
+                      ) : (
+                        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                          No image selected
+                        </div>
+                      )}
+                      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px', background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)', color: '#fff' }}>
+                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600 }}>
+                          {localAboutContent.familyPhotoCaption || 'Ace Spaces Foundry & Craft Team'}
+                        </div>
+                        <div style={{ fontFamily: 'system-ui, sans-serif', fontSize: '10px', color: '#ccc', marginTop: '2px' }}>
+                          {localAboutContent.familyPhotoSubtitle || 'Artisanal team in Bengaluru'}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION 2: CHAPTER 01 MISSION MANIFESTO */}
+              <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div style={{ borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '20px' }}>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    Chapter 01 • Founding Manifesto
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
+                    Mission & Origin Story
+                  </h3>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '16px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      Chapter Headline Title
+                    </label>
+                    <input
+                      type="text"
+                      value={localAboutContent.chapter1Title || ''}
+                      onChange={e => updateAboutField('chapter1Title', e.target.value)}
+                      placeholder="Built on obsession."
+                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'var(--serif, serif)', fontSize: '16px' }}
+                    />
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      Manifesto Narrative (Opening Statement)
+                    </label>
+                    <textarea
+                      rows={4}
+                      value={localAboutContent.chapter1Narrative || ''}
+                      onChange={e => updateAboutField('chapter1Narrative', e.target.value)}
+                      placeholder="Ace Spaces was founded on a simple dissatisfaction with seams that interrupt thought, corners that accumulate grime..."
+                      style={{ width: '100%', padding: '10px 12px', border: '1px solid #ddd', fontFamily: 'system-ui, sans-serif', fontSize: '13px', lineHeight: 1.6 }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* SECTION 3: CHAPTER 02 PHILOSOPHY PILLARS */}
+              <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div style={{ borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div>
+                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                      Chapter 02 • Core Philosophy
+                    </div>
+                    <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
+                      The 6 Architectural Philosophy Pillars
+                    </h3>
+                  </div>
+                  <div style={{ maxWidth: '320px', width: '100%' }}>
+                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      Section Heading
+                    </label>
+                    <input
+                      type="text"
+                      value={localAboutContent.chapter2Title || ''}
+                      onChange={e => updateAboutField('chapter2Title', e.target.value)}
+                      placeholder="What we stand for."
+                      style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                    />
+                  </div>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '20px' }}>
+                  {((localAboutContent.pillars && localAboutContent.pillars.length >= 6)
+                    ? localAboutContent.pillars
+                    : (defaultAboutContent.pillars || [])
+                  ).map((pillar, idx) => (
+                    <div
+                      key={`about-pillar-${idx}`}
+                      style={{
+                        background: '#faf9f6',
+                        padding: '20px',
+                        border: '1px solid #e5e4de',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '12px',
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 700, color: '#1a1d19', background: '#e5e4de', padding: '2px 8px' }}>
+                          Pillar {pillar.number || `0${idx + 1}`}
+                        </span>
+                        <input
+                          type="text"
+                          value={pillar.number || `0${idx + 1}`}
+                          onChange={e => updateAboutPillar(idx, 'number', e.target.value)}
+                          style={{ width: '45px', padding: '4px 6px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', textAlign: 'center' }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
+                          Pillar Title
+                        </label>
+                        <input
+                          type="text"
+                          value={pillar.title || ''}
+                          onChange={e => updateAboutPillar(idx, 'title', e.target.value)}
+                          placeholder="Pillar Title"
+                          style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'var(--serif, serif)', fontSize: '14px', background: '#fff' }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
+                          Subtitle / Essence Quote
+                        </label>
+                        <input
+                          type="text"
+                          value={pillar.quote || ''}
+                          onChange={e => updateAboutPillar(idx, 'quote', e.target.value)}
+                          placeholder="e.g. Dissolving the Joint"
+                          style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
+                          Description Narrative
+                        </label>
+                        <textarea
+                          rows={3}
+                          value={pillar.description || ''}
+                          onChange={e => updateAboutPillar(idx, 'description', e.target.value)}
+                          placeholder="Core philosophy description..."
+                          style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'system-ui, sans-serif', fontSize: '12px', lineHeight: 1.4, background: '#fff' }}
+                        />
+                      </div>
+
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
+                          Technical Specification Detail
+                        </label>
+                        <input
+                          type="text"
+                          value={pillar.detail || ''}
+                          onChange={e => updateAboutPillar(idx, 'detail', e.target.value)}
+                          placeholder="e.g. Chemically welded PMMA matrix with zero visible joint lines under 600-grit honing."
+                          style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#fff', color: '#444' }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* SECTION 4: CHAPTER 03 BANGALORE FOUNDRY & WORKSHOP */}
+              <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <div style={{ borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '20px' }}>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    Chapter 03 • Bangalore Foundry & Workshop
+                  </div>
+                  <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
+                    Fabrication Atelier Photography & Operations
+                  </h3>
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '24px', alignItems: 'start' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Chapter Heading
+                      </label>
+                      <input
+                        type="text"
+                        value={localAboutContent.chapter3Title || ''}
+                        onChange={e => updateAboutField('chapter3Title', e.target.value)}
+                        placeholder="How we work: Bangalore Foundry."
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'var(--serif, serif)', fontSize: '16px' }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Workshop Photo URL
+                      </label>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
+                        <input
+                          type="text"
+                          value={localAboutContent.workshopPhotoUrl || ''}
+                          onChange={e => updateAboutField('workshopPhotoUrl', e.target.value)}
+                          placeholder="/images/images/app_residential_calacatta_greige_1.jpg"
+                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        />
+                        <select
+                          value=""
+                          onChange={e => { if (e.target.value) updateAboutField('workshopPhotoUrl', e.target.value); }}
+                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                        >
+                          <option value="">Media Asset...</option>
+                          {mediaAssets.map(img => (
+                            <option key={`about-ws-${img}`} value={img}>{img.split('/').pop()}</option>
+                          ))}
+                        </select>
+                      </div>
+
+                      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', background: '#f0efe8', border: '1px solid #ddd', cursor: 'pointer', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                        <span>📁</span>
+                        <span>Upload New Workshop Photo</span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          style={{ display: 'none' }}
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (file) {
+                              const url = await uploadImageFile(file);
+                              if (url) {
+                                updateAboutField('workshopPhotoUrl', url);
+                                showToast('✓ Workshop photo uploaded and updated!', 'success');
+                              }
+                            }
+                          }}
+                        />
+                      </label>
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        Workshop Photo Technical Caption
+                      </label>
+                      <input
+                        type="text"
+                        value={localAboutContent.workshopPhotoCaption || ''}
+                        onChange={e => updateAboutField('workshopPhotoCaption', e.target.value)}
+                        placeholder="5-Axis CNC Thermoforming and Continuous 12mm Seamless Inconspicuous Joinery"
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      />
+                    </div>
+                  </div>
+
+                  <div style={{ background: '#faf9f6', padding: '16px', border: '1px solid #e5e4de' }}>
+                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '10px' }}>
+                      Workshop Photo Live Preview
+                    </div>
+                    <div style={{ position: 'relative', width: '100%', height: '220px', background: '#1a1d19', overflow: 'hidden', border: '1px solid #ddd' }}>
+                      {localAboutContent.workshopPhotoUrl ? (
+                        <img
+                          src={localAboutContent.workshopPhotoUrl}
+                          alt="Workshop"
+                          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                          onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
+                        />
+                      ) : (
+                        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                          No image selected
+                        </div>
+                      )}
+                      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '10px', background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)', color: '#fff' }}>
+                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#ccc' }}>
+                          {localAboutContent.workshopPhotoCaption || 'Workshop Fabrication'}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* BOTTOM SAVE BAR */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', padding: '16px 24px', background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)' }}>
+                <button
+                  onClick={handleSaveAbout}
+                  disabled={isContextLoading}
+                  style={{
+                    padding: '10px 24px',
+                    background: '#1a1d19',
+                    color: '#ffffff',
+                    border: 'none',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    cursor: isContextLoading ? 'wait' : 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                  }}
+                >
+                  <span>💾</span>
+                  <span>{isContextLoading ? 'Saving...' : 'Save All Studio Story Changes & Push Live ✓'}</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* =========================================================================
+            TAB 9: MEDIA ASSET LIBRARY & DIRECT UPLOADER
         ========================================================================= */}
         {activeTab === 'media' && (
           <div>

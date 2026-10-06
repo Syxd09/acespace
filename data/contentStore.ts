@@ -11,6 +11,8 @@ import {
   JournalArticle,
   defaultStudioContact,
   StudioContactConfig,
+  defaultAboutContent,
+  AboutContentConfig,
 } from './contentTypes';
 
 export * from './contentTypes';
@@ -60,14 +62,9 @@ export function getSiteContent(): SiteContent {
           throw err;
         }
       }
-      let resolvedMaterials = parsed.materials || defaultMaterials;
-      if (Array.isArray(parsed.materials)) {
-        const existingSlugs = new Set(parsed.materials.map((m: any) => m.slug));
-        const missingDefaultMaterials = defaultMaterials.filter(m => !existingSlugs.has(m.slug));
-        if (missingDefaultMaterials.length > 0) {
-          resolvedMaterials = [...parsed.materials, ...missingDefaultMaterials];
-        }
-      }
+      let resolvedMaterials = (Array.isArray(parsed.materials) && parsed.materials.length > 0)
+        ? parsed.materials
+        : defaultMaterials;
 
       let resolvedSectors = defaultSectors;
       if (Array.isArray(parsed.applicationSectors) && parsed.applicationSectors.length > 0) {
@@ -82,6 +79,7 @@ export function getSiteContent(): SiteContent {
         journalArticles: parsed.journalArticles || defaultJournalArticles,
         projects: parsed.projects || defaultProjects,
         studioContact: parsed.studioContact || defaultStudioContact,
+        about: parsed.about || defaultAboutContent,
         updatedAt: parsed.updatedAt || new Date().toISOString(),
       };
     }
@@ -96,6 +94,7 @@ export function getSiteContent(): SiteContent {
     journalArticles: defaultJournalArticles,
     projects: defaultProjects,
     studioContact: defaultStudioContact,
+    about: defaultAboutContent,
     updatedAt: new Date().toISOString(),
   };
 }
@@ -109,6 +108,7 @@ export function saveSiteContent(content: Partial<SiteContent>): SiteContent {
     journalArticles: content.journalArticles || current.journalArticles,
     projects: content.projects || current.projects,
     studioContact: content.studioContact || current.studioContact || defaultStudioContact,
+    about: content.about || current.about || defaultAboutContent,
     updatedAt: new Date().toISOString(),
   };
 
@@ -161,6 +161,7 @@ export function resetSiteContent(): SiteContent {
     journalArticles: defaultJournalArticles,
     projects: defaultProjects,
     studioContact: defaultStudioContact,
+    about: defaultAboutContent,
     updatedAt: new Date().toISOString(),
   };
 

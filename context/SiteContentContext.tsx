@@ -13,11 +13,13 @@ import {
   defaultProjectsList,
   StudioContactConfig,
   defaultStudioContact,
+  AboutContentConfig,
+  defaultAboutContent,
 } from '@/data/contentTypes';
 
 import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
 
-const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v7';
+const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v8';
 const LEGACY_STORAGE_KEYS = [
   'acespaces_custom_content_v1',
   'acespaces_custom_content_v2',
@@ -25,6 +27,7 @@ const LEGACY_STORAGE_KEYS = [
   'acespaces_custom_content_v4',
   'acespaces_custom_content_v5',
   'acespaces_custom_content_v6',
+  'acespaces_custom_content_v7',
 ];
 
 interface SiteContentContextType {
@@ -34,6 +37,7 @@ interface SiteContentContextType {
   journalArticles: JournalArticle[];
   projects: Project[];
   studioContact: StudioContactConfig;
+  about: AboutContentConfig;
   content: SiteContent;
   isLoading: boolean;
   saveContent: (updated: Partial<SiteContent>) => Promise<boolean>;
@@ -48,6 +52,7 @@ const defaultContentSnapshot: SiteContent = {
   journalArticles: defaultJournalArticles,
   projects: defaultProjectsList,
   studioContact: defaultStudioContact,
+  about: defaultAboutContent,
   updatedAt: new Date().toISOString(),
 };
 
@@ -58,6 +63,7 @@ const SiteContentContext = createContext<SiteContentContextType>({
   journalArticles: defaultJournalArticles,
   projects: defaultProjectsList,
   studioContact: defaultStudioContact,
+  about: defaultAboutContent,
   content: defaultContentSnapshot,
   isLoading: false,
   saveContent: async () => false,
@@ -72,6 +78,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
   const [journalArticles, setJournalArticles] = useState<JournalArticle[]>(defaultJournalArticles);
   const [projects, setProjects] = useState<Project[]>(defaultProjectsList);
   const [studioContact, setStudioContact] = useState<StudioContactConfig>(defaultStudioContact);
+  const [about, setAbout] = useState<AboutContentConfig>(defaultAboutContent);
   const [isLoading, setIsLoading] = useState(false);
 
   // 1. Safe client-side hydration from localStorage with freshness validation
@@ -92,7 +99,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
           const isStale = !cachedTime || (Date.now() - cachedTime > 6 * 60 * 60 * 1000);
 
           if (!isStale) {
-            if (parsed.heroSlides && parsed.heroSlides.length >= defaultHeroSlides.length) {
+            if (parsed.heroSlides && parsed.heroSlides.length > 0) {
               const hasOldDraft = parsed.heroSlides.some((s: HeroSlide) => s.title?.includes('Quiet depth'));
               if (!hasOldDraft) {
                 setHeroSlides(parsed.heroSlides);
@@ -100,10 +107,11 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
                 setHeroSlides(defaultHeroSlides);
               }
             }
-            if (parsed.materials && parsed.materials.length >= initialMaterials.length) setMaterials(parsed.materials);
+            if (parsed.materials && parsed.materials.length > 0) setMaterials(parsed.materials);
             if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
             if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);
             if (parsed.projects && parsed.projects.length > 0) setProjects(parsed.projects);
+            if (parsed.about) setAbout(parsed.about);
             if (parsed.studioContact) {
               // Ensure dummy placeholder number from older builds is never used
               if (parsed.studioContact.whatsappNumber?.includes('98450')) {
@@ -143,6 +151,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         if (data.journalArticles && data.journalArticles.length > 0) setJournalArticles(data.journalArticles);
         if (data.projects && data.projects.length > 0) setProjects(data.projects);
         if (data.studioContact) setStudioContact(data.studioContact);
+        if (data.about) setAbout(data.about);
 
         // Keep local storage synchronized with timestamp
         if (typeof window !== 'undefined') {
@@ -174,6 +183,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         if (payload.journalArticles && payload.journalArticles.length > 0) setJournalArticles(payload.journalArticles);
         if (payload.projects && payload.projects.length > 0) setProjects(payload.projects);
         if (payload.studioContact) setStudioContact(payload.studioContact);
+        if (payload.about) setAbout(payload.about);
       } else {
         refreshContent();
       }
@@ -203,6 +213,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
           if (parsed.applicationSectors) setApplicationSectors(parsed.applicationSectors);
           if (parsed.journalArticles) setJournalArticles(parsed.journalArticles);
           if (parsed.projects) setProjects(parsed.projects);
+          if (parsed.studioContact) setStudioContact(parsed.studioContact);
+          if (parsed.about) setAbout(parsed.about);
         } catch {}
       }
     };
@@ -227,6 +239,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       if (updated.journalArticles) setJournalArticles(updated.journalArticles);
       if (updated.projects) setProjects(updated.projects);
       if (updated.studioContact) setStudioContact(updated.studioContact);
+      if (updated.about) setAbout(updated.about);
 
       const currentData: SiteContent = {
         heroSlides: updated.heroSlides || heroSlides,
@@ -235,6 +248,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         journalArticles: updated.journalArticles || journalArticles,
         projects: updated.projects || projects,
         studioContact: updated.studioContact || studioContact,
+        about: updated.about || about,
         updatedAt: new Date().toISOString(),
       };
 
@@ -253,7 +267,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
           'Content-Type': 'application/json',
           'Cache-Control': 'no-cache',
         },
-        body: JSON.stringify(updated),
+        body: JSON.stringify(currentData),
       });
 
       return res.ok;
@@ -283,6 +297,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         journalArticles: defaultJournalArticles,
         projects: defaultProjectsList,
         studioContact: defaultStudioContact,
+        about: defaultAboutContent,
         updatedAt: new Date().toISOString(),
       };
 
@@ -292,6 +307,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       setJournalArticles(defaultJournalArticles);
       setProjects(defaultProjectsList);
       setStudioContact(defaultStudioContact);
+      setAbout(defaultAboutContent);
 
       // Broadcast reset event to all tabs
       broadcastRealtimeEvent('CONTENT_UPDATED', defaultData);
@@ -319,6 +335,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         journalArticles,
         projects,
         studioContact,
+        about,
         content: {
           heroSlides,
           materials,
@@ -326,6 +343,7 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
           journalArticles,
           projects,
           studioContact,
+          about,
           updatedAt: new Date().toISOString(),
         },
         isLoading,

@@ -87,9 +87,23 @@ export default function ApplicationDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  // Resolve full material objects for this sector's material gallery
+  // Resolve full material objects for this sector's material gallery with resilient slug & name matching
   const sectorMaterials = sector.recommendedMaterials
-    .map((rm) => allMaterials.find((m) => m.slug === rm.slug))
+    .map((rm) => {
+      const cleanSlug = (rm.slug || '').toLowerCase().trim();
+      const cleanName = (rm.name || '').toLowerCase().trim();
+      const strip = (s: string) => s.replace(/^(dupont-corian-|pattern-|corian-|css-)/, '').replace(/-sheet$/, '');
+
+      return allMaterials.find((m) => {
+        const mSlug = m.slug.toLowerCase();
+        const mName = m.name.toLowerCase();
+        if (mSlug === cleanSlug) return true;
+        if (strip(mSlug) === strip(cleanSlug)) return true;
+        if (cleanSlug && (mSlug.includes(cleanSlug) || cleanSlug.includes(mSlug))) return true;
+        if (cleanName && (mName.includes(cleanName) || cleanName.includes(mName))) return true;
+        return false;
+      });
+    })
     .filter((m): m is (typeof allMaterials)[0] => Boolean(m));
 
   const applicationSchema = {

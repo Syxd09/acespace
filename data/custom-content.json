@@ -7906,17 +7906,17 @@
       "recommendedMaterials": [
         {
           "name": "Calacatta Greige",
-          "slug": "calacatta-greige",
+          "slug": "pattern-calacatta-greige",
           "finish": "Satin Honed"
         },
         {
           "name": "Cirrus White",
-          "slug": "cirrus-white",
+          "slug": "dupont-corian-cirrus-white",
           "finish": "Ultra-Matte"
         },
         {
           "name": "Stonecrest Smoke",
-          "slug": "stonecrest-smoke",
+          "slug": "pattern-stonecrest-smoke",
           "finish": "Velvet Matte"
         }
       ],
@@ -7999,17 +7999,17 @@
       "recommendedMaterials": [
         {
           "name": "Stonecrest Smoke",
-          "slug": "stonecrest-smoke",
+          "slug": "pattern-stonecrest-smoke",
           "finish": "Tactile Matte"
         },
         {
           "name": "Golden Onyx",
-          "slug": "golden-onyx",
+          "slug": "corian-golden-onyx",
           "finish": "Translucent Satin"
         },
         {
           "name": "Artista Sage",
-          "slug": "artista-sage",
+          "slug": "pattern-artista-sage",
           "finish": "Velvet Honed"
         }
       ],
@@ -8086,17 +8086,17 @@
       "recommendedMaterials": [
         {
           "name": "Bleached Nuwood",
-          "slug": "bleached-nuwood",
+          "slug": "corian-bleached-nuwood",
           "finish": "Natural Matte"
         },
         {
           "name": "Excavage",
-          "slug": "excavage",
+          "slug": "pattern-grinds-excavage",
           "finish": "Fine Textured"
         },
         {
           "name": "Pebble Lane",
-          "slug": "pebble-lane",
+          "slug": "pattern-grinds-pebble-lane",
           "finish": "Honed Matte"
         }
       ],
@@ -8173,17 +8173,17 @@
       "recommendedMaterials": [
         {
           "name": "Terrazzo Laguna",
-          "slug": "terrazzo-laguna",
+          "slug": "corian-terrazzo-laguna",
           "finish": "Satin Smooth"
         },
         {
           "name": "Golden Onyx",
-          "slug": "golden-onyx",
+          "slug": "corian-golden-onyx",
           "finish": "Translucent Polish"
         },
         {
           "name": "Provence Nuwood",
-          "slug": "provence-nuwood",
+          "slug": "corian-provence-nuwood",
           "finish": "Fine Honed"
         }
       ],
@@ -8261,32 +8261,32 @@
       "recommendedMaterials": [
         {
           "name": "Stonique",
-          "slug": "stonique",
+          "slug": "pattern-grinds-stonique",
           "finish": "Clinical Matte"
         },
         {
           "name": "Cirrus White",
-          "slug": "cirrus-white",
+          "slug": "dupont-corian-cirrus-white",
           "finish": "Satin Pure"
         },
         {
           "name": "Archeologic",
-          "slug": "archeologic",
+          "slug": "pattern-grinds-archeologic",
           "finish": "Hygienic Matte"
         },
         {
           "name": "Carrara Crema",
-          "slug": "carrara-crema",
+          "slug": "corian-carrara-crema",
           "finish": "Velvet Matte"
         },
         {
           "name": "Terrazzo Peppered",
-          "slug": "terrazzo-peppered",
+          "slug": "pattern-terrazzo-peppered",
           "finish": "Satin Polished"
         },
         {
           "name": "Stonecrest Smoke",
-          "slug": "stonecrest-smoke",
+          "slug": "pattern-stonecrest-smoke",
           "finish": "Tactile Matte"
         }
       ],
@@ -8692,5 +8692,60 @@
     "whatsappDefaultMessage": "Hello Ace Spaces Studio, I would like to consult on architectural material specification for an upcoming project.",
     "availabilityStatus": "Studio Online · Material Advisory"
   },
-  "updatedAt": "2026-10-05T19:06:00.548Z"
+  "about": {
+    "familyPhotoUrl": "/images/about/company-family.jpg",
+    "familyPhotoCaption": "Ace Spaces Foundry & Craft Team",
+    "familyPhotoSubtitle": "The artisanal hands behind continuous monolithic mineral architecture in Bengaluru",
+    "chapter1Title": "Built on obsession.",
+    "chapter1Narrative": "Ace Spaces was founded on a simple dissatisfaction with seams that interrupt thought, corners that accumulate grime, and surfaces that pretend to be stone while failing its longevity.",
+    "chapter2Title": "What we stand for.",
+    "chapter3Title": "How we work: Bangalore Foundry.",
+    "workshopPhotoUrl": "/images/images/app_residential_calacatta_greige_1.jpg",
+    "workshopPhotoCaption": "5-Axis CNC Thermoforming and Continuous 12mm Seamless Inconspicuous Joinery",
+    "pillars": [
+      {
+        "number": "01",
+        "title": "Monolithic Continuity",
+        "quote": "Dissolving the Joint",
+        "description": "We believe surfaces should not be sliced to satisfy standard tile grids. When a space demands continuity, we engineer invisible chemical joins that allow mineral surfaces to flow seamlessly.",
+        "detail": "Chemically welded PMMA matrix with zero visible joint lines under 600-grit honing."
+      },
+      {
+        "number": "02",
+        "title": "The Symbiosis of Code & Hand",
+        "quote": "Digital Precision + Artisan Mastery",
+        "description": "True spatial luxury cannot be achieved by machine or hand alone. Our 5-axis CNC routers mill CAD cutouts to under 0.2mm tolerances, while our seasoned joiners and thermoforming craftsmen hand-shape complex curvatures and finish every edge with a 600-grit velvety satin touch.",
+        "detail": "Dual-axis thermoforming calibrated to 160°C with manual hand-honed seam transitions."
+      },
+      {
+        "number": "03",
+        "title": "Radical Material Honesty & Health",
+        "quote": "Zero-Silica Mineral Substrates",
+        "description": "We refuse to specify materials that jeopardize the health of stone fabricators or homeowners. Unlike engineered quartz that releases lethal crystalline silica dust, our mineral-acrylic matrix contains 100% zero crystalline silica, is non-porous, NSF food-safe, and repairable in situ for life.",
+        "detail": "100% Zero crystalline silica content certified, NSF/ANSI 51 food-contact certified, non-porous ISO 846 Class 0."
+      },
+      {
+        "number": "04",
+        "title": "Architect-to-Architect Co-Creation",
+        "quote": "Your Studio's Technical Extension",
+        "description": "We are not a distant building supply outlet. We act as an active fabrication partner for architects and interior designers across India. From initial CAD shop drawings and structural sub-framing calculations to laser templating and on-site assembly, we bring ambitious concepts to reality.",
+        "detail": "Sub-millimeter 3D laser digital templating and dedicated shop-drawing engineering support."
+      },
+      {
+        "number": "05",
+        "title": "Thermoformed Spatial Fluidity",
+        "quote": "Curvature Beyond the Cartesian Grid",
+        "description": "Architecture is not confined to rigid 90-degree planes. Through precise thermoforming at 160°C over custom CNC formwork, we shape mineral acrylic into seamless curved plinths, organic fluted islands, and ergonomic coved wall transitions that embrace natural human movement.",
+        "detail": "Compound bending down to 25mm inside radius without thermal discoloration or structural degradation."
+      },
+      {
+        "number": "06",
+        "title": "Circular Longevity & In-Situ Renewal",
+        "quote": "Restored to Day-One Stillness",
+        "description": "A luxury surface should outlast transient design trends. Because our material is homogeneous throughout, it never delaminates. Decades of heavy commercial or residential wear, minor scratches, or accidental blemishes can be effortlessly renewed on-site to factory-fresh perfection.",
+        "detail": "100% solid through-body renewability with factory 10-year DuPont™ material warranty."
+      }
+    ]
+  },
+  "updatedAt": "2026-10-06T11:45:00.000Z"
 }

@@ -6,6 +6,9 @@ import fs from 'fs';
 import path from 'path';
 import JsonLd from '@/components/JsonLd';
 import AboutScrollHandler from '@/components/AboutScrollHandler';
+import PhilosophyAccordion from '@/components/PhilosophyAccordion';
+import { getSiteContent } from '@/data/contentStore';
+import { defaultAboutContent } from '@/data/contentTypes';
 
 export const metadata: Metadata = {
   title: 'About Us - Architectural Atelier, Lineage & Coro Crafted Collective Partnership',
@@ -67,7 +70,10 @@ const aboutJsonLd = {
 };
 
 export default function AboutPage() {
-  const philosophyPillars = [
+  const siteContent = getSiteContent();
+  const about = siteContent.about || defaultAboutContent;
+
+  const defaultPhilosophyPillars = [
     {
       num: '01',
       title: 'Monolithic Continuity',
@@ -105,6 +111,16 @@ export default function AboutPage() {
       body: 'A luxury surface should outlast transient design trends. Because our material is homogeneous throughout, it never delaminates. Decades of heavy commercial or residential wear, minor scratches, or accidental blemishes can be effortlessly renewed on-site to factory-fresh perfection.',
     },
   ];
+
+  const philosophyPillars = (about.pillars && about.pillars.length >= 6)
+    ? about.pillars.map((p, idx) => ({
+        num: p.number || `0${idx + 1}`,
+        title: p.title,
+        subtitle: p.quote,
+        body: p.description,
+        detail: p.detail,
+      }))
+    : defaultPhilosophyPillars;
 
   const atelierTeams = [
     {
@@ -246,9 +262,15 @@ export default function AboutPage() {
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 20px', letterSpacing: '-0.04em' }}>
                 Why we exist:
                 <br />
-                Dissolving the friction
-                <br />
-                <i>of the joint.</i>
+                {about.chapter1Title ? (
+                  <i>{about.chapter1Title}</i>
+                ) : (
+                  <>
+                    Dissolving the friction
+                    <br />
+                    <i>of the joint.</i>
+                  </>
+                )}
               </h2>
               <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.6, margin: '0 0 4px' }}>
                 Founded in Bengaluru to bridge the divide between pure architectural intent and physical craft.
@@ -256,13 +278,25 @@ export default function AboutPage() {
 
               {/* Company Family & Leadership Photo Space */}
               {(() => {
-                const familyPhotoDir = path.join(process.cwd(), 'public', 'images', 'about');
-                const supportedFamilyExts = ['jpg', 'jpeg', 'png', 'webp'];
                 let familyPhotoSrc: string | null = null;
-                for (const ext of supportedFamilyExts) {
-                  if (fs.existsSync(path.join(familyPhotoDir, `company-family.${ext}`))) {
-                    familyPhotoSrc = `/images/about/company-family.${ext}`;
-                    break;
+                if (about.familyPhotoUrl) {
+                  if (about.familyPhotoUrl.startsWith('data:') || about.familyPhotoUrl.startsWith('http')) {
+                    familyPhotoSrc = about.familyPhotoUrl;
+                  } else {
+                    const localPath = path.join(process.cwd(), 'public', about.familyPhotoUrl.replace(/^\//, ''));
+                    if (fs.existsSync(localPath)) {
+                      familyPhotoSrc = about.familyPhotoUrl;
+                    }
+                  }
+                }
+                if (!familyPhotoSrc) {
+                  const familyPhotoDir = path.join(process.cwd(), 'public', 'images', 'about');
+                  const supportedFamilyExts = ['jpg', 'jpeg', 'png', 'webp'];
+                  for (const ext of supportedFamilyExts) {
+                    if (fs.existsSync(path.join(familyPhotoDir, `company-family.${ext}`))) {
+                      familyPhotoSrc = `/images/about/company-family.${ext}`;
+                      break;
+                    }
                   }
                 }
 
@@ -392,7 +426,7 @@ export default function AboutPage() {
                           letterSpacing: '-0.02em',
                         }}
                       >
-                        The Family Behind Ace Spaces
+                        {about.familyPhotoCaption || 'The Family Behind Ace Spaces'}
                       </strong>
 
                       <div
@@ -403,7 +437,7 @@ export default function AboutPage() {
                           marginBottom: '6px',
                         }}
                       >
-                        Founders &amp; Atelier Leadership · Bengaluru
+                        {about.familyPhotoSubtitle || 'Founders & Atelier Leadership · Bengaluru'}
                       </div>
 
                       <p
@@ -475,9 +509,15 @@ export default function AboutPage() {
           <div className="about-two-col-wide" style={{ marginBottom: '40px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: 0, letterSpacing: '-0.04em' }}>
-                Principles of
-                <br />
-                <i>spatial stillness.</i>
+                {about.chapter2Title ? (
+                  <i>{about.chapter2Title}</i>
+                ) : (
+                  <>
+                    Principles of
+                    <br />
+                    <i>spatial stillness.</i>
+                  </>
+                )}
               </h2>
             </div>
             <div>
@@ -487,54 +527,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="philosophy-accordion-grid">
-            {philosophyPillars.map((pillar) => (
-              <details key={pillar.num} className="philosophy-detail-card" open>
-                <summary className="philosophy-summary">
-                  <div>
-                    <span className="philosophy-num">{pillar.num} / Philosophy</span>
-                    <h3 className="philosophy-title">{pillar.title}</h3>
-                  </div>
-                  <span className="philosophy-indicator" aria-hidden="true" />
-                </summary>
-                <div className="philosophy-content">
-                  <div className="philosophy-subtitle">{pillar.subtitle}</div>
-                  <p className="philosophy-body">{pillar.body}</p>
-                </div>
-              </details>
-            ))}
-          </div>
-
-          {/* Client enhancement: On mobile, collapse cards 02-06 into compact accordion */}
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                (function() {
-                  function syncPhilosophyCards() {
-                    try {
-                      if (window.innerWidth <= 768) {
-                        var cards = document.querySelectorAll('.philosophy-detail-card');
-                        for (var i = 1; i < cards.length; i++) {
-                          cards[i].removeAttribute('open');
-                        }
-                      } else {
-                        var cards = document.querySelectorAll('.philosophy-detail-card');
-                        for (var j = 0; j < cards.length; j++) {
-                          cards[j].setAttribute('open', '');
-                        }
-                      }
-                    } catch(e) {}
-                  }
-                  if (document.readyState === 'loading') {
-                    document.addEventListener('DOMContentLoaded', syncPhilosophyCards);
-                  } else {
-                    syncPhilosophyCards();
-                  }
-                  window.addEventListener('resize', syncPhilosophyCards);
-                })();
-              `,
-            }}
-          />
+          <PhilosophyAccordion pillars={philosophyPillars} />
         </div>
       </section>
 
@@ -549,9 +542,15 @@ export default function AboutPage() {
           <div className="about-two-col-team" style={{ marginBottom: '44px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 18px', letterSpacing: '-0.04em' }}>
-                The hands behind
-                <br />
-                <i>the surfaces.</i>
+                {about.chapter3Title ? (
+                  <i>{about.chapter3Title}</i>
+                ) : (
+                  <>
+                    The hands behind
+                    <br />
+                    <i>the surfaces.</i>
+                  </>
+                )}
               </h2>
               <p style={{ fontSize: '15px', lineHeight: 1.7, color: '#555e54', margin: '0 0 24px' }}>
                 Our integrated facility in Bengaluru operates as an architectural laboratory. Here, industrial machinery is guided by the discerning eyes of computational designers, thermoforming masters, and artisanal finishers.
@@ -612,8 +611,8 @@ export default function AboutPage() {
               }}
             >
               <Image
-                src="/images/images/app_residential_calacatta_greige_1.jpg"
-                alt="Ace Spaces fabrication workshop and finished monolithic installation"
+                src={about.workshopPhotoUrl || '/images/images/app_residential_calacatta_greige_1.jpg'}
+                alt={about.workshopPhotoCaption || 'Ace Spaces fabrication workshop and finished monolithic installation'}
                 fill
                 sizes="(max-width: 900px) 100vw, 85vw"
                 quality={75}
@@ -658,7 +657,7 @@ export default function AboutPage() {
                     letterSpacing: '-0.01em',
                   }}
                 >
-                  Continuous 4.2-Meter Island with Integrated Sub-Surface Sink
+                  {about.workshopPhotoCaption || 'Continuous 4.2-Meter Island with Integrated Sub-Surface Sink'}
                 </strong>
               </div>
               <p

@@ -119,6 +119,83 @@ export const defaultStudioContact: StudioContactConfig = {
   availabilityStatus: 'Studio Online · Material Advisory',
 };
 
+export interface AboutPhilosophyPillar {
+  number: string;
+  title: string;
+  quote: string;
+  description: string;
+  detail: string;
+}
+
+export interface AboutContentConfig {
+  familyPhotoUrl: string;
+  familyPhotoCaption: string;
+  familyPhotoSubtitle: string;
+  chapter1Title: string;
+  chapter1Narrative: string;
+  chapter2Title: string;
+  chapter3Title: string;
+  workshopPhotoUrl: string;
+  workshopPhotoCaption: string;
+  pillars?: AboutPhilosophyPillar[];
+}
+
+export const defaultAboutContent: AboutContentConfig = {
+  familyPhotoUrl: '/images/about/company-family.jpg',
+  familyPhotoCaption: 'Ace Spaces Foundry & Craft Team',
+  familyPhotoSubtitle: 'The artisanal hands behind continuous monolithic mineral architecture in Bengaluru',
+  chapter1Title: 'Built on obsession.',
+  chapter1Narrative: 'Ace Spaces was founded on a simple dissatisfaction with seams that interrupt thought, corners that accumulate grime, and surfaces that pretend to be stone while failing its longevity.',
+  chapter2Title: 'What we stand for.',
+  chapter3Title: 'How we work: Bangalore Foundry.',
+  workshopPhotoUrl: '/images/images/app_residential_calacatta_greige_1.jpg',
+  workshopPhotoCaption: '5-Axis CNC Thermoforming and Continuous 12mm Seamless Inconspicuous Joinery',
+  pillars: [
+    {
+      number: '01',
+      title: 'Monolithic Continuity',
+      quote: 'Architecture without seams',
+      description: 'We believe surfaces should not be sliced to satisfy standard tile grids. When a space demands continuity, we engineer invisible chemical joins that allow mineral surfaces to flow seamlessly.',
+      detail: 'Chemically welded PMMA matrix with zero visible joint lines under 600-grit honing.',
+    },
+    {
+      number: '02',
+      title: 'Zero-Silica Purity',
+      quote: 'Health for the makers and the inhabitants',
+      description: 'Traditional engineered quartz contains up to 90% crystalline silica. Ace Spaces materials are 100% zero crystalline silica, combining aluminium trihydrate and pure acrylic polymers.',
+      detail: 'Certified non-toxic, food-safe hygiene (NSF-51), and zero crystalline silica particulate risk.',
+    },
+    {
+      number: '03',
+      title: 'Thermoformed Curvature',
+      quote: 'Form without fractures',
+      description: 'Through calibrated heating ovens and custom vacuum tooling, our mineral slabs bend down to 25mm radii, releasing architects from rigid 90-degree box constraints.',
+      detail: 'Compound 3D radii, curved acoustic plinths, and organic rounded reception gestures.',
+    },
+    {
+      number: '04',
+      title: 'Renewable Longevity',
+      quote: 'Damage is not permanent',
+      description: 'Unlike natural marble that etches from citrus or porcelain that chips on the edge, through-body solid surface is renewable throughout its entire thickness.',
+      detail: 'Scratches, accidental stains, and everyday wear buff out in minutes using Scotch-Brite.',
+    },
+    {
+      number: '05',
+      title: 'Light Transmission & Optical Depth',
+      quote: 'When mineral surfaces conduct light',
+      description: 'Certain formulations possess controlled translucency, turning backlit reception counters, luminous wall plinths, and architectural accents into soft glowing ambient luminaires.',
+      detail: 'Optical dispersion formulations engineered for LED backlighting without hotspot artifacts.',
+    },
+    {
+      number: '06',
+      title: 'Design Certainty & Precision Joinery',
+      quote: 'No surprises on the installation deck',
+      description: 'From digital laser templating to trial factory assembly in our Bangalore foundry, every mitre, basin cutout, and thermoformed bend is verified before arriving on site.',
+      detail: 'Sub-millimetre tolerances, pre-matched adhesive batches, and dedicated studio installation.',
+    },
+  ],
+};
+
 export interface SiteContent {
   heroSlides: HeroSlide[];
   materials: Material[];
@@ -126,10 +203,12 @@ export interface SiteContent {
   journalArticles: JournalArticle[];
   projects?: Project[];
   studioContact?: StudioContactConfig;
+  about?: AboutContentConfig;
   updatedAt: string;
 }
 
 export { type JournalArticle, type Project };
 export const defaultJournalArticles: JournalArticle[] = initialJournalArticles;
 export const defaultProjectsList: Project[] = defaultProjects;
+
 

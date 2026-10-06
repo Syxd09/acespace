@@ -12,7 +12,7 @@ import { useSampleShortlist } from '@/context/SampleContext';
 export default function ColourLibrary() {
   const searchParams = useSearchParams();
   const { materials: liveMaterials } = useSiteContent();
-  const materials = (liveMaterials && liveMaterials.length >= defaultMaterials.length) ? liveMaterials : defaultMaterials;
+  const materials = (liveMaterials && liveMaterials.length > 0) ? liveMaterials : defaultMaterials;
   const [mounted, setMounted] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedColorFamily, setSelectedColorFamily] = useState<string>('all');
