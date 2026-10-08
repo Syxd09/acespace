@@ -482,6 +482,7 @@ export default function ApplicationMaterialGallery({
 
                   <Link
                     href={`/materials/${mat.slug}`}
+                    prefetch={false}
                     className="text-link"
                     style={{
                       fontSize: '11px',
@@ -695,6 +696,7 @@ export default function ApplicationMaterialGallery({
                 </button>
                 <Link
                   href={`/materials/${inspectingMaterial.slug}`}
+                  prefetch={false}
                   className="button"
                   style={{
                     padding: '12px 20px',

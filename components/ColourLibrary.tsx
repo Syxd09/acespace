@@ -664,12 +664,6 @@ export default function ColourLibrary() {
                 data-material-collection={mat.collection}
                 style={{ position: 'relative', cursor: 'pointer' }}
                 onClick={() => setActiveModalMaterial(mat)}
-                onMouseEnter={() => {
-                  if (typeof window !== 'undefined' && mat.textureImage) {
-                    const preloadImg = new window.Image();
-                    preloadImg.src = mat.textureImage;
-                  }
-                }}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -1065,6 +1059,7 @@ export default function ColourLibrary() {
                   </button>
                   <Link
                     href={`/materials/${mat.slug}`}
+                    prefetch={false}
                     onClick={(e) => e.stopPropagation()}
                     style={{
                       padding: '8px 10px',

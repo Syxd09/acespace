@@ -400,6 +400,7 @@ export default function MaterialModal({
               </button>
               <Link
                 href={`/materials/${currentMaterial.slug}`}
+                prefetch={false}
                 className="button"
                 style={{ border: '1px solid var(--line)', background: 'transparent', padding: '10px 16px', fontSize: '11px', justifyContent: 'center' }}
               >

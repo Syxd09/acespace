@@ -174,12 +174,6 @@ export default function MaterialExplorer() {
               key={material.slug}
               className="material-card"
               style={{ position: 'relative' }}
-              onMouseEnter={() => {
-                if (typeof window !== 'undefined' && material.textureImage) {
-                  const preloadImg = new window.Image();
-                  preloadImg.src = material.textureImage;
-                }
-              }}
             >
               <div
                 className="swatch"

@@ -64,12 +64,6 @@ export default function MaterialGrid() {
             setSelectedMaterial(m);
           }
         }}
-        onMouseEnter={() => {
-          if (typeof window !== 'undefined' && m.textureImage) {
-            const preloadImg = new window.Image();
-            preloadImg.src = m.textureImage;
-          }
-        }}
         style={{ position: 'relative', cursor: 'pointer' }}
       >
         <div
