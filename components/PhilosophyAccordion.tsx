@@ -63,6 +63,7 @@ export default function PhilosophyAccordion({ pillars }: PhilosophyAccordionProp
             key={pillar.num || index}
             className="philosophy-detail-card"
             open={isOpen}
+            suppressHydrationWarning
             onClick={(e) => {
               if (isMobile) {
                 e.preventDefault();
@@ -83,8 +84,8 @@ export default function PhilosophyAccordion({ pillars }: PhilosophyAccordionProp
               {pillar.detail && (
                 <div
                   style={{
-                    marginTop: '12px',
-                    paddingTop: '8px',
+                    marginTop: 'auto',
+                    paddingTop: '14px',
                     borderTop: '1px solid rgba(0,0,0,0.06)',
                     fontSize: '11px',
                     fontFamily: 'DM Mono, monospace',

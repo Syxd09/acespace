@@ -520,8 +520,12 @@ You can book an architectural walkthrough on our [Contact Page](/contact), explo
       'vithal savant', 'prashant', 'prashant naik', 'prashant vinayak naik', 'director',
       'team', 'management', 'story', 'history', 'partners', 'partner'
     ],
-    summary: 'Founded in Bengaluru by two partners - Vithal Savant and Prashant Vinayak Naik - with a shared vision for zero-silica monolithic mineral architecture.',
-    details: `Ace Spaces and Coro Crafted Collective were co-founded in Bengaluru by two partners with a unified vision: to disrupt brittle, silica-hazardous stone processing and establish a master foundry for monolithic, non-porous mineral architecture.
+    summary: 'Founded in Bengaluru by Vithal Savant and Prashant Vinayak Naik with the manifesto: "From material to masterpiece — we engineer possibilities into form."',
+    details: `**From material to masterpiece — we engineer possibilities into form.**
+
+At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces. Every detail is considered. Every dimension matters. Every creation is built around your vision.
+
+Ace Spaces and Coro Crafted Collective were co-founded in Bengaluru by two partners with a unified vision: to disrupt brittle, silica-hazardous stone processing and establish a master foundry for monolithic, non-porous mineral architecture.
 
 **Founding Partners & Leadership:**
 • **Vithal Savant** - Co-Founder & Director:
@@ -540,7 +544,8 @@ Together, they established **Ace Spaces** as the foundational raw material autho
       'Co-Founder & Director (2)': 'Prashant Vinayak Naik',
       'Founding Partners': 'Vithal Savant & Prashant Vinayak Naik',
       'Origin City': 'Bengaluru, Karnataka, India',
-      'Mission': 'Zero-Silica Monolithic Architecture & Precision Digital Fabrication'
+      'Manifesto': 'From material to masterpiece — we engineer possibilities into form.',
+      'Mission': 'Engineering possibilities into form: Premium materials, precision engineering & bespoke fabrication.'
     },
     suggestedActions: [
       { label: 'Learn About Ace Spaces', href: '/about' },

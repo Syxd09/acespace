@@ -6099,6 +6099,50 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '16px' }}>
+                  <div style={{ background: '#fcfbf8', border: '1px solid #eae6de', padding: '16px', borderRadius: '4px' }}>
+                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600, marginBottom: '12px' }}>
+                      ★ Atelier Core Vision & Manifesto Banner
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          Manifesto Headline
+                        </label>
+                        <input
+                          type="text"
+                          value={localAboutContent.manifestoHeadline || ''}
+                          onChange={e => updateAboutField('manifestoHeadline', e.target.value)}
+                          placeholder="From material to masterpiece — we engineer possibilities into form."
+                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'var(--serif, serif)', fontSize: '15px' }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          Manifesto Lead Narrative
+                        </label>
+                        <textarea
+                          rows={2}
+                          value={localAboutContent.manifestoLead || ''}
+                          onChange={e => updateAboutField('manifestoLead', e.target.value)}
+                          placeholder="At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces."
+                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'system-ui, sans-serif', fontSize: '12px', lineHeight: 1.5 }}
+                        />
+                      </div>
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          Manifesto Subtext / Core Commitment
+                        </label>
+                        <input
+                          type="text"
+                          value={localAboutContent.manifestoSub || ''}
+                          onChange={e => updateAboutField('manifestoSub', e.target.value)}
+                          placeholder="Every detail is considered. Every dimension matters. Every creation is built around your vision."
+                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+
                   <div>
                     <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Chapter Headline Title
@@ -6120,7 +6164,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       rows={4}
                       value={localAboutContent.chapter1Narrative || ''}
                       onChange={e => updateAboutField('chapter1Narrative', e.target.value)}
-                      placeholder="Ace Spaces was founded on a simple dissatisfaction with seams that interrupt thought, corners that accumulate grime..."
+                      placeholder="From material to masterpiece — we engineer possibilities into form. At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces..."
                       style={{ width: '100%', padding: '10px 12px', border: '1px solid #ddd', fontFamily: 'system-ui, sans-serif', fontSize: '13px', lineHeight: 1.6 }}
                     />
                   </div>

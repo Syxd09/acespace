@@ -78,7 +78,7 @@ export default function AboutPage() {
       num: '01',
       title: 'Monolithic Continuity',
       subtitle: 'Dissolving the Joint',
-      body: 'We believe modern architecture is compromised when fragmented by visible joints. Through molecularly fused acrylic bonding and inconspicuous seam chemistry, our surfaces flow uninterrupted across kitchen islands, wall planes, and wet areas, eliminating visual clutter and grime-harboring grout lines.',
+      body: 'We believe surfaces should not be sliced to satisfy standard tile grids. When a space demands continuity, we engineer invisible chemical joins that allow mineral surfaces to flow seamlessly. From sculptural kitchen monoliths to continuous coved wall planes, surfaces transition without interruption — eliminating visual friction and grime-harboring grout for absolute spatial tranquility.',
     },
     {
       num: '02',
@@ -162,8 +162,8 @@ export default function AboutPage() {
             <i>continuity.</i>
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
-            Ace Spaces is a Bengaluru-based architectural fabrication atelier and master solid surface practice. We unite computational 5-axis digital precision with master artisan joinery, crafting monolithic, zero-silica architectural planes.
+          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '540px', marginBottom: '36px' }}>
+            <strong>From material to masterpiece — we engineer possibilities into form.</strong> At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
@@ -208,6 +208,7 @@ export default function AboutPage() {
             decoding="async"
             style={{ objectFit: 'cover' }}
             priority
+            suppressHydrationWarning
           />
           <div className="hero-image-badge">
             <div>
@@ -221,6 +222,116 @@ export default function AboutPage() {
             <Link href="#philosophy" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
               Philosophy <span>↓</span>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Atelier Manifesto: From Material to Masterpiece */}
+      <section
+        style={{
+          background: '#f4f0e8',
+          borderBottom: '1px solid var(--line)',
+          padding: 'clamp(52px, 7vw, 92px) 5vw',
+        }}
+      >
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />
+            <p className="eyebrow" style={{ margin: 0 }}>Atelier Manifesto · The Core Premise</p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: 'clamp(28px, 4vw, 64px)',
+              alignItems: 'center',
+            }}
+          >
+            <div>
+              <h2
+                style={{
+                  fontSize: 'clamp(32px, 4.4vw, 56px)',
+                  lineHeight: 1.1,
+                  fontWeight: 400,
+                  letterSpacing: '-0.04em',
+                  margin: 0,
+                  color: 'var(--ink)',
+                }}
+              >
+                {about.manifestoHeadline ? (
+                  about.manifestoHeadline
+                ) : (
+                  <>
+                    From material to masterpiece —
+                    <br />
+                    <i>we engineer possibilities into form.</i>
+                  </>
+                )}
+              </h2>
+            </div>
+
+            <div>
+              <p
+                style={{
+                  fontSize: 'clamp(16px, 1.4vw, 19px)',
+                  lineHeight: 1.75,
+                  color: '#2e352d',
+                  marginBottom: '16px',
+                  fontWeight: 400,
+                }}
+              >
+                {about.manifestoLead ||
+                  'At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces.'}
+              </p>
+              <p
+                style={{
+                  fontSize: '15px',
+                  lineHeight: 1.7,
+                  color: '#656e64',
+                  margin: 0,
+                }}
+              >
+                {about.manifestoSub ||
+                  'Every detail is considered. Every dimension matters. Every creation is built around your vision.'}
+              </p>
+
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+                  gap: '14px',
+                  marginTop: '28px',
+                  paddingTop: '20px',
+                  borderTop: '1px solid rgba(30, 33, 29, 0.15)',
+                }}
+              >
+                <div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+                    01 / Materials
+                  </span>
+                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--ink)' }}>
+                    Premium Solid Surface
+                  </strong>
+                </div>
+                <div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+                    02 / Engineering
+                  </span>
+                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--ink)' }}>
+                    Precision Manufacturing
+                  </strong>
+                </div>
+                <div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+                    03 / Fabrication
+                  </span>
+                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--ink)' }}>
+                    Bespoke Monoliths
+                  </strong>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -457,6 +568,30 @@ export default function AboutPage() {
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '16px', lineHeight: 1.7, color: '#4a5249' }}>
+              <div
+                style={{
+                  padding: '24px 26px',
+                  background: 'rgba(255, 255, 255, 0.85)',
+                  border: '1px solid var(--line)',
+                  borderLeft: '4px solid var(--ink)',
+                  marginBottom: '6px',
+                  boxShadow: '0 2px 14px rgba(0, 0, 0, 0.03)',
+                }}
+              >
+                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--muted)', marginBottom: '8px' }}>
+                  The Foundry Promise
+                </div>
+                <strong style={{ fontSize: '18px', lineHeight: 1.35, color: 'var(--ink)', display: 'block', marginBottom: '10px', letterSpacing: '-0.02em', fontWeight: 600 }}>
+                  {about.manifestoHeadline || 'From material to masterpiece — we engineer possibilities into form.'}
+                </strong>
+                <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#4a5249', margin: '0 0 10px' }}>
+                  {about.manifestoLead || 'At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces.'}
+                </p>
+                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#7a8479', margin: 0, fontFamily: 'DM Mono, monospace' }}>
+                  {about.manifestoSub || 'Every detail is considered. Every dimension matters. Every creation is built around your vision.'}
+                </p>
+              </div>
+
               <p>
                 For generations, architects and interior designers were constrained by the physical limits of traditional stone and ceramic tiles. Natural marble fractures along concealed fissures; quartz harbors lethal crystalline silica dust; and ceramic slabs inevitably require grout lines that attract grime, harbor bacteria, and shatter visual tranquility.
               </p>
@@ -466,33 +601,6 @@ export default function AboutPage() {
               <p>
                 An entire 6-meter kitchen island with an integrated seamless sink basin, a curving reception desk with concealed ambient backlighting, or a continuous clinical wet-wall can now read as a single, uninterrupted sculpture carved from pure geological stillness.
               </p>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginTop: '16px' }}>
-                <div style={{ padding: '20px', background: 'rgba(255, 255, 255, 0.65)', border: '1px solid var(--line)' }}>
-                  <strong style={{ display: 'block', fontSize: '20px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)', marginBottom: '4px' }}>
-                    0.0 mm
-                  </strong>
-                  <span style={{ fontSize: '12px', color: '#6e766c', lineHeight: 1.4, display: 'block' }}>
-                    Visible seam width once thermo-welded and honed by our joiners.
-                  </span>
-                </div>
-                <div style={{ padding: '20px', background: 'rgba(255, 255, 255, 0.65)', border: '1px solid var(--line)' }}>
-                  <strong style={{ display: 'block', fontSize: '20px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)', marginBottom: '4px' }}>
-                    25 mm
-                  </strong>
-                  <span style={{ fontSize: '12px', color: '#6e766c', lineHeight: 1.4, display: 'block' }}>
-                    Minimum thermoformed internal radius achievable without surface blanching.
-                  </span>
-                </div>
-                <div style={{ padding: '20px', background: 'rgba(255, 255, 255, 0.65)', border: '1px solid var(--line)' }}>
-                  <strong style={{ display: 'block', fontSize: '20px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)', marginBottom: '4px' }}>
-                    100%
-                  </strong>
-                  <span style={{ fontSize: '12px', color: '#6e766c', lineHeight: 1.4, display: 'block' }}>
-                    Zero-silica mineral composition, safe for fabricators and occupants.
-                  </span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
