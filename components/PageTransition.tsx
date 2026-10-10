@@ -166,30 +166,26 @@ export default function PageTransition({ children }: { children: React.ReactNode
             transition: 'opacity 0.2s ease',
           }}
         >
-          {/* Architectural Brand Plaque on Curtain */}
+          {/* Architectural Brand Logo on Curtain */}
           <div
             style={{
-              background: '#ffffff',
-              padding: '16px 28px',
-              borderRadius: '2px',
-              border: '1px solid rgba(237, 232, 219, 0.25)',
-              boxShadow: '0 16px 48px rgba(0, 0, 0, 0.55)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
             <Image
-              src="/logo/full-logo.jpg"
+              src="/logo/full-logo-transparent.png"
               alt="Ace Spaces India"
-              width={190}
-              height={58}
+              width={220}
+              height={66}
               priority
               style={{
-                width: '180px',
+                width: '200px',
                 height: 'auto',
                 display: 'block',
                 objectFit: 'contain',
+                filter: 'brightness(0) invert(1)',
               }}
             />
           </div>

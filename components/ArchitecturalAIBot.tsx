@@ -687,22 +687,18 @@ How may I assist your architectural practice today?`,
                 {/* Official Studio Icon Emblem */}
                 <div
                   style={{
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '2px',
-                    background: '#ffffff',
-                    border: '1px solid rgba(242, 240, 234, 0.35)',
+                    width: '24px',
+                    height: '24px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    overflow: 'hidden',
                     flexShrink: 0,
                   }}
                 >
                   <img
-                    src="/logo/icon-logo.jpg"
+                    src="/logo/icon-logo-transparent.png"
                     alt="Ace Spaces Icon Logo"
-                    style={{ width: '22px', height: '22px', objectFit: 'contain', display: 'block' }}
+                    style={{ width: '22px', height: '22px', objectFit: 'contain', display: 'block', filter: 'brightness(0) invert(1)' }}
                   />
                 </div>
                 <div>

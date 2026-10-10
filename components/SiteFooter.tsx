@@ -95,24 +95,21 @@ export default function SiteFooter() {
             style={{
               display: 'inline-flex',
               alignItems: 'center',
-              background: '#ffffff',
-              padding: '6px 14px',
-              borderRadius: '2px',
               marginBottom: '18px',
               textDecoration: 'none',
-              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
             }}
           >
             <Image
-              src="/logo/full-logo.jpg"
+              src="/logo/full-logo-transparent.png"
               alt="Ace Spaces India"
-              width={140}
-              height={40}
+              width={160}
+              height={44}
               style={{
-                height: '32px',
+                height: '36px',
                 width: 'auto',
                 objectFit: 'contain',
                 display: 'block',
+                filter: 'brightness(0) invert(1)',
               }}
             />
           </Link>

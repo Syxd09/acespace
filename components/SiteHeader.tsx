@@ -178,33 +178,21 @@ export default function SiteHeader() {
             textDecoration: 'none',
           }}
         >
-          <div
+          <Image
+            src="/logo/full-logo-transparent.png"
+            alt="Ace Spaces India"
+            width={160}
+            height={44}
+            priority
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              background: isLightText ? 'rgba(255, 255, 255, 0.96)' : 'transparent',
-              padding: isLightText ? '4px 8px' : '0',
-              borderRadius: isLightText ? '3px' : '0',
-              boxShadow: isLightText ? '0 2px 10px rgba(0, 0, 0, 0.15)' : 'none',
-              transition: 'background 0.3s ease, padding 0.3s ease',
+              height: isScrolled ? '34px' : '40px',
+              width: 'auto',
+              objectFit: 'contain',
+              display: 'block',
+              filter: isLightText ? 'brightness(0) invert(1)' : 'none',
+              transition: 'height 0.3s ease, filter 0.3s ease',
             }}
-          >
-            <Image
-              src="/logo/full-logo.jpg"
-              alt="Ace Spaces India"
-              width={160}
-              height={44}
-              priority
-              style={{
-                height: isScrolled ? '34px' : '40px',
-                width: 'auto',
-                objectFit: 'contain',
-                display: 'block',
-                mixBlendMode: isLightText ? 'normal' : 'multiply',
-                transition: 'height 0.3s ease',
-              }}
-            />
-          </div>
+          />
         </Link>
 
         {/* Desktop Main Navigation with Dropdown Triggers */}
@@ -496,7 +484,7 @@ export default function SiteHeader() {
         <div className="drawer-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 20px', borderBottom: '1px solid var(--line)' }}>
           <Link href="/" onClick={closeMobileMenu} style={{ display: 'inline-flex', alignItems: 'center', textDecoration: 'none' }}>
             <Image
-              src="/logo/full-logo.jpg"
+              src="/logo/full-logo-transparent.png"
               alt="Ace Spaces India"
               width={130}
               height={36}
@@ -504,7 +492,6 @@ export default function SiteHeader() {
                 height: '32px',
                 width: 'auto',
                 objectFit: 'contain',
-                mixBlendMode: 'multiply',
               }}
             />
           </Link>

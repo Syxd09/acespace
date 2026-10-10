@@ -914,7 +914,7 @@ export default function AboutPage() {
                 >
                   <div style={{ maxWidth: '170px', flex: '1 1 140px', display: 'flex', justifyContent: 'center' }}>
                     <Image
-                      src="/logo/full-logo.jpg"
+                      src="/logo/full-logo-transparent.png"
                       alt="Ace Spaces India"
                       width={170}
                       height={54}
@@ -1022,9 +1022,13 @@ export default function AboutPage() {
                       Practice &amp; Atelier
                     </span>
                     <div style={{ display: 'flex', alignItems: 'center', height: '34px', margin: '12px 0 14px' }}>
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '14px', fontWeight: 700, letterSpacing: '0.08em', color: 'var(--ink)' }}>
-                        ACE SPACES
-                      </span>
+                      <Image
+                        src="/logo/full-logo-transparent.png"
+                        alt="Ace Spaces India"
+                        width={130}
+                        height={36}
+                        style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
+                      />
                     </div>
                     <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Ace Spaces</h4>
                     <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
