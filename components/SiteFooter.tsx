@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { broadcastRealtimeEvent } from '@/lib/realtime';
 import { useSiteContent } from '@/context/SiteContentContext';
@@ -88,12 +89,32 @@ export default function SiteFooter() {
         borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
       }}>
         <div>
-          <Link className="wordmark" href="/" style={{ display: 'inline-flex', marginBottom: '18px' }}>
-            <span className="mark">A</span>
-            <span>
-              ACE<br />
-              <em>SPACES</em>
-            </span>
+          <Link
+            href="/"
+            aria-label="Ace Spaces India"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              background: '#ffffff',
+              padding: '6px 14px',
+              borderRadius: '2px',
+              marginBottom: '18px',
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(0, 0, 0, 0.2)',
+            }}
+          >
+            <Image
+              src="/logo/full-logo.jpg"
+              alt="Ace Spaces India"
+              width={140}
+              height={40}
+              style={{
+                height: '32px',
+                width: 'auto',
+                objectFit: 'contain',
+                display: 'block',
+              }}
+            />
           </Link>
           <p style={{
             fontFamily: 'DM Mono, monospace',

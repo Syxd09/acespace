@@ -1,6 +1,8 @@
 import React from 'react';
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import EnquiryForm from '@/components/EnquiryForm';
+import ContactConsultationPathways from '@/components/ContactConsultationPathways';
 import JsonLd from '@/components/JsonLd';
 import { getSiteContent } from '@/data/contentStore';
 import { generateWhatsAppUrl, DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
@@ -75,6 +77,8 @@ export default function ContactPage() {
   return (
     <main className="page-main">
       <JsonLd data={contactJsonLd} />
+
+      {/* Hero Section */}
       <section className="page-hero">
         <p className="eyebrow">Contact / Start a conversation</p>
         <h1>
@@ -82,28 +86,23 @@ export default function ContactPage() {
           <br />
           the <i>brief.</i>
         </h1>
-        <p>Choose the conversation that best fits your project. Our team is ready to consult on material and fabrication details.</p>
+        <p>
+          Choose the conversation that best fits your project. Our technical team is ready to consult on mineral composite specs, thermoforming feasibility, and bespoke CNC fabrication.
+        </p>
       </section>
 
+      {/* Consultation Pathways */}
       <section className="page-grid">
-        <h2>
-          What can we
-          <br />
-          <i>help with?</i>
-        </h2>
-        <div className="page-copy">
-          <p>
-            Material consultation
+        <div>
+          <h2>
+            What can we
             <br />
-            Sample request
-            <br />
-            Fabrication detail
-            <br />
-            Project execution
-            <br />
-            Technical question
+            <i>help with?</i>
+          </h2>
+          <p style={{ marginTop: '20px', fontSize: '15px', color: '#5d665c', lineHeight: 1.7, maxWidth: '380px' }}>
+            Every project begins with a conversation. Select a pathway to pre-populate your brief, or connect directly on WhatsApp for expedited material guidance.
           </p>
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '16px' }}>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px' }}>
             <a className="button button-dark" href="#enquiry">
               Open enquiry form <span>↘</span>
             </a>
@@ -123,9 +122,100 @@ export default function ContactPage() {
             </a>
           </div>
         </div>
+        <div>
+          <ContactConsultationPathways />
+        </div>
       </section>
 
-      <EnquiryForm />
+      {/* Atelier Physical Coordinates & Studio Visit Section */}
+      <section className="contact-atelier-section">
+        <div>
+          <h2>
+            Atelier &
+            <br />
+            <i>coordinates.</i>
+          </h2>
+          <p style={{ marginTop: '20px', fontSize: '15px', color: '#5d665c', lineHeight: 1.7, maxWidth: '440px' }}>
+            Our Bengaluru studio headquarters hosts physical 1:1 joinery mockups, backlit translucency samples, and full-slab veining displays for trade architects, interior specifiers, and private clients.
+          </p>
+          <div style={{ marginTop: '24px' }}>
+            <a
+              className="button-outline-dark"
+              href="https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ display: 'inline-flex' }}
+            >
+              <span>Navigate on Google Maps</span>
+              <span className="arrow">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="atelier-card">
+          <div className="atelier-card-header">
+            <div>
+              <p className="eyebrow" style={{ marginBottom: '4px' }}>Studio Headquarters</p>
+              <h3 style={{ fontFamily: 'var(--serif)', fontSize: '22px', fontWeight: 400, margin: 0 }}>
+                Ace Spaces & Coro Crafted Collective
+              </h3>
+            </div>
+            <span className="atelier-coordinates">12°58&apos;17.8&quot;N 77°38&apos;28.3&quot;E</span>
+          </div>
+
+          <div className="atelier-detail-list">
+            <div className="atelier-detail-item">
+              <span className="atelier-detail-label">Address</span>
+              <span>Coro Crafted Collective & Ace Spaces Studio Headquarters, Bengaluru, Karnataka, India</span>
+            </div>
+            <div className="atelier-detail-item">
+              <span className="atelier-detail-label">Hours</span>
+              <span>Monday &ndash; Saturday &middot; 09:30 &ndash; 19:00 IST (Appointments Preferred)</span>
+            </div>
+            <div className="atelier-detail-item">
+              <span className="atelier-detail-label">Phone</span>
+              <a href="tel:+919741044776" style={{ color: 'var(--ink)', textDecoration: 'none' }}>
+                +91 97410 44776
+              </a>
+            </div>
+            <div className="atelier-detail-item">
+              <span className="atelier-detail-label">Email</span>
+              <a href="mailto:studio@acespaces.in" style={{ color: 'var(--ink)', textDecoration: 'none' }}>
+                studio@acespaces.in
+              </a>
+            </div>
+            <div className="atelier-detail-item">
+              <span className="atelier-detail-label">Turnaround</span>
+              <span>Same-day brief acknowledgment &middot; CAD shop review within 24h&ndash;48h</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Tactile Sample Box Callout Banner */}
+      <section className="callout" style={{ margin: '40px 0 60px' }}>
+        <p className="eyebrow">Physical Material Evaluation</p>
+        <h2>
+          Need tactile samples
+          <br />
+          <i>on your desk?</i>
+        </h2>
+        <p>
+          Before confirming your specification, feel the stone-smooth non-porous finish, inspect veining under studio light, and test thermoformed curvature with our calibrated 4-specimen swatch box.
+        </p>
+        <Link className="button button-dark" href="/materials#sample-tray" prefetch={false}>
+          Request Specifier Swatch Tray <span>↗</span>
+        </Link>
+      </section>
+
+      {/* Interactive Form Section */}
+      <section style={{ borderTop: '1px solid var(--line)', paddingTop: '60px' }}>
+        <p className="eyebrow">Consultation Brief</p>
+        <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 48px)', marginBottom: '32px' }}>
+          Transmit your <i>project scope.</i>
+        </h2>
+        <EnquiryForm />
+      </section>
     </main>
   );
 }

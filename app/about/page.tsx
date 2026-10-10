@@ -864,13 +864,13 @@ export default function AboutPage() {
               <div
                 style={{
                   marginTop: '20px',
-                  padding: '24px 20px',
+                  padding: '26px 22px',
                   background: '#ffffff',
                   border: '1px solid var(--line)',
                   borderRadius: '2px',
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: '16px',
+                  gap: '18px',
                   alignItems: 'center',
                   textAlign: 'center',
                   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
@@ -896,30 +896,47 @@ export default function AboutPage() {
                       color: 'var(--muted)',
                     }}
                   >
-                    Official Partner Endorsement
+                    Official Strategic Partnership Lockup
                   </span>
                 </div>
 
-                {/* Official Quality Network Industrial Partner Badge */}
+                {/* Co-Branded Alliance Lockup: Ace Spaces × DuPont Corian */}
                 <div
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    padding: '4px 0',
+                    gap: '20px',
+                    flexWrap: 'wrap',
+                    padding: '8px 0',
                     width: '100%',
-                    maxWidth: '300px',
-                    margin: '0 auto',
                   }}
                 >
-                  <Image
-                    src="/assets/dupont-corian-quality-network-partner.png"
-                    alt="DuPont™ Corian® Quality Network Industrial Partner Official Badge"
-                    width={320}
-                    height={110}
-                    style={{ height: 'auto', width: '100%', maxWidth: '270px', objectFit: 'contain' }}
-                    priority
-                  />
+                  <div style={{ maxWidth: '170px', flex: '1 1 140px', display: 'flex', justifyContent: 'center' }}>
+                    <Image
+                      src="/logo/full-logo.jpg"
+                      alt="Ace Spaces India"
+                      width={170}
+                      height={54}
+                      style={{ height: 'auto', width: '100%', maxWidth: '160px', objectFit: 'contain' }}
+                      priority
+                    />
+                  </div>
+
+                  <span style={{ fontSize: '16px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace', fontWeight: 300 }}>
+                    ×
+                  </span>
+
+                  <div style={{ maxWidth: '200px', flex: '1 1 160px', display: 'flex', justifyContent: 'center' }}>
+                    <Image
+                      src="/assets/dupont-corian-quality-network-partner.png"
+                      alt="DuPont™ Corian® Quality Network Industrial Partner Official Badge"
+                      width={220}
+                      height={76}
+                      style={{ height: 'auto', width: '100%', maxWidth: '200px', objectFit: 'contain' }}
+                      priority
+                    />
+                  </div>
                 </div>
 
                 <div
@@ -937,7 +954,7 @@ export default function AboutPage() {
                     alt="Corian® Solid Surface"
                     width={160}
                     height={64}
-                    style={{ height: '40px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+                    style={{ height: '36px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
                   />
                 </div>
 

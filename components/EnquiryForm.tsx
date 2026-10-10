@@ -1,7 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { broadcastRealtimeEvent } from '@/lib/realtime';
+
+const TYPOLOGY_PRESETS = [
+  'Material Specification & Samples',
+  'CAD / CNC Drawing Review',
+  'Residential Monolith / Island',
+  'Commercial Reception / Facade',
+  'Backlit Translucent Surface',
+  'Atelier Visit & Inspection',
+];
 
 export default function EnquiryForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -14,6 +23,24 @@ export default function EnquiryForm() {
   const [phone, setPhone] = useState('');
   const [projectType, setProjectType] = useState('');
   const [message, setMessage] = useState('');
+
+  // Listen for preset triggers from pathway cards
+  useEffect(() => {
+    const handleTypologySelect = (e: CustomEvent<string>) => {
+      if (e.detail) {
+        setProjectType(e.detail);
+        const formEl = document.getElementById('enquiry');
+        if (formEl) {
+          formEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    window.addEventListener('select-typology' as any, handleTypologySelect as any);
+    return () => {
+      window.removeEventListener('select-typology' as any, handleTypologySelect as any);
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -176,30 +203,56 @@ export default function EnquiryForm() {
 
       <div className="spec-row">
         <span>Project Typology</span>
-        <input
-          placeholder="Residential, hospitality, commercial headquarters…"
-          value={projectType}
-          onChange={(e) => setProjectType(e.target.value)}
-          disabled={isSubmitting}
-        />
+        <div>
+          <div className="typology-pills">
+            {TYPOLOGY_PRESETS.map((preset) => {
+              const isSelected = projectType === preset;
+              return (
+                <button
+                  type="button"
+                  key={preset}
+                  className={`typology-pill ${isSelected ? 'active' : ''}`}
+                  onClick={() => setProjectType(isSelected ? '' : preset)}
+                  disabled={isSubmitting}
+                >
+                  {preset}
+                </button>
+              );
+            })}
+          </div>
+          <input
+            placeholder="Or type custom scope (e.g. Residential island, reception monolith, hotel vanity…)"
+            value={projectType}
+            onChange={(e) => setProjectType(e.target.value)}
+            disabled={isSubmitting}
+          />
+        </div>
       </div>
 
       <div className="spec-row">
         <span>Message & Brief *</span>
-        <textarea
-          required
-          rows={4}
-          placeholder="Tell us about the space, required solid surface thicknesses, estimated volume, and fabrication timeline…"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-          disabled={isSubmitting}
-        />
+        <div>
+          <textarea
+            required
+            rows={4}
+            placeholder="Describe the architectural scope, dimensions, required solid surface thicknesses (6mm / 12mm / 19mm), edge details, and expected schedule…"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            disabled={isSubmitting}
+          />
+          <div style={{ marginTop: '8px', fontSize: '11px', color: '#5d665c', fontFamily: 'DM Mono, monospace', lineHeight: 1.5 }}>
+            ⓘ <strong>CAD & BIM Drawings:</strong> If you have shop drawings (.dwg, .step, .skp, .rvt), mention them above or forward directly to <strong>studio@acespaces.in</strong> referencing this submission.
+          </div>
+        </div>
       </div>
 
-      <div style={{ marginTop: '20px' }}>
+      <div style={{ marginTop: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
         <button className="button" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Transmitting enquiry...' : 'Send enquiry ↗'}
+          {isSubmitting ? 'Transmitting brief...' : 'Transmit Consultation Brief ↗'}
         </button>
+        <span style={{ fontSize: '12px', color: '#5d665c', fontFamily: 'DM Mono, monospace' }}>
+          Response within 24h &middot; Bengaluru Studio Team
+        </span>
       </div>
     </form>
   );

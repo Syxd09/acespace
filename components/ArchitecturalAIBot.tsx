@@ -684,24 +684,26 @@ How may I assist your architectural practice today?`,
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                {/* Minimalist Geometric Studio Emblem */}
+                {/* Official Studio Icon Emblem */}
                 <div
                   style={{
-                    width: '26px',
-                    height: '26px',
-                    borderRadius: '0px',
-                    background: 'rgba(255, 255, 255, 0.05)',
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '2px',
+                    background: '#ffffff',
                     border: '1px solid rgba(242, 240, 234, 0.35)',
-                    display: 'grid',
-                    placeItems: 'center',
-                    color: '#f2f0ea',
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    letterSpacing: '0.05em',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                    flexShrink: 0,
                   }}
                 >
-                  A
+                  <img
+                    src="/logo/icon-logo.jpg"
+                    alt="Ace Spaces Icon Logo"
+                    style={{ width: '22px', height: '22px', objectFit: 'contain', display: 'block' }}
+                  />
                 </div>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>

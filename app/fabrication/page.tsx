@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import EdgeProfileCatalog from '@/components/EdgeProfileCatalog';
+import FabricationExplorer from '@/components/FabricationExplorer';
 import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
@@ -155,8 +156,8 @@ export default function FabricationPage() {
             <Link className="button button-dark" href="/contact">
               Discuss Fabrication Brief <span>↗</span>
             </Link>
-            <Link className="text-link" href="#process">
-              4-Stage Sequence <span>↓</span>
+            <Link className="text-link" href="#capabilities">
+              Explore Machinery Fleet <span>↓</span>
             </Link>
           </div>
 
@@ -193,6 +194,7 @@ export default function FabricationPage() {
             decoding="async"
             style={{ objectFit: 'cover' }}
             priority
+            suppressHydrationWarning
           />
           <div className="hero-image-badge">
             <div>
@@ -210,8 +212,37 @@ export default function FabricationPage() {
         </div>
       </section>
 
+      {/* Sub-Navigation Quick Anchor Bar */}
+      <nav
+        style={{
+          display: 'flex',
+          gap: 'clamp(12px, 3vw, 36px)',
+          padding: '16px 5vw',
+          borderBottom: '1px solid var(--line)',
+          overflowX: 'auto',
+          whiteSpace: 'nowrap',
+          fontFamily: 'DM Mono, monospace',
+          fontSize: '11px',
+          textTransform: 'uppercase',
+          letterSpacing: '0.08em',
+          color: 'var(--muted)',
+          marginBottom: '24px',
+        }}
+        aria-label="Fabrication page sections"
+      >
+        <a href="#capabilities" style={{ color: 'inherit', textDecoration: 'none' }}>01 / Machinery Fleet</a>
+        <a href="#joint-chemistry" style={{ color: 'inherit', textDecoration: 'none' }}>02 / Seam Technology</a>
+        <a href="#typologies" style={{ color: 'inherit', textDecoration: 'none' }}>03 / Spatial Typologies</a>
+        <a href="#process" style={{ color: 'inherit', textDecoration: 'none' }}>04 / 4-Stage Sequence</a>
+        <a href="#edges" style={{ color: 'inherit', textDecoration: 'none' }}>05 / Edge Profiles</a>
+        <a href="#consultation" style={{ color: 'inherit', textDecoration: 'none' }}>06 / Engineering Desk</a>
+      </nav>
+
+      {/* Interactive Fabrication Rig Fleet, Seam Matrix & Typologies */}
+      <FabricationExplorer />
+
       {/* 4-Step Craft Sequence */}
-      <section id="process" style={{ margin: '80px 0 100px' }}>
+      <section id="process" style={{ margin: '40px 0 100px' }}>
         <p className="eyebrow" style={{ marginBottom: '30px' }}>The 4-Stage Workshop Sequence</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
           {steps.map((step) => (
@@ -295,17 +326,28 @@ export default function FabricationPage() {
         </div>
       </section>
 
-      <section className="callout">
-        <p className="eyebrow">Technical fabrication consultation</p>
+      <section className="callout" id="consultation">
+        <p className="eyebrow">Technical fabrication consultation · Bengaluru Atelier</p>
         <h2>
           Make the
           <br />
           <i>unusual possible.</i>
         </h2>
-        <p>Send us your drawings or 3D models. Our engineering and fabrication team will review details, suggest joint locations, and provide prototypes.</p>
-        <Link className="button button-dark" href="/contact">
-          Discuss a Fabrication Brief <span>↗</span>
-        </Link>
+        <p>Send us your drawings, CAD cutouts, or 3D Rhino/Revit models. Our engineering and fabrication team will review details, suggest joint locations, calculate sub-framing, and prepare physical mockups.</p>
+        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginTop: '24px' }}>
+          <Link className="button button-dark" href="/contact">
+            Discuss a Fabrication Brief <span>↗</span>
+          </Link>
+          <a
+            href="https://wa.me/919741044776?text=Hello%20Ace%20Spaces%20Engineering%2C%20I%20have%20an%20architectural%20fabrication%20brief%20and%20would%20like%20to%20consult%20on%20drawings."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="button"
+            style={{ border: '1px solid var(--ink)', background: 'transparent' }}
+          >
+            Direct CAD Desk (WhatsApp) <span>↗</span>
+          </a>
+        </div>
       </section>
     </main>
   );

@@ -57,11 +57,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', sizes: 'any' },
       { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/logo/icon-logo.jpg', sizes: 'any' },
     ],
-    shortcut: '/favicon.ico',
-    apple: '/favicon.svg',
+    shortcut: '/logo/icon-logo.jpg',
+    apple: '/logo/icon-logo.jpg',
   },
   openGraph: {
     title: 'Ace Spaces - The Source of Material, Where Spaces Begin',

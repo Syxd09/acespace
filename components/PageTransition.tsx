@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 
 export default function PageTransition({ children }: { children: React.ReactNode }) {
@@ -165,29 +166,41 @@ export default function PageTransition({ children }: { children: React.ReactNode
             transition: 'opacity 0.2s ease',
           }}
         >
-          {/* Monogram Emblem */}
+          {/* Architectural Brand Plaque on Curtain */}
           <div
             style={{
-              width: '56px',
-              height: '56px',
-              border: '1px solid rgba(237, 232, 219, 0.35)',
-              display: 'grid',
-              placeItems: 'center',
-              fontSize: '22px',
-              fontFamily: 'DM Mono, monospace',
-              color: '#ede8db',
+              background: '#ffffff',
+              padding: '16px 28px',
+              borderRadius: '2px',
+              border: '1px solid rgba(237, 232, 219, 0.25)',
+              boxShadow: '0 16px 48px rgba(0, 0, 0, 0.55)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
-            A
+            <Image
+              src="/logo/full-logo.jpg"
+              alt="Ace Spaces India"
+              width={190}
+              height={58}
+              priority
+              style={{
+                width: '180px',
+                height: 'auto',
+                display: 'block',
+                objectFit: 'contain',
+              }}
+            />
           </div>
 
           <span
             style={{
-              fontSize: '12px',
+              fontSize: '11px',
               fontFamily: 'DM Mono, monospace',
-              letterSpacing: '0.18em',
+              letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: '#ede8db',
+              color: 'rgba(237, 232, 219, 0.8)',
             }}
           >
             {targetLabel}
