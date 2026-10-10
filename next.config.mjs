@@ -149,6 +149,26 @@ const nextConfig = {
         destination: '/applications',
         permanent: true,
       },
+      {
+        source: '/certifications/greenguard',
+        destination: '/certifications/greenguard-gold',
+        permanent: true,
+      },
+      {
+        source: '/certifications/nsf',
+        destination: '/certifications/nsf-ansi-51',
+        permanent: true,
+      },
+      {
+        source: '/certifications/astm',
+        destination: '/certifications/astm-fire-rated',
+        permanent: true,
+      },
+      {
+        source: '/warranty',
+        destination: '/guarantee',
+        permanent: true,
+      },
     ];
   },
 };

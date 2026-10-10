@@ -27,38 +27,86 @@ export default function SiteHeader() {
 
   const whatsappNumber = mounted ? (content.studioContact?.whatsappNumber || DEFAULT_WHATSAPP_NUMBER) : DEFAULT_WHATSAPP_NUMBER;
 
-  // Close menus on route change
+  const progressBarRef = useRef<HTMLDivElement>(null);
+
+  // Close menus & reset scroll hairline on route change
   useEffect(() => {
     setMobileOpen(false);
     setActiveMegaMenu(null);
+    if (progressBarRef.current) {
+      progressBarRef.current.style.transform = 'scaleX(0)';
+      progressBarRef.current.style.opacity = '0';
+    }
   }, [pathname]);
 
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  // Handle scroll detection for sticky navbar background transition & scroll progress hairline
+  // Handle high-performance zero-latency scroll progress & sticky navbar transition
   useEffect(() => {
-    let ticking = false;
+    const updateProgress = (fraction: number) => {
+      if (!progressBarRef.current) return;
+      const clamped = Math.min(1, Math.max(0, fraction));
+      progressBarRef.current.style.transform = `scaleX(${clamped})`;
+      progressBarRef.current.style.opacity = clamped > 0.001 ? '1' : '0';
+    };
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          setIsScrolled(scrollY > 40);
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const isNowScrolled = scrollY > 40;
+      setIsScrolled((prev) => (prev !== isNowScrolled ? isNowScrolled : prev));
 
-          const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-          if (docHeight > 0) {
-            const progress = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
-            setScrollProgress(progress);
-          }
-          ticking = false;
-        });
-        ticking = true;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight > 0) {
+        updateProgress(scrollY / docHeight);
+      } else {
+        updateProgress(0);
       }
     };
 
+    // Initial evaluation
     handleScroll();
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll, { passive: true });
+
+    // Lock-step hook into Lenis momentum engine for 120fps live synchronization
+    let unsubscribeLenis: (() => void) | null = null;
+    let lenisRetryTimer: NodeJS.Timeout | null = null;
+
+    const attachLenis = () => {
+      const lenis = (window as unknown as { __lenis?: { on: (event: string, cb: (e: any) => void) => void; off: (event: string, cb: (e: any) => void) => void } }).__lenis;
+      if (lenis && typeof lenis.on === 'function') {
+        const onLenisScroll = (e: { progress?: number; scroll?: number }) => {
+          if (typeof e?.progress === 'number') {
+            updateProgress(e.progress);
+            const scrollY = typeof e.scroll === 'number' ? e.scroll : window.scrollY;
+            const isNowScrolled = scrollY > 40;
+            setIsScrolled((prev) => (prev !== isNowScrolled ? isNowScrolled : prev));
+          }
+        };
+        lenis.on('scroll', onLenisScroll);
+        unsubscribeLenis = () => {
+          try {
+            lenis.off('scroll', onLenisScroll);
+          } catch {
+            // ignore
+          }
+        };
+        return true;
+      }
+      return false;
+    };
+
+    if (!attachLenis()) {
+      lenisRetryTimer = setTimeout(() => {
+        attachLenis();
+      }, 200);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      if (lenisRetryTimer) clearTimeout(lenisRetryTimer);
+      if (unsubscribeLenis) unsubscribeLenis();
+    };
   }, []);
 
   // Body scroll lock on mobile open
@@ -437,21 +485,29 @@ export default function SiteHeader() {
           </button>
         </div>
 
-        {/* Subtle Architectural Scroll Progress Hairline */}
+        {/* Architectural Live Scroll Progress Hairline - 120fps GPU accelerated, zero latency */}
         <div
+          ref={progressBarRef}
           aria-hidden="true"
           style={{
             position: 'absolute',
             bottom: 0,
             left: 0,
-            height: '1.5px',
-            width: `${scrollProgress}%`,
+            width: '100%',
+            height: '2px',
+            transformOrigin: '0% 50%',
+            transform: 'scaleX(0)',
+            willChange: 'transform',
             background: isLightText
-              ? 'rgba(255, 255, 255, 0.75)'
-              : 'var(--ink, #1e211d)',
-            opacity: scrollProgress > 0.5 ? 1 : 0,
-            transition: 'width 0.08s linear, opacity 0.25s ease, background-color 0.3s ease',
+              ? 'linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.95) 88%, #ef4444 100%)'
+              : 'linear-gradient(90deg, rgba(30, 33, 29, 0.8) 0%, #1e211d 88%, #dc2626 96%, #ef4444 100%)',
+            boxShadow: isLightText
+              ? '0 0 10px rgba(239, 68, 68, 0.5), 0 0 2px rgba(255, 255, 255, 0.9)'
+              : '0 1px 3px rgba(30, 33, 29, 0.25), 0 0 6px rgba(239, 68, 68, 0.35)',
+            opacity: 0,
+            transition: 'opacity 0.2s ease, background 0.3s ease, box-shadow 0.3s ease',
             pointerEvents: 'none',
+            zIndex: 10,
           }}
         />
       </header>

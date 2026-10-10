@@ -366,12 +366,12 @@ export default function SiteFooter() {
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
               { label: 'WhatsApp Studio Advisory ↗', href: generateWhatsAppUrl(whatsappNumber), external: true, highlight: true },
-              { label: 'GREENGUARD Gold Certified', href: '/fabrication' },
-              { label: 'NSF/ANSI 51 Food Safe', href: '/fabrication' },
-              { label: 'ASTM Class 1 Fire Rated', href: '/fabrication' },
-              { label: 'Project Consultation Form →', href: '/contact' },
-              { label: '10-Year Renewable Guarantee', href: '/about' },
-              { label: 'Studio Management Console ↗', href: '/admin' },
+              { label: 'GREENGUARD Gold Certified', href: '/certifications/greenguard-gold' },
+              { label: 'NSF/ANSI 51 Food Safe', href: '/certifications/nsf-ansi-51' },
+              { label: 'ASTM Class 1 Fire Rated', href: '/certifications/astm-fire-rated' },
+              { label: 'Project Consultation Form →', href: '/consultation' },
+              { label: '10-Year Renewable Guarantee', href: '/guarantee' },
+              { label: 'Architectural Standards Registry →', href: '/certifications' },
             ].map(item => (
               <li key={item.label}>
                 {item.external ? (
@@ -402,14 +402,14 @@ export default function SiteFooter() {
                     href={item.href}
                     style={{
                       fontFamily: 'DM Mono, monospace',
-                      fontSize: item.href === '/admin' ? '11px' : '11px',
-                      fontWeight: item.href === '/admin' || item.href === '/contact' ? 600 : 400,
-                      color: item.href === '/admin' ? '#73c991' : item.href === '/contact' ? '#e9e8e2' : '#c2cdc2',
+                      fontSize: '11px',
+                      fontWeight: item.href === '/consultation' ? 600 : 400,
+                      color: item.href === '/consultation' ? '#e9e8e2' : '#c2cdc2',
                       textDecoration: 'none',
                       transition: 'color 0.15s ease',
                     }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
-                    onMouseLeave={e => (e.currentTarget.style.color = item.href === '/admin' ? '#73c991' : item.href === '/contact' ? '#e9e8e2' : '#c2cdc2')}
+                    onMouseLeave={e => (e.currentTarget.style.color = item.href === '/consultation' ? '#e9e8e2' : '#c2cdc2')}
                   >
                     {item.label}
                   </Link>
@@ -476,18 +476,6 @@ export default function SiteFooter() {
           </Link>
           <Link href="/privacy" style={{ color: '#7e897e', textDecoration: 'none' }}>Privacy Policy</Link>
           <Link href="/terms" style={{ color: '#7e897e', textDecoration: 'none' }}>Terms of Supply</Link>
-          <Link
-            href="/admin"
-            style={{
-              color: '#9ca59b',
-              textDecoration: 'none',
-              border: '1px solid rgba(255,255,255,0.15)',
-              padding: '2px 8px',
-              letterSpacing: '0.05em',
-            }}
-          >
-            Studio Console ↗
-          </Link>
         </div>
       </div>
     </footer>
