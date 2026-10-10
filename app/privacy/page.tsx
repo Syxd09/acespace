@@ -13,20 +13,21 @@ export default function PrivacyPage() {
       <main style={{ maxWidth: '960px', margin: '0 auto', padding: '140px 24px 80px' }}>
         <div style={{ marginBottom: '40px' }}>
           <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)' }}>
-            Governance & Legal Standards
+            Governance &amp; Legal Standards
           </span>
-          <h1 style={{ fontFamily: 'var(--serif, serif)', fontSize: '42px', fontWeight: 400, margin: '8px 0 16px', letterSpacing: '-0.02em' }}>
-            Privacy Policy
+          <h1 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: 'clamp(36px, 5vw, 48px)', fontWeight: 500, margin: '8px 0 16px', letterSpacing: '-0.03em', lineHeight: 1.15, color: '#1a1d19' }}>
+            Privacy <i>Policy.</i>
           </h1>
           <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#596059' }}>
             Last updated: September 2026 · Bengaluru Architectural Foundry
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '36px', fontFamily: 'var(--sans, sans-serif)', lineHeight: 1.8, fontSize: '15px', color: '#2f352e' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '36px', fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', lineHeight: 1.8, fontSize: '15px', color: '#2f352e' }}>
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
-            <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '22px', fontWeight: 500, margin: '0 0 12px', color: '#1a1d19' }}>
-              1. Architectural Client Information & Data Collection
+            <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>01.</span>
+              <span>Architectural Client Information &amp; Data Collection</span>
             </h2>
             <p>
               Ace Spaces (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects the confidentiality and proprietary nature of all architectural projects, commercial tenders, and private residential inquiries. When you interact with our platform to order material sample specimens, request formulation monographs, or submit project blueprints, we collect relevant professional information such as your name, studio affiliation, email, delivery address, and project specifications.
@@ -34,8 +35,9 @@ export default function PrivacyPage() {
           </section>
 
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
-            <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '22px', fontWeight: 500, margin: '0 0 12px', color: '#1a1d19' }}>
-              2. Purpose of Processing & Sample Fulfillment
+            <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>02.</span>
+              <span>Purpose of Processing &amp; Sample Fulfillment</span>
             </h2>
             <p>
               We process your information exclusively to:
@@ -49,8 +51,9 @@ export default function PrivacyPage() {
           </section>
 
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
-            <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '22px', fontWeight: 500, margin: '0 0 12px', color: '#1a1d19' }}>
-              3. Confidentiality of Architectural Briefs
+            <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>03.</span>
+              <span>Confidentiality of Architectural Briefs</span>
             </h2>
             <p>
               All proprietary project drawings, CAD files, material schedules, and bespoke formulation requests submitted via our contact forms or studio console remain strictly confidential. Ace Spaces does not sell, license, or disclose your project data to third-party advertising brokers.
@@ -58,8 +61,9 @@ export default function PrivacyPage() {
           </section>
 
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
-            <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '22px', fontWeight: 500, margin: '0 0 12px', color: '#1a1d19' }}>
-              4. Data Retention & Studio Rights
+            <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>04.</span>
+              <span>Data Retention &amp; Studio Rights</span>
             </h2>
             <p>
               You maintain the right to inspect, update, or request full deletion of your contact records, dispatch subscriptions, or order history at any time by contacting our studio team at <a href="mailto:studio@acespaces.in" style={{ color: '#1a1d19', textDecoration: 'underline' }}>studio@acespaces.in</a>.

@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function GuaranteePage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)', fontFamily: 'Manrope, system-ui, -apple-system, sans-serif' }}>
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '140px 24px 100px' }}>
         
         {/* Breadcrumb */}
@@ -40,10 +40,12 @@ export default function GuaranteePage() {
             </span>
           </div>
 
-          <h1 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 400, lineHeight: 1.15, margin: '0 0 20px', letterSpacing: '-0.02em' }}>
-            10-Year Renewable Guarantee
+          <h1 style={{ fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.02, margin: '0 0 24px', letterSpacing: '-0.05em', color: 'var(--ink, #1e211d)' }}>
+            10-Year Renewable
+            <br />
+            Material <i>guarantee.</i>
           </h1>
-          <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '18px', lineHeight: 1.6, color: '#4a5249', maxWidth: '800px', margin: 0 }}>
+          <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '800px', margin: 0 }}>
             Architecture should outlive trends. Ace Spaces warrants every authentic DuPont™ Corian® solid surface installation with an industry-defining 10-Year Renewable Guarantee—covering both raw material formulation and atelier fabrication integrity.
           </p>
         </div>
@@ -60,7 +62,7 @@ export default function GuaranteePage() {
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
                 {stat.label}
               </span>
-              <div style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '30px', fontWeight: 500, color: '#1a1d19', margin: '14px 0 6px' }}>
+              <div style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '-0.03em', color: '#1a1d19', margin: '14px 0 6px' }}>
                 {stat.value}
               </div>
               <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', margin: 0, lineHeight: 1.5 }}>
@@ -72,11 +74,11 @@ export default function GuaranteePage() {
 
         {/* What "Renewable" Means Section */}
         <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '44px 36px', marginBottom: '56px' }}>
-          <h2 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '28px', fontWeight: 400, margin: '0 0 16px' }}>
-            What Makes Solid Surface &ldquo;Renewable&rdquo;?
+          <h2 style={{ fontSize: '26px', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 16px', color: '#1a1d19' }}>
+            What makes solid surface <i>renewable?</i>
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '40px' }}>
-            <div style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '15px', lineHeight: 1.8, color: '#2f352e', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ fontSize: '15px', lineHeight: 1.8, color: '#2f352e', display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <p>
                 Most luxury surfaces are disposable when damaged. If granite cracks, it must be jackhammered out. If marble is etched by lemon juice, the stone is permanently discolored. If quartz chips, the repair resin leaves an unsightly patch.
               </p>
@@ -113,10 +115,10 @@ export default function GuaranteePage() {
         {/* Detailed Coverage Matrix */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginBottom: '56px' }}>
           <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '32px 28px' }}>
-            <h3 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '20px', fontWeight: 500, margin: '0 0 16px', color: '#1a1d19' }}>
+            <h3 style={{ fontSize: '19px', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 0 16px', color: '#1a1d19' }}>
               ✓ What Is Covered Under the 10-Year Guarantee
             </h3>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', color: '#2f352e' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', lineHeight: 1.6, color: '#2f352e' }}>
               <li style={{ display: 'flex', gap: '10px' }}>
                 <span style={{ color: '#2e7d32', fontWeight: 600 }}>✓</span>
                 <span><strong>Material Defects:</strong> Internal voids, factory discoloration, or bubbling in authentic DuPont™ Corian® sheets.</span>
@@ -137,10 +139,10 @@ export default function GuaranteePage() {
           </div>
 
           <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '32px 28px' }}>
-            <h3 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '20px', fontWeight: 500, margin: '0 0 16px', color: '#1a1d19' }}>
+            <h3 style={{ fontSize: '19px', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 0 16px', color: '#1a1d19' }}>
               General Care &amp; Exclusions
             </h3>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', color: '#596059' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', lineHeight: 1.6, color: '#596059' }}>
               <li style={{ display: 'flex', gap: '10px' }}>
                 <span style={{ color: '#788078' }}>·</span>
                 <span><strong>Thermal Shock:</strong> Direct placement of cookware straight from 250°C+ open gas flames without a silicone trivet.</span>
@@ -168,7 +170,7 @@ export default function GuaranteePage() {
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#73c991', display: 'block', marginBottom: '8px' }}>
                 Warranty Desk &amp; Atelier Service Handover
               </span>
-              <h3 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '26px', fontWeight: 400, color: '#fff', margin: '0 0 8px' }}>
+              <h3 style={{ fontSize: '24px', fontWeight: 600, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 8px' }}>
                 Need to register an installation or request surface renewal?
               </h3>
               <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#aab4aa', margin: 0 }}>

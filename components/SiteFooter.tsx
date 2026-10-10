@@ -100,16 +100,15 @@ export default function SiteFooter() {
             }}
           >
             <Image
-              src="/logo/full-logo-transparent.png"
+              src="/logo/full-logo-white-transparent.png"
               alt="Ace Spaces India"
-              width={160}
-              height={44}
+              width={176}
+              height={48}
               style={{
-                height: '36px',
+                height: '40px',
                 width: 'auto',
                 objectFit: 'contain',
                 display: 'block',
-                filter: 'brightness(0) invert(1)',
               }}
             />
           </Link>
@@ -460,9 +459,9 @@ export default function SiteFooter() {
           <span>12.9716° N, 77.5946° E</span>
         </div>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '18px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>
           <Link
-            href="/contact"
+            href="/consultation"
             style={{
               color: '#e9e8e2',
               textDecoration: 'none',
@@ -472,8 +471,10 @@ export default function SiteFooter() {
               letterSpacing: '0.04em',
             }}
           >
-            Contact Form ↗
+            Project Consultation ↗
           </Link>
+          <Link href="/certifications" style={{ color: '#7e897e', textDecoration: 'none' }}>Certifications</Link>
+          <Link href="/guarantee" style={{ color: '#7e897e', textDecoration: 'none' }}>10-Yr Guarantee</Link>
           <Link href="/privacy" style={{ color: '#7e897e', textDecoration: 'none' }}>Privacy Policy</Link>
           <Link href="/terms" style={{ color: '#7e897e', textDecoration: 'none' }}>Terms of Supply</Link>
         </div>

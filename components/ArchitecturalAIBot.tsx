@@ -696,9 +696,9 @@ How may I assist your architectural practice today?`,
                   }}
                 >
                   <img
-                    src="/logo/icon-logo-transparent.png"
+                    src="/logo/icon-logo-white-transparent.png"
                     alt="Ace Spaces Icon Logo"
-                    style={{ width: '22px', height: '22px', objectFit: 'contain', display: 'block', filter: 'brightness(0) invert(1)' }}
+                    style={{ width: '22px', height: '22px', objectFit: 'contain', display: 'block' }}
                   />
                 </div>
                 <div>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { broadcastRealtimeEvent } from '@/lib/realtime';
 import { generateWhatsAppUrl, DEFAULT_WHATSAPP_NUMBER } from '@/lib/whatsapp';
 import { useSiteContent } from '@/context/SiteContentContext';
+import ArchitecturalSelect from '@/components/ArchitecturalSelect';
 
 const TYPOLOGY_OPTIONS = [
   'Luxury Residential Kitchen Island / Monolith',
@@ -96,7 +97,7 @@ ${message}
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)', fontFamily: 'Manrope, system-ui, -apple-system, sans-serif' }}>
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '140px 24px 100px' }}>
         
         {/* Breadcrumb */}
@@ -119,10 +120,12 @@ ${message}
             </span>
           </div>
 
-          <h1 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 400, lineHeight: 1.15, margin: '0 0 20px', letterSpacing: '-0.02em' }}>
-            Project Consultation Form
+          <h1 style={{ fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.02, margin: '0 0 24px', letterSpacing: '-0.05em', color: 'var(--ink, #1e211d)' }}>
+            Project Consultation
+            <br />
+            &amp; Drawing <i>review.</i>
           </h1>
-          <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '18px', lineHeight: 1.6, color: '#4a5249', maxWidth: '800px', margin: 0 }}>
+          <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '800px', margin: 0 }}>
             Collaborate directly with Ace Spaces senior fabrication engineers. Submit your project requirements, CAD/BIM shop drawings, or architectural material schedules for estimation, nesting yield optimization, and on-site fitment feasibility in Bengaluru.
           </p>
         </div>
@@ -137,10 +140,10 @@ ${message}
                 <div style={{ display: 'inline-block', background: 'rgba(46, 125, 50, 0.1)', color: '#2e7d32', padding: '6px 12px', fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600, marginBottom: '16px' }}>
                   ✓ PROJECT CONSULTATION SUBMITTED
                 </div>
-                <h3 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '26px', fontWeight: 500, margin: '0 0 12px' }}>
+                <h3 style={{ fontSize: '24px', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 12px', color: '#1a1d19' }}>
                   Brief Received at Bengaluru Atelier Desk
                 </h3>
-                <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '15px', lineHeight: 1.7, color: '#4a5249', marginBottom: '24px' }}>
+                <p style={{ fontSize: '15px', lineHeight: 1.7, color: '#4a5249', marginBottom: '24px' }}>
                   Thank you, <strong>{name}</strong>. Your project dossier has been catalogued under reference code <span style={{ fontFamily: 'DM Mono, monospace', fontWeight: 600, color: '#1a1d19' }}>{inquiryNumber}</span>. Our senior technical estimator will review your specification and reach out within 24 business hours.
                 </p>
                 <div style={{ borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '20px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
@@ -196,7 +199,7 @@ ${message}
                       value={name}
                       onChange={e => setName(e.target.value)}
                       placeholder="Ar. Vikram Seth"
-                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', outline: 'none' }}
+                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
                   <div>
@@ -208,7 +211,7 @@ ${message}
                       value={studio}
                       onChange={e => setStudio(e.target.value)}
                       placeholder="Studio Lateral Architects"
-                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', outline: 'none' }}
+                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
                 </div>
@@ -224,7 +227,7 @@ ${message}
                       value={email}
                       onChange={e => setEmail(e.target.value)}
                       placeholder="vikram@studiolateral.com"
-                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', outline: 'none' }}
+                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
                   <div>
@@ -237,7 +240,7 @@ ${message}
                       value={phone}
                       onChange={e => setPhone(e.target.value)}
                       placeholder="+91 98450 XXXXX"
-                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', outline: 'none' }}
+                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
                 </div>
@@ -246,15 +249,11 @@ ${message}
                   <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#788078', marginBottom: '6px' }}>
                     Project Typology *
                   </label>
-                  <select
+                  <ArchitecturalSelect
                     value={projectType}
-                    onChange={e => setProjectType(e.target.value)}
-                    style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', outline: 'none' }}
-                  >
-                    {TYPOLOGY_OPTIONS.map((opt) => (
-                      <option key={opt} value={opt}>{opt}</option>
-                    ))}
-                  </select>
+                    onChange={setProjectType}
+                    options={TYPOLOGY_OPTIONS}
+                  />
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
@@ -267,22 +266,18 @@ ${message}
                       value={estimatedScope}
                       onChange={e => setEstimatedScope(e.target.value)}
                       placeholder="e.g. 12 Rmt island, 3 sinks, or 6 slabs"
-                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', outline: 'none' }}
+                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '14px', outline: 'none' }}
                     />
                   </div>
                   <div>
                     <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#788078', marginBottom: '6px' }}>
                       Construction Timeline *
                     </label>
-                    <select
+                    <ArchitecturalSelect
                       value={timeline}
-                      onChange={e => setTimeline(e.target.value)}
-                      style={{ width: '100%', padding: '10px 12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', outline: 'none' }}
-                    >
-                      {TIMELINE_OPTIONS.map((opt) => (
-                        <option key={opt} value={opt}>{opt}</option>
-                      ))}
-                    </select>
+                      onChange={setTimeline}
+                      options={TIMELINE_OPTIONS}
+                    />
                   </div>
                 </div>
 
@@ -296,7 +291,7 @@ ${message}
                     value={message}
                     onChange={e => setMessage(e.target.value)}
                     placeholder="Describe color palette preference, site city/location, joinery requirements, and if CAD/DWG drawings are ready for dispatch."
-                    style={{ width: '100%', padding: '12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', outline: 'none', resize: 'vertical' }}
+                    style={{ width: '100%', padding: '12px', border: '1px solid var(--line, rgba(30,33,29,0.2))', background: '#faf9f5', fontFamily: 'Manrope, system-ui, sans-serif', fontSize: '14px', outline: 'none', resize: 'vertical' }}
                   />
                 </div>
 
@@ -336,10 +331,10 @@ ${message}
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#788078', display: 'block', marginBottom: '8px' }}>
                 Atelier Drawing Protocols
               </span>
-              <h3 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '20px', fontWeight: 500, margin: '0 0 12px', color: '#1a1d19' }}>
+              <h3 style={{ fontSize: '19px', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 0 12px', color: '#1a1d19' }}>
                 CAD, BIM &amp; Vector Formats Accepted
               </h3>
-              <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', lineHeight: 1.7, color: '#4a5249', margin: '0 0 16px' }}>
+              <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#4a5249', margin: '0 0 16px' }}>
                 Our digital fabrication pipeline accepts direct 2D vector and 3D solid model imports. Upon brief submission, our engineers can review:
               </p>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#2f352e' }}>
@@ -355,10 +350,10 @@ ${message}
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#73c991', display: 'block', marginBottom: '8px' }}>
                 Direct Specifier Hotline
               </span>
-              <h4 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '20px', fontWeight: 400, color: '#fff', margin: '0 0 10px' }}>
+              <h4 style={{ fontSize: '19px', fontWeight: 600, letterSpacing: '-0.02em', color: '#fff', margin: '0 0 10px' }}>
                 Need an immediate estimation?
               </h4>
-              <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '13px', lineHeight: 1.6, color: '#c2cdc2', margin: '0 0 20px' }}>
+              <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#c2cdc2', margin: '0 0 20px' }}>
                 Connect directly with our Bengaluru Material Specifier Desk on WhatsApp for immediate slab availability, custom color matchings, or rapid rate cards.
               </p>
               <a

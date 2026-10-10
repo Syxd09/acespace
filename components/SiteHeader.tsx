@@ -227,7 +227,7 @@ export default function SiteHeader() {
           }}
         >
           <Image
-            src="/logo/full-logo-transparent.png"
+            src={isLightText ? '/logo/full-logo-white-transparent.png' : '/logo/full-logo-transparent.png'}
             alt="Ace Spaces India"
             width={160}
             height={44}
@@ -237,8 +237,7 @@ export default function SiteHeader() {
               width: 'auto',
               objectFit: 'contain',
               display: 'block',
-              filter: isLightText ? 'brightness(0) invert(1)' : 'none',
-              transition: 'height 0.3s ease, filter 0.3s ease',
+              transition: 'height 0.3s ease',
             }}
           />
         </Link>

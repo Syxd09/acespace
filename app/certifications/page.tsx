@@ -57,7 +57,7 @@ const CERTIFICATIONS = [
 
 export default function CertificationsHubPage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)', fontFamily: 'Manrope, system-ui, -apple-system, sans-serif' }}>
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '140px 24px 100px' }}>
         
         {/* Header */}
@@ -65,10 +65,12 @@ export default function CertificationsHubPage() {
           <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', display: 'block', marginBottom: '12px' }}>
             Technical Governance · Material Safety · Building Compliance
           </span>
-          <h1 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: 'clamp(32px, 5vw, 54px)', fontWeight: 400, lineHeight: 1.15, margin: '0 0 20px', letterSpacing: '-0.02em' }}>
-            Architectural Certifications &amp; Standards
+          <h1 style={{ fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.02, margin: '0 0 24px', letterSpacing: '-0.05em', color: 'var(--ink, #1e211d)' }}>
+            Technical Standards &amp;
+            <br />
+            Material <i>certifications.</i>
           </h1>
-          <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '18px', lineHeight: 1.6, color: '#4a5249', maxWidth: '820px', margin: 0 }}>
+          <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '820px', margin: 0 }}>
             Ace Spaces supplies authentic DuPont™ Corian® solid surfaces fabricated to the highest global material benchmarks. Every calibrated mineral slab delivered from our Bengaluru foundry carries full laboratory verification across indoor air purity, commercial food safety, life-safety fire resistance, and worker safety mandates.
           </p>
         </div>
@@ -97,11 +99,11 @@ export default function CertificationsHubPage() {
                   </span>
                 </div>
 
-                <h2 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '24px', fontWeight: 500, margin: '0 0 14px', color: '#1a1d19' }}>
+                <h2 style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 14px', color: '#1a1d19' }}>
                   {cert.title}
                 </h2>
 
-                <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', lineHeight: 1.7, color: '#4a5249', margin: '0 0 24px' }}>
+                <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#4a5249', margin: '0 0 24px' }}>
                   {cert.summary}
                 </p>
 
@@ -146,10 +148,10 @@ export default function CertificationsHubPage() {
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#73c991', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '10px' }}>
                 Zero Crystalline Silica Declaration (RCS Safety)
               </span>
-              <h3 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '28px', fontWeight: 400, color: '#fff', margin: '0 0 16px' }}>
+              <h3 style={{ fontSize: '26px', fontWeight: 600, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 16px' }}>
                 100% Non-Hazardous to Cut, Route &amp; Polish
               </h3>
-              <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '14px', lineHeight: 1.7, color: '#c2cdc2', margin: 0 }}>
+              <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#c2cdc2', margin: 0 }}>
                 Following nationwide bans on high-silica engineered stone in Australia and tightening occupational safety standards across Europe and North America, Ace Spaces confirms that our mineral solid surface slabs contain <strong>0.00% respirable crystalline silica</strong>. Safe for stone masons, CNC operators, site installers, and building occupants.
               </p>
             </div>

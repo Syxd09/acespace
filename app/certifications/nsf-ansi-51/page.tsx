@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function NsfAnsi51Page() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)', fontFamily: 'Manrope, system-ui, -apple-system, sans-serif' }}>
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '140px 24px 100px' }}>
         
         {/* Breadcrumb */}
@@ -41,10 +41,12 @@ export default function NsfAnsi51Page() {
             </span>
           </div>
 
-          <h1 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 400, lineHeight: 1.15, margin: '0 0 20px', letterSpacing: '-0.02em' }}>
-            NSF/ANSI 51 Food Safe Certification
+          <h1 style={{ fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.02, margin: '0 0 24px', letterSpacing: '-0.05em', color: 'var(--ink, #1e211d)' }}>
+            NSF/ANSI 51
+            <br />
+            Food Safe <i>certification.</i>
           </h1>
-          <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '18px', lineHeight: 1.6, color: '#4a5249', maxWidth: '780px', margin: 0 }}>
+          <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '780px', margin: 0 }}>
             Certified by NSF International for direct food contact across all commercial culinary environments, fine dining plating counters, healthcare washplanes, and residential master kitchens. A non-porous monolithic matrix engineered to prevent bacterial harboring.
           </p>
         </div>
@@ -61,7 +63,7 @@ export default function NsfAnsi51Page() {
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
                 {stat.label}
               </span>
-              <div style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '30px', fontWeight: 500, color: '#1a1d19', margin: '14px 0 6px' }}>
+              <div style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '-0.03em', color: '#1a1d19', margin: '14px 0 6px' }}>
                 {stat.value}
               </div>
               <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', margin: 0, lineHeight: 1.5 }}>
@@ -74,10 +76,10 @@ export default function NsfAnsi51Page() {
         {/* Detailed Content */}
         <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '48px', marginBottom: '64px' }}>
           <div>
-            <h2 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '28px', fontWeight: 400, margin: '0 0 16px' }}>
-              Molecular Non-Porosity vs. Porous Natural Stone
+            <h2 style={{ fontSize: '26px', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 16px', color: '#1a1d19' }}>
+              Molecular non-porosity vs. <i>porous stone.</i>
             </h2>
-            <div style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '15px', lineHeight: 1.8, color: '#2f352e', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ fontSize: '15px', lineHeight: 1.8, color: '#2f352e', display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <p>
                 Natural granites and marbles possess microscopic capillary fissures that absorb oils, moisture, poultry juices, and acids. To maintain hygiene, natural stone requires frequent re-sealing with synthetic topical sealers that wear away with daily wiping and dishwashing soaps.
               </p>
@@ -146,19 +148,19 @@ export default function NsfAnsi51Page() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
             <Link href="/certifications/greenguard-gold" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>AIR QUALITY</span>
-              <strong style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '16px' }}>GREENGUARD Gold →</strong>
+              <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>GREENGUARD Gold →</strong>
             </Link>
             <Link href="/certifications/astm-fire-rated" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>FIRE RATING</span>
-              <strong style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '16px' }}>ASTM Class 1 Fire Rated →</strong>
+              <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>ASTM Class 1 Fire Rated →</strong>
             </Link>
             <Link href="/guarantee" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>WARRANTY</span>
-              <strong style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '16px' }}>10-Year Renewable Guarantee →</strong>
+              <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>10-Year Renewable Guarantee →</strong>
             </Link>
             <Link href="/consultation" style={{ padding: '20px', background: '#141713', color: '#fff', border: '1px solid #141713', textDecoration: 'none' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#97a397', display: 'block', marginBottom: '6px' }}>SPECIFIER DESK</span>
-              <strong style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '16px', color: '#fff' }}>Consultation Form →</strong>
+              <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', color: '#fff', display: 'block' }}>Consultation Form →</strong>
             </Link>
           </div>
         </div>

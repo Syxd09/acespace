@@ -28,6 +28,9 @@ export default function PageTransition({ children }: { children: React.ReactNode
     if (path.includes('/journal')) return '06 / JOURNAL';
     if (path.includes('/about')) return '07 / ABOUT US';
     if (path.includes('/contact')) return '08 / CONTACT PRACTICE';
+    if (path.includes('/certifications')) return 'TECHNICAL GOVERNANCE & CERTIFICATIONS';
+    if (path.includes('/guarantee') || path.includes('/warranty')) return '10-YEAR RENEWABLE GUARANTEE';
+    if (path.includes('/consultation')) return 'PROJECT CONSULTATION DESK';
     return 'ACE SPACES';
   };
 
@@ -175,7 +178,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
             }}
           >
             <Image
-              src="/logo/full-logo-transparent.png"
+              src="/logo/full-logo-white-transparent.png"
               alt="Ace Spaces India"
               width={220}
               height={66}
@@ -185,7 +188,6 @@ export default function PageTransition({ children }: { children: React.ReactNode
                 height: 'auto',
                 display: 'block',
                 objectFit: 'contain',
-                filter: 'brightness(0) invert(1)',
               }}
             />
           </div>

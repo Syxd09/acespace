@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function GreenguardGoldPage() {
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)' }}>
+    <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)', fontFamily: 'Manrope, system-ui, -apple-system, sans-serif' }}>
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '140px 24px 100px' }}>
         
         {/* Breadcrumb & Technical Badge */}
@@ -41,10 +41,12 @@ export default function GreenguardGoldPage() {
             </span>
           </div>
 
-          <h1 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: 400, lineHeight: 1.15, margin: '0 0 20px', letterSpacing: '-0.02em' }}>
-            GREENGUARD Gold Certification
+          <h1 style={{ fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.02, margin: '0 0 24px', letterSpacing: '-0.05em', color: 'var(--ink, #1e211d)' }}>
+            GREENGUARD Gold
+            <br />
+            Air Quality <i>certification.</i>
           </h1>
-          <p style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '18px', lineHeight: 1.6, color: '#4a5249', maxWidth: '780px', margin: 0 }}>
+          <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '780px', margin: 0 }}>
             Ace Spaces architectural solid surfaces fulfill the world’s most stringent chemical emissions thresholds, safeguarding indoor air quality for neonatal wards, educational facilities, and luxury residential environments with verified zero volatile organic compounds and zero crystalline silica.
           </p>
         </div>
@@ -61,7 +63,7 @@ export default function GreenguardGoldPage() {
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
                 {stat.label}
               </span>
-              <div style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '30px', fontWeight: 500, color: '#1a1d19', margin: '14px 0 6px' }}>
+              <div style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '-0.03em', color: '#1a1d19', margin: '14px 0 6px' }}>
                 {stat.value}
               </div>
               <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', margin: 0, lineHeight: 1.5 }}>
@@ -74,10 +76,10 @@ export default function GreenguardGoldPage() {
         {/* Detailed Technical Sections */}
         <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '48px', marginBottom: '64px' }}>
           <div>
-            <h2 style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '28px', fontWeight: 400, margin: '0 0 16px' }}>
-              Why Indoor Air Quality Matters in Architectural Specification
+            <h2 style={{ fontSize: '26px', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 16px', color: '#1a1d19' }}>
+              Why air quality matters in <i>specification.</i>
             </h2>
-            <div style={{ fontFamily: 'var(--sans, Manrope, sans-serif)', fontSize: '15px', lineHeight: 1.8, color: '#2f352e', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ fontSize: '15px', lineHeight: 1.8, color: '#2f352e', display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <p>
                 Standard synthetic laminates, engineered quartz with volatile solvent glues, and traditional solvent-based varnishes continually off-gas volatile organic compounds (VOCs) into sealed interior spaces. These micro-pollutants compromise building occupant wellness, aggravate respiratory conditions, and fail modern sustainable design codes.
               </p>
@@ -149,19 +151,19 @@ export default function GreenguardGoldPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
             <Link href="/certifications/nsf-ansi-51" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>HYGIENE &amp; FOOD SAFETY</span>
-              <strong style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '16px' }}>NSF/ANSI 51 Food Safe →</strong>
+              <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>NSF/ANSI 51 Food Safe →</strong>
             </Link>
             <Link href="/certifications/astm-fire-rated" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>FIRE SAFETY CODE</span>
-              <strong style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '16px' }}>ASTM Class 1 Fire Rated →</strong>
+              <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>ASTM Class 1 Fire Rated →</strong>
             </Link>
             <Link href="/guarantee" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>WARRANTY ASSURANCE</span>
-              <strong style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '16px' }}>10-Year Renewable Guarantee →</strong>
+              <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>10-Year Renewable Guarantee →</strong>
             </Link>
             <Link href="/consultation" style={{ padding: '20px', background: '#141713', color: '#fff', border: '1px solid #141713', textDecoration: 'none' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#97a397', display: 'block', marginBottom: '6px' }}>SPECIFIER DESK</span>
-              <strong style={{ fontFamily: 'var(--serif, Georgia, serif)', fontSize: '16px', color: '#fff' }}>Consultation Form →</strong>
+              <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', color: '#fff', display: 'block' }}>Consultation Form →</strong>
             </Link>
           </div>
         </div>
