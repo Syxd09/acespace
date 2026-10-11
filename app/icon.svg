@@ -1,4 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="8" fill="#ffffff" />
-  <image href="/logo/icon-logo.jpg" x="2" y="2" width="60" height="60" preserveAspectRatio="xMidYMid meet" />
+  <defs>
+    <linearGradient id="ace-dark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e211d" />
+      <stop offset="100%" stop-color="#141613" />
+    </linearGradient>
+  </defs>
+  <!-- Architectural Dark Foundry Tile -->
+  <rect width="64" height="64" rx="14" fill="url(#ace-dark)" />
+  <rect width="62" height="62" x="1" y="1" rx="13" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" />
+
+  <!-- Monolithic Architectural Apex "A" -->
+  <g transform="translate(32, 33)">
+    <!-- Left Stela -->
+    <path d="M -16 15 L -4 -17 L 0 -17 L -10 15 Z" fill="#e9e8e2" />
+    <!-- Right Stela -->
+    <path d="M 16 15 L 4 -17 L 0 -17 L 10 15 Z" fill="#e9e8e2" />
+    <!-- Signature Mineral Crossbar in Ace Brand Red -->
+    <rect x="-12" y="2" width="24" height="4.5" rx="1.5" fill="#d43833" />
+    <!-- Precision Micro Dot -->
+    <circle cx="0" cy="-6" r="1.5" fill="#d43833" />
+  </g>
 </svg>

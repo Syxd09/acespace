@@ -117,8 +117,17 @@ export default function SampleTray() {
     if (isTrayOpen) {
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('lenis-stopped');
+      const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+      if (lenis && typeof lenis.stop === 'function') {
+        lenis.stop();
+      }
       return () => {
         document.body.style.overflow = originalOverflow;
+        document.documentElement.classList.remove('lenis-stopped');
+        if (lenis && typeof lenis.start === 'function') {
+          lenis.start();
+        }
       };
     }
   }, [isTrayOpen]);
@@ -220,6 +229,7 @@ export default function SampleTray() {
       {/* Side Slide-Over Panel */}
       <div
         id="sample-tray-drawer"
+        data-lenis-prevent="true"
         role="dialog"
         aria-modal="true"
         aria-label="Sample Specimen Tray"

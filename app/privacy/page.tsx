@@ -69,6 +69,16 @@ export default function PrivacyPage() {
               You maintain the right to inspect, update, or request full deletion of your contact records, dispatch subscriptions, or order history at any time by contacting our studio team at <a href="mailto:studio@acespaces.in" style={{ color: '#1a1d19', textDecoration: 'underline' }}>studio@acespaces.in</a>.
             </p>
           </section>
+
+          <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
+            <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>05.</span>
+              <span>Cookies &amp; Telemetry Architecture</span>
+            </h2>
+            <p>
+              We implement minimal, privacy-first storage. Strictly essential cookies retain your sample tray selections, security tokens, and CAD download access. Performance telemetry is deactivated until explicit affirmative consent is provided. You may adjust or revoke your consent preferences at any time using the <em>Cookie Preferences</em> trigger situated in the website footer.
+            </p>
+          </section>
         </div>
 
         <div style={{ marginTop: '60px', paddingTop: '24px', borderTop: '1px solid var(--line, #ddd8ce)' }}>

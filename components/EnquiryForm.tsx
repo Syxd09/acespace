@@ -23,6 +23,7 @@ export default function EnquiryForm() {
   const [phone, setPhone] = useState('');
   const [projectType, setProjectType] = useState('');
   const [message, setMessage] = useState('');
+  const [honeypot, setHoneypot] = useState('');
 
   // Listen for preset triggers from pathway cards
   useEffect(() => {
@@ -57,6 +58,7 @@ export default function EnquiryForm() {
           phone,
           projectType: projectType || 'General Consultation',
           message,
+          firm_url: honeypot,
         }),
       });
 
@@ -166,6 +168,18 @@ export default function EnquiryForm() {
           ⚠ {errorMessage}
         </div>
       )}
+
+      {/* Anti-Spam Bot Honeypot */}
+      <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+        <input
+          type="text"
+          name="firm_url"
+          tabIndex={-1}
+          autoComplete="off"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+        />
+      </div>
 
       <div className="spec-row">
         <span>Name *</span>

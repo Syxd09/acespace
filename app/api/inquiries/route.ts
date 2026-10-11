@@ -60,7 +60,15 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { name, email, phone, projectType, message } = body;
+    const { name, email, phone, projectType, message, firm_url, website, honeypot } = body;
+
+    // Silent honeypot drop for automated spam bots
+    if (firm_url || website || honeypot) {
+      return NextResponse.json(
+        { success: true, message: 'Inquiry received.' },
+        { status: 200, headers: noCacheHeaders }
+      );
+    }
 
     if (!name || typeof name !== 'string' || name.trim().length === 0) {
       return NextResponse.json(

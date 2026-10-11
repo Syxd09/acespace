@@ -42,6 +42,7 @@ export default function ProjectConsultationPage() {
   const [submitted, setSubmitted] = useState(false);
   const [inquiryNumber, setInquiryNumber] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -69,6 +70,7 @@ ${message}
           phone,
           projectType,
           message: fullMessage,
+          firm_url: honeypot,
         }),
       });
 
@@ -188,6 +190,17 @@ ${message}
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+                {/* Anti-Spam Bot Honeypot */}
+                <div style={{ display: 'none', position: 'absolute', left: '-9999px' }} aria-hidden="true">
+                  <input
+                    type="text"
+                    name="firm_url"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                  />
+                </div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#788078', marginBottom: '6px' }}>

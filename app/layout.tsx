@@ -8,6 +8,7 @@ import SampleTray from '@/components/SampleTray';
 import ArchitecturalAIBot from '@/components/ArchitecturalAIBot';
 import PageTransition from '@/components/PageTransition';
 import SmoothScroll from '@/components/SmoothScroll';
+import CookieConsent from '@/components/CookieConsent';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://acespacesindia.vercel.app'),
@@ -251,6 +252,7 @@ export default function RootLayout({
             <SiteFooter />
             <SampleTray />
             <ArchitecturalAIBot />
+            <CookieConsent />
           </SampleProvider>
         </SiteContentProvider>
       </body>

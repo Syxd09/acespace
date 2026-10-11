@@ -129,6 +129,11 @@ export default function MaterialModal({
 
     const originalOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    document.documentElement.classList.add('lenis-stopped');
+    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+    if (lenis && typeof lenis.stop === 'function') {
+      lenis.stop();
+    }
     window.addEventListener('keydown', handleKeyDown);
 
     if (cardRef.current) {
@@ -137,6 +142,10 @@ export default function MaterialModal({
 
     return () => {
       document.body.style.overflow = originalOverflow;
+      document.documentElement.classList.remove('lenis-stopped');
+      if (lenis && typeof lenis.start === 'function') {
+        lenis.start();
+      }
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onClose, handlePrev, handleNext]);
@@ -147,6 +156,7 @@ export default function MaterialModal({
 
   return createPortal(
     <div
+      data-lenis-prevent="true"
       className="material-modal-overlay"
       onClick={onClose}
       role="dialog"
@@ -190,6 +200,7 @@ export default function MaterialModal({
         {/* 1. PRIMARY SPECIMEN CARD (Self-Contained & Elegant) */}
         <div
           ref={cardRef}
+          data-lenis-prevent="true"
           className="material-modal-card"
         >
           {/* Close Button */}

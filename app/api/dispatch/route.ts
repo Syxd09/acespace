@@ -56,7 +56,15 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { email, source } = body;
+    const { email, source, website, firm_url, honeypot } = body;
+
+    // Silent honeypot drop for automated spam bots
+    if (website || firm_url || honeypot) {
+      return NextResponse.json(
+        { success: true, message: 'Subscription confirmed.' },
+        { status: 200, headers: noCacheHeaders }
+      );
+    }
 
     if (!email || typeof email !== 'string' || !EMAIL_REGEX.test(email.trim()) || email.trim().length > 120) {
       return NextResponse.json(

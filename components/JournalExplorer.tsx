@@ -23,11 +23,20 @@ export default function JournalExplorer() {
     if (activeArticle) {
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
+      document.documentElement.classList.add('lenis-stopped');
+      const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+      if (lenis && typeof lenis.stop === 'function') {
+        lenis.stop();
+      }
       if (modalRef.current) {
         modalRef.current.scrollTop = 0;
       }
       return () => {
         document.body.style.overflow = originalOverflow;
+        document.documentElement.classList.remove('lenis-stopped');
+        if (lenis && typeof lenis.start === 'function') {
+          lenis.start();
+        }
       };
     }
   }, [activeArticle]);
@@ -272,6 +281,7 @@ export default function JournalExplorer() {
       {/* Interactive Essay Reader Modal / Drawer */}
       {activeArticle && mounted && typeof document !== 'undefined' && createPortal(
         <div
+          data-lenis-prevent="true"
           style={{
             position: 'fixed',
             inset: 0,
@@ -284,6 +294,7 @@ export default function JournalExplorer() {
             alignItems: 'center',
             padding: 'clamp(14px, 3vh, 28px)',
             animation: 'modalFadeIn 0.2s ease-out',
+            overscrollBehavior: 'contain',
           }}
           onClick={() => setActiveArticle(null)}
           role="dialog"
@@ -291,18 +302,22 @@ export default function JournalExplorer() {
         >
           <div
             ref={modalRef}
+            data-lenis-prevent="true"
             style={{
               background: 'var(--paper)',
               width: '100%',
               maxWidth: '820px',
               maxHeight: 'min(90vh, 740px)',
               overflowY: 'auto',
+              overscrollBehavior: 'contain',
+              WebkitOverflowScrolling: 'touch',
               border: '1px solid var(--line)',
               boxShadow: '0 30px 80px rgba(0,0,0,0.4)',
               position: 'relative',
               padding: 'clamp(24px, 4vw, 48px)',
             }}
             onClick={(e) => e.stopPropagation()}
+            onWheel={(e) => e.stopPropagation()}
           >
             <button
               type="button"

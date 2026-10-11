@@ -578,6 +578,7 @@ export default function SpecimenZoomViewer({
         typeof document !== 'undefined' &&
         createPortal(
           <div
+            data-lenis-prevent="true"
             style={{
               position: 'fixed',
               inset: 0,

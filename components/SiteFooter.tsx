@@ -489,6 +489,27 @@ export default function SiteFooter() {
           <Link href="/certifications" style={{ color: '#7e897e', textDecoration: 'none' }}>Certifications</Link>
           <Link href="/guarantee" style={{ color: '#7e897e', textDecoration: 'none' }}>10-Yr Guarantee</Link>
           <Link href="/privacy" style={{ color: '#7e897e', textDecoration: 'none' }}>Privacy Policy</Link>
+          <button
+            type="button"
+            onClick={() => {
+              if (typeof window !== 'undefined') {
+                window.dispatchEvent(new CustomEvent('open-cookie-preferences'));
+              }
+            }}
+            style={{
+              background: 'none',
+              border: 'none',
+              padding: 0,
+              color: '#7e897e',
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '10px',
+              cursor: 'pointer',
+              textDecoration: 'underline',
+              textUnderlineOffset: '3px',
+            }}
+          >
+            Cookie Preferences
+          </button>
           <Link href="/terms" style={{ color: '#7e897e', textDecoration: 'none' }}>Terms of Supply</Link>
         </div>
       </div>
