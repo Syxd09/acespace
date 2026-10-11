@@ -263,12 +263,16 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       broadcastRealtimeEvent('CONTENT_UPDATED', currentData);
 
       // Server persistence with cache-busting
+      const adminToken = typeof window !== 'undefined' ? sessionStorage.getItem('acespaces_admin_token') : null;
+      const headers: Record<string, string> = {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+      };
+      if (adminToken) headers['Authorization'] = `Bearer ${adminToken}`;
+
       const res = await fetch(`/api/admin/content?_t=${Date.now()}`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache',
-        },
+        headers,
         body: JSON.stringify(currentData),
       });
 
@@ -314,9 +318,13 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       // Broadcast reset event to all tabs
       broadcastRealtimeEvent('CONTENT_UPDATED', defaultData);
 
+      const adminToken = typeof window !== 'undefined' ? sessionStorage.getItem('acespaces_admin_token') : null;
+      const deleteHeaders: Record<string, string> = { 'Cache-Control': 'no-cache' };
+      if (adminToken) deleteHeaders['Authorization'] = `Bearer ${adminToken}`;
+
       const res = await fetch(`/api/admin/content?_t=${Date.now()}`, {
         method: 'DELETE',
-        headers: { 'Cache-Control': 'no-cache' },
+        headers: deleteHeaders,
       });
 
       return res.ok;

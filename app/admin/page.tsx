@@ -235,11 +235,15 @@ export default function AdminPage() {
   const [isLoadingSubscribers, setIsLoadingSubscribers] = useState<boolean>(false);
   const [subscriberSearchQuery, setSubscriberSearchQuery] = useState<string>('');
 
-  // Check existing server session auth
+  // Check existing server session auth (Cookie + Bearer fallback)
   useEffect(() => {
     const checkServerAuth = async () => {
       try {
-        const res = await fetch('/api/admin/auth');
+        const token = typeof window !== 'undefined' ? sessionStorage.getItem('acespaces_admin_token') : null;
+        const headers: Record<string, string> = {};
+        if (token) headers['Authorization'] = `Bearer ${token}`;
+
+        const res = await fetch('/api/admin/auth', { headers });
         if (res.ok) {
           const data = await res.json();
           if (data.authenticated) {
@@ -382,11 +386,20 @@ export default function AdminPage() {
     }, 4000);
   };
 
+  // Auth header helper supporting cookie and bearer fallback
+  const getAuthHeaders = (): Record<string, string> => {
+    const token = typeof window !== 'undefined' ? sessionStorage.getItem('acespaces_admin_token') : null;
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  };
+
   // Fetch orders, inquiries, and dispatch subscribers with cache-busting timestamp
   const fetchOrders = async (isSilent = false) => {
     if (!isSilent) setIsLoadingOrders(true);
     try {
-      const res = await fetch(`/api/orders?_t=${Date.now()}`, { cache: 'no-store' });
+      const res = await fetch(`/api/orders?_t=${Date.now()}`, {
+        headers: getAuthHeaders(),
+        cache: 'no-store',
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.orders) setOrders(data.orders);
@@ -401,7 +414,10 @@ export default function AdminPage() {
   const fetchInquiries = async (isSilent = false) => {
     if (!isSilent) setIsLoadingInquiries(true);
     try {
-      const res = await fetch(`/api/inquiries?_t=${Date.now()}`, { cache: 'no-store' });
+      const res = await fetch(`/api/inquiries?_t=${Date.now()}`, {
+        headers: getAuthHeaders(),
+        cache: 'no-store',
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.inquiries) setInquiries(data.inquiries);
@@ -416,7 +432,10 @@ export default function AdminPage() {
   const fetchSubscribers = async (isSilent = false) => {
     if (!isSilent) setIsLoadingSubscribers(true);
     try {
-      const res = await fetch(`/api/dispatch?_t=${Date.now()}`, { cache: 'no-store' });
+      const res = await fetch(`/api/dispatch?_t=${Date.now()}`, {
+        headers: getAuthHeaders(),
+        cache: 'no-store',
+      });
       if (res.ok) {
         const data = await res.json();
         if (data.subscribers) setSubscribers(data.subscribers);
@@ -491,7 +510,7 @@ export default function AdminPage() {
     try {
       const res = await fetch('/api/orders', {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
         body: JSON.stringify({ id, status, notes }),
       });
       if (res.ok) {
@@ -510,7 +529,10 @@ export default function AdminPage() {
   const handleDeleteOrder = async (id: string) => {
     if (!confirm('Are you sure you want to delete this sample order record?')) return;
     try {
-      const res = await fetch(`/api/orders?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      const res = await fetch(`/api/orders?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+      });
       if (res.ok) {
         setOrders((prev) => prev.filter((o) => o.id !== id));
         if (selectedOrderId === id) setSelectedOrderId(null);
@@ -526,7 +548,7 @@ export default function AdminPage() {
     try {
       const res = await fetch('/api/inquiries', {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', ...getAuthHeaders() },
         body: JSON.stringify({ id, status, notes }),
       });
       if (res.ok) {
@@ -545,7 +567,10 @@ export default function AdminPage() {
   const handleDeleteInquiry = async (id: string) => {
     if (!confirm('Are you sure you want to delete this client enquiry?')) return;
     try {
-      const res = await fetch(`/api/inquiries?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      const res = await fetch(`/api/inquiries?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+      });
       if (res.ok) {
         setInquiries((prev) => prev.filter((i) => i.id !== id));
         broadcastRealtimeEvent('INQUIRY_DELETED', { id });
@@ -559,7 +584,10 @@ export default function AdminPage() {
   const handleDeleteSubscriber = async (id: string) => {
     if (!confirm('Remove subscriber from dispatch list?')) return;
     try {
-      const res = await fetch(`/api/dispatch?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      const res = await fetch(`/api/dispatch?id=${encodeURIComponent(id)}`, {
+        method: 'DELETE',
+        headers: getAuthHeaders(),
+      });
       if (res.ok) {
         setSubscribers((prev) => prev.filter((s) => s.id !== id));
         broadcastRealtimeEvent('DISPATCH_DELETED', { id });
@@ -633,10 +661,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       const res = await fetch('/api/admin/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ passkey: passkeyInput }),
+        body: JSON.stringify({ passkey: passkeyInput.trim() }),
       });
       const data = await res.json();
       if (res.ok && data.success) {
+        if (data.token && typeof window !== 'undefined') {
+          sessionStorage.setItem('acespaces_admin_token', data.token);
+        }
         setIsAuthenticated(true);
         setPasskeyInput('');
         setAuthError('');
@@ -658,6 +689,9 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       });
       const data = await res.json();
       if (res.ok && data.success) {
+        if (data.token && typeof window !== 'undefined') {
+          sessionStorage.setItem('acespaces_admin_token', data.token);
+        }
         setIsAuthenticated(true);
         setAuthError('');
         showToast('✓ Studio Console authenticated via Fast-Track.', 'success');
@@ -669,6 +703,9 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
   const handleLogout = async () => {
     try {
+      if (typeof window !== 'undefined') {
+        sessionStorage.removeItem('acespaces_admin_token');
+      }
       await fetch('/api/admin/auth', { method: 'DELETE' });
     } catch (e) {}
     setIsAuthenticated(false);

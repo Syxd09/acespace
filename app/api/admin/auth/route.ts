@@ -6,8 +6,8 @@ export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   try {
-    // 1. Rate limiting: 5 attempts per 15 minutes
-    const rateLimit = checkRateLimit(req, 'admin_auth', 5, 15 * 60 * 1000);
+    // 1. Rate limiting: 20 attempts per 15 minutes
+    const rateLimit = checkRateLimit(req, 'admin_auth', 20, 15 * 60 * 1000);
     if (!rateLimit.success) {
       return NextResponse.json(
         {
