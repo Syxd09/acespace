@@ -211,6 +211,8 @@ export default function SiteHeader() {
               : '1px solid rgba(255, 255, 255, 0.12)'
             : '1px solid var(--line)',
           color: isLightText ? '#fff' : 'var(--ink)',
+          transform: 'translateZ(0)',
+          WebkitTransform: 'translateZ(0)',
           boxShadow: (isScrolled || activeMegaMenu) ? '0 10px 30px rgba(0, 0, 0, 0.05)' : 'none',
           transition: 'background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.35s ease, height 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease',
         }}
@@ -401,12 +403,17 @@ export default function SiteHeader() {
                 width: '18px',
                 height: '18px',
                 borderRadius: '50%',
-                background: isLightText ? '#fff' : 'var(--ink)',
-                color: isLightText ? 'var(--ink)' : '#fff',
+                background: shortlist.length > 0
+                  ? 'var(--brand-red, #d43833)'
+                  : isLightText ? '#fff' : 'var(--ink)',
+                color: shortlist.length > 0
+                  ? '#fff'
+                  : isLightText ? 'var(--ink)' : '#fff',
                 display: 'grid',
                 placeItems: 'center',
                 fontSize: '10px',
                 fontWeight: 700,
+                boxShadow: shortlist.length > 0 ? '0 0 10px rgba(212, 56, 51, 0.5)' : 'none',
                 transition: 'all 0.3s ease',
               }}
             >
@@ -498,11 +505,11 @@ export default function SiteHeader() {
             transform: 'scaleX(0)',
             willChange: 'transform',
             background: isLightText
-              ? 'linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.95) 88%, #ef4444 100%)'
-              : 'linear-gradient(90deg, rgba(30, 33, 29, 0.8) 0%, #1e211d 88%, #dc2626 96%, #ef4444 100%)',
+              ? 'linear-gradient(90deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.88) 75%, var(--brand-red, #d43833) 100%)'
+              : 'linear-gradient(90deg, rgba(30, 33, 29, 0.8) 0%, #1e211d 75%, var(--brand-red, #d43833) 100%)',
             boxShadow: isLightText
-              ? '0 0 10px rgba(239, 68, 68, 0.5), 0 0 2px rgba(255, 255, 255, 0.9)'
-              : '0 1px 3px rgba(30, 33, 29, 0.25), 0 0 6px rgba(239, 68, 68, 0.35)',
+              ? '0 0 10px rgba(212, 56, 51, 0.6), 0 0 2px rgba(255, 255, 255, 0.9)'
+              : '0 1px 3px rgba(30, 33, 29, 0.25), 0 0 8px rgba(212, 56, 51, 0.4)',
             opacity: 0,
             transition: 'opacity 0.2s ease, background 0.3s ease, box-shadow 0.3s ease',
             pointerEvents: 'none',

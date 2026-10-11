@@ -134,7 +134,7 @@ export default function HeroSlider() {
       <div className="hero-slider-controls">
         {/* Specimen Tag */}
         <div className="specimen-tag" style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          {activeSlide.specimen} • {activeSlide.location}
+          {activeSlide.specimen} <span style={{ color: 'var(--brand-red, #d43833)', margin: '0 5px' }}>•</span> {activeSlide.location}
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -169,7 +169,7 @@ export default function HeroSlider() {
 
           {/* Slide Indicator & Progress Bar */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#fff' }}>
-            <span>0{currentSlide + 1}</span>
+            <span style={{ color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>0{currentSlide + 1}</span>
             <div
               style={{
                 width: '70px',
@@ -189,7 +189,7 @@ export default function HeroSlider() {
                   top: 0,
                   bottom: 0,
                   width: '100%',
-                  background: '#fff',
+                  background: 'linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 75%, var(--brand-red, #d43833) 100%)',
                   transformOrigin: 'left',
                   animation: 'heroProgress 5000ms linear forwards',
                 }}

@@ -21,15 +21,16 @@ export default function SmoothScroll() {
       return;
     }
 
-    // 2. Initialize Lenis with architectural, tactile easing physics
+    // 2. Initialize Lenis with architectural, ultra-silky kinetic lerp physics
     const lenis = new Lenis({
-      duration: 1.15,
+      lerp: 0.08,
+      duration: 1.25,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.95,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.05,
+      touchMultiplier: 1.15,
       infinite: false,
     });
 
@@ -45,6 +46,15 @@ export default function SmoothScroll() {
       rafId = requestAnimationFrame(raf);
     }
     rafId = requestAnimationFrame(raf);
+
+    // Dynamic auto-sync: keep Lenis bounds updated when images or dynamic content load
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && document.body) {
+      resizeObserver = new ResizeObserver(() => {
+        lenis.resize();
+      });
+      resizeObserver.observe(document.body);
+    }
 
     const scrollToHashElement = (hash: string) => {
       const targetId = hash.replace(/^#/, '').toLowerCase().trim();
@@ -150,6 +160,7 @@ export default function SmoothScroll() {
 
     return () => {
       cancelAnimationFrame(rafId);
+      if (resizeObserver) resizeObserver.disconnect();
       document.removeEventListener('click', handleAnchorClick);
       window.removeEventListener('hashchange', handleHashChange);
       lenis.destroy();

@@ -43,7 +43,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
       window.scrollTo({ top: 0, behavior: 'instant' });
       (window as unknown as { __lenis?: { scrollTo: (target: number, opts: { immediate: boolean }) => void } }).__lenis?.scrollTo(0, { immediate: true });
 
-      // Step 1: Curtain covers the screen (350ms)
+      // Step 1: Curtain covers the screen (450ms)
       const tCover = setTimeout(() => {
         setDisplayChildren(children);
         prevPathRef.current = pathname;
@@ -66,7 +66,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
           (window as unknown as { __lenis?: { scrollTo: (target: number, opts: { immediate: boolean }) => void } }).__lenis?.scrollTo(0, { immediate: true });
         }
 
-        // Step 2: Curtain sweeps away (450ms)
+        // Step 2: Curtain sweeps away (550ms - Total 1.0 second)
         const tReveal = setTimeout(() => {
           setTransitionStage('idle');
           if (typeof window !== 'undefined') {
@@ -118,10 +118,10 @@ export default function PageTransition({ children }: { children: React.ReactNode
               }
             }
           }
-        }, 450);
+        }, 550);
 
         return () => clearTimeout(tReveal);
-      }, 350);
+      }, 450);
 
       return () => clearTimeout(tCover);
     } else {
@@ -145,6 +145,8 @@ export default function PageTransition({ children }: { children: React.ReactNode
           alignItems: 'center',
           background: '#191c18',
           color: '#ede8db',
+          borderBottom: '2px solid var(--brand-red, #d43833)',
+          boxShadow: '0 4px 24px rgba(212, 56, 51, 0.25)',
           transform:
             transitionStage === 'covering'
               ? 'translateY(0%)'
@@ -153,9 +155,9 @@ export default function PageTransition({ children }: { children: React.ReactNode
               : 'translateY(100%)',
           transition:
             transitionStage === 'covering'
-              ? 'transform 0.35s cubic-bezier(0.77, 0, 0.175, 1)'
-              : transitionStage === 'revealing'
               ? 'transform 0.45s cubic-bezier(0.77, 0, 0.175, 1)'
+              : transitionStage === 'revealing'
+              ? 'transform 0.55s cubic-bezier(0.77, 0, 0.175, 1)'
               : 'none',
         }}
       >
@@ -198,9 +200,22 @@ export default function PageTransition({ children }: { children: React.ReactNode
               fontFamily: 'DM Mono, monospace',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: 'rgba(237, 232, 219, 0.8)',
+              color: 'rgba(237, 232, 219, 0.85)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
             }}
           >
+            <span
+              style={{
+                width: '5px',
+                height: '5px',
+                borderRadius: '50%',
+                background: 'var(--brand-red, #d43833)',
+                boxShadow: '0 0 8px rgba(212, 56, 51, 0.8)',
+                display: 'inline-block',
+              }}
+            />
             {targetLabel}
           </span>
         </div>
@@ -214,7 +229,7 @@ export default function PageTransition({ children }: { children: React.ReactNode
         style={{
           opacity: transitionStage === 'covering' ? 0.7 : 1,
           transform: transitionStage === 'covering' ? 'scale(0.98)' : 'none',
-          transition: 'opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'opacity 0.45s ease, transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)',
           outline: 'none',
         }}
       >

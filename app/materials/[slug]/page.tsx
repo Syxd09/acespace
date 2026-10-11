@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { materials as defaultMaterials } from '@/data/materials';
@@ -250,12 +251,65 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
             </h2>
             <div className="card-grid" style={{ paddingBottom: '0' }}>
               {relatedProjects.map((p) => (
-                <Link key={p.slug} className="info-card" href={`/projects/${p.slug}`}>
-                  <span className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '8px' }}>
-                    {p.subtitle} / {p.location}
-                  </span>
-                  <h3>{p.title}</h3>
-                  <p>{p.application}</p>
+                <Link key={p.slug} className="project-preview-card" href={`/projects/${p.slug}`}>
+                  {/* Project Photograph */}
+                  <div
+                    style={{
+                      position: 'relative',
+                      width: '100%',
+                      height: '240px',
+                      overflow: 'hidden',
+                      background: '#191c18',
+                    }}
+                  >
+                    <Image
+                      src={p.image || '/assets/hero-ace.png'}
+                      alt={p.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      style={{
+                        objectFit: 'cover',
+                      }}
+                      className="preview-img"
+                    />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '12px',
+                        right: '12px',
+                        background: 'rgba(25, 28, 24, 0.7)',
+                        backdropFilter: 'blur(6px)',
+                        color: '#ede8db',
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '9px',
+                        letterSpacing: '0.08em',
+                        textTransform: 'uppercase',
+                        padding: '4px 8px',
+                      }}
+                    >
+                      {p.category}
+                    </div>
+                  </div>
+
+                  {/* Content Details */}
+                  <div style={{ padding: '24px 22px 28px', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+                    <div>
+                      <span className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '8px', display: 'block', fontSize: '10px' }}>
+                        {p.subtitle} / {p.location}
+                      </span>
+                      <h3 style={{ fontFamily: 'var(--serif)', fontSize: '26px', fontWeight: 400, margin: '0 0 10px', lineHeight: 1.15, color: 'var(--ink)' }}>
+                        {p.title}
+                      </h3>
+                      <p style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', margin: 0 }}>
+                        {p.application}
+                      </p>
+                    </div>
+                    <div style={{ marginTop: '22px', paddingTop: '16px', borderTop: '1px solid rgba(30, 33, 29, 0.1)' }}>
+                      <span className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+                        View Case Study <span>↗</span>
+                      </span>
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>

@@ -111,13 +111,15 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
             if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
             if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);
             if (parsed.projects && parsed.projects.length > 0) setProjects(parsed.projects);
-            if (parsed.about) setAbout(parsed.about);
+            if (parsed.about) {
+              setAbout(prev => ({ ...defaultAboutContent, ...(prev || {}), ...parsed.about }));
+            }
             if (parsed.studioContact) {
               // Ensure dummy placeholder number from older builds is never used
               if (parsed.studioContact.whatsappNumber?.includes('98450')) {
                 setStudioContact(defaultStudioContact);
               } else {
-                setStudioContact(parsed.studioContact);
+                setStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), ...parsed.studioContact }));
               }
             }
           } else {
@@ -150,8 +152,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         if (data.applicationSectors && data.applicationSectors.length > 0) setApplicationSectors(data.applicationSectors);
         if (data.journalArticles && data.journalArticles.length > 0) setJournalArticles(data.journalArticles);
         if (data.projects && data.projects.length > 0) setProjects(data.projects);
-        if (data.studioContact) setStudioContact(data.studioContact);
-        if (data.about) setAbout(data.about);
+        if (data.studioContact) setStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), ...data.studioContact }));
+        if (data.about) setAbout(prev => ({ ...defaultAboutContent, ...(prev || {}), ...data.about }));
 
         // Keep local storage synchronized with timestamp
         if (typeof window !== 'undefined') {
@@ -182,8 +184,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         if (payload.applicationSectors && payload.applicationSectors.length > 0) setApplicationSectors(payload.applicationSectors);
         if (payload.journalArticles && payload.journalArticles.length > 0) setJournalArticles(payload.journalArticles);
         if (payload.projects && payload.projects.length > 0) setProjects(payload.projects);
-        if (payload.studioContact) setStudioContact(payload.studioContact);
-        if (payload.about) setAbout(payload.about);
+        if (payload.studioContact) setStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), ...payload.studioContact }));
+        if (payload.about) setAbout(prev => ({ ...defaultAboutContent, ...(prev || {}), ...payload.about }));
       } else {
         refreshContent();
       }
@@ -213,8 +215,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
           if (parsed.applicationSectors) setApplicationSectors(parsed.applicationSectors);
           if (parsed.journalArticles) setJournalArticles(parsed.journalArticles);
           if (parsed.projects) setProjects(parsed.projects);
-          if (parsed.studioContact) setStudioContact(parsed.studioContact);
-          if (parsed.about) setAbout(parsed.about);
+          if (parsed.studioContact) setStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), ...parsed.studioContact }));
+          if (parsed.about) setAbout(prev => ({ ...defaultAboutContent, ...(prev || {}), ...parsed.about }));
         } catch {}
       }
     };
@@ -238,8 +240,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
       if (updated.applicationSectors) setApplicationSectors(updated.applicationSectors);
       if (updated.journalArticles) setJournalArticles(updated.journalArticles);
       if (updated.projects) setProjects(updated.projects);
-      if (updated.studioContact) setStudioContact(updated.studioContact);
-      if (updated.about) setAbout(updated.about);
+      if (updated.studioContact) setStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), ...updated.studioContact }));
+      if (updated.about) setAbout(prev => ({ ...defaultAboutContent, ...(prev || {}), ...updated.about }));
 
       const currentData: SiteContent = {
         heroSlides: updated.heroSlides || heroSlides,
@@ -247,8 +249,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
         applicationSectors: updated.applicationSectors || applicationSectors,
         journalArticles: updated.journalArticles || journalArticles,
         projects: updated.projects || projects,
-        studioContact: updated.studioContact || studioContact,
-        about: updated.about || about,
+        studioContact: { ...defaultStudioContact, ...(studioContact || {}), ...(updated.studioContact || {}) },
+        about: { ...defaultAboutContent, ...(about || {}), ...(updated.about || {}) },
         updatedAt: new Date().toISOString(),
       };
 

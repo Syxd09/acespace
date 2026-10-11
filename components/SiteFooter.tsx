@@ -49,25 +49,27 @@ export default function SiteFooter() {
     setIsSubmitting(true);
     setSubscribeError(null);
 
+    const cleanEmail = email.trim();
+
     try {
       const res = await fetch('/api/dispatch', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, source: 'Footer Dispatch Box' }),
+        body: JSON.stringify({ email: cleanEmail, source: 'Footer Dispatch Box' }),
       });
 
       const data = await res.json();
       if (res.ok && data.success) {
         setIsSubscribed(true);
         // Instant broadcast to Admin Console
-        broadcastRealtimeEvent('DISPATCH_CREATED', { email });
+        broadcastRealtimeEvent('DISPATCH_CREATED', { email: cleanEmail, subscriber: data.subscriber });
       } else {
         setSubscribeError(data.error || 'Unable to subscribe. Please try again.');
       }
     } catch {
       // Offline fallback: still show confirmed to customer while logging
       setIsSubscribed(true);
-      broadcastRealtimeEvent('DISPATCH_CREATED', { email });
+      broadcastRealtimeEvent('DISPATCH_CREATED', { email: cleanEmail });
     } finally {
       setIsSubmitting(false);
     }
@@ -142,6 +144,7 @@ export default function SiteFooter() {
         <div style={{
           background: 'rgba(255, 255, 255, 0.03)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
+          borderTop: '2px solid var(--brand-red, #d43833)',
           padding: '24px 28px',
           display: 'flex',
           flexDirection: 'column',
@@ -178,44 +181,54 @@ export default function SiteFooter() {
               ✓ Dispatch briefing confirmed. Specifier monograph sent to {email}.
             </div>
           ) : (
-            <form className="footer-newsletter-form" onSubmit={handleSubscribe} style={{ display: 'flex', gap: '8px' }}>
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                placeholder="architect@firm.com"
-                style={{
-                  flex: 1,
-                  background: 'rgba(0, 0, 0, 0.4)',
-                  border: '1px solid rgba(255, 255, 255, 0.18)',
-                  padding: '10px 14px',
-                  color: '#fff',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
-                  outline: 'none',
-                }}
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                style={{
-                  background: '#e9e8e2',
-                  color: '#141713',
-                  border: 'none',
-                  padding: '10px 18px',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  letterSpacing: '0.06em',
-                  textTransform: 'uppercase',
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                  opacity: isSubmitting ? 0.7 : 1,
-                }}
-              >
-                {isSubmitting ? 'Joining...' : 'Join Dispatch →'}
-              </button>
+            <form className="footer-newsletter-form" onSubmit={handleSubscribe} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="architect@firm.com"
+                  onFocus={e => (e.currentTarget.style.borderColor = 'var(--brand-red, #d43833)')}
+                  onBlur={e => (e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)')}
+                  style={{
+                    flex: 1,
+                    background: 'rgba(0, 0, 0, 0.4)',
+                    border: '1px solid rgba(255, 255, 255, 0.18)',
+                    padding: '10px 14px',
+                    color: '#fff',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    outline: 'none',
+                    transition: 'border-color 0.2s ease',
+                  }}
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  style={{
+                    background: '#e9e8e2',
+                    color: '#141713',
+                    border: 'none',
+                    padding: '10px 18px',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                    cursor: 'pointer',
+                    whiteSpace: 'nowrap',
+                    opacity: isSubmitting ? 0.7 : 1,
+                  }}
+                >
+                  {isSubmitting ? 'Joining...' : 'Join Dispatch →'}
+                </button>
+              </div>
+              {subscribeError && (
+                <div style={{ color: '#ef4444', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                  ⚠ {subscribeError}
+                </div>
+              )}
             </form>
           )}
         </div>

@@ -54,8 +54,28 @@ export default function AdminPage() {
     resetToDefaults,
   } = useSiteContent();
 
-  const [localStudioContact, setLocalStudioContact] = useState<StudioContactConfig>(defaultStudioContact);
-  const [localAboutContent, setLocalAboutContent] = useState<AboutContentConfig>(defaultAboutContent);
+  const [localStudioContact, setLocalStudioContact] = useState<StudioContactConfig>(() => ({
+    ...defaultStudioContact,
+    ...(contextStudioContact || {}),
+  }));
+  const [localAboutContent, setLocalAboutContent] = useState<AboutContentConfig>(() => ({
+    ...defaultAboutContent,
+    ...(contextAbout || {}),
+  }));
+
+  const safeAbout: AboutContentConfig = {
+    ...defaultAboutContent,
+    ...(localAboutContent || {}),
+    pillars:
+      (localAboutContent?.pillars && localAboutContent.pillars.length >= 6)
+        ? localAboutContent.pillars
+        : (defaultAboutContent.pillars || []),
+  };
+
+  const safeStudioContact: StudioContactConfig = {
+    ...defaultStudioContact,
+    ...(localStudioContact || {}),
+  };
 
   // Authentication
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -260,10 +280,18 @@ export default function AdminPage() {
       }
     }
     if (contextStudioContact) {
-      setLocalStudioContact(contextStudioContact);
+      setLocalStudioContact(prev => ({
+        ...defaultStudioContact,
+        ...(prev || {}),
+        ...contextStudioContact,
+      }));
     }
     if (contextAbout) {
-      setLocalAboutContent(contextAbout);
+      setLocalAboutContent(prev => ({
+        ...defaultAboutContent,
+        ...(prev || {}),
+        ...contextAbout,
+      }));
     }
   }, [contextHeroSlides, contextMaterials, contextSectors, contextJournals, contextProjects, contextStudioContact, contextAbout, selectedMaterialSlug, selectedJournalSlug, selectedProjectSlug]);
 
@@ -1268,14 +1296,16 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
   // =========================================================================
   const updateAboutField = <K extends keyof AboutContentConfig>(field: K, value: AboutContentConfig[K]) => {
     setLocalAboutContent(prev => ({
-      ...prev,
+      ...defaultAboutContent,
+      ...(prev || {}),
       [field]: value,
     }));
   };
 
   const updateAboutPillar = (index: number, field: keyof AboutPhilosophyPillar, value: string) => {
     setLocalAboutContent(prev => {
-      const currentPillars = prev.pillars && prev.pillars.length >= 6 ? [...prev.pillars] : [...(defaultAboutContent.pillars || [])];
+      const base = { ...defaultAboutContent, ...(prev || {}) };
+      const currentPillars = base.pillars && base.pillars.length >= 6 ? [...base.pillars] : [...(defaultAboutContent.pillars || [])];
       if (currentPillars[index]) {
         currentPillars[index] = {
           ...currentPillars[index],
@@ -1283,14 +1313,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
         };
       }
       return {
-        ...prev,
+        ...base,
         pillars: currentPillars,
       };
     });
   };
 
   const handleSaveAbout = async () => {
-    const success = await handlePersistContent({ about: localAboutContent });
+    const success = await handlePersistContent({ about: safeAbout });
     if (success) {
       showToast('✓ Studio Story & About Page updated & live on /about!', 'success');
     } else {
@@ -1971,7 +2001,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                 <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                   <a
-                    href={generateWhatsAppUrl(localStudioContact.whatsappNumber, localStudioContact.whatsappDefaultMessage)}
+                    href={generateWhatsAppUrl(safeStudioContact.whatsappNumber, safeStudioContact.whatsappDefaultMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
@@ -2009,8 +2039,8 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </label>
                   <input
                     type="text"
-                    value={localStudioContact.whatsappNumber}
-                    onChange={(e) => setLocalStudioContact({ ...localStudioContact, whatsappNumber: e.target.value })}
+                    value={safeStudioContact.whatsappNumber || ''}
+                    onChange={(e) => setLocalStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), whatsappNumber: e.target.value }))}
                     placeholder="+91 98450 12345"
                     style={{
                       width: '100%',
@@ -2031,8 +2061,8 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </label>
                   <input
                     type="text"
-                    value={localStudioContact.whatsappDisplay}
-                    onChange={(e) => setLocalStudioContact({ ...localStudioContact, whatsappDisplay: e.target.value })}
+                    value={safeStudioContact.whatsappDisplay || ''}
+                    onChange={(e) => setLocalStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), whatsappDisplay: e.target.value }))}
                     placeholder="+91 98450 12345"
                     style={{
                       width: '100%',
@@ -2050,8 +2080,8 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </label>
                   <input
                     type="text"
-                    value={localStudioContact.availabilityStatus}
-                    onChange={(e) => setLocalStudioContact({ ...localStudioContact, availabilityStatus: e.target.value })}
+                    value={safeStudioContact.availabilityStatus || ''}
+                    onChange={(e) => setLocalStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), availabilityStatus: e.target.value }))}
                     placeholder="Studio Online · Material Advisory"
                     style={{
                       width: '100%',
@@ -2070,8 +2100,8 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 </label>
                 <input
                   type="text"
-                  value={localStudioContact.whatsappDefaultMessage}
-                  onChange={(e) => setLocalStudioContact({ ...localStudioContact, whatsappDefaultMessage: e.target.value })}
+                  value={safeStudioContact.whatsappDefaultMessage || ''}
+                  onChange={(e) => setLocalStudioContact(prev => ({ ...defaultStudioContact, ...(prev || {}), whatsappDefaultMessage: e.target.value }))}
                   placeholder="Hello Ace Spaces Studio, I would like to consult on material specification for an upcoming project."
                   style={{
                     width: '100%',
@@ -2201,6 +2231,130 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </button>
                 </div>
               </div>
+            </div>
+
+            {/* Real-Time Specifier Dispatch Signups Stream */}
+            <div style={{ background: '#ffffff', padding: '24px 28px', border: '1px solid rgba(0,0,0,0.08)', marginTop: '24px', borderRadius: '2px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', flexWrap: 'wrap', gap: '12px' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2e7d32', display: 'inline-block' }} />
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#2e7d32', fontWeight: 600 }}>
+                      Live Footer Dispatch Subscribers
+                    </span>
+                  </div>
+                  <h3 style={{ fontSize: '18px', fontWeight: 500, margin: 0 }}>
+                    Latest Newsletter &amp; Monograph Signups ({subscribers.length})
+                  </h3>
+                  <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6d746d', margin: '4px 0 0 0' }}>
+                    Emails submitted via the footer &quot;Specifier Dispatch &amp; Formulation Monographs&quot; form across the site.
+                  </p>
+                </div>
+
+                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+                  <button
+                    onClick={() => setActiveTab('dispatch')}
+                    style={{
+                      padding: '8px 16px',
+                      background: '#1a1d19',
+                      color: '#ffffff',
+                      border: 'none',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    View All Subscribers ({subscribers.length}) →
+                  </button>
+                  <button
+                    onClick={() => fetchSubscribers()}
+                    style={{
+                      padding: '8px 14px',
+                      background: '#ffffff',
+                      border: '1px solid rgba(0,0,0,0.15)',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '11px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    ↻ Refresh
+                  </button>
+                </div>
+              </div>
+
+              {subscribers.length === 0 ? (
+                <div style={{ padding: '24px', background: '#faf9f5', border: '1px dashed rgba(0,0,0,0.15)', textAlign: 'center', fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#788078' }}>
+                  No newsletter subscribers yet. Enter an email in the website footer to see it appear here instantly in real time.
+                </div>
+              ) : (
+                <div style={{ overflowX: 'auto' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                    <thead>
+                      <tr style={{ background: '#f5f4ee', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
+                        <th style={{ padding: '10px 14px', color: '#788078', fontWeight: 500, width: '40px' }}>#</th>
+                        <th style={{ padding: '10px 14px', color: '#788078', fontWeight: 500 }}>Email Address</th>
+                        <th style={{ padding: '10px 14px', color: '#788078', fontWeight: 500 }}>Source</th>
+                        <th style={{ padding: '10px 14px', color: '#788078', fontWeight: 500 }}>Subscribed On</th>
+                        <th style={{ padding: '10px 14px', color: '#788078', fontWeight: 500 }}>Status</th>
+                        <th style={{ padding: '10px 14px', color: '#788078', fontWeight: 500, textAlign: 'right' }}>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {subscribers.slice(0, 5).map((sub, idx) => (
+                        <tr key={sub.id} style={{ borderBottom: '1px solid #f0efe8' }}>
+                          <td style={{ padding: '10px 14px', color: '#888' }}>{idx + 1}</td>
+                          <td style={{ padding: '10px 14px', fontWeight: 600, color: '#1a1d19' }}>
+                            <a href={`mailto:${sub.email}`} style={{ color: '#1a1d19', textDecoration: 'none' }}>
+                              {sub.email}
+                            </a>
+                          </td>
+                          <td style={{ padding: '10px 14px', color: '#666' }}>{sub.source}</td>
+                          <td style={{ padding: '10px 14px', color: '#666' }}>
+                            {new Date(sub.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}
+                          </td>
+                          <td style={{ padding: '10px 14px' }}>
+                            <span style={{ background: '#e8f5e9', color: '#2e7d32', border: '1px solid #a5d6a7', padding: '2px 8px', fontSize: '9px', fontWeight: 600 }}>
+                              {sub.status.toUpperCase()}
+                            </span>
+                          </td>
+                          <td style={{ padding: '10px 14px', textAlign: 'right' }}>
+                            <button
+                              onClick={() => {
+                                navigator.clipboard.writeText(sub.email);
+                                showToast(`✓ Copied ${sub.email}`, 'success');
+                              }}
+                              style={{
+                                background: 'transparent',
+                                border: '1px solid #ccc',
+                                padding: '4px 8px',
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '10px',
+                                cursor: 'pointer',
+                                marginRight: '8px',
+                              }}
+                            >
+                              📋 Copy
+                            </button>
+                            <a
+                              href={`mailto:${sub.email}?subject=Ace%20Spaces%20—%20Specifier%20Dispatch%20Monograph`}
+                              style={{
+                                textDecoration: 'none',
+                                color: '#1a1d19',
+                                border: '1px solid #ccc',
+                                padding: '4px 8px',
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '10px',
+                              }}
+                            >
+                              ✉ Email
+                            </a>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
 
             {/* AI Assistant Intelligence & Multi-Channel Dispatch Hub */}
@@ -5990,7 +6144,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                         <input
                           type="text"
-                          value={localAboutContent.familyPhotoUrl || ''}
+                          value={safeAbout.familyPhotoUrl || ''}
                           onChange={e => updateAboutField('familyPhotoUrl', e.target.value)}
                           placeholder="/images/about/company-family.jpg"
                           style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -6035,7 +6189,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </label>
                       <input
                         type="text"
-                        value={localAboutContent.familyPhotoCaption || ''}
+                        value={safeAbout.familyPhotoCaption || ''}
                         onChange={e => updateAboutField('familyPhotoCaption', e.target.value)}
                         placeholder="Ace Spaces Foundry & Craft Team"
                         style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -6048,7 +6202,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </label>
                       <input
                         type="text"
-                        value={localAboutContent.familyPhotoSubtitle || ''}
+                        value={safeAbout.familyPhotoSubtitle || ''}
                         onChange={e => updateAboutField('familyPhotoSubtitle', e.target.value)}
                         placeholder="The artisanal hands behind continuous monolithic mineral architecture in Bengaluru"
                         style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -6062,9 +6216,9 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       Live Header Preview on /about
                     </div>
                     <div style={{ position: 'relative', width: '100%', height: '240px', background: '#1a1d19', overflow: 'hidden', border: '1px solid #ddd' }}>
-                      {localAboutContent.familyPhotoUrl ? (
+                      {safeAbout.familyPhotoUrl ? (
                         <img
-                          src={localAboutContent.familyPhotoUrl}
+                          src={safeAbout.familyPhotoUrl}
                           alt="Company Family"
                           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
@@ -6076,10 +6230,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       )}
                       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px', background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)', color: '#fff' }}>
                         <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600 }}>
-                          {localAboutContent.familyPhotoCaption || 'Ace Spaces Foundry & Craft Team'}
+                          {safeAbout.familyPhotoCaption || 'Ace Spaces Foundry & Craft Team'}
                         </div>
                         <div style={{ fontFamily: 'system-ui, sans-serif', fontSize: '10px', color: '#ccc', marginTop: '2px' }}>
-                          {localAboutContent.familyPhotoSubtitle || 'Artisanal team in Bengaluru'}
+                          {safeAbout.familyPhotoSubtitle || 'Artisanal team in Bengaluru'}
                         </div>
                       </div>
                     </div>
@@ -6110,7 +6264,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         </label>
                         <input
                           type="text"
-                          value={localAboutContent.manifestoHeadline || ''}
+                          value={safeAbout.manifestoHeadline || ''}
                           onChange={e => updateAboutField('manifestoHeadline', e.target.value)}
                           placeholder="From material to masterpiece — we engineer possibilities into form."
                           style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'var(--serif, serif)', fontSize: '15px' }}
@@ -6122,7 +6276,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         </label>
                         <textarea
                           rows={2}
-                          value={localAboutContent.manifestoLead || ''}
+                          value={safeAbout.manifestoLead || ''}
                           onChange={e => updateAboutField('manifestoLead', e.target.value)}
                           placeholder="At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces."
                           style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'system-ui, sans-serif', fontSize: '12px', lineHeight: 1.5 }}
@@ -6134,7 +6288,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         </label>
                         <input
                           type="text"
-                          value={localAboutContent.manifestoSub || ''}
+                          value={safeAbout.manifestoSub || ''}
                           onChange={e => updateAboutField('manifestoSub', e.target.value)}
                           placeholder="Every detail is considered. Every dimension matters. Every creation is built around your vision."
                           style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -6149,7 +6303,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </label>
                     <input
                       type="text"
-                      value={localAboutContent.chapter1Title || ''}
+                      value={safeAbout.chapter1Title || ''}
                       onChange={e => updateAboutField('chapter1Title', e.target.value)}
                       placeholder="Built on obsession."
                       style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'var(--serif, serif)', fontSize: '16px' }}
@@ -6162,7 +6316,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </label>
                     <textarea
                       rows={4}
-                      value={localAboutContent.chapter1Narrative || ''}
+                      value={safeAbout.chapter1Narrative || ''}
                       onChange={e => updateAboutField('chapter1Narrative', e.target.value)}
                       placeholder="From material to masterpiece — we engineer possibilities into form. At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces..."
                       style={{ width: '100%', padding: '10px 12px', border: '1px solid #ddd', fontFamily: 'system-ui, sans-serif', fontSize: '13px', lineHeight: 1.6 }}
@@ -6188,7 +6342,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </label>
                     <input
                       type="text"
-                      value={localAboutContent.chapter2Title || ''}
+                      value={safeAbout.chapter2Title || ''}
                       onChange={e => updateAboutField('chapter2Title', e.target.value)}
                       placeholder="What we stand for."
                       style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -6197,8 +6351,8 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '20px' }}>
-                  {((localAboutContent.pillars && localAboutContent.pillars.length >= 6)
-                    ? localAboutContent.pillars
+                  {((safeAbout.pillars && safeAbout.pillars.length >= 6)
+                    ? safeAbout.pillars
                     : (defaultAboutContent.pillars || [])
                   ).map((pillar, idx) => (
                     <div
@@ -6299,7 +6453,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </label>
                       <input
                         type="text"
-                        value={localAboutContent.chapter3Title || ''}
+                        value={safeAbout.chapter3Title || ''}
                         onChange={e => updateAboutField('chapter3Title', e.target.value)}
                         placeholder="How we work: Bangalore Foundry."
                         style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'var(--serif, serif)', fontSize: '16px' }}
@@ -6313,7 +6467,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                         <input
                           type="text"
-                          value={localAboutContent.workshopPhotoUrl || ''}
+                          value={safeAbout.workshopPhotoUrl || ''}
                           onChange={e => updateAboutField('workshopPhotoUrl', e.target.value)}
                           placeholder="/images/images/app_residential_calacatta_greige_1.jpg"
                           style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -6357,7 +6511,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </label>
                       <input
                         type="text"
-                        value={localAboutContent.workshopPhotoCaption || ''}
+                        value={safeAbout.workshopPhotoCaption || ''}
                         onChange={e => updateAboutField('workshopPhotoCaption', e.target.value)}
                         placeholder="5-Axis CNC Thermoforming and Continuous 12mm Seamless Inconspicuous Joinery"
                         style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
@@ -6370,9 +6524,9 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       Workshop Photo Live Preview
                     </div>
                     <div style={{ position: 'relative', width: '100%', height: '220px', background: '#1a1d19', overflow: 'hidden', border: '1px solid #ddd' }}>
-                      {localAboutContent.workshopPhotoUrl ? (
+                      {safeAbout.workshopPhotoUrl ? (
                         <img
-                          src={localAboutContent.workshopPhotoUrl}
+                          src={safeAbout.workshopPhotoUrl}
                           alt="Workshop"
                           style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                           onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
@@ -6384,7 +6538,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       )}
                       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '10px', background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)', color: '#fff' }}>
                         <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#ccc' }}>
-                          {localAboutContent.workshopPhotoCaption || 'Workshop Fabrication'}
+                          {safeAbout.workshopPhotoCaption || 'Workshop Fabrication'}
                         </div>
                       </div>
                     </div>
@@ -7471,19 +7625,50 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           </td>
                           <td style={{ padding: '12px 16px', textAlign: 'right' }}>
                             <button
+                              onClick={() => {
+                                navigator.clipboard.writeText(sub.email);
+                                showToast(`✓ Copied ${sub.email}`, 'success');
+                              }}
+                              style={{
+                                background: 'transparent',
+                                border: '1px solid #ddd',
+                                padding: '4px 8px',
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '10px',
+                                cursor: 'pointer',
+                                marginRight: '8px',
+                              }}
+                            >
+                              📋 Copy
+                            </button>
+                            <a
+                              href={`mailto:${sub.email}?subject=Ace%20Spaces%20—%20Specifier%20Dispatch%20Monograph`}
+                              style={{
+                                textDecoration: 'none',
+                                color: '#1a1d19',
+                                border: '1px solid #ddd',
+                                padding: '4px 8px',
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '10px',
+                                marginRight: '10px',
+                              }}
+                            >
+                              ✉ Email
+                            </a>
+                            <button
                               onClick={() => handleDeleteSubscriber(sub.id)}
-                            style={{
-                              background: 'transparent',
-                              border: 'none',
-                              color: '#b93222',
-                              cursor: 'pointer',
-                              fontFamily: 'DM Mono, monospace',
-                              fontSize: '11px',
-                            }}
-                          >
-                            Remove
-                          </button>
-                        </td>
+                              style={{
+                                background: 'transparent',
+                                border: 'none',
+                                color: '#b93222',
+                                cursor: 'pointer',
+                                fontFamily: 'DM Mono, monospace',
+                                fontSize: '11px',
+                              }}
+                            >
+                              Remove
+                            </button>
+                          </td>
                       </tr>
                     ))}
                 </tbody>

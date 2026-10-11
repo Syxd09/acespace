@@ -71,7 +71,7 @@ const aboutJsonLd = {
 
 export default function AboutPage() {
   const siteContent = getSiteContent();
-  const about = siteContent.about || defaultAboutContent;
+  const about = { ...defaultAboutContent, ...(siteContent?.about || {}) };
 
   const defaultPhilosophyPillars = [
     {

@@ -40,7 +40,7 @@ export default function ScrollReveal({
       return;
     }
 
-    // 2. High-precision IntersectionObserver (triggers as soon as element starts entering view)
+    // 2. High-precision IntersectionObserver (triggers off-thread as soon as element starts entering view)
     let observer: IntersectionObserver | null = null;
     if ('IntersectionObserver' in window) {
       observer = new IntersectionObserver(
@@ -68,16 +68,7 @@ export default function ScrollReveal({
       return;
     }
 
-    // 3. Scroll event listener fallback (ensures Lenis or custom scroll containers trigger seamlessly)
-    const onScroll = () => {
-      if (checkVisibility() && observer) {
-        observer.disconnect();
-        window.removeEventListener('scroll', onScroll);
-      }
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    // 4. Absolute safety fallback: ensure text is 100% visible after 800ms under any network/hydration condition
+    // 3. Absolute safety fallback: ensure text is 100% visible after 800ms under any network/hydration condition
     const safetyTimer = setTimeout(() => {
       setIsVisible(true);
       el.classList.add('visible');
@@ -85,7 +76,6 @@ export default function ScrollReveal({
 
     return () => {
       clearTimeout(safetyTimer);
-      window.removeEventListener('scroll', onScroll);
       if (observer) observer.disconnect();
     };
   }, []);
