@@ -4382,3 +4382,45 @@ main.page-main {
     padding-right: 0 !important;
   }
 }
+
+/* -------------------------------------------------------------
+   3D CONFIGURATOR STUDIO SCROLL ISOLATION & OVERFLOW LOCK
+   Prevents background window from scrolling when user scrolls sidebar
+------------------------------------------------------------- */
+html.configurator-active,
+body.configurator-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+  overscroll-behavior: none !important;
+}
+
+.configurator-sidebar-panel {
+  overscroll-behavior: contain !important;
+  overscroll-behavior-y: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@media (min-width: 1024px) {
+  .configurator-grid {
+    height: calc(100vh - 84px - 80px) !important;
+    max-height: calc(100vh - 84px - 80px) !important;
+    overflow: hidden !important;
+    margin-top: 84px !important;
+  }
+
+  .configurator-viewport-panel {
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .configurator-sidebar-panel {
+    height: 100% !important;
+    max-height: 100% !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain !important;
+    overscroll-behavior-y: contain !important;
+  }
+}
+

@@ -1985,6 +1985,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               {[
                 { title: 'Sample Orders', count: orders.length, desc: `${orders.filter(o => o.status === 'submitted').length} new submitted`, tab: 'orders' },
                 { title: 'Client Enquiries', count: inquiries.length, desc: `${inquiries.filter(i => i.status === 'new').length} new consultations`, tab: 'inquiries' },
+                { title: '3D Configurator Quotes', count: inquiries.filter(i => i.projectType?.includes('3D Configurator')).length, desc: 'Interactive WebGL briefs', tab: 'inquiries' },
                 { title: 'Dispatch Readers', count: subscribers.length, desc: `${subscribers.filter(s => s.status === 'active').length} active subscribers`, tab: 'dispatch' },
                 { title: 'Hero Slides', count: localHeroSlides.length, desc: 'Active carousel sequences', tab: 'hero' },
                 { title: 'Materials & Colours Catalog', count: localMaterials.length, desc: 'Curated slabs, tones & swatches', tab: 'materials' },

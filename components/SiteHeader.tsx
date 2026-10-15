@@ -644,6 +644,20 @@ export default function SiteHeader() {
             <span className="drawer-arrow">↗</span>
           </Link>
 
+          <Link
+            href="/configurator"
+            onClick={closeMobileMenu}
+            className={isLinkActive('/configurator') ? 'drawer-link active' : 'drawer-link'}
+            style={{ background: 'rgba(212, 56, 51, 0.08)', borderLeft: '3px solid var(--accent, #d43833)' }}
+          >
+            <span className="drawer-num" style={{ color: 'var(--accent, #d43833)' }}>3D</span>
+            <div className="drawer-link-text">
+              <strong style={{ color: 'var(--accent, #d43833)' }}>3D Product Configurator ⛶</strong>
+              <small>Interactive WebGL Studio: Parametric sizing, basins, materials &amp; quotes</small>
+            </div>
+            <span className="drawer-arrow" style={{ color: 'var(--accent, #d43833)' }}>↗</span>
+          </Link>
+
           <Link href="/applications" onClick={closeMobileMenu} className={isLinkActive('/applications') ? 'drawer-link active' : 'drawer-link'}>
             <span className="drawer-num">03</span>
             <div className="drawer-link-text">

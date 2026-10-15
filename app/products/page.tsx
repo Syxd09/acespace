@@ -126,14 +126,15 @@ export default function ProductsCatalogPage() {
           </div>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
-            <Link className="button button-dark" href="#products-grid">
-              Browse Product Range <span>↓</span>
+            <Link className="button button-accent" href="/configurator" style={{ background: 'var(--accent, #d43833)', color: '#fff', borderColor: 'var(--accent, #d43833)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+              <span>Launch 3D Configurator</span>
+              <span style={{ fontSize: '13px' }}>⛶</span>
             </Link>
-            <Link className="text-link" href="/products/design-certainty">
-              Design Certainty Service <span>↗</span>
+            <Link className="button button-dark" href="#products-grid">
+              Browse Range <span>↓</span>
             </Link>
             <Link className="text-link" href="/materials">
-              View Corian® Materials <span>↗</span>
+              Corian® Palette <span>↗</span>
             </Link>
           </div>
 
@@ -221,6 +222,56 @@ export default function ProductsCatalogPage() {
             <Link href="#products-grid" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
               Explore Products <span>↓</span>
             </Link>
+          </div>
+        </div>
+      {/* Interactive 3D Configurator Feature Banner */}
+      <section style={{ margin: '60px 0 40px', background: 'var(--ink, #1e211d)', color: '#fff', borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', alignItems: 'center' }}>
+          <div style={{ padding: 'clamp(32px, 5vw, 64px)' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 10px', background: 'rgba(212,56,51,0.2)', border: '1px solid rgba(212,56,51,0.4)', borderRadius: '2px', fontSize: '10px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#ff7a75', marginBottom: '20px' }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#d43833', display: 'inline-block' }}></span>
+              NEW — Interactive WebGL Studio
+            </div>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', lineHeight: 1.1, color: '#fff', marginBottom: '16px', fontWeight: 400 }}>
+              Precision 3D Product Configurator
+            </h2>
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, maxWidth: '520px', marginBottom: '28px' }}>
+              Directly specify vanities, washplanes, monolithic benchtops, and clinical washstations in our real-time 3D workspace. Calibrate dimensions in millimetres, inspect coved edge profiles, test DuPont™ Corian® mineral swatches, and generate certified engineering quote briefs.
+            </p>
+            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
+              <Link
+                href="/configurator"
+                className="button"
+                style={{ background: 'var(--accent, #d43833)', color: '#fff', borderColor: 'var(--accent, #d43833)', padding: '14px 28px', fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: 'DM Mono, monospace' }}
+              >
+                Open 3D Studio Workspace <span>↗</span>
+              </Link>
+              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <Link href="/configurator?preset=vanity-single" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Single Vanity</Link>
+                <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
+                <Link href="/configurator?preset=vanity-double" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Double Vanity</Link>
+                <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
+                <Link href="/configurator?preset=washplane-linear" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Washplane</Link>
+                <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
+                <Link href="/configurator?preset=healthcare-station" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Clinical Scrub</Link>
+              </div>
+            </div>
+          </div>
+          <div style={{ background: '#141614', borderLeft: '1px solid rgba(255,255,255,0.08)', padding: '40px', minHeight: '340px', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
+            <div style={{ border: '1px dashed rgba(255,255,255,0.15)', borderRadius: '4px', padding: '24px', background: 'rgba(255,255,255,0.02)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px' }}>
+                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#ff7a75', textTransform: 'uppercase' }}>Studio 3D Specs</span>
+                <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)' }}>Real-Time WebGL</span>
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', display: 'grid', gap: '10px' }}>
+                <li>✓ 600mm - 3600mm Parametric Width Scaling</li>
+                <li>✓ Integrated Corian® Seamless Sinks &amp; Troughs</li>
+                <li>✓ Mitred Drop Downstands (0mm - 350mm)</li>
+                <li>✓ Coved Splashbacks (0mm - 300mm) with Anti-Microbial Fusion</li>
+                <li>✓ Instant Indicative Fabrication Cost Breakdown</li>
+                <li>✓ Dimensioned Drawing PNG &amp; CAD Brief Export</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>

@@ -109,6 +109,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     },
   };
 
+  const getPresetForSlug = (itemSlug: string) => {
+    if (itemSlug.includes('washplane')) return 'washplane-linear';
+    if (itemSlug.includes('benchtop') || itemSlug.includes('island') || itemSlug.includes('kitchen') || itemSlug.includes('countertop')) return 'worktop-island';
+    if (itemSlug.includes('health') || itemSlug.includes('scrub') || itemSlug.includes('hospital') || itemSlug.includes('clinical')) return 'healthcare-station';
+    if (itemSlug.includes('double')) return 'vanity-double';
+    return 'vanity-single';
+  };
+
   return (
     <main className="page-main">
       {/* Schema.org Product Structured Data */}
@@ -153,11 +161,19 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+            <Link
+              className="button button-accent"
+              href={`/configurator?preset=${getPresetForSlug(slug)}`}
+              style={{ background: 'var(--accent, #d43833)', color: '#fff', borderColor: 'var(--accent, #d43833)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+            >
+              <span>Configure in 3D</span>
+              <span style={{ fontSize: '13px' }}>⛶</span>
+            </Link>
             <Link className="button button-dark" href="/contact">
               Request CAD &amp; Pricing <span>↗</span>
             </Link>
             <Link className="text-link" href="/materials">
-              Order Material Samples <span>↗</span>
+              Corian® Samples <span>↗</span>
             </Link>
           </div>
 

@@ -499,8 +499,18 @@ export default function MegaMenu({
                   alignItems: 'center',
                   paddingTop: '20px',
                   borderTop: '1px solid var(--line)',
+                  flexWrap: 'wrap',
                 }}
               >
+                <Link
+                  href="/configurator"
+                  onClick={(e) => handleLinkClick(e, '/configurator')}
+                  className="button"
+                  style={{ background: 'var(--accent, #d43833)', color: '#fff', borderColor: 'var(--accent, #d43833)', fontSize: '11px', padding: '10px 20px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                >
+                  <span>3D PRODUCT CONFIGURATOR</span>
+                  <span style={{ fontSize: '12px' }}>⛶</span>
+                </Link>
                 <Link
                   href="/products"
                   onClick={(e) => handleLinkClick(e, '/products')}
@@ -525,7 +535,7 @@ export default function MegaMenu({
               <div className="mega-menu-feature-image">
                 <Image
                   src="/images/images/app_residential_artista_mist_1.jpg"
-                  alt="Monolithic floating double vanity and seamlessly integrated basins"
+                  alt="Interactive 3D Solid Surface Product Configurator"
                   fill
                   sizes="400px"
                   quality={70}
@@ -533,26 +543,26 @@ export default function MegaMenu({
                   decoding="async"
                   style={{ objectFit: 'cover' }}
                 />
-                <span className="mega-menu-badge">
-                  Product Systems
+                <span className="mega-menu-badge" style={{ background: 'var(--accent, #d43833)', color: '#fff' }}>
+                  Interactive 3D Studio
                 </span>
               </div>
               <div className="mega-menu-feature-body">
                 <div>
                   <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                    Monolithic Floating Vanities &amp; Sinks
+                    Interactive 3D Workspace
                   </strong>
                   <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                    Seamlessly fused washplane basins, 45 deg  mitred waterfall aprons, and bespoke vanities fabricated without silicone seams or grime lines.
+                    Calibrate vanities, washplanes &amp; monolithic worktops in real-time WebGL. Test Corian® finishes, adjust dimensions in millimetres, and receive verified indicative quotes.
                   </p>
                 </div>
                 <Link
-                  href="/products"
-                  onClick={(e) => handleLinkClick(e, '/products')}
-                  className="button button-dark"
-                  style={{ fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
+                  href="/configurator"
+                  onClick={(e) => handleLinkClick(e, '/configurator')}
+                  className="button"
+                  style={{ background: 'var(--ink, #1e211d)', color: '#fff', fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
                 >
-                  View Product Catalog <span>↗</span>
+                  Launch 3D Studio <span>⛶</span>
                 </Link>
               </div>
             </div>
