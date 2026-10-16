@@ -133,7 +133,7 @@ ${message}
         </div>
 
         {/* Form Container & Side Advisory */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '48px', alignItems: 'start' }}>
+        <div className="consultation-layout-grid" style={{ gap: '48px', alignItems: 'start' }}>
           
           {/* Left: The Form */}
           <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '36px 32px' }}>
@@ -201,7 +201,7 @@ ${message}
                     onChange={(e) => setHoneypot(e.target.value)}
                   />
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="consultation-input-row" style={{ gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#788078', marginBottom: '6px' }}>
                       Contact Name *
@@ -229,7 +229,7 @@ ${message}
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="consultation-input-row" style={{ gap: '16px' }}>
                   <div>
                     <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#788078', marginBottom: '6px' }}>
                       Professional Email *

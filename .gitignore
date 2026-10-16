@@ -1,5 +1,6 @@
 # Next.js build output
 .next/
+.next*/
 out/
 
 # Dependencies
@@ -41,8 +42,9 @@ Thumbs.db
 # Raw source images
 public/assets/My images/
 
-# Dynamic order and lead databases
+# Dynamic order, configurator and lead databases
 data/orders.json
 data/inquiries.json
 data/subscribers.json
 data/chats.json
+data/configurations.json

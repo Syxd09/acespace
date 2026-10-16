@@ -26,6 +26,7 @@ export default function SiteHeader() {
   }, []);
 
   const whatsappNumber = mounted ? (content.studioContact?.whatsappNumber || DEFAULT_WHATSAPP_NUMBER) : DEFAULT_WHATSAPP_NUMBER;
+  const shortlistCount = mounted ? shortlist.length : 0;
 
   const progressBarRef = useRef<HTMLDivElement>(null);
 
@@ -191,6 +192,7 @@ export default function SiteHeader() {
     <>
       <header
         className={`site-header ${isScrolled ? 'scrolled' : ''} ${!isHome ? 'subpage-header' : ''}`}
+        suppressHydrationWarning
         style={{
           position: 'fixed',
           top: 0,
@@ -211,8 +213,6 @@ export default function SiteHeader() {
               : '1px solid rgba(255, 255, 255, 0.12)'
             : '1px solid var(--line)',
           color: isLightText ? '#fff' : 'var(--ink)',
-          transform: 'translateZ(0)',
-          WebkitTransform: 'translateZ(0)',
           boxShadow: (isScrolled || activeMegaMenu) ? '0 10px 30px rgba(0, 0, 0, 0.05)' : 'none',
           transition: 'background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.35s ease, height 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease',
         }}
@@ -377,7 +377,7 @@ export default function SiteHeader() {
             type="button"
             onClick={toggleTray}
             className="sample-tray-btn"
-            aria-label={`Open sample tray (${shortlist.length} items shortlisted)`}
+            aria-label={`Open sample tray (${shortlistCount} items shortlisted)`}
             aria-controls="sample-tray-drawer"
             style={{
               background: isLightText ? 'rgba(255,255,255,0.1)' : 'rgba(30,33,29,0.06)',
@@ -403,21 +403,21 @@ export default function SiteHeader() {
                 width: '18px',
                 height: '18px',
                 borderRadius: '50%',
-                background: shortlist.length > 0
+                background: shortlistCount > 0
                   ? 'var(--brand-red, #d43833)'
                   : isLightText ? '#fff' : 'var(--ink)',
-                color: shortlist.length > 0
+                color: shortlistCount > 0
                   ? '#fff'
                   : isLightText ? 'var(--ink)' : '#fff',
                 display: 'grid',
                 placeItems: 'center',
                 fontSize: '10px',
                 fontWeight: 700,
-                boxShadow: shortlist.length > 0 ? '0 0 10px rgba(212, 56, 51, 0.5)' : 'none',
+                boxShadow: shortlistCount > 0 ? '0 0 10px rgba(212, 56, 51, 0.5)' : 'none',
                 transition: 'all 0.3s ease',
               }}
             >
-              {shortlist.length}
+              {shortlistCount}
             </span>
             <span className="sample-tray-label">
               <span className="tray-full">Sample Tray</span>

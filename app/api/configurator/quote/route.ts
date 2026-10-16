@@ -86,9 +86,9 @@ Dimensions: ${cfg.width} mm (W) × ${cfg.depth} mm (D) × ${cfg.thickness} mm (S
 Apron Drop: ${cfg.frontApronHeight} mm (Left: ${cfg.hasLeftApron ? 'Yes' : 'No'}, Right: ${cfg.hasRightApron ? 'Yes' : 'No'})
 Splashback: ${cfg.rearUpstandHeight} mm (${cfg.isCovedUpstand ? '10mm Coved Hygiene Transition' : 'Standard 90°'})
 Basin Model: ${cfg.basinModelId.toUpperCase()} (Placement: ${cfg.basinPlacement.toUpperCase()})
-Tap Holes: ${cfg.tapHoles} (${cfg.tapPosition})
+Tap Holes: ${cfg.tapHoles} (${cfg.tapPosition || cfg.tapLocation})
 Edge Profile: ${cfg.edgeProfileId.toUpperCase()}
-Corner Detail: ${cfg.cornerProfileId.toUpperCase()}
+Corner Detail: ${(cfg.cornerProfileId || cfg.cornerLeft?.type || 'SHARP').toUpperCase()}
 
 Commercial Estimate:
 • Base Mineral Substrate: ₹${pricing.baseSubstrate.toLocaleString('en-IN')}

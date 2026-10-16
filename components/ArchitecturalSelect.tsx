@@ -146,7 +146,7 @@ export default function ArchitecturalSelect({
           border-color: rgba(30, 33, 29, 0.45) !important;
         }
         .arch-select-trigger:focus-visible {
-          outline: 2px solid #dc2626 !important;
+          outline: 2px solid var(--brand-red, #d43833) !important;
           outline-offset: 2px !important;
         }
         .arch-select-menu {
@@ -200,17 +200,17 @@ export default function ArchitecturalSelect({
           gap: '12px',
           padding: '11px 14px',
           background: isOpen ? '#ffffff' : '#faf9f5',
-          border: `1px solid ${isOpen ? 'var(--ink, #1a1d19)' : 'var(--line, rgba(30,33,29,0.2))'}`,
+          border: `1px solid ${isOpen ? 'var(--brand-red, #d43833)' : 'var(--line, rgba(30,33,29,0.2))'}`,
           borderRadius: '1px',
           color: selectedOption ? '#1a1d19' : '#8c948c',
           fontFamily: 'Manrope, system-ui, -apple-system, sans-serif',
           fontSize: '13.5px',
-          fontWeight: 500,
+          fontWeight: 600,
           textAlign: 'left',
           cursor: disabled ? 'not-allowed' : 'pointer',
           outline: 'none',
           boxShadow: isOpen
-            ? '0 3px 12px rgba(26, 29, 25, 0.08)'
+            ? '0 4px 16px rgba(212, 56, 51, 0.12)'
             : 'none',
           transition: 'background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease',
         }}
@@ -238,7 +238,7 @@ export default function ArchitecturalSelect({
             flexShrink: 0,
             transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
             transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
-            color: isOpen ? '#dc2626' : '#788078',
+            color: isOpen ? 'var(--brand-red, #d43833)' : '#788078',
           }}
         >
           <svg
@@ -276,7 +276,7 @@ export default function ArchitecturalSelect({
             border: '1px solid rgba(30, 33, 29, 0.16)',
             borderRadius: '2px',
             boxShadow:
-              '0 16px 36px -6px rgba(26, 29, 25, 0.16), 0 4px 14px -2px rgba(26, 29, 25, 0.08)',
+              '0 16px 36px -6px rgba(26, 29, 25, 0.2), 0 4px 14px -2px rgba(26, 29, 25, 0.1)',
             maxHeight: '290px',
             overflowY: 'auto',
             overscrollBehavior: 'contain',
@@ -311,7 +311,7 @@ export default function ArchitecturalSelect({
                     ? '#f6f5ef'
                     : 'transparent',
                   borderLeft: isSelected
-                    ? '3px solid #dc2626'
+                    ? '3px solid var(--brand-red, #d43833)'
                     : '3px solid transparent',
                   transition: 'background 0.12s ease, border-left-color 0.12s ease',
                 }}
@@ -329,7 +329,7 @@ export default function ArchitecturalSelect({
                     style={{
                       fontFamily: 'DM Mono, monospace',
                       fontSize: '10px',
-                      color: isSelected ? '#dc2626' : '#99a199',
+                      color: isSelected ? 'var(--brand-red, #d43833)' : '#99a199',
                       letterSpacing: '0.04em',
                       flexShrink: 0,
                     }}
@@ -347,31 +347,45 @@ export default function ArchitecturalSelect({
                   </span>
                 </div>
 
-                {isSelected && (
-                  <span
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      color: '#dc2626',
-                      flexShrink: 0,
-                    }}
-                    title="Selected"
-                  >
-                    <svg
-                      width="13"
-                      height="13"
-                      viewBox="0 0 16 16"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                  {opt.meta && (
+                    <span
+                      style={{
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '10.5px',
+                        color: isSelected ? 'var(--brand-red, #d43833)' : '#8c948c',
+                        letterSpacing: '0.04em',
+                      }}
                     >
-                      <polyline points="3.5 8.5 6.5 11.5 12.5 5" />
-                    </svg>
-                  </span>
-                )}
+                      {opt.meta}
+                    </span>
+                  )}
+                  {isSelected && (
+                    <span
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'var(--brand-red, #d43833)',
+                        flexShrink: 0,
+                      }}
+                      title="Selected"
+                    >
+                      <svg
+                        width="13"
+                        height="13"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="3.5 8.5 6.5 11.5 12.5 5" />
+                      </svg>
+                    </span>
+                  )}
+                </div>
               </li>
             );
           })}

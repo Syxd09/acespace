@@ -11,7 +11,7 @@ export interface BasinModel {
   id: string;
   name: string;
   code: string;
-  shape: 'oval' | 'rectangular' | 'sloped' | 'capsule' | 'none';
+  shape: 'oval' | 'round' | 'rectangular' | 'sloped' | 'capsule' | 'none';
   width: number; // mm
   depth: number; // mm
   height: number; // mm
@@ -20,71 +20,275 @@ export interface BasinModel {
   priceModifier: number; // INR
 }
 
-export interface EdgeProfileOption {
-  id: 'sharp' | 'rounded' | 'chamfer';
+export type CornerType = 'sharp' | 'fillet' | 'chamfer' | 'shift';
+
+export interface CornerConfig {
+  type: CornerType;
+  radiusMm: number; // 10, 20, 30, 50, 80
+  chamferMm: number; // 10, 20, 35
+  shiftMm: number; // -65 to +250mm
+}
+
+export interface CornerTreatmentConfig {
+  leftType: 'sharp' | 'fillet' | 'chamfer' | 'shift';
+  leftRadius: number;
+  leftChamfer: number;
+  leftShift: number;
+  rightType: 'sharp' | 'fillet' | 'chamfer' | 'shift';
+  rightRadius: number;
+  rightChamfer: number;
+  rightShift: number;
+}
+
+export type SinkIntegrationType = 'integrated' | 'undermount' | 'topmount' | 'none';
+
+export interface SinkIntegrationOption {
+  id: SinkIntegrationType;
   name: string;
   code: string;
   description: string;
-  radiusMm?: number;
-  pricePerMeter: number;
+  priceModifier: number;
 }
 
-export interface CornerProfileOption {
-  id: 'square' | 'radius-small' | 'radius-large';
+export type TapLocationType = 'top-mounted' | 'wall-mounted';
+
+export interface TapLocationOption {
+  id: TapLocationType;
   name: string;
-  radiusMm: number;
   description: string;
+}
+
+export interface DownstandConfig {
+  front: boolean;
+  left: boolean;
+  right: boolean;
+  heightMm: number; // 12, 30, 100, 150, 200, custom
+  height?: number; // Compatibility alias
+}
+
+export type UpstandLengthMode = 'full' | 'none' | 'specific' | 'standard';
+
+export interface UpstandConfig {
+  type: 'none' | 'standard' | 'raised' | 'full';
+  heightMm: number; // 0, 50, 100, 150, 300
+  isCoved: boolean;
+  backMode: UpstandLengthMode;
+  backLengthMm: number;
+  leftMode: UpstandLengthMode;
+  leftLengthMm: number;
+  rightMode: UpstandLengthMode;
+  rightLengthMm: number;
+  height?: number; // Compatibility alias
+  coved?: boolean; // Compatibility alias
+}
+
+export interface TowelHolderConfig {
+  enabled: boolean;
+  lengthMm: number; // 300, 450
+  position: 'left' | 'center' | 'right';
+  filletMm: 4 | 12 | 25 | number;
+  length?: number; // Compatibility alias
+  cornerRadius?: number; // Compatibility alias
+}
+
+export type TopEdgeFinishType = 'sharp' | 'fillet' | 'chamfer';
+
+export interface TopEdgeConfig {
+  type: TopEdgeFinishType;
+  radiusMm: number;
+  chamferMm: number;
+}
+
+export interface DrainOption {
+  id: string;
+  name: string;
+  code: string;
+  finish: string;
+  description: string;
+  priceInr: number;
+  priceModifier?: number;
+  isMatchedColor?: boolean;
 }
 
 export interface ProductConfiguration {
   id?: string;
   presetId: string;
   title: string;
+
   // Dimensions (mm)
   width: number;
   depth: number;
   thickness: 12 | 19 | 24 | 60;
-  // Aprons / Downstands (mm)
-  frontApronHeight: number;
+
+  // Advanced Corner Profiles
+  cornerLeft: CornerConfig;
+  cornerRight: CornerConfig;
+  cornerConfig?: CornerTreatmentConfig;
+
+  // Tap Configuration
+  tapLocation: TapLocationType;
+  tapHoles: 0 | 1 | 2 | 3;
+  tapHoleDiameterMm: number;
+
+  // Sink & Basin
+  sinkIntegration: SinkIntegrationType;
+  basinModelId: string;
+  basinPlacement: 'center' | 'left' | 'right' | 'dual' | 'none';
+  basinOffsetMm: number; // Offset from center/left
+  basinWidthMm?: number;
+  basinDepthMm?: number;
+  basinHeightMm?: number;
+  basinSizeCode?: string;
+
+  // Downstands (Aprons)
+  downstands: DownstandConfig;
+  frontApronHeight: number; // Direct access / legacy sync
   hasLeftApron: boolean;
   hasRightApron: boolean;
-  // Upstands / Splashbacks (mm)
-  rearUpstandHeight: number;
+
+  // Upstands & Splashbacks
+  upstands: UpstandConfig;
+  rearUpstandHeight: number; // Direct access / legacy sync
   hasLeftUpstand: boolean;
   hasRightUpstand: boolean;
   isCovedUpstand: boolean;
-  // Basin
-  basinModelId: string;
-  basinPlacement: 'center' | 'left' | 'right' | 'dual' | 'none';
-  basinOffsetMm: number; // Offset from left/center
-  tapHoles: 0 | 1 | 3;
-  tapPosition: 'center' | 'left' | 'wall';
-  // Edge & Corner
-  edgeProfileId: 'sharp' | 'rounded' | 'chamfer';
-  cornerProfileId: 'square' | 'radius-small' | 'radius-large';
+
+  // Towel Holder
+  towelHolder: TowelHolderConfig;
+
+  // Top Edge Finishing
+  topEdge: TopEdgeConfig;
+  edgeProfileId: 'sharp' | 'rounded' | 'chamfer'; // Legacy sync
+
+  // Drain System
+  drainTypeId: string;
+  drainOption?: string;
+
   // Material
   materialSlug: string;
   materialName: string;
   materialHex: string;
   materialFinish: string;
+
   // Project References
   projectName: string;
   clientStudio: string;
   locationCity: string;
   specialInstructions: string;
+
   // Commercial
   quantity: number;
+
+  // Optional convenience / legacy aliases
+  referenceCode?: string;
+  colorName?: string;
+  tapPosition?: string;
+  cornerProfileId?: string;
 }
+
+export const SINK_INTEGRATIONS: SinkIntegrationOption[] = [
+  {
+    id: 'integrated',
+    name: 'Seamless Integrated Coved Basin',
+    code: 'INT-COVED',
+    description: 'Thermo-welded seamless fusion with zero visible joints or dirt-harboring silicone perimeters.',
+    priceModifier: 0,
+  },
+  {
+    id: 'undermount',
+    name: 'Precision Undermount Cut-out',
+    code: 'INT-UNDER',
+    description: 'Calibrated CNC perimeter cut-out with water-sealed sub-deck mounting hardware brackets.',
+    priceModifier: -2500,
+  },
+  {
+    id: 'topmount',
+    name: 'Top-Mount Vessel Island',
+    code: 'INT-VESSEL',
+    description: 'Deck hole boring with polished perimeter rim engineered for countertop vessel bowls.',
+    priceModifier: -4000,
+  },
+  {
+    id: 'none',
+    name: 'Solid Surface Deck (No Basin)',
+    code: 'INT-SOLID',
+    description: 'Continuous uninterrupted surface for kitchen islands, reception counters, or desks.',
+    priceModifier: -14500,
+  },
+];
+
+export const TAP_LOCATIONS: TapLocationOption[] = [
+  {
+    id: 'top-mounted',
+    name: 'Top-Mounted Deck Faucet',
+    description: 'Precision CNC drilled 35mm deck hole with water-tight collar clearance behind the basin.',
+  },
+  {
+    id: 'wall-mounted',
+    name: 'Wall-Mounted Concealed Faucet',
+    description: 'Continuous uncluttered deck surface; faucet spout and mixer install directly into wall cavity.',
+  },
+];
+
+export const SINK_INTEGRATION_OPTIONS = SINK_INTEGRATIONS;
+export const TAP_LOCATION_OPTIONS = TAP_LOCATIONS;
+
+export const CORNER_TREATMENT_OPTIONS = [
+  { id: 'shift', name: 'Shift', description: 'Step setback profile (20–150mm)', priceModifier: 1200, defaultRadius: 0, defaultChamfer: 0, defaultShift: 50 },
+  { id: 'fillet', name: 'Fillet', description: 'CNC radius curve (R5–R100)', priceModifier: 600, defaultRadius: 25, defaultChamfer: 0, defaultShift: 0 },
+  { id: 'chamfer', name: 'Chamfer', description: 'Angled bevel transit (5–80mm)', priceModifier: 450, defaultRadius: 0, defaultChamfer: 20, defaultShift: 0 },
+  { id: 'sharp', name: 'Sharp', description: 'Clean geometric edge', priceModifier: 0, defaultRadius: 0, defaultChamfer: 0, defaultShift: 0 },
+];
+export const CORNER_PROFILES = CORNER_TREATMENT_OPTIONS;
+
+export const DOWNSTAND_HEIGHT_OPTIONS = [
+  { height: 12, label: '12mm Shadowline', description: 'Ultra-thin architectural reveal' },
+  { height: 30, label: '30mm Standard', description: 'Balanced residential apron' },
+  { height: 100, label: '100mm Drop Fascia', description: 'Substantial mitred front lip' },
+  { height: 150, label: '150mm Deep Apron', description: 'Commercial & hotel console drop' },
+  { height: 200, label: '200mm Monolith', description: 'Heavy architectural vanity block' },
+];
+
+export const UPSTAND_MODE_OPTIONS = [
+  { id: 'full', name: 'Full Length Wall', description: 'Runs complete vanity span' },
+  { id: 'standard', name: 'Standard 80mm', description: 'Low perimeter lip' },
+  { id: 'none', name: 'No Splashback', description: 'Flush edge touching wall tile' },
+];
+
+export const TOWEL_HOLDER_OPTIONS = {
+  lengths: [300, 450] as const,
+  positions: ['left', 'center', 'right'] as const,
+  cornerRadii: [4, 12, 25] as const,
+};
+
+export const TOP_EDGE_OPTIONS = [
+  { id: 'sharp', name: 'Micro-Arris Sharp', description: 'Pencil-fine 1mm arris breakdown', defaultRadius: 1, defaultChamfer: 0 },
+  { id: 'fillet', name: 'Rounded Bullnose', description: 'CNC machined radius curve', defaultRadius: 6, defaultChamfer: 0 },
+  { id: 'chamfer', name: '45° Chamfer Bevel', description: 'Clean technical bevel transit', defaultRadius: 0, defaultChamfer: 3 },
+];
+export const EDGE_PROFILES = TOP_EDGE_OPTIONS;
 
 export const AVAILABLE_BASINS: BasinModel[] = [
   {
+    id: 'round-bowl',
+    name: 'Ace Cylindrical Round Bowl',
+    code: 'RO',
+    shape: 'round',
+    width: 420,
+    depth: 420,
+    height: 135,
+    covedRadius: 10,
+    description: 'Precision cylindrical round solid surface washbowl with seamless coved internal base.',
+    priceModifier: 13800,
+  },
+  {
     id: 'coved-oval',
     name: 'Ace Coved Oval Basin',
-    code: 'BSN-OVAL-450',
+    code: 'OV',
     shape: 'oval',
-    width: 480,
-    depth: 330,
-    height: 140,
+    width: 500,
+    depth: 350,
+    height: 135,
     covedRadius: 10,
     description: 'Thermoformed seamless oval washbowl with 10mm coved internal hygiene perimeter.',
     priceModifier: 14500,
@@ -92,7 +296,7 @@ export const AVAILABLE_BASINS: BasinModel[] = [
   {
     id: 'crisp-rect',
     name: 'Ace Rectangular Slope Basin',
-    code: 'BSN-RECT-520',
+    code: 'B',
     shape: 'rectangular',
     width: 520,
     depth: 350,
@@ -100,6 +304,54 @@ export const AVAILABLE_BASINS: BasinModel[] = [
     covedRadius: 6,
     description: 'Sharp architectural rectangular basin featuring precision laser-cut drainage slit.',
     priceModifier: 17800,
+  },
+  {
+    id: 'double-basin',
+    name: 'Ace Double Basin / Curved Base',
+    code: 'DB',
+    shape: 'oval',
+    width: 560,
+    depth: 360,
+    height: 135,
+    covedRadius: 14,
+    description: 'Bespoke double curved washbowl with organic contoured profile.',
+    priceModifier: 19500,
+  },
+  {
+    id: 'undermount-box',
+    name: 'Ace Undermount Box Basin',
+    code: 'UB',
+    shape: 'rectangular',
+    width: 500,
+    depth: 350,
+    height: 140,
+    covedRadius: 8,
+    description: 'Crisp architectural undermount box basin with vertical reveals and flat bottom.',
+    priceModifier: 16500,
+  },
+  {
+    id: 'undermount-channel',
+    name: 'Ace Undermount Sloped Channel',
+    code: 'UC',
+    shape: 'sloped',
+    width: 580,
+    depth: 360,
+    height: 120,
+    covedRadius: 10,
+    description: 'Architectural sloped channel basin with integrated continuous linear fall.',
+    priceModifier: 18200,
+  },
+  {
+    id: 'washdesk-trough',
+    name: 'Washdesk Trough',
+    code: 'WDT',
+    shape: 'sloped',
+    width: 600,
+    depth: 260,
+    height: 120,
+    covedRadius: 8,
+    description: 'Precision washdesk trough with customizable depth variants (WDT180 - WDT400).',
+    priceModifier: 21800,
   },
   {
     id: 'linear-trough',
@@ -139,51 +391,76 @@ export const AVAILABLE_BASINS: BasinModel[] = [
   },
 ];
 
-export const EDGE_PROFILES: EdgeProfileOption[] = [
-  {
-    id: 'sharp',
-    name: 'Sharp Arris (2mm Eased)',
-    code: 'EDG-ARRIS-2',
-    description: 'Crisp architectural 90-degree edge with microscopic 2mm micro-bevel for durability.',
-    radiusMm: 2,
-    pricePerMeter: 650,
-  },
-  {
-    id: 'rounded',
-    name: 'Soft Pencil Round (R6)',
-    code: 'EDG-RND-6',
-    description: 'Smooth tactile 6mm radius bullnose ideal for high-traffic and healthcare ergonomics.',
-    radiusMm: 6,
-    pricePerMeter: 900,
-  },
-  {
-    id: 'chamfer',
-    name: '45° Architectural Bevel',
-    code: 'EDG-CHAMF-45',
-    description: 'Sculptural 5mm 45-degree chamfer catching geometric light transitions across the fascia.',
-    radiusMm: 5,
-    pricePerMeter: 1100,
-  },
+export const RO_SIZE_OPTIONS = [
+  { code: 'RO250', label: 'RO250', diameter: 250, height: 120 },
+  { code: 'RO285', label: 'RO285', diameter: 285, height: 125 },
+  { code: 'RO300', label: 'RO300', diameter: 300, height: 130 },
+  { code: 'RO350', label: 'RO350', diameter: 350, height: 135 },
+  { code: 'RO400', label: 'RO400', diameter: 400, height: 140 },
 ];
 
-export const CORNER_PROFILES: CornerProfileOption[] = [
+export const WDT_DEPTH_OPTIONS = [
+  { code: 'WDT180', label: 'WDT180', depth: 180 },
+  { code: 'WDT230', label: 'WDT230', depth: 230 },
+  { code: 'WDT260', label: 'WDT260', depth: 260 },
+  { code: 'WDT280', label: 'WDT280', depth: 280 },
+  { code: 'WDT300', label: 'WDT300', depth: 300 },
+  { code: 'WDT320', label: 'WDT320', depth: 320 },
+  { code: 'WDT350', label: 'WDT350', depth: 350 },
+  { code: 'WDT370', label: 'WDT370', depth: 370 },
+  { code: 'WDT400', label: 'WDT400', depth: 400 },
+];
+
+export const SINK_WIDTH_OPTIONS = [420, 500, 600, 700, 900];
+export const SINK_DEPTH_OPTIONS = [260, 300, 350, 400];
+
+export const DRAIN_OPTIONS: DrainOption[] = [
   {
-    id: 'square',
-    name: 'Crisp 90° Square',
-    radiusMm: 0,
-    description: 'Classic planar alignment designed for inset walls or alcove installations.',
+    id: 'click-clack-chrome',
+    name: 'Click-Clack Pop-Up (Polished Chrome)',
+    code: 'DRN-CC-CHROME',
+    finish: 'Polished Mirror Chrome Brass',
+    description: 'Classic spring-loaded push-operated pop-up waste with solid brass mechanism.',
+    priceInr: 1850,
+    priceModifier: 1850,
   },
   {
-    id: 'radius-small',
-    name: 'Soft Radius (R20)',
-    radiusMm: 20,
-    description: 'Gentle rounded exterior corner preventing accidental hip contact in corridors.',
+    id: 'click-clack-corian',
+    name: 'Click-Clack Pop-Up (Matching Corian® Cap)',
+    code: 'DRN-CC-CORIAN',
+    finish: 'DuPont™ Corian® Solid Surface Disc',
+    description: 'Architectural pop-up waste with top disc hand-crafted in the exact matching Corian® mineral.',
+    priceInr: 3800,
+    priceModifier: 3800,
+    isMatchedColor: true,
   },
   {
-    id: 'radius-large',
-    name: 'Sculptural Radius (R50)',
-    radiusMm: 50,
-    description: 'Bold organic curved corners delivering a soft, monolithic architectural statement.',
+    id: 'freeflow-chrome',
+    name: 'Architectural Slotted Free-Flow Grate',
+    code: 'DRN-FF-CHROME',
+    finish: 'Satin Brushed Stainless Steel',
+    description: 'Always-open non-closing drain designed for commercial public washrooms & washplanes.',
+    priceInr: 2200,
+    priceModifier: 2200,
+  },
+  {
+    id: 'freeflow-corian',
+    name: 'Corian® Hidden Continuous Flow Slit',
+    code: 'DRN-FF-CORIAN',
+    finish: 'Seamless Corian® Cover Insert',
+    description: 'Concealed channel drainage insert creating the illusion of water vanishing into a fine line.',
+    priceInr: 4500,
+    priceModifier: 4500,
+    isMatchedColor: true,
+  },
+  {
+    id: 'rubber-plug',
+    name: 'Classic Bead-Chain & Rubber Stopper',
+    code: 'DRN-PLUG-CH',
+    finish: 'Chrome Flange & Heavy-Duty Plug',
+    description: 'Time-tested manual rubber plug with stainless steel beaded tether chain.',
+    priceInr: 950,
+    priceModifier: 950,
   },
 ];
 
@@ -200,26 +477,44 @@ export const CONFIGURATOR_PRESETS: ConfiguratorPreset[] = [
       width: 1200,
       depth: 520,
       thickness: 12,
+      cornerLeft: { type: 'sharp', radiusMm: 0, chamferMm: 0, shiftMm: 0 },
+      cornerRight: { type: 'sharp', radiusMm: 0, chamferMm: 0, shiftMm: 0 },
+      tapLocation: 'top-mounted',
+      tapHoles: 1,
+      tapHoleDiameterMm: 35,
+      sinkIntegration: 'integrated',
+      basinModelId: 'coved-oval',
+      basinPlacement: 'center',
+      basinOffsetMm: 0,
+      downstands: { front: true, left: true, right: true, heightMm: 120 },
       frontApronHeight: 120,
       hasLeftApron: true,
       hasRightApron: true,
+      upstands: {
+        type: 'standard',
+        heightMm: 80,
+        isCoved: true,
+        backMode: 'full',
+        backLengthMm: 1200,
+        leftMode: 'none',
+        leftLengthMm: 0,
+        rightMode: 'none',
+        rightLengthMm: 0,
+      },
       rearUpstandHeight: 80,
       hasLeftUpstand: false,
       hasRightUpstand: false,
       isCovedUpstand: true,
-      basinModelId: 'coved-oval',
-      basinPlacement: 'center',
-      basinOffsetMm: 0,
-      tapHoles: 1,
-      tapPosition: 'center',
+      towelHolder: { enabled: false, lengthMm: 350, position: 'right', filletMm: 12 },
+      topEdge: { type: 'fillet', radiusMm: 6, chamferMm: 2 },
       edgeProfileId: 'rounded',
-      cornerProfileId: 'radius-small',
+      drainTypeId: 'click-clack-corian',
       materialSlug: 'corian-glacier-white',
       materialName: 'Corian® Glacier White',
       materialHex: '#f3f2ee',
       materialFinish: 'Honed Satin Matte',
-      projectName: 'Master Suite Project',
-      clientStudio: '',
+      projectName: 'Bespoke En-Suite',
+      clientStudio: 'Private Residence',
       locationCity: 'Bengaluru',
       specialInstructions: '',
       quantity: 1,
@@ -227,280 +522,376 @@ export const CONFIGURATOR_PRESETS: ConfiguratorPreset[] = [
   },
   {
     id: 'double-basin-vanity',
-    name: 'Master Double Basin Console',
+    name: 'Dual Basin Master Console',
     category: 'vanities',
-    tagline: 'Dual integrated coved bowls with expansive central grooming plane',
-    description: 'High-end master bath vanity suite featuring two identical thermo-welded coved bowls, dual mirror symmetry, 150mm fascia apron drop, and concealed towel rails.',
+    tagline: 'Wide format twin-basin console for master bathrooms and suites',
+    description: 'Generous 2000mm width accommodating twin integrated washbasins with centered grooming spacing. Mitred 150mm fascia drop with optional integrated towel-holder cut-out.',
     defaultConfig: {
       presetId: 'double-basin-vanity',
-      title: 'Master Double Basin Console',
-      width: 1800,
-      depth: 540,
+      title: 'Dual Basin Master Console',
+      width: 2000,
+      depth: 550,
       thickness: 12,
-      frontApronHeight: 140,
+      cornerLeft: { type: 'fillet', radiusMm: 20, chamferMm: 0, shiftMm: 0 },
+      cornerRight: { type: 'fillet', radiusMm: 20, chamferMm: 0, shiftMm: 0 },
+      tapLocation: 'top-mounted',
+      tapHoles: 1,
+      tapHoleDiameterMm: 35,
+      sinkIntegration: 'integrated',
+      basinModelId: 'crisp-rect',
+      basinPlacement: 'dual',
+      basinOffsetMm: 0,
+      downstands: { front: true, left: true, right: true, heightMm: 150 },
+      frontApronHeight: 150,
       hasLeftApron: true,
       hasRightApron: true,
+      upstands: {
+        type: 'standard',
+        heightMm: 100,
+        isCoved: true,
+        backMode: 'full',
+        backLengthMm: 2000,
+        leftMode: 'full',
+        leftLengthMm: 550,
+        rightMode: 'full',
+        rightLengthMm: 550,
+      },
       rearUpstandHeight: 100,
       hasLeftUpstand: true,
       hasRightUpstand: true,
       isCovedUpstand: true,
-      basinModelId: 'crisp-rect',
-      basinPlacement: 'dual',
-      basinOffsetMm: 380,
-      tapHoles: 1,
-      tapPosition: 'center',
-      edgeProfileId: 'sharp',
-      cornerProfileId: 'square',
+      towelHolder: { enabled: true, lengthMm: 450, position: 'center', filletMm: 12 },
+      topEdge: { type: 'fillet', radiusMm: 3, chamferMm: 2 },
+      edgeProfileId: 'rounded',
+      drainTypeId: 'click-clack-corian',
       materialSlug: 'corian-calacatta-greige',
       materialName: 'Corian® Calacatta Greige',
-      materialHex: '#dfdbd2',
-      materialFinish: 'Satin Smooth',
-      projectName: 'Luxury Villa En-Suite',
-      clientStudio: '',
-      locationCity: 'Bengaluru',
-      specialInstructions: 'Provide twin under-bench timber support brackets.',
+      materialHex: '#ebe6dd',
+      materialFinish: 'Semi-Gloss Architectural',
+      projectName: 'Master Suite Project',
+      clientStudio: 'Studio Collaboration',
+      locationCity: 'Mumbai',
+      specialInstructions: '',
       quantity: 1,
     },
   },
   {
-    id: 'wall-washplane',
-    name: 'Linear Commercial Washplane',
+    id: 'washplane-linear',
+    name: 'Continuous Linear Washplane',
     category: 'washplanes',
-    tagline: 'Continuous sloped drainage trough for high-traffic executive amenities',
-    description: 'Designed for corporate headquarters, fine dining, and airports. Water glides across a 15-degree sloped plane into a hidden rear drainage trough with zero pooling.',
+    tagline: 'Slope-to-drain commercial washplane for airports and hotels',
+    description: 'Precision-sloped continuous trough designed for touchless sensor faucets and soap dispensers. High-traffic vandal-resistant design with hidden perimeter drainage slot.',
     defaultConfig: {
-      presetId: 'wall-washplane',
-      title: 'Linear Commercial Washplane',
-      width: 1500,
-      depth: 550,
+      presetId: 'washplane-linear',
+      title: 'Continuous Linear Washplane',
+      width: 1800,
+      depth: 500,
       thickness: 19,
-      frontApronHeight: 160,
-      hasLeftApron: true,
-      hasRightApron: true,
-      rearUpstandHeight: 120,
-      hasLeftUpstand: false,
-      hasRightUpstand: false,
-      isCovedUpstand: true,
+      cornerLeft: { type: 'sharp', radiusMm: 0, chamferMm: 0, shiftMm: 0 },
+      cornerRight: { type: 'sharp', radiusMm: 0, chamferMm: 0, shiftMm: 0 },
+      tapLocation: 'wall-mounted',
+      tapHoles: 0,
+      tapHoleDiameterMm: 35,
+      sinkIntegration: 'integrated',
       basinModelId: 'linear-trough',
       basinPlacement: 'center',
       basinOffsetMm: 0,
-      tapHoles: 0,
-      tapPosition: 'wall',
-      edgeProfileId: 'chamfer',
-      cornerProfileId: 'square',
-      materialSlug: 'corian-concrete',
-      materialName: 'Corian® Concrete',
-      materialHex: '#9c9b96',
-      materialFinish: 'Architectural Matte',
-      projectName: 'Corporate Tower Amenities',
-      clientStudio: '',
-      locationCity: 'Bengaluru',
-      specialInstructions: 'Wall mounted sensor tapware by others.',
+      downstands: { front: true, left: true, right: true, heightMm: 200 },
+      frontApronHeight: 200,
+      hasLeftApron: true,
+      hasRightApron: true,
+      upstands: {
+        type: 'full',
+        heightMm: 250,
+        isCoved: true,
+        backMode: 'full',
+        backLengthMm: 1800,
+        leftMode: 'none',
+        leftLengthMm: 0,
+        rightMode: 'none',
+        rightLengthMm: 0,
+      },
+      rearUpstandHeight: 250,
+      hasLeftUpstand: false,
+      hasRightUpstand: false,
+      isCovedUpstand: true,
+      towelHolder: { enabled: false, lengthMm: 350, position: 'left', filletMm: 12 },
+      topEdge: { type: 'sharp', radiusMm: 1, chamferMm: 2 },
+      edgeProfileId: 'sharp',
+      drainTypeId: 'freeflow-corian',
+      materialSlug: 'corian-designer-white',
+      materialName: 'Corian® Designer White',
+      materialHex: '#ffffff',
+      materialFinish: 'Honed Matte',
+      projectName: 'Corporate Headquarters',
+      clientStudio: 'Commercial Specifier',
+      locationCity: 'Hyderabad',
+      specialInstructions: 'Concealed channel drain with rear access panel.',
       quantity: 1,
     },
   },
   {
-    id: 'integrated-worktop',
-    name: 'Monolithic Kitchen Island Benchtop',
+    id: 'worktop-island',
+    name: 'Monolithic Kitchen Island Countertop',
     category: 'benchtops',
-    tagline: 'Infinite seamless length with 60mm mitred apron and seamless sink',
-    description: 'Continuous culinary worktop engineered with heavy-duty substrate reinforcement, 45-degree waterfall edge transitions, and flush-integrated prep sink.',
+    tagline: 'Massive seamless solid surface benchtop with 60mm waterfall edge',
+    description: 'Seamless monolithic island worktop for high-end culinary architecture. Non-porous, food-contact certified, stain-resistant Corian® surface with 60mm mitred drop edge.',
     defaultConfig: {
-      presetId: 'integrated-worktop',
-      title: 'Monolithic Kitchen Island Benchtop',
-      width: 2400,
-      depth: 850,
+      presetId: 'worktop-island',
+      title: 'Monolithic Kitchen Island Countertop',
+      width: 2800,
+      depth: 1000,
       thickness: 60,
+      cornerLeft: { type: 'chamfer', radiusMm: 0, chamferMm: 20, shiftMm: 0 },
+      cornerRight: { type: 'chamfer', radiusMm: 0, chamferMm: 20, shiftMm: 0 },
+      tapLocation: 'top-mounted',
+      tapHoles: 1,
+      tapHoleDiameterMm: 35,
+      sinkIntegration: 'undermount',
+      basinModelId: 'crisp-rect',
+      basinPlacement: 'left',
+      basinOffsetMm: 200,
+      downstands: { front: true, left: true, right: true, heightMm: 60 },
       frontApronHeight: 60,
       hasLeftApron: true,
       hasRightApron: true,
+      upstands: {
+        type: 'none',
+        heightMm: 0,
+        isCoved: false,
+        backMode: 'none',
+        backLengthMm: 0,
+        leftMode: 'none',
+        leftLengthMm: 0,
+        rightMode: 'none',
+        rightLengthMm: 0,
+      },
       rearUpstandHeight: 0,
       hasLeftUpstand: false,
       hasRightUpstand: false,
       isCovedUpstand: false,
-      basinModelId: 'crisp-rect',
-      basinPlacement: 'right',
-      basinOffsetMm: 450,
-      tapHoles: 1,
-      tapPosition: 'center',
-      edgeProfileId: 'sharp',
-      cornerProfileId: 'square',
-      materialSlug: 'corian-artista-mist',
-      materialName: 'Corian® Artista Mist',
-      materialHex: '#d2d3cb',
-      materialFinish: 'Velvet Satin',
-      projectName: 'Penthouse Kitchen Worktop',
-      clientStudio: '',
-      locationCity: 'Bengaluru',
-      specialInstructions: 'Match veining continuously down the right waterfall gable end.',
+      towelHolder: { enabled: false, lengthMm: 350, position: 'right', filletMm: 12 },
+      topEdge: { type: 'chamfer', radiusMm: 3, chamferMm: 5 },
+      edgeProfileId: 'chamfer',
+      drainTypeId: 'click-clack-chrome',
+      materialSlug: 'corian-neutral-concrete',
+      materialName: 'Corian® Neutral Concrete',
+      materialHex: '#9c9b96',
+      materialFinish: 'Textured Satin',
+      projectName: 'Penthouse Kitchen',
+      clientStudio: 'Interior Architecture Desk',
+      locationCity: 'New Delhi',
+      specialInstructions: '',
       quantity: 1,
     },
   },
   {
-    id: 'commercial-washstation',
-    name: 'Healthcare & Clinical Washstation',
+    id: 'healthcare-station',
+    name: 'Hospital Surgical Scrub Station',
     category: 'commercial',
-    tagline: 'Zero-silica, non-porous bacteriological barrier with 150mm coved upstand',
-    description: 'Certified for surgical scrub zones, hospital consultation bays, and cleanrooms. Seamless 10mm radius coved upstands ensure zero grime seams or bacteria accumulation.',
+    tagline: 'Infection-controlled seamless washstation for surgical scrub bays',
+    description: 'Certified zero-silica solid surface formulation meeting NABH and international clinical hygiene standards. Full continuous coved upstand preventing microbial ingress.',
     defaultConfig: {
-      presetId: 'commercial-washstation',
-      title: 'Healthcare & Clinical Washstation',
-      width: 1100,
-      depth: 580,
-      thickness: 12,
-      frontApronHeight: 180,
+      presetId: 'healthcare-station',
+      title: 'Hospital Surgical Scrub Station',
+      width: 1600,
+      depth: 600,
+      thickness: 19,
+      cornerLeft: { type: 'fillet', radiusMm: 50, chamferMm: 0, shiftMm: 0 },
+      cornerRight: { type: 'fillet', radiusMm: 50, chamferMm: 0, shiftMm: 0 },
+      tapLocation: 'wall-mounted',
+      tapHoles: 0,
+      tapHoleDiameterMm: 35,
+      sinkIntegration: 'integrated',
+      basinModelId: 'crisp-rect',
+      basinPlacement: 'center',
+      basinOffsetMm: 0,
+      downstands: { front: true, left: true, right: true, heightMm: 250 },
+      frontApronHeight: 250,
       hasLeftApron: true,
       hasRightApron: true,
-      rearUpstandHeight: 200,
+      upstands: {
+        type: 'full',
+        heightMm: 300,
+        isCoved: true,
+        backMode: 'full',
+        backLengthMm: 1600,
+        leftMode: 'full',
+        leftLengthMm: 600,
+        rightMode: 'full',
+        rightLengthMm: 600,
+      },
+      rearUpstandHeight: 300,
       hasLeftUpstand: true,
       hasRightUpstand: true,
       isCovedUpstand: true,
-      basinModelId: 'coved-oval',
-      basinPlacement: 'center',
-      basinOffsetMm: 0,
-      tapHoles: 1,
-      tapPosition: 'center',
+      towelHolder: { enabled: false, lengthMm: 350, position: 'left', filletMm: 12 },
+      topEdge: { type: 'fillet', radiusMm: 12, chamferMm: 2 },
       edgeProfileId: 'rounded',
-      cornerProfileId: 'radius-large',
-      materialSlug: 'corian-designer-white',
-      materialName: 'Corian® Designer White',
-      materialHex: '#ffffff',
-      materialFinish: 'Hygienic Polished Matte',
-      projectName: 'Clinical Scrub Station',
-      clientStudio: '',
-      locationCity: 'Bengaluru',
-      specialInstructions: 'NSF/ANSI 51 certification batch report required.',
+      drainTypeId: 'freeflow-chrome',
+      materialSlug: 'corian-glacier-white',
+      materialName: 'Corian® Glacier White',
+      materialHex: '#f3f2ee',
+      materialFinish: 'Clinical Ultra-Smooth',
+      projectName: 'Apollo Super Speciality',
+      clientStudio: 'Healthcare Facility Specifier',
+      locationCity: 'Chennai',
+      specialInstructions: 'Antimicrobial coved joints throughout.',
       quantity: 1,
     },
   },
 ];
 
-// Curated solid surface materials with verified real swatches
-export interface ConfiguratorMaterialSwatch {
+export interface SwatchMaterial {
+  id?: string;
+  category?: string;
   slug: string;
   name: string;
   code: string;
   collection: string;
-  colorFamily: 'white' | 'cream' | 'grey' | 'earth' | 'black' | 'translucent';
+  colorFamily: 'white' | 'grey' | 'warm' | 'dark' | 'translucent';
   hexColor: string;
   finish: string;
-  priceTier: 1 | 2 | 3 | 4; // 1 = Solid, 2 = Mineral blend, 3 = Veined, 4 = Translucent Onyx
+  priceTier: 1 | 2 | 3 | 4;
   inStock: boolean;
-  texturePattern?: string;
 }
 
-export const CONFIGURATOR_MATERIALS: ConfiguratorMaterialSwatch[] = [
+export type ConfiguratorMaterialSwatch = SwatchMaterial;
+
+export const CONFIGURATOR_MATERIALS: SwatchMaterial[] = [
   {
+    id: 'corian-glacier-white',
+    category: 'white',
     slug: 'corian-glacier-white',
     name: 'Glacier White',
     code: 'GW-01',
     collection: 'Solid Series',
     colorFamily: 'white',
     hexColor: '#f3f2ee',
-    finish: 'Honed Matte',
+    finish: 'Honed Matte / Semi-Gloss',
     priceTier: 1,
     inStock: true,
   },
   {
-    slug: 'corian-cameo-white',
-    name: 'Cameo White',
-    code: 'CW-02',
-    collection: 'Solid Series',
-    colorFamily: 'cream',
-    hexColor: '#eeebe1',
-    finish: 'Satin Smooth',
-    priceTier: 1,
-    inStock: true,
-  },
-  {
+    id: 'corian-designer-white',
+    category: 'white',
     slug: 'corian-designer-white',
     name: 'Designer White',
-    code: 'DW-03',
+    code: 'DW-02',
     collection: 'Solid Series',
     colorFamily: 'white',
     hexColor: '#ffffff',
-    finish: 'Ultra Pure Matte',
+    finish: 'Crisp Architectural Matte',
     priceTier: 1,
     inStock: true,
   },
   {
-    slug: 'corian-artista-beige',
-    name: 'Artista Beige',
-    code: 'AB-04',
-    collection: 'Artista Series',
-    colorFamily: 'cream',
-    hexColor: '#e8e2d5',
-    finish: 'Fine Grain Satin',
-    priceTier: 2,
+    id: 'corian-cameo-white',
+    category: 'cream',
+    slug: 'corian-cameo-white',
+    name: 'Cameo White',
+    code: 'CW-03',
+    collection: 'Solid Series',
+    colorFamily: 'warm',
+    hexColor: '#eeebe1',
+    finish: 'Warm Ivory Satin',
+    priceTier: 1,
     inStock: true,
   },
   {
-    slug: 'corian-artista-mist',
-    name: 'Artista Mist',
-    code: 'AM-05',
-    collection: 'Artista Series',
-    colorFamily: 'grey',
-    hexColor: '#d2d3cb',
-    finish: 'Velvet Satin',
-    priceTier: 2,
+    id: 'corian-bone',
+    category: 'cream',
+    slug: 'corian-bone',
+    name: 'Bone',
+    code: 'BN-04',
+    collection: 'Solid Series',
+    colorFamily: 'warm',
+    hexColor: '#dfdacb',
+    finish: 'Natural Neutral Matte',
+    priceTier: 1,
     inStock: true,
   },
   {
-    slug: 'corian-calacatta-greige',
-    name: 'Calacatta Greige',
-    code: 'CG-06',
-    collection: 'Heritage Veined',
-    colorFamily: 'cream',
-    hexColor: '#dfdbd2',
-    finish: 'Subtle Veined Matte',
-    priceTier: 3,
-    inStock: true,
-  },
-  {
-    slug: 'corian-cirrus-white',
-    name: 'Cirrus White',
-    code: 'CI-07',
-    collection: 'Heritage Veined',
-    colorFamily: 'white',
-    hexColor: '#e9e8e2',
-    finish: 'Wisp Feather Vein',
-    priceTier: 3,
-    inStock: true,
-  },
-  {
-    slug: 'corian-concrete',
-    name: 'Corian® Concrete',
-    code: 'CC-08',
-    collection: 'Industrial Mineral',
+    id: 'corian-neutral-concrete',
+    category: 'grey',
+    slug: 'corian-neutral-concrete',
+    name: 'Neutral Concrete',
+    code: 'NC-05',
+    collection: 'Concrete Series',
     colorFamily: 'grey',
     hexColor: '#9c9b96',
-    finish: 'Tactile Honed',
+    finish: 'Micro-Textured Architectural',
     priceTier: 2,
     inStock: true,
   },
   {
-    slug: 'corian-stonecrest-smoke',
-    name: 'Stonecrest Smoke',
-    code: 'SS-09',
-    collection: 'Architectural Slate',
+    id: 'corian-dove-grey',
+    category: 'grey',
+    slug: 'corian-dove-grey',
+    name: 'Dove Grey',
+    code: 'DG-06',
+    collection: 'Solid Series',
     colorFamily: 'grey',
-    hexColor: '#636662',
-    finish: 'Satin Honed',
+    hexColor: '#b8b7b2',
+    finish: 'Smooth Satin Matte',
+    priceTier: 2,
+    inStock: true,
+  },
+  {
+    id: 'corian-sanded-icicle',
+    category: 'white',
+    slug: 'corian-sanded-icicle',
+    name: 'Sanded Icicle',
+    code: 'SI-07',
+    collection: 'Mineral Grain Series',
+    colorFamily: 'white',
+    hexColor: '#e8e8e3',
+    finish: 'Fine Crystalline Grain',
+    priceTier: 2,
+    inStock: true,
+  },
+  {
+    id: 'corian-calacatta-greige',
+    category: 'cream',
+    slug: 'corian-calacatta-greige',
+    name: 'Calacatta Greige',
+    code: 'CG-08',
+    collection: 'Heritage Veined Series',
+    colorFamily: 'warm',
+    hexColor: '#ebe6dd',
+    finish: 'Calacatta Vein Polish',
     priceTier: 3,
     inStock: true,
   },
   {
+    id: 'corian-deep-nocturne',
+    category: 'black',
     slug: 'corian-deep-nocturne',
-    name: 'Deep Nocturne',
-    code: 'DN-10',
+    name: 'Deep Nocturne (Jet Black)',
+    code: 'DN-09',
     collection: 'DeepColor™ Technology',
-    colorFamily: 'black',
-    hexColor: '#1a1b1a',
-    finish: 'Deep Lustre Matte',
+    colorFamily: 'dark',
+    hexColor: '#1d1e1f',
+    finish: 'Velvet Black Low-Sheen',
     priceTier: 3,
     inStock: true,
   },
   {
+    id: 'corian-carbon-concrete',
+    category: 'black',
+    slug: 'corian-carbon-concrete',
+    name: 'Carbon Concrete',
+    code: 'CC-10',
+    collection: 'Concrete Series',
+    colorFamily: 'dark',
+    hexColor: '#4f5052',
+    finish: 'Tactile Industrial Matte',
+    priceTier: 3,
+    inStock: true,
+  },
+  {
+    id: 'corian-terrazzo-laguna',
+    category: 'grey',
     slug: 'corian-terrazzo-laguna',
     name: 'Terrazzo Laguna',
     code: 'TL-11',
@@ -512,6 +903,8 @@ export const CONFIGURATOR_MATERIALS: ConfiguratorMaterialSwatch[] = [
     inStock: true,
   },
   {
+    id: 'corian-golden-onyx',
+    category: 'translucent',
     slug: 'corian-golden-onyx',
     name: 'Golden Onyx (Translucent)',
     code: 'GO-12',
@@ -524,7 +917,6 @@ export const CONFIGURATOR_MATERIALS: ConfiguratorMaterialSwatch[] = [
   },
 ];
 
-// Calculation of realistic indicative quote based on actual solid surface fabrication engineering
 export interface PriceBreakdown {
   baseSubstrate: number;
   thicknessSurcharge: number;
@@ -533,6 +925,8 @@ export interface PriceBreakdown {
   edgeTooling: number;
   basinIntegration: number;
   tapCutouts: number;
+  towelCutout: number;
+  drainAccessory: number;
   totalIndicative: number;
 }
 
@@ -559,40 +953,71 @@ export function calculateIndicativePrice(cfg: ProductConfiguration): PriceBreakd
   if (cfg.thickness === 24) thicknessSurcharge = Math.round(baseSubstrate * 0.6);
   if (cfg.thickness === 60) thicknessSurcharge = Math.round(baseSubstrate * 0.85);
 
-  // Front + Side Apron drops (Fabrication & 45-degree mitred chemical welding)
-  let totalApronM = (cfg.width / 1000);
-  if (cfg.hasLeftApron) totalApronM += (cfg.depth / 1000);
-  if (cfg.hasRightApron) totalApronM += (cfg.depth / 1000);
-  const apronHeightFactor = (cfg.frontApronHeight / 100);
-  const apronDownstand = Math.round(totalApronM * 2800 * Math.max(0.6, apronHeightFactor));
+  // Front + Side Downstands (Mitred 45° drop fascia)
+  const frontH = cfg.downstands?.heightMm ?? cfg.frontApronHeight ?? 0;
+  const hasFront = cfg.downstands?.front ?? (frontH > 0);
+  const hasLeft = cfg.downstands?.left ?? cfg.hasLeftApron;
+  const hasRight = cfg.downstands?.right ?? cfg.hasRightApron;
 
-  // Upstand / Splashback (Coved chemical fusion)
-  let totalUpstandM = (cfg.rearUpstandHeight > 0 ? (cfg.width / 1000) : 0);
-  if (cfg.hasLeftUpstand) totalUpstandM += (cfg.depth / 1000);
-  if (cfg.hasRightUpstand) totalUpstandM += (cfg.depth / 1000);
-  const covedPremium = cfg.isCovedUpstand ? 1.4 : 1.0;
-  const upstandHeightFactor = (cfg.rearUpstandHeight / 100);
-  const upstandSplashback = Math.round(totalUpstandM * 2200 * covedPremium * Math.max(0.5, upstandHeightFactor));
+  let totalApronM = hasFront ? widthM : 0;
+  if (hasLeft) totalApronM += depthM;
+  if (hasRight) totalApronM += depthM;
+  const apronHeightFactor = Math.max(0.6, frontH / 100);
+  const apronDownstand = Math.round(totalApronM * 2800 * apronHeightFactor);
 
-  // CNC Edge profiling & hand finishing
-  const edgeProfile = EDGE_PROFILES.find(e => e.id === cfg.edgeProfileId);
-  const edgeRate = edgeProfile ? edgeProfile.pricePerMeter : 650;
-  const exposedPerimeterM = (cfg.width / 1000) + (cfg.depth / 1000) * 2;
-  const edgeTooling = Math.round(exposedPerimeterM * edgeRate);
+  // Upstands / Splashbacks (Coved chemical fusion)
+  const upstandH = cfg.upstands?.heightMm ?? cfg.rearUpstandHeight ?? 0;
+  const isCoved = cfg.upstands?.isCoved ?? cfg.isCovedUpstand;
+  let totalUpstandM = (upstandH > 0 && cfg.upstands?.backMode !== 'none') ? widthM : 0;
+  if (cfg.upstands?.leftMode !== 'none' && (cfg.upstands?.leftLengthMm || cfg.hasLeftUpstand)) totalUpstandM += depthM;
+  if (cfg.upstands?.rightMode !== 'none' && (cfg.upstands?.rightLengthMm || cfg.hasRightUpstand)) totalUpstandM += depthM;
 
-  // Basin selection & molecular bonding
+  const covedPremium = isCoved ? 1.4 : 1.0;
+  const upstandHeightFactor = Math.max(0.5, upstandH / 100);
+  const upstandSplashback = Math.round(totalUpstandM * 2200 * covedPremium * upstandHeightFactor);
+
+  // Edge & Corner Tooling
+  const edgeRate = cfg.topEdge?.type === 'chamfer' ? 1100 : cfg.topEdge?.type === 'fillet' ? 900 : 650;
+  const exposedPerimeterM = widthM + depthM * 2;
+  let edgeTooling = Math.round(exposedPerimeterM * edgeRate);
+
+  // Custom Corner Shift or Fillet Surcharge
+  if (cfg.cornerLeft?.type === 'shift' || cfg.cornerRight?.type === 'shift') edgeTooling += 1500;
+  if (cfg.cornerLeft?.type === 'fillet' && cfg.cornerLeft.radiusMm > 30) edgeTooling += 800;
+  if (cfg.cornerRight?.type === 'fillet' && cfg.cornerRight.radiusMm > 30) edgeTooling += 800;
+
+  // Basin Selection & Integration
   let basinIntegration = 0;
-  if (cfg.basinModelId !== 'none') {
+  if (cfg.basinModelId !== 'none' && cfg.sinkIntegration !== 'none') {
     const basin = AVAILABLE_BASINS.find(b => b.id === cfg.basinModelId);
     const basinCost = basin ? basin.priceModifier : 14500;
+    const integrationOption = SINK_INTEGRATIONS.find(s => s.id === cfg.sinkIntegration);
+    const integrationModifier = integrationOption ? integrationOption.priceModifier : 0;
     const basinQty = cfg.basinPlacement === 'dual' ? 2 : 1;
-    basinIntegration = basinCost * basinQty;
+    basinIntegration = (basinCost + integrationModifier) * basinQty;
   }
 
-  // Tap hole CNC drilling
-  const tapCutouts = cfg.tapHoles * 750;
+  // Tap Hole CNC Machining
+  const tapCutouts = (cfg.tapLocation === 'top-mounted' ? cfg.tapHoles : 0) * 750;
 
-  const totalIndicative = (baseSubstrate + thicknessSurcharge + apronDownstand + upstandSplashback + edgeTooling + basinIntegration + tapCutouts) * (cfg.quantity || 1);
+  // Towel Holder Slot Cutout Machining
+  const towelCutout = cfg.towelHolder?.enabled ? 2400 : 0;
+
+  // Drain Accessory
+  const drain = DRAIN_OPTIONS.find(d => d.id === cfg.drainTypeId);
+  const drainAccessory = drain ? drain.priceInr : 1850;
+
+  const totalIndicative = (
+    baseSubstrate +
+    thicknessSurcharge +
+    apronDownstand +
+    upstandSplashback +
+    edgeTooling +
+    basinIntegration +
+    tapCutouts +
+    towelCutout +
+    drainAccessory
+  ) * (cfg.quantity || 1);
 
   return {
     baseSubstrate,
@@ -602,6 +1027,8 @@ export function calculateIndicativePrice(cfg: ProductConfiguration): PriceBreakd
     edgeTooling,
     basinIntegration,
     tapCutouts,
+    towelCutout,
+    drainAccessory,
     totalIndicative,
   };
 }

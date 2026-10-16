@@ -10,6 +10,8 @@ import PageTransition from '@/components/PageTransition';
 import SmoothScroll from '@/components/SmoothScroll';
 import CookieConsent from '@/components/CookieConsent';
 
+// Root layout for Ace Spaces India architectural platform
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://acespacesindia.vercel.app'),
   title: {

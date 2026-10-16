@@ -224,6 +224,8 @@ export default function ProductsCatalogPage() {
             </Link>
           </div>
         </div>
+      </section>
+
       {/* Interactive 3D Configurator Feature Banner */}
       <section style={{ margin: '60px 0 40px', background: 'var(--ink, #1e211d)', color: '#fff', borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', alignItems: 'center' }}>

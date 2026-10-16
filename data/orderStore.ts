@@ -65,6 +65,18 @@ const defaultOrders: SampleOrder[] = [];
 const defaultInquiries: ProjectInquiry[] = [];
 const defaultSubscribers: DispatchSubscriber[] = [];
 
+// Global in-memory cache for high-concurrency serverless execution (Vercel Lambda)
+declare global {
+  // eslint-disable-next-line no-var
+  var __inMemoryOrders: SampleOrder[] | undefined;
+  var __inMemoryInquiries: ProjectInquiry[] | undefined;
+  var __inMemorySubscribers: DispatchSubscriber[] | undefined;
+}
+
+if (!globalThis.__inMemoryOrders) globalThis.__inMemoryOrders = [];
+if (!globalThis.__inMemoryInquiries) globalThis.__inMemoryInquiries = [];
+if (!globalThis.__inMemorySubscribers) globalThis.__inMemorySubscribers = [];
+
 // Helper to determine persistent file paths with /tmp fallback on Vercel
 function getFilePath(filename: string): string {
   const localDir = path.join(process.cwd(), 'data');
@@ -101,6 +113,15 @@ export function sanitizeEmail(email?: string): string {
 }
 
 function writeDataSafe(filename: string, data: unknown): void {
+  // 1. Instantly update in-memory cache for high-concurrency zero-latency reads
+  if (filename === 'orders.json' && Array.isArray(data)) {
+    globalThis.__inMemoryOrders = [...data] as SampleOrder[];
+  } else if (filename === 'inquiries.json' && Array.isArray(data)) {
+    globalThis.__inMemoryInquiries = [...data] as ProjectInquiry[];
+  } else if (filename === 'subscribers.json' && Array.isArray(data)) {
+    globalThis.__inMemorySubscribers = [...data] as DispatchSubscriber[];
+  }
+
   const payload = JSON.stringify(data, null, 2);
   const localDir = path.join(process.cwd(), 'data');
   const localPath = path.join(localDir, filename);
@@ -171,17 +192,24 @@ export function getStoreMetrics(): StoreMetrics {
 ========================================================================= */
 
 export function getSampleOrders(): SampleOrder[] {
+  if (globalThis.__inMemoryOrders && globalThis.__inMemoryOrders.length > 0) {
+    return globalThis.__inMemoryOrders;
+  }
   const filePath = getFilePath('orders.json');
   try {
     if (fs.existsSync(filePath)) {
       let raw = fs.readFileSync(filePath, 'utf8');
       if (raw.charCodeAt(0) === 0xFEFF) raw = raw.slice(1);
-      return JSON.parse(raw.trim());
+      const parsed = JSON.parse(raw.trim());
+      if (Array.isArray(parsed)) {
+        globalThis.__inMemoryOrders = parsed;
+        return parsed;
+      }
     }
   } catch (err) {
     console.warn('Error reading orders.json, using defaults:', err);
   }
-  return defaultOrders;
+  return globalThis.__inMemoryOrders || defaultOrders;
 }
 
 export function saveSampleOrder(orderData: Partial<SampleOrder>, isAdmin: boolean = false): SampleOrder {
@@ -295,17 +323,24 @@ export function deleteSampleOrder(id: string): boolean {
 ========================================================================= */
 
 export function getInquiries(): ProjectInquiry[] {
+  if (globalThis.__inMemoryInquiries && globalThis.__inMemoryInquiries.length > 0) {
+    return globalThis.__inMemoryInquiries;
+  }
   const filePath = getFilePath('inquiries.json');
   try {
     if (fs.existsSync(filePath)) {
       let raw = fs.readFileSync(filePath, 'utf8');
       if (raw.charCodeAt(0) === 0xFEFF) raw = raw.slice(1);
-      return JSON.parse(raw.trim());
+      const parsed = JSON.parse(raw.trim());
+      if (Array.isArray(parsed)) {
+        globalThis.__inMemoryInquiries = parsed;
+        return parsed;
+      }
     }
   } catch (err) {
     console.warn('Error reading inquiries.json, using defaults:', err);
   }
-  return defaultInquiries;
+  return globalThis.__inMemoryInquiries || defaultInquiries;
 }
 
 export function saveInquiry(inquiryData: {
@@ -367,17 +402,24 @@ export function deleteInquiry(id: string): boolean {
 ========================================================================= */
 
 export function getDispatchSubscribers(): DispatchSubscriber[] {
+  if (globalThis.__inMemorySubscribers && globalThis.__inMemorySubscribers.length > 0) {
+    return globalThis.__inMemorySubscribers;
+  }
   const filePath = getFilePath('subscribers.json');
   try {
     if (fs.existsSync(filePath)) {
       let raw = fs.readFileSync(filePath, 'utf8');
       if (raw.charCodeAt(0) === 0xFEFF) raw = raw.slice(1);
-      return JSON.parse(raw.trim());
+      const parsed = JSON.parse(raw.trim());
+      if (Array.isArray(parsed)) {
+        globalThis.__inMemorySubscribers = parsed;
+        return parsed;
+      }
     }
   } catch (err) {
     console.warn('Error reading subscribers.json, using defaults:', err);
   }
-  return defaultSubscribers;
+  return globalThis.__inMemorySubscribers || defaultSubscribers;
 }
 
 export function addDispatchSubscriber(email: string, source = 'Footer Dispatch Box'): { subscriber: DispatchSubscriber; alreadySubscribed: boolean } {

@@ -13,17 +13,47 @@ import {
   calculateIndicativePrice,
   PriceBreakdown,
   ConfiguratorMaterialSwatch,
+  DRAIN_OPTIONS,
+  TOP_EDGE_OPTIONS,
+  TOWEL_HOLDER_OPTIONS,
+  CORNER_TREATMENT_OPTIONS,
+  SINK_INTEGRATION_OPTIONS,
+  TAP_LOCATION_OPTIONS,
+  DOWNSTAND_HEIGHT_OPTIONS,
+  UPSTAND_MODE_OPTIONS,
+  RO_SIZE_OPTIONS,
+  WDT_DEPTH_OPTIONS,
+  SINK_WIDTH_OPTIONS,
+  SINK_DEPTH_OPTIONS,
 } from '@/data/configuratorData';
-import { Configurator3DEngine, DimensionCallout } from '@/lib/configurator/webglEngine';
+import { Configurator3DEngine, DimensionCallout, CadDimensionData } from '@/lib/configurator/webglEngine';
+import {
+  TechnicalOptionCard,
+  CornerProfileDiagram,
+  SinkIntegrationDiagram,
+  TapLocationDiagram,
+  SinkModelDiagram,
+  DownstandDiagram,
+  UpstandDiagram,
+  TowelHolderDiagram,
+  EdgeFinishDiagram,
+  DrainTypeThumbnail,
+} from './TechnicalDiagrams';
+import { ArViewerModal } from './ArViewerModal';
+import ArchitecturalSelect from '@/components/ArchitecturalSelect';
 
 interface ProductConfiguratorProps {
   initialPresetId?: string;
   initialMaterialSlug?: string;
+  initialConfigId?: string;
+  autoLaunchAr?: boolean;
 }
 
 export default function ProductConfigurator({
   initialPresetId = 'single-basin-vanity',
   initialMaterialSlug,
+  initialConfigId,
+  autoLaunchAr = false,
 }: ProductConfiguratorProps) {
   // Preset & Configuration State
   const defaultPreset = CONFIGURATOR_PRESETS.find(p => p.id === initialPresetId) || CONFIGURATOR_PRESETS[0];
@@ -39,20 +69,27 @@ export default function ProductConfigurator({
         base.materialFinish = mat.finish;
       }
     }
+    if (!base.materialFinish) {
+      base.materialFinish = 'Honed Satin Matte';
+    }
     return base;
   });
 
   const [pricing, setPricing] = useState<PriceBreakdown>(() => calculateIndicativePrice(config));
 
-  // Accordion Sections Open State
+  // Accordion Sections Open State (01 to 11)
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
-    '01': false, // Tutorial
+    '01': false, // Studio Guidance
     '02': true,  // Dimensions
-    '03': true,  // Basin
-    '04': false, // Edges & Aprons
-    '05': false, // Upstands
-    '06': true,  // Material & Colour
-    '07': false, // Project Notes
+    '03': false, // Corner Treatments
+    '04': true,  // Basin & Sink Integration
+    '05': false, // Downstands & Aprons
+    '06': false, // Upstands & Splashbacks
+    '07': false, // Towel-Holder Cut-out
+    '08': false, // Vanity Top Edge Finishing
+    '09': false, // Waste & Drain System
+    '10': true,  // Material & Colour
+    '11': false, // Project Notes & Ref
   });
 
   // Material Palette Filter
@@ -62,9 +99,11 @@ export default function ProductConfigurator({
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const engineRef = useRef<Configurator3DEngine | null>(null);
   const [dimensionCallouts, setDimensionCallouts] = useState<DimensionCallout[]>([]);
+  const [cadDimensions, setCadDimensions] = useState<CadDimensionData | null>(null);
   const [activeView, setActiveView] = useState<'isometric' | 'front' | 'top' | 'side'>('isometric');
   const [showDimensions, setShowDimensions] = useState(true);
   const [isWireframe, setIsWireframe] = useState(false);
+  const [isTurntable, setIsTurntable] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const workspaceContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -93,27 +132,55 @@ export default function ProductConfigurator({
   };
 
   // Dimension Callouts Callback
-  const handleDimensionsUpdate = useCallback((callouts: DimensionCallout[]) => {
+  const handleDimensionsUpdate = useCallback((callouts: DimensionCallout[], cad?: CadDimensionData) => {
     setDimensionCallouts(callouts);
+    if (cad) setCadDimensions(cad);
   }, []);
 
-  // Isolate page scrolling while in 3D Configurator Studio
+  // Ensure document and body scroll is always free and clean
   useEffect(() => {
-    document.documentElement.classList.add('configurator-active');
-    document.body.classList.add('configurator-active');
-    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
-    if (lenis && typeof lenis.stop === 'function') {
-      lenis.stop();
+    if (typeof document !== 'undefined') {
+      document.documentElement.classList.remove('configurator-active', 'lenis-stopped');
+      document.body.classList.remove('configurator-active', 'lenis-stopped');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
     }
-
-    return () => {
-      document.documentElement.classList.remove('configurator-active');
-      document.body.classList.remove('configurator-active');
-      if (lenis && typeof lenis.start === 'function') {
-        lenis.start();
-      }
-    };
   }, []);
+
+  // Hydrate saved configuration or auto-launch mobile AR from URL query
+  useEffect(() => {
+    if (initialConfigId) {
+      fetch(`/api/configurator?id=${encodeURIComponent(initialConfigId)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.configuration) {
+            const rawCfg = data.configuration.config || data.configuration;
+            const loaded: ProductConfiguration = {
+              ...defaultPreset.defaultConfig,
+              ...rawCfg,
+            };
+            if (!loaded.materialFinish) {
+              const mat = CONFIGURATOR_MATERIALS.find(m => m.slug === loaded.materialSlug);
+              loaded.materialFinish = mat?.finish || 'Honed Satin Matte';
+            }
+            if (!loaded.materialHex) {
+              const mat = CONFIGURATOR_MATERIALS.find(m => m.slug === loaded.materialSlug);
+              loaded.materialHex = mat?.hexColor || '#f3f2ee';
+            }
+            setConfig(loaded);
+            if (autoLaunchAr) {
+              setShowArModal(true);
+            }
+          }
+        })
+        .catch(err => {
+          console.error('Error hydrating configuration from URL:', err);
+          if (autoLaunchAr) setShowArModal(true);
+        });
+    } else if (autoLaunchAr) {
+      setShowArModal(true);
+    }
+  }, [initialConfigId, autoLaunchAr]);
 
   // Initialize 3D Engine
   useEffect(() => {
@@ -182,6 +249,13 @@ export default function ProductConfigurator({
     if (engineRef.current) {
       const active = engineRef.current.toggleWireframe();
       setIsWireframe(active);
+    }
+  };
+
+  const handleToggleTurntable = () => {
+    if (engineRef.current) {
+      const active = engineRef.current.toggleTurntable();
+      setIsTurntable(active);
     }
   };
 
@@ -295,115 +369,132 @@ export default function ProductConfigurator({
       )}
 
       {/* Main Two-Panel Layout */}
-      <div
-        className="configurator-grid"
-        data-lenis-prevent="true"
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'minmax(0, 1.45fr) minmax(420px, 1fr)',
-          height: 'calc(100vh - 84px - 80px)',
-          maxHeight: 'calc(100vh - 84px - 80px)',
-          minHeight: 'calc(100vh - 84px - 80px)',
-          marginTop: '84px',
-          overflow: 'hidden',
-        }}
-      >
+      <div className="configurator-grid">
         {/* ========================================================= */}
         {/* LEFT PANEL: 3D PRODUCT WORKSPACE                          */}
         {/* ========================================================= */}
         <div
           ref={workspaceContainerRef}
           className="configurator-viewport-panel"
-          data-lenis-prevent="true"
           style={{
             position: 'relative',
             background: '#edeae3',
             borderRight: '1px solid var(--line, rgba(30,33,29,0.15))',
             display: 'flex',
             flexDirection: 'column',
-            overflow: 'hidden',
-            height: '100%',
-            maxHeight: '100%',
           }}
         >
-          {/* Top Viewport Header Bar */}
+          {/* Top Viewport Header Bar (Minimal, Architectural, Non-Colliding) */}
           <div
+            className="configurator-viewport-top-bar"
             style={{
               position: 'absolute',
-              top: '16px',
-              left: '18px',
-              right: '18px',
+              top: '12px',
+              left: '14px',
+              right: '14px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
               zIndex: 10,
               pointerEvents: 'none',
+              gap: '8px',
             }}
           >
-            {/* Model Badge */}
+            {/* Minimal Architectural Studio Badge */}
             <div
+              className="configurator-model-badge"
               style={{
-                background: 'rgba(255, 255, 255, 0.88)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
+                background: 'rgba(255, 255, 255, 0.94)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
                 border: '1px solid rgba(30, 33, 29, 0.12)',
-                padding: '8px 16px',
+                borderRadius: '9999px',
+                padding: '4px 10px',
                 pointerEvents: 'auto',
-                display: 'flex',
+                display: 'inline-flex',
                 alignItems: 'center',
-                gap: '12px',
+                gap: '6px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+                flexShrink: 0,
               }}
             >
-              <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: 'var(--brand-red, #d43833)' }} />
-              <div>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#667066', display: 'block' }}>
-                  Interactive 3D Engine · 1:1 Scale
-                </span>
-                <strong style={{ fontSize: '13px', color: '#1e211d', fontWeight: 600 }}>
-                  {config.title}
-                </strong>
-              </div>
+              <span
+                style={{
+                  width: '6px',
+                  height: '6px',
+                  borderRadius: '50%',
+                  background: 'var(--brand-red, #d43833)',
+                  boxShadow: '0 0 6px rgba(212, 56, 51, 0.6)',
+                  flexShrink: 0,
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: 'DM Mono, monospace',
+                  fontSize: '9.5px',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  color: '#1e211d',
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                3D Studio · 1:1
+              </span>
             </div>
 
-            {/* Viewpoint Controls */}
+            {/* Architectural Segmented Viewpoint Pill */}
             <div
+              className="configurator-viewpoint-controls"
               style={{
-                background: 'rgba(255, 255, 255, 0.88)',
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
+                background: 'rgba(255, 255, 255, 0.94)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
                 border: '1px solid rgba(30, 33, 29, 0.12)',
-                padding: '4px',
+                borderRadius: '9999px',
+                padding: '2px',
                 pointerEvents: 'auto',
-                display: 'flex',
-                gap: '4px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '1px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+                flexShrink: 0,
               }}
             >
-              {(['isometric', 'front', 'top', 'side'] as const).map(v => (
+              {[
+                { key: 'isometric', label: 'Iso' },
+                { key: 'front', label: 'Front' },
+                { key: 'top', label: 'Top' },
+                { key: 'side', label: 'Side' },
+              ].map(v => (
                 <button
-                  key={v}
+                  key={v.key}
                   type="button"
-                  onClick={() => handleSetView(v)}
+                  onClick={() => handleSetView(v.key as any)}
                   style={{
-                    background: activeView === v ? '#1e211d' : 'transparent',
-                    color: activeView === v ? '#fff' : '#4a5249',
+                    background: activeView === v.key ? '#1e211d' : 'transparent',
+                    color: activeView === v.key ? '#ffffff' : '#636c63',
                     border: 'none',
-                    padding: '6px 12px',
+                    borderRadius: '9999px',
+                    padding: '3px 8px',
                     fontFamily: 'DM Mono, monospace',
-                    fontSize: '10px',
+                    fontSize: '9.5px',
+                    fontWeight: activeView === v.key ? 600 : 500,
                     textTransform: 'uppercase',
-                    letterSpacing: '0.06em',
+                    letterSpacing: '0.04em',
                     cursor: 'pointer',
-                    transition: 'all 0.15s ease',
+                    transition: 'background 0.15s ease, color 0.15s ease',
+                    whiteSpace: 'nowrap',
                   }}
                 >
-                  {v}
+                  {v.label}
                 </button>
               ))}
             </div>
           </div>
 
           {/* Interactive WebGL Canvas */}
-          <div style={{ position: 'relative', width: '100%', height: '100%', minHeight: '520px', flex: 1 }}>
+          <div className="configurator-canvas-wrapper" style={{ position: 'relative', width: '100%', height: '100%', flex: 1 }}>
             <canvas
               ref={canvasRef}
               style={{
@@ -415,37 +506,91 @@ export default function ProductConfigurator({
               }}
             />
 
-            {/* Floating 3D Dimension Callouts Overlay */}
-            {showDimensions && dimensionCallouts.length > 0 && (
-              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden' }}>
-                {dimensionCallouts.map(callout => (
-                  <div
-                    key={callout.id}
-                    style={{
-                      position: 'absolute',
-                      left: `${callout.screenMid.x}px`,
-                      top: `${callout.screenMid.y}px`,
-                      transform: 'translate(-50%, -50%)',
-                      background: 'rgba(30, 33, 29, 0.88)',
-                      color: '#f5f4ee',
-                      padding: '3px 8px',
-                      borderRadius: '2px',
-                      fontFamily: 'DM Mono, monospace',
-                      fontSize: '10px',
-                      letterSpacing: '0.04em',
-                      whiteSpace: 'nowrap',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
-                      border: '1px solid rgba(255,255,255,0.18)',
-                    }}
-                  >
-                    {callout.label}
-                  </div>
+            {/* Architectural CAD Dimensioning Wireframe Overlay (Matches User Reference Image) */}
+            {showDimensions && cadDimensions && cadDimensions.lines.length > 0 && (
+              <svg
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  pointerEvents: 'none',
+                  overflow: 'visible',
+                  zIndex: 4,
+                }}
+              >
+                {/* 1. Dimension & Extension Lines */}
+                {cadDimensions.lines.map(line => (
+                  <g key={line.id}>
+                    <line
+                      x1={line.start.x}
+                      y1={line.start.y}
+                      x2={line.end.x}
+                      y2={line.end.y}
+                      stroke="#d43833"
+                      strokeWidth={line.isDashed ? '1' : '1.15'}
+                      strokeDasharray={line.isDashed ? '3 3' : undefined}
+                      strokeOpacity="0.88"
+                    />
+                    {line.label !== undefined && (
+                      <text
+                        x={line.mid.x}
+                        y={line.mid.y}
+                        textAnchor="middle"
+                        dominantBaseline="central"
+                        fill="#d43833"
+                        stroke="#f5f4ee"
+                        strokeWidth="3px"
+                        strokeLinejoin="round"
+                        paintOrder="stroke fill"
+                        fontFamily="DM Mono, monospace"
+                        fontSize="10.5px"
+                        fontWeight="500"
+                        letterSpacing="0.02em"
+                      >
+                        {line.label}
+                      </text>
+                    )}
+                  </g>
                 ))}
-              </div>
+
+                {/* 2. Precision CAD Nodes (Round Dots at Endpoints & Intersections) */}
+                {cadDimensions.nodes.map(node => (
+                  <g key={node.id}>
+                    <circle
+                      cx={node.pos.x}
+                      cy={node.pos.y}
+                      r="2.5"
+                      fill="#d43833"
+                      stroke="#ffffff"
+                      strokeWidth="0.75"
+                    />
+                    {node.label && (
+                      <text
+                        x={node.pos.x - 5}
+                        y={node.pos.y + 5}
+                        textAnchor="end"
+                        dominantBaseline="hanging"
+                        fill="#d43833"
+                        fontFamily="DM Mono, monospace"
+                        fontSize="9px"
+                        fontWeight="500"
+                        stroke="#f5f4ee"
+                        strokeWidth="2px"
+                        strokeLinejoin="round"
+                        paintOrder="stroke fill"
+                      >
+                        {node.label}
+                      </text>
+                    )}
+                  </g>
+                ))}
+              </svg>
             )}
 
             {/* Viewport Interaction Prompt */}
             <div
+              className="configurator-touch-hint"
               style={{
                 position: 'absolute',
                 bottom: '18px',
@@ -463,83 +608,160 @@ export default function ProductConfigurator({
               Left Drag: Orbit · Right Drag: Pan · Scroll: Zoom
             </div>
 
-            {/* Bottom-Right Toolbar Buttons */}
+            {/* Viewport Floating Icon Toolbar (Sleek, Architectural, Responsive) */}
             <div
+              className="configurator-viewport-toolbar"
               style={{
                 position: 'absolute',
-                bottom: '18px',
-                right: '20px',
+                bottom: '14px',
+                right: '16px',
                 display: 'flex',
-                gap: '8px',
+                alignItems: 'center',
+                background: 'rgba(255, 255, 255, 0.94)',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                border: '1px solid rgba(30, 33, 29, 0.16)',
+                borderRadius: '4px',
+                padding: '3px',
+                gap: '3px',
                 zIndex: 10,
+                boxShadow: '0 4px 14px rgba(0, 0, 0, 0.1)',
               }}
             >
+              {/* 1. Toggle Dimension Callouts */}
               <button
                 type="button"
                 onClick={handleToggleDimensions}
-                title="Toggle Millimeter Dimension Lines"
+                title={showDimensions ? 'Hide Dimensions (mm)' : 'Show Dimensions (mm)'}
+                aria-label="Toggle Millimeter Dimensions"
                 style={{
-                  background: showDimensions ? '#1e211d' : 'rgba(255,255,255,0.9)',
-                  color: showDimensions ? '#fff' : '#1e211d',
-                  border: '1px solid rgba(30,33,29,0.15)',
-                  padding: '7px 12px',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
+                  width: '32px',
+                  height: '32px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: showDimensions ? '#1e211d' : 'transparent',
+                  color: showDimensions ? '#ffffff' : '#3c423c',
+                  border: 'none',
+                  borderRadius: '2px',
                   cursor: 'pointer',
+                  transition: 'all 0.15s ease',
                 }}
               >
-                {showDimensions ? '✓ Dims (mm)' : 'Dims (mm)'}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 12h20M6 7v10M18 7v10M2 9v6M22 9v6" />
+                  <path d="m4 12 2-2m-2 2 2 2m16-2-2-2m2 2-2 2" />
+                </svg>
               </button>
 
+              {/* 2. 360 Turntable Orbit */}
+              <button
+                type="button"
+                onClick={handleToggleTurntable}
+                title={isTurntable ? 'Stop 360° Auto-Rotate' : 'Start 360° Auto-Rotate'}
+                aria-label="360° Turntable Auto-Rotate"
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: isTurntable ? 'var(--brand-red, #d43833)' : 'transparent',
+                  color: isTurntable ? '#ffffff' : '#3c423c',
+                  border: 'none',
+                  borderRadius: '2px',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                }}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 12a9 9 0 1 1-2.64-6.36L21 8" />
+                  <path d="M21 3v5h-5" />
+                  <text x="12" y="14" fontSize="7" fontWeight="bold" fontFamily="DM Mono, monospace" textAnchor="middle" fill="currentColor" stroke="none">360</text>
+                </svg>
+              </button>
+
+              {/* 3. Wireframe Inspection */}
               <button
                 type="button"
                 onClick={handleToggleWireframe}
-                title="Toggle Wireframe Inspection"
+                title={isWireframe ? 'Exit Wireframe' : 'View Wireframe Mesh'}
+                aria-label="Toggle Wireframe Mesh"
                 style={{
-                  background: isWireframe ? '#1e211d' : 'rgba(255,255,255,0.9)',
-                  color: isWireframe ? '#fff' : '#1e211d',
-                  border: '1px solid rgba(30,33,29,0.15)',
-                  padding: '7px 12px',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
+                  width: '32px',
+                  height: '32px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: isWireframe ? '#1e211d' : 'transparent',
+                  color: isWireframe ? '#ffffff' : '#3c423c',
+                  border: 'none',
+                  borderRadius: '2px',
                   cursor: 'pointer',
+                  transition: 'all 0.15s ease',
                 }}
               >
-                Wireframe
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m12 2 8.5 4.9v9.8L12 21.5 3.5 16.7V6.9L12 2z" />
+                  <path d="m12 11.8 8.5-4.9M12 11.8v9.7M12 11.8 3.5 6.9" />
+                </svg>
               </button>
 
+              {/* 4. Capture High-Res Snapshot */}
               <button
                 type="button"
                 onClick={handleCaptureSnapshot}
                 title="Capture High-Res Snapshot"
+                aria-label="Capture High-Res Snapshot"
                 style={{
-                  background: 'rgba(255,255,255,0.9)',
-                  color: '#1e211d',
-                  border: '1px solid rgba(30,33,29,0.15)',
-                  padding: '7px 12px',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
+                  width: '32px',
+                  height: '32px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'transparent',
+                  color: '#3c423c',
+                  border: 'none',
+                  borderRadius: '2px',
                   cursor: 'pointer',
+                  transition: 'all 0.15s ease',
                 }}
               >
-                📷 Snapshot
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                  <circle cx="12" cy="13" r="4" />
+                </svg>
               </button>
 
+              {/* 5. Fullscreen Mode */}
               <button
                 type="button"
                 onClick={handleToggleFullscreen}
-                title="Toggle Fullscreen"
+                title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
+                aria-label="Toggle Fullscreen"
                 style={{
-                  background: 'rgba(255,255,255,0.9)',
-                  color: '#1e211d',
-                  border: '1px solid rgba(30,33,29,0.15)',
-                  padding: '7px 12px',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
+                  width: '32px',
+                  height: '32px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  background: 'transparent',
+                  color: '#3c423c',
+                  border: 'none',
+                  borderRadius: '2px',
                   cursor: 'pointer',
+                  transition: 'all 0.15s ease',
                 }}
               >
-                {isFullscreen ? 'Exit Fullscreen' : '⛶ Fullscreen'}
+                {isFullscreen ? (
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
+                  </svg>
+                ) : (
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M15 3h6v6M9 21H3v-6M21 15v6h-6M3 9V3h6" />
+                  </svg>
+                )}
               </button>
             </div>
           </div>
@@ -550,20 +772,8 @@ export default function ProductConfigurator({
         {/* ========================================================= */}
         <div
           className="configurator-sidebar-panel"
-          data-lenis-prevent="true"
-          onWheel={(e) => {
-            // Prevent wheel events inside configuration sidebar from bubbling to window or Lenis
-            e.stopPropagation();
-          }}
           style={{
             background: '#faf9f5',
-            overflowY: 'auto',
-            overscrollBehavior: 'contain',
-            overscrollBehaviorY: 'contain',
-            WebkitOverflowScrolling: 'touch',
-            height: '100%',
-            maxHeight: '100%',
-            padding: '24px 28px 48px',
             display: 'flex',
             flexDirection: 'column',
             gap: '18px',
@@ -599,28 +809,15 @@ export default function ProductConfigurator({
               </button>
             </div>
 
-            <select
+            <ArchitecturalSelect
               value={config.presetId}
-              onChange={e => handleSelectPreset(e.target.value)}
-              style={{
-                width: '100%',
-                padding: '9px 12px',
-                background: '#fff',
-                border: '1px solid rgba(30,33,29,0.2)',
-                fontFamily: 'Manrope, sans-serif',
-                fontSize: '13px',
-                fontWeight: 600,
-                color: '#1e211d',
-                cursor: 'pointer',
-                outline: 'none',
-              }}
-            >
-              {CONFIGURATOR_PRESETS.map(p => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </select>
+              onChange={handleSelectPreset}
+              options={CONFIGURATOR_PRESETS.map(p => ({
+                value: p.id,
+                label: p.name,
+                meta: `${p.defaultConfig.width}×${p.defaultConfig.depth}mm`,
+              }))}
+            />
             <p style={{ margin: '8px 0 0 0', fontSize: '11px', color: '#687268', lineHeight: 1.45 }}>
               {CONFIGURATOR_PRESETS.find(p => p.id === config.presetId)?.description}
             </p>
@@ -699,16 +896,19 @@ export default function ProductConfigurator({
 
             {openSections['02'] && (
               <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                {/* Width Control */}
+                {/* Vanity Width Control matching Image 3 */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                      Overall Width (mm)
-                    </label>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                        VANITY WIDTH
+                      </label>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '14px', height: '14px', borderRadius: '50%', border: '1px solid #888', fontSize: '9px', fontFamily: 'serif', color: '#666', cursor: 'help' }}>i</span>
+                    </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <input
                         type="number"
-                        min={500}
+                        min={380}
                         max={3600}
                         step={10}
                         value={config.width}
@@ -728,29 +928,32 @@ export default function ProductConfigurator({
                   </div>
                   <input
                     type="range"
-                    min={500}
-                    max={3600}
+                    min={380}
+                    max={2200}
                     step={10}
-                    value={config.width}
+                    value={Math.min(config.width, 2200)}
                     onChange={e => setConfig({ ...config, width: Number(e.target.value) })}
                     style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#999', marginTop: '2px' }}>
-                    <span>Min: 500 mm</span>
-                    <span>Standard Slab: 3660 mm</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '3px' }}>
+                    <span>380mm</span>
+                    <span>2200mm</span>
                   </div>
                 </div>
 
-                {/* Depth Control */}
+                {/* Vanity Depth Control matching Image 3 */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                      Overall Depth (mm)
-                    </label>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                      <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                        VANITY DEPTH
+                      </label>
+                      <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '14px', height: '14px', borderRadius: '50%', border: '1px solid #888', fontSize: '9px', fontFamily: 'serif', color: '#666', cursor: 'help' }}>i</span>
+                    </div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <input
                         type="number"
-                        min={350}
+                        min={270}
                         max={1000}
                         step={10}
                         value={config.depth}
@@ -770,16 +973,16 @@ export default function ProductConfigurator({
                   </div>
                   <input
                     type="range"
-                    min={350}
-                    max={1000}
+                    min={270}
+                    max={700}
                     step={10}
-                    value={config.depth}
+                    value={Math.min(config.depth, 700)}
                     onChange={e => setConfig({ ...config, depth: Number(e.target.value) })}
                     style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#999', marginTop: '2px' }}>
-                    <span>Min: 350 mm</span>
-                    <span>Max: 1000 mm</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '3px' }}>
+                    <span>270mm</span>
+                    <span>700mm</span>
                   </div>
                 </div>
 
@@ -816,7 +1019,7 @@ export default function ProductConfigurator({
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 03: BASIN AND SINK                              */}
+          {/* SECTION 03: CORNER PROFILES (LEFT / RIGHT)              */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -837,111 +1040,411 @@ export default function ProductConfigurator({
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Basin &amp; Integrated Washbowl
+                  Corner Profiles (Left / Right)
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['03'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['03'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                {/* Basin Model Selection Cards */}
-                <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                    Compatible Basin Models
-                  </label>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {AVAILABLE_BASINS.map(b => (
-                      <div
-                        key={b.id}
-                        onClick={() => setConfig({ ...config, basinModelId: b.id })}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'flex-start',
-                          justifyContent: 'space-between',
-                          padding: '10px 14px',
-                          border: config.basinModelId === b.id ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
-                          background: config.basinModelId === b.id ? 'rgba(212,56,51,0.03)' : '#fdfdfc',
-                          cursor: 'pointer',
-                          transition: 'border-color 0.2s ease',
-                        }}
-                      >
-                        <div>
-                          <strong style={{ fontSize: '12px', display: 'block', color: '#1e211d' }}>{b.name}</strong>
-                          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#7a857a' }}>
-                            {b.width > 0 ? `${b.width} × ${b.depth} × ${b.height} mm` : 'Continuous Surface'}
-                          </span>
-                        </div>
-                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
-                          {b.priceModifier > 0 ? `+₹${b.priceModifier.toLocaleString('en-IN')}` : 'Included'}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
+                  Configure independent CNC profiles for exposed countertop corners. Radius and chamfer adjustments render in real time.
+                </p>
 
-                {/* Basin Placement */}
-                {config.basinModelId !== 'none' && (
-                  <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                      Basin Placement
+                {/* LEFT CORNER */}
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                      LEFT CORNER
                     </label>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
-                      {(['center', 'left', 'right', 'dual'] as const).map(pos => (
-                        <button
-                          key={pos}
-                          type="button"
-                          onClick={() => setConfig({ ...config, basinPlacement: pos })}
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5">
+                      <rect x="4" y="4" width="16" height="16" rx="2" />
+                      <line x1="8" y1="8" x2="16" y2="8" />
+                      <line x1="8" y1="12" x2="16" y2="12" />
+                      <line x1="8" y1="16" x2="12" y2="16" />
+                    </svg>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '14px' }}>
+                    {CORNER_TREATMENT_OPTIONS.map(opt => {
+                      const isAct = (config.cornerConfig?.leftType || 'sharp') === opt.id;
+                      return (
+                        <div
+                          key={`left-${opt.id}`}
+                          onClick={() => {
+                            const prev = config.cornerConfig || {
+                              leftType: 'sharp', leftRadius: 25, leftChamfer: 20, leftShift: 50,
+                              rightType: 'sharp', rightRadius: 25, rightChamfer: 20, rightShift: 50,
+                            };
+                            const updated = { ...prev, leftType: opt.id as any };
+                            setConfig({
+                              ...config,
+                              cornerConfig: updated,
+                              cornerLeft: {
+                                type: opt.id as any,
+                                radiusMm: updated.leftRadius,
+                                chamferMm: updated.leftChamfer,
+                                shiftMm: updated.leftShift,
+                              },
+                            });
+                          }}
                           style={{
-                            padding: '8px 4px',
-                            background: config.basinPlacement === pos ? '#1e211d' : '#f0eee8',
-                            color: config.basinPlacement === pos ? '#fff' : '#1e211d',
-                            border: '1px solid rgba(30,33,29,0.15)',
-                            fontFamily: 'DM Mono, monospace',
-                            fontSize: '11px',
-                            textTransform: 'uppercase',
+                            border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                            background: '#fff',
+                            padding: '8px 4px 6px',
                             cursor: 'pointer',
+                            textAlign: 'center',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            minHeight: '74px',
+                            boxSizing: 'border-box',
                           }}
                         >
-                          {pos}
-                        </button>
-                      ))}
-                    </div>
+                          <CornerProfileDiagram
+                            type={opt.id as any}
+                            side="left"
+                            active={isAct}
+                            radiusMm={config.cornerConfig?.leftRadius || 25}
+                            chamferMm={config.cornerConfig?.leftChamfer || 20}
+                            shiftMm={config.cornerConfig?.leftShift || 50}
+                          />
+                          <span style={{
+                            display: 'block',
+                            fontSize: '11px',
+                            fontFamily: 'Manrope, sans-serif',
+                            fontWeight: isAct ? 600 : 500,
+                            color: isAct ? 'var(--brand-red, #d43833)' : '#444',
+                            marginTop: '2px',
+                          }}>
+                            {opt.name}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
-                )}
 
-                {/* Taphole Configuration */}
-                <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                    CNC Taphole Cutouts
-                  </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
-                    {([0, 1, 3] as const).map(th => (
-                      <button
-                        key={th}
-                        type="button"
-                        onClick={() => setConfig({ ...config, tapHoles: th })}
-                        style={{
-                          padding: '8px 4px',
-                          background: config.tapHoles === th ? '#1e211d' : '#f0eee8',
-                          color: config.tapHoles === th ? '#fff' : '#1e211d',
-                          border: '1px solid rgba(30,33,29,0.15)',
-                          fontFamily: 'DM Mono, monospace',
-                          fontSize: '11px',
-                          cursor: 'pointer',
+                  {/* Dynamic Active Slider matching Image 3 */}
+                  {config.cornerConfig?.leftType === 'shift' && (
+                    <div style={{ marginTop: '8px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          SHIFT LEFT CORNER
+                        </span>
+                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                          {config.cornerConfig.leftShift || 50}mm
+                        </strong>
+                      </div>
+                      <input
+                        type="range"
+                        min={-65}
+                        max={700}
+                        step={5}
+                        value={config.cornerConfig.leftShift ?? 50}
+                        onChange={e => {
+                          const val = Number(e.target.value);
+                          const updated = { ...config.cornerConfig!, leftShift: val };
+                          setConfig({
+                            ...config,
+                            cornerConfig: updated,
+                            cornerLeft: {
+                              type: 'shift',
+                              radiusMm: updated.leftRadius,
+                              chamferMm: updated.leftChamfer,
+                              shiftMm: val,
+                            },
+                          });
                         }}
-                      >
-                        {th === 0 ? '0 (Wall Tap)' : th === 1 ? '1 (Single Hole)' : '3 (3-Piece Tap)'}
-                      </button>
-                    ))}
+                        style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
+                      />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                        <span>-65mm</span>
+                        <span>700mm</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {config.cornerConfig?.leftType === 'fillet' && (
+                    <div style={{ marginTop: '8px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          FILLET RADIUS
+                        </span>
+                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                          R{config.cornerConfig.leftRadius || 25} mm
+                        </strong>
+                      </div>
+                      <input
+                        type="range"
+                        min={5}
+                        max={100}
+                        step={5}
+                        value={config.cornerConfig.leftRadius || 25}
+                        onChange={e => {
+                          const val = Number(e.target.value);
+                          const updated = { ...config.cornerConfig!, leftRadius: val };
+                          setConfig({
+                            ...config,
+                            cornerConfig: updated,
+                            cornerLeft: {
+                              type: 'fillet',
+                              radiusMm: val,
+                              chamferMm: updated.leftChamfer,
+                              shiftMm: updated.leftShift,
+                            },
+                          });
+                        }}
+                        style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
+                      />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                        <span>5mm</span>
+                        <span>100mm</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {config.cornerConfig?.leftType === 'chamfer' && (
+                    <div style={{ marginTop: '8px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          CHAMFER BEVEL
+                        </span>
+                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                          C{config.cornerConfig.leftChamfer || 20} mm
+                        </strong>
+                      </div>
+                      <input
+                        type="range"
+                        min={5}
+                        max={80}
+                        step={5}
+                        value={config.cornerConfig.leftChamfer || 20}
+                        onChange={e => {
+                          const val = Number(e.target.value);
+                          const updated = { ...config.cornerConfig!, leftChamfer: val };
+                          setConfig({
+                            ...config,
+                            cornerConfig: updated,
+                            cornerLeft: {
+                              type: 'chamfer',
+                              radiusMm: updated.leftRadius,
+                              chamferMm: val,
+                              shiftMm: updated.leftShift,
+                            },
+                          });
+                        }}
+                        style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
+                      />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                        <span>5mm</span>
+                        <span>80mm</span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <hr style={{ border: 'none', borderTop: '1px solid #e8e6e1', margin: '6px 0' }} />
+
+                {/* RIGHT CORNER */}
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
+                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                      RIGHT CORNER
+                    </label>
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5">
+                      <rect x="4" y="4" width="16" height="16" rx="2" />
+                      <line x1="8" y1="8" x2="16" y2="8" />
+                      <line x1="8" y1="12" x2="16" y2="12" />
+                      <line x1="8" y1="16" x2="12" y2="16" />
+                    </svg>
                   </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '14px' }}>
+                    {CORNER_TREATMENT_OPTIONS.map(opt => {
+                      const isAct = (config.cornerConfig?.rightType || 'sharp') === opt.id;
+                      return (
+                        <div
+                          key={`right-${opt.id}`}
+                          onClick={() => {
+                            const prev = config.cornerConfig || {
+                              leftType: 'sharp', leftRadius: 25, leftChamfer: 20, leftShift: 50,
+                              rightType: 'sharp', rightRadius: 25, rightChamfer: 20, rightShift: 50,
+                            };
+                            const updated = { ...prev, rightType: opt.id as any };
+                            setConfig({
+                              ...config,
+                              cornerConfig: updated,
+                              cornerRight: {
+                                type: opt.id as any,
+                                radiusMm: updated.rightRadius,
+                                chamferMm: updated.rightChamfer,
+                                shiftMm: updated.rightShift,
+                              },
+                            });
+                          }}
+                          style={{
+                            border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                            background: '#fff',
+                            padding: '8px 4px 6px',
+                            cursor: 'pointer',
+                            textAlign: 'center',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            minHeight: '74px',
+                            boxSizing: 'border-box',
+                          }}
+                        >
+                          <CornerProfileDiagram
+                            type={opt.id as any}
+                            side="right"
+                            active={isAct}
+                            radiusMm={config.cornerConfig?.rightRadius || 25}
+                            chamferMm={config.cornerConfig?.rightChamfer || 20}
+                            shiftMm={config.cornerConfig?.rightShift || 50}
+                          />
+                          <span style={{
+                            display: 'block',
+                            fontSize: '11px',
+                            fontFamily: 'Manrope, sans-serif',
+                            fontWeight: isAct ? 600 : 500,
+                            color: isAct ? 'var(--brand-red, #d43833)' : '#444',
+                            marginTop: '2px',
+                          }}>
+                            {opt.name}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+
+                  {/* Dynamic Active Slider matching Image 3 */}
+                  {config.cornerConfig?.rightType === 'shift' && (
+                    <div style={{ marginTop: '8px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          SHIFT RIGHT CORNER
+                        </span>
+                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                          {config.cornerConfig.rightShift || 50}mm
+                        </strong>
+                      </div>
+                      <input
+                        type="range"
+                        min={-65}
+                        max={700}
+                        step={5}
+                        value={config.cornerConfig.rightShift ?? 50}
+                        onChange={e => {
+                          const val = Number(e.target.value);
+                          const updated = { ...config.cornerConfig!, rightShift: val };
+                          setConfig({
+                            ...config,
+                            cornerConfig: updated,
+                            cornerRight: {
+                              type: 'shift',
+                              radiusMm: updated.rightRadius,
+                              chamferMm: updated.rightChamfer,
+                              shiftMm: val,
+                            },
+                          });
+                        }}
+                        style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
+                      />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                        <span>-65mm</span>
+                        <span>700mm</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {config.cornerConfig?.rightType === 'fillet' && (
+                    <div style={{ marginTop: '8px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          FILLET RADIUS
+                        </span>
+                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                          R{config.cornerConfig.rightRadius || 25} mm
+                        </strong>
+                      </div>
+                      <input
+                        type="range"
+                        min={5}
+                        max={100}
+                        step={5}
+                        value={config.cornerConfig.rightRadius || 25}
+                        onChange={e => {
+                          const val = Number(e.target.value);
+                          const updated = { ...config.cornerConfig!, rightRadius: val };
+                          setConfig({
+                            ...config,
+                            cornerConfig: updated,
+                            cornerRight: {
+                              type: 'fillet',
+                              radiusMm: val,
+                              chamferMm: updated.rightChamfer,
+                              shiftMm: updated.rightShift,
+                            },
+                          });
+                        }}
+                        style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
+                      />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                        <span>5mm</span>
+                        <span>100mm</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {config.cornerConfig?.rightType === 'chamfer' && (
+                    <div style={{ marginTop: '8px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          CHAMFER BEVEL
+                        </span>
+                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                          C{config.cornerConfig.rightChamfer || 20} mm
+                        </strong>
+                      </div>
+                      <input
+                        type="range"
+                        min={5}
+                        max={80}
+                        step={5}
+                        value={config.cornerConfig.rightChamfer || 20}
+                        onChange={e => {
+                          const val = Number(e.target.value);
+                          const updated = { ...config.cornerConfig!, rightChamfer: val };
+                          setConfig({
+                            ...config,
+                            cornerConfig: updated,
+                            cornerRight: {
+                              type: 'chamfer',
+                              radiusMm: updated.rightRadius,
+                              chamferMm: val,
+                              shiftMm: updated.rightShift,
+                            },
+                          });
+                        }}
+                        style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
+                      />
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                        <span>5mm</span>
+                        <span>80mm</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             )}
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 04: EDGES AND DOWNSTANDS                        */}
+          {/* SECTION 04: BASIN & SINK INTEGRATION                    */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -962,121 +1465,495 @@ export default function ProductConfigurator({
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Edge Profiles &amp; Apron Drops
+                  Basin &amp; Sink Integration
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['04'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['04'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                {/* Edge Profile Choice */}
+              <div style={{ padding: '14px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                {/* 1. TAP LOCATION */}
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                    Front &amp; Perimeter Edge Profile
-                  </label>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                    {EDGE_PROFILES.map(ep => (
-                      <div
-                        key={ep.id}
-                        onClick={() => setConfig({ ...config, edgeProfileId: ep.id })}
-                        style={{
-                          padding: '10px 14px',
-                          border: config.edgeProfileId === ep.id ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
-                          background: config.edgeProfileId === ep.id ? 'rgba(212,56,51,0.03)' : '#fdfdfc',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          justifyContent: 'space-between',
-                          alignItems: 'center',
-                        }}
-                      >
-                        <div>
-                          <strong style={{ fontSize: '12px', display: 'block' }}>{ep.name}</strong>
-                          <span style={{ fontSize: '10px', color: '#777', lineHeight: 1.4 }}>{ep.description}</span>
-                        </div>
-                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#667066' }}>
-                          ₹{ep.pricePerMeter}/m
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Corner Profile Detail */}
-                <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                    Exposed Outer Corner Detail
-                  </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px' }}>
-                    {CORNER_PROFILES.map(cp => (
-                      <button
-                        key={cp.id}
-                        type="button"
-                        onClick={() => setConfig({ ...config, cornerProfileId: cp.id })}
-                        style={{
-                          padding: '8px 4px',
-                          background: config.cornerProfileId === cp.id ? '#1e211d' : '#f0eee8',
-                          color: config.cornerProfileId === cp.id ? '#fff' : '#1e211d',
-                          border: '1px solid rgba(30,33,29,0.15)',
-                          fontFamily: 'DM Mono, monospace',
-                          fontSize: '11px',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        {cp.name}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Front Apron Drop Height Slider */}
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
                     <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                      Front Apron Drop Fascia (mm)
+                      TAP LOCATION
                     </label>
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600 }}>
-                      {config.frontApronHeight} mm
-                    </span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '14px', height: '14px', borderRadius: '50%', border: '1px solid #bbb', fontSize: '9px', color: '#777', fontFamily: 'serif' }}>i</span>
                   </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={200}
-                    step={10}
-                    value={config.frontApronHeight}
-                    onChange={e => setConfig({ ...config, frontApronHeight: Number(e.target.value) })}
-                    style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
-                  />
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
+                    {[
+                      { id: 'top-mounted', label: 'Top' },
+                      { id: 'wall-mounted', label: 'Wall' },
+                    ].map(item => {
+                      const isAct = config.tapLocation === item.id;
+                      return (
+                        <div
+                          key={item.id}
+                          onClick={() => setConfig({
+                            ...config,
+                            tapLocation: item.id as any,
+                            tapHoles: item.id === 'top-mounted' ? (config.tapHoles && config.tapHoles > 0 ? config.tapHoles : 1) : 0,
+                          })}
+                          style={{
+                            padding: '10px 8px 8px',
+                            border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                            background: isAct ? '#ffffff' : '#fcfbfa',
+                            borderRadius: '2px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '6px',
+                            transition: 'border-color 0.15s ease',
+                          }}
+                        >
+                          <TapLocationDiagram location={item.id as any} active={isAct} />
+                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                            {item.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
 
-                {/* Return Apron Toggles */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', cursor: 'pointer' }}>
-                    <input
-                      type="checkbox"
-                      checked={config.hasLeftApron}
-                      onChange={e => setConfig({ ...config, hasLeftApron: e.target.checked })}
-                      style={{ accentColor: 'var(--brand-red, #d43833)', width: '16px', height: '16px' }}
-                    />
-                    <span>Left Return Apron</span>
-                  </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', cursor: 'pointer' }}>
-                    <input
-                      type="checkbox"
-                      checked={config.hasRightApron}
-                      onChange={e => setConfig({ ...config, hasRightApron: e.target.checked })}
-                      style={{ accentColor: 'var(--brand-red, #d43833)', width: '16px', height: '16px' }}
-                    />
-                    <span>Right Return Apron</span>
-                  </label>
+                {/* 2. SINK INTEGRATION TYPE */}
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                    <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                      SINK INTEGRATION TYPE
+                    </label>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '14px', height: '14px', borderRadius: '50%', border: '1px solid #bbb', fontSize: '9px', color: '#777', fontFamily: 'serif' }}>i</span>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
+                    {[
+                      { id: 'integrated', label: 'IN', title: 'IN - Seamless Integrated Coved Basin (Flush into deck)' },
+                      { id: 'topmount', label: 'TOP', title: 'TOP - Top-Mounted Semi-Inset Basin (Collar on deck, bowl inside)' },
+                      { id: 'undermount', label: 'ON', title: 'ON - Sit-On Countertop Vessel Basin (Sits entirely on deck)' },
+                      { id: 'none', label: 'no sink', title: 'Solid Surface Deck (No Basin)' },
+                    ].map(item => {
+                      const isAct = config.sinkIntegration === item.id;
+                      return (
+                        <div
+                          key={item.id}
+                          title={item.title}
+                          onClick={() => {
+                            const newIntegration = item.id as any;
+                            const updates: Partial<ProductConfiguration> = { sinkIntegration: newIntegration };
+                            if (newIntegration === 'none') {
+                              updates.basinModelId = 'none';
+                            } else if (config.basinModelId === 'none') {
+                              updates.basinModelId = 'coved-oval';
+                            }
+                            setConfig({ ...config, ...updates });
+                          }}
+                          style={{
+                            padding: '8px 4px',
+                            border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                            background: isAct ? '#ffffff' : '#fcfbfa',
+                            borderRadius: '2px',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '6px',
+                            transition: 'border-color 0.15s ease',
+                          }}
+                        >
+                          <SinkIntegrationDiagram type={item.id as any} active={isAct} />
+                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                            {item.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
+
+                {/* 3. SINK MODEL */}
+                {config.sinkIntegration !== 'none' && (
+                  <div>
+                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                      SINK MODEL
+                    </label>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(68px, 1fr))', gap: '8px' }}>
+                      {[
+                        { id: 'round-bowl', code: 'RO', name: 'Round Bowl (RO)' },
+                        { id: 'coved-oval', code: 'OV', name: 'Oval Basin (OV)' },
+                        { id: 'crisp-rect', code: 'B', name: 'Rectangular Box (B)' },
+                        { id: 'double-basin', code: 'DB', name: 'Double Basin (DB)' },
+                        { id: 'undermount-box', code: 'UB', name: 'Undermount Box (UB)' },
+                        { id: 'undermount-channel', code: 'UC', name: 'Undermount Channel (UC)' },
+                        { id: 'washdesk-trough', code: 'WDT', name: 'Washdesk Trough (WDT)' },
+                      ].map(item => {
+                        const isAct = config.basinModelId === item.id ||
+                          (item.code === 'RO' && (config.basinModelId === 'round-bowl' || config.basinModelId === 'RO')) ||
+                          (item.code === 'OV' && (config.basinModelId === 'coved-oval' || config.basinModelId === 'OV')) ||
+                          (item.code === 'B' && (config.basinModelId === 'crisp-rect' || config.basinModelId === 'B')) ||
+                          (item.code === 'DB' && (config.basinModelId === 'double-basin' || config.basinModelId === 'DB')) ||
+                          (item.code === 'UB' && (config.basinModelId === 'undermount-box' || config.basinModelId === 'UB')) ||
+                          (item.code === 'UC' && (config.basinModelId === 'undermount-channel' || config.basinModelId === 'UC')) ||
+                          (item.code === 'WDT' && (config.basinModelId === 'washdesk-trough' || config.basinModelId === 'WDT'));
+
+                        return (
+                          <div
+                            key={item.id}
+                            title={item.name}
+                            onClick={() => {
+                              const updates: Partial<ProductConfiguration> = { basinModelId: item.id };
+                              if (config.sinkIntegration === 'none') {
+                                updates.sinkIntegration = 'integrated';
+                              }
+                              if (item.code === 'RO') {
+                                updates.basinWidthMm = config.basinWidthMm || 350;
+                                updates.basinDepthMm = config.basinWidthMm || 350;
+                                updates.basinHeightMm = 135;
+                                updates.basinSizeCode = config.basinSizeCode || 'RO350';
+                              } else if (item.code === 'WDT') {
+                                updates.basinWidthMm = config.basinWidthMm || 600;
+                                updates.basinDepthMm = config.basinDepthMm || 260;
+                                updates.basinHeightMm = 120;
+                                updates.basinSizeCode = config.basinSizeCode || 'WDT260';
+                              } else if (item.code === 'B') {
+                                updates.basinWidthMm = config.basinWidthMm || 500;
+                                updates.basinDepthMm = config.basinDepthMm || 350;
+                                updates.basinHeightMm = 130;
+                              }
+                              setConfig({ ...config, ...updates });
+                            }}
+                            style={{
+                              padding: '8px 4px 6px',
+                              border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                              background: isAct ? '#ffffff' : '#fcfbfa',
+                              borderRadius: '2px',
+                              cursor: 'pointer',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              gap: '4px',
+                              transition: 'all 0.15s ease',
+                            }}
+                          >
+                            <SinkModelDiagram model={item.code as any} active={isAct} />
+                            <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                              {item.code}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {/* 4. SINK SIZE / SINK DEPTH / SINK WIDTH OPTIONS (Exact matching reference images) */}
+                {config.sinkIntegration !== 'none' && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                    {/* CASE A: Round Bowl (RO) -> SINK SIZE (Image 2: RO250 - RO400) */}
+                    {(config.basinModelId === 'round-bowl' || config.basinModelId === 'RO') && (
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                          SINK SIZE
+                        </label>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                          {RO_SIZE_OPTIONS.map(opt => {
+                            const isAct = config.basinSizeCode === opt.code || (!config.basinSizeCode && config.basinWidthMm === opt.diameter) || (opt.code === 'RO350' && !config.basinSizeCode);
+                            return (
+                              <div
+                                key={opt.code}
+                                onClick={() => {
+                                  setConfig({
+                                    ...config,
+                                    basinWidthMm: opt.diameter,
+                                    basinDepthMm: opt.diameter,
+                                    basinHeightMm: opt.height,
+                                    basinSizeCode: opt.code,
+                                  });
+                                }}
+                                style={{
+                                  padding: '8px 2px 6px',
+                                  border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                  background: isAct ? '#ffffff' : '#fcfbfa',
+                                  borderRadius: '2px',
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  gap: '4px',
+                                  transition: 'all 0.15s ease',
+                                }}
+                              >
+                                <SinkModelDiagram model="RO" active={isAct} />
+                                <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                                  {opt.label}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* CASE B: Washdesk Trough (WDT) -> SINK DEPTH (Image 3: WDT180 - WDT400) */}
+                    {(config.basinModelId === 'washdesk-trough' || config.basinModelId === 'WDT') && (
+                      <div>
+                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                          SINK DEPTH (FRONT-TO-BACK)
+                        </label>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px', marginBottom: '10px' }}>
+                          {WDT_DEPTH_OPTIONS.slice(0, 5).map(opt => {
+                            const isAct = config.basinSizeCode === opt.code || (!config.basinSizeCode && config.basinDepthMm === opt.depth) || (opt.code === 'WDT260' && !config.basinSizeCode);
+                            return (
+                              <div
+                                key={opt.code}
+                                onClick={() => {
+                                  setConfig({
+                                    ...config,
+                                    basinDepthMm: opt.depth,
+                                    basinSizeCode: opt.code,
+                                  });
+                                }}
+                                style={{
+                                  padding: '8px 2px 6px',
+                                  border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                  background: isAct ? '#ffffff' : '#fcfbfa',
+                                  borderRadius: '2px',
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  gap: '4px',
+                                  transition: 'all 0.15s ease',
+                                }}
+                              >
+                                <SinkModelDiagram model="WDT" active={isAct} />
+                                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                                  {opt.label}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
+                          {WDT_DEPTH_OPTIONS.slice(5).map(opt => {
+                            const isAct = config.basinSizeCode === opt.code || (config.basinDepthMm === opt.depth);
+                            return (
+                              <div
+                                key={opt.code}
+                                onClick={() => {
+                                  setConfig({
+                                    ...config,
+                                    basinDepthMm: opt.depth,
+                                    basinSizeCode: opt.code,
+                                  });
+                                }}
+                                style={{
+                                  padding: '8px 2px 6px',
+                                  border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                  background: isAct ? '#ffffff' : '#fcfbfa',
+                                  borderRadius: '2px',
+                                  cursor: 'pointer',
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  alignItems: 'center',
+                                  gap: '4px',
+                                  transition: 'all 0.15s ease',
+                                }}
+                              >
+                                <SinkModelDiagram model="WDT" active={isAct} />
+                                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                                  {opt.label}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        {/* WDT Trough Width */}
+                        <div style={{ marginTop: '12px' }}>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                            SINK WIDTH (SPAN)
+                          </label>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                            {[500, 600, 700, 800, 900].map(w => {
+                              const isAct = (config.basinWidthMm || 600) === w;
+                              return (
+                                <button
+                                  key={w}
+                                  type="button"
+                                  onClick={() => setConfig({ ...config, basinWidthMm: w })}
+                                  style={{
+                                    padding: '8px 4px',
+                                    background: isAct ? 'var(--brand-red, #d43833)' : '#f8f7f4',
+                                    color: isAct ? '#fff' : '#1e211d',
+                                    border: isAct ? '1px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    fontSize: '11px',
+                                    fontFamily: 'DM Mono, monospace',
+                                    cursor: 'pointer',
+                                  }}
+                                >
+                                  {w} mm
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* CASE C: B, OV, DB, UB, UC -> SINK WIDTH & SINK DEPTH (Image 4) */}
+                    {(config.basinModelId !== 'round-bowl' && config.basinModelId !== 'RO' &&
+                      config.basinModelId !== 'washdesk-trough' && config.basinModelId !== 'WDT') && (
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                            SINK WIDTH (SPAN)
+                          </label>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                            {SINK_WIDTH_OPTIONS.map(w => {
+                              const isAct = (config.basinWidthMm || 500) === w;
+                              const modelCode = config.basinModelId === 'coved-oval' ? 'OV' : config.basinModelId === 'crisp-rect' ? 'B' : config.basinModelId === 'double-basin' ? 'DB' : config.basinModelId === 'undermount-box' ? 'UB' : config.basinModelId === 'undermount-channel' ? 'UC' : 'B';
+                              return (
+                                <div
+                                  key={w}
+                                  onClick={() => setConfig({ ...config, basinWidthMm: w })}
+                                  style={{
+                                    padding: '8px 2px 6px',
+                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    background: isAct ? '#ffffff' : '#fcfbfa',
+                                    borderRadius: '2px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '4px',
+                                    transition: 'all 0.15s ease',
+                                  }}
+                                >
+                                  <SinkModelDiagram model={modelCode} active={isAct} />
+                                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                                    {w}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                            SINK LENGTH / DEPTH (FRONT-TO-BACK)
+                          </label>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
+                            {SINK_DEPTH_OPTIONS.map(d => {
+                              const isAct = (config.basinDepthMm || 350) === d;
+                              const modelCode = config.basinModelId === 'coved-oval' ? 'OV' : config.basinModelId === 'crisp-rect' ? 'B' : config.basinModelId === 'double-basin' ? 'DB' : config.basinModelId === 'undermount-box' ? 'UB' : config.basinModelId === 'undermount-channel' ? 'UC' : 'B';
+                              return (
+                                <div
+                                  key={d}
+                                  onClick={() => setConfig({ ...config, basinDepthMm: d })}
+                                  style={{
+                                    padding: '8px 2px 6px',
+                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    background: isAct ? '#ffffff' : '#fcfbfa',
+                                    borderRadius: '2px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '4px',
+                                    transition: 'all 0.15s ease',
+                                  }}
+                                >
+                                  <SinkModelDiagram model={modelCode} active={isAct} />
+                                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                                    {d}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* BOWL INTERNAL DEPTH (HEIGHT) */}
+                        <div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                            <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                              BOWL DEPTH (INTERNAL)
+                            </label>
+                            <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                              {config.basinHeightMm || 135} mm
+                            </span>
+                          </div>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
+                            {[110, 130, 150, 170].map(h => {
+                              const isAct = (config.basinHeightMm || 135) === h;
+                              return (
+                                <button
+                                  key={h}
+                                  type="button"
+                                  onClick={() => setConfig({ ...config, basinHeightMm: h })}
+                                  style={{
+                                    padding: '8px 2px',
+                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
+                                    color: isAct ? '#ffffff' : '#1e211d',
+                                    borderRadius: '2px',
+                                    cursor: 'pointer',
+                                    textAlign: 'center',
+                                    fontFamily: 'DM Mono, monospace',
+                                    fontSize: '11px',
+                                    fontWeight: isAct ? 600 : 400,
+                                    transition: 'all 0.15s ease',
+                                  }}
+                                >
+                                  {h} mm
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+
+                {/* TAP HOLES DRILLING */}
+                {config.tapLocation === 'top-mounted' && (
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '12px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>Deck CNC Tap Holes (35mm Ø)</span>
+                      <strong style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}>{config.tapHoles} Holes</strong>
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
+                      {[0, 1, 2, 3].map(count => (
+                        <button
+                          key={count}
+                          type="button"
+                          onClick={() => setConfig({ ...config, tapHoles: count as 0 | 1 | 2 | 3 })}
+                          style={{
+                            padding: '8px',
+                            background: config.tapHoles === count ? '#1e211d' : '#fff',
+                            color: config.tapHoles === count ? '#fff' : '#1e211d',
+                            border: '1px solid rgba(30,33,29,0.2)',
+                            fontSize: '11px',
+                            fontFamily: 'DM Mono, monospace',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          {count === 0 ? 'None' : count === 1 ? '1 Hole' : `${count} Holes`}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 05: UPSTANDS AND SPLASHBACKS                    */}
+          {/* SECTION 05: DOWNSTANDS & APRON DROPS                    */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -1097,7 +1974,7 @@ export default function ProductConfigurator({
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>05</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Upstands &amp; Coved Splashbacks
+                  Downstands &amp; Apron Drops
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['05'] ? '▲' : '▼'}</span>
@@ -1105,70 +1982,141 @@ export default function ProductConfigurator({
 
             {openSections['05'] && (
               <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                {/* Rear Upstand Height */}
+                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
+                  Seamlessly folded Corian® fascia aprons create substantial architectural presence and conceal under-sink plumbing.
+                </p>
+
+                {/* INDEPENDENT SIDE TOGGLES */}
                 <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                    Active Downstand Sides
+                  </label>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const cur = config.downstands || { front: true, left: true, right: true, height: config.frontApronHeight || 100 };
+                        setConfig({ ...config, downstands: { ...cur, front: !cur.front } });
+                      }}
+                      style={{
+                        padding: '10px 8px',
+                        background: config.downstands?.front ? '#1e211d' : '#f0eee8',
+                        color: config.downstands?.front ? '#fff' : '#1e211d',
+                        border: '1px solid rgba(30,33,29,0.15)',
+                        fontSize: '11px',
+                        fontFamily: 'DM Mono, monospace',
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                      }}
+                    >
+                      Front Apron: {config.downstands?.front ? 'ON' : 'OFF'}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const cur = config.downstands || { front: true, left: true, right: true, height: config.frontApronHeight || 100 };
+                        setConfig({ ...config, downstands: { ...cur, left: !cur.left } });
+                      }}
+                      style={{
+                        padding: '10px 8px',
+                        background: config.downstands?.left ? '#1e211d' : '#f0eee8',
+                        color: config.downstands?.left ? '#fff' : '#1e211d',
+                        border: '1px solid rgba(30,33,29,0.15)',
+                        fontSize: '11px',
+                        fontFamily: 'DM Mono, monospace',
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                      }}
+                    >
+                      Left Side: {config.downstands?.left ? 'ON' : 'OFF'}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const cur = config.downstands || { front: true, left: true, right: true, height: config.frontApronHeight || 100 };
+                        setConfig({ ...config, downstands: { ...cur, right: !cur.right } });
+                      }}
+                      style={{
+                        padding: '10px 8px',
+                        background: config.downstands?.right ? '#1e211d' : '#f0eee8',
+                        color: config.downstands?.right ? '#fff' : '#1e211d',
+                        border: '1px solid rgba(30,33,29,0.15)',
+                        fontSize: '11px',
+                        fontFamily: 'DM Mono, monospace',
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                      }}
+                    >
+                      Right Side: {config.downstands?.right ? 'ON' : 'OFF'}
+                    </button>
+                  </div>
+                </div>
+
+                {/* HEIGHT PRESETS WITH DIAGRAMS */}
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                     <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                      Rear Upstand Height (mm)
+                      Downstand Fascia Height
                     </label>
                     <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600 }}>
-                      {config.rearUpstandHeight} mm
+                      {config.downstands?.height || config.frontApronHeight || 100} mm
                     </span>
                   </div>
-                  <input
-                    type="range"
-                    min={0}
-                    max={250}
-                    step={10}
-                    value={config.rearUpstandHeight}
-                    onChange={e => setConfig({ ...config, rearUpstandHeight: Number(e.target.value) })}
-                    style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
-                  />
-                </div>
 
-                {/* Side Upstands */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', cursor: 'pointer' }}>
-                    <input
-                      type="checkbox"
-                      checked={config.hasLeftUpstand}
-                      onChange={e => setConfig({ ...config, hasLeftUpstand: e.target.checked })}
-                      style={{ accentColor: 'var(--brand-red, #d43833)', width: '16px', height: '16px' }}
-                    />
-                    <span>Left Return Upstand</span>
-                  </label>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '12px', cursor: 'pointer' }}>
-                    <input
-                      type="checkbox"
-                      checked={config.hasRightUpstand}
-                      onChange={e => setConfig({ ...config, hasRightUpstand: e.target.checked })}
-                      style={{ accentColor: 'var(--brand-red, #d43833)', width: '16px', height: '16px' }}
-                    />
-                    <span>Right Return Upstand</span>
-                  </label>
-                </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '12px' }}>
+                    {DOWNSTAND_HEIGHT_OPTIONS.map(opt => (
+                      <TechnicalOptionCard
+                        key={opt.height}
+                        title={opt.label}
+                        subtitle={opt.description}
+                        isActive={(config.downstands?.height || config.frontApronHeight) === opt.height}
+                        onClick={() => {
+                          const cur = config.downstands || { front: true, left: true, right: true, height: 100, heightMm: 100 };
+                          setConfig({
+                            ...config,
+                            frontApronHeight: opt.height,
+                            downstands: { ...cur, height: opt.height, heightMm: opt.height },
+                          });
+                        }}
+                      >
+                        <DownstandDiagram heightMm={opt.height} />
+                      </TechnicalOptionCard>
+                    ))}
+                  </div>
 
-                {/* 10mm Coved Hygiene Transition */}
-                <div style={{ background: '#f8f7f2', padding: '12px', border: '1px solid rgba(30,33,29,0.1)' }}>
-                  <label style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', cursor: 'pointer', fontWeight: 600 }}>
+                  {/* Continuous Height Slider */}
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
+                      <span>Fine Custom Adjustment</span>
+                      <strong>{config.downstands?.height || config.frontApronHeight || 100} mm</strong>
+                    </div>
                     <input
-                      type="checkbox"
-                      checked={config.isCovedUpstand}
-                      onChange={e => setConfig({ ...config, isCovedUpstand: e.target.checked })}
-                      style={{ accentColor: 'var(--brand-red, #d43833)', width: '16px', height: '16px' }}
+                      type="range"
+                      min={12}
+                      max={350}
+                      step={5}
+                      value={config.downstands?.height || config.frontApronHeight || 100}
+                      onChange={e => {
+                        const val = Number(e.target.value);
+                        const cur = config.downstands || { front: true, left: true, right: true, height: 100, heightMm: 100 };
+                        setConfig({
+                          ...config,
+                          frontApronHeight: val,
+                          downstands: { ...cur, height: val, heightMm: val },
+                        });
+                      }}
+                      style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)' }}
                     />
-                    <span>Seamless 10mm Coved Hygiene Junction (Zero Silicone)</span>
-                  </label>
-                  <p style={{ margin: '6px 0 0 26px', fontSize: '11px', color: '#687268', lineHeight: 1.4 }}>
-                    Permanently fuses the vertical splashback into the horizontal top with a curved 10mm inner radius. Eliminates black mould lines forever.
-                  </p>
+                  </div>
                 </div>
               </div>
             )}
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 06: MATERIAL AND COLOUR                         */}
+          {/* SECTION 06: UPSTANDS & SPLASHBACKS                      */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -1189,93 +2137,161 @@ export default function ProductConfigurator({
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>06</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Material &amp; Solid Surface Palette
+                  Upstands &amp; Wall Splashbacks
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['06'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['06'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {/* Palette Filter Pills */}
-                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                  {(['all', 'white', 'cream', 'grey', 'black', 'translucent'] as const).map(f => (
-                    <button
-                      key={f}
-                      type="button"
-                      onClick={() => setMaterialFilter(f)}
-                      style={{
-                        padding: '4px 10px',
-                        background: materialFilter === f ? '#1e211d' : '#f0eee8',
-                        color: materialFilter === f ? '#fff' : '#1e211d',
-                        border: 'none',
-                        fontFamily: 'DM Mono, monospace',
-                        fontSize: '10px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.06em',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      {f}
-                    </button>
-                  ))}
-                </div>
-
-                {/* Swatch Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
-                  {filteredMaterials.map(mat => {
-                    const isSelected = config.materialSlug === mat.slug;
-                    return (
-                      <div
-                        key={mat.slug}
+              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                {/* BACK UPSTAND MODE */}
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                    <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                      Rear Wall Upstand
+                    </label>
+                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--brand-red, #d43833)' }}>
+                      {config.upstands?.backMode || 'full'}
+                    </span>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                    {UPSTAND_MODE_OPTIONS.map(opt => (
+                      <TechnicalOptionCard
+                        key={`back-${opt.id}`}
+                        title={opt.name}
+                        subtitle={opt.description}
+                        isActive={(config.upstands?.backMode || 'full') === opt.id}
                         onClick={() => {
+                          const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, heightMm: 100, coved: true };
+                          const targetH = opt.id === 'none' ? 0 : opt.id === 'standard' ? 80 : (cur.height && cur.height > 0 ? cur.height : 100);
                           setConfig({
                             ...config,
-                            materialSlug: mat.slug,
-                            materialName: mat.name,
-                            materialHex: mat.hexColor,
-                            materialFinish: mat.finish,
+                            rearUpstandHeight: targetH,
+                            upstands: {
+                              ...cur,
+                              backMode: opt.id as any,
+                              height: targetH,
+                              heightMm: targetH,
+                            },
                           });
                         }}
-                        style={{
-                          border: isSelected ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
-                          background: '#fff',
-                          cursor: 'pointer',
-                          padding: '6px',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          gap: '6px',
-                          transition: 'border-color 0.15s ease',
-                        }}
                       >
-                        {/* Color swatch block */}
-                        <div
-                          style={{
-                            height: '48px',
-                            width: '100%',
-                            backgroundColor: mat.hexColor,
-                            border: '1px solid rgba(0,0,0,0.08)',
-                            boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.2)',
-                          }}
-                        />
-                        <div>
-                          <strong style={{ fontSize: '11px', display: 'block', color: '#1e211d', lineHeight: 1.2 }}>
-                            {mat.name}
-                          </strong>
-                          <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#7a857a' }}>
-                            {mat.collection}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
+                        <UpstandDiagram mode={opt.id as any} coved={config.upstands?.coved} />
+                      </TechnicalOptionCard>
+                    ))}
+                  </div>
+                </div>
+
+                {/* RETURN SIDES */}
+                <div>
+                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                    Side Return Wall Upstands
+                  </label>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, coved: true };
+                        setConfig({
+                          ...config,
+                          upstands: { ...cur, leftMode: cur.leftMode === 'full' ? 'none' : 'full' },
+                        });
+                      }}
+                      style={{
+                        padding: '10px 8px',
+                        background: config.upstands?.leftMode === 'full' ? '#1e211d' : '#f0eee8',
+                        color: config.upstands?.leftMode === 'full' ? '#fff' : '#1e211d',
+                        border: '1px solid rgba(30,33,29,0.15)',
+                        fontSize: '11px',
+                        fontFamily: 'DM Mono, monospace',
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                      }}
+                    >
+                      Left Wall Return: {config.upstands?.leftMode === 'full' ? 'FULL' : 'NONE'}
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, coved: true };
+                        setConfig({
+                          ...config,
+                          upstands: { ...cur, rightMode: cur.rightMode === 'full' ? 'none' : 'full' },
+                        });
+                      }}
+                      style={{
+                        padding: '10px 8px',
+                        background: config.upstands?.rightMode === 'full' ? '#1e211d' : '#f0eee8',
+                        color: config.upstands?.rightMode === 'full' ? '#fff' : '#1e211d',
+                        border: '1px solid rgba(30,33,29,0.15)',
+                        fontSize: '11px',
+                        fontFamily: 'DM Mono, monospace',
+                        cursor: 'pointer',
+                        textAlign: 'center',
+                      }}
+                    >
+                      Right Wall Return: {config.upstands?.rightMode === 'full' ? 'FULL' : 'NONE'}
+                    </button>
+                  </div>
+                </div>
+
+                {/* UPSTAND HEIGHT SLIDER */}
+                <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
+                    <span>Splashback Upstand Height</span>
+                    <strong>{config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 100} mm</strong>
+                  </div>
+                  <input
+                    type="range"
+                    min={50}
+                    max={300}
+                    step={10}
+                    value={config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 100}
+                    onChange={e => {
+                      const val = Number(e.target.value);
+                      const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, heightMm: 100, coved: true, isCoved: true, type: 'standard', backLengthMm: config.width, leftLengthMm: 0, rightLengthMm: 0 };
+                      const newBackMode = val <= 0 ? 'none' : (cur.backMode === 'none' ? (val === 80 ? 'standard' : 'full') : cur.backMode);
+                      setConfig({ ...config, rearUpstandHeight: val, upstands: { ...cur, backMode: newBackMode, height: val, heightMm: val } });
+                    }}
+                    style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)' }}
+                  />
+                </div>
+
+                {/* COVED FUSION TOGGLE */}
+                <div
+                  onClick={() => {
+                    const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, heightMm: 100, coved: true, isCoved: true, type: 'standard', backLengthMm: config.width, leftLengthMm: 0, rightLengthMm: 0 };
+                    const nextCoved = !Boolean(cur.coved ?? cur.isCoved);
+                    setConfig({ ...config, isCovedUpstand: nextCoved, upstands: { ...cur, coved: nextCoved, isCoved: nextCoved } });
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '12px 14px',
+                    border: (config.upstands?.coved ?? config.upstands?.isCoved) ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
+                    background: (config.upstands?.coved ?? config.upstands?.isCoved) ? 'rgba(212,56,51,0.03)' : '#fff',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <div>
+                    <strong style={{ fontSize: '12px', display: 'block', color: '#1e211d' }}>Seamless 12mm Coved Wall Junction (R12)</strong>
+                    <span style={{ fontSize: '10px', color: '#687268', lineHeight: 1.4 }}>
+                      Molecular chemical fusion eliminates mold-collecting silicone joints between top and wall.
+                    </span>
+                  </div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
+                    {config.upstands?.coved ? 'Active ✓' : 'Standard Square'}
+                  </span>
                 </div>
               </div>
             )}
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 07: PROJECT NOTES & REFERENCE                   */}
+          {/* SECTION 07: TOWEL-HOLDER CUT-OUT                        */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -1296,13 +2312,472 @@ export default function ProductConfigurator({
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>07</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Project Notes &amp; Specifier Details
+                  Towel-Holder Cut-out
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['07'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['07'] && (
+              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
+                  Integrated CNC towel-rail slot routed directly through the front downstand apron with full return jamb walls.
+                </p>
+
+                {/* ENABLE / DISABLE TOGGLE */}
+                <div
+                  onClick={() => {
+                    const cur = config.towelHolder || { enabled: false, length: 450, position: 'center', cornerRadius: 12 };
+                    setConfig({
+                      ...config,
+                      towelHolder: { ...cur, enabled: !cur.enabled },
+                    });
+                  }}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '12px 14px',
+                    border: config.towelHolder?.enabled ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
+                    background: config.towelHolder?.enabled ? 'rgba(212,56,51,0.03)' : '#fff',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <div>
+                    <strong style={{ fontSize: '12px', display: 'block', color: '#1e211d' }}>
+                      Integrated Front Apron Towel Slot
+                    </strong>
+                    <span style={{ fontSize: '10px', color: '#687268' }}>
+                      5-axis CNC cut slot with smooth chamfered edges (+₹2,400 tooling)
+                    </span>
+                  </div>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
+                    {config.towelHolder?.enabled ? 'Enabled ✓' : 'Disabled'}
+                  </span>
+                </div>
+
+                {config.towelHolder?.enabled && (
+                  <>
+                    {/* LENGTH SELECTION */}
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                        Slot Length
+                      </label>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+                        {TOWEL_HOLDER_OPTIONS.lengths.map(len => (
+                          <TechnicalOptionCard
+                            key={len}
+                            title={`${len} mm Slot`}
+                            subtitle={len === 300 ? 'Guest / Hand Towel' : 'Standard Bath Towel'}
+                            isActive={config.towelHolder?.length === len}
+                            onClick={() => {
+                              const cur = config.towelHolder || { enabled: true, length: 450, lengthMm: 450, position: 'center', cornerRadius: 12, filletMm: 12 };
+                              setConfig({ ...config, towelHolder: { ...cur, length: len, lengthMm: len } });
+                            }}
+                          >
+                            <TowelHolderDiagram lengthMm={len} position={config.towelHolder?.position || 'center'} cornerRadius={config.towelHolder?.cornerRadius || 12} />
+                          </TechnicalOptionCard>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* POSITION SELECTION */}
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                        Slot Lateral Position
+                      </label>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                        {TOWEL_HOLDER_OPTIONS.positions.map(pos => (
+                          <button
+                            key={pos}
+                            type="button"
+                            onClick={() => {
+                              const cur = config.towelHolder || { enabled: true, length: 450, position: 'center', cornerRadius: 12 };
+                              setConfig({ ...config, towelHolder: { ...cur, position: pos } });
+                            }}
+                            style={{
+                              padding: '10px 8px',
+                              background: config.towelHolder?.position === pos ? '#1e211d' : '#f0eee8',
+                              color: config.towelHolder?.position === pos ? '#fff' : '#1e211d',
+                              border: '1px solid rgba(30,33,29,0.15)',
+                              fontSize: '11px',
+                              fontFamily: 'DM Mono, monospace',
+                              textTransform: 'uppercase',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            {pos}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CORNER FILLET SELECTION */}
+                    <div>
+                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                        Slot Corner Fillet (Internal Tooling)
+                      </label>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                        {TOWEL_HOLDER_OPTIONS.cornerRadii.map(rad => (
+                          <button
+                            key={rad}
+                            type="button"
+                            onClick={() => {
+                              const cur = config.towelHolder || { enabled: true, length: 450, lengthMm: 450, position: 'center', cornerRadius: 12, filletMm: 12 };
+                              setConfig({ ...config, towelHolder: { ...cur, cornerRadius: rad, filletMm: rad } });
+                            }}
+                            style={{
+                              padding: '10px 8px',
+                              background: config.towelHolder?.cornerRadius === rad ? '#1e211d' : '#f0eee8',
+                              color: config.towelHolder?.cornerRadius === rad ? '#fff' : '#1e211d',
+                              border: '1px solid rgba(30,33,29,0.15)',
+                              fontSize: '11px',
+                              fontFamily: 'DM Mono, monospace',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            R{rad} mm
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* ======================================================= */}
+          {/* SECTION 08: TOP EDGE PROFILES & FINISHING               */}
+          {/* ======================================================= */}
+          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+            <button
+              type="button"
+              onClick={() => toggleSection('08')}
+              style={{
+                width: '100%',
+                padding: '16px 20px',
+                background: 'none',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                cursor: 'pointer',
+                textAlign: 'left',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>08</span>
+                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  Top Edge Finishing
+                </span>
+              </div>
+              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['08'] ? '▲' : '▼'}</span>
+            </button>
+
+            {openSections['08'] && (
+              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                  {TOP_EDGE_OPTIONS.map(opt => {
+                    const isActive =
+                      (config.topEdge?.type || config.edgeProfileId || 'sharp') === opt.id ||
+                      (opt.id === 'fillet' && config.edgeProfileId === 'rounded');
+                    return (
+                      <TechnicalOptionCard
+                        key={opt.id}
+                        title={opt.name}
+                        subtitle={opt.description}
+                        isActive={isActive}
+                        onClick={() => {
+                          const cur = config.topEdge || { type: 'sharp', radiusMm: 6, chamferMm: 3 };
+                          const rVal = opt.id === 'fillet' ? (cur.radiusMm || 6) : (cur.radiusMm || 6);
+                          const cVal = opt.id === 'chamfer' ? (cur.chamferMm || 3) : (cur.chamferMm || 3);
+                          setConfig({
+                            ...config,
+                            topEdge: { ...cur, type: opt.id as any, radiusMm: rVal, chamferMm: cVal },
+                            edgeProfileId: opt.id === 'fillet' ? 'rounded' : (opt.id as any),
+                          });
+                        }}
+                      >
+                        <EdgeFinishDiagram
+                          type={opt.id as any}
+                          radiusMm={config.topEdge?.radiusMm || 6}
+                          chamferMm={config.topEdge?.chamferMm || 3}
+                        />
+                      </TechnicalOptionCard>
+                    );
+                  })}
+                </div>
+
+                {((config.topEdge?.type === 'fillet') || config.edgeProfileId === 'rounded') && (
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
+                      <span>Round Fillet Radius</span>
+                      <strong>R{config.topEdge?.radiusMm || 6} mm</strong>
+                    </div>
+                    <input
+                      type="range"
+                      min={1}
+                      max={12}
+                      step={1}
+                      value={config.topEdge?.radiusMm || 6}
+                      onChange={e => {
+                        const val = Number(e.target.value);
+                        setConfig({
+                          ...config,
+                          edgeProfileId: 'rounded',
+                          topEdge: { ...(config.topEdge || { chamferMm: 3 }), type: 'fillet', radiusMm: val },
+                        });
+                      }}
+                      style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)' }}
+                    />
+                  </div>
+                )}
+
+                {((config.topEdge?.type === 'chamfer') || config.edgeProfileId === 'chamfer') && (
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
+                      <span>Chamfer Bevel Dimension</span>
+                      <strong>{config.topEdge?.chamferMm || 3} × 45° mm</strong>
+                    </div>
+                    <input
+                      type="range"
+                      min={1}
+                      max={10}
+                      step={1}
+                      value={config.topEdge?.chamferMm || 3}
+                      onChange={e => {
+                        const val = Number(e.target.value);
+                        setConfig({
+                          ...config,
+                          edgeProfileId: 'chamfer',
+                          topEdge: { ...(config.topEdge || { radiusMm: 6 }), type: 'chamfer', chamferMm: val },
+                        });
+                      }}
+                      style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)' }}
+                    />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* ======================================================= */}
+          {/* SECTION 09: WASTE & DRAIN SYSTEM                        */}
+          {/* ======================================================= */}
+          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+            <button
+              type="button"
+              onClick={() => toggleSection('09')}
+              style={{
+                width: '100%',
+                padding: '16px 20px',
+                background: 'none',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                cursor: 'pointer',
+                textAlign: 'left',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>09</span>
+                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  Waste &amp; Drain System
+                </span>
+              </div>
+              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['09'] ? '▲' : '▼'}</span>
+            </button>
+
+            {openSections['09'] && (
+              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
+                  Select precision drain hardware or an architectural color-matched Corian® waste disc.
+                </p>
+
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+                  {DRAIN_OPTIONS.map(opt => (
+                    <TechnicalOptionCard
+                      key={opt.id}
+                      title={opt.name}
+                      subtitle={opt.description}
+                      badge={(opt.priceModifier || 0) > 0 ? `+₹${(opt.priceModifier || 0).toLocaleString('en-IN')}` : 'Included'}
+                      isActive={(config.drainOption || config.drainTypeId || 'click-clack-corian') === opt.id}
+                      onClick={() => setConfig({ ...config, drainOption: opt.id, drainTypeId: opt.id })}
+                    >
+                      <DrainTypeThumbnail type={opt.id as any} colorHex={config.materialHex} />
+                    </TechnicalOptionCard>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* ======================================================= */}
+          {/* SECTION 10: MATERIAL & COLOUR PALETTE                   */}
+          {/* ======================================================= */}
+          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+            <button
+              type="button"
+              onClick={() => toggleSection('10')}
+              style={{
+                width: '100%',
+                padding: '16px 20px',
+                background: 'none',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                cursor: 'pointer',
+                textAlign: 'left',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>10</span>
+                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  Corian® Material &amp; Tone Palette
+                </span>
+              </div>
+              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['10'] ? '▲' : '▼'}</span>
+            </button>
+
+            {openSections['10'] && (
+              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {/* Active Material Header Card */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '14px',
+                    padding: '12px 14px',
+                    background: '#f8f7f2',
+                    border: '1px solid rgba(30,33,29,0.15)',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '40px',
+                      height: '40px',
+                      backgroundColor: config.materialHex,
+                      border: '1px solid rgba(30,33,29,0.2)',
+                      boxShadow: 'inset 0 0 4px rgba(0,0,0,0.1)',
+                      flexShrink: 0,
+                    }}
+                  />
+                  <div>
+                    <strong style={{ fontSize: '13px', color: '#1e211d', display: 'block' }}>
+                      {config.materialName}
+                    </strong>
+                    <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268' }}>
+                      DuPont Corian® • {(config.materialFinish || 'Honed Satin Matte').toUpperCase()} FINISH
+                    </span>
+                  </div>
+                </div>
+
+                {/* Filter Tabs */}
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                  {(['all', 'white', 'cream', 'grey', 'black', 'translucent'] as const).map(tab => (
+                    <button
+                      key={tab}
+                      type="button"
+                      onClick={() => setMaterialFilter(tab)}
+                      style={{
+                        padding: '6px 10px',
+                        background: materialFilter === tab ? '#1e211d' : 'transparent',
+                        color: materialFilter === tab ? '#fff' : '#444',
+                        border: '1px solid rgba(30,33,29,0.15)',
+                        fontSize: '10px',
+                        fontFamily: 'DM Mono, monospace',
+                        textTransform: 'uppercase',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Swatches Grid */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
+                  {CONFIGURATOR_MATERIALS.filter(m => materialFilter === 'all' || m.category === materialFilter).map(mat => {
+                    const isSelected = config.materialSlug === mat.slug;
+                    return (
+                      <div
+                        key={mat.id || mat.slug}
+                        onClick={() => {
+                          setConfig({
+                            ...config,
+                            materialSlug: mat.slug,
+                            materialName: mat.name,
+                            materialHex: mat.hexColor,
+                            materialFinish: mat.finish,
+                          });
+                        }}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '10px',
+                          padding: '8px 10px',
+                          border: isSelected ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.12)',
+                          background: isSelected ? 'rgba(212,56,51,0.03)' : '#fdfdfc',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        <div
+                          style={{
+                            width: '28px',
+                            height: '28px',
+                            backgroundColor: mat.hexColor,
+                            border: '1px solid rgba(30,33,29,0.2)',
+                            flexShrink: 0,
+                          }}
+                        />
+                        <div>
+                          <strong style={{ fontSize: '11px', display: 'block', color: '#1e211d', lineHeight: 1.2 }}>
+                            {mat.name}
+                          </strong>
+                          <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#7a857a' }}>
+                            {mat.collection}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* ======================================================= */}
+          {/* SECTION 11: PROJECT NOTES & SPECIFIER DETAILS           */}
+          {/* ======================================================= */}
+          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+            <button
+              type="button"
+              onClick={() => toggleSection('11')}
+              style={{
+                width: '100%',
+                padding: '16px 20px',
+                background: 'none',
+                border: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                cursor: 'pointer',
+                textAlign: 'left',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>11</span>
+                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  Project Notes &amp; Specifier Details
+                </span>
+              </div>
+              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['11'] ? '▲' : '▼'}</span>
+            </button>
+
+            {openSections['11'] && (
               <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
                   <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
@@ -1310,7 +2785,7 @@ export default function ProductConfigurator({
                   </label>
                   <input
                     type="text"
-                    value={config.projectName}
+                    value={config.projectName || ''}
                     onChange={e => setConfig({ ...config, projectName: e.target.value })}
                     placeholder="e.g. Indiranagar Residence En-Suite"
                     style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none' }}
@@ -1323,7 +2798,7 @@ export default function ProductConfigurator({
                   </label>
                   <input
                     type="text"
-                    value={config.clientStudio}
+                    value={config.clientStudio || ''}
                     onChange={e => setConfig({ ...config, clientStudio: e.target.value })}
                     placeholder="e.g. Studio Lotus / Morphogenesis"
                     style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none' }}
@@ -1336,7 +2811,7 @@ export default function ProductConfigurator({
                   </label>
                   <textarea
                     rows={3}
-                    value={config.specialInstructions}
+                    value={config.specialInstructions || ''}
                     onChange={e => setConfig({ ...config, specialInstructions: e.target.value })}
                     placeholder="e.g. Provide 35mm waste chute on left, under-mount soap dispenser..."
                     style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '12px', outline: 'none' }}
@@ -1354,31 +2829,24 @@ export default function ProductConfigurator({
       <div
         className="configurator-action-bar"
         data-lenis-prevent="true"
-        onWheel={(e) => {
-          e.stopPropagation();
-        }}
+        onWheel={e => e.stopPropagation()}
         style={{
           position: 'fixed',
           bottom: 0,
           left: 0,
           right: 0,
-          height: '80px',
           background: '#1e211d',
           color: '#e9e8e2',
           borderTop: '1px solid rgba(255,255,255,0.12)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 32px',
           zIndex: 900,
-          boxShadow: '0 -10px 30px rgba(0,0,0,0.3)',
+          boxShadow: '0 -10px 30px rgba(0,0,0,0.35)',
         }}
       >
         {/* Left: Indicative Price & Breakdown Trigger */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.08em' }}>
+        <div className="configurator-action-bar-pricing">
+          <div style={{ minWidth: 0, flex: 1 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
                 Indicative Estimate
               </span>
               <button
@@ -1388,54 +2856,65 @@ export default function ProductConfigurator({
                   background: 'none',
                   border: 'none',
                   color: 'var(--brand-red, #d43833)',
-                  fontSize: '11px',
+                  fontSize: '10.5px',
                   fontFamily: 'DM Mono, monospace',
                   cursor: 'pointer',
                   textDecoration: 'underline',
                   padding: 0,
+                  whiteSpace: 'nowrap',
                 }}
               >
-                View Breakdown ↗
+                Breakdown ↗
               </button>
             </div>
-            <strong style={{ fontSize: '24px', fontFamily: 'Manrope, sans-serif', color: '#fff', letterSpacing: '-0.02em' }}>
-              ₹{pricing.totalIndicative.toLocaleString('en-IN')}
-            </strong>
-            <span style={{ fontSize: '10px', color: '#889088', marginLeft: '6px' }}>+ GST</span>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', marginTop: '2px' }}>
+              <strong style={{ fontSize: '22px', fontFamily: 'Manrope, sans-serif', color: '#fff', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
+                ₹{pricing.totalIndicative.toLocaleString('en-IN')}
+              </strong>
+              <span style={{ fontSize: '10px', color: '#889088', whiteSpace: 'nowrap' }}>+ GST</span>
+            </div>
           </div>
 
           {/* Quantity Selector */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderLeft: '1px solid rgba(255,255,255,0.12)', paddingLeft: '18px' }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#9ca59b' }}>Qty:</span>
+          <div className="configurator-qty-selector" style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#9ca59b', whiteSpace: 'nowrap' }}>Qty:</span>
             <button
               type="button"
               onClick={() => setConfig({ ...config, quantity: Math.max(1, config.quantity - 1) })}
               style={{
-                width: '28px',
-                height: '28px',
-                background: 'rgba(255,255,255,0.1)',
+                width: '26px',
+                height: '26px',
+                background: 'rgba(255,255,255,0.12)',
                 border: 'none',
                 color: '#fff',
                 cursor: 'pointer',
                 fontFamily: 'DM Mono, monospace',
+                borderRadius: '2px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               -
             </button>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', width: '20px', textAlign: 'center' }}>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', width: '18px', textAlign: 'center', color: '#fff' }}>
               {config.quantity}
             </span>
             <button
               type="button"
               onClick={() => setConfig({ ...config, quantity: config.quantity + 1 })}
               style={{
-                width: '28px',
-                height: '28px',
-                background: 'rgba(255,255,255,0.1)',
+                width: '26px',
+                height: '26px',
+                background: 'rgba(255,255,255,0.12)',
                 border: 'none',
                 color: '#fff',
                 cursor: 'pointer',
                 fontFamily: 'DM Mono, monospace',
+                borderRadius: '2px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
             >
               +
@@ -1444,7 +2923,7 @@ export default function ProductConfigurator({
         </div>
 
         {/* Right: Export, AR & Primary Quote CTA */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div className="configurator-action-bar-ctas">
           <button
             type="button"
             onClick={handleSaveJson}
@@ -1479,7 +2958,7 @@ export default function ProductConfigurator({
               cursor: 'pointer',
             }}
           >
-            AR Preview (QR)
+            Spatial AR (1:1)
           </button>
 
           <button
@@ -1521,86 +3000,119 @@ export default function ProductConfigurator({
             alignItems: 'center',
             justifyContent: 'center',
             zIndex: 99999,
-            padding: '20px',
+            padding: '16px',
             backdropFilter: 'blur(8px)',
+            WebkitBackdropFilter: 'blur(8px)',
           }}
           onClick={() => setShowPriceBreakdown(false)}
         >
           <div
             style={{
-              maxWidth: '520px',
+              maxWidth: '480px',
               width: '100%',
+              maxHeight: '88vh',
+              overflowY: 'auto',
+              WebkitOverflowScrolling: 'touch',
               background: '#faf9f5',
-              padding: '32px',
+              padding: '24px 20px',
               border: '1px solid rgba(30,33,29,0.18)',
               borderTop: '3px solid var(--brand-red, #d43833)',
               boxShadow: '0 24px 48px rgba(0,0,0,0.4)',
+              borderRadius: '2px',
             }}
             onClick={e => e.stopPropagation()}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#667066', letterSpacing: '0.08em' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10.5px', textTransform: 'uppercase', color: '#667066', letterSpacing: '0.08em' }}>
                 Itemized Fabrication Breakdown
               </span>
-              <button onClick={() => setShowPriceBreakdown(false)} style={{ background: 'none', border: 'none', fontSize: '18px', cursor: 'pointer' }}>✕</button>
+              <button
+                type="button"
+                onClick={() => setShowPriceBreakdown(false)}
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '18px',
+                  lineHeight: 1,
+                  padding: '4px 6px',
+                  cursor: 'pointer',
+                  color: '#444',
+                }}
+              >
+                ✕
+              </button>
             </div>
 
-            <h3 style={{ margin: '0 0 18px 0', fontSize: '20px', fontWeight: 600 }}>
+            <h3 style={{ margin: '0 0 16px 0', fontSize: '18px', fontWeight: 600, color: '#1e211d' }}>
               {config.title}
             </h3>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', borderTop: '1px solid #e0ded6', paddingTop: '14px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>Base Substrate ({config.materialName})</span>
-                <strong style={{ fontFamily: 'DM Mono, monospace' }}>₹{pricing.baseSubstrate.toLocaleString('en-IN')}</strong>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', fontSize: '12.5px', borderTop: '1px solid #e0ded6', paddingTop: '14px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+                <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>Base Substrate ({config.materialName})</span>
+                <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
+                  ₹{pricing.baseSubstrate.toLocaleString('en-IN')}
+                </strong>
               </div>
               {pricing.thicknessSurcharge > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span>Thickness Calibration ({config.thickness}mm)</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace' }}>₹{pricing.thicknessSurcharge.toLocaleString('en-IN')}</strong>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>Thickness Calibration ({config.thickness}mm)</span>
+                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
+                    ₹{pricing.thicknessSurcharge.toLocaleString('en-IN')}
+                  </strong>
                 </div>
               )}
               {pricing.apronDownstand > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span>Mitred Apron Downstands ({config.frontApronHeight}mm)</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace' }}>₹{pricing.apronDownstand.toLocaleString('en-IN')}</strong>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>Mitred Apron Downstands ({config.frontApronHeight}mm)</span>
+                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
+                    ₹{pricing.apronDownstand.toLocaleString('en-IN')}
+                  </strong>
                 </div>
               )}
               {pricing.upstandSplashback > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span>{config.isCovedUpstand ? '10mm Coved Splashback' : 'Standard Upstand'} ({config.rearUpstandHeight}mm)</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace' }}>₹{pricing.upstandSplashback.toLocaleString('en-IN')}</strong>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>{config.isCovedUpstand ? '10mm Coved Splashback' : 'Standard Upstand'} ({config.rearUpstandHeight}mm)</span>
+                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
+                    ₹{pricing.upstandSplashback.toLocaleString('en-IN')}
+                  </strong>
                 </div>
               )}
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span>CNC Edge Tooling &amp; Hand Polish</span>
-                <strong style={{ fontFamily: 'DM Mono, monospace' }}>₹{pricing.edgeTooling.toLocaleString('en-IN')}</strong>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+                <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>CNC Edge Tooling &amp; Hand Polish</span>
+                <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
+                  ₹{pricing.edgeTooling.toLocaleString('en-IN')}
+                </strong>
               </div>
               {pricing.basinIntegration > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span>Integrated Coved Washbowl(s)</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace' }}>₹{pricing.basinIntegration.toLocaleString('en-IN')}</strong>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>Integrated Coved Washbowl(s)</span>
+                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
+                    ₹{pricing.basinIntegration.toLocaleString('en-IN')}
+                  </strong>
                 </div>
               )}
               {pricing.tapCutouts > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span>CNC Tap Hole Cutouts ({config.tapHoles})</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace' }}>₹{pricing.tapCutouts.toLocaleString('en-IN')}</strong>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
+                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>CNC Tap Hole Cutouts ({config.tapHoles})</span>
+                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
+                    ₹{pricing.tapCutouts.toLocaleString('en-IN')}
+                  </strong>
                 </div>
               )}
 
-              <div style={{ borderTop: '2px solid #1e211d', marginTop: '12px', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <div style={{ borderTop: '2px solid #1e211d', marginTop: '14px', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
                 <div>
-                  <strong style={{ fontSize: '16px' }}>Total Indicative Estimate</strong>
-                  <div style={{ fontSize: '10px', color: '#777', fontFamily: 'DM Mono, monospace' }}>Qty: {config.quantity} Unit(s)</div>
+                  <strong style={{ fontSize: '15px', color: '#1e211d', display: 'block', lineHeight: 1.3 }}>Total Indicative Estimate</strong>
+                  <span style={{ fontSize: '10px', color: '#777', fontFamily: 'DM Mono, monospace' }}>Qty: {config.quantity} Unit(s)</span>
                 </div>
-                <strong style={{ fontSize: '22px', color: 'var(--brand-red, #d43833)', fontFamily: 'DM Mono, monospace' }}>
+                <strong style={{ fontSize: '20px', color: 'var(--brand-red, #d43833)', fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right' }}>
                   ₹{pricing.totalIndicative.toLocaleString('en-IN')}
                 </strong>
               </div>
             </div>
 
-            <p style={{ marginTop: '18px', fontSize: '11px', color: '#7a8279', lineHeight: 1.5 }}>
+            <p style={{ marginTop: '16px', fontSize: '10.5px', color: '#7a8279', lineHeight: 1.5 }}>
               * Indicative factory estimate based on raw sheet yield and 5-axis CNC digital tooling in Bengaluru. Final binding quotation issued after engineering shop-drawing validation.
             </p>
           </div>
@@ -1842,136 +3354,15 @@ export default function ProductConfigurator({
       )}
 
       {/* ========================================================= */}
-      {/* MODAL 3: AR AUGMENTED REALITY QR MODAL                   */}
+      {/* REAL CROSS-PLATFORM AR MODAL                              */}
       {/* ========================================================= */}
-      {showArModal && (
-        <div
-          role="dialog"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(0,0,0,0.7)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 99999,
-            padding: '20px',
-            backdropFilter: 'blur(8px)',
-          }}
-          onClick={() => setShowArModal(false)}
-        >
-          <div
-            style={{
-              maxWidth: '460px',
-              width: '100%',
-              background: '#faf9f5',
-              padding: '36px',
-              border: '1px solid rgba(30,33,29,0.18)',
-              borderTop: '3px solid var(--brand-red, #d43833)',
-              boxShadow: '0 24px 48px rgba(0,0,0,0.5)',
-              textAlign: 'center',
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#667066', letterSpacing: '0.08em' }}>
-                Spatial Mobile Viewing
-              </span>
-              <button onClick={() => setShowArModal(false)} style={{ background: 'none', border: 'none', fontSize: '18px', cursor: 'pointer' }}>✕</button>
-            </div>
-
-            <h3 style={{ margin: '0 0 10px 0', fontSize: '20px', fontWeight: 600 }}>
-              View in Your Space (AR)
-            </h3>
-            <p style={{ fontSize: '12px', color: '#555', lineHeight: 1.5, marginBottom: '20px' }}>
-              Scan this QR code with an iPhone or Android mobile camera to load your customized <strong>{config.title} ({config.width}×{config.depth}mm)</strong> directly in WebXR / QuickLook.
-            </p>
-
-            {/* Simulated Clean SVG QR Code Representation */}
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: '#fff',
-                padding: '16px',
-                border: '1px solid rgba(30,33,29,0.15)',
-                boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-                marginBottom: '18px',
-              }}
-            >
-              <svg width="180" height="180" viewBox="0 0 180 180" xmlns="http://www.w3.org/2000/svg">
-                {/* QR Position Squares */}
-                <rect x="10" y="10" width="45" height="45" fill="#1e211d" />
-                <rect x="18" y="18" width="29" height="29" fill="#fff" />
-                <rect x="25" y="25" width="15" height="15" fill="#d43833" />
-
-                <rect x="125" y="10" width="45" height="45" fill="#1e211d" />
-                <rect x="133" y="18" width="29" height="29" fill="#fff" />
-                <rect x="140" y="25" width="15" height="15" fill="#d43833" />
-
-                <rect x="10" y="125" width="45" height="45" fill="#1e211d" />
-                <rect x="18" y="133" width="29" height="29" fill="#fff" />
-                <rect x="25" y="140" width="15" height="15" fill="#d43833" />
-
-                {/* QR Data Grid Matrix */}
-                <g fill="#1e211d">
-                  <rect x="65" y="15" width="10" height="10" />
-                  <rect x="85" y="15" width="10" height="10" />
-                  <rect x="105" y="15" width="10" height="10" />
-                  <rect x="65" y="35" width="10" height="10" />
-                  <rect x="95" y="35" width="10" height="10" />
-                  <rect x="75" y="55" width="10" height="10" />
-                  <rect x="105" y="55" width="10" height="10" />
-                  <rect x="20" y="75" width="10" height="10" />
-                  <rect x="40" y="75" width="10" height="10" />
-                  <rect x="60" y="75" width="10" height="10" />
-                  <rect x="80" y="75" width="10" height="10" />
-                  <rect x="100" y="75" width="10" height="10" />
-                  <rect x="120" y="75" width="10" height="10" />
-                  <rect x="140" y="75" width="10" height="10" />
-                  <rect x="75" y="95" width="10" height="10" />
-                  <rect x="95" y="95" width="10" height="10" />
-                  <rect x="135" y="95" width="10" height="10" />
-                  <rect x="65" y="115" width="10" height="10" />
-                  <rect x="85" y="115" width="10" height="10" />
-                  <rect x="115" y="115" width="10" height="10" />
-                  <rect x="65" y="135" width="10" height="10" />
-                  <rect x="95" y="135" width="10" height="10" />
-                  <rect x="145" y="135" width="10" height="10" />
-                  <rect x="85" y="155" width="10" height="10" />
-                  <rect x="105" y="155" width="10" height="10" />
-                  <rect x="135" y="155" width="10" height="10" />
-                </g>
-              </svg>
-            </div>
-
-            <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#687268', margin: '0 0 20px 0' }}>
-              Compatible with iOS QuickLook (.usdz) &amp; Android Scene Viewer (.glb)
-            </p>
-
-            <button
-              type="button"
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                showToast('✓ Link copied to clipboard.');
-              }}
-              style={{
-                background: '#1e211d',
-                color: '#fff',
-                border: 'none',
-                padding: '10px 20px',
-                fontFamily: 'DM Mono, monospace',
-                fontSize: '11px',
-                textTransform: 'uppercase',
-                cursor: 'pointer',
-              }}
-            >
-              Copy Mobile Link
-            </button>
-          </div>
-        </div>
-      )}
+      <ArViewerModal
+        config={config}
+        isOpen={showArModal}
+        onClose={() => setShowArModal(false)}
+      />
     </div>
   );
 }
+
+export { ProductConfigurator };

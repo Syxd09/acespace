@@ -27,6 +27,85 @@
   color: #ffffff;
 }
 
+/* -------------------------------------------------------------
+   ARCHITECTURAL RANGE SLIDER (Clean Centered Red Circle Thumb)
+------------------------------------------------------------- */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 20px;
+  background: transparent;
+  cursor: pointer;
+  margin: 0;
+  vertical-align: middle;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+/* Track: Chrome, Safari, Edge */
+input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(30, 33, 29, 0.18);
+  border-radius: 4px;
+  border: none;
+  transition: background 0.15s ease;
+}
+
+input[type="range"]:hover::-webkit-slider-runnable-track {
+  background: rgba(30, 33, 29, 0.32);
+}
+
+/* Thumb: Chrome, Safari, Edge - EXACTLY centered on the 4px track line: (4px - 16px) / 2 = -6px */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--brand-red, #d43833);
+  border: 2px solid #ffffff;
+  margin-top: -6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+  cursor: grab;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+input[type="range"]:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(1.18);
+  box-shadow: 0 2px 8px rgba(212, 56, 51, 0.5);
+}
+
+/* Track: Firefox */
+input[type="range"]::-moz-range-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(30, 33, 29, 0.18);
+  border-radius: 4px;
+  border: none;
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 4px;
+  background: var(--brand-red, #d43833);
+  border-radius: 4px;
+}
+
+/* Thumb: Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--brand-red, #d43833);
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+  cursor: grab;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -2751,10 +2830,13 @@ textarea {
    Ensures elegant layout and zero overflow across all pages
    ========================================================================== */
 
-/* Universal Mobile Constraints */
-html, body {
-  overflow-x: hidden !important;
-  max-width: 100vw !important;
+/* Universal Mobile Constraints - prevents horizontal overflow without breaking root touch scroll */
+html {
+  overflow-x: clip;
+}
+body {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 /* Universal Mobile iOS Safari Auto-Zoom Prevention */
@@ -4384,25 +4466,57 @@ main.page-main {
 }
 
 /* -------------------------------------------------------------
-   3D CONFIGURATOR STUDIO SCROLL ISOLATION & OVERFLOW LOCK
-   Prevents background window from scrolling when user scrolls sidebar
+   3D CONFIGURATOR ACTION BAR (Fixed Bottom Bar Across All Views)
 ------------------------------------------------------------- */
-html.configurator-active,
-body.configurator-active {
-  overflow: hidden !important;
-  height: 100vh !important;
-  max-height: 100vh !important;
-  overscroll-behavior: none !important;
+.configurator-action-bar {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  background: #1e211d !important;
+  color: #e9e8e2 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  z-index: 900 !important;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.35) !important;
 }
 
-.configurator-sidebar-panel {
-  overscroll-behavior: contain !important;
-  overscroll-behavior-y: contain !important;
-  -webkit-overflow-scrolling: touch !important;
+/* -------------------------------------------------------------
+   LAPTOP & TABLET VIEW (>= 768px)
+   Matches the exact original fixed 80px horizontal popup bar
+------------------------------------------------------------- */
+@media (min-width: 768px) {
+  .configurator-action-bar {
+    height: 80px !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 0 32px !important;
+  }
+
+  .configurator-action-bar-pricing {
+    display: flex !important;
+    align-items: center !important;
+    gap: 20px !important;
+  }
+
+  .configurator-qty-selector {
+    border-left: 1px solid rgba(255, 255, 255, 0.12) !important;
+    padding-left: 18px !important;
+  }
+
+  .configurator-action-bar-ctas {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
 }
 
+/* Desktop layout (>= 1024px) */
 @media (min-width: 1024px) {
   .configurator-grid {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.45fr) minmax(420px, 1fr) !important;
     height: calc(100vh - 84px - 80px) !important;
     max-height: calc(100vh - 84px - 80px) !important;
     overflow: hidden !important;
@@ -4421,6 +4535,265 @@ body.configurator-active {
     overflow-y: auto !important;
     overscroll-behavior: contain !important;
     overscroll-behavior-y: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding: 24px 28px 120px !important;
+  }
+}
+
+/* Tablet view (768px to 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .configurator-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    overflow: visible !important;
+    margin-top: 70px !important;
+    padding-bottom: 120px !important;
+  }
+
+  .configurator-viewport-panel {
+    width: 100% !important;
+    height: 48vh !important;
+    min-height: 320px !important;
+    max-height: 440px !important;
+    position: relative !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--line, rgba(30,33,29,0.15)) !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .configurator-sidebar-panel {
+    width: 100% !important;
+    height: auto !important;
+    overflow-y: visible !important;
+    padding: 24px 24px 140px !important;
+  }
+}
+
+/* -------------------------------------------------------------
+   MOBILE VIEW (< 768px)
+   Action bar stays at bottom with original dark high-contrast colors
+------------------------------------------------------------- */
+@media (max-width: 767px) {
+  .configurator-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+    max-height: none !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    margin-top: 70px !important;
+    padding-bottom: 220px !important;
+  }
+
+  .configurator-viewport-panel {
+    width: 100% !important;
+    height: 40vh !important;
+    min-height: 260px !important;
+    max-height: 360px !important;
+    position: relative !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--line, rgba(30,33,29,0.15)) !important;
+    flex-shrink: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .configurator-canvas-wrapper {
+    height: 100% !important;
+    min-height: 0 !important;
+  }
+
+  .configurator-sidebar-panel {
+    width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+    overscroll-behavior: auto !important;
+    padding: 20px 16px 240px !important;
+  }
+
+  .configurator-action-bar {
+    height: auto !important;
+    min-height: 72px !important;
+    background: #1e211d !important;
+    color: #e9e8e2 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.45) !important;
+    padding: 12px 16px !important;
+    padding-bottom: max(14px, env(safe-area-inset-bottom, 14px)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    align-items: stretch !important;
+  }
+
+  .configurator-action-bar-pricing {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .configurator-qty-selector {
+    border-left: none !important;
+    padding-left: 0 !important;
+  }
+
+  .configurator-action-bar-ctas {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .configurator-action-bar-ctas button {
+    padding: 10px 8px !important;
+    font-size: 11px !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .configurator-action-bar-ctas button:last-child {
+    grid-column: 1 / -1 !important;
+    padding: 13px 16px !important;
+    font-size: 12px !important;
+  }
+
+  .configurator-viewport-top-bar {
+    top: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+  }
+
+  .configurator-model-badge {
+    padding: 4px 10px !important;
+  }
+
+  .configurator-viewpoint-controls {
+    align-self: flex-end !important;
+    padding: 2px !important;
+  }
+
+  .configurator-viewpoint-controls button {
+    padding: 4px 8px !important;
+    font-size: 9px !important;
+  }
+
+  .configurator-touch-hint {
+    font-size: 9px !important;
+    bottom: 8px !important;
+    left: 10px !important;
+    padding: 3px 6px !important;
+  }
+
+  .configurator-viewport-toolbar {
+    bottom: 8px !important;
+    right: 10px !important;
+    gap: 4px !important;
+  }
+
+  .configurator-viewport-toolbar button {
+    padding: 5px 8px !important;
+    font-size: 10px !important;
+  }
+
+  /* Architectural AI Bot on Mobile: Fullscreen sheet */
+  .ace-ai-bot-root {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+
+  .ace-ai-chat-window {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    z-index: 99999 !important;
+  }
+
+  .ace-ai-resize-handle {
+    display: none !important;
+  }
+
+  /* Sample Tray Drawer on Mobile */
+  .sample-tray-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .sample-tray-header {
+    padding: 16px 18px !important;
+  }
+
+  .sample-tray-body {
+    padding: 20px 16px !important;
+  }
+
+  /* AR Modal Card */
+  .ar-modal-card {
+    padding: 20px 16px !important;
+  }
+
+  .ar-modal-specs-grid {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+}
+
+/* Consultation Form Mobile Layout */
+.consultation-layout-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.consultation-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .consultation-layout-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .consultation-input-row {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+}
+
+.viewpoint-btn-short {
+  display: none;
+}
+.viewpoint-btn-full {
+  display: inline;
+}
+
+@media (max-width: 640px) {
+  .viewpoint-btn-short {
+    display: inline !important;
+  }
+  .viewpoint-btn-full {
+    display: none !important;
   }
 }
 

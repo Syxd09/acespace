@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
-import ProductConfigurator from '@/components/configurator/ProductConfigurator';
+import dynamic from 'next/dynamic';
 import JsonLd from '@/components/JsonLd';
+
+const ProductConfigurator = dynamic(
+  () => import('@/components/configurator/ProductConfigurator'),
+  {
+    ssr: false,
+    loading: () => (
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f4ee', fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#687268' }}>
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ width: '40px', height: '40px', border: '3px solid rgba(30,33,29,0.15)', borderTopColor: 'var(--brand-red, #d43833)', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 0.8s linear infinite' }} />
+          <span>Initializing 3D Parametric Studio...</span>
+        </div>
+      </div>
+    ),
+  }
+);
 
 export const metadata: Metadata = {
   title: 'Interactive 3D Product Configurator — Solid Surface Vanities, Sinks & Benchtops',
@@ -51,19 +66,32 @@ const configuratorJsonLd = {
 };
 
 interface ConfiguratorPageProps {
-  searchParams: Promise<{ preset?: string; material?: string; id?: string }>;
+  searchParams?: { preset?: string; material?: string; id?: string; launchAr?: string };
 }
 
-export default async function ConfiguratorPage({ searchParams }: ConfiguratorPageProps) {
-  const params = await searchParams;
+export default function ConfiguratorPage({ searchParams }: ConfiguratorPageProps) {
+  const params = searchParams || {};
 
   return (
-    <main style={{ minHeight: '100vh', background: '#f5f4ee' }}>
+    <main suppressHydrationWarning style={{ minHeight: '100vh', background: '#f5f4ee' }}>
       <JsonLd data={configuratorJsonLd} />
-      <ProductConfigurator
-        initialPresetId={params.preset || 'single-basin-vanity'}
-        initialMaterialSlug={params.material}
-      />
+      <Suspense
+        fallback={
+          <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f4ee', fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#687268' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ width: '40px', height: '40px', border: '3px solid rgba(30,33,29,0.15)', borderTopColor: 'var(--brand-red, #d43833)', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 0.8s linear infinite' }} />
+              <span>Initializing 3D Parametric Studio...</span>
+            </div>
+          </div>
+        }
+      >
+        <ProductConfigurator
+          initialPresetId={params.preset || 'single-basin-vanity'}
+          initialMaterialSlug={params.material}
+          initialConfigId={params.id}
+          autoLaunchAr={params.launchAr === 'true'}
+        />
+      </Suspense>
     </main>
   );
 }

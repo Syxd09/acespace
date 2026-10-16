@@ -1,4 +1,7 @@
 import { ProductConfiguration } from '@/data/configuratorData';
+import { buildProductMesh, ProceduralMeshData } from './meshBuilder';
+export { buildProductMesh };
+export type { ProceduralMeshData };
 
 // Precision 3D Vector & Matrix Mathematics
 export class Vec3 {
@@ -150,6 +153,27 @@ export interface DimensionCallout {
   isVisible: boolean;
 }
 
+export interface CadDimensionLine {
+  id: string;
+  start: { x: number; y: number };
+  end: { x: number; y: number };
+  mid: { x: number; y: number };
+  label?: string | number;
+  isDashed?: boolean;
+}
+
+export interface CadDimensionNode {
+  id: string;
+  pos: { x: number; y: number };
+  label?: string;
+}
+
+export interface CadDimensionData {
+  lines: CadDimensionLine[];
+  nodes: CadDimensionNode[];
+  isVisible: boolean;
+}
+
 // -------------------------------------------------------------
 // Interactive 3D Solid Surface WebGL Engine
 // -------------------------------------------------------------
@@ -179,6 +203,7 @@ export class Configurator3DEngine {
 
   private vaoVertexBuffer: WebGLBuffer | null = null;
   private vaoNormalBuffer: WebGLBuffer | null = null;
+  private vaoColorBuffer: WebGLBuffer | null = null;
   private vaoIndexBuffer: WebGLBuffer | null = null;
   private vertexCount = 0;
 
@@ -191,11 +216,15 @@ export class Configurator3DEngine {
   private materialRgb = [0.95, 0.94, 0.92]; // Default Glacier White
   private isWireframe = false;
   private showDimensions = true;
+  private isTurntable = false;
+  private currentMesh: ProceduralMeshData | null = null;
 
   // Callout Callbacks
-  private onDimensionsUpdate?: (callouts: DimensionCallout[]) => void;
+  private onDimensionsUpdate?: (callouts: DimensionCallout[], cadData?: CadDimensionData) => void;
+  private cleanupEvents?: () => void;
+  private resizeObserver: ResizeObserver | null = null;
 
-  constructor(canvas: HTMLCanvasElement, onDimensionsUpdate?: (callouts: DimensionCallout[]) => void) {
+  constructor(canvas: HTMLCanvasElement, onDimensionsUpdate?: (callouts: DimensionCallout[], cadData?: CadDimensionData) => void) {
     this.canvas = canvas;
     this.onDimensionsUpdate = onDimensionsUpdate;
     this.initWebGL();
@@ -211,7 +240,7 @@ export class Configurator3DEngine {
       powerPreference: 'high-performance',
     });
 
-    if (!this.gl) {
+    if (!this.gl || this.gl.isContextLost()) {
       console.warn('WebGL is not available in current browser context.');
       return;
     }
@@ -219,8 +248,7 @@ export class Configurator3DEngine {
     const gl = this.gl;
     gl.enable(gl.DEPTH_TEST);
     gl.depthFunc(gl.LEQUAL);
-    gl.enable(gl.CULL_FACE);
-    gl.cullFace(gl.BACK);
+    gl.disable(gl.CULL_FACE);
 
     // Architectural Neutral Ground Clear Color (#f0eee8)
     gl.clearColor(0.94, 0.93, 0.91, 1.0);
@@ -234,10 +262,11 @@ export class Configurator3DEngine {
     if (!this.gl) return;
     const gl = this.gl;
 
-    // Solid Surface Phong / Blinn Shader
+    // Solid Surface Phong / Blinn Shader with Chrome & Metallic Details
     const vsSource = `
       attribute vec3 aPosition;
       attribute vec3 aNormal;
+      attribute vec4 aColor;
 
       uniform mat4 uProjection;
       uniform mat4 uView;
@@ -245,11 +274,13 @@ export class Configurator3DEngine {
 
       varying vec3 vNormal;
       varying vec3 vWorldPos;
+      varying vec4 vColor;
 
       void main() {
         vec4 worldPos = uModel * vec4(aPosition, 1.0);
         vWorldPos = worldPos.xyz;
         vNormal = mat3(uModel) * aNormal;
+        vColor = aColor;
         gl_Position = uProjection * uView * worldPos;
       }
     `;
@@ -265,6 +296,7 @@ export class Configurator3DEngine {
 
       varying vec3 vNormal;
       varying vec3 vWorldPos;
+      varying vec4 vColor;
 
       void main() {
         if (uIsWireframe == 1) {
@@ -273,28 +305,47 @@ export class Configurator3DEngine {
         }
 
         vec3 N = normalize(vNormal);
+        if (!gl_FrontFacing) N = -N;
         vec3 V = normalize(uCameraPos - vWorldPos);
 
         // Key Light (Warm Architectural Studio Spotlight)
         vec3 L1 = normalize(uLightPos1 - vWorldPos);
         float diff1 = max(dot(N, L1), 0.0);
         vec3 H1 = normalize(L1 + V);
-        float spec1 = pow(max(dot(N, H1), 0.0), 32.0);
 
         // Fill Light (Cool Diffuse Ambient Reflection)
         vec3 L2 = normalize(uLightPos2 - vWorldPos);
         float diff2 = max(dot(N, L2), 0.0) * 0.45;
 
-        // Hemispherical Soft Ambient
-        float hemi = clamp(N.y * 0.5 + 0.5, 0.0, 1.0) * 0.35 + 0.25;
+        // Custom metallic/chrome or dark cavity test (aColor.a > 0.5)
+        bool isMetal = vColor.a > 0.5;
+        vec3 baseColor;
+        float specPower;
+        float specIntensity;
 
-        // Soft Subsurface Scatter Sheen characteristic of solid surface minerals
-        float fresnel = pow(1.0 - max(dot(N, V), 0.0), 3.0) * 0.18;
+        if (isMetal) {
+          baseColor = vColor.rgb;
+          specPower = 64.0;
+          specIntensity = 0.85;
+        } else {
+          // Solid surface stone with ambient occlusion multiplier (vColor.rgb)
+          baseColor = uColor * vColor.rgb;
+          specPower = 32.0;
+          specIntensity = 0.22;
+        }
 
-        vec3 ambient = uColor * hemi;
-        vec3 diffuse = uColor * (diff1 * 0.75 + diff2);
-        vec3 specular = vec3(0.96, 0.95, 0.94) * spec1 * 0.22;
-        vec3 rim = vec3(1.0) * fresnel;
+        float spec1 = pow(max(dot(N, H1), 0.0), specPower);
+
+        // Hemispherical Soft Ambient - bright & natural for architectural solid surface
+        float hemi = clamp(N.y * 0.35 + 0.65, 0.0, 1.0) * 0.45 + 0.50;
+
+        // Soft Subsurface Scatter / Chrome Rim Sheen
+        float fresnel = pow(1.0 - max(dot(N, V), 0.0), 3.0) * (isMetal ? 0.40 : 0.18);
+
+        vec3 ambient = baseColor * hemi;
+        vec3 diffuse = baseColor * (diff1 * 0.55 + diff2);
+        vec3 specular = (isMetal ? vec3(1.0, 1.0, 1.0) : vec3(0.96, 0.95, 0.94)) * spec1 * specIntensity;
+        vec3 rim = (isMetal ? vec3(1.0, 1.0, 1.0) : vec3(1.0)) * fresnel;
 
         vec3 finalColor = ambient + diffuse + specular + rim;
         gl_FragColor = vec4(finalColor, 1.0);
@@ -322,31 +373,50 @@ export class Configurator3DEngine {
   }
 
   private createProgram(vsSource: string, fsSource: string): WebGLProgram | null {
-    if (!this.gl) return null;
+    if (!this.gl || this.gl.isContextLost()) return null;
     const gl = this.gl;
 
-    const vs = gl.createShader(gl.VERTEX_SHADER)!;
+    const vs = gl.createShader(gl.VERTEX_SHADER);
+    if (!vs) return null;
     gl.shaderSource(vs, vsSource);
     gl.compileShader(vs);
     if (!gl.getShaderParameter(vs, gl.COMPILE_STATUS)) {
-      console.error('VS Error:', gl.getShaderInfoLog(vs));
+      const log = gl.getShaderInfoLog(vs);
+      if (log) console.error('VS Error:', log);
+      gl.deleteShader(vs);
       return null;
     }
 
-    const fs = gl.createShader(gl.FRAGMENT_SHADER)!;
+    const fs = gl.createShader(gl.FRAGMENT_SHADER);
+    if (!fs) {
+      gl.deleteShader(vs);
+      return null;
+    }
     gl.shaderSource(fs, fsSource);
     gl.compileShader(fs);
     if (!gl.getShaderParameter(fs, gl.COMPILE_STATUS)) {
-      console.error('FS Error:', gl.getShaderInfoLog(fs));
+      const log = gl.getShaderInfoLog(fs);
+      if (log) console.error('FS Error:', log);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
       return null;
     }
 
-    const prog = gl.createProgram()!;
+    const prog = gl.createProgram();
+    if (!prog) {
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
+      return null;
+    }
     gl.attachShader(prog, vs);
     gl.attachShader(prog, fs);
     gl.linkProgram(prog);
     if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) {
-      console.error('Link Error:', gl.getProgramInfoLog(prog));
+      const log = gl.getProgramInfoLog(prog);
+      if (log) console.error('Link Error:', log);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
+      gl.deleteProgram(prog);
       return null;
     }
 
@@ -381,300 +451,230 @@ export class Configurator3DEngine {
   // Parametric Procedural Geometry Generation
   // -------------------------------------------------------------
   public updateConfiguration(config: ProductConfiguration) {
+    if (!config) return;
     this.currentConfig = config;
 
-    // Convert hex color to float RGB
-    const hex = config.materialHex.replace('#', '');
+    // Convert hex color to float RGB with fallback
+    const rawHex = (config.materialHex && typeof config.materialHex === 'string')
+      ? config.materialHex
+      : '#f3f2ee';
+    const hex = rawHex.replace('#', '');
     const r = parseInt(hex.substring(0, 2), 16) / 255;
     const g = parseInt(hex.substring(2, 4), 16) / 255;
     const b = parseInt(hex.substring(4, 6), 16) / 255;
-    this.materialRgb = [r, g, b];
+    this.materialRgb = [isNaN(r) ? 0.95 : r, isNaN(g) ? 0.94 : g, isNaN(b) ? 0.92 : b];
 
     this.generateProductGeometry(config);
     this.computeDimensionCallouts(config);
+  }
+
+  public getGeometryData(): ProceduralMeshData | null {
+    return this.currentMesh;
   }
 
   private generateProductGeometry(cfg: ProductConfiguration) {
     if (!this.gl) return;
     const gl = this.gl;
 
-    const verts: number[] = [];
-    const norms: number[] = [];
-    const indices: number[] = [];
-
-    // Scale mm to world units: 1000mm = 1.0 unit
-    const W = cfg.width / 1000;
-    const D = cfg.depth / 1000;
-    const T = cfg.thickness / 1000;
-    const frontApron = cfg.frontApronHeight / 1000;
-    const rearUpstand = cfg.rearUpstandHeight / 1000;
-
-    const halfW = W / 2;
-    const halfD = D / 2;
-    const topY = 0;
-    const bottomDeckY = topY - T;
-
-    // Helper: Push a quad (2 triangles) with uniform normal
-    const pushQuad = (
-      p1: [number, number, number],
-      p2: [number, number, number],
-      p3: [number, number, number],
-      p4: [number, number, number],
-      n: [number, number, number]
-    ) => {
-      const idx = verts.length / 3;
-      verts.push(...p1, ...p2, ...p3, ...p4);
-      norms.push(...n, ...n, ...n, ...n);
-      indices.push(idx, idx + 1, idx + 2, idx, idx + 2, idx + 3);
-    };
-
-    // Helper: Push a 3D box defined by min and max bounds
-    const pushBox = (
-      minX: number, minY: number, minZ: number,
-      maxX: number, maxY: number, maxZ: number
-    ) => {
-      // Top face (+Y)
-      pushQuad([minX, maxY, maxZ], [maxX, maxY, maxZ], [maxX, maxY, minZ], [minX, maxY, minZ], [0, 1, 0]);
-      // Bottom face (-Y)
-      pushQuad([minX, minY, minZ], [maxX, minY, minZ], [maxX, minY, maxZ], [minX, minY, maxZ], [0, -1, 0]);
-      // Front face (+Z)
-      pushQuad([minX, minY, maxZ], [maxX, minY, maxZ], [maxX, maxY, maxZ], [minX, maxY, maxZ], [0, 0, 1]);
-      // Back face (-Z)
-      pushQuad([maxX, minY, minZ], [minX, minY, minZ], [minX, maxY, minZ], [maxX, maxY, minZ], [0, 0, -1]);
-      // Left face (-X)
-      pushQuad([minX, minY, minZ], [minX, minY, maxZ], [minX, maxY, maxZ], [minX, maxY, minZ], [-1, 0, 0]);
-      // Right face (+X)
-      pushQuad([maxX, minY, maxZ], [maxX, minY, minZ], [maxX, maxY, minZ], [maxX, maxY, maxZ], [1, 0, 0]);
-    };
-
-    // 1. Deck Solid Surface: Top Horizontal Worktop
-    if (cfg.basinModelId === 'none' || cfg.basinPlacement === 'none') {
-      // Solid continuous unbroken slab
-      pushBox(-halfW, bottomDeckY, -halfD, halfW, topY, halfD);
-    } else {
-      // Deck with Basin Cutouts (Center, Left, Right, or Dual)
-      const basinWidth = 0.5; // ~500mm
-      const basinDepth = 0.34; // ~340mm
-      const basinDepthDrop = 0.14; // ~140mm bowl depth
-
-      const basinPositions: number[] = [];
-      if (cfg.basinPlacement === 'center') {
-        basinPositions.push(0);
-      } else if (cfg.basinPlacement === 'left') {
-        basinPositions.push(-halfW * 0.45);
-      } else if (cfg.basinPlacement === 'right') {
-        basinPositions.push(halfW * 0.45);
-      } else if (cfg.basinPlacement === 'dual') {
-        const span = halfW * 0.52;
-        basinPositions.push(-span, span);
-      }
-
-      // Left perimeter collar
-      const firstB = basinPositions[0];
-      const leftCollarMin = -halfW;
-      const leftCollarMax = firstB - basinWidth / 2;
-      if (leftCollarMax > leftCollarMin) {
-        pushBox(leftCollarMin, bottomDeckY, -halfD, leftCollarMax, topY, halfD);
-      }
-
-      // Right perimeter collar
-      const lastB = basinPositions[basinPositions.length - 1];
-      const rightCollarMin = lastB + basinWidth / 2;
-      const rightCollarMax = halfW;
-      if (rightCollarMax > rightCollarMin) {
-        pushBox(rightCollarMin, bottomDeckY, -halfD, rightCollarMax, topY, halfD);
-      }
-
-      // Front & Rear rims around each basin
-      for (const bX of basinPositions) {
-        const bMinX = bX - basinWidth / 2;
-        const bMaxX = bX + basinWidth / 2;
-        const bMinZ = -basinDepth / 2;
-        const bMaxZ = basinDepth / 2;
-
-        // Front rim (+Z)
-        pushBox(bMinX, bottomDeckY, bMaxZ, bMaxX, topY, halfD);
-        // Rear rim (-Z)
-        pushBox(bMinX, bottomDeckY, -halfD, bMaxX, topY, bMinZ);
-
-        // Thermoformed Seamless Coved Basin Cavity
-        const bowlBottomY = bottomDeckY - basinDepthDrop;
-        // Basin Bottom
-        pushQuad(
-          [bMinX + 0.03, bowlBottomY, bMaxZ - 0.03],
-          [bMaxX - 0.03, bowlBottomY, bMaxZ - 0.03],
-          [bMaxX - 0.03, bowlBottomY, bMinZ + 0.03],
-          [bMinX + 0.03, bowlBottomY, bMinZ + 0.03],
-          [0, 1, 0]
-        );
-        // Basin Interior Walls (Inward facing normals)
-        // Back wall
-        pushQuad([bMinX + 0.03, bowlBottomY, bMinZ + 0.03], [bMaxX - 0.03, bowlBottomY, bMinZ + 0.03], [bMaxX, bottomDeckY, bMinZ], [bMinX, bottomDeckY, bMinZ], [0, 0.4, 0.9]);
-        // Front wall
-        pushQuad([bMaxX - 0.03, bowlBottomY, bMaxZ - 0.03], [bMinX + 0.03, bowlBottomY, bMaxZ - 0.03], [bMinX, bottomDeckY, bMaxZ], [bMaxX, bottomDeckY, bMaxZ], [0, 0.4, -0.9]);
-        // Left wall
-        pushQuad([bMinX + 0.03, bowlBottomY, bMaxZ - 0.03], [bMinX + 0.03, bowlBottomY, bMinZ + 0.03], [bMinX, bottomDeckY, bMinZ], [bMinX, bottomDeckY, bMaxZ], [0.9, 0.4, 0]);
-        // Right wall
-        pushQuad([bMaxX - 0.03, bowlBottomY, bMinZ + 0.03], [bMaxX - 0.03, bowlBottomY, bMaxZ - 0.03], [bMaxX, bottomDeckY, bMaxZ], [bMaxX, bottomDeckY, bMinZ], [-0.9, 0.4, 0]);
-
-        // Chrome Waste Drain Collar at basin center bottom
-        const dR = 0.024;
-        pushBox(bX - dR, bowlBottomY - 0.002, -dR, bX + dR, bowlBottomY + 0.003, dR);
-
-        // Deck Tap hole cutout ring if selected
-        if (cfg.tapHoles > 0 && cfg.tapPosition !== 'wall') {
-          const tapZ = -halfD + 0.06;
-          pushBox(bX - 0.018, topY - 0.001, tapZ - 0.018, bX + 0.018, topY + 0.004, tapZ + 0.018);
-        }
-      }
-
-      // Center divider between dual basins if dual
-      if (cfg.basinPlacement === 'dual' && basinPositions.length === 2) {
-        const midMinX = basinPositions[0] + basinWidth / 2;
-        const midMaxX = basinPositions[1] - basinWidth / 2;
-        if (midMaxX > midMinX) {
-          pushBox(midMinX, bottomDeckY, -halfD, midMaxX, topY, halfD);
-        }
-      }
-    }
-
-    // 2. Front Downstand (Apron drop fascia)
-    if (frontApron > 0) {
-      const apronBottomY = bottomDeckY - frontApron;
-      pushBox(-halfW, apronBottomY, halfD - 0.015, halfW, bottomDeckY, halfD);
-    }
-
-    // 3. Left Return Downstand (Apron)
-    if (cfg.hasLeftApron && frontApron > 0) {
-      const apronBottomY = bottomDeckY - frontApron;
-      pushBox(-halfW, apronBottomY, -halfD, -halfW + 0.015, bottomDeckY, halfD - 0.015);
-    }
-
-    // 4. Right Return Downstand (Apron)
-    if (cfg.hasRightApron && frontApron > 0) {
-      const apronBottomY = bottomDeckY - frontApron;
-      pushBox(halfW - 0.015, apronBottomY, -halfD, halfW, bottomDeckY, halfD - 0.015);
-    }
-
-    // 5. Rear Upstand (Splashback with coved junction)
-    if (rearUpstand > 0) {
-      const upstandTopY = topY + rearUpstand;
-      pushBox(-halfW, topY, -halfD, halfW, upstandTopY, -halfD + 0.015);
-    }
-
-    // 6. Left Return Upstand
-    if (cfg.hasLeftUpstand && rearUpstand > 0) {
-      const upstandTopY = topY + rearUpstand;
-      pushBox(-halfW, topY, -halfD + 0.015, -halfW + 0.015, upstandTopY, halfD);
-    }
-
-    // 7. Right Return Upstand
-    if (cfg.hasRightUpstand && rearUpstand > 0) {
-      const upstandTopY = topY + rearUpstand;
-      pushBox(halfW - 0.015, topY, -halfD + 0.015, halfW, upstandTopY, halfD);
-    }
+    const mesh = buildProductMesh(cfg);
+    this.currentMesh = mesh;
 
     // Bind Buffers to GPU
     if (!this.vaoVertexBuffer) this.vaoVertexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vaoVertexBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(verts), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, mesh.positions, gl.STATIC_DRAW);
 
     if (!this.vaoNormalBuffer) this.vaoNormalBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.vaoNormalBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(norms), gl.STATIC_DRAW);
+    gl.bufferData(gl.ARRAY_BUFFER, mesh.normals, gl.STATIC_DRAW);
+
+    if (mesh.colors) {
+      if (!this.vaoColorBuffer) this.vaoColorBuffer = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, this.vaoColorBuffer);
+      gl.bufferData(gl.ARRAY_BUFFER, mesh.colors, gl.STATIC_DRAW);
+    }
 
     if (!this.vaoIndexBuffer) this.vaoIndexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.vaoIndexBuffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, mesh.indices, gl.STATIC_DRAW);
 
-    this.vertexCount = indices.length;
+    this.vertexCount = mesh.indices.length;
   }
 
   // -------------------------------------------------------------
-  // Dimension Callouts Screen Coordinates Projection
+  // -------------------------------------------------------------
+  // Architectural CAD Dimension System & Screen Projection
   // -------------------------------------------------------------
   private computeDimensionCallouts(cfg: ProductConfiguration) {
     if (!this.onDimensionsUpdate || !this.showDimensions) {
-      if (this.onDimensionsUpdate) this.onDimensionsUpdate([]);
+      if (this.onDimensionsUpdate) this.onDimensionsUpdate([], { lines: [], nodes: [], isVisible: false });
       return;
     }
 
     const halfW = (cfg.width / 1000) / 2;
     const halfD = (cfg.depth / 1000) / 2;
     const topY = 0;
-    const frontApron = cfg.frontApronHeight / 1000;
-    const rearUpstand = cfg.rearUpstandHeight / 1000;
+    const hasFrontApron = cfg.downstands?.front ?? ((cfg.frontApronHeight ?? 0) > 0);
+    const frontApronMm = hasFrontApron ? (cfg.downstands?.heightMm ?? cfg.frontApronHeight ?? 0) : 0;
+    const frontApron = frontApronMm / 1000;
+    const isUpstandDisabled = cfg.upstands?.backMode === 'none';
+    const isStdUpstand = !isUpstandDisabled && (cfg.upstands?.backMode === 'standard' || cfg.upstands?.type === 'standard');
+    const rawUpstandMm = isUpstandDisabled ? 0 : isStdUpstand ? 80 : (cfg.rearUpstandHeight || cfg.upstands?.height || cfg.upstands?.heightMm || 0);
+    const rearUpstand = rawUpstandMm / 1000;
 
-    // 1. Width Dimension Callout (Front edge)
-    const pW1 = new Vec3(-halfW, topY, halfD + 0.08);
-    const pW2 = new Vec3(halfW, topY, halfD + 0.08);
-    const sW1 = this.projectToScreen(pW1);
-    const sW2 = this.projectToScreen(pW2);
+    const lines: CadDimensionLine[] = [];
+    const nodes: CadDimensionNode[] = [];
 
-    // 2. Depth Dimension Callout (Right side)
-    const pD1 = new Vec3(halfW + 0.08, topY, -halfD);
-    const pD2 = new Vec3(halfW + 0.08, topY, halfD);
-    const sD1 = this.projectToScreen(pD1);
-    const sD2 = this.projectToScreen(pD2);
+    const addLine = (id: string, p1: Vec3, p2: Vec3, label?: string | number, isDashed = false) => {
+      const s1 = this.projectToScreen(p1);
+      const s2 = this.projectToScreen(p2);
+      if (s1.x < -1000 || s2.x < -1000) return;
+      lines.push({
+        id,
+        start: s1,
+        end: s2,
+        mid: { x: (s1.x + s2.x) / 2, y: (s1.y + s2.y) / 2 },
+        label,
+        isDashed,
+      });
+    };
 
-    // 3. Front Apron Height Callout
-    const pA1 = new Vec3(-halfW - 0.06, topY - (cfg.thickness / 1000) - frontApron, halfD);
-    const pA2 = new Vec3(-halfW - 0.06, topY, halfD);
-    const sA1 = this.projectToScreen(pA1);
-    const sA2 = this.projectToScreen(pA2);
+    const addNode = (id: string, p: Vec3, label?: string) => {
+      const s = this.projectToScreen(p);
+      if (s.x < -1000) return;
+      nodes.push({ id, pos: s, label });
+    };
 
-    // 4. Upstand Height Callout
-    const pU1 = new Vec3(halfW + 0.06, topY, -halfD);
-    const pU2 = new Vec3(halfW + 0.06, topY + rearUpstand, -halfD);
-    const sU1 = this.projectToScreen(pU1);
-    const sU2 = this.projectToScreen(pU2);
+    // 1. Vanity Outer Deck Boundary Corners
+    const pBackLeft = new Vec3(-halfW, topY, -halfD);
+    const pBackRight = new Vec3(halfW, topY, -halfD);
+    const pFrontLeft = new Vec3(-halfW, topY, halfD);
+    const pFrontRight = new Vec3(halfW, topY, halfD);
 
+    // Rear top width dimension line
+    addLine('back-width', pBackLeft, pBackRight, cfg.width);
+    addNode('node-bl', pBackLeft);
+    addNode('node-br', pBackRight);
+
+    // Left and Right depth dimension lines
+    addLine('left-depth', pBackLeft, pFrontLeft, cfg.depth);
+    addNode('node-fl', pFrontLeft);
+
+    addLine('right-depth', pBackRight, pFrontRight, cfg.depth);
+    addNode('node-fr', pFrontRight);
+
+    // Front dimension line with extension lines (offset forward)
+    const frontOffset = Math.min(0.09, halfD * 0.22);
+    const pFrontDimLeft = new Vec3(-halfW, topY, halfD + frontOffset);
+    const pFrontDimRight = new Vec3(halfW, topY, halfD + frontOffset);
+
+    addLine('front-ext-left', pFrontLeft, pFrontDimLeft, undefined, true);
+    addLine('front-ext-right', pFrontRight, pFrontDimRight, undefined, true);
+    addLine('front-width', pFrontDimLeft, pFrontDimRight, cfg.width);
+    addNode('node-fdl', pFrontDimLeft);
+    addNode('node-fdr', pFrontDimRight);
+
+    // Left front corner vertical drop tick (shows 0 datum at corner)
+    const T = (cfg.thickness || 12) / 1000;
+    const drop = frontApron > 0 ? frontApron : T;
+    const pBottomFrontLeft = new Vec3(-halfW, topY - drop, halfD);
+    addLine('corner-drop', pFrontLeft, pBottomFrontLeft, undefined, true);
+    addNode('node-drop', pBottomFrontLeft, '0');
+
+    // 2. Basin Interior Dimensions & Clearances (exact CAD drafting style)
+    const isNoBasin = cfg.basinModelId === 'none' || cfg.basinPlacement === 'none' || cfg.sinkIntegration === 'none';
+
+    if (!isNoBasin) {
+      let bwMm = cfg.basinWidthMm && cfg.basinWidthMm > 0 ? cfg.basinWidthMm : 274;
+      let bdMm = cfg.basinDepthMm && cfg.basinDepthMm > 0 ? cfg.basinDepthMm : 274;
+      if (cfg.basinModelId === 'RO' || cfg.basinModelId === 'round-bowl') {
+        bwMm = cfg.basinWidthMm && cfg.basinWidthMm > 0 ? cfg.basinWidthMm : 274;
+        bdMm = bwMm;
+      } else if (cfg.basinModelId === 'OV' || cfg.basinModelId === 'coved-oval') {
+        bwMm = cfg.basinWidthMm && cfg.basinWidthMm > 0 ? cfg.basinWidthMm : 500;
+        bdMm = cfg.basinDepthMm && cfg.basinDepthMm > 0 ? cfg.basinDepthMm : 350;
+      } else if (cfg.basinModelId === 'B' || cfg.basinModelId === 'crisp-rect') {
+        bwMm = cfg.basinWidthMm && cfg.basinWidthMm > 0 ? cfg.basinWidthMm : 520;
+        bdMm = cfg.basinDepthMm && cfg.basinDepthMm > 0 ? cfg.basinDepthMm : 350;
+      }
+
+      const bw = bwMm / 1000;
+      const bd = bdMm / 1000;
+      const rx = bw / 2;
+      const rz = bd / 2;
+
+      const bX = cfg.basinPlacement === 'left' ? -halfW * 0.42 : cfg.basinPlacement === 'right' ? halfW * 0.42 : 0;
+      const bZ = 0;
+
+      const distLeftMm = Math.round((bX - (-halfW)) * 1000);
+      const distRightMm = Math.round((halfW - bX) * 1000);
+      const backClearMm = Math.round(((bZ - rz) - (-halfD)) * 1000);
+      const frontClearMm = Math.round((halfD - (bZ + rz)) * 1000);
+
+      // Horizontal points across deck & basin:
+      const pDeckLeft = new Vec3(-halfW, topY, bZ);
+      const pBasinRimL = new Vec3(bX - rx, topY, bZ);
+      const pBasinCenter = new Vec3(bX, topY, bZ);
+      const pBasinRimR = new Vec3(bX + rx, topY, bZ);
+      const pDeckRight = new Vec3(halfW, topY, bZ);
+
+      addLine('basin-horiz-left', pDeckLeft, pBasinRimL, distLeftMm);
+      addNode('node-dl', pDeckLeft);
+      addNode('node-brl', pBasinRimL);
+
+      addLine('basin-horiz-span', pBasinRimL, pBasinRimR, bwMm);
+      addNode('node-bc', pBasinCenter);
+      addNode('node-brr', pBasinRimR);
+
+      addLine('basin-horiz-right', pBasinRimR, pDeckRight, distRightMm);
+      addNode('node-dr', pDeckRight);
+
+      // Vertical points across deck & basin:
+      const pDeckBack = new Vec3(bX, topY, -halfD);
+      const pBasinRimBack = new Vec3(bX, topY, bZ - rz);
+      const pBasinRimFront = new Vec3(bX, topY, bZ + rz);
+      const pDeckFront = new Vec3(bX, topY, halfD);
+
+      addLine('basin-vert-back', pDeckBack, pBasinRimBack, backClearMm);
+      addNode('node-db', pDeckBack);
+      addNode('node-brb', pBasinRimBack);
+
+      addLine('basin-vert-span', pBasinRimBack, pBasinRimFront, bdMm);
+      addNode('node-brf', pBasinRimFront);
+
+      addLine('basin-vert-front', pBasinRimFront, pDeckFront, frontClearMm);
+      addNode('node-df', pDeckFront);
+    }
+
+    const cadData: CadDimensionData = {
+      lines,
+      nodes,
+      isVisible: true,
+    };
+
+    // Backward-compatible callouts
     const callouts: DimensionCallout[] = [
       {
         id: 'width',
         label: `W: ${cfg.width} mm`,
         valueMm: cfg.width,
-        screenStart: sW1,
-        screenEnd: sW2,
-        screenMid: { x: (sW1.x + sW2.x) / 2, y: (sW1.y + sW2.y) / 2 },
+        screenStart: this.projectToScreen(pBackLeft),
+        screenEnd: this.projectToScreen(pBackRight),
+        screenMid: { x: (this.projectToScreen(pBackLeft).x + this.projectToScreen(pBackRight).x) / 2, y: (this.projectToScreen(pBackLeft).y + this.projectToScreen(pBackRight).y) / 2 },
         isVisible: true,
       },
       {
         id: 'depth',
         label: `D: ${cfg.depth} mm`,
         valueMm: cfg.depth,
-        screenStart: sD1,
-        screenEnd: sD2,
-        screenMid: { x: (sD1.x + sD2.x) / 2, y: (sD1.y + sD2.y) / 2 },
+        screenStart: this.projectToScreen(pBackLeft),
+        screenEnd: this.projectToScreen(pFrontLeft),
+        screenMid: { x: (this.projectToScreen(pBackLeft).x + this.projectToScreen(pFrontLeft).x) / 2, y: (this.projectToScreen(pBackLeft).y + this.projectToScreen(pFrontLeft).y) / 2 },
         isVisible: true,
       },
     ];
 
-    if (frontApron > 0) {
-      callouts.push({
-        id: 'apron',
-        label: `Apron: ${cfg.frontApronHeight} mm`,
-        valueMm: cfg.frontApronHeight,
-        screenStart: sA1,
-        screenEnd: sA2,
-        screenMid: { x: (sA1.x + sA2.x) / 2, y: (sA1.y + sA2.y) / 2 },
-        isVisible: true,
-      });
-    }
-
-    if (rearUpstand > 0) {
-      callouts.push({
-        id: 'upstand',
-        label: `Splashback: ${cfg.rearUpstandHeight} mm`,
-        valueMm: cfg.rearUpstandHeight,
-        screenStart: sU1,
-        screenEnd: sU2,
-        screenMid: { x: (sU1.x + sU2.x) / 2, y: (sU1.y + sU2.y) / 2 },
-        isVisible: true,
-      });
-    }
-
-    this.onDimensionsUpdate(callouts);
+    this.onDimensionsUpdate(callouts, cadData);
   }
 
   private projectToScreen(worldPoint: Vec3): { x: number; y: number } {
@@ -745,6 +745,15 @@ export class Configurator3DEngine {
     return this.showDimensions;
   }
 
+  public toggleTurntable(): boolean {
+    this.isTurntable = !this.isTurntable;
+    return this.isTurntable;
+  }
+
+  public isTurntableActive(): boolean {
+    return this.isTurntable;
+  }
+
   public getCanvasDataURL(): string {
     return this.canvas.toDataURL('image/png');
   }
@@ -779,8 +788,8 @@ export class Configurator3DEngine {
         // Orbit angles
         this.orbitAzimuth -= dx * 0.008;
         this.orbitElevation += dy * 0.008;
-        // Clamp elevation to avoid gimbal flipping
-        this.orbitElevation = Math.max(-0.15, Math.min(Math.PI / 2 - 0.02, this.orbitElevation));
+        // Clamp elevation to avoid gimbal flipping while allowing full 360 degree view
+        this.orbitElevation = Math.max(-Math.PI * 0.48, Math.min(Math.PI * 0.48, this.orbitElevation));
       }
     };
 
@@ -819,7 +828,7 @@ export class Configurator3DEngine {
 
         this.orbitAzimuth -= dx * 0.008;
         this.orbitElevation += dy * 0.008;
-        this.orbitElevation = Math.max(-0.15, Math.min(Math.PI / 2 - 0.02, this.orbitElevation));
+        this.orbitElevation = Math.max(-Math.PI * 0.48, Math.min(Math.PI * 0.48, this.orbitElevation));
       } else if (e.touches.length === 2) {
         const dx = e.touches[0].clientX - e.touches[1].clientX;
         const dy = e.touches[0].clientY - e.touches[1].clientY;
@@ -848,12 +857,31 @@ export class Configurator3DEngine {
     canvas.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: true });
     window.addEventListener('touchend', onTouchEnd);
+    window.addEventListener('touchcancel', onTouchEnd);
 
     // Resize observer
     if (typeof ResizeObserver !== 'undefined') {
-      const ro = new ResizeObserver(() => this.handleResize());
-      ro.observe(canvas);
+      this.resizeObserver = new ResizeObserver(() => this.handleResize());
+      this.resizeObserver.observe(canvas);
     }
+
+    this.cleanupEvents = () => {
+      canvas.removeEventListener('mousedown', onMouseDown);
+      window.removeEventListener('mousemove', onMouseMove);
+      window.removeEventListener('mouseup', onMouseUp);
+      canvas.removeEventListener('wheel', onWheel);
+      canvas.removeEventListener('contextmenu', onContextMenu);
+
+      canvas.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove', onTouchMove);
+      window.removeEventListener('touchend', onTouchEnd);
+      window.removeEventListener('touchcancel', onTouchEnd);
+
+      if (this.resizeObserver) {
+        this.resizeObserver.disconnect();
+        this.resizeObserver = null;
+      }
+    };
   }
 
   public handleResize() {
@@ -875,6 +903,11 @@ export class Configurator3DEngine {
 
     // Smooth camera distance interpolation (lerp)
     this.orbitDistance += (this.targetDistance - this.orbitDistance) * 0.12;
+
+    // Turntable 360 degree continuous rotation
+    if (this.isTurntable && !this.isDragging) {
+      this.orbitAzimuth += 0.007;
+    }
 
     // Calculate eye coordinate from spherical orbit
     const cosElev = Math.cos(this.orbitElevation);
@@ -943,6 +976,17 @@ export class Configurator3DEngine {
       gl.enableVertexAttribArray(aNorm);
       gl.vertexAttribPointer(aNorm, 3, gl.FLOAT, false, 0, 0);
 
+      // Attribute: Color (Chrome & Metal Highlights)
+      const aColor = gl.getAttribLocation(this.program, 'aColor');
+      if (aColor !== -1 && this.vaoColorBuffer) {
+        gl.bindBuffer(gl.ARRAY_BUFFER, this.vaoColorBuffer);
+        gl.enableVertexAttribArray(aColor);
+        gl.vertexAttribPointer(aColor, 4, gl.FLOAT, false, 0, 0);
+      } else if (aColor !== -1) {
+        gl.disableVertexAttribArray(aColor);
+        gl.vertexAttrib4f(aColor, 1.0, 1.0, 1.0, 0.0);
+      }
+
       gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, this.vaoIndexBuffer);
 
       if (this.isWireframe) {
@@ -953,6 +997,9 @@ export class Configurator3DEngine {
 
       gl.disableVertexAttribArray(aPos);
       gl.disableVertexAttribArray(aNorm);
+      if (aColor !== -1 && this.vaoColorBuffer) {
+        gl.disableVertexAttribArray(aColor);
+      }
     }
 
     // Update 3D Dimension Callouts positions every frame if visible
@@ -966,14 +1013,22 @@ export class Configurator3DEngine {
   public destroy() {
     if (this.animFrameId !== null) {
       cancelAnimationFrame(this.animFrameId);
+      this.animFrameId = null;
+    }
+    if (this.cleanupEvents) {
+      this.cleanupEvents();
+      this.cleanupEvents = undefined;
     }
     if (this.gl) {
       if (this.vaoVertexBuffer) this.gl.deleteBuffer(this.vaoVertexBuffer);
       if (this.vaoNormalBuffer) this.gl.deleteBuffer(this.vaoNormalBuffer);
+      if (this.vaoColorBuffer) this.gl.deleteBuffer(this.vaoColorBuffer);
       if (this.vaoIndexBuffer) this.gl.deleteBuffer(this.vaoIndexBuffer);
       if (this.gridVertexBuffer) this.gl.deleteBuffer(this.gridVertexBuffer);
       if (this.program) this.gl.deleteProgram(this.program);
       if (this.gridProgram) this.gl.deleteProgram(this.gridProgram);
+      this.gl = null;
     }
   }
 }
+

@@ -20,30 +20,86 @@ export interface SavedConfigurationRecord {
 }
 
 const CONFIGS_FILE = path.join(process.cwd(), 'data', 'configurations.json');
+const TMP_CONFIGS_FILE = path.join('/tmp', 'acespaces-configurations.json');
 
-function ensureConfigFile() {
-  if (!fs.existsSync(CONFIGS_FILE)) {
-    try {
-      fs.writeFileSync(CONFIGS_FILE, JSON.stringify([], null, 2), 'utf8');
-    } catch (e) {
-      console.warn('Could not initialize configurations.json file:', e);
+// Global in-memory cache for high-concurrency serverless execution (Vercel Lambda)
+declare global {
+  // eslint-disable-next-line no-var
+  var __inMemoryConfigs: SavedConfigurationRecord[] | undefined;
+}
+
+if (!globalThis.__inMemoryConfigs) {
+  globalThis.__inMemoryConfigs = [];
+}
+
+function readConfigurationsSafe(): SavedConfigurationRecord[] {
+  // 1. Check in-memory store first
+  if (globalThis.__inMemoryConfigs && globalThis.__inMemoryConfigs.length > 0) {
+    return globalThis.__inMemoryConfigs;
+  }
+
+  // 2. Try reading from /tmp (Vercel serverless fallback)
+  try {
+    if (fs.existsSync(TMP_CONFIGS_FILE)) {
+      const raw = fs.readFileSync(TMP_CONFIGS_FILE, 'utf8');
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        globalThis.__inMemoryConfigs = parsed;
+        return parsed;
+      }
     }
+  } catch {
+    // ignore
+  }
+
+  // 3. Try reading from local project data directory
+  try {
+    if (fs.existsSync(CONFIGS_FILE)) {
+      const raw = fs.readFileSync(CONFIGS_FILE, 'utf8');
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        globalThis.__inMemoryConfigs = parsed;
+        return parsed;
+      }
+    }
+  } catch {
+    // ignore
+  }
+
+  return globalThis.__inMemoryConfigs || [];
+}
+
+function writeConfigurationsSafe(configs: SavedConfigurationRecord[]): void {
+  // 1. Update in-memory singleton immediately (instant zero-latency consistency)
+  globalThis.__inMemoryConfigs = [...configs];
+
+  const payload = JSON.stringify(configs, null, 2);
+
+  // 2. Try writing to local project directory (development / persistent container)
+  try {
+    const localDir = path.join(process.cwd(), 'data');
+    if (!fs.existsSync(localDir)) {
+      fs.mkdirSync(localDir, { recursive: true });
+    }
+    fs.writeFileSync(CONFIGS_FILE, payload, 'utf8');
+  } catch {
+    // EROFS / read-only filesystem on Vercel is expected; fallback to /tmp
+  }
+
+  // 3. Write to /tmp on serverless environments
+  try {
+    fs.writeFileSync(TMP_CONFIGS_FILE, payload, 'utf8');
+  } catch {
+    // ignore
   }
 }
 
 export function getAllSavedConfigurations(): SavedConfigurationRecord[] {
-  ensureConfigFile();
-  try {
-    const raw = fs.readFileSync(CONFIGS_FILE, 'utf8');
-    return JSON.parse(raw) as SavedConfigurationRecord[];
-  } catch (e) {
-    console.error('Error reading configurations:', e);
-    return [];
-  }
+  return readConfigurationsSafe();
 }
 
 export function getSavedConfigurationById(id: string): SavedConfigurationRecord | null {
-  const configs = getAllSavedConfigurations();
+  const configs = readConfigurationsSafe();
   return configs.find(c => c.id === id || c.configNumber.toLowerCase() === id.toLowerCase()) || null;
 }
 
@@ -51,8 +107,7 @@ export function saveConfigurationRecord(
   config: ProductConfiguration,
   quoteRequest?: SavedConfigurationRecord['quoteRequest']
 ): SavedConfigurationRecord {
-  ensureConfigFile();
-  const configs = getAllSavedConfigurations();
+  const configs = [...readConfigurationsSafe()];
 
   const id = config.id || `cfg-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
   const configNumber = `ACE-CFG-${Math.floor(1000 + Math.random() * 9000)}`;
@@ -80,26 +135,16 @@ export function saveConfigurationRecord(
     configs.unshift(newRecord);
   }
 
-  try {
-    fs.writeFileSync(CONFIGS_FILE, JSON.stringify(configs, null, 2), 'utf8');
-  } catch (e) {
-    console.error('Error saving configuration:', e);
-  }
-
+  writeConfigurationsSafe(configs);
   return newRecord;
 }
 
 export function deleteSavedConfiguration(id: string): boolean {
-  ensureConfigFile();
-  const configs = getAllSavedConfigurations();
+  const configs = readConfigurationsSafe();
   const filtered = configs.filter(c => c.id !== id && c.configNumber !== id);
   if (filtered.length !== configs.length) {
-    try {
-      fs.writeFileSync(CONFIGS_FILE, JSON.stringify(filtered, null, 2), 'utf8');
-      return true;
-    } catch {
-      return false;
-    }
+    writeConfigurationsSafe(filtered);
+    return true;
   }
   return false;
 }

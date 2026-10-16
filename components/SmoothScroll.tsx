@@ -1,12 +1,30 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import Lenis from 'lenis';
 
 export default function SmoothScroll() {
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
+    // Disable Lenis on /configurator so native scrolling is 100% active and unblocked
+    if (pathname === '/configurator' || pathname?.startsWith('/configurator')) {
+      if (lenisRef.current) {
+        lenisRef.current.destroy();
+        lenisRef.current = null;
+        (window as unknown as { __lenis?: Lenis }).__lenis = undefined;
+      }
+      if (typeof document !== 'undefined') {
+        document.documentElement.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped', 'configurator-active');
+        document.body.classList.remove('lenis', 'lenis-smooth', 'lenis-stopped', 'configurator-active');
+        document.documentElement.style.overflow = '';
+        document.body.style.overflow = '';
+      }
+      return;
+    }
+
     // 1. Enforce manual scroll restoration so reloading never does an erratic partial jump
     if ('scrollRestoration' in history) {
       history.scrollRestoration = 'manual';
@@ -167,7 +185,7 @@ export default function SmoothScroll() {
       lenisRef.current = null;
       delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }
