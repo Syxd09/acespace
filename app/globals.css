@@ -27,6 +27,11 @@
   color: #ffffff;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 /* -------------------------------------------------------------
    ARCHITECTURAL RANGE SLIDER (Clean Centered Red Circle Thumb)
 ------------------------------------------------------------- */
@@ -598,6 +603,8 @@ h1 i, h2 i, h3 i {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.3s ease;
   position: relative;
   box-sizing: border-box;
@@ -622,7 +629,15 @@ h1 i, h2 i, h3 i {
 
 .button-light {
   background: #f2f0ea;
-  color: var(--ink);
+  color: var(--ink, #1e211d) !important;
+}
+
+.button-light span {
+  color: var(--ink, #1e211d);
+}
+
+.button-light:hover span {
+  color: var(--brand-red, #d43833);
 }
 
 .button-dark {
@@ -4794,6 +4809,103 @@ main.page-main {
   }
   .viewpoint-btn-full {
     display: none !important;
+  }
+}
+
+/* -------------------------------------------------------------
+   ARCHITECTURAL 3D CONFIGURATOR BUTTON (ACE SPACES THEME)
+   Sleek obsidian ink (#1e211d), brand-red hairline accent line,
+   crisp DM Mono typography & signature responsive arrow hover
+------------------------------------------------------------- */
+.btn-3d-configurator {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  padding: 14px 22px !important;
+  background: var(--ink, #1e211d) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--ink, #1e211d) !important;
+  border-left: 3px solid var(--brand-red, #d43833) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  font-family: 'DM Mono', monospace !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  line-height: 1 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, background 0.3s ease, border-color 0.3s ease !important;
+}
+
+.btn-3d-configurator:hover {
+  transform: translateY(-4px) !important;
+  background: #272a26 !important;
+  border-color: #272a26 !important;
+  border-left-color: var(--brand-red, #d43833) !important;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.16) !important;
+  color: #ffffff !important;
+}
+
+.btn-3d-configurator:active {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12) !important;
+}
+
+.btn-3d-cube {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: var(--brand-red, #d43833) !important;
+  flex-shrink: 0 !important;
+  line-height: 0 !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-3d-configurator:hover .btn-3d-cube {
+  transform: scale(1.15) rotate(4deg) !important;
+}
+
+.btn-3d-label {
+  font-family: 'DM Mono', monospace !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  color: #ffffff !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+}
+
+.btn-3d-arrow {
+  font-size: 15px !important;
+  line-height: 0 !important;
+  color: #ffffff !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease !important;
+  display: inline-block !important;
+}
+
+.btn-3d-configurator:hover .btn-3d-arrow {
+  transform: translate(4px, -4px) !important;
+  color: var(--brand-red, #d43833) !important;
+}
+
+
+/* -------------------------------------------------------------
+   ARCHITECTURAL AI BOT - CONFIGURATOR OVERLAP FIX
+   Elevates bot clear of the sticky 80px bottom action bar
+------------------------------------------------------------- */
+.ace-ai-bot-root.is-configurator {
+  bottom: 96px !important;
+  right: 24px !important;
+}
+
+@media (max-width: 768px) {
+  .ace-ai-bot-root.is-configurator {
+    bottom: 160px !important;
+    right: 16px !important;
   }
 }
 

@@ -589,18 +589,21 @@ How may I assist your architectural practice today?`,
       .replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08); padding:1px 5px; border-radius:0px; font-family:DM Mono,monospace; font-size:11px; color:#f2f0ea; border:1px solid rgba(255,255,255,0.12);">$1</code>');
   };
 
+  const isConfigurator = pathname?.startsWith('/configurator');
+
   return (
     <>
       {/* Floating Container (replaces previous floating pill) */}
       <aside
-        className={`ace-ai-bot-root ${isOpen ? 'is-open' : ''} ${isClosing ? 'is-closing' : ''}`}
+        className={`ace-ai-bot-root ${isOpen ? 'is-open' : ''} ${isClosing ? 'is-closing' : ''} ${isConfigurator ? 'is-configurator' : ''}`}
         aria-label="Ace Spaces Private Studio Material Intelligence"
         style={{
           position: 'fixed',
-          bottom: '24px',
+          bottom: isConfigurator ? '96px' : '24px',
           right: '24px',
           zIndex: 990,
           fontFamily: 'Manrope, sans-serif',
+          transition: 'bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
         {/* Expanded Chat Pane with Open and Close Animations */}

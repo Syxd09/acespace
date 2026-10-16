@@ -505,17 +505,23 @@ export default function MegaMenu({
                 <Link
                   href="/configurator"
                   onClick={(e) => handleLinkClick(e, '/configurator')}
-                  className="button"
-                  style={{ background: 'var(--accent, #d43833)', color: '#fff', borderColor: 'var(--accent, #d43833)', fontSize: '11px', padding: '10px 20px', display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+                  className="btn-3d-configurator"
                 >
-                  <span>3D PRODUCT CONFIGURATOR</span>
-                  <span style={{ fontSize: '12px' }}>⛶</span>
+                  <span className="btn-3d-cube" aria-hidden="true">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                      <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                  </span>
+                  <span className="btn-3d-label">3D PRODUCT CONFIGURATOR</span>
+                  <span className="btn-3d-arrow">↗</span>
                 </Link>
                 <Link
                   href="/products"
                   onClick={(e) => handleLinkClick(e, '/products')}
-                  className="button button-dark"
-                  style={{ fontSize: '11px', padding: '10px 20px' }}
+                  className="button"
+                  style={{ fontSize: '11px', padding: '12px 20px', border: '1px solid var(--line)', background: 'transparent', color: 'var(--ink)' }}
                 >
                   EXPLORE ALL PRODUCTS <span>↗</span>
                 </Link>
@@ -559,10 +565,18 @@ export default function MegaMenu({
                 <Link
                   href="/configurator"
                   onClick={(e) => handleLinkClick(e, '/configurator')}
-                  className="button"
-                  style={{ background: 'var(--ink, #1e211d)', color: '#fff', fontSize: '10px', padding: '8px 16px', alignSelf: 'flex-start' }}
+                  className="btn-3d-configurator"
+                  style={{ fontSize: '10px', padding: '9px 16px', alignSelf: 'flex-start' }}
                 >
-                  Launch 3D Studio <span>⛶</span>
+                  <span className="btn-3d-cube" aria-hidden="true">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                      <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                  </span>
+                  <span className="btn-3d-label" style={{ fontSize: '10px' }}>LAUNCH 3D STUDIO</span>
+                  <span className="btn-3d-arrow" style={{ fontSize: '13px' }}>↗</span>
                 </Link>
               </div>
             </div>

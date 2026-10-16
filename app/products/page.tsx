@@ -126,9 +126,16 @@ export default function ProductsCatalogPage() {
           </div>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
-            <Link className="button button-accent" href="/configurator" style={{ background: 'var(--accent, #d43833)', color: '#fff', borderColor: 'var(--accent, #d43833)', display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-              <span>Launch 3D Configurator</span>
-              <span style={{ fontSize: '13px' }}>⛶</span>
+            <Link className="btn-3d-configurator" href="/configurator" style={{ padding: '12px 22px' }}>
+              <span className="btn-3d-live-pip" aria-hidden="true" />
+              <span className="btn-3d-label">LAUNCH 3D CONFIGURATOR</span>
+              <span className="btn-3d-icon-badge" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                  <line x1="12" y1="22.08" x2="12" y2="12" />
+                </svg>
+              </span>
             </Link>
             <Link className="button button-dark" href="#products-grid">
               Browse Range <span>↓</span>
@@ -226,53 +233,108 @@ export default function ProductsCatalogPage() {
         </div>
       </section>
 
-      {/* Interactive 3D Configurator Feature Banner */}
-      <section style={{ margin: '60px 0 40px', background: 'var(--ink, #1e211d)', color: '#fff', borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', alignItems: 'center' }}>
-          <div style={{ padding: 'clamp(32px, 5vw, 64px)' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 10px', background: 'rgba(212,56,51,0.2)', border: '1px solid rgba(212,56,51,0.4)', borderRadius: '2px', fontSize: '10px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#ff7a75', marginBottom: '20px' }}>
-              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#d43833', display: 'inline-block' }}></span>
-              NEW — Interactive WebGL Studio
-            </div>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', lineHeight: 1.1, color: '#fff', marginBottom: '16px', fontWeight: 400 }}>
-              Precision 3D Product Configurator
+      {/* Interactive 3D Configurator Feature Banner (Architectural Editorial Theme) */}
+      <section style={{ margin: '60px 0 40px', background: 'var(--ink, #1e211d)', color: '#fff', border: '1px solid var(--line, rgba(255,255,255,0.08))', boxSizing: 'border-box' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', alignItems: 'stretch' }}>
+          <div style={{ padding: 'clamp(36px, 5vw, 64px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <p className="eyebrow" style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: 'var(--brand-red, #d43833)' }}>02</span>
+              <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
+              <span>Interactive 3D Specification Studio</span>
+            </p>
+            <h2 style={{ fontSize: 'clamp(30px, 4vw, 50px)', lineHeight: 1.12, color: '#fff', marginBottom: '18px', fontWeight: 400, letterSpacing: '-0.02em' }}>
+              Parametric fixtures,
+              <br />
+              <i style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: '#e9e8e2' }}>calibrated to the millimetre.</i>
             </h2>
-            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.7)', lineHeight: 1.6, maxWidth: '520px', marginBottom: '28px' }}>
-              Directly specify vanities, washplanes, monolithic benchtops, and clinical washstations in our real-time 3D workspace. Calibrate dimensions in millimetres, inspect coved edge profiles, test DuPont™ Corian® mineral swatches, and generate certified engineering quote briefs.
+            <p style={{ fontSize: '15px', color: 'rgba(233, 232, 226, 0.72)', lineHeight: 1.7, maxWidth: '520px', marginBottom: '28px' }}>
+              Directly calibrate vanities, washplanes, monolithic benchtops, and clinical stations in real-time WebGL. Test calibrated Corian® mineral surfaces, configure custom coved splashbacks, and generate verified engineering quote briefs.
             </p>
             <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link
                 href="/configurator"
-                className="button"
-                style={{ background: 'var(--accent, #d43833)', color: '#fff', borderColor: 'var(--accent, #d43833)', padding: '14px 28px', fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: 'DM Mono, monospace' }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '14px',
+                  padding: '14px 24px',
+                  background: '#f2f0ea',
+                  color: '#1e211d',
+                  border: '1px solid #ffffff',
+                  borderLeft: '3px solid var(--brand-red, #d43833)',
+                  borderRadius: '0',
+                  fontFamily: 'DM Mono, monospace',
+                  fontSize: '11px',
+                  fontWeight: 600,
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.22)',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  cursor: 'pointer',
+                }}
               >
-                Open 3D Studio Workspace <span>↗</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: 'var(--brand-red, #d43833)', flexShrink: 0, lineHeight: 0 }}>
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                    <line x1="12" y1="22.08" x2="12" y2="12" />
+                  </svg>
+                </span>
+                <span style={{ color: '#1e211d', fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em' }}>
+                  LAUNCH 3D STUDIO WORKSPACE
+                </span>
+                <span style={{ color: '#1e211d', fontSize: '15px', lineHeight: 0 }}>
+                  ↗
+                </span>
               </Link>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-                <Link href="/configurator?preset=vanity-single" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Single Vanity</Link>
-                <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
-                <Link href="/configurator?preset=vanity-double" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Double Vanity</Link>
-                <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
-                <Link href="/configurator?preset=washplane-linear" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Washplane</Link>
-                <span style={{ color: 'rgba(255,255,255,0.2)' }}>•</span>
-                <Link href="/configurator?preset=healthcare-station" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.6)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Clinical Scrub</Link>
-              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center', marginTop: '20px' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>Presets:</span>
+              <Link href="/configurator?preset=vanity-single" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Single Basin ↗</Link>
+              <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
+              <Link href="/configurator?preset=vanity-double" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Double Basin ↗</Link>
+              <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
+              <Link href="/configurator?preset=washplane-linear" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Washplane ↗</Link>
+              <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
+              <Link href="/configurator?preset=healthcare-station" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Clinical Scrub ↗</Link>
             </div>
           </div>
-          <div style={{ background: '#141614', borderLeft: '1px solid rgba(255,255,255,0.08)', padding: '40px', minHeight: '340px', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative' }}>
-            <div style={{ border: '1px dashed rgba(255,255,255,0.15)', borderRadius: '4px', padding: '24px', background: 'rgba(255,255,255,0.02)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '12px' }}>
-                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#ff7a75', textTransform: 'uppercase' }}>Studio 3D Specs</span>
-                <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)' }}>Real-Time WebGL</span>
+          <div style={{ background: '#161815', borderLeft: '1px solid rgba(255,255,255,0.08)', padding: 'clamp(28px, 4vw, 44px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.25)', padding: '24px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '12px', marginBottom: '16px' }}>
+                <div>
+                  <span style={{ display: 'block', fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>CAD Calibrator</span>
+                  <strong style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: '#fff', letterSpacing: '0.04em' }}>STUDIO PARAMETERS</strong>
+                </div>
+                <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)' }}>● 1:1 LIVE ENGINE</span>
               </div>
-              <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', display: 'grid', gap: '10px' }}>
-                <li>✓ 600mm - 3600mm Parametric Width Scaling</li>
-                <li>✓ Integrated Corian® Seamless Sinks &amp; Troughs</li>
-                <li>✓ Mitred Drop Downstands (0mm - 350mm)</li>
-                <li>✓ Coved Splashbacks (0mm - 300mm) with Anti-Microbial Fusion</li>
-                <li>✓ Instant Indicative Fabrication Cost Breakdown</li>
-                <li>✓ Dimensioned Drawing PNG &amp; CAD Brief Export</li>
-              </ul>
+              <div style={{ display: 'grid', gap: '10px', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Parametric Length</span>
+                  <span style={{ color: '#fff' }}>600 — 3600 mm</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Front Apron Drop</span>
+                  <span style={{ color: '#fff' }}>12 — 350 mm Mitred</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Splashback Cove</span>
+                  <span style={{ color: '#fff' }}>R10 Seamless Fusion</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Basin Integration</span>
+                  <span style={{ color: '#fff' }}>Single · Double · Trough</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Fabrication Quote</span>
+                  <span style={{ color: '#fff' }}>Instant Real-Time INR</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Submittal Export</span>
+                  <span style={{ color: '#fff' }}>Dimensioned CAD PNG</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>

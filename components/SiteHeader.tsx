@@ -652,7 +652,16 @@ export default function SiteHeader() {
           >
             <span className="drawer-num" style={{ color: 'var(--accent, #d43833)' }}>3D</span>
             <div className="drawer-link-text">
-              <strong style={{ color: 'var(--accent, #d43833)' }}>3D Product Configurator ⛶</strong>
+              <strong style={{ color: 'var(--accent, #d43833)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <span>3D Product Configurator</span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '15px', height: '15px', borderRadius: '2px', background: 'rgba(212, 56, 51, 0.15)', border: '1px solid rgba(212, 56, 51, 0.3)', color: '#d43833' }}>
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                    <line x1="12" y1="22.08" x2="12" y2="12" />
+                  </svg>
+                </span>
+              </strong>
               <small>Interactive WebGL Studio: Parametric sizing, basins, materials &amp; quotes</small>
             </div>
             <span className="drawer-arrow" style={{ color: 'var(--accent, #d43833)' }}>↗</span>

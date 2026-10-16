@@ -162,7 +162,7 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
               </h3>
             </div>
             <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-              Scroll wheel or click +/− to zoom · Drag to pan · Fullscreen ⛶
+              Scroll wheel or click +/− to zoom · Drag to pan · Fullscreen ↗
             </span>
           </div>
           <div
