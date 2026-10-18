@@ -144,10 +144,19 @@ export default function HeroSlider() {
             onClick={prevSlide}
             aria-label="Previous slide"
             style={{
-              width: '32px',
-              height: '32px',
+              width: '34px',
+              height: '34px',
+              minWidth: '34px',
+              minHeight: '34px',
+              maxWidth: '34px',
+              maxHeight: '34px',
+              aspectRatio: '1 / 1',
+              flexShrink: 0,
+              padding: 0,
+              boxSizing: 'border-box',
+              lineHeight: 1,
               borderRadius: '50%',
-              border: '1px solid rgba(255,255,255,0.3)',
+              border: '1px solid rgba(255,255,255,0.35)',
               color: '#fff',
               display: 'grid',
               placeItems: 'center',
@@ -168,7 +177,7 @@ export default function HeroSlider() {
           </button>
 
           {/* Slide Indicator & Progress Bar */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#fff' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#fff', flexShrink: 0 }}>
             <span style={{ color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>0{currentSlide + 1}</span>
             <div
               style={{
@@ -203,10 +212,19 @@ export default function HeroSlider() {
             onClick={nextSlide}
             aria-label="Next slide"
             style={{
-              width: '32px',
-              height: '32px',
+              width: '34px',
+              height: '34px',
+              minWidth: '34px',
+              minHeight: '34px',
+              maxWidth: '34px',
+              maxHeight: '34px',
+              aspectRatio: '1 / 1',
+              flexShrink: 0,
+              padding: 0,
+              boxSizing: 'border-box',
+              lineHeight: 1,
               borderRadius: '50%',
-              border: '1px solid rgba(255,255,255,0.3)',
+              border: '1px solid rgba(255,255,255,0.35)',
               color: '#fff',
               display: 'grid',
               placeItems: 'center',

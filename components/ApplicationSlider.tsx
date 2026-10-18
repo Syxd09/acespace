@@ -168,11 +168,12 @@ export default function ApplicationSlider({
 
       {/* Manual Slide Navigation Buttons: Prev & Next Arrows */}
       <div
+        className="application-slider-nav-row"
         style={{
           position: 'absolute',
           top: '50%',
-          left: '14px',
-          right: '14px',
+          left: '12px',
+          right: '12px',
           transform: 'translateY(-50%)',
           display: 'flex',
           justifyContent: 'space-between',
@@ -187,32 +188,11 @@ export default function ApplicationSlider({
             prevSlide();
           }}
           aria-label="Previous Slide"
-          style={{
-            pointerEvents: 'auto',
-            width: '40px',
-            height: '40px',
-            background: 'rgba(233, 232, 226, 0.88)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            border: '1px solid rgba(30, 33, 29, 0.25)',
-            color: 'var(--ink)',
-            cursor: 'pointer',
-            display: 'grid',
-            placeItems: 'center',
-            fontSize: '16px',
-            transition: 'all 0.25s ease',
-            boxShadow: '0 4px 14px rgba(0, 0, 0, 0.15)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#1e211d';
-            e.currentTarget.style.color = '#fff';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(233, 232, 226, 0.88)';
-            e.currentTarget.style.color = 'var(--ink)';
-          }}
+          className="application-slider-arrow application-slider-arrow-prev"
         >
-          ←
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
         </button>
 
         <button
@@ -222,99 +202,40 @@ export default function ApplicationSlider({
             nextSlide();
           }}
           aria-label="Next Slide"
-          style={{
-            pointerEvents: 'auto',
-            width: '40px',
-            height: '40px',
-            background: 'rgba(233, 232, 226, 0.88)',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-            border: '1px solid rgba(30, 33, 29, 0.25)',
-            color: 'var(--ink)',
-            cursor: 'pointer',
-            display: 'grid',
-            placeItems: 'center',
-            fontSize: '16px',
-            transition: 'all 0.25s ease',
-            boxShadow: '0 4px 14px rgba(0, 0, 0, 0.15)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = '#1e211d';
-            e.currentTarget.style.color = '#fff';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(233, 232, 226, 0.88)';
-            e.currentTarget.style.color = 'var(--ink)';
-          }}
+          className="application-slider-arrow application-slider-arrow-next"
         >
-          →
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
         </button>
       </div>
 
       {/* Bottom Glassmorphic Control & Caption Dock */}
-      <div
-        style={{
-          position: 'absolute',
-          bottom: '16px',
-          left: '16px',
-          right: '16px',
-          background: 'rgba(233, 232, 226, 0.94)',
-          backdropFilter: 'blur(16px)',
-          WebkitBackdropFilter: 'blur(16px)',
-          padding: '14px 18px',
-          border: '1px solid rgba(30, 33, 29, 0.2)',
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '12px',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          zIndex: 10,
-          boxShadow: '0 8px 24px rgba(0,0,0,0.08)',
-        }}
-      >
-        <div style={{ flex: '1 1 200px' }}>
-          <p
-            style={{
-              margin: 0,
-              fontSize: '12px',
-              fontWeight: 600,
-              color: 'var(--ink)',
-              lineHeight: 1.4,
-            }}
-          >
+      <div className="application-slider-dock">
+        <div className="application-slider-caption-box">
+          <p className="application-slider-caption">
             {currentImage.caption}
           </p>
-          <span
-            style={{
-              display: 'block',
-              fontSize: '10px',
-              fontFamily: 'DM Mono, monospace',
-              color: 'var(--muted)',
-              marginTop: '2px',
-            }}
-          >
+          <span className="application-slider-sub">
             Auto-sliding • Slide {currentIndex + 1} of {total}
           </span>
         </div>
 
         {/* Slide Indicator Dots + Link to Application Page */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <div style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>
+        <div className="application-slider-actions-row">
+          <div className="application-slider-dots">
             {images.map((_, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setCurrentIndex(i)}
                 aria-label={`Go to slide ${i + 1}`}
+                className="application-slider-dot"
                 style={{
-                  width: i === currentIndex ? '22px' : '7px',
-                  height: '7px',
-                  borderRadius: '100px',
-                  background: i === currentIndex ? 'var(--ink)' : 'rgba(30, 33, 29, 0.25)',
-                  border: 'none',
-                  padding: 0,
-                  cursor: 'pointer',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                  width: i === currentIndex ? '22px' : '6px',
+                  minWidth: i === currentIndex ? '22px' : '6px',
+                  maxWidth: i === currentIndex ? '22px' : '6px',
+                  background: i === currentIndex ? 'var(--ink)' : 'rgba(30, 33, 29, 0.28)',
                 }}
               />
             ))}
@@ -322,15 +243,7 @@ export default function ApplicationSlider({
 
           <Link
             href={`/applications/${sectorSlug}`}
-            className="button button-dark"
-            style={{
-              padding: '7px 14px',
-              fontSize: '10px',
-              fontFamily: 'DM Mono, monospace',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              whiteSpace: 'nowrap',
-            }}
+            className="application-slider-cta"
           >
             Explore Application <span>↗</span>
           </Link>

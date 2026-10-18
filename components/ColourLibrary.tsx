@@ -20,6 +20,24 @@ export default function ColourLibrary() {
   const [viewMode, setViewMode] = useState<'grid' | 'compact' | 'list'>('grid');
   const [activeModalMaterial, setActiveModalMaterial] = useState<Material | null>(null);
 
+  const [isColorDropdownOpen, setIsColorDropdownOpen] = useState(false);
+  const [isPatternDropdownOpen, setIsPatternDropdownOpen] = useState(false);
+  const colorDropdownRef = React.useRef<HTMLDivElement>(null);
+  const patternDropdownRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (colorDropdownRef.current && !colorDropdownRef.current.contains(e.target as Node)) {
+        setIsColorDropdownOpen(false);
+      }
+      if (patternDropdownRef.current && !patternDropdownRef.current.contains(e.target as Node)) {
+        setIsPatternDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -87,6 +105,14 @@ export default function ColourLibrary() {
     { id: 'particulate', label: 'Particulate & Aggregate', glyph: '∴' },
     { id: 'translucent', label: 'Translucent Light', glyph: '✧' },
   ];
+
+  const activeColorFamilyObj = useMemo(() => {
+    return colorFamilies.find((f) => f.id === selectedColorFamily) || colorFamilies[0];
+  }, [selectedColorFamily]);
+
+  const activePatternObj = useMemo(() => {
+    return patterns.find((p) => p.id === selectedPattern) || patterns[0];
+  }, [selectedPattern]);
 
   // Dynamic count badges for each hue and pattern
   const filterCounts = useMemo(() => {
@@ -307,7 +333,121 @@ export default function ColourLibrary() {
               </button>
             )}
           </div>
-          <div className="colour-filter-scroll" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+
+          {/* Mobile Custom Dropdown for Colour Group */}
+          <div className="colour-filter-mobile-wrap" ref={colorDropdownRef}>
+            <div style={{ position: 'relative', width: '100%' }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsColorDropdownOpen((prev) => !prev);
+                  setIsPatternDropdownOpen(false);
+                }}
+                className="colour-filter-custom-trigger"
+                aria-expanded={isColorDropdownOpen}
+                aria-haspopup="listbox"
+                aria-label="Filter by Colour Group"
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+                  <span
+                    style={{
+                      display: 'block',
+                      width: '14px',
+                      height: '14px',
+                      minWidth: '14px',
+                      minHeight: '14px',
+                      borderRadius: '50%',
+                      background: activeColorFamilyObj.id === 'all'
+                        ? 'conic-gradient(#f4f3ef 0deg 60deg, #e9e4d8 60deg 120deg, #b47b62 120deg 180deg, #1a1e1b 180deg 240deg, #a6aba2 240deg 300deg, #ede2cf 300deg 360deg)'
+                        : activeColorFamilyObj.color,
+                      boxShadow: '0 0 0 1px rgba(0,0,0,0.22)',
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span style={{ fontWeight: 600, letterSpacing: '0.04em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {activeColorFamilyObj.label.toUpperCase()}
+                  </span>
+                  <span style={{ opacity: 0.65, fontSize: '10px', flexShrink: 0 }}>
+                    ({filterCounts.familyCounts[activeColorFamilyObj.id] ?? 0})
+                  </span>
+                </div>
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    transform: isColorDropdownOpen ? 'rotate(180deg)' : 'none',
+                    transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                    flexShrink: 0,
+                    marginLeft: '8px',
+                  }}
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              {isColorDropdownOpen && (
+                <div className="colour-filter-custom-menu" role="listbox">
+                  {colorFamilies.map((fam) => {
+                    const isSelected = selectedColorFamily === fam.id;
+                    const count = filterCounts.familyCounts[fam.id] ?? 0;
+                    return (
+                      <button
+                        key={fam.id}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        onClick={() => {
+                          setSelectedColorFamily(fam.id);
+                          setIsColorDropdownOpen(false);
+                        }}
+                        className={`colour-filter-custom-item ${isSelected ? 'is-selected' : ''}`}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <span
+                            style={{
+                              display: 'block',
+                              width: '14px',
+                              height: '14px',
+                              minWidth: '14px',
+                              minHeight: '14px',
+                              borderRadius: '50%',
+                              background: fam.id === 'all'
+                                ? 'conic-gradient(#f4f3ef 0deg 60deg, #e9e4d8 60deg 120deg, #b47b62 120deg 180deg, #1a1e1b 180deg 240deg, #a6aba2 240deg 300deg, #ede2cf 300deg 360deg)'
+                                : fam.color,
+                              boxShadow: '0 0 0 1px rgba(0,0,0,0.22)',
+                              flexShrink: 0,
+                            }}
+                          />
+                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                            {fam.label}
+                          </span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '10px', opacity: isSelected ? 0.85 : 0.6, fontFamily: 'DM Mono, monospace' }}>
+                            ({count})
+                          </span>
+                          {isSelected && (
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Desktop Pills for Colour Group */}
+          <div className="colour-filter-desktop-wrap colour-filter-scroll" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {colorFamilies.map((fam) => {
               const isActive = selectedColorFamily === fam.id;
               const count = filterCounts.familyCounts[fam.id] ?? 0;
@@ -394,7 +534,129 @@ export default function ColourLibrary() {
               </button>
             )}
           </div>
-          <div className="colour-filter-scroll" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+
+          {/* Mobile Custom Dropdown for Pattern */}
+          <div className="colour-filter-mobile-wrap" ref={patternDropdownRef}>
+            <div style={{ position: 'relative', width: '100%' }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setIsPatternDropdownOpen((prev) => !prev);
+                  setIsColorDropdownOpen(false);
+                }}
+                className="colour-filter-custom-trigger"
+                aria-expanded={isPatternDropdownOpen}
+                aria-haspopup="listbox"
+                aria-label="Filter by Pattern"
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', minWidth: 0 }}>
+                  <span
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      width: '18px',
+                      height: '18px',
+                      minWidth: '18px',
+                      minHeight: '18px',
+                      fontSize: '11px',
+                      background: 'rgba(30,33,29,0.08)',
+                      borderRadius: '2px',
+                      color: 'var(--ink)',
+                      flexShrink: 0,
+                      lineHeight: 1,
+                    }}
+                  >
+                    {activePatternObj.glyph}
+                  </span>
+                  <span style={{ fontWeight: 600, letterSpacing: '0.04em', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    {activePatternObj.label.toUpperCase()}
+                  </span>
+                  <span style={{ opacity: 0.65, fontSize: '10px', flexShrink: 0 }}>
+                    ({filterCounts.patternCounts[activePatternObj.id] ?? 0})
+                  </span>
+                </div>
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    transform: isPatternDropdownOpen ? 'rotate(180deg)' : 'none',
+                    transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                    flexShrink: 0,
+                    marginLeft: '8px',
+                  }}
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              {isPatternDropdownOpen && (
+                <div className="colour-filter-custom-menu" role="listbox">
+                  {patterns.map((pat) => {
+                    const isSelected = selectedPattern === pat.id;
+                    const count = filterCounts.patternCounts[pat.id] ?? 0;
+                    return (
+                      <button
+                        key={pat.id}
+                        type="button"
+                        role="option"
+                        aria-selected={isSelected}
+                        onClick={() => {
+                          setSelectedPattern(pat.id);
+                          setIsPatternDropdownOpen(false);
+                        }}
+                        className={`colour-filter-custom-item ${isSelected ? 'is-selected' : ''}`}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <span
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              width: '20px',
+                              height: '20px',
+                              minWidth: '20px',
+                              minHeight: '20px',
+                              fontSize: '12px',
+                              background: isSelected ? 'rgba(255,255,255,0.2)' : 'rgba(30,33,29,0.08)',
+                              borderRadius: '2px',
+                              color: isSelected ? '#ffffff' : 'var(--ink)',
+                              flexShrink: 0,
+                              lineHeight: 1,
+                            }}
+                          >
+                            {pat.glyph}
+                          </span>
+                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                            {pat.label}
+                          </span>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '10px', opacity: isSelected ? 0.85 : 0.6, fontFamily: 'DM Mono, monospace' }}>
+                            ({count})
+                          </span>
+                          {isSelected && (
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round">
+                              <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                          )}
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Desktop Pills for Pattern */}
+          <div className="colour-filter-desktop-wrap colour-filter-scroll" style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
             {patterns.map((pat) => {
               const isActive = selectedPattern === pat.id;
               const count = filterCounts.patternCounts[pat.id] ?? 0;
@@ -427,15 +689,7 @@ export default function ColourLibrary() {
                     cursor: 'pointer',
                   }}
                 >
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      opacity: isActive ? 1 : 0.65,
-                      lineHeight: 1,
-                    }}
-                  >
-                    {pat.glyph}
-                  </span>
+                  <span style={{ fontSize: '12px' }}>{pat.glyph}</span>
                   <span>{pat.label}</span>
                   <span
                     suppressHydrationWarning
@@ -951,16 +1205,7 @@ export default function ColourLibrary() {
                 data-material-code={mat.code}
                 data-material-name={mat.name}
                 data-material-collection={mat.collection}
-                style={{
-                  background: '#dcd7cd',
-                  border: '1px solid var(--line)',
-                  padding: '18px 24px',
-                  display: 'grid',
-                  gridTemplateColumns: '60px 1.2fr 1fr 1fr 120px',
-                  alignItems: 'center',
-                  gap: '20px',
-                  cursor: 'pointer',
-                }}
+                className="material-list-card"
                 onClick={() => setActiveModalMaterial(mat)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -969,54 +1214,58 @@ export default function ColourLibrary() {
                   }
                 }}
               >
-                <div
-                  style={{
-                    width: '60px',
-                    height: '60px',
-                    background: mat.textureCss || mat.hexColor,
-                    border: '1px solid rgba(0,0,0,0.15)',
-                    position: 'relative',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {mat.textureImage && (
-                    <Image
-                      src={mat.textureImage}
-                      alt={mat.name}
-                      fill
-                      sizes="60px"
-                      quality={60}
-                      decoding="async"
-                      loading="lazy"
-                      style={{ objectFit: 'cover' }}
-                    />
-                  )}
+                {/* Header: Swatch + Title */}
+                <div className="material-list-header">
+                  <div
+                    className="material-list-swatch"
+                    style={{
+                      background: mat.textureCss || mat.hexColor,
+                      border: '1px solid rgba(0,0,0,0.15)',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      flexShrink: 0,
+                    }}
+                  >
+                    {mat.textureImage && (
+                      <Image
+                        src={mat.textureImage}
+                        alt={mat.name}
+                        fill
+                        sizes="60px"
+                        quality={60}
+                        decoding="async"
+                        loading="lazy"
+                        style={{ objectFit: 'cover' }}
+                      />
+                    )}
+                  </div>
+
+                  <div className="material-list-title-block">
+                    <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                      {mat.code} · {mat.collection}
+                    </span>
+                    <h4 style={{ fontSize: '17px', fontWeight: 500, margin: '2px 0 0', color: 'var(--ink)', lineHeight: 1.25 }}>
+                      {(() => {
+                        const match = mat.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
+                        if (match) {
+                          return (
+                            <>
+                              <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.65, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
+                                {match[1]}
+                              </span>
+                              <span>{match[2]}</span>
+                            </>
+                          );
+                        }
+                        return mat.name;
+                      })()}
+                    </h4>
+                  </div>
                 </div>
 
-                <div>
-                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                    {mat.code} · {mat.collection}
-                  </span>
-                  <h4 style={{ fontSize: '18px', fontWeight: 400, margin: '2px 0 0', color: 'var(--ink)' }}>
-                    {(() => {
-                      const match = mat.name.match(/^(DuPont™ Corian®|DuPont Corian|Corian®|Corian|Pattern Series|Ace Spaces)\s+(.*)$/i);
-                      if (match) {
-                        return (
-                          <>
-                            <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.65, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
-                              {match[1]}
-                            </span>
-                            <span>{match[2]}</span>
-                          </>
-                        );
-                      }
-                      return mat.name;
-                    })()}
-                  </h4>
-                </div>
-
-                <div>
-                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                {/* Spec: Finish & Tone */}
+                <div className="material-list-spec-finish">
+                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Finish & Tone
                   </span>
                   <span style={{ fontSize: '13px', color: 'var(--ink)' }}>
@@ -1024,8 +1273,9 @@ export default function ColourLibrary() {
                   </span>
                 </div>
 
-                <div>
-                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                {/* Spec: Translucency */}
+                <div className="material-list-spec-trans">
+                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Translucency
                   </span>
                   <span style={{ fontSize: '13px', color: 'var(--ink)' }}>
@@ -1033,7 +1283,8 @@ export default function ColourLibrary() {
                   </span>
                 </div>
 
-                <div style={{ display: 'flex', gap: '8px', justifyContent: 'flex-end' }}>
+                {/* Actions */}
+                <div className="material-list-actions">
                   <button
                     type="button"
                     onClick={(e) => {
@@ -1044,15 +1295,18 @@ export default function ColourLibrary() {
                         addSample(mat);
                       }
                     }}
+                    className="material-list-sample-btn"
                     style={{
-                      padding: '8px 12px',
-                      fontSize: '10px',
+                      padding: '8px 14px',
+                      fontSize: '10.5px',
                       fontFamily: 'DM Mono, monospace',
                       textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
                       background: inTray ? 'var(--ink)' : 'transparent',
                       color: inTray ? '#fff' : 'var(--ink)',
                       border: '1px solid var(--line)',
                       cursor: 'pointer',
+                      whiteSpace: 'nowrap',
                     }}
                   >
                     {inTray ? 'In Tray ✓' : '+ Sample'}
@@ -1061,11 +1315,15 @@ export default function ColourLibrary() {
                     href={`/materials/${mat.slug}`}
                     prefetch={false}
                     onClick={(e) => e.stopPropagation()}
+                    className="material-list-link-btn"
                     style={{
-                      padding: '8px 10px',
-                      fontSize: '11px',
+                      padding: '8px 12px',
+                      fontSize: '12px',
                       border: '1px solid var(--line)',
                       background: 'transparent',
+                      color: 'var(--ink)',
+                      display: 'grid',
+                      placeItems: 'center',
                     }}
                   >
                     ↗

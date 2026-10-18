@@ -128,12 +128,19 @@ export default function MaterialModal({
     };
 
     const originalOverflow = document.body.style.overflow;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+
     document.body.style.overflow = 'hidden';
-    document.documentElement.classList.add('lenis-stopped');
-    const lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
-    if (lenis && typeof lenis.stop === 'function') {
-      lenis.stop();
+
+    let lenis: { stop: () => void; start: () => void } | undefined;
+    if (!isMobile) {
+      document.documentElement.classList.add('lenis-stopped');
+      lenis = (window as unknown as { __lenis?: { stop: () => void; start: () => void } }).__lenis;
+      if (lenis && typeof lenis.stop === 'function') {
+        lenis.stop();
+      }
     }
+
     window.addEventListener('keydown', handleKeyDown);
 
     if (cardRef.current) {
@@ -142,9 +149,11 @@ export default function MaterialModal({
 
     return () => {
       document.body.style.overflow = originalOverflow;
-      document.documentElement.classList.remove('lenis-stopped');
-      if (lenis && typeof lenis.start === 'function') {
-        lenis.start();
+      if (!isMobile) {
+        document.documentElement.classList.remove('lenis-stopped');
+        if (lenis && typeof lenis.start === 'function') {
+          lenis.start();
+        }
       }
       window.removeEventListener('keydown', handleKeyDown);
     };
@@ -209,8 +218,12 @@ export default function MaterialModal({
             onClick={onClose}
             className="material-modal-close"
             aria-label="Close modal"
+            title="Close (Esc)"
           >
-            ×
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
           </button>
 
           {/* Left: Interactive Zoomable Macro Texture & In-Situ Application Viewer */}
@@ -498,10 +511,13 @@ export default function MaterialModal({
           -webkit-backdrop-filter: blur(12px);
           display: flex;
           justify-content: center;
-          align-items: center;
+          align-items: flex-start;
           padding: 24px 16px;
           box-sizing: border-box;
           overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+          touch-action: pan-y;
+          overscroll-behavior-y: contain;
           animation: modalFadeIn 0.2s ease-out;
         }
 
@@ -649,22 +665,29 @@ export default function MaterialModal({
           position: absolute;
           top: 14px;
           right: 14px;
-          z-index: 20;
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
+          z-index: 30;
+          width: 32px !important;
+          height: 32px !important;
+          min-width: 32px !important;
+          min-height: 32px !important;
+          max-width: 32px !important;
+          max-height: 32px !important;
+          aspect-ratio: 1 / 1 !important;
+          flex-shrink: 0 !important;
+          border-radius: 50% !important;
+          padding: 0 !important;
+          box-sizing: border-box !important;
           border: 1px solid var(--line);
-          background: rgba(233, 232, 226, 0.92);
+          background: rgba(233, 232, 226, 0.94);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
-          display: grid;
-          place-items: center;
-          font-size: 18px;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
           cursor: pointer;
-          line-height: 1;
           color: var(--ink);
           transition: transform 0.15s ease, background 0.15s ease;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
         .material-modal-close:hover {
@@ -840,31 +863,134 @@ export default function MaterialModal({
             display: none !important;
           }
 
-          .material-modal-card {
-            grid-template-columns: 1fr !important;
-            height: auto !important;
-            min-height: 0 !important;
-            max-height: none !important;
+          .material-modal-overlay {
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            height: 100dvh !important;
+            z-index: 999999 !important;
+            padding: 12px 10px 72px !important;
+            display: block !important;
+            overflow-x: hidden !important;
+            overflow-y: scroll !important;
+            -webkit-overflow-scrolling: touch !important;
+            touch-action: pan-y !important;
+            overscroll-behavior-y: contain !important;
+            box-sizing: border-box !important;
           }
 
+          .material-modal-content-wrapper {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            max-width: 480px !important;
+            height: auto !important;
+            min-height: auto !important;
+            max-height: none !important;
+            margin: 0 auto !important;
+            gap: 14px !important;
+            overflow: visible !important;
+            touch-action: pan-y !important;
+          }
+
+          .material-modal-close {
+            top: 12px !important;
+            right: 12px !important;
+            z-index: 35 !important;
+          }
+
+          .material-modal-card {
+            grid-template-columns: 1fr !important;
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            max-height: none !important;
+            height: auto !important;
+            min-height: 0 !important;
+            border-radius: 6px !important;
+            overflow: visible !important;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+            flex-shrink: 0 !important;
+            touch-action: pan-y !important;
+          }
+
+          /* Generous, high-definition specimen viewer for mobile */
           .material-modal-media {
-            height: 250px !important;
-            min-height: 250px !important;
-            max-height: 250px !important;
+            height: clamp(260px, 42vh, 320px) !important;
+            min-height: 260px !important;
+            max-height: 320px !important;
+            flex-shrink: 0 !important;
+            width: 100% !important;
             border-bottom: 1px solid var(--line) !important;
+            border-radius: 6px 6px 0 0 !important;
           }
 
           .material-modal-body {
-            padding: 20px 16px !important;
+            padding: 18px 16px 20px !important;
             height: auto !important;
+            flex-shrink: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: visible !important;
           }
 
           .modal-body-top {
             overflow: visible !important;
+            flex: none !important;
+          }
+
+          .modal-body-top h2 {
+            font-size: 22px !important;
+            line-height: 1.2 !important;
+            margin: 0 0 4px !important;
+            min-height: auto !important;
+          }
+
+          .modal-body-top p {
+            margin-bottom: 8px !important;
           }
 
           .modal-inline-nav {
             margin-right: 0 !important;
+          }
+
+          .material-modal-specs-grid {
+            padding: 10px 0 !important;
+            margin-bottom: 10px !important;
+            gap: 8px 14px !important;
+          }
+
+          .material-modal-actions {
+            padding-top: 12px !important;
+            flex-shrink: 0 !important;
+            gap: 10px !important;
+            display: flex !important;
+          }
+
+          .material-modal-actions button,
+          .material-modal-actions a {
+            padding: 11px 16px !important;
+            font-size: 11px !important;
+            min-height: 42px !important;
+            flex: 1 !important;
+            justify-content: center !important;
+          }
+
+          /* Recommendations Card: Visible, touch-friendly, and beautifully separated */
+          .material-modal-recommendations-card {
+            display: flex !important;
+            flex-direction: column !important;
+            width: 100% !important;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            padding: 16px 14px 18px !important;
+            border-radius: 6px !important;
+            margin-bottom: 36px !important;
+            flex-shrink: 0 !important;
+            overflow: visible !important;
+            touch-action: pan-y !important;
           }
 
           .recommendations-grid {
@@ -872,17 +998,23 @@ export default function MaterialModal({
             gap: 10px !important;
           }
 
-          .material-modal-recommendations-card {
-            height: auto !important;
-            min-height: 0 !important;
-            max-height: none !important;
-            padding: 16px 14px !important;
+          .recommendation-swatch {
+            height: 68px !important;
           }
         }
 
         @media (max-width: 440px) {
-          .recommendation-swatch {
-            height: 60px !important;
+          .material-modal-media {
+            height: clamp(240px, 38vh, 290px) !important;
+            min-height: 240px !important;
+            max-height: 290px !important;
+          }
+
+          .material-modal-close {
+            width: 32px !important;
+            height: 32px !important;
+            min-width: 32px !important;
+            min-height: 32px !important;
           }
         }
       `}</style>

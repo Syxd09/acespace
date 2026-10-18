@@ -213,6 +213,7 @@ export default function FabricationExplorer() {
       {/* ── SECTION A: INTERACTIVE MACHINERY FLEET (COMPACT ONE-SCREEN CONSOLE) ── */}
       <section
         id="capabilities"
+        className="fabrication-console-section"
         style={{
           marginBottom: '50px',
           padding: '20px 26px',
@@ -247,7 +248,7 @@ export default function FabricationExplorer() {
           </div>
 
           {/* Compact Machinery Selection Tabs */}
-          <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+          <div className="fabrication-machine-tabs">
             {machineryFleet.map((machine) => {
               const isSelected = activeMachine === machine.id;
               return (
@@ -281,14 +282,7 @@ export default function FabricationExplorer() {
         </div>
 
         {/* Active Machine Detailed Card (Tight 2-Column Console) */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'minmax(320px, 1.15fr) minmax(280px, 1fr)',
-            gap: '20px',
-            alignItems: 'stretch',
-          }}
-        >
+        <div className="fabrication-machine-card">
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.06em', display: 'block', marginBottom: '2px' }}>
@@ -340,7 +334,7 @@ export default function FabricationExplorer() {
           <div
             style={{
               position: 'relative',
-              minHeight: '240px',
+              minHeight: '220px',
               height: '255px',
               width: '100%',
               border: '1px solid var(--line)',
@@ -399,63 +393,55 @@ export default function FabricationExplorer() {
           </p>
         </div>
 
-        {/* Comparison Table */}
-        <div
-          style={{
-            border: '1px solid var(--line)',
-            background: '#ffffff',
-            overflowX: 'auto',
-          }}
-        >
-          <table
-            style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              textAlign: 'left',
-              fontSize: '12px',
-            }}
-          >
-            <thead>
-              <tr style={{ background: '#f5f3ee', borderBottom: '1px solid var(--line)' }}>
-                <th style={{ padding: '10px 14px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                  Technical Parameter
-                </th>
-                <th style={{ padding: '10px 14px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#888' }}>
-                  Traditional Marble & Quartz
-                </th>
-                <th style={{ padding: '10px 14px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', background: 'rgba(37,63,42,0.08)' }}>
-                  ★ Ace Spaces Molecular Joint
-                </th>
-                <th style={{ padding: '10px 14px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                  Architectural Impact
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {seamComparisons.map((row, idx) => (
-                <tr
-                  key={idx}
-                  style={{
-                    borderBottom: '1px solid var(--line)',
-                    background: idx % 2 === 0 ? 'transparent' : 'rgba(0,0,0,0.015)',
-                  }}
-                >
-                  <td style={{ padding: '10px 14px', fontWeight: 600, color: 'var(--ink)', whiteSpace: 'nowrap' }}>
-                    {row.metric}
-                  </td>
-                  <td style={{ padding: '10px 14px', color: '#7a7a7a', textDecoration: 'line-through' }}>
-                    {row.traditional}
-                  </td>
-                  <td style={{ padding: '10px 14px', color: '#1a3821', fontWeight: 600, background: 'rgba(37,63,42,0.05)' }}>
-                    ✓ {row.aceSpaces}
-                  </td>
-                  <td style={{ padding: '10px 14px', color: '#555e54', fontSize: '11.5px' }}>
-                    {row.advantage}
-                  </td>
+        {/* Comparison Table with Mobile Scroll Container */}
+        <div className="fabrication-table-scroll-container">
+          <div className="fabrication-scroll-hint">
+            <span>← Swipe horizontally to inspect full molecular specification matrix →</span>
+          </div>
+          <div className="fabrication-table-scroll-inner">
+            <table className="fabrication-seam-table">
+              <thead>
+                <tr style={{ background: '#f5f3ee', borderBottom: '1px solid var(--line)' }}>
+                  <th style={{ padding: '12px 14px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', whiteSpace: 'nowrap' }}>
+                    Technical Parameter
+                  </th>
+                  <th style={{ padding: '12px 14px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#888', whiteSpace: 'nowrap' }}>
+                    Traditional Marble &amp; Quartz
+                  </th>
+                  <th style={{ padding: '12px 14px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', background: 'rgba(37,63,42,0.08)', whiteSpace: 'nowrap' }}>
+                    ★ Ace Spaces Molecular Joint
+                  </th>
+                  <th style={{ padding: '12px 14px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', whiteSpace: 'nowrap' }}>
+                    Architectural Impact
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {seamComparisons.map((row, idx) => (
+                  <tr
+                    key={idx}
+                    style={{
+                      borderBottom: '1px solid var(--line)',
+                      background: idx % 2 === 0 ? 'transparent' : 'rgba(0,0,0,0.015)',
+                    }}
+                  >
+                    <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--ink)', whiteSpace: 'nowrap' }}>
+                      {row.metric}
+                    </td>
+                    <td style={{ padding: '12px 14px', color: '#7a7a7a', textDecoration: 'line-through' }}>
+                      {row.traditional}
+                    </td>
+                    <td style={{ padding: '12px 14px', color: '#1a3821', fontWeight: 600, background: 'rgba(37,63,42,0.05)' }}>
+                      ✓ {row.aceSpaces}
+                    </td>
+                    <td style={{ padding: '12px 14px', color: '#555e54', fontSize: '11.5px' }}>
+                      {row.advantage}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -479,14 +465,7 @@ export default function FabricationExplorer() {
         </div>
 
         {/* Typology Selector Tabs */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-            gap: '8px',
-            marginBottom: '16px',
-          }}
-        >
+        <div className="fabrication-typology-selector">
           {typologies.map((item) => {
             const isSelected = activeTypology === item.id;
             return (
@@ -494,19 +473,16 @@ export default function FabricationExplorer() {
                 key={item.id}
                 type="button"
                 onClick={() => setActiveTypology(item.id)}
+                className="fabrication-typology-btn"
                 style={{
-                  padding: '10px 12px',
-                  textAlign: 'left',
                   background: isSelected ? '#ffffff' : 'rgba(255, 255, 255, 0.45)',
                   border: isSelected ? '2px solid var(--ink)' : '1px solid var(--line)',
-                  cursor: 'pointer',
-                  transition: 'all 0.15s ease',
                 }}
               >
-                <span style={{ display: 'block', fontSize: '8.5px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '2px' }}>
+                <span className="fabrication-typology-badge">
                   {item.badge}
                 </span>
-                <strong style={{ display: 'block', fontSize: '12px', color: 'var(--ink)', lineHeight: 1.25 }}>
+                <strong className="fabrication-typology-name">
                   {item.name.split(' ')[0]} {item.name.split(' ')[1]}
                 </strong>
               </button>
@@ -515,15 +491,7 @@ export default function FabricationExplorer() {
         </div>
 
         {/* Detailed Typology Showcase Frame */}
-        <div
-          style={{
-            border: '1px solid var(--line)',
-            background: '#ffffff',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="fabrication-typology-showcase">
           <div style={{ padding: '24px 22px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               <span style={{ display: 'inline-block', padding: '3px 6px', background: 'rgba(30,33,29,0.06)', fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>

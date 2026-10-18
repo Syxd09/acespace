@@ -11,7 +11,7 @@ export interface BasinModel {
   id: string;
   name: string;
   code: string;
-  shape: 'oval' | 'round' | 'rectangular' | 'sloped' | 'capsule' | 'none';
+  shape: 'oval' | 'round' | 'rectangular' | 'soft-rect' | 'sloped' | 'ub-sloped' | 'uc-sloped' | 'wdt-sloped' | 'capsule' | 'none';
   width: number; // mm
   depth: number; // mm
   height: number; // mm
@@ -69,7 +69,7 @@ export interface DownstandConfig {
 export type UpstandLengthMode = 'full' | 'none' | 'specific' | 'standard';
 
 export interface UpstandConfig {
-  type: 'none' | 'standard' | 'raised' | 'full';
+  type: 'none' | 'standard' | 'raised' | 'full' | 'custom';
   heightMm: number; // 0, 50, 100, 150, 300
   isCoved: boolean;
   backMode: UpstandLengthMode;
@@ -139,6 +139,8 @@ export interface ProductConfiguration {
   basinDepthMm?: number;
   basinHeightMm?: number;
   basinSizeCode?: string;
+  wdtSlopeDirection?: 'left-to-right' | 'right-to-left';
+  wdtSlopeAngleDeg?: number;
 
   // Downstands (Aprons)
   downstands: DownstandConfig;
@@ -294,15 +296,27 @@ export const AVAILABLE_BASINS: BasinModel[] = [
     priceModifier: 14500,
   },
   {
-    id: 'crisp-rect',
-    name: 'Ace Rectangular Slope Basin',
-    code: 'B',
+    id: 'coved-rect',
+    name: 'Ace Rectangular Coved Basin',
+    code: 'A',
     shape: 'rectangular',
+    width: 500,
+    depth: 350,
+    height: 135,
+    covedRadius: 15,
+    description: 'Thermoformed seamless rectangular solid surface basin with precision coved internal corners, soft underbelly shell, and integrated overflow slot.',
+    priceModifier: 16800,
+  },
+  {
+    id: 'crisp-rect',
+    name: 'Ace Soft-Rectangular Basin',
+    code: 'B',
+    shape: 'soft-rect',
     width: 520,
     depth: 350,
     height: 130,
-    covedRadius: 6,
-    description: 'Sharp architectural rectangular basin featuring precision laser-cut drainage slit.',
+    covedRadius: 35,
+    description: 'Thermoformed architectural basin with soft-rectangular profile, generous corner radii, and scooped curved underbelly.',
     priceModifier: 17800,
   },
   {
@@ -321,36 +335,36 @@ export const AVAILABLE_BASINS: BasinModel[] = [
     id: 'undermount-box',
     name: 'Ace Undermount Box Basin',
     code: 'UB',
-    shape: 'rectangular',
+    shape: 'ub-sloped',
     width: 500,
     depth: 350,
     height: 140,
     covedRadius: 8,
-    description: 'Crisp architectural undermount box basin with vertical reveals and flat bottom.',
+    description: 'Bespoke undermount basin with vertical front reveal, inclined washplane ramp, and concealed rear drainage channel.',
     priceModifier: 16500,
   },
   {
     id: 'undermount-channel',
     name: 'Ace Undermount Sloped Channel',
     code: 'UC',
-    shape: 'sloped',
+    shape: 'uc-sloped',
     width: 580,
     depth: 360,
     height: 120,
     covedRadius: 10,
-    description: 'Architectural sloped channel basin with integrated continuous linear fall.',
+    description: 'Continuous full-fall undermount channel basin with seamless deck transit and deep rear slot drainage sump.',
     priceModifier: 18200,
   },
   {
     id: 'washdesk-trough',
     name: 'Washdesk Trough',
     code: 'WDT',
-    shape: 'sloped',
+    shape: 'wdt-sloped',
     width: 600,
     depth: 260,
     height: 120,
     covedRadius: 8,
-    description: 'Precision washdesk trough with customizable depth variants (WDT180 - WDT400).',
+    description: 'Precision architectural washdesk trough sloping forward from rear to a deep front trough with integrated waste outlet.',
     priceModifier: 21800,
   },
   {
@@ -966,11 +980,13 @@ export function calculateIndicativePrice(cfg: ProductConfiguration): PriceBreakd
   const apronDownstand = Math.round(totalApronM * 2800 * apronHeightFactor);
 
   // Upstands / Splashbacks (Coved chemical fusion)
-  const upstandH = cfg.upstands?.heightMm ?? cfg.rearUpstandHeight ?? 0;
-  const isCoved = cfg.upstands?.isCoved ?? cfg.isCovedUpstand;
-  let totalUpstandM = (upstandH > 0 && cfg.upstands?.backMode !== 'none') ? widthM : 0;
-  if (cfg.upstands?.leftMode !== 'none' && (cfg.upstands?.leftLengthMm || cfg.hasLeftUpstand)) totalUpstandM += depthM;
-  if (cfg.upstands?.rightMode !== 'none' && (cfg.upstands?.rightLengthMm || cfg.hasRightUpstand)) totalUpstandM += depthM;
+  const isBackDisabled = cfg.upstands?.backMode === 'none';
+  const isStdUpstand = !isBackDisabled && cfg.upstands?.backMode === 'standard';
+  const upstandH = isBackDisabled ? 0 : isStdUpstand ? 80 : (cfg.upstands?.heightMm ?? cfg.upstands?.height ?? cfg.rearUpstandHeight ?? 150);
+  const isCoved = Boolean(cfg.upstands?.isCoved ?? cfg.upstands?.coved ?? cfg.isCovedUpstand);
+  let totalUpstandM = (upstandH > 0 && !isBackDisabled) ? widthM : 0;
+  if (cfg.upstands?.leftMode === 'full' || (cfg.upstands?.leftLengthMm ?? 0) > 0 || Boolean(cfg.hasLeftUpstand)) totalUpstandM += depthM;
+  if (cfg.upstands?.rightMode === 'full' || (cfg.upstands?.rightLengthMm ?? 0) > 0 || Boolean(cfg.hasRightUpstand)) totalUpstandM += depthM;
 
   const covedPremium = isCoved ? 1.4 : 1.0;
   const upstandHeightFactor = Math.max(0.5, upstandH / 100);

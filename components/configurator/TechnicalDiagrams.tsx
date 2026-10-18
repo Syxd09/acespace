@@ -294,18 +294,23 @@ export function TapLocationDiagram({
 }
 
 // ============================================================================
-// 3B. SINK MODEL DIAGRAM (Isometric Line Art for RO, OV, B, DB, UB, UC, WDT)
+// 3B. SINK MODEL DIAGRAM (Architectural Isometric Line Art for A, B, RO, OV, DB, UB, UC, WDT)
 // ============================================================================
 export function SinkModelDiagram({
   model,
   active = false,
 }: {
-  model: 'RO' | 'OV' | 'B' | 'DB' | 'UB' | 'UC' | 'WDT' | string;
+  model: 'A' | 'RO' | 'OV' | 'B' | 'DB' | 'UB' | 'UC' | 'WDT' | string;
   active?: boolean;
 }) {
   const stroke = active ? '#d43833' : '#222521';
-  const fill = active ? '#ffffff' : '#fbfaf8';
+  const rimFill = '#ffffff';
+  const floorFill = '#f4f3ee';
+  const wallDrop = '#eae7df';
+  const underbelly = '#e5e1d7';
+  const slotFill = active ? '#d43833' : '#222521';
 
+  const isModelA = model === 'A' || model === 'coved-rect' || model === 'rectangular';
   const isRound = model === 'RO' || model === 'round-bowl';
   const isOval = model === 'OV' || model === 'coved-oval' || model === 'capsule-pill';
   const isBox = model === 'B' || model === 'crisp-rect';
@@ -316,85 +321,242 @@ export function SinkModelDiagram({
 
   return (
     <svg viewBox="0 0 88 56" width="100%" height="46" style={{ display: 'block' }}>
+      {/* 1. MODEL A: Rectangular Coved Basin (Matching exact user reference drawing Image 2) */}
+      {isModelA && (
+        <>
+          {/* Underbelly shell */}
+          <path
+            d="M 17,21 C 17,35 24,42 36,42 C 54,42 70,35 75,20"
+            fill={underbelly}
+            stroke={stroke}
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+          {/* Outer rectangular rim with small corner fillets */}
+          <path
+            d="M 20,18 L 61,10 Q 64,10 65,11 L 74,18 Q 75,19 74,20 L 33,28 Q 31,29 29,28 L 18,20 Q 17,19 18,18 Z"
+            fill={rimFill}
+            stroke={stroke}
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Inner rim reveal (wall thickness) */}
+          <path
+            d="M 22,19 L 60,11.5 L 72,18.5 L 32,26.5 Z"
+            fill={floorFill}
+            stroke={stroke}
+            strokeWidth="0.9"
+            strokeLinejoin="round"
+          />
+          {/* Rear overflow slot */}
+          <ellipse cx="36" cy="15" rx="2.5" ry="1.1" fill={slotFill} transform="rotate(-11 36 15)" />
+          {/* Centered concentric pop-up drain */}
+          <ellipse cx="46" cy="27" rx="4.2" ry="2.2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
+          <ellipse cx="46" cy="27" rx="2.2" ry="1.1" fill={stroke} />
+        </>
+      )}
+
+      {/* 2. MODEL RO: Round Basin (Matching Reference Image 1) */}
       {isRound && (
         <>
-          {/* Round Washbasin (RO) */}
-          <path d="M 23,28 C 23,43 65,43 65,28" fill="none" stroke={stroke} strokeWidth="1.3" />
-          <ellipse cx="44" cy="26" rx="21" ry="14" fill={fill} stroke={stroke} strokeWidth="1.4" />
-          <ellipse cx="44" cy="26" rx="18.5" ry="11.5" fill="#f4f1ea" stroke={stroke} strokeWidth="1.1" />
-          {/* Overflow Hole */}
-          <ellipse cx="32" cy="18" rx="2" ry="1.2" fill="none" stroke={stroke} strokeWidth="1" />
-          {/* Drain Hole */}
-          <ellipse cx="44" cy="32" rx="3.5" ry="2" fill="none" stroke={stroke} strokeWidth="1.3" />
-          <circle cx="44" cy="32" r="1.2" fill={stroke} />
+          {/* Spherical bottom underbelly contour */}
+          <path
+            d="M 21,19 C 21,34 32,38 44,38 C 56,38 67,34 67,19"
+            fill={underbelly}
+            stroke={stroke}
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Outer top rim ellipse */}
+          <ellipse cx="44" cy="19" rx="23" ry="10.5" fill={rimFill} stroke={stroke} strokeWidth="1.3" />
+          {/* Inner rim lip line showing wall thickness */}
+          <ellipse cx="44" cy="19.5" rx="21.2" ry="9.2" fill={floorFill} stroke={stroke} strokeWidth="0.9" />
+          {/* Rear-left overflow slot */}
+          <ellipse cx="32" cy="15.8" rx="2.2" ry="1.1" fill={slotFill} transform="rotate(-15 32 15.8)" />
+          {/* Centered concentric pop-up drain */}
+          <ellipse cx="44" cy="27.5" rx="4" ry="2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
+          <ellipse cx="44" cy="27.5" rx="2.2" ry="1.1" fill={stroke} />
         </>
       )}
 
+      {/* 3. MODEL OV: Oval Basin (Matching Reference Image 2) */}
       {isOval && (
         <>
-          {/* Oval Washbasin (OV) */}
-          <path d="M 16,28 C 16,46 72,46 72,28" fill="none" stroke={stroke} strokeWidth="1.3" />
-          <ellipse cx="44" cy="25" rx="28" ry="13.5" fill={fill} stroke={stroke} strokeWidth="1.4" />
-          <ellipse cx="44" cy="25" rx="25.5" ry="11" fill="#f4f1ea" stroke={stroke} strokeWidth="1.1" />
-          <ellipse cx="28" cy="17" rx="2.5" ry="1.2" fill="none" stroke={stroke} strokeWidth="1" />
-          <ellipse cx="44" cy="31" rx="3.5" ry="2" fill="none" stroke={stroke} strokeWidth="1.3" />
-          <circle cx="44" cy="31" r="1.2" fill={stroke} />
+          {/* Elliptical bottom underbelly contour */}
+          <path
+            d="M 15,19 C 15,34 28,38 44,38 C 60,38 73,34 73,19"
+            fill={underbelly}
+            stroke={stroke}
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Outer top rim ellipse */}
+          <ellipse cx="44" cy="19" rx="29" ry="10.5" fill={rimFill} stroke={stroke} strokeWidth="1.3" />
+          {/* Inner rim lip line showing wall thickness */}
+          <ellipse cx="44" cy="19.5" rx="27" ry="9.2" fill={floorFill} stroke={stroke} strokeWidth="0.9" />
+          {/* Rear-left overflow slot */}
+          <ellipse cx="31" cy="15.2" rx="2.4" ry="1.1" fill={slotFill} transform="rotate(-15 31 15.2)" />
+          {/* Centered concentric pop-up drain */}
+          <ellipse cx="44" cy="27.2" rx="4" ry="2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
+          <ellipse cx="44" cy="27.2" rx="2.2" ry="1.1" fill={stroke} />
         </>
       )}
 
+      {/* 4. MODEL B: Soft-Rectangular Basin (Matching Reference Image 3) */}
       {isBox && (
         <>
-          {/* Rectangular Box Washbasin with Rounded Corners (B) */}
-          <path d="M 18,31 L 24,42 Q 44,45 64,42 L 70,31" fill="none" stroke={stroke} strokeWidth="1.3" />
-          <rect x="18" y="16" width="52" height="26" rx="9" ry="9" fill={fill} stroke={stroke} strokeWidth="1.4" transform="rotate(-4 44 29)" />
-          <rect x="21" y="18.5" width="46" height="21" rx="7" ry="7" fill="#f4f1ea" stroke={stroke} strokeWidth="1.1" transform="rotate(-4 44 29)" />
-          <rect x="30" y="17" width="5" height="1.8" rx="0.9" fill="none" stroke={stroke} strokeWidth="1" />
-          <ellipse cx="44" cy="31" rx="3.5" ry="2" fill="none" stroke={stroke} strokeWidth="1.3" />
-          <circle cx="44" cy="31" r="1.2" fill={stroke} />
+          {/* Scooped curved underside contour */}
+          <path
+            d="M 15,26 C 15,38 28,40 44,40 C 58,40 68,36 71,25"
+            fill={underbelly}
+            stroke={stroke}
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Outer squircle rim with rounded corners */}
+          <path
+            d="M 24,14 C 36,11 52,11 64,14 C 74,16.5 76,21 73,26 C 68,32 58,37 46,39 C 32,41 20,38 15,33 C 12,28 13,23 16,19 C 19,15 21,14.5 24,14 Z"
+            fill={rimFill}
+            stroke={stroke}
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Inner rim lip reveal */}
+          <path
+            d="M 26,16 C 37,13.5 50,13.5 61,16 C 69,18 71,21.5 68,25 C 64,29.5 56,33.5 46,35.5 C 34,37.5 23,35 18,31 C 15,27.5 16,24 18,20.5 C 20,17.5 23,16.5 26,16 Z"
+            fill={floorFill}
+            stroke={stroke}
+            strokeWidth="0.9"
+            strokeLinejoin="round"
+          />
+          {/* Rear-left overflow slot */}
+          <ellipse cx="33" cy="16.5" rx="2.4" ry="1.1" fill={slotFill} transform="rotate(-10 33 16.5)" />
+          {/* Centered concentric pop-up drain */}
+          <ellipse cx="44" cy="28.5" rx="3.8" ry="2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
+          <ellipse cx="44" cy="28.5" rx="2.2" ry="1.1" fill={stroke} />
         </>
       )}
 
+      {/* 5. MODEL DB: Curved Hammock Trough Basin (Exact match to Reference Image 4) */}
       {isDouble && (
         <>
-          {/* Double Curved Basin (DB) */}
-          <path d="M 14,24 Q 28,44 44,42 Q 60,44 74,24" fill="none" stroke={stroke} strokeWidth="1.3" />
-          <polygon points="14,22 44,14 74,22 44,30" fill={fill} stroke={stroke} strokeWidth="1.4" strokeLinejoin="round" />
-          <ellipse cx="44" cy="22" rx="26" ry="7" fill="#f4f1ea" stroke={stroke} strokeWidth="1.1" />
-          <circle cx="44" cy="25" r="1.8" fill={stroke} />
+          {/* Deep curved cradle underside hammock contour */}
+          <path
+            d="M 18,20 C 18,38 32,44 48,44 C 64,44 76,35 76,22"
+            fill={underbelly}
+            stroke={stroke}
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Top opening with curved front lip and straight sides */}
+          <path
+            d="M 18,20 L 64,11 L 76,22 Q 53,35 30,31 Z"
+            fill={rimFill}
+            stroke={stroke}
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Inner curved scoop cavity */}
+          <path
+            d="M 20,21 L 62,13 L 74,22 Q 52,33 31,29 Z"
+            fill={floorFill}
+            stroke={stroke}
+            strokeWidth="0.9"
+            strokeLinejoin="round"
+          />
+          {/* Rear-left overflow slot */}
+          <ellipse cx="35" cy="16" rx="2.4" ry="1.1" fill={slotFill} transform="rotate(-11 35 16)" />
+          {/* Centered concentric pop-up drain */}
+          <ellipse cx="48" cy="28" rx="4" ry="2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
+          <ellipse cx="48" cy="28" rx="2.2" ry="1.1" fill={stroke} />
         </>
       )}
 
+      {/* 6. MODEL UB: Undermount Box with Ramp (Exact match to Reference Image 5) */}
       {isUndermountBox && (
         <>
-          {/* Undermount Box (UB) */}
-          <polygon points="16,22 68,12 76,32 24,42" fill="#eeeae1" stroke={stroke} strokeWidth="1.3" />
-          <polygon points="16,22 24,42 24,46 16,26" fill="#e2ded4" stroke={stroke} strokeWidth="1.3" />
-          <polygon points="24,42 76,32 76,36 24,46" fill="#dad5cb" stroke={stroke} strokeWidth="1.3" />
-          <ellipse cx="48" cy="29" rx="3.5" ry="2" fill="none" stroke={stroke} strokeWidth="1.3" />
-          <circle cx="48" cy="29" r="1.2" fill={stroke} />
+          {/* Stepped left side exterior & front face */}
+          <path
+            d="M 17,17 L 17,27 L 28,39 L 75,31 L 75,23"
+            fill={underbelly}
+            stroke={stroke}
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+          <polygon points="17,27 28,39 28,32 17,22" fill={wallDrop} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
+
+          {/* Top rectangular rim */}
+          <polygon points="17,17 64,9 75,17 28,25" fill={rimFill} stroke={stroke} strokeWidth="1.3" strokeLinejoin="round" />
+
+          {/* Inner front vertical drop */}
+          <polygon points="28,25 75,17 75,21 28,29" fill={wallDrop} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
+
+          {/* Sloped ramp descending to rear drainage trench */}
+          <polygon points="28,29 75,21 68,14 22,22" fill={floorFill} stroke={stroke} strokeWidth="1.1" strokeLinejoin="round" />
+
+          {/* Rear drainage trench gap */}
+          <polygon points="22,22 68,14 68,12 22,19" fill={slotFill} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
         </>
       )}
 
+      {/* 7. MODEL UC: Undermount Sloped Channel (Exact match to Reference Image 6) */}
       {isUndermountChannel && (
         <>
-          {/* Undermount Channel (UC) */}
-          <polygon points="14,28 66,16 78,28 26,40" fill={fill} stroke={stroke} strokeWidth="1.4" strokeLinejoin="round" />
-          <polygon points="14,28 26,40 26,46 14,34" fill="#dfdcd2" stroke={stroke} strokeWidth="1.3" />
-          <line x1="26" y1="40" x2="62" y2="28" stroke={stroke} strokeWidth="1.1" />
-          <line x1="62" y1="28" x2="78" y2="28" stroke={stroke} strokeWidth="1.1" />
+          {/* Wedge left side exterior & front bottom */}
+          <path
+            d="M 17,17 L 28,39 L 75,31 L 75,23"
+            fill={underbelly}
+            stroke={stroke}
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+          <polygon points="17,17 28,39 28,25" fill={wallDrop} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
+
+          {/* Top rectangular rim */}
+          <polygon points="17,17 64,9 75,17 28,25" fill={rimFill} stroke={stroke} strokeWidth="1.3" strokeLinejoin="round" />
+
+          {/* Continuous sloping ramp descending directly from front to rear */}
+          <polygon points="28,25 75,17 68,12 20,20" fill={floorFill} stroke={stroke} strokeWidth="1.1" strokeLinejoin="round" />
+
+          {/* Rear drainage trench gap */}
+          <polygon points="20,20 68,12 68,10 20,18" fill={slotFill} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
         </>
       )}
 
+      {/* 8. MODEL WDT: Deep Rectangular Trough (Exact match to Reference Image 7 - Highlighted Card) */}
       {isWashdesk && (
         <>
-          {/* Washdesk Trough (WDT) */}
-          <polygon points="12,28 66,12 80,26 26,42" fill={fill} stroke={stroke} strokeWidth="1.4" strokeLinejoin="round" />
-          <polygon points="12,28 26,42 26,47 12,33" fill="#e8e5dc" stroke={stroke} strokeWidth="1.3" />
-          <polygon points="26,42 80,26 80,31 26,47" fill="#dfdcd2" stroke={stroke} strokeWidth="1.3" />
-          {/* Sloped ramp fall */}
-          <polygon points="18,29 64,17 74,27 28,39" fill="#e2ded3" stroke={stroke} strokeWidth="1.1" />
-          {/* Center drain outlet */}
-          <ellipse cx="50" cy="30" rx="3" ry="1.6" fill={stroke} />
+          {/* Left wall with curved front-bottom corner & bottom front edge */}
+          <path
+            d="M 17,18 L 17,32 C 17,38 22,41 28,41 L 75,33 L 75,18"
+            fill={underbelly}
+            stroke={stroke}
+            strokeWidth="1.3"
+            strokeLinejoin="round"
+          />
+          {/* Front face with curved bottom edge */}
+          <path
+            d="M 28,26 L 75,18 L 75,33 L 28,41 Z"
+            fill={rimFill}
+            stroke={stroke}
+            strokeWidth="1.2"
+            strokeLinejoin="round"
+          />
+          {/* Top rim opening */}
+          <polygon points="17,18 64,10 75,18 28,26" fill={rimFill} stroke={stroke} strokeWidth="1.3" strokeLinejoin="round" />
+
+          {/* Inner wall thickness lip reveal */}
+          <polygon points="19,19 63,11.5 73,18.5 29,26" fill={floorFill} stroke={stroke} strokeWidth="0.9" strokeLinejoin="round" />
+
+          {/* Inner trough floor */}
+          <polygon points="23,30 65,22 70,26 29,34" fill={floorFill} stroke={stroke} strokeWidth="0.9" strokeLinejoin="round" />
+
+          {/* Rear wall overflow slot */}
+          <ellipse cx="36" cy="15" rx="2.5" ry="1.1" fill={slotFill} transform="rotate(-11 36 15)" />
+
+          {/* Centered concentric pop-up drain */}
+          <ellipse cx="46" cy="28" rx="4.2" ry="2.2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
+          <ellipse cx="46" cy="28" rx="2.2" ry="1.1" fill={stroke} />
         </>
       )}
     </svg>

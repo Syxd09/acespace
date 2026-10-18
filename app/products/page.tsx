@@ -234,13 +234,15 @@ export default function ProductsCatalogPage() {
       </section>
 
       {/* Interactive 3D Configurator Feature Banner (Architectural Editorial Theme) */}
-      <section style={{ margin: '60px 0 40px', background: 'var(--ink, #1e211d)', color: '#fff', border: '1px solid var(--line, rgba(255,255,255,0.08))', boxSizing: 'border-box' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', alignItems: 'stretch' }}>
+      <section className="products-feature-banner" style={{ margin: '60px 0 40px', background: 'var(--ink, #1e211d)', color: '#fff', border: '1px solid var(--line, rgba(255,255,255,0.08))', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
+        <div className="products-feature-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', alignItems: 'stretch' }}>
           <div style={{ padding: 'clamp(36px, 5vw, 64px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <p className="eyebrow" style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '18px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span style={{ color: 'var(--brand-red, #d43833)' }}>02</span>
-              <span style={{ color: 'rgba(255,255,255,0.25)' }}>/</span>
-              <span>Interactive 3D Specification Studio</span>
+            <p className="eyebrow" style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '18px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', flexShrink: 0, whiteSpace: 'nowrap' }}>
+                <span style={{ color: 'var(--brand-red, #d43833)', fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0, display: 'inline-block' }}>02</span>
+                <span style={{ color: 'rgba(255,255,255,0.25)', flexShrink: 0 }}>/</span>
+              </span>
+              <span style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>Interactive 3D Specification Studio</span>
             </p>
             <h2 style={{ fontSize: 'clamp(30px, 4vw, 50px)', lineHeight: 1.12, color: '#fff', marginBottom: '18px', fontWeight: 400, letterSpacing: '-0.02em' }}>
               Parametric fixtures,
@@ -358,10 +360,12 @@ export default function ProductsCatalogPage() {
 
         {/* Product Cards Grid */}
         <div
+          className="products-catalog-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))',
             gap: '24px',
+            width: '100%',
           }}
         >
           {/* 1. Special Corian Material Card */}
@@ -530,16 +534,20 @@ export default function ProductsCatalogPage() {
       {/* Design Certainty Service Spotlight Banner */}
       {designCertainty && (
         <section
+          className="products-design-certainty-banner"
           style={{
             margin: '0 0 100px',
             background: 'var(--ink)',
             color: '#fff',
             border: '1px solid var(--line)',
-            padding: '60px clamp(24px, 5vw, 64px)',
+            padding: '60px clamp(20px, 4vw, 64px)',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '40px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
+            gap: '36px',
             alignItems: 'center',
+            boxSizing: 'border-box',
+            width: '100%',
+            overflow: 'hidden',
           }}
         >
           <div>
@@ -565,10 +573,13 @@ export default function ProductsCatalogPage() {
           </div>
 
           <div
+            className="products-design-certainty-card"
             style={{
               background: 'rgba(255, 255, 255, 0.05)',
               border: '1px solid rgba(255, 255, 255, 0.12)',
-              padding: '36px',
+              padding: 'clamp(20px, 4vw, 36px)',
+              boxSizing: 'border-box',
+              width: '100%',
             }}
           >
             <span
@@ -585,8 +596,8 @@ export default function ProductsCatalogPage() {
             </span>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {designCertainty.keyFeatures.map((feat, i) => (
-                <li key={i} style={{ display: 'flex', gap: '12px', fontSize: '13px', color: '#e0e5e0', lineHeight: 1.5 }}>
-                  <span style={{ color: '#73c991', fontFamily: 'DM Mono, monospace' }}>0{i + 1}</span>
+                <li key={i} style={{ display: 'flex', gap: '12px', fontSize: '13px', color: '#e0e5e0', lineHeight: 1.5, alignItems: 'flex-start' }}>
+                  <span style={{ color: '#73c991', fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, fontWeight: 600 }}>0{i + 1}</span>
                   <span>{feat}</span>
                 </li>
               ))}

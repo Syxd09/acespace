@@ -588,6 +588,34 @@ export default function ProductConfigurator({
               </svg>
             )}
 
+            {/* Floating 3D Dimension Callouts Overlay */}
+            {showDimensions && dimensionCallouts.length > 0 && (
+              <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'hidden', zIndex: 6 }}>
+                {dimensionCallouts.map(callout => (
+                  <div
+                    key={callout.id}
+                    style={{
+                      position: 'absolute',
+                      left: `${callout.screenMid.x}px`,
+                      top: `${callout.screenMid.y}px`,
+                      transform: 'translate(-50%, -50%)',
+                      background: 'rgba(30, 33, 29, 0.90)',
+                      color: '#f5f4ee',
+                      padding: '3px 8px',
+                      borderRadius: '2px',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '10.5px',
+                      letterSpacing: '0.04em',
+                      whiteSpace: 'nowrap',
+                      boxShadow: '0 2px 6px rgba(0, 0, 0, 0.25)',
+                    }}
+                  >
+                    {callout.label}
+                  </div>
+                ))}
+              </div>
+            )}
+
             {/* Viewport Interaction Prompt */}
             <div
               className="configurator-touch-hint"
@@ -991,27 +1019,32 @@ export default function ProductConfigurator({
                   <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
                     Solid Body Thickness
                   </label>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
-                    {([12, 19, 24, 60] as const).map(t => (
-                      <button
-                        key={t}
-                        type="button"
-                        onClick={() => setConfig({ ...config, thickness: t })}
-                        style={{
-                          background: config.thickness === t ? '#1e211d' : '#f0eee8',
-                          color: config.thickness === t ? '#fff' : '#1e211d',
-                          border: '1px solid rgba(30,33,29,0.15)',
-                          padding: '8px 4px',
-                          textAlign: 'center',
-                          cursor: 'pointer',
-                        }}
-                      >
-                        <strong style={{ display: 'block', fontSize: '12px' }}>{t} mm</strong>
-                        <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', opacity: 0.8 }}>
-                          {t === 12 ? 'Standard' : t === 19 ? 'Heavy' : t === 24 ? 'Commercial' : 'Built-Up'}
-                        </span>
-                      </button>
-                    ))}
+                  <div className="configurator-thickness-grid">
+                    {([12, 19, 24, 60] as const).map(t => {
+                      const isSelected = config.thickness === t;
+                      return (
+                        <button
+                          key={t}
+                          type="button"
+                          className="configurator-thickness-btn"
+                          onClick={() => setConfig({ ...config, thickness: t })}
+                          style={{
+                            background: isSelected ? '#1e211d' : '#f5f4ef',
+                            color: isSelected ? '#fff' : '#1e211d',
+                            border: isSelected ? '1px solid #1e211d' : '1px solid rgba(30,33,29,0.16)',
+                            textAlign: 'center',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          <strong style={{ display: 'block', fontSize: '13px', fontWeight: 600, whiteSpace: 'nowrap' }}>
+                            {t} mm
+                          </strong>
+                          <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', opacity: isSelected ? 0.9 : 0.7, whiteSpace: 'nowrap', marginTop: '2px' }}>
+                            {t === 12 ? 'Standard' : t === 19 ? 'Heavy' : t === 24 ? 'Commercial' : 'Built-Up'}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -1581,16 +1614,18 @@ export default function ProductConfigurator({
                       {[
                         { id: 'round-bowl', code: 'RO', name: 'Round Bowl (RO)' },
                         { id: 'coved-oval', code: 'OV', name: 'Oval Basin (OV)' },
-                        { id: 'crisp-rect', code: 'B', name: 'Rectangular Box (B)' },
-                        { id: 'double-basin', code: 'DB', name: 'Double Basin (DB)' },
+                        { id: 'coved-rect', code: 'A', name: 'Rectangular Basin (A)' },
+                        { id: 'crisp-rect', code: 'B', name: 'Soft-Rect Basin (B)' },
+                        { id: 'double-basin', code: 'DB', name: 'Curved Basin (DB)' },
                         { id: 'undermount-box', code: 'UB', name: 'Undermount Box (UB)' },
                         { id: 'undermount-channel', code: 'UC', name: 'Undermount Channel (UC)' },
                         { id: 'washdesk-trough', code: 'WDT', name: 'Washdesk Trough (WDT)' },
                       ].map(item => {
                         const isAct = config.basinModelId === item.id ||
+                          (item.code === 'A' && (config.basinModelId === 'coved-rect' || config.basinModelId === 'A')) ||
+                          (item.code === 'B' && (config.basinModelId === 'crisp-rect' || config.basinModelId === 'B')) ||
                           (item.code === 'RO' && (config.basinModelId === 'round-bowl' || config.basinModelId === 'RO')) ||
                           (item.code === 'OV' && (config.basinModelId === 'coved-oval' || config.basinModelId === 'OV')) ||
-                          (item.code === 'B' && (config.basinModelId === 'crisp-rect' || config.basinModelId === 'B')) ||
                           (item.code === 'DB' && (config.basinModelId === 'double-basin' || config.basinModelId === 'DB')) ||
                           (item.code === 'UB' && (config.basinModelId === 'undermount-box' || config.basinModelId === 'UB')) ||
                           (item.code === 'UC' && (config.basinModelId === 'undermount-channel' || config.basinModelId === 'UC')) ||
@@ -1605,7 +1640,15 @@ export default function ProductConfigurator({
                               if (config.sinkIntegration === 'none') {
                                 updates.sinkIntegration = 'integrated';
                               }
-                              if (item.code === 'RO') {
+                              if (item.code === 'A') {
+                                updates.basinWidthMm = config.basinWidthMm || 500;
+                                updates.basinDepthMm = config.basinDepthMm || 350;
+                                updates.basinHeightMm = 135;
+                              } else if (item.code === 'B') {
+                                updates.basinWidthMm = config.basinWidthMm || 520;
+                                updates.basinDepthMm = config.basinDepthMm || 350;
+                                updates.basinHeightMm = 130;
+                              } else if (item.code === 'RO') {
                                 updates.basinWidthMm = config.basinWidthMm || 350;
                                 updates.basinDepthMm = config.basinWidthMm || 350;
                                 updates.basinHeightMm = 135;
@@ -1615,10 +1658,14 @@ export default function ProductConfigurator({
                                 updates.basinDepthMm = config.basinDepthMm || 260;
                                 updates.basinHeightMm = 120;
                                 updates.basinSizeCode = config.basinSizeCode || 'WDT260';
-                              } else if (item.code === 'B') {
+                              } else if (item.code === 'UB') {
                                 updates.basinWidthMm = config.basinWidthMm || 500;
                                 updates.basinDepthMm = config.basinDepthMm || 350;
-                                updates.basinHeightMm = 130;
+                                updates.basinHeightMm = 140;
+                              } else if (item.code === 'UC') {
+                                updates.basinWidthMm = config.basinWidthMm || 580;
+                                updates.basinDepthMm = config.basinDepthMm || 360;
+                                updates.basinHeightMm = 120;
                               }
                               setConfig({ ...config, ...updates });
                             }}
@@ -1798,6 +1845,96 @@ export default function ProductConfigurator({
                             })}
                           </div>
                         </div>
+
+                        {/* WDT Sideways Slope Direction */}
+                        <div style={{ marginTop: '12px' }}>
+                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                            WDT TROUGH SLOPE ORIENTATION
+                          </label>
+                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                            <button
+                              type="button"
+                              onClick={() => setConfig({ ...config, wdtSlopeDirection: 'right-to-left' })}
+                              style={{
+                                padding: '8px 6px',
+                                background: (config.wdtSlopeDirection || 'right-to-left') === 'right-to-left' ? '#1e211d' : '#f8f7f4',
+                                color: (config.wdtSlopeDirection || 'right-to-left') === 'right-to-left' ? '#fff' : '#1e211d',
+                                border: '1px solid rgba(30,33,29,0.15)',
+                                fontSize: '11px',
+                                fontFamily: 'DM Mono, monospace',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              Slopes Right ↘ Left (Deep Left)
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setConfig({ ...config, wdtSlopeDirection: 'left-to-right' })}
+                              style={{
+                                padding: '8px 6px',
+                                background: config.wdtSlopeDirection === 'left-to-right' ? '#1e211d' : '#f8f7f4',
+                                color: config.wdtSlopeDirection === 'left-to-right' ? '#fff' : '#1e211d',
+                                border: '1px solid rgba(30,33,29,0.15)',
+                                fontSize: '11px',
+                                fontFamily: 'DM Mono, monospace',
+                                cursor: 'pointer',
+                              }}
+                            >
+                              Slopes Left ↙ Right (Deep Right)
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* WDT Slope Angle / Degree Controller */}
+                        <div style={{ marginTop: '14px', background: 'rgba(30,33,29,0.03)', padding: '12px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                            <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                              WDT SLOPE INCLINE ANGLE
+                            </label>
+                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
+                              {(config.wdtSlopeAngleDeg || 8).toFixed(1)}° ({Math.round((config.basinWidthMm || 600) * Math.tan(((config.wdtSlopeAngleDeg || 8) * Math.PI) / 180))} mm fall)
+                            </span>
+                          </div>
+
+                          <input
+                            type="range"
+                            min={2}
+                            max={20}
+                            step={0.5}
+                            value={config.wdtSlopeAngleDeg || 8}
+                            onChange={e => setConfig({ ...config, wdtSlopeAngleDeg: Number(e.target.value) })}
+                            style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', marginBottom: '10px' }}
+                          />
+
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
+                            {[
+                              { deg: 4, label: '4° Subtle' },
+                              { deg: 8, label: '8° Standard' },
+                              { deg: 12, label: '12° Fast Fall' },
+                              { deg: 16, label: '16° Steep' },
+                            ].map(p => {
+                              const isCur = Math.abs((config.wdtSlopeAngleDeg || 8) - p.deg) < 0.3;
+                              return (
+                                <button
+                                  key={p.deg}
+                                  type="button"
+                                  onClick={() => setConfig({ ...config, wdtSlopeAngleDeg: p.deg })}
+                                  style={{
+                                    padding: '6px 2px',
+                                    background: isCur ? 'var(--brand-red, #d43833)' : '#ffffff',
+                                    color: isCur ? '#ffffff' : '#333333',
+                                    border: isCur ? '1px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    fontSize: '10px',
+                                    fontFamily: 'DM Mono, monospace',
+                                    cursor: 'pointer',
+                                  }}
+                                >
+                                  {p.label}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </div>
                     )}
 
@@ -1812,7 +1949,12 @@ export default function ProductConfigurator({
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
                             {SINK_WIDTH_OPTIONS.map(w => {
                               const isAct = (config.basinWidthMm || 500) === w;
-                              const modelCode = config.basinModelId === 'coved-oval' ? 'OV' : config.basinModelId === 'crisp-rect' ? 'B' : config.basinModelId === 'double-basin' ? 'DB' : config.basinModelId === 'undermount-box' ? 'UB' : config.basinModelId === 'undermount-channel' ? 'UC' : 'B';
+                              const modelCode = (config.basinModelId === 'coved-rect' || config.basinModelId === 'A') ? 'A' :
+                                (config.basinModelId === 'coved-oval' || config.basinModelId === 'OV') ? 'OV' :
+                                (config.basinModelId === 'crisp-rect' || config.basinModelId === 'B') ? 'B' :
+                                (config.basinModelId === 'double-basin' || config.basinModelId === 'DB') ? 'DB' :
+                                (config.basinModelId === 'undermount-box' || config.basinModelId === 'UB') ? 'UB' :
+                                (config.basinModelId === 'undermount-channel' || config.basinModelId === 'UC') ? 'UC' : 'A';
                               return (
                                 <div
                                   key={w}
@@ -1847,7 +1989,12 @@ export default function ProductConfigurator({
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
                             {SINK_DEPTH_OPTIONS.map(d => {
                               const isAct = (config.basinDepthMm || 350) === d;
-                              const modelCode = config.basinModelId === 'coved-oval' ? 'OV' : config.basinModelId === 'crisp-rect' ? 'B' : config.basinModelId === 'double-basin' ? 'DB' : config.basinModelId === 'undermount-box' ? 'UB' : config.basinModelId === 'undermount-channel' ? 'UC' : 'B';
+                              const modelCode = (config.basinModelId === 'coved-rect' || config.basinModelId === 'A') ? 'A' :
+                                (config.basinModelId === 'coved-oval' || config.basinModelId === 'OV') ? 'OV' :
+                                (config.basinModelId === 'crisp-rect' || config.basinModelId === 'B') ? 'B' :
+                                (config.basinModelId === 'double-basin' || config.basinModelId === 'DB') ? 'DB' :
+                                (config.basinModelId === 'undermount-box' || config.basinModelId === 'UB') ? 'UB' :
+                                (config.basinModelId === 'undermount-channel' || config.basinModelId === 'UC') ? 'UC' : 'A';
                               return (
                                 <div
                                   key={d}
@@ -2164,15 +2311,17 @@ export default function ProductConfigurator({
                         isActive={(config.upstands?.backMode || 'full') === opt.id}
                         onClick={() => {
                           const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, heightMm: 100, coved: true };
-                          const targetH = opt.id === 'none' ? 0 : opt.id === 'standard' ? 80 : (cur.height && cur.height > 0 ? cur.height : 100);
+                          const targetH = opt.id === 'none' ? 0 : opt.id === 'standard' ? 80 : ((cur.height && cur.height > 80) ? cur.height : 150);
                           setConfig({
                             ...config,
                             rearUpstandHeight: targetH,
                             upstands: {
                               ...cur,
                               backMode: opt.id as any,
+                              type: opt.id === 'standard' ? 'standard' : opt.id === 'none' ? 'none' : 'full',
                               height: targetH,
                               heightMm: targetH,
+                              backLengthMm: opt.id === 'none' ? 0 : config.width,
                             },
                           });
                         }}
@@ -2193,9 +2342,16 @@ export default function ProductConfigurator({
                       type="button"
                       onClick={() => {
                         const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, coved: true };
+                        const nextMode = cur.leftMode === 'full' ? 'none' : 'full';
+                        const isEnabled = nextMode === 'full';
                         setConfig({
                           ...config,
-                          upstands: { ...cur, leftMode: cur.leftMode === 'full' ? 'none' : 'full' },
+                          hasLeftUpstand: isEnabled,
+                          upstands: {
+                            ...cur,
+                            leftMode: nextMode,
+                            leftLengthMm: isEnabled ? config.depth : 0,
+                          },
                         });
                       }}
                       style={{
@@ -2216,9 +2372,16 @@ export default function ProductConfigurator({
                       type="button"
                       onClick={() => {
                         const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, coved: true };
+                        const nextMode = cur.rightMode === 'full' ? 'none' : 'full';
+                        const isEnabled = nextMode === 'full';
                         setConfig({
                           ...config,
-                          upstands: { ...cur, rightMode: cur.rightMode === 'full' ? 'none' : 'full' },
+                          hasRightUpstand: isEnabled,
+                          upstands: {
+                            ...cur,
+                            rightMode: nextMode,
+                            rightLengthMm: isEnabled ? config.depth : 0,
+                          },
                         });
                       }}
                       style={{
@@ -2241,19 +2404,30 @@ export default function ProductConfigurator({
                 <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
                     <span>Splashback Upstand Height</span>
-                    <strong>{config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 100} mm</strong>
+                    <strong>{config.upstands?.backMode === 'none' ? '0 mm (Disabled)' : `${config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 80} mm`}</strong>
                   </div>
                   <input
                     type="range"
                     min={50}
                     max={300}
                     step={10}
-                    value={config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 100}
+                    value={config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 80}
                     onChange={e => {
                       const val = Number(e.target.value);
                       const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, heightMm: 100, coved: true, isCoved: true, type: 'standard', backLengthMm: config.width, leftLengthMm: 0, rightLengthMm: 0 };
-                      const newBackMode = val <= 0 ? 'none' : (cur.backMode === 'none' ? (val === 80 ? 'standard' : 'full') : cur.backMode);
-                      setConfig({ ...config, rearUpstandHeight: val, upstands: { ...cur, backMode: newBackMode, height: val, heightMm: val } });
+                      const newBackMode = val === 80 ? 'standard' : 'full';
+                      setConfig({
+                        ...config,
+                        rearUpstandHeight: val,
+                        upstands: {
+                          ...cur,
+                          backMode: cur.backMode === 'none' ? 'full' : newBackMode,
+                          type: val === 80 ? 'standard' : 'custom',
+                          height: val,
+                          heightMm: val,
+                          backLengthMm: config.width,
+                        },
+                      });
                     }}
                     style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)' }}
                   />
@@ -2263,8 +2437,16 @@ export default function ProductConfigurator({
                 <div
                   onClick={() => {
                     const cur = config.upstands || { backMode: 'full', leftMode: 'none', rightMode: 'none', height: 100, heightMm: 100, coved: true, isCoved: true, type: 'standard', backLengthMm: config.width, leftLengthMm: 0, rightLengthMm: 0 };
-                    const nextCoved = !Boolean(cur.coved ?? cur.isCoved);
-                    setConfig({ ...config, isCovedUpstand: nextCoved, upstands: { ...cur, coved: nextCoved, isCoved: nextCoved } });
+                    const nextCoved = !Boolean(cur.coved ?? cur.isCoved ?? config.isCovedUpstand);
+                    setConfig({
+                      ...config,
+                      isCovedUpstand: nextCoved,
+                      upstands: {
+                        ...cur,
+                        coved: nextCoved,
+                        isCoved: nextCoved,
+                      },
+                    });
                   }}
                   style={{
                     display: 'flex',

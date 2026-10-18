@@ -57,85 +57,72 @@ export default function JournalExplorer() {
     });
   }, [articles, selectedCategory, searchQuery]);
 
+  const getCategoryCount = (cat: string) => {
+    if (cat === 'All') return articles.length;
+    return articles.filter((a) => a.category === cat).length;
+  };
+
   const leadArticle = filteredArticles[0];
   const gridArticles = filteredArticles.slice(1);
 
   return (
     <div className="journal-explorer">
-      {/* Category Tabs & Search Bar */}
-      <div
-        style={{
-          background: '#dcd7cd',
-          padding: '24px 30px',
-          border: '1px solid var(--line)',
-          marginBottom: '50px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          gap: '24px',
-          flexWrap: 'wrap',
-        }}
-      >
-        <div className="filter-row">
-          {categories.map((cat) => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setSelectedCategory(cat)}
-                className={`filter ${isActive ? 'active' : ''}`}
-                style={{
-                  padding: '8px 16px',
-                  fontSize: '11px',
-                  fontFamily: 'DM Mono, monospace',
-                  textTransform: 'uppercase',
-                  border: '1px solid var(--line)',
-                  background: isActive ? 'var(--ink)' : 'var(--paper)',
-                  color: isActive ? '#fff' : 'var(--ink)',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s ease',
-                }}
-              >
-                {cat}
-              </button>
-            );
-          })}
-        </div>
-
-        <div style={{ position: 'relative', minWidth: '260px' }}>
+      {/* Architectural Journal Search & Editorial Filter Bar */}
+      <div className="journal-console-bar">
+        {/* Search Input Bar */}
+        <div className="journal-search-wrapper">
+          <svg
+            className="journal-search-icon"
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search essays & research notes..."
-            style={{
-              background: 'var(--paper)',
-              border: '1px solid var(--line)',
-              padding: '10px 16px',
-              paddingRight: '32px',
-              fontSize: '12px',
-              color: 'var(--ink)',
-              width: '100%',
-            }}
+            placeholder="Search essays, joinery, monographs..."
+            className="journal-search-input"
           />
           {searchQuery && (
             <button
               type="button"
               onClick={() => setSearchQuery('')}
-              style={{
-                position: 'absolute',
-                right: '10px',
-                top: '50%',
-                transform: 'translateY(-50%)',
-                fontSize: '14px',
-                color: 'var(--muted)',
-                cursor: 'pointer',
-              }}
+              className="journal-search-clear"
+              aria-label="Clear search"
             >
-              ×
+              ✕
             </button>
           )}
+        </div>
+
+        {/* Editorial Category Filter Pills */}
+        <div className="journal-topic-bar" role="tablist" aria-label="Journal topics">
+          {categories.map((cat) => {
+            const isActive = selectedCategory === cat;
+            const count = getCategoryCount(cat);
+            return (
+              <button
+                key={cat}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setSelectedCategory(cat)}
+                className={`journal-topic-pill ${isActive ? 'is-active' : ''}`}
+              >
+                <span>{cat}</span>
+                <span className="journal-topic-count">{count}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -319,34 +306,28 @@ export default function JournalExplorer() {
             onClick={(e) => e.stopPropagation()}
             onWheel={(e) => e.stopPropagation()}
           >
-            <button
-              type="button"
-              onClick={() => setActiveArticle(null)}
-              style={{
-                position: 'absolute',
-                top: '24px',
-                right: '24px',
-                width: '36px',
-                height: '36px',
-                borderRadius: '50%',
-                border: '1px solid var(--line)',
-                background: 'transparent',
-                display: 'grid',
-                placeItems: 'center',
-                fontSize: '20px',
-                cursor: 'pointer',
-              }}
-            >
-              ×
-            </button>
+            {/* Modal Top Navigation Bar */}
+            <div className="journal-modal-header">
+              <div className="journal-modal-meta-box">
+                <span className="eyebrow" style={{ margin: 0, color: 'var(--ink)', fontWeight: 600 }}>
+                  {activeArticle.category}
+                </span>
+                <span className="journal-modal-meta-text">
+                  {activeArticle.readTime} • {activeArticle.date}
+                </span>
+              </div>
 
-            <div style={{ display: 'flex', gap: '16px', alignItems: 'center', marginBottom: '20px' }}>
-              <span className="eyebrow" style={{ margin: 0, color: 'var(--ink)', fontWeight: 600 }}>
-                {activeArticle.category}
-              </span>
-              <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
-                {activeArticle.readTime} • {activeArticle.date}
-              </span>
+              <button
+                type="button"
+                onClick={() => setActiveArticle(null)}
+                aria-label="Close article modal"
+                className="journal-modal-close-btn"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+              </button>
             </div>
 
             <h1 style={{ fontSize: 'clamp(32px, 4.5vw, 56px)', lineHeight: 1.05, margin: '0 0 24px', letterSpacing: '-0.04em' }}>

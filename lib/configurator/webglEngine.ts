@@ -518,8 +518,16 @@ export class Configurator3DEngine {
     const frontApronMm = hasFrontApron ? (cfg.downstands?.heightMm ?? cfg.frontApronHeight ?? 0) : 0;
     const frontApron = frontApronMm / 1000;
     const isUpstandDisabled = cfg.upstands?.backMode === 'none';
-    const isStdUpstand = !isUpstandDisabled && (cfg.upstands?.backMode === 'standard' || cfg.upstands?.type === 'standard');
-    const rawUpstandMm = isUpstandDisabled ? 0 : isStdUpstand ? 80 : (cfg.rearUpstandHeight || cfg.upstands?.height || cfg.upstands?.heightMm || 0);
+    const isStdUpstand = !isUpstandDisabled && cfg.upstands?.backMode === 'standard';
+    const defaultCustomH = 150;
+    const configuredUpstandMm = (cfg.upstands?.heightMm && cfg.upstands.heightMm > 0)
+      ? cfg.upstands.heightMm
+      : (cfg.upstands?.height && cfg.upstands.height > 0)
+      ? cfg.upstands.height
+      : (cfg.rearUpstandHeight && cfg.rearUpstandHeight > 0)
+      ? cfg.rearUpstandHeight
+      : defaultCustomH;
+    const rawUpstandMm = isUpstandDisabled ? 0 : isStdUpstand ? 80 : configuredUpstandMm;
     const rearUpstand = rawUpstandMm / 1000;
 
     const lines: CadDimensionLine[] = [];
@@ -593,6 +601,9 @@ export class Configurator3DEngine {
       } else if (cfg.basinModelId === 'OV' || cfg.basinModelId === 'coved-oval') {
         bwMm = cfg.basinWidthMm && cfg.basinWidthMm > 0 ? cfg.basinWidthMm : 500;
         bdMm = cfg.basinDepthMm && cfg.basinDepthMm > 0 ? cfg.basinDepthMm : 350;
+      } else if (cfg.basinModelId === 'A' || cfg.basinModelId === 'coved-rect') {
+        bwMm = cfg.basinWidthMm && cfg.basinWidthMm > 0 ? cfg.basinWidthMm : 500;
+        bdMm = cfg.basinDepthMm && cfg.basinDepthMm > 0 ? cfg.basinDepthMm : 350;
       } else if (cfg.basinModelId === 'B' || cfg.basinModelId === 'crisp-rect') {
         bwMm = cfg.basinWidthMm && cfg.basinWidthMm > 0 ? cfg.basinWidthMm : 520;
         bdMm = cfg.basinDepthMm && cfg.basinDepthMm > 0 ? cfg.basinDepthMm : 350;
@@ -652,7 +663,7 @@ export class Configurator3DEngine {
       isVisible: true,
     };
 
-    // Backward-compatible callouts
+    // Backward-compatible callouts & Floating Dimension Badges
     const callouts: DimensionCallout[] = [
       {
         id: 'width',
@@ -673,6 +684,38 @@ export class Configurator3DEngine {
         isVisible: true,
       },
     ];
+
+    if (frontApron > 0) {
+      const pApronMidTop = new Vec3(0, topY, halfD);
+      const pApronMidBottom = new Vec3(0, topY - frontApron, halfD);
+      const sA1 = this.projectToScreen(pApronMidTop);
+      const sA2 = this.projectToScreen(pApronMidBottom);
+      callouts.push({
+        id: 'apron',
+        label: `Apron: ${Math.round(frontApron * 1000)} mm`,
+        valueMm: Math.round(frontApron * 1000),
+        screenStart: sA1,
+        screenEnd: sA2,
+        screenMid: { x: (sA1.x + sA2.x) / 2, y: (sA1.y + sA2.y) / 2 },
+        isVisible: true,
+      });
+    }
+
+    if (rearUpstand > 0) {
+      const pUpstandMidBottom = new Vec3(0, topY, -halfD);
+      const pUpstandMidTop = new Vec3(0, topY + rearUpstand, -halfD);
+      const sU1 = this.projectToScreen(pUpstandMidBottom);
+      const sU2 = this.projectToScreen(pUpstandMidTop);
+      callouts.push({
+        id: 'upstand',
+        label: `Splashback: ${rawUpstandMm} mm`,
+        valueMm: rawUpstandMm,
+        screenStart: sU1,
+        screenEnd: sU2,
+        screenMid: { x: (sU1.x + sU2.x) / 2, y: (sU1.y + sU2.y) / 2 },
+        isVisible: true,
+      });
+    }
 
     this.onDimensionsUpdate(callouts, cadData);
   }

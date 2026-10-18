@@ -14,28 +14,6 @@ export default function SiteFooter() {
   const [email, setEmail] = useState('');
 
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const [bengaluruTime, setBengaluruTime] = useState('');
-  const [mounted, setMounted] = useState(false);
-
-  // Live Studio Clock (Bengaluru UTC+5:30)
-  useEffect(() => {
-    setMounted(true);
-    const updateTime = () => {
-      const options: Intl.DateTimeFormatOptions = {
-        timeZone: 'Asia/Kolkata',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      };
-      const formatted = new Intl.DateTimeFormat('en-GB', options).format(new Date());
-      setBengaluruTime(formatted);
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const pathname = usePathname();
 
@@ -120,24 +98,11 @@ export default function SiteFooter() {
             lineHeight: '1.7',
             color: '#a0aba0',
             maxWidth: '440px',
-            margin: '0 0 16px 0',
+            margin: '0',
           }}>
             The Raw Material Source for Architects, Specifiers & Interior Designers.
             Foundry for mineral composites, seamless solid surfaces, and the foundational material powering Coro Crafted Collective.
           </p>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.12)',
-            padding: '6px 12px',
-          }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#73c991' }}></span>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#c4cdc4', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-              Master Material Source &amp; Solid Surface Foundry
-            </span>
-          </div>
         </div>
 
         {/* Material Dispatch Subscription Box */}
@@ -181,8 +146,8 @@ export default function SiteFooter() {
               ✓ Dispatch briefing confirmed. Specifier monograph sent to {email}.
             </div>
           ) : (
-            <form className="footer-newsletter-form" onSubmit={handleSubscribe} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <div style={{ display: 'flex', gap: '8px' }}>
+            <form className="footer-newsletter-form" onSubmit={handleSubscribe} style={{ display: 'flex', flexDirection: 'column', gap: '8px', width: '100%' }}>
+              <div className="footer-newsletter-input-group">
                 <input
                   type="email"
                   required
@@ -193,12 +158,13 @@ export default function SiteFooter() {
                   onBlur={e => (e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)')}
                   style={{
                     flex: 1,
+                    minWidth: 0,
                     background: 'rgba(0, 0, 0, 0.4)',
                     border: '1px solid rgba(255, 255, 255, 0.18)',
-                    padding: '10px 14px',
+                    padding: '12px 14px',
                     color: '#fff',
                     fontFamily: 'DM Mono, monospace',
-                    fontSize: '11px',
+                    fontSize: '12px',
                     outline: 'none',
                     transition: 'border-color 0.2s ease',
                   }}
@@ -210,7 +176,7 @@ export default function SiteFooter() {
                     background: '#e9e8e2',
                     color: '#141713',
                     border: 'none',
-                    padding: '10px 18px',
+                    padding: '12px 18px',
                     fontFamily: 'DM Mono, monospace',
                     fontSize: '11px',
                     fontWeight: 600,
@@ -219,6 +185,9 @@ export default function SiteFooter() {
                     cursor: 'pointer',
                     whiteSpace: 'nowrap',
                     opacity: isSubmitting ? 0.7 : 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
                   {isSubmitting ? 'Joining...' : 'Join Dispatch →'}
@@ -448,28 +417,6 @@ export default function SiteFooter() {
           <span>© 2026 Ace Spaces</span>
           <span>·</span>
           <span>The Raw Material Source for Architects & Designers</span>
-        </div>
-
-        {/* Live Studio Clock & Geo Coordinates */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          <span
-            suppressHydrationWarning
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '6px',
-              background: 'rgba(255, 255, 255, 0.05)',
-              padding: '4px 10px',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              color: '#b0bcb0',
-            }}
-          >
-            <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#73c991' }}></span>
-            <span suppressHydrationWarning>
-              BENGALURU STUDIO {mounted && bengaluruTime ? `${bengaluruTime} IST` : '15:00 IST'} (UTC +05:30)
-            </span>
-          </span>
-          <span>12.9716° N, 77.5946° E</span>
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '18px', flexWrap: 'wrap' }}>

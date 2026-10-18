@@ -300,6 +300,7 @@ export default function SpecimenZoomViewer({
         {/* View Mode Switcher (1:1 Texture vs In-Situ Application) - Centered at Top */}
         {hasBoth && (
           <div
+            className="specimen-viewmode-switcher"
             style={{
               position: 'absolute',
               top: '12px',
@@ -307,8 +308,10 @@ export default function SpecimenZoomViewer({
               transform: 'translateX(-50%)',
               zIndex: 10,
               display: 'flex',
+              alignItems: 'center',
               background: 'rgba(233, 232, 226, 0.94)',
               backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
               border: '1px solid var(--line)',
               padding: '2px',
               borderRadius: '100px',
@@ -324,7 +327,7 @@ export default function SpecimenZoomViewer({
                 handleResetZoom();
               }}
               style={{
-                padding: '4px 12px',
+                padding: '4px 10px',
                 fontSize: '9px',
                 fontFamily: 'DM Mono, monospace',
                 textTransform: 'uppercase',
@@ -334,6 +337,7 @@ export default function SpecimenZoomViewer({
                 color: activeView === 'texture' ? '#fff' : 'var(--ink)',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
+                whiteSpace: 'nowrap',
               }}
             >
               1:1 Texture
@@ -345,7 +349,7 @@ export default function SpecimenZoomViewer({
                 handleResetZoom();
               }}
               style={{
-                padding: '4px 12px',
+                padding: '4px 10px',
                 fontSize: '9px',
                 fontFamily: 'DM Mono, monospace',
                 textTransform: 'uppercase',
@@ -355,6 +359,7 @@ export default function SpecimenZoomViewer({
                 color: activeView === 'application' ? '#fff' : 'var(--ink)',
                 cursor: 'pointer',
                 transition: 'all 0.2s ease',
+                whiteSpace: 'nowrap',
               }}
             >
               In-Situ {inSituList.length > 1 ? `(${inSituIndex + 1}/${inSituList.length})` : ''}
@@ -364,14 +369,15 @@ export default function SpecimenZoomViewer({
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '2px',
-                  padding: '0 4px',
+                  gap: '4px',
+                  padding: '0 4px 0 6px',
                   borderLeft: '1px solid var(--line)',
-                  marginLeft: '2px',
+                  marginLeft: '4px',
                 }}
               >
                 <button
                   type="button"
+                  className="insitu-arrow-nav-btn"
                   onClick={(e) => {
                     e.stopPropagation();
                     setInSituIndex((prev) => (prev - 1 + inSituList.length) % inSituList.length);
@@ -380,19 +386,31 @@ export default function SpecimenZoomViewer({
                   title="Previous in-situ angle"
                   aria-label="Previous in-situ angle"
                   style={{
+                    width: '22px',
+                    height: '22px',
+                    minWidth: '22px',
+                    minHeight: '22px',
+                    padding: 0,
+                    margin: 0,
                     border: 'none',
-                    background: 'transparent',
-                    cursor: 'pointer',
-                    fontSize: '12px',
-                    padding: '0 3px',
+                    borderRadius: '50%',
+                    background: 'rgba(30, 33, 29, 0.12)',
                     color: 'var(--ink)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    flexShrink: 0,
                     lineHeight: 1,
                   }}
                 >
-                  ‹
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', flexShrink: 0 }}>
+                    <polyline points="15 18 9 12 15 6" />
+                  </svg>
                 </button>
                 <button
                   type="button"
+                  className="insitu-arrow-nav-btn"
                   onClick={(e) => {
                     e.stopPropagation();
                     setInSituIndex((prev) => (prev + 1) % inSituList.length);
@@ -401,16 +419,27 @@ export default function SpecimenZoomViewer({
                   title="Next in-situ angle"
                   aria-label="Next in-situ angle"
                   style={{
+                    width: '22px',
+                    height: '22px',
+                    minWidth: '22px',
+                    minHeight: '22px',
+                    padding: 0,
+                    margin: 0,
                     border: 'none',
-                    background: 'transparent',
-                    cursor: 'pointer',
-                    fontSize: '12px',
-                    padding: '0 3px',
+                    borderRadius: '50%',
+                    background: 'rgba(30, 33, 29, 0.12)',
                     color: 'var(--ink)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    flexShrink: 0,
                     lineHeight: 1,
                   }}
                 >
-                  ›
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', flexShrink: 0 }}>
+                    <polyline points="9 18 15 12 9 6" />
+                  </svg>
                 </button>
               </div>
             )}
@@ -419,9 +448,10 @@ export default function SpecimenZoomViewer({
 
         {/* Floating Zoom Controls Bar - CENTERED at Bottom */}
         <div
+          className="specimen-zoom-controls-bar"
           style={{
             position: 'absolute',
-            bottom: '14px',
+            bottom: '12px',
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 10,
@@ -602,179 +632,92 @@ export default function SpecimenZoomViewer({
             }}
           >
             {/* Top Toolbar */}
+            {/* Top Toolbar */}
             <div
-              style={{
-                padding: '16px 24px',
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                borderBottom: '1px solid rgba(255,255,255,0.12)',
-                background: 'rgba(18, 21, 18, 0.8)',
-                zIndex: 20,
-              }}
+              className="fullscreen-top-toolbar"
               onClick={(e) => e.stopPropagation()}
             >
-              <div>
-                <span
-                  style={{
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    textTransform: 'uppercase',
-                    color: '#9aa398',
-                    letterSpacing: '0.08em',
-                    display: 'block',
-                    marginBottom: '2px',
-                  }}
-                >
+              <div className="fullscreen-header-title-block">
+                <span className="fullscreen-meta-subtitle">
                   Ultra-Resolution Specimen Inspector
                 </span>
-                <h3
-                  style={{
-                    color: '#f4f3ef',
-                    fontSize: '18px',
-                    fontWeight: 400,
-                    margin: 0,
-                    letterSpacing: '-0.02em',
-                  }}
-                >
+                <h3 className="fullscreen-main-title">
                   {materialName}{' '}
-                  <span style={{ fontSize: '13px', color: '#9aa398', fontFamily: 'DM Mono, monospace' }}>
+                  <span className="fullscreen-finish-tag">
                     · {materialFinish} {materialColour ? `(${materialColour})` : ''}
                   </span>
                 </h3>
               </div>
 
-              {/* View Switcher in Fullscreen - Centered Capsule Pill */}
+              {/* View Switcher in Fullscreen */}
               {hasBoth && (
-                <div
-                  style={{
-                    display: 'flex',
-                    background: 'rgba(255, 255, 255, 0.08)',
-                    border: '1px solid rgba(255, 255, 255, 0.16)',
-                    padding: '3px',
-                    borderRadius: '100px',
-                    gap: '2px',
-                  }}
-                >
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setActiveView('texture');
-                      handleResetZoom();
-                    }}
-                    style={{
-                      padding: '5px 14px',
-                      fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
-                      textTransform: 'uppercase',
-                      border: 'none',
-                      borderRadius: '100px',
-                      background: activeView === 'texture' ? '#f4f3ef' : 'transparent',
-                      color: activeView === 'texture' ? '#181b18' : '#e0dfd5',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease',
-                    }}
-                  >
-                    1:1 Macro Texture
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setActiveView('application');
-                      handleResetZoom();
-                    }}
-                    style={{
-                      padding: '5px 14px',
-                      fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
-                      textTransform: 'uppercase',
-                      border: 'none',
-                      borderRadius: '100px',
-                      background: activeView === 'application' ? '#f4f3ef' : 'transparent',
-                      color: activeView === 'application' ? '#181b18' : '#e0dfd5',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease',
-                    }}
-                  >
-                    In-Situ Architectural {inSituList.length > 1 ? `(${inSituIndex + 1}/${inSituList.length})` : ''}
-                  </button>
-                  {activeView === 'application' && inSituList.length > 1 && (
-                    <div
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '4px',
-                        padding: '0 6px',
-                        borderLeft: '1px solid rgba(255,255,255,0.2)',
-                        marginLeft: '2px',
+                <div className="fullscreen-view-switcher-wrap">
+                  <div className="fullscreen-view-switcher-pill">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveView('texture');
+                        handleResetZoom();
                       }}
+                      className={`fullscreen-view-btn ${activeView === 'texture' ? 'is-active' : ''}`}
                     >
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setInSituIndex((prev) => (prev - 1 + inSituList.length) % inSituList.length);
-                          handleResetZoom();
-                        }}
-                        title="Previous in-situ angle"
-                        aria-label="Previous in-situ angle"
-                        style={{
-                          border: 'none',
-                          background: 'transparent',
-                          cursor: 'pointer',
-                          fontSize: '14px',
-                          padding: '0 4px',
-                          color: '#fff',
-                          lineHeight: 1,
-                        }}
-                      >
-                        ‹
-                      </button>
-                      <button
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setInSituIndex((prev) => (prev + 1) % inSituList.length);
-                          handleResetZoom();
-                        }}
-                        title="Next in-situ angle"
-                        aria-label="Next in-situ angle"
-                        style={{
-                          border: 'none',
-                          background: 'transparent',
-                          cursor: 'pointer',
-                          fontSize: '14px',
-                          padding: '0 4px',
-                          color: '#fff',
-                          lineHeight: 1,
-                        }}
-                      >
-                        ›
-                      </button>
-                    </div>
-                  )}
+                      1:1 Texture
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveView('application');
+                        handleResetZoom();
+                      }}
+                      className={`fullscreen-view-btn ${activeView === 'application' ? 'is-active' : ''}`}
+                    >
+                      In-Situ {inSituList.length > 1 ? `(${inSituIndex + 1}/${inSituList.length})` : ''}
+                    </button>
+                    {activeView === 'application' && inSituList.length > 1 && (
+                      <div className="fullscreen-insitu-arrows-box">
+                        <button
+                          type="button"
+                          className="fullscreen-arrow-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setInSituIndex((prev) => (prev - 1 + inSituList.length) % inSituList.length);
+                            handleResetZoom();
+                          }}
+                          title="Previous in-situ angle"
+                          aria-label="Previous in-situ angle"
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', flexShrink: 0 }}>
+                            <polyline points="15 18 9 12 15 6" />
+                          </svg>
+                        </button>
+                        <button
+                          type="button"
+                          className="fullscreen-arrow-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setInSituIndex((prev) => (prev + 1) % inSituList.length);
+                            handleResetZoom();
+                          }}
+                          title="Next in-situ angle"
+                          aria-label="Next in-situ angle"
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block', flexShrink: 0 }}>
+                            <polyline points="9 18 15 12 9 6" />
+                          </svg>
+                        </button>
+                      </div>
+                    )}
+                  </div>
                 </div>
               )}
 
               {/* Close Fullscreen Button */}
               <button
                 type="button"
+                className="fullscreen-close-btn"
                 onClick={() => {
                   setIsFullscreen(false);
                   handleResetZoom();
-                }}
-                style={{
-                  width: '36px',
-                  height: '36px',
-                  borderRadius: '50%',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  background: 'rgba(255,255,255,0.08)',
-                  color: '#fff',
-                  fontSize: '20px',
-                  display: 'grid',
-                  placeItems: 'center',
-                  cursor: 'pointer',
-                  transition: 'background 0.2s ease',
                 }}
                 title="Close Fullscreen (Esc)"
                 aria-label="Close fullscreen"
@@ -838,6 +781,7 @@ export default function SpecimenZoomViewer({
 
               {/* Fullscreen Bottom Controls Floating Pill - Perfectly Centered & Concentric */}
               <div
+                className="fullscreen-zoom-controls-bar"
                 style={{
                   position: 'absolute',
                   bottom: '28px',
@@ -865,9 +809,15 @@ export default function SpecimenZoomViewer({
                   onClick={handleZoomOut}
                   disabled={scale <= minScale}
                   title="Zoom Out (−)"
+                  className="fullscreen-zoom-circle-btn"
                   style={{
                     width: '32px',
                     height: '32px',
+                    minWidth: '32px',
+                    minHeight: '32px',
+                    maxWidth: '32px',
+                    maxHeight: '32px',
+                    aspectRatio: '1 / 1',
                     borderRadius: '50%',
                     background: 'rgba(255, 255, 255, 0.1)',
                     border: 'none',
@@ -875,11 +825,14 @@ export default function SpecimenZoomViewer({
                     fontSize: '18px',
                     cursor: scale <= minScale ? 'default' : 'pointer',
                     opacity: scale <= minScale ? 0.3 : 1,
-                    display: 'grid',
-                    placeItems: 'center',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     lineHeight: 1,
                     padding: 0,
                     margin: 0,
+                    flexShrink: 0,
+                    boxSizing: 'border-box',
                     transition: 'background 0.15s ease',
                   }}
                   onMouseEnter={(e) => {
@@ -894,6 +847,7 @@ export default function SpecimenZoomViewer({
 
                 {/* Range Slider with Mathematically Concentric Track Line & Centered Ball */}
                 <div
+                  className="fullscreen-zoom-slider"
                   style={{
                     position: 'relative',
                     width: '120px',
@@ -903,6 +857,7 @@ export default function SpecimenZoomViewer({
                     justifyContent: 'center',
                     userSelect: 'none',
                     margin: '0 4px',
+                    flexShrink: 1,
                   }}
                 >
                   {/* Background Track Line - Exactly at 50% vertical midline */}
@@ -987,9 +942,15 @@ export default function SpecimenZoomViewer({
                   onClick={handleZoomIn}
                   disabled={scale >= maxScale}
                   title="Zoom In (+)"
+                  className="fullscreen-zoom-circle-btn"
                   style={{
                     width: '32px',
                     height: '32px',
+                    minWidth: '32px',
+                    minHeight: '32px',
+                    maxWidth: '32px',
+                    maxHeight: '32px',
+                    aspectRatio: '1 / 1',
                     borderRadius: '50%',
                     background: 'rgba(255, 255, 255, 0.1)',
                     border: 'none',
@@ -997,11 +958,14 @@ export default function SpecimenZoomViewer({
                     fontSize: '18px',
                     cursor: scale >= maxScale ? 'default' : 'pointer',
                     opacity: scale >= maxScale ? 0.3 : 1,
-                    display: 'grid',
-                    placeItems: 'center',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     lineHeight: 1,
                     padding: 0,
                     margin: 0,
+                    flexShrink: 0,
+                    boxSizing: 'border-box',
                     transition: 'background 0.15s ease',
                   }}
                   onMouseEnter={(e) => {
@@ -1021,6 +985,7 @@ export default function SpecimenZoomViewer({
                     height: '16px',
                     background: 'rgba(255, 255, 255, 0.2)',
                     margin: '0 2px',
+                    flexShrink: 0,
                   }}
                 />
 
@@ -1030,7 +995,7 @@ export default function SpecimenZoomViewer({
                     fontSize: '11px',
                     fontFamily: 'DM Mono, monospace',
                     color: '#fff',
-                    minWidth: '40px',
+                    minWidth: '36px',
                     textAlign: 'center',
                     fontWeight: 500,
                     lineHeight: 1,
@@ -1038,6 +1003,7 @@ export default function SpecimenZoomViewer({
                     alignItems: 'center',
                     justifyContent: 'center',
                     height: '32px',
+                    flexShrink: 0,
                   }}
                 >
                   {zoomPercent}%
@@ -1049,6 +1015,7 @@ export default function SpecimenZoomViewer({
                   onClick={handleResetZoom}
                   disabled={scale <= 1.01}
                   title="Reset Zoom to 100% (0 / Esc)"
+                  className="fullscreen-zoom-reset-btn"
                   style={{
                     fontSize: '10px',
                     fontFamily: 'DM Mono, monospace',
@@ -1066,6 +1033,8 @@ export default function SpecimenZoomViewer({
                     lineHeight: 1,
                     letterSpacing: '0.04em',
                     transition: 'all 0.15s ease',
+                    whiteSpace: 'nowrap',
+                    flexShrink: 0,
                   }}
                   onMouseEnter={(e) => {
                     if (scale > 1.01) e.currentTarget.style.background = 'rgba(255, 255, 255, 0.25)';
