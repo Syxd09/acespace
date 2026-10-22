@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ProductConfiguration } from '@/data/configuratorData';
 import { buildProductMesh } from '@/lib/configurator/meshBuilder';
 import { createGlbBlobUrl } from '@/lib/configurator/glbExporter';
+import { encodeConfigToUrlParams } from '@/lib/configurator/urlParams';
 
 interface ArViewerModalProps {
   config: ProductConfiguration;
@@ -112,9 +113,12 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://acespacesindia.com';
   const effectiveConfigId = savedConfigId || config.referenceCode || config.id || 'current';
   
-  // URLs for remote consumption
-  const mobileViewerUrl = `${origin}/configurator?id=${effectiveConfigId}&launchAr=true`;
-  const remoteGlbUrl = `${origin}/api/configurator/model?id=${effectiveConfigId}`;
+  // Compact encoded parameters for Zero-DB instant mobile hydration
+  const encodedParams = encodeConfigToUrlParams(config);
+
+  // URLs for remote consumption (passes both id and direct encoded params for 100% database failover)
+  const mobileViewerUrl = `${origin}/configurator?id=${effectiveConfigId}&${encodedParams}&launchAr=true`;
+  const remoteGlbUrl = `${origin}/api/configurator/model?id=${effectiveConfigId}&${encodedParams}`;
   const directGlbUrl = localGlbUrl || remoteGlbUrl;
 
   // Google Scene Viewer intent for Android Chrome / Samsung Internet:

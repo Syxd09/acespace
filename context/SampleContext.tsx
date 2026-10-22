@@ -1,7 +1,7 @@
-﻿'use client';
+'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Material } from '@/data/materials';
+import { Material, materials } from '@/data/materials';
 
 interface SampleContextType {
   shortlist: Material[];
@@ -26,7 +26,20 @@ export function SampleProvider({ children }: { children: React.ReactNode }) {
     try {
       const saved = localStorage.getItem('ace_sample_shortlist');
       if (saved) {
-        setShortlist(JSON.parse(saved));
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) {
+          // Backward compatibility: If array contains full objects ({ slug: '...' }), extract slugs
+          const slugs: string[] = parsed.map((item) =>
+            typeof item === 'string' ? item : item?.slug
+          ).filter(Boolean);
+
+          // Dynamically hydrate full material specifications from current catalog
+          const hydrated = slugs
+            .map((slug) => materials.find((m) => m.slug === slug))
+            .filter((m): m is Material => Boolean(m));
+
+          setShortlist(hydrated);
+        }
       }
     } catch (e) {
       console.error('Error loading sample shortlist:', e);
@@ -36,7 +49,9 @@ export function SampleProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (mounted) {
       try {
-        localStorage.setItem('ace_sample_shortlist', JSON.stringify(shortlist));
+        // Store ONLY material slugs to ensure zero cache drift and minimal storage footprint
+        const slugs = shortlist.map((m) => m.slug);
+        localStorage.setItem('ace_sample_shortlist', JSON.stringify(slugs));
       } catch (e) {
         console.error('Error saving sample shortlist:', e);
       }

@@ -27,6 +27,7 @@ import {
   SINK_DEPTH_OPTIONS,
 } from '@/data/configuratorData';
 import { Configurator3DEngine, DimensionCallout, CadDimensionData } from '@/lib/configurator/webglEngine';
+import { decodeUrlParamsToConfig } from '@/lib/configurator/urlParams';
 import {
   TechnicalOptionCard,
   CornerProfileDiagram,
@@ -92,8 +93,9 @@ export default function ProductConfigurator({
     '11': false, // Project Notes & Ref
   });
 
-  // Material Palette Filter
+  // Material Palette Filter & Search
   const [materialFilter, setMaterialFilter] = useState<'all' | 'white' | 'cream' | 'grey' | 'black' | 'translucent'>('all');
+  const [materialSearch, setMaterialSearch] = useState('');
 
   // 3D Canvas & Engine References
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -149,6 +151,23 @@ export default function ProductConfigurator({
 
   // Hydrate saved configuration or auto-launch mobile AR from URL query
   useEffect(() => {
+    // 1. Instant zero-DB hydration from URL search params (guarantees phone loads even if DB is asleep)
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      const decoded = decodeUrlParamsToConfig(searchParams);
+      if (decoded && decoded.width) {
+        setConfig(prev => ({
+          ...prev,
+          ...decoded,
+        }));
+        if (autoLaunchAr) {
+          setShowArModal(true);
+        }
+        return; // Successfully hydrated without any network/database dependency!
+      }
+    }
+
+    // 2. Fallback to server ID fetch if available
     if (initialConfigId) {
       fetch(`/api/configurator?id=${encodeURIComponent(initialConfigId)}`)
         .then(res => res.json())
@@ -180,7 +199,7 @@ export default function ProductConfigurator({
     } else if (autoLaunchAr) {
       setShowArModal(true);
     }
-  }, [initialConfigId, autoLaunchAr]);
+  }, [initialConfigId, autoLaunchAr, defaultPreset.defaultConfig]);
 
   // Initialize 3D Engine
   useEffect(() => {
@@ -2826,107 +2845,433 @@ export default function ProductConfigurator({
 
             {openSections['10'] && (
               <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {/* Active Material Header Card */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '14px',
-                    padding: '12px 14px',
-                    background: '#f8f7f2',
-                    border: '1px solid rgba(30,33,29,0.15)',
-                  }}
-                >
-                  <div
-                    style={{
-                      width: '40px',
-                      height: '40px',
-                      backgroundColor: config.materialHex,
-                      border: '1px solid rgba(30,33,29,0.2)',
-                      boxShadow: 'inset 0 0 4px rgba(0,0,0,0.1)',
-                      flexShrink: 0,
-                    }}
-                  />
-                  <div>
-                    <strong style={{ fontSize: '13px', color: '#1e211d', display: 'block' }}>
-                      {config.materialName}
-                    </strong>
-                    <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268' }}>
-                      DuPont Corian® • {(config.materialFinish || 'Honed Satin Matte').toUpperCase()} FINISH
-                    </span>
+                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
+                  Select from 25 authentic DuPont™ Corian® mineral formulations. Each through-body tone wraps seamlessly across all 3D architectural planes.
+                </p>
+
+                {/* Active Material Architectural Specimen Hero */}
+                {(() => {
+                  const activeMat = CONFIGURATOR_MATERIALS.find(m => m.slug === config.materialSlug) || CONFIGURATOR_MATERIALS[1];
+                  const cleanSlug = (config.materialSlug || 'corian-glacier-white').replace(/^corian-/, '').toLowerCase().trim();
+                  const swatchSrc = activeMat?.swatchImage || `/materials/swatches/${cleanSlug}.jpg`;
+
+                  return (
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '14px',
+                        padding: '12px 14px',
+                        background: '#faf9f5',
+                        border: '1px solid rgba(30,33,29,0.18)',
+                        borderRadius: '4px',
+                        position: 'relative',
+                        boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
+                      }}
+                    >
+                      {/* Specimen Texture Tile */}
+                      <div
+                        style={{
+                          width: '52px',
+                          height: '52px',
+                          borderRadius: '4px',
+                          backgroundColor: config.materialHex,
+                          backgroundImage: `url(${swatchSrc})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          border: '1px solid rgba(30,33,29,0.22)',
+                          boxShadow: 'inset 0 0 0 1px rgba(255,255,255,0.4), 0 2px 6px rgba(0,0,0,0.12)',
+                          flexShrink: 0,
+                          position: 'relative',
+                        }}
+                      >
+                        <span
+                          style={{
+                            position: 'absolute',
+                            bottom: '2px',
+                            right: '3px',
+                            fontSize: '8px',
+                            fontFamily: 'DM Mono, monospace',
+                            fontWeight: 600,
+                            background: 'rgba(30,33,29,0.85)',
+                            color: '#ffffff',
+                            padding: '1px 3px',
+                            borderRadius: '2px',
+                            letterSpacing: '0.04em',
+                          }}
+                        >
+                          {activeMat?.code || 'CORIAN'}
+                        </span>
+                      </div>
+
+                      {/* Specimen Info */}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '2px', flexWrap: 'wrap' }}>
+                          <span
+                            style={{
+                              fontSize: '8.5px',
+                              fontFamily: 'DM Mono, monospace',
+                              textTransform: 'uppercase',
+                              letterSpacing: '0.06em',
+                              padding: '2px 5px',
+                              borderRadius: '2px',
+                              background: 'rgba(212,56,51,0.08)',
+                              color: 'var(--brand-red, #d43833)',
+                              fontWeight: 600,
+                            }}
+                          >
+                            {activeMat?.collection?.toUpperCase() || 'SOLID SERIES'}
+                          </span>
+                          <span
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '4px',
+                              fontSize: '9px',
+                              fontFamily: 'DM Mono, monospace',
+                              color: '#497349',
+                            }}
+                          >
+                            <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#497349', display: 'inline-block' }} />
+                            Live on 3D Model
+                          </span>
+                        </div>
+
+                        <strong
+                          style={{
+                            fontSize: '14px',
+                            fontFamily: 'Manrope, sans-serif',
+                            fontWeight: 700,
+                            color: 'var(--ink, #1e211d)',
+                            display: 'block',
+                            letterSpacing: '-0.02em',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                          }}
+                        >
+                          {config.materialName}
+                        </strong>
+
+                        <div style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '2px' }}>
+                          DuPont™ Corian® • {(config.materialFinish || activeMat?.finish || 'Honed Satin Matte').toUpperCase()}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
+                {/* Filter Tabs & Search Bar */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {/* Category Pills */}
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                    {[
+                      { id: 'all', label: 'All', count: CONFIGURATOR_MATERIALS.length },
+                      { id: 'white', label: 'Whites', count: CONFIGURATOR_MATERIALS.filter(m => m.category === 'white').length },
+                      { id: 'cream', label: 'Creams', count: CONFIGURATOR_MATERIALS.filter(m => m.category === 'cream').length },
+                      { id: 'grey', label: 'Greys', count: CONFIGURATOR_MATERIALS.filter(m => m.category === 'grey').length },
+                      { id: 'black', label: 'Noir & Dark', count: CONFIGURATOR_MATERIALS.filter(m => m.category === 'black').length },
+                    ].map(tab => {
+                      const isActive = materialFilter === tab.id;
+                      return (
+                        <button
+                          key={tab.id}
+                          type="button"
+                          onClick={() => setMaterialFilter(tab.id as any)}
+                          style={{
+                            padding: '6px 10px',
+                            background: isActive ? 'var(--ink, #1e211d)' : '#faf9f5',
+                            color: isActive ? '#ffffff' : 'var(--ink, #1e211d)',
+                            border: isActive ? '1px solid var(--ink, #1e211d)' : '1px solid rgba(30,33,29,0.16)',
+                            fontSize: '10px',
+                            fontFamily: 'DM Mono, monospace',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.04em',
+                            borderRadius: '3px',
+                            cursor: 'pointer',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                            gap: '5px',
+                            transition: 'all 0.15s ease',
+                          }}
+                        >
+                          <span>{tab.label}</span>
+                          <span
+                            style={{
+                              fontSize: '8.5px',
+                              opacity: isActive ? 0.75 : 0.55,
+                            }}
+                          >
+                            ({tab.count})
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Search Input */}
+                  <div style={{ position: 'relative', width: '100%' }}>
+                    <input
+                      type="text"
+                      value={materialSearch}
+                      onChange={e => setMaterialSearch(e.target.value)}
+                      placeholder="Search by name, series, or code (e.g. Terrazzo, Carrara, GW)..."
+                      style={{
+                        width: '100%',
+                        padding: '7px 28px 7px 10px',
+                        background: '#ffffff',
+                        border: '1px solid rgba(30,33,29,0.16)',
+                        borderRadius: '3px',
+                        fontFamily: 'DM Mono, monospace',
+                        fontSize: '11px',
+                        color: 'var(--ink, #1e211d)',
+                        outline: 'none',
+                        transition: 'border-color 0.15s ease',
+                      }}
+                      onFocus={e => e.currentTarget.style.borderColor = 'var(--ink, #1e211d)'}
+                      onBlur={e => e.currentTarget.style.borderColor = 'rgba(30,33,29,0.16)'}
+                    />
+                    {materialSearch && (
+                      <button
+                        type="button"
+                        onClick={() => setMaterialSearch('')}
+                        style={{
+                          position: 'absolute',
+                          right: '8px',
+                          top: '50%',
+                          transform: 'translateY(-50%)',
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          color: '#888',
+                          fontSize: '12px',
+                          padding: '2px',
+                        }}
+                      >
+                        ✕
+                      </button>
+                    )}
                   </div>
                 </div>
 
-                {/* Filter Tabs */}
-                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                  {(['all', 'white', 'cream', 'grey', 'black', 'translucent'] as const).map(tab => (
-                    <button
-                      key={tab}
-                      type="button"
-                      onClick={() => setMaterialFilter(tab)}
-                      style={{
-                        padding: '6px 10px',
-                        background: materialFilter === tab ? '#1e211d' : 'transparent',
-                        color: materialFilter === tab ? '#fff' : '#444',
-                        border: '1px solid rgba(30,33,29,0.15)',
-                        fontSize: '10px',
-                        fontFamily: 'DM Mono, monospace',
-                        textTransform: 'uppercase',
-                        cursor: 'pointer',
-                      }}
-                    >
-                      {tab}
-                    </button>
-                  ))}
-                </div>
-
                 {/* Swatches Grid */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
-                  {CONFIGURATOR_MATERIALS.filter(m => materialFilter === 'all' || m.category === materialFilter).map(mat => {
-                    const isSelected = config.materialSlug === mat.slug;
+                {(() => {
+                  const filtered = CONFIGURATOR_MATERIALS.filter(m => {
+                    const matchesCategory = materialFilter === 'all' || m.category === materialFilter;
+                    const query = materialSearch.trim().toLowerCase();
+                    const matchesSearch = !query ||
+                      m.name.toLowerCase().includes(query) ||
+                      (m.code && m.code.toLowerCase().includes(query)) ||
+                      (m.collection && m.collection.toLowerCase().includes(query)) ||
+                      (m.finish && m.finish.toLowerCase().includes(query));
+                    return matchesCategory && matchesSearch;
+                  });
+
+                  if (filtered.length === 0) {
                     return (
                       <div
-                        key={mat.id || mat.slug}
-                        onClick={() => {
-                          setConfig({
-                            ...config,
-                            materialSlug: mat.slug,
-                            materialName: mat.name,
-                            materialHex: mat.hexColor,
-                            materialFinish: mat.finish,
-                          });
-                        }}
                         style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '10px',
-                          padding: '8px 10px',
-                          border: isSelected ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.12)',
-                          background: isSelected ? 'rgba(212,56,51,0.03)' : '#fdfdfc',
-                          cursor: 'pointer',
+                          padding: '24px 16px',
+                          textAlign: 'center',
+                          background: '#faf9f5',
+                          border: '1px dashed rgba(30,33,29,0.2)',
+                          borderRadius: '4px',
                         }}
                       >
-                        <div
-                          style={{
-                            width: '28px',
-                            height: '28px',
-                            backgroundColor: mat.hexColor,
-                            border: '1px solid rgba(30,33,29,0.2)',
-                            flexShrink: 0,
-                          }}
-                        />
-                        <div>
-                          <strong style={{ fontSize: '11px', display: 'block', color: '#1e211d', lineHeight: 1.2 }}>
-                            {mat.name}
-                          </strong>
-                          <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#7a857a' }}>
-                            {mat.collection}
-                          </span>
+                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#687268', marginBottom: '8px' }}>
+                          No materials matching &ldquo;{materialSearch}&rdquo;
                         </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setMaterialSearch('');
+                            setMaterialFilter('all');
+                          }}
+                          style={{
+                            padding: '6px 12px',
+                            background: 'var(--ink, #1e211d)',
+                            color: '#ffffff',
+                            border: 'none',
+                            borderRadius: '2px',
+                            fontSize: '10px',
+                            fontFamily: 'DM Mono, monospace',
+                            textTransform: 'uppercase',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          Reset Filters
+                        </button>
                       </div>
                     );
-                  })}
-                </div>
+                  }
+
+                  return (
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                      {filtered.map(mat => {
+                        const isSelected = config.materialSlug === mat.slug;
+                        return (
+                          <div
+                            key={mat.id || mat.slug}
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => {
+                              setConfig({
+                                ...config,
+                                materialSlug: mat.slug,
+                                materialName: mat.name,
+                                materialHex: mat.hexColor,
+                                materialFinish: mat.finish,
+                              });
+                            }}
+                            onKeyDown={e => {
+                              if (e.key === 'Enter' || e.key === ' ') {
+                                e.preventDefault();
+                                setConfig({
+                                  ...config,
+                                  materialSlug: mat.slug,
+                                  materialName: mat.name,
+                                  materialHex: mat.hexColor,
+                                  materialFinish: mat.finish,
+                                });
+                              }
+                            }}
+                            title={`${mat.name} (${mat.code}) • ${mat.collection} • ${mat.finish}`}
+                            style={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              padding: '6px',
+                              border: isSelected ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.14)',
+                              borderRadius: '4px',
+                              background: isSelected ? '#ffffff' : '#faf9f5',
+                              cursor: 'pointer',
+                              position: 'relative',
+                              transition: 'all 0.15s ease',
+                              boxShadow: isSelected
+                                ? '0 0 0 1px var(--brand-red, #d43833), 0 3px 10px rgba(212,56,51,0.14)'
+                                : '0 1px 3px rgba(0,0,0,0.02)',
+                              outline: 'none',
+                              userSelect: 'none',
+                            }}
+                            onMouseEnter={e => {
+                              if (!isSelected) {
+                                e.currentTarget.style.borderColor = 'rgba(30,33,29,0.36)';
+                                e.currentTarget.style.background = '#ffffff';
+                                e.currentTarget.style.transform = 'translateY(-1px)';
+                              }
+                            }}
+                            onMouseLeave={e => {
+                              if (!isSelected) {
+                                e.currentTarget.style.borderColor = 'rgba(30,33,29,0.14)';
+                                e.currentTarget.style.background = '#faf9f5';
+                                e.currentTarget.style.transform = 'none';
+                              }
+                            }}
+                          >
+                            {/* Swatch Specimen Image */}
+                            <div
+                              style={{
+                                width: '100%',
+                                aspectRatio: '1 / 1',
+                                borderRadius: '3px',
+                                backgroundColor: mat.hexColor,
+                                backgroundImage: mat.swatchImage ? `url(${mat.swatchImage})` : undefined,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                border: '1px solid rgba(0,0,0,0.06)',
+                                boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.05)',
+                                marginBottom: '6px',
+                                position: 'relative',
+                                overflow: 'hidden',
+                              }}
+                            >
+                              {/* Specimen Code Pill (Top-Left) */}
+                              <span
+                                style={{
+                                  position: 'absolute',
+                                  top: '4px',
+                                  left: '4px',
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '7.5px',
+                                  fontWeight: 600,
+                                  background: 'rgba(255,255,255,0.92)',
+                                  color: '#1e211d',
+                                  padding: '1.5px 4px',
+                                  borderRadius: '2px',
+                                  letterSpacing: '0.04em',
+                                  boxShadow: '0 1px 3px rgba(0,0,0,0.12)',
+                                  pointerEvents: 'none',
+                                }}
+                              >
+                                {mat.code}
+                              </span>
+
+                              {/* Selected Checkmark Badge (Top-Right) */}
+                              {isSelected && (
+                                <div
+                                  style={{
+                                    position: 'absolute',
+                                    top: '4px',
+                                    right: '4px',
+                                    width: '16px',
+                                    height: '16px',
+                                    borderRadius: '50%',
+                                    background: 'var(--brand-red, #d43833)',
+                                    color: '#ffffff',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    fontSize: '9px',
+                                    fontWeight: 'bold',
+                                    boxShadow: '0 1px 4px rgba(0,0,0,0.25)',
+                                    pointerEvents: 'none',
+                                  }}
+                                >
+                                  ✓
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Swatch Title in Clean Manrope Typography */}
+                            <div style={{ textAlign: 'left', width: '100%' }}>
+                              <div
+                                style={{
+                                  fontFamily: 'Manrope, sans-serif',
+                                  fontSize: '11px',
+                                  fontWeight: isSelected ? 700 : 600,
+                                  color: isSelected ? 'var(--brand-red, #d43833)' : 'var(--ink, #1e211d)',
+                                  letterSpacing: '-0.01em',
+                                  lineHeight: 1.25,
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                }}
+                              >
+                                {mat.name}
+                              </div>
+
+                              {/* Collection / Series Monospace Subtitle */}
+                              <div
+                                style={{
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '8px',
+                                  color: '#8b948b',
+                                  marginTop: '2px',
+                                  letterSpacing: '0.03em',
+                                  textTransform: 'uppercase',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                }}
+                              >
+                                {mat.collection || mat.finish}
+                              </div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
               </div>
             )}
           </div>

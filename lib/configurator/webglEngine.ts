@@ -1,4 +1,4 @@
-import { ProductConfiguration } from '@/data/configuratorData';
+import { ProductConfiguration, CONFIGURATOR_MATERIALS } from '@/data/configuratorData';
 import { buildProductMesh, ProceduralMeshData } from './meshBuilder';
 export { buildProductMesh };
 export type { ProceduralMeshData };
@@ -218,6 +218,12 @@ export class Configurator3DEngine {
   private showDimensions = true;
   private isTurntable = false;
   private currentMesh: ProceduralMeshData | null = null;
+  private needsRender = true;
+
+  // Texture Cache & Active GPU Texture
+  private textureCache = new Map<string, WebGLTexture>();
+  private activeTexture: WebGLTexture | null = null;
+  private currentTextureUrl: string | null = null;
 
   // Callout Callbacks
   private onDimensionsUpdate?: (callouts: DimensionCallout[], cadData?: CadDimensionData) => void;
@@ -229,7 +235,12 @@ export class Configurator3DEngine {
     this.onDimensionsUpdate = onDimensionsUpdate;
     this.initWebGL();
     this.bindEvents();
+    this.requestRender();
     this.render();
+  }
+
+  public requestRender() {
+    this.needsRender = true;
   }
 
   private initWebGL() {
@@ -262,7 +273,7 @@ export class Configurator3DEngine {
     if (!this.gl) return;
     const gl = this.gl;
 
-    // Solid Surface Phong / Blinn Shader with Chrome & Metallic Details
+    // Solid Surface Triplanar Textured Blinn-Phong Shader with Chrome & Metallic Details
     const vsSource = `
       attribute vec3 aPosition;
       attribute vec3 aNormal;
@@ -274,9 +285,11 @@ export class Configurator3DEngine {
 
       varying vec3 vNormal;
       varying vec3 vWorldPos;
+      varying vec3 vLocalPos;
       varying vec4 vColor;
 
       void main() {
+        vLocalPos = aPosition;
         vec4 worldPos = uModel * vec4(aPosition, 1.0);
         vWorldPos = worldPos.xyz;
         vNormal = mat3(uModel) * aNormal;
@@ -293,9 +306,13 @@ export class Configurator3DEngine {
       uniform vec3 uLightPos2;
       uniform vec3 uCameraPos;
       uniform int uIsWireframe;
+      uniform sampler2D uTexture;
+      uniform int uHasTexture;
+      uniform float uTextureScale;
 
       varying vec3 vNormal;
       varying vec3 vWorldPos;
+      varying vec3 vLocalPos;
       varying vec4 vColor;
 
       void main() {
@@ -328,8 +345,28 @@ export class Configurator3DEngine {
           specPower = 64.0;
           specIntensity = 0.85;
         } else {
-          // Solid surface stone with ambient occlusion multiplier (vColor.rgb)
-          baseColor = uColor * vColor.rgb;
+          // Architectural Triplanar Texture Mapping for Solid Surface
+          vec3 texSample = uColor;
+          if (uHasTexture == 1) {
+            // High-contrast normal weights for crisp, architectural surface projection
+            vec3 blending = pow(abs(N), vec3(4.0));
+            float bSum = blending.x + blending.y + blending.z;
+            blending = blending / max(bSum, 0.00001);
+
+            // Texture coordinates projected along local architectural axes (in meters)
+            vec2 uvX = vLocalPos.zy * uTextureScale;
+            vec2 uvY = vLocalPos.xz * uTextureScale;
+            vec2 uvZ = vLocalPos.xy * uTextureScale;
+
+            vec4 colX = texture2D(uTexture, uvX);
+            vec4 colY = texture2D(uTexture, uvY);
+            vec4 colZ = texture2D(uTexture, uvZ);
+
+            vec4 triplanarColor = colX * blending.x + colY * blending.y + colZ * blending.z;
+            texSample = triplanarColor.rgb;
+          }
+
+          baseColor = texSample * vColor.rgb;
           specPower = 32.0;
           specIntensity = 0.22;
         }
@@ -464,8 +501,100 @@ export class Configurator3DEngine {
     const b = parseInt(hex.substring(4, 6), 16) / 255;
     this.materialRgb = [isNaN(r) ? 0.95 : r, isNaN(g) ? 0.94 : g, isNaN(b) ? 0.92 : b];
 
+    // Load and wrap real material texture onto 3D model
+    const targetMat = CONFIGURATOR_MATERIALS.find(
+      m => m.slug === config.materialSlug || m.id === config.materialSlug
+    );
+    const cleanSlug = (config.materialSlug || 'corian-glacier-white')
+      .replace(/^corian-/, '')
+      .toLowerCase()
+      .trim();
+    const texturePath = targetMat?.swatchImage || `/materials/swatches/${cleanSlug}.jpg`;
+    this.loadMaterialTexture(texturePath);
+
     this.generateProductGeometry(config);
     this.computeDimensionCallouts(config);
+    this.requestRender();
+  }
+
+  private loadMaterialTexture(url: string) {
+    if (!this.gl) return;
+    const gl = this.gl;
+
+    if (this.currentTextureUrl === url && this.activeTexture) {
+      return;
+    }
+    this.currentTextureUrl = url;
+
+    // Check cache first
+    if (this.textureCache.has(url)) {
+      this.activeTexture = this.textureCache.get(url)!;
+      this.requestRender();
+      return;
+    }
+
+    // Create 1x1 placeholder texture while image loads
+    const texture = gl.createTexture();
+    if (!texture) return;
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.texImage2D(
+      gl.TEXTURE_2D,
+      0,
+      gl.RGBA,
+      1,
+      1,
+      0,
+      gl.RGBA,
+      gl.UNSIGNED_BYTE,
+      new Uint8Array([
+        Math.round(this.materialRgb[0] * 255),
+        Math.round(this.materialRgb[1] * 255),
+        Math.round(this.materialRgb[2] * 255),
+        255,
+      ])
+    );
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+
+    this.activeTexture = texture;
+    this.textureCache.set(url, texture);
+
+    // Asynchronously load real high-res texture image
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => {
+      if (!this.gl) return;
+
+      // Resample to a Power-of-Two (512x512) canvas so WebGL 1.0 fully supports gl.REPEAT and mipmaps
+      const potCanvas = document.createElement('canvas');
+      potCanvas.width = 512;
+      potCanvas.height = 512;
+      const ctx = potCanvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, 0, 0, 512, 512);
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, potCanvas);
+        gl.generateMipmap(gl.TEXTURE_2D);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      }
+
+      this.requestRender();
+    };
+
+    img.onerror = () => {
+      console.warn('Could not load material texture from:', url);
+      if (!url.includes('glacier-white')) {
+        this.loadMaterialTexture('/materials/swatches/glacier-white.jpg');
+      }
+    };
+
+    img.src = url;
   }
 
   public getGeometryData(): ProceduralMeshData | null {
@@ -769,14 +898,17 @@ export class Configurator3DEngine {
         break;
     }
     this.cameraTarget.set(0, 0, 0);
+    this.requestRender();
   }
 
   public resetCamera() {
     this.setViewpoint('isometric');
+    this.requestRender();
   }
 
   public toggleWireframe(): boolean {
     this.isWireframe = !this.isWireframe;
+    this.requestRender();
     return this.isWireframe;
   }
 
@@ -785,11 +917,13 @@ export class Configurator3DEngine {
     if (this.currentConfig) {
       this.computeDimensionCallouts(this.currentConfig);
     }
+    this.requestRender();
     return this.showDimensions;
   }
 
   public toggleTurntable(): boolean {
     this.isTurntable = !this.isTurntable;
+    this.requestRender();
     return this.isTurntable;
   }
 
@@ -937,6 +1071,7 @@ export class Configurator3DEngine {
       this.canvas.width = width * dpr;
       this.canvas.height = height * dpr;
       this.gl.viewport(0, 0, this.canvas.width, this.canvas.height);
+      this.requestRender();
     }
   }
 
@@ -944,13 +1079,33 @@ export class Configurator3DEngine {
     if (!this.gl || !this.program) return;
     const gl = this.gl;
 
-    // Smooth camera distance interpolation (lerp)
-    this.orbitDistance += (this.targetDistance - this.orbitDistance) * 0.12;
+    // Check if camera distance lerp is still moving
+    const distDelta = Math.abs(this.targetDistance - this.orbitDistance);
+    if (distDelta > 0.001) {
+      this.orbitDistance += (this.targetDistance - this.orbitDistance) * 0.12;
+      this.needsRender = true;
+    } else {
+      this.orbitDistance = this.targetDistance;
+    }
 
     // Turntable 360 degree continuous rotation
     if (this.isTurntable && !this.isDragging) {
       this.orbitAzimuth += 0.007;
+      this.needsRender = true;
     }
+
+    // When dragging or panning, always render
+    if (this.isDragging || this.isPanning) {
+      this.needsRender = true;
+    }
+
+    // If scene is completely stationary and no updates requested, idle the GPU to save battery
+    if (!this.needsRender) {
+      this.animFrameId = requestAnimationFrame(this.render);
+      return;
+    }
+
+    this.needsRender = false;
 
     // Calculate eye coordinate from spherical orbit
     const cosElev = Math.cos(this.orbitElevation);
@@ -996,6 +1151,9 @@ export class Configurator3DEngine {
       const uLightPos2 = gl.getUniformLocation(this.program, 'uLightPos2');
       const uCameraPos = gl.getUniformLocation(this.program, 'uCameraPos');
       const uIsWireframe = gl.getUniformLocation(this.program, 'uIsWireframe');
+      const uTexture = gl.getUniformLocation(this.program, 'uTexture');
+      const uHasTexture = gl.getUniformLocation(this.program, 'uHasTexture');
+      const uTextureScale = gl.getUniformLocation(this.program, 'uTextureScale');
 
       gl.uniformMatrix4fv(uProj, false, projMatrix.elements);
       gl.uniformMatrix4fv(uView, false, viewMatrix.elements);
@@ -1006,6 +1164,17 @@ export class Configurator3DEngine {
       gl.uniform3f(uLightPos2, -3.0, 2.0, -2.5); // Cool Studio Fill
       gl.uniform3f(uCameraPos, this.cameraEye.x, this.cameraEye.y, this.cameraEye.z);
       gl.uniform1i(uIsWireframe, this.isWireframe ? 1 : 0);
+
+      // Bind active solid surface texture to texture unit 0
+      if (this.activeTexture) {
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, this.activeTexture);
+        gl.uniform1i(uTexture, 0);
+        gl.uniform1i(uHasTexture, 1);
+        gl.uniform1f(uTextureScale, 3.8); // Natural architectural scale
+      } else {
+        gl.uniform1i(uHasTexture, 0);
+      }
 
       // Attribute: Position
       const aPos = gl.getAttribLocation(this.program, 'aPosition');
@@ -1063,6 +1232,12 @@ export class Configurator3DEngine {
       this.cleanupEvents = undefined;
     }
     if (this.gl) {
+      this.textureCache.forEach(tex => {
+        if (this.gl) this.gl.deleteTexture(tex);
+      });
+      this.textureCache.clear();
+      this.activeTexture = null;
+
       if (this.vaoVertexBuffer) this.gl.deleteBuffer(this.vaoVertexBuffer);
       if (this.vaoNormalBuffer) this.gl.deleteBuffer(this.vaoNormalBuffer);
       if (this.vaoColorBuffer) this.gl.deleteBuffer(this.vaoColorBuffer);

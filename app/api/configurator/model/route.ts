@@ -4,6 +4,8 @@ import { ProductConfiguration, CONFIGURATOR_PRESETS } from '@/data/configuratorD
 import { buildProductMesh } from '@/lib/configurator/meshBuilder';
 import { exportGeometryToGlb } from '@/lib/configurator/glbExporter';
 
+import { decodeUrlParamsToConfig } from '@/lib/configurator/urlParams';
+
 export const dynamic = 'force-dynamic';
 
 const corsHeaders = {
@@ -28,17 +30,29 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const id = searchParams.get('id');
-    const presetId = searchParams.get('presetId');
+    const presetId = searchParams.get('presetId') || searchParams.get('p');
 
     let config: ProductConfiguration | undefined;
 
-    if (id) {
+    // 1. Try decoding direct zero-DB URL parameters (100% resilient across serverless cold starts)
+    const decodedFromParams = decodeUrlParamsToConfig(searchParams);
+    if (decodedFromParams && decodedFromParams.width) {
+      const basePreset = CONFIGURATOR_PRESETS.find(p => p.id === (decodedFromParams.presetId || presetId)) || CONFIGURATOR_PRESETS[0];
+      config = {
+        ...basePreset.defaultConfig,
+        ...decodedFromParams,
+      } as ProductConfiguration;
+    }
+
+    // 2. If no direct parameters, try stored record ID
+    if (!config && id) {
       const record = getSavedConfigurationById(id);
       if (record) {
         config = record.config;
       }
     }
 
+    // 3. Fallback to preset if provided
     if (!config && presetId) {
       const preset = CONFIGURATOR_PRESETS.find(p => p.id === presetId);
       if (preset) {
@@ -46,7 +60,7 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // If ID not found or not provided, fallback to default architectural vanity preset
+    // 4. Default fallback preset
     if (!config) {
       config = CONFIGURATOR_PRESETS[0]?.defaultConfig;
     }

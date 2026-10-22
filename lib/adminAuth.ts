@@ -5,10 +5,17 @@ const AUTH_SECRET = process.env.ADMIN_SECRET || 'acespaces-studio-secret-salt-20
 const PASSKEY = process.env.ADMIN_PASSKEY || 'acespaces2026';
 const SESSION_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
-if (process.env.NODE_ENV === 'production' && (!process.env.ADMIN_PASSKEY || !process.env.ADMIN_SECRET)) {
-  console.warn(
-    '[SECURITY NOTICE] Production deployment is using fallback credentials. Configure ADMIN_PASSKEY and ADMIN_SECRET in Vercel settings.'
-  );
+if (process.env.NODE_ENV === 'production') {
+  if (!process.env.ADMIN_PASSKEY || process.env.ADMIN_PASSKEY === 'acespaces2026') {
+    throw new Error(
+      '[CRITICAL SECURITY ERROR] In production, ADMIN_PASSKEY must be explicitly set to a strong custom secret in your Vercel / hosting environment variables.'
+    );
+  }
+  if (!process.env.ADMIN_SECRET || process.env.ADMIN_SECRET === 'acespaces-studio-secret-salt-2026') {
+    throw new Error(
+      '[CRITICAL SECURITY ERROR] In production, ADMIN_SECRET must be explicitly set to a custom cryptographic salt in your Vercel / hosting environment variables.'
+    );
+  }
 }
 
 export function checkPasskey(input: string): boolean {
