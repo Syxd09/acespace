@@ -104,6 +104,11 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
 
   if (!isOpen) return null;
 
+  const currentHostname = typeof window !== 'undefined' ? window.location.hostname : '';
+  const isLocalHost = currentHostname === 'localhost' || currentHostname === '127.0.0.1';
+
+  // Base origin: On localhost, remote mobile devices cannot fetch 127.0.0.1.
+  // We can default to window.location.origin or provide clear fallback options.
   const origin = typeof window !== 'undefined' ? window.location.origin : 'https://acespacesindia.com';
   const effectiveConfigId = savedConfigId || config.referenceCode || config.id || 'current';
   
@@ -112,14 +117,23 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
   const remoteGlbUrl = `${origin}/api/configurator/model?id=${effectiveConfigId}`;
   const directGlbUrl = localGlbUrl || remoteGlbUrl;
 
-  // Google Scene Viewer intent for Android Chrome / Samsung Internet
+  // Google Scene Viewer intent for Android Chrome / Samsung Internet:
+  // 1. Google Scene Viewer is hosted inside the Google App (com.google.android.googlequicksearchbox) or Google Chrome, NOT com.google.ar.core (which is only the background tracking daemon).
+  // 2. We use package=com.google.android.googlequicksearchbox with scheme=https and a universal browser fallback.
   const androidSceneViewerIntent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(
     remoteGlbUrl
   )}&mode=ar_only&resizable=false&title=${encodeURIComponent(
     `${config.title} (${config.width}x${config.depth}mm)`
-  )}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(
+  )}#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(
     mobileViewerUrl
   )};end;`;
+
+  // Generic fallback intent without forcing Google app package (lets Chrome handle arvr.google.com directly)
+  const androidGenericSceneViewerIntent = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(
+    remoteGlbUrl
+  )}&mode=ar_only&resizable=false&title=${encodeURIComponent(
+    `${config.title} (${config.width}x${config.depth}mm)`
+  )}`;
 
   // QR Code URL using trusted generator with high error correction
   const qrCodeImageSrc = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=12&format=svg&data=${encodeURIComponent(
@@ -263,40 +277,111 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
         {/* CASE A: MOBILE ANDROID */}
         {deviceType === 'android' && (
           <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-            <p style={{ fontSize: '13px', color: '#444', lineHeight: 1.5, marginBottom: '20px' }}>
-              Launch native Google Scene Viewer on your Android device to place this architectural washbasin directly on your floor or countertop with real metric 1:1 scale tracking.
+            <p style={{ fontSize: '13px', color: '#444', lineHeight: 1.5, marginBottom: '16px' }}>
+              Place this architectural solid surface washbasin in your bathroom with exact 1:1 metric scale.
             </p>
 
-            <a
-              href={androidSceneViewerIntent}
-              onClick={(e) => {
-                if (typeof window !== 'undefined' && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
-                  if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-                    e.preventDefault();
-                    alert('Google Scene Viewer requires a physical Android mobile device. On desktop, please use "Download .GLB" or scan the QR code with your phone.');
-                  }
-                }
-              }}
-              style={{
-                display: 'block',
-                width: '100%',
-                padding: '16px',
-                background: '#1e211d',
-                color: '#faf9f5',
-                textDecoration: 'none',
-                fontWeight: 600,
-                fontSize: '14px',
-                letterSpacing: '0.04em',
-                marginBottom: '12px',
-                textAlign: 'center',
-                boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
-              }}
-            >
-              Launch Google Scene Viewer (AR)
-            </a>
+            {/* Interactive 3D Model Viewer with WebXR & Scene Viewer native fallback */}
+            {modelViewerLoaded && directGlbUrl && (
+              <div style={{ marginBottom: '16px' }}>
+                {React.createElement('model-viewer', {
+                  ref: modelViewerRef,
+                  src: directGlbUrl,
+                  ar: true,
+                  'ar-modes': 'webxr scene-viewer quick-look',
+                  'ar-scale': 'fixed',
+                  'camera-controls': true,
+                  'touch-action': 'pan-y',
+                  'shadow-intensity': '1',
+                  'auto-rotate': true,
+                  style: {
+                    width: '100%',
+                    height: '240px',
+                    backgroundColor: '#f0ede6',
+                    border: '1px solid rgba(30,33,29,0.12)',
+                    marginBottom: '12px',
+                  },
+                })}
 
-            <div style={{ fontSize: '11px', color: '#777' }}>
-              Requires Google Play Services for AR (ARCore) supported browser.
+                {/* Primary WebXR AR Button (Works smoothly right inside Chrome) */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (modelViewerRef.current && modelViewerRef.current.activateAR) {
+                      modelViewerRef.current.activateAR();
+                    } else {
+                      window.location.href = androidSceneViewerIntent;
+                    }
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '16px',
+                    background: '#1e211d',
+                    color: '#faf9f5',
+                    border: 'none',
+                    fontWeight: 600,
+                    fontSize: '14px',
+                    letterSpacing: '0.04em',
+                    marginBottom: '10px',
+                    cursor: 'pointer',
+                    boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                  }}
+                >
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                    <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                    <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                  </svg>
+                  View in Your Space (1:1 AR)
+                </button>
+
+                {/* Secondary Direct Scene Viewer / External Intent Option */}
+                <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
+                  <a
+                    href={androidSceneViewerIntent}
+                    style={{
+                      flex: 1,
+                      padding: '10px 8px',
+                      background: 'rgba(30,33,29,0.06)',
+                      color: '#1e211d',
+                      border: '1px solid rgba(30,33,29,0.18)',
+                      fontSize: '11px',
+                      textDecoration: 'none',
+                      fontFamily: 'DM Mono, monospace',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    Google Scene Viewer ↗
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={handleDownloadGlb}
+                    style={{
+                      flex: 1,
+                      padding: '10px 8px',
+                      background: 'transparent',
+                      color: '#1e211d',
+                      border: '1px solid rgba(30,33,29,0.18)',
+                      fontSize: '11px',
+                      fontFamily: 'DM Mono, monospace',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Download .GLB File
+                  </button>
+                </div>
+              </div>
+            )}
+
+            <div style={{ fontSize: '11px', color: '#777', marginTop: '8px' }}>
+              Requires Chrome or Samsung Internet with ARCore (Google Play Services for AR).
             </div>
           </div>
         )}
@@ -365,13 +450,14 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
             <div
               style={{
                 display: 'inline-flex',
+                flexDirection: 'column',
                 alignItems: 'center',
                 justifyContent: 'center',
                 background: '#fff',
                 padding: '20px',
                 border: '1px solid rgba(30,33,29,0.15)',
                 boxShadow: '0 12px 28px rgba(0,0,0,0.06)',
-                marginBottom: '20px',
+                marginBottom: '16px',
               }}
             >
               <img
@@ -382,6 +468,24 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
                 style={{ display: 'block', imageRendering: 'pixelated' }}
               />
             </div>
+
+            {isLocalHost && (
+              <div
+                style={{
+                  background: 'rgba(212, 56, 51, 0.08)',
+                  border: '1px solid rgba(212, 56, 51, 0.2)',
+                  borderRadius: '4px',
+                  padding: '10px 14px',
+                  marginBottom: '16px',
+                  fontSize: '11px',
+                  color: '#9e2521',
+                  textAlign: 'left',
+                  lineHeight: 1.45,
+                }}
+              >
+                <strong>Local Development Notice:</strong> The QR code currently points to <code>localhost</code>. Because your phone is a separate device, it cannot reach your PC's <code>localhost</code> unless you open the site on your PC's Local Wi-Fi Network IP (e.g., <code>http://192.168.x.x:3000</code>) or test on the deployed public domain.
+              </div>
+            )}
 
             {/* Desktop Action Buttons */}
             <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '24px' }}>
