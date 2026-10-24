@@ -104,6 +104,7 @@ export default function AdminPage() {
     author: 'Ace Spatial Research',
     summary: '',
     image: '/assets/material-macro.png',
+    galleryImages: [] as string[],
     quote: '',
     content: 'Surfaces are more than horizontal boundaries; they are the active architectural planes that dictate light, acoustics, and human interaction.\n\nThrough continuous mineral formulation, spaces achieve unprecedented monolithic continuity without visible seams.',
     takeaways: 'Zero visible joint lines, Non-porous hygienic resilience, Monolithic architectural continuity',
@@ -1021,6 +1022,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       summary: newJournalForm.summary || newJournalForm.title,
       imageClass: 'journal-one',
       image: newJournalForm.image || '/assets/material-macro.png',
+      galleryImages: newJournalForm.galleryImages.length > 0 ? newJournalForm.galleryImages : undefined,
       quote: newJournalForm.quote || undefined,
       content: newJournalForm.content.split('\n\n').map(p => p.trim()).filter(Boolean),
       takeaways: newJournalForm.takeaways ? newJournalForm.takeaways.split(',').map(t => t.trim()).filter(Boolean) : undefined,
@@ -5721,6 +5723,110 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
                   </div>
 
+                  {/* Multiple Gallery Photos for New Essay */}
+                  <div style={{ gridColumn: '1 / -1', background: '#faf9f5', border: '1px solid #e5e4de', padding: '14px', borderRadius: '2px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
+                        Multiple Gallery Photos ({newJournalForm.galleryImages.length})
+                      </label>
+                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                        Add multiple photos for this article
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '8px', marginBottom: '10px' }}>
+                      <input
+                        type="text"
+                        id="new-gallery-photo-input"
+                        placeholder="Paste image path (e.g. /images/images/... or https://...)"
+                        style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        onKeyDown={e => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            const val = (e.currentTarget as HTMLInputElement).value.trim();
+                            if (val && !newJournalForm.galleryImages.includes(val)) {
+                              setNewJournalForm(prev => ({ ...prev, galleryImages: [...prev.galleryImages, val] }));
+                              (e.currentTarget as HTMLInputElement).value = '';
+                            }
+                          }
+                        }}
+                      />
+                      <select
+                        onChange={e => {
+                          if (e.target.value && !newJournalForm.galleryImages.includes(e.target.value)) {
+                            setNewJournalForm(prev => ({ ...prev, galleryImages: [...prev.galleryImages, e.target.value] }));
+                          }
+                          e.target.value = '';
+                        }}
+                        defaultValue=""
+                        style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                      >
+                        <option value="">+ Pick from Library...</option>
+                        {mediaAssets.map(img => (
+                          <option key={img} value={img}>{img.split('/').pop()}</option>
+                        ))}
+                      </select>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          const el = document.getElementById('new-gallery-photo-input') as HTMLInputElement;
+                          if (el && el.value.trim() && !newJournalForm.galleryImages.includes(el.value.trim())) {
+                            setNewJournalForm(prev => ({ ...prev, galleryImages: [...prev.galleryImages, el.value.trim()] }));
+                            el.value = '';
+                          }
+                        }}
+                        style={{ padding: '8px 14px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer' }}
+                      >
+                        + Add Photo
+                      </button>
+                    </div>
+
+                    {/* Preview of added photos */}
+                    {newJournalForm.galleryImages.length > 0 && (
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginTop: '10px' }}>
+                        {newJournalForm.galleryImages.map((img, idx) => (
+                          <div
+                            key={idx}
+                            style={{
+                              position: 'relative',
+                              width: '64px',
+                              height: '64px',
+                              border: '1px solid #ddd',
+                              borderRadius: '2px',
+                              overflow: 'hidden',
+                              background: '#222',
+                            }}
+                          >
+                            <Image src={img} alt={`Gallery ${idx + 1}`} fill sizes="64px" style={{ objectFit: 'cover' }} />
+                            <button
+                              type="button"
+                              onClick={() => setNewJournalForm(prev => ({ ...prev, galleryImages: prev.galleryImages.filter((_, i) => i !== idx) }))}
+                              style={{
+                                position: 'absolute',
+                                top: 2,
+                                right: 2,
+                                width: '16px',
+                                height: '16px',
+                                background: 'rgba(0,0,0,0.8)',
+                                color: '#fff',
+                                border: 'none',
+                                borderRadius: '50%',
+                                fontSize: '10px',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                padding: 0,
+                              }}
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
                   <div style={{ gridColumn: '1 / -1' }}>
                     <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Lead Summary
@@ -6038,6 +6144,341 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         onChange={e => updateJournalField(selectedJournal.slug, 'takeaways', e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
                         style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
                       />
+                    </div>
+                  </div>
+
+                  {/* ======================================================== */}
+                  {/* MULTIPLE PHOTOS / ARTICLE GALLERY MANAGEMENT             */}
+                  {/* ======================================================== */}
+                  <div style={{ marginTop: '28px', borderTop: '2px solid #1a1d19', paddingTop: '20px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '10px' }}>
+                      <div>
+                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                          Visual Documentation &amp; Monograph
+                        </div>
+                        <h4 style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', fontWeight: 500, margin: '2px 0 0 0', color: '#1a1d19' }}>
+                          Article Photo Gallery ({(selectedJournal.galleryImages || []).length} Photos)
+                        </h4>
+                      </div>
+                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#687268' }}>
+                        Visible on essay page &amp; interactive modal
+                      </span>
+                    </div>
+
+                    {/* Current Photos Grid */}
+                    {selectedJournal.galleryImages && selectedJournal.galleryImages.length > 0 ? (
+                      <div
+                        style={{
+                          display: 'grid',
+                          gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                          gap: '14px',
+                          marginBottom: '20px',
+                        }}
+                      >
+                        {selectedJournal.galleryImages.map((photoUrl, pIdx) => (
+                          <div
+                            key={`${photoUrl}-${pIdx}`}
+                            style={{
+                              background: '#faf9f5',
+                              border: '1px solid #e2dfd5',
+                              borderRadius: '2px',
+                              overflow: 'hidden',
+                              display: 'flex',
+                              flexDirection: 'column',
+                              boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
+                            }}
+                          >
+                            <div style={{ position: 'relative', height: '130px', background: '#1a1d19' }}>
+                              <Image
+                                src={photoUrl}
+                                alt={`Gallery Photo ${pIdx + 1}`}
+                                fill
+                                sizes="220px"
+                                style={{ objectFit: 'cover' }}
+                              />
+                              <span
+                                style={{
+                                  position: 'absolute',
+                                  top: '8px',
+                                  left: '8px',
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '9px',
+                                  background: 'rgba(20,23,19,0.85)',
+                                  color: '#fff',
+                                  padding: '2px 6px',
+                                  borderRadius: '2px',
+                                  letterSpacing: '0.06em',
+                                }}
+                              >
+                                FIG. {String(pIdx + 1).padStart(2, '0')}
+                              </span>
+                              {selectedJournal.image === photoUrl && (
+                                <span
+                                  style={{
+                                    position: 'absolute',
+                                    top: '8px',
+                                    right: '8px',
+                                    fontFamily: 'DM Mono, monospace',
+                                    fontSize: '9px',
+                                    background: '#73c991',
+                                    color: '#1a1d19',
+                                    fontWeight: 700,
+                                    padding: '2px 6px',
+                                    borderRadius: '2px',
+                                  }}
+                                >
+                                  HERO
+                                </span>
+                              )}
+                            </div>
+
+                            <div style={{ padding: '10px', display: 'flex', flexDirection: 'column', gap: '8px', flex: 1, justifyContent: 'space-between' }}>
+                              <span
+                                title={photoUrl}
+                                style={{
+                                  fontFamily: 'DM Mono, monospace',
+                                  fontSize: '10px',
+                                  color: '#555',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                }}
+                              >
+                                {photoUrl.split('/').pop()}
+                              </span>
+
+                              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '4px', borderTop: '1px solid #eee', paddingTop: '8px' }}>
+                                <div style={{ display: 'flex', gap: '3px' }}>
+                                  <button
+                                    type="button"
+                                    disabled={pIdx === 0}
+                                    onClick={() => {
+                                      const arr = [...(selectedJournal.galleryImages || [])];
+                                      const temp = arr[pIdx];
+                                      arr[pIdx] = arr[pIdx - 1];
+                                      arr[pIdx - 1] = temp;
+                                      updateJournalField(selectedJournal.slug, 'galleryImages', arr);
+                                    }}
+                                    title="Move Left"
+                                    style={{
+                                      padding: '3px 7px',
+                                      background: pIdx === 0 ? '#eee' : '#fff',
+                                      border: '1px solid #ccc',
+                                      fontSize: '10px',
+                                      cursor: pIdx === 0 ? 'not-allowed' : 'pointer',
+                                    }}
+                                  >
+                                    ◀
+                                  </button>
+                                  <button
+                                    type="button"
+                                    disabled={pIdx === (selectedJournal.galleryImages || []).length - 1}
+                                    onClick={() => {
+                                      const arr = [...(selectedJournal.galleryImages || [])];
+                                      const temp = arr[pIdx];
+                                      arr[pIdx] = arr[pIdx + 1];
+                                      arr[pIdx + 1] = temp;
+                                      updateJournalField(selectedJournal.slug, 'galleryImages', arr);
+                                    }}
+                                    title="Move Right"
+                                    style={{
+                                      padding: '3px 7px',
+                                      background: pIdx === (selectedJournal.galleryImages || []).length - 1 ? '#eee' : '#fff',
+                                      border: '1px solid #ccc',
+                                      fontSize: '10px',
+                                      cursor: pIdx === (selectedJournal.galleryImages || []).length - 1 ? 'not-allowed' : 'pointer',
+                                    }}
+                                  >
+                                    ▶
+                                  </button>
+                                </div>
+
+                                <div style={{ display: 'flex', gap: '4px' }}>
+                                  {selectedJournal.image !== photoUrl && (
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        updateJournalField(selectedJournal.slug, 'image', photoUrl);
+                                        showToast('✓ Set as article hero image', 'success');
+                                      }}
+                                      title="Set as Hero Cover Image"
+                                      style={{
+                                        padding: '3px 6px',
+                                        background: '#fff',
+                                        border: '1px solid #ccc',
+                                        fontFamily: 'DM Mono, monospace',
+                                        fontSize: '9px',
+                                        cursor: 'pointer',
+                                      }}
+                                    >
+                                      Make Hero
+                                    </button>
+                                  )}
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const arr = (selectedJournal.galleryImages || []).filter((_, i) => i !== pIdx);
+                                      updateJournalField(selectedJournal.slug, 'galleryImages', arr.length > 0 ? arr : undefined);
+                                      showToast('Photo removed from article gallery.', 'info');
+                                    }}
+                                    title="Remove Photo"
+                                    style={{
+                                      padding: '3px 7px',
+                                      background: '#ffebee',
+                                      color: '#c62828',
+                                      border: '1px solid #ffcdd2',
+                                      fontSize: '10px',
+                                      cursor: 'pointer',
+                                    }}
+                                  >
+                                    ✕
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <div
+                        style={{
+                          background: '#faf9f5',
+                          border: '1px dashed #ccc',
+                          padding: '24px',
+                          textAlign: 'center',
+                          marginBottom: '16px',
+                        }}
+                      >
+                        <div style={{ fontSize: '24px', marginBottom: '6px' }}>📷</div>
+                        <div style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, color: '#1a1d19' }}>
+                          No gallery photos attached yet
+                        </div>
+                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', marginTop: '2px' }}>
+                          Add photos below to create an architectural monograph gallery for this essay.
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Add Photo Tools */}
+                    <div style={{ background: '#f8f7f2', border: '1px solid #e0ded6', padding: '16px', borderRadius: '2px' }}>
+                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600, marginBottom: '8px' }}>
+                        + Add Photo to Article Gallery
+                      </div>
+
+                      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '10px' }}>
+                        <input
+                          type="text"
+                          id={`add-gallery-single-${selectedJournal.slug}`}
+                          placeholder="Paste image URL or path (/images/images/...)"
+                          style={{ flex: 1, minWidth: '220px', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          onKeyDown={e => {
+                            if (e.key === 'Enter') {
+                              e.preventDefault();
+                              const input = e.currentTarget as HTMLInputElement;
+                              const val = input.value.trim();
+                              if (val) {
+                                const current = selectedJournal.galleryImages || [];
+                                if (!current.includes(val)) {
+                                  updateJournalField(selectedJournal.slug, 'galleryImages', [...current, val]);
+                                  input.value = '';
+                                  showToast('✓ Photo added to article gallery', 'success');
+                                }
+                              }
+                            }
+                          }}
+                        />
+
+                        <select
+                          onChange={e => {
+                            if (e.target.value) {
+                              const current = selectedJournal.galleryImages || [];
+                              if (!current.includes(e.target.value)) {
+                                updateJournalField(selectedJournal.slug, 'galleryImages', [...current, e.target.value]);
+                                showToast('✓ Photo added from library', 'success');
+                              }
+                            }
+                            e.target.value = '';
+                          }}
+                          defaultValue=""
+                          style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        >
+                          <option value="">Choose from Media Assets...</option>
+                          {mediaAssets.map(img => (
+                            <option key={img} value={img}>{img.split('/').pop()}</option>
+                          ))}
+                        </select>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const input = document.getElementById(`add-gallery-single-${selectedJournal.slug}`) as HTMLInputElement;
+                            if (input && input.value.trim()) {
+                              const val = input.value.trim();
+                              const current = selectedJournal.galleryImages || [];
+                              if (!current.includes(val)) {
+                                updateJournalField(selectedJournal.slug, 'galleryImages', [...current, val]);
+                                input.value = '';
+                                showToast('✓ Photo added to article gallery', 'success');
+                              }
+                            }
+                          }}
+                          style={{
+                            padding: '8px 16px',
+                            background: '#1a1d19',
+                            color: '#fff',
+                            border: 'none',
+                            fontFamily: 'DM Mono, monospace',
+                            fontSize: '11px',
+                            cursor: 'pointer',
+                          }}
+                        >
+                          + Add Photo
+                        </button>
+                      </div>
+
+                      {/* Bulk Add Photos Option */}
+                      <details style={{ marginTop: '8px', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+                        <summary style={{ cursor: 'pointer', color: '#687268' }}>
+                          Bulk Add Multiple Photos (Paste multiple URLs)
+                        </summary>
+                        <div style={{ marginTop: '8px' }}>
+                          <textarea
+                            id={`add-gallery-bulk-${selectedJournal.slug}`}
+                            rows={3}
+                            placeholder="Paste multiple image URLs (one per line, or comma separated)"
+                            style={{ width: '100%', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const textarea = document.getElementById(`add-gallery-bulk-${selectedJournal.slug}`) as HTMLInputElement;
+                              if (textarea && textarea.value.trim()) {
+                                const newUrls = textarea.value
+                                  .split(/[\n,]+/)
+                                  .map(s => s.trim())
+                                  .filter(Boolean);
+                                const current = selectedJournal.galleryImages || [];
+                                const combined = Array.from(new Set([...current, ...newUrls]));
+                                updateJournalField(selectedJournal.slug, 'galleryImages', combined);
+                                textarea.value = '';
+                                showToast(`✓ Added ${combined.length - current.length} new photos to gallery`, 'success');
+                              }
+                            }}
+                            style={{
+                              marginTop: '6px',
+                              padding: '6px 14px',
+                              background: '#2a3029',
+                              color: '#fff',
+                              border: 'none',
+                              fontFamily: 'DM Mono, monospace',
+                              fontSize: '10px',
+                              cursor: 'pointer',
+                            }}
+                          >
+                            Add All Photos →
+                          </button>
+                        </div>
+                      </details>
                     </div>
                   </div>
 

@@ -72,11 +72,25 @@ export function getSiteContent(): SiteContent {
         resolvedSectors = defaultSectors.map(def => ({ ...def, ...(parsedMap.get(def.id) || {}) }));
       }
 
+      let resolvedJournals = defaultJournalArticles;
+      if (Array.isArray(parsed.journalArticles) && parsed.journalArticles.length > 0) {
+        const defaultMap = new Map(defaultJournalArticles.map(j => [j.slug, j]));
+        resolvedJournals = parsed.journalArticles.map((j: any) => {
+          const def = defaultMap.get(j.slug);
+          return {
+            ...j,
+            galleryImages: (Array.isArray(j.galleryImages) && j.galleryImages.length > 0)
+              ? j.galleryImages
+              : (def?.galleryImages || []),
+          };
+        });
+      }
+
       return {
         heroSlides: parsed.heroSlides || defaultHeroSlides,
         materials: resolvedMaterials,
         applicationSectors: resolvedSectors,
-        journalArticles: parsed.journalArticles || defaultJournalArticles,
+        journalArticles: resolvedJournals,
         projects: parsed.projects || defaultProjects,
         studioContact: parsed.studioContact || defaultStudioContact,
         about: parsed.about || defaultAboutContent,

@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { journalArticles as defaultArticles, JournalArticle } from '@/data/journal';
 import { getSiteContent } from '@/data/contentStore';
+import JournalGallery from '@/components/JournalGallery';
 
 export const dynamic = 'force-dynamic';
 
@@ -229,6 +230,11 @@ export default function JournalArticlePage({ params }: { params: { slug: string 
             </p>
           ))}
         </div>
+
+        {/* Multiple Photos / Visual Gallery */}
+        {article.galleryImages && article.galleryImages.length > 0 && (
+          <JournalGallery images={article.galleryImages} articleTitle={article.title} />
+        )}
 
         {/* Key Architectural Takeaways Box */}
         {article.takeaways && article.takeaways.length > 0 && (

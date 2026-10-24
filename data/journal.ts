@@ -8,6 +8,7 @@ export interface JournalArticle {
   summary: string;
   imageClass: string;
   image: string;
+  galleryImages?: string[];
   quote?: string;
   content: string[];
   takeaways?: string[];
@@ -24,6 +25,12 @@ export const journalArticles: JournalArticle[] = [
     summary: 'The precision of an edge defines how light transitions across planes and how a volume is experienced in an interior.',
     imageClass: 'journal-one',
     image: '/assets/material-macro.png',
+    galleryImages: [
+      '/images/images/app_residential_calacatta_greige_1.jpg',
+      '/images/images/app_commercial_grinds_stonique.jpg',
+      '/images/images/application_artista-drift.jpg',
+      '/images/images/application_travertine-firenze.jpg',
+    ],
     quote: 'An edge is not where a material simply stops; it is where the relationship between light, shadow, and touch is declared.',
     content: [
       'In architectural joinery, surfaces are often judged by their faces-their color, vein structure, and specular reflection. But in truth, it is the edge that reveals the true integrity of the craft.',
@@ -46,6 +53,11 @@ export const journalArticles: JournalArticle[] = [
     summary: 'When two planes meet without interruption, material ceases to feel assembled and begins to feel carved from continuous geological bedrock.',
     imageClass: 'journal-two',
     image: '/assets/hero-ace.png',
+    galleryImages: [
+      '/images/images/app_commercial_provence_nuwood.jpg',
+      '/images/images/app_commercial_bleached_nuwood.jpg',
+      '/images/images/application_creme_royale_1.jpg',
+    ],
     quote: 'Eliminating the seam is not merely a technical triumph-it is a visual liberation from modular limitations.',
     content: [
       'Traditional natural stone and composite slabs are inherently bound by quarry sizes and transport limitations. Grout lines and silicone expansion joints interrupt the eye, compartmentalizing architecture into discrete tiles and slabs.',

@@ -832,12 +832,12 @@ export default function ProductConfigurator({
               background: '#f0eee8',
               border: '1px solid var(--line, rgba(30,33,29,0.15))',
               borderLeft: '3px solid var(--brand-red, #d43833)',
-              padding: '16px 20px',
+              padding: '14px 18px',
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#737e73' }}>
-                Architectural Preset
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#737e73', fontWeight: 600 }}>
+                Base Model
               </span>
               <button
                 type="button"
@@ -852,7 +852,7 @@ export default function ProductConfigurator({
                   textDecoration: 'underline',
                 }}
               >
-                Reset Preset
+                Reset Defaults
               </button>
             </div>
 
@@ -865,56 +865,10 @@ export default function ProductConfigurator({
                 meta: `${p.defaultConfig.width}×${p.defaultConfig.depth}mm`,
               }))}
             />
-            <p style={{ margin: '8px 0 0 0', fontSize: '11px', color: '#687268', lineHeight: 1.45 }}>
-              {CONFIGURATOR_PRESETS.find(p => p.id === config.presetId)?.description}
-            </p>
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 01: TUTORIAL & STUDIO GUIDANCE                  */}
-          {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
-            <button
-              type="button"
-              onClick={() => toggleSection('01')}
-              style={{
-                width: '100%',
-                padding: '16px 20px',
-                background: 'none',
-                border: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                cursor: 'pointer',
-                textAlign: 'left',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>01</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Studio Navigation &amp; Fabrication Tolerances
-                </span>
-              </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['01'] ? '▲' : '▼'}</span>
-            </button>
-
-            {openSections['01'] && (
-              <div style={{ padding: '0 20px 20px', borderTop: '1px solid #f0eee8', fontSize: '12px', color: '#525a51', lineHeight: 1.65 }}>
-                <p style={{ marginTop: '12px' }}>
-                  • <strong>3D Interaction:</strong> Drag anywhere with left-click to orbit in 360°. Right-click (or two fingers) pans the spatial coordinates. Scroll or pinch to zoom.
-                </p>
-                <p>
-                  • <strong>CNC Calibration:</strong> Solid surface benchtops are CNC cut with ±0.5mm precision and molecularly welded with invisible chemical seams.
-                </p>
-                <p>
-                  • <strong>Quotation Flow:</strong> Displayed prices are real-time engineering estimates. Final quotations include CAD shop drawings and factory review.
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* ======================================================= */}
-          {/* SECTION 02: PRODUCT DIMENSIONS                          */}
+          {/* SECTION 01: PRODUCT DIMENSIONS                          */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -933,25 +887,22 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>02</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>01</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Product Dimensions &amp; Slab Thickness
+                  Dimensions
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['02'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['02'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                {/* Vanity Width Control matching Image 3 */}
+              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                {/* Width Control */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                        VANITY WIDTH
-                      </label>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '14px', height: '14px', borderRadius: '50%', border: '1px solid #888', fontSize: '9px', fontFamily: 'serif', color: '#666', cursor: 'help' }}>i</span>
-                    </div>
+                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                      Width
+                    </label>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <input
                         type="number"
@@ -982,21 +933,18 @@ export default function ProductConfigurator({
                     onChange={e => setConfig({ ...config, width: Number(e.target.value) })}
                     style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '3px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '3px' }}>
                     <span>380mm</span>
                     <span>2200mm</span>
                   </div>
                 </div>
 
-                {/* Vanity Depth Control matching Image 3 */}
+                {/* Depth Control */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                      <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                        VANITY DEPTH
-                      </label>
-                      <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '14px', height: '14px', borderRadius: '50%', border: '1px solid #888', fontSize: '9px', fontFamily: 'serif', color: '#666', cursor: 'help' }}>i</span>
-                    </div>
+                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                      Depth
+                    </label>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                       <input
                         type="number"
@@ -1027,37 +975,23 @@ export default function ProductConfigurator({
                     onChange={e => setConfig({ ...config, depth: Number(e.target.value) })}
                     style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                   />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '3px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '3px' }}>
                     <span>270mm</span>
                     <span>700mm</span>
                   </div>
                 </div>
 
-                {/* Standard Slab Thickness (12mm Standard - Non-customizable) */}
-                <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                    Solid Body Thickness
-                  </label>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.12)', borderRadius: '2px' }}>
-                    <div>
-                      <div style={{ fontSize: '14px', fontWeight: 600, fontFamily: 'DM Mono, monospace', color: '#1e211d' }}>
-                        12 mm
-                      </div>
-                      <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>
-                        Standard architectural calibrated solid surface for all sinks &amp; countertops
-                      </div>
-                    </div>
-                    <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', background: '#1e211d', color: '#fff', padding: '3px 8px', borderRadius: '2px', letterSpacing: '0.04em' }}>
-                      STANDARD FIXED
-                    </span>
-                  </div>
+                {/* Slab Thickness Badge */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '3px' }}>
+                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#667066' }}>Slab Thickness</span>
+                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: 600, color: '#1e211d' }}>12 mm Solid Surface</span>
                 </div>
               </div>
             )}
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 03: CORNER PROFILES (LEFT / RIGHT)              */}
+          {/* SECTION 02: CORNER PROFILES                             */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -1076,35 +1010,23 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>02</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Corner Profiles (Left / Right)
+                  Corners
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['03'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['03'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
-                  Configure independent CNC profiles for exposed countertop corners. Radius and chamfer adjustments render in real time.
-                </p>
-
+              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* LEFT CORNER */}
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                      LEFT CORNER
-                    </label>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5">
-                      <rect x="4" y="4" width="16" height="16" rx="2" />
-                      <line x1="8" y1="8" x2="16" y2="8" />
-                      <line x1="8" y1="12" x2="16" y2="12" />
-                      <line x1="8" y1="16" x2="12" y2="16" />
-                    </svg>
-                  </div>
+                  <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
+                    Left Corner
+                  </label>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '14px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '12px' }}>
                     {CORNER_TREATMENT_OPTIONS.map(opt => {
                       const isAct = (config.cornerConfig?.leftType || 'sharp') === opt.id;
                       return (
@@ -1139,6 +1061,7 @@ export default function ProductConfigurator({
                             justifyContent: 'space-between',
                             minHeight: '74px',
                             boxSizing: 'border-box',
+                            borderRadius: '2px',
                           }}
                         >
                           <CornerProfileDiagram
@@ -1164,12 +1087,12 @@ export default function ProductConfigurator({
                     })}
                   </div>
 
-                  {/* Dynamic Active Slider matching Image 3 */}
+                  {/* Left Corner Adjustments */}
                   {config.cornerConfig?.leftType === 'shift' && (
                     <div style={{ marginTop: '8px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                          SHIFT LEFT CORNER
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          Left Corner Shift
                         </span>
                         <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           {config.cornerConfig.leftShift || 50}mm
@@ -1207,8 +1130,8 @@ export default function ProductConfigurator({
                   {config.cornerConfig?.leftType === 'fillet' && (
                     <div style={{ marginTop: '8px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                          FILLET RADIUS
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          Left Curve Radius
                         </span>
                         <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           R{config.cornerConfig.leftRadius || 25} mm
@@ -1246,8 +1169,8 @@ export default function ProductConfigurator({
                   {config.cornerConfig?.leftType === 'chamfer' && (
                     <div style={{ marginTop: '8px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                          CHAMFER BEVEL
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          Left Bevel Size
                         </span>
                         <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           C{config.cornerConfig.leftChamfer || 20} mm
@@ -1283,23 +1206,15 @@ export default function ProductConfigurator({
                   )}
                 </div>
 
-                <hr style={{ border: 'none', borderTop: '1px solid #e8e6e1', margin: '6px 0' }} />
+                <hr style={{ border: 'none', borderTop: '1px solid #e8e6e1', margin: '4px 0' }} />
 
                 {/* RIGHT CORNER */}
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                      RIGHT CORNER
-                    </label>
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#666" strokeWidth="1.5">
-                      <rect x="4" y="4" width="16" height="16" rx="2" />
-                      <line x1="8" y1="8" x2="16" y2="8" />
-                      <line x1="8" y1="12" x2="16" y2="12" />
-                      <line x1="8" y1="16" x2="12" y2="16" />
-                    </svg>
-                  </div>
+                  <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
+                    Right Corner
+                  </label>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '14px' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px', marginBottom: '12px' }}>
                     {CORNER_TREATMENT_OPTIONS.map(opt => {
                       const isAct = (config.cornerConfig?.rightType || 'sharp') === opt.id;
                       return (
@@ -1334,6 +1249,7 @@ export default function ProductConfigurator({
                             justifyContent: 'space-between',
                             minHeight: '74px',
                             boxSizing: 'border-box',
+                            borderRadius: '2px',
                           }}
                         >
                           <CornerProfileDiagram
@@ -1359,12 +1275,12 @@ export default function ProductConfigurator({
                     })}
                   </div>
 
-                  {/* Dynamic Active Slider matching Image 3 */}
+                  {/* Right Corner Adjustments */}
                   {config.cornerConfig?.rightType === 'shift' && (
                     <div style={{ marginTop: '8px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                          SHIFT RIGHT CORNER
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          Right Corner Shift
                         </span>
                         <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           {config.cornerConfig.rightShift || 50}mm
@@ -1402,8 +1318,8 @@ export default function ProductConfigurator({
                   {config.cornerConfig?.rightType === 'fillet' && (
                     <div style={{ marginTop: '8px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                          FILLET RADIUS
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          Right Curve Radius
                         </span>
                         <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           R{config.cornerConfig.rightRadius || 25} mm
@@ -1441,8 +1357,8 @@ export default function ProductConfigurator({
                   {config.cornerConfig?.rightType === 'chamfer' && (
                     <div style={{ marginTop: '8px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                          CHAMFER BEVEL
+                        <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                          Right Bevel Size
                         </span>
                         <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           C{config.cornerConfig.rightChamfer || 20} mm
@@ -1482,7 +1398,7 @@ export default function ProductConfigurator({
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 04: BASIN & SINK INTEGRATION                    */}
+          {/* SECTION 03: BASIN & SINK                                */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -1501,24 +1417,21 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Basin &amp; Sink Integration
+                  Sink &amp; Basin
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['04'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['04'] && (
-              <div style={{ padding: '14px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* 1. TAP LOCATION */}
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
-                    <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                      TAP LOCATION
-                    </label>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '14px', height: '14px', borderRadius: '50%', border: '1px solid #bbb', fontSize: '9px', color: '#777', fontFamily: 'serif' }}>i</span>
-                  </div>
+                  <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
+                    Tap Hole Position
+                  </label>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
                     {[
                       { id: 'top-mounted', label: 'Top' },
@@ -1558,12 +1471,9 @@ export default function ProductConfigurator({
 
                 {/* 2. SINK INTEGRATION TYPE */}
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
-                    <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                      SINK INTEGRATION TYPE
-                    </label>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '14px', height: '14px', borderRadius: '50%', border: '1px solid #bbb', fontSize: '9px', color: '#777', fontFamily: 'serif' }}>i</span>
-                  </div>
+                  <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
+                    Mount Style
+                  </label>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
                     {[
                       { id: 'integrated', label: 'IN', title: 'IN - Seamless Integrated Coved Basin (Flush into deck)' },
@@ -1609,7 +1519,7 @@ export default function ProductConfigurator({
                   </div>
                 </div>
 
-                {/* 3. SINK MODEL SELECTION (Store inventory + Customizable troughs) */}
+                {/* 3. SINK MODEL SELECTION */}
                 {config.sinkIntegration !== 'none' && (() => {
                   const currentBasin = AVAILABLE_BASINS.find(b => b.id === config.basinModelId) ||
                     AVAILABLE_BASINS.find(b => b.code.toLowerCase() === (config.basinModelId || '').toLowerCase()) ||
@@ -1624,7 +1534,6 @@ export default function ProductConfigurator({
                       updates.sinkIntegration = 'integrated';
                     }
                     if (!item.isCustomizable) {
-                      // Store model dimensions are fixed and cannot be customized
                       updates.basinWidthMm = item.width;
                       updates.basinDepthMm = item.depth;
                       updates.basinHeightMm = item.height;
@@ -1641,19 +1550,10 @@ export default function ProductConfigurator({
                   return (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                       <div>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                          <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                            SINK MODEL SELECTION
-                          </label>
-                          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888' }}>
-                            12 Store Models • 3 Customizable
-                          </span>
-                        </div>
-
                         {/* STORE MODELS: Oval & Capsule */}
                         <div style={{ marginBottom: '12px' }}>
                           <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
-                            Store Inventory — Oval &amp; Capsule
+                            Oval &amp; Capsule
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
                             {AVAILABLE_BASINS.filter(b => b.category === 'oval').map(item => {
@@ -1692,7 +1592,7 @@ export default function ProductConfigurator({
                         {/* STORE MODELS: Circular */}
                         <div style={{ marginBottom: '12px' }}>
                           <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
-                            Store Inventory — Circular
+                            Circular
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px' }}>
                             {AVAILABLE_BASINS.filter(b => b.category === 'circular').map(item => {
@@ -1731,7 +1631,7 @@ export default function ProductConfigurator({
                         {/* STORE MODELS: Square & Rectangular */}
                         <div style={{ marginBottom: '14px' }}>
                           <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
-                            Store Inventory — Square &amp; Rectangular
+                            Square &amp; Rectangular
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
                             {AVAILABLE_BASINS.filter(b => b.category === 'square').map(item => {
@@ -1771,10 +1671,10 @@ export default function ProductConfigurator({
                         <div>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
                             <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                              Customizable Architectural Troughs (Custom H, W, D)
+                              Custom Sinks (Any Size)
                             </span>
                             <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', background: 'rgba(212,56,51,0.08)', color: 'var(--brand-red, #d43833)', padding: '1px 5px', borderRadius: '2px' }}>
-                              Parametric
+                              Customizable
                             </span>
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
@@ -1803,7 +1703,7 @@ export default function ProductConfigurator({
                                     {item.code}
                                   </span>
                                   <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: isAct ? 'var(--brand-red, #d43833)' : '#666' }}>
-                                    Custom W / D / H
+                                    Custom Size
                                   </span>
                                 </div>
                               );
@@ -1813,46 +1713,20 @@ export default function ProductConfigurator({
                       </div>
 
                       {/* 4. SINK SPECIFICATION / SIZE DISPLAY */}
-                      {/* CASE 1: FIXED STORE MODEL (Depth & Size CANNOT be customized) */}
+                      {/* CASE 1: FIXED STORE MODEL */}
                       {!isCustom && (
-                        <div style={{ background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.12)', padding: '14px 16px', borderRadius: '2px' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                              STORE MODEL SPECIFICATIONS ({currentBasin.name})
-                            </span>
-                            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', background: '#1e211d', color: '#fff', padding: '2px 8px', borderRadius: '2px', letterSpacing: '0.04em' }}>
-                              FIXED STORE MODEL
-                            </span>
-                          </div>
-
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginTop: '10px' }}>
-                            <div style={{ background: '#ffffff', border: '1px solid #e0ded7', padding: '10px 8px', textAlign: 'center' }}>
-                              <div style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#777', textTransform: 'uppercase' }}>WIDTH</div>
-                              <div style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', fontWeight: 700, color: '#1e211d', marginTop: '2px' }}>
-                                {currentBasin.width} mm
-                              </div>
+                        <div style={{ background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', padding: '10px 14px', borderRadius: '4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <div>
+                            <div style={{ fontSize: '12px', fontFamily: 'Manrope, sans-serif', fontWeight: 600, color: '#1e211d' }}>
+                              {currentBasin.name} ({currentBasin.code})
                             </div>
-                            <div style={{ background: '#ffffff', border: '1px solid #e0ded7', padding: '10px 8px', textAlign: 'center' }}>
-                              <div style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#777', textTransform: 'uppercase' }}>DEPTH (F-B)</div>
-                              <div style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', fontWeight: 700, color: '#1e211d', marginTop: '2px' }}>
-                                {currentBasin.depth} mm
-                              </div>
-                            </div>
-                            <div style={{ background: '#ffffff', border: '1px solid #e0ded7', padding: '10px 8px', textAlign: 'center' }}>
-                              <div style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#777', textTransform: 'uppercase' }}>BOWL DEPTH (H)</div>
-                              <div style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', fontWeight: 700, color: '#1e211d', marginTop: '2px' }}>
-                                {currentBasin.height} mm
-                              </div>
+                            <div style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '2px' }}>
+                              {currentBasin.width} × {currentBasin.depth} × {currentBasin.height} mm · Standard Size
                             </div>
                           </div>
-
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '12px', paddingTop: '10px', borderTop: '1px solid #e8e5dc', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#555' }}>
-                            <span>Thickness: 12mm Standard</span>
-                            <span style={{ color: '#888' }}>Pre-molded Store Inventory</span>
-                          </div>
-                          <div style={{ marginTop: '6px', fontSize: '11px', color: '#888', fontStyle: 'italic', lineHeight: 1.4 }}>
-                            * Depth and dimensions are fixed factory standards for this model and cannot be customized.
-                          </div>
+                          <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', background: '#1e211d', color: '#fff', padding: '3px 8px', borderRadius: '2px' }}>
+                            Standard
+                          </span>
                         </div>
                       )}
 
@@ -1861,10 +1735,10 @@ export default function ProductConfigurator({
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', background: '#faf9f6', padding: '14px', border: '1px solid rgba(212,56,51,0.2)', borderRadius: '2px' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
-                              CUSTOM DIMENSION CONTROLS ({currentBasin.code})
+                              Custom Dimensions ({currentBasin.code})
                             </span>
-                            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
-                              CUSTOMIZABLE H / W / D
+                            <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
+                              Custom Sizes
                             </span>
                           </div>
 
@@ -1872,7 +1746,7 @@ export default function ProductConfigurator({
                           <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                               <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                                SINK WIDTH (SPAN)
+                                Width
                               </label>
                               <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                                 {config.basinWidthMm || currentBasin.width} mm
@@ -1907,7 +1781,7 @@ export default function ProductConfigurator({
                           <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                               <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                                SINK DEPTH (FRONT-TO-BACK)
+                                Depth
                               </label>
                               <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                                 {config.basinDepthMm || currentBasin.depth} mm
@@ -1974,7 +1848,7 @@ export default function ProductConfigurator({
                           <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                               <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                                BOWL INTERNAL DEPTH / FALL HEIGHT (H)
+                                Bowl Depth
                               </label>
                               <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                                 {config.basinHeightMm || currentBasin.height} mm
@@ -2013,7 +1887,7 @@ export default function ProductConfigurator({
                             <>
                               <div style={{ marginTop: '4px' }}>
                                 <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                                  WDT TROUGH SLOPE ORIENTATION
+                                  Slope Direction
                                 </label>
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
                                   <button
@@ -2029,7 +1903,7 @@ export default function ProductConfigurator({
                                       cursor: 'pointer',
                                     }}
                                   >
-                                    Slopes Right ↘ Left (Deep Left)
+                                    Slope Left ↘
                                   </button>
                                   <button
                                     type="button"
@@ -2044,7 +1918,7 @@ export default function ProductConfigurator({
                                       cursor: 'pointer',
                                     }}
                                   >
-                                    Slopes Left ↙ Right (Deep Right)
+                                    Slope Right ↙
                                   </button>
                                 </div>
                               </div>
@@ -2052,10 +1926,10 @@ export default function ProductConfigurator({
                               <div style={{ background: '#fff', padding: '12px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
                                   <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                                    WDT SLOPE INCLINE ANGLE
+                                    Slope Angle
                                   </label>
                                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
-                                    {(config.wdtSlopeAngleDeg || 8).toFixed(1)}° ({Math.round((config.basinWidthMm || 600) * Math.tan(((config.wdtSlopeAngleDeg || 8) * Math.PI) / 180))} mm fall)
+                                    {(config.wdtSlopeAngleDeg || 8).toFixed(1)}°
                                   </span>
                                 </div>
 
@@ -2072,7 +1946,7 @@ export default function ProductConfigurator({
                                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
                                   {[
                                     { deg: 4, label: '4° Subtle' },
-                                    { deg: 8, label: '8° Standard' },
+                                    { deg: 8, label: '8° Normal' },
                                     { deg: 12, label: '12° Fast' },
                                     { deg: 16, label: '16° Steep' },
                                   ].map(p => {
@@ -2100,22 +1974,17 @@ export default function ProductConfigurator({
                               </div>
                             </>
                           )}
-
-                          <div style={{ fontSize: '11px', color: '#687268', fontFamily: 'DM Mono, monospace', paddingTop: '4px' }}>
-                            Standard 12mm solid surface thickness applied to all trough facets.
-                          </div>
                         </div>
                       )}
                     </div>
                   );
                 })()}
 
-
-                {/* TAP HOLES DRILLING */}
+                {/* TAP HOLES */}
                 {config.tapLocation === 'top-mounted' && (
                   <div style={{ background: 'rgba(30,33,29,0.03)', padding: '12px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>Deck CNC Tap Holes (35mm Ø)</span>
+                      <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>Tap Holes (35mm)</span>
                       <strong style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}>{config.tapHoles} Holes</strong>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
@@ -2145,7 +2014,7 @@ export default function ProductConfigurator({
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 05: DOWNSTANDS & APRON DROPS                    */}
+          {/* SECTION 04: FRONT & SIDE APRONS                         */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -2164,24 +2033,20 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>05</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Downstands &amp; Apron Drops
+                  Front &amp; Side Aprons
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['05'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['05'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
-                  Seamlessly folded Corian® fascia aprons create substantial architectural presence and conceal under-sink plumbing.
-                </p>
-
+              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* INDEPENDENT SIDE TOGGLES */}
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                    Active Downstand Sides
+                  <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
+                    Apron Sides
                   </label>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
                     <button
@@ -2199,9 +2064,10 @@ export default function ProductConfigurator({
                         fontFamily: 'DM Mono, monospace',
                         cursor: 'pointer',
                         textAlign: 'center',
+                        borderRadius: '2px',
                       }}
                     >
-                      Front Apron: {config.downstands?.front ? 'ON' : 'OFF'}
+                      Front: {config.downstands?.front ? 'ON' : 'OFF'}
                     </button>
 
                     <button
@@ -2219,9 +2085,10 @@ export default function ProductConfigurator({
                         fontFamily: 'DM Mono, monospace',
                         cursor: 'pointer',
                         textAlign: 'center',
+                        borderRadius: '2px',
                       }}
                     >
-                      Left Side: {config.downstands?.left ? 'ON' : 'OFF'}
+                      Left: {config.downstands?.left ? 'ON' : 'OFF'}
                     </button>
 
                     <button
@@ -2239,9 +2106,10 @@ export default function ProductConfigurator({
                         fontFamily: 'DM Mono, monospace',
                         cursor: 'pointer',
                         textAlign: 'center',
+                        borderRadius: '2px',
                       }}
                     >
-                      Right Side: {config.downstands?.right ? 'ON' : 'OFF'}
+                      Right: {config.downstands?.right ? 'ON' : 'OFF'}
                     </button>
                   </div>
                 </div>
@@ -2249,8 +2117,8 @@ export default function ProductConfigurator({
                 {/* HEIGHT PRESETS WITH DIAGRAMS */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                      Downstand Fascia Height
+                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                      Apron Height
                     </label>
                     <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600 }}>
                       {config.downstands?.height || config.frontApronHeight || 100} mm
@@ -2279,9 +2147,9 @@ export default function ProductConfigurator({
                   </div>
 
                   {/* Continuous Height Slider */}
-                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
-                      <span>Fine Custom Adjustment</span>
+                      <span>Custom Height Slider</span>
                       <strong>{config.downstands?.height || config.frontApronHeight || 100} mm</strong>
                     </div>
                     <input
@@ -2308,7 +2176,7 @@ export default function ProductConfigurator({
           </div>
 
           {/* ======================================================= */}
-          {/* SECTION 06: UPSTANDS & SPLASHBACKS                      */}
+          {/* SECTION 05: UPSTANDS & SPLASHBACKS                      */}
           {/* ======================================================= */}
           <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
@@ -2327,21 +2195,21 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>06</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>05</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Upstands &amp; Wall Splashbacks
+                  Wall Splashback
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['06'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['06'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* BACK UPSTAND MODE */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                    <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                      Rear Wall Upstand
+                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                      Rear Wall Splashback
                     </label>
                     <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--brand-red, #d43833)' }}>
                       {config.upstands?.backMode || 'full'}
@@ -2379,8 +2247,8 @@ export default function ProductConfigurator({
 
                 {/* RETURN SIDES */}
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                    Side Return Wall Upstands
+                  <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
+                    Side Wall Splashbacks
                   </label>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
                     <button
@@ -2408,9 +2276,10 @@ export default function ProductConfigurator({
                         fontFamily: 'DM Mono, monospace',
                         cursor: 'pointer',
                         textAlign: 'center',
+                        borderRadius: '2px',
                       }}
                     >
-                      Left Wall Return: {config.upstands?.leftMode === 'full' ? 'FULL' : 'NONE'}
+                      Left Wall: {config.upstands?.leftMode === 'full' ? 'FULL' : 'NONE'}
                     </button>
 
                     <button
@@ -2438,17 +2307,18 @@ export default function ProductConfigurator({
                         fontFamily: 'DM Mono, monospace',
                         cursor: 'pointer',
                         textAlign: 'center',
+                        borderRadius: '2px',
                       }}
                     >
-                      Right Wall Return: {config.upstands?.rightMode === 'full' ? 'FULL' : 'NONE'}
+                      Right Wall: {config.upstands?.rightMode === 'full' ? 'FULL' : 'NONE'}
                     </button>
                   </div>
                 </div>
 
                 {/* UPSTAND HEIGHT SLIDER */}
-                <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
-                    <span>Splashback Upstand Height</span>
+                    <span>Splashback Height</span>
                     <strong>{config.upstands?.backMode === 'none' ? '0 mm (Disabled)' : `${config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 80} mm`}</strong>
                   </div>
                   <input
@@ -2501,16 +2371,17 @@ export default function ProductConfigurator({
                     border: (config.upstands?.coved ?? config.upstands?.isCoved) ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
                     background: (config.upstands?.coved ?? config.upstands?.isCoved) ? 'rgba(212,56,51,0.03)' : '#fff',
                     cursor: 'pointer',
+                    borderRadius: '2px',
                   }}
                 >
                   <div>
-                    <strong style={{ fontSize: '12px', display: 'block', color: '#1e211d' }}>Seamless 12mm Coved Wall Junction (R12)</strong>
+                    <strong style={{ fontSize: '12px', display: 'block', color: '#1e211d' }}>Curved Wall Joint (Coved)</strong>
                     <span style={{ fontSize: '10px', color: '#687268', lineHeight: 1.4 }}>
-                      Molecular chemical fusion eliminates mold-collecting silicone joints between top and wall.
+                      Smooth seamless curved joint without silicone gaps
                     </span>
                   </div>
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
-                    {config.upstands?.coved ? 'Active ✓' : 'Standard Square'}
+                    {config.upstands?.coved ? 'Active ✓' : 'Standard'}
                   </span>
                 </div>
               </div>
@@ -2537,20 +2408,16 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>07</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>06</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Towel-Holder Cut-out
+                  Towel Slot
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['07'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['07'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
-                  Integrated CNC towel-rail slot routed directly through the front downstand apron with full return jamb walls.
-                </p>
-
+              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {/* ENABLE / DISABLE TOGGLE */}
                 <div
                   onClick={() => {
@@ -2568,18 +2435,19 @@ export default function ProductConfigurator({
                     border: config.towelHolder?.enabled ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
                     background: config.towelHolder?.enabled ? 'rgba(212,56,51,0.03)' : '#fff',
                     cursor: 'pointer',
+                    borderRadius: '2px',
                   }}
                 >
                   <div>
                     <strong style={{ fontSize: '12px', display: 'block', color: '#1e211d' }}>
-                      Integrated Front Apron Towel Slot
+                      Front Apron Towel Slot
                     </strong>
                     <span style={{ fontSize: '10px', color: '#687268' }}>
-                      5-axis CNC cut slot with smooth chamfered edges (+₹2,400 tooling)
+                      CNC slot for hanging hand towels (+₹2,400)
                     </span>
                   </div>
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
-                    {config.towelHolder?.enabled ? 'Enabled ✓' : 'Disabled'}
+                    {config.towelHolder?.enabled ? 'Active ✓' : 'Off'}
                   </span>
                 </div>
 
@@ -2588,14 +2456,14 @@ export default function ProductConfigurator({
                     {/* LENGTH SELECTION */}
                     <div>
                       <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                        Slot Length
+                        Length
                       </label>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
                         {TOWEL_HOLDER_OPTIONS.lengths.map(len => (
                           <TechnicalOptionCard
                             key={len}
-                            title={`${len} mm Slot`}
-                            subtitle={len === 300 ? 'Guest / Hand Towel' : 'Standard Bath Towel'}
+                            title={`${len} mm`}
+                            subtitle={len === 300 ? 'Hand Towel' : 'Standard Towel'}
                             isActive={config.towelHolder?.length === len}
                             onClick={() => {
                               const cur = config.towelHolder || { enabled: true, length: 450, lengthMm: 450, position: 'center', cornerRadius: 12, filletMm: 12 };
@@ -2611,7 +2479,7 @@ export default function ProductConfigurator({
                     {/* POSITION SELECTION */}
                     <div>
                       <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                        Slot Lateral Position
+                        Position
                       </label>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
                         {TOWEL_HOLDER_OPTIONS.positions.map(pos => (
@@ -2631,6 +2499,7 @@ export default function ProductConfigurator({
                               fontFamily: 'DM Mono, monospace',
                               textTransform: 'uppercase',
                               cursor: 'pointer',
+                              borderRadius: '2px',
                             }}
                           >
                             {pos}
@@ -2642,7 +2511,7 @@ export default function ProductConfigurator({
                     {/* CORNER FILLET SELECTION */}
                     <div>
                       <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                        Slot Corner Fillet (Internal Tooling)
+                        Slot Corner Curve
                       </label>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
                         {TOWEL_HOLDER_OPTIONS.cornerRadii.map(rad => (
@@ -2661,6 +2530,7 @@ export default function ProductConfigurator({
                               fontSize: '11px',
                               fontFamily: 'DM Mono, monospace',
                               cursor: 'pointer',
+                              borderRadius: '2px',
                             }}
                           >
                             R{rad} mm
@@ -2694,16 +2564,16 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>08</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>07</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Top Edge Finishing
+                  Edge Profile
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['08'] ? '▲' : '▼'}</span>
             </button>
 
             {openSections['08'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
                   {TOP_EDGE_OPTIONS.map(opt => {
                     const isActive =
@@ -2737,9 +2607,9 @@ export default function ProductConfigurator({
                 </div>
 
                 {((config.topEdge?.type === 'fillet') || config.edgeProfileId === 'rounded') && (
-                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
-                      <span>Round Fillet Radius</span>
+                      <span>Radius</span>
                       <strong>R{config.topEdge?.radiusMm || 6} mm</strong>
                     </div>
                     <input
@@ -2762,10 +2632,10 @@ export default function ProductConfigurator({
                 )}
 
                 {((config.topEdge?.type === 'chamfer') || config.edgeProfileId === 'chamfer') && (
-                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
-                      <span>Chamfer Bevel Dimension</span>
-                      <strong>{config.topEdge?.chamferMm || 3} × 45° mm</strong>
+                      <span>Bevel Size</span>
+                      <strong>{config.topEdge?.chamferMm || 3} mm</strong>
                     </div>
                     <input
                       type="range"
@@ -2809,9 +2679,9 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>09</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>08</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Waste &amp; Drain System
+                  Drain &amp; Waste
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['09'] ? '▲' : '▼'}</span>
@@ -2819,10 +2689,6 @@ export default function ProductConfigurator({
 
             {openSections['09'] && (
               <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
-                  Select precision drain hardware or an architectural color-matched Corian® waste disc.
-                </p>
-
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
                   {DRAIN_OPTIONS.map(opt => (
                     <TechnicalOptionCard
@@ -2861,9 +2727,9 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>10</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>09</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Corian® Material &amp; Tone Palette
+                  Color &amp; Material
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['10'] ? '▲' : '▼'}</span>
@@ -2871,9 +2737,6 @@ export default function ProductConfigurator({
 
             {openSections['10'] && (
               <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <p style={{ margin: 0, fontSize: '11px', color: '#687268', lineHeight: 1.5 }}>
-                  Select from 25 authentic DuPont™ Corian® mineral formulations. Each through-body tone wraps seamlessly across all 3D architectural planes.
-                </p>
 
                 {/* Active Material Architectural Specimen Hero */}
                 {(() => {
@@ -3322,9 +3185,9 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>11</span>
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>10</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Project Notes &amp; Specifier Details
+                  Project Notes
                 </span>
               </div>
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['11'] ? '▲' : '▼'}</span>
@@ -3334,40 +3197,40 @@ export default function ProductConfigurator({
               <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
                   <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
-                    Project Name / Reference
+                    Project Name
                   </label>
                   <input
                     type="text"
                     value={config.projectName || ''}
                     onChange={e => setConfig({ ...config, projectName: e.target.value })}
-                    placeholder="e.g. Indiranagar Residence En-Suite"
-                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none' }}
+                    placeholder="e.g. Master Bathroom Vanity"
+                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none', borderRadius: '2px' }}
                   />
                 </div>
 
                 <div>
                   <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
-                    Architecture Studio / Firm Name
+                    Studio / Client Name
                   </label>
                   <input
                     type="text"
                     value={config.clientStudio || ''}
                     onChange={e => setConfig({ ...config, clientStudio: e.target.value })}
-                    placeholder="e.g. Studio Lotus / Morphogenesis"
-                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none' }}
+                    placeholder="e.g. Design Studio or Client"
+                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none', borderRadius: '2px' }}
                   />
                 </div>
 
                 <div>
                   <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
-                    Special CNC Cutouts / Fabrication Notes
+                    Fabrication Notes / Requests
                   </label>
                   <textarea
                     rows={3}
                     value={config.specialInstructions || ''}
                     onChange={e => setConfig({ ...config, specialInstructions: e.target.value })}
-                    placeholder="e.g. Provide 35mm waste chute on left, under-mount soap dispenser..."
-                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '12px', outline: 'none' }}
+                    placeholder="e.g. Special cutouts, custom requirements..."
+                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '12px', outline: 'none', borderRadius: '2px' }}
                   />
                 </div>
               </div>
@@ -3509,9 +3372,10 @@ export default function ProductConfigurator({
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               cursor: 'pointer',
+              borderRadius: '2px',
             }}
           >
-            Spatial AR (1:1)
+            View in AR
           </button>
 
           <button
@@ -3528,13 +3392,14 @@ export default function ProductConfigurator({
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
               cursor: 'pointer',
+              borderRadius: '2px',
               boxShadow: '0 6px 18px rgba(212,56,51,0.4)',
               transition: 'opacity 0.2s ease',
             }}
             onMouseEnter={e => (e.currentTarget.style.opacity = '0.92')}
             onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
-            Request Specification Quote →
+            Request Quote →
           </button>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import { journalArticles, JournalArticle } from '@/data/journal';
 import { useSiteContent } from '@/context/SiteContentContext';
+import JournalGallery from '@/components/JournalGallery';
 
 export default function JournalExplorer() {
   const { journalArticles: liveArticles } = useSiteContent();
@@ -141,6 +142,11 @@ export default function JournalExplorer() {
                 <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
                   {leadArticle.readTime} • {leadArticle.date}
                 </span>
+                {leadArticle.galleryImages && leadArticle.galleryImages.length > 0 && (
+                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', padding: '3px 8px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
+                    📷 {leadArticle.galleryImages.length} Photos
+                  </span>
+                )}
               </div>
 
               <h2 style={{ fontSize: 'clamp(28px, 4vw, 52px)', lineHeight: 1.05, margin: '0 0 20px', letterSpacing: '-0.04em' }}>
@@ -230,9 +236,16 @@ export default function JournalExplorer() {
                 <span className="eyebrow" style={{ color: 'var(--muted)', margin: 0 }}>
                   {art.category}
                 </span>
-                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
-                  {art.readTime}
-                </span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
+                    {art.readTime}
+                  </span>
+                  {art.galleryImages && art.galleryImages.length > 0 && (
+                    <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', padding: '2px 6px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
+                      📷 {art.galleryImages.length}
+                    </span>
+                  )}
+                </div>
               </div>
 
               <h3 style={{ fontSize: '22px', fontWeight: 500, lineHeight: 1.2, margin: '0 0 16px', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
@@ -363,6 +376,10 @@ export default function JournalExplorer() {
                 </p>
               ))}
             </div>
+
+            {activeArticle.galleryImages && activeArticle.galleryImages.length > 0 && (
+              <JournalGallery images={activeArticle.galleryImages} articleTitle={activeArticle.title} />
+            )}
 
             {activeArticle.takeaways && (
               <div style={{ background: '#dcd7cd', padding: '30px', border: '1px solid var(--line)', marginBottom: '32px' }}>
