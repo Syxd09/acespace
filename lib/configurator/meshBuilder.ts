@@ -2292,7 +2292,7 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           COLOR_DEFAULT
         );
 
-        // 8. Watertight Underside Shell (Matching stepped cross-section of Image 1)
+        // 8. Watertight Underside Shell & Solid Side Cheeks (Zero-gap manifold enclosure)
         const wallT = 0.012;
         pushBox(minX - wallT, frontFloorY - wallT, maxZ, maxX + wallT, bottomDeckY, maxZ + wallT, COLOR_DEFAULT);
         pushQuad(
@@ -2304,6 +2304,46 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           COLOR_DEFAULT
         );
         pushBox(minX - wallT, trenchFloorY - wallT, minZ - wallT, maxX + wallT, bottomDeckY, trenchFrontZ, COLOR_DEFAULT);
+
+        // Exterior Left & Right Vertical Side Cheeks (Seals outer side profile so no gaps exist)
+        pushQuad(
+          [minX - wallT, rampFloorEndY - wallT, trenchFrontZ],
+          [minX - wallT, frontFloorY - wallT, maxZ],
+          [minX - wallT, bottomDeckY, maxZ],
+          [minX - wallT, bottomDeckY, trenchFrontZ],
+          [-1, 0, 0],
+          COLOR_DEFAULT
+        );
+        pushQuad(
+          [maxX + wallT, frontFloorY - wallT, maxZ],
+          [maxX + wallT, rampFloorEndY - wallT, trenchFrontZ],
+          [maxX + wallT, bottomDeckY, trenchFrontZ],
+          [maxX + wallT, bottomDeckY, maxZ],
+          [1, 0, 0],
+          COLOR_DEFAULT
+        );
+
+        // Sloped Edge Thickness Closures (Sealing gap between inner sidewall & outer underbelly)
+        pushQuad(
+          [minX - wallT, frontFloorY - wallT, maxZ],
+          [minX, frontFloorY, maxZ],
+          [minX, rampFloorEndY, trenchFrontZ],
+          [minX - wallT, rampFloorEndY - wallT, trenchFrontZ],
+          [-1, -1, 0],
+          COLOR_DEFAULT
+        );
+        pushQuad(
+          [maxX, frontFloorY, maxZ],
+          [maxX + wallT, frontFloorY - wallT, maxZ],
+          [maxX + wallT, rampFloorEndY - wallT, trenchFrontZ],
+          [maxX, rampFloorEndY, trenchFrontZ],
+          [1, -1, 0],
+          COLOR_DEFAULT
+        );
+
+        // Underside Deck Bridge Flanges (Flush connection to countertop deck cutout)
+        pushQuad([minX - wallT, bottomDeckY, minZ], [minX - wallT, bottomDeckY, maxZ], [minX, bottomDeckY, maxZ], [minX, bottomDeckY, minZ], [0, -1, 0], COLOR_DEFAULT);
+        pushQuad([maxX, bottomDeckY, minZ], [maxX, bottomDeckY, maxZ], [maxX + wallT, bottomDeckY, maxZ], [maxX + wallT, bottomDeckY, minZ], [0, -1, 0], COLOR_DEFAULT);
 
         // 9. Concealed / Slot Drain in Rear Trench
         pushDetailedSinkDrain(bX, trenchFloorY + 0.001, minZ + trenchDepth * 0.5, trenchFloorY - wallT, false);
@@ -2438,6 +2478,44 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           COLOR_DEFAULT
         );
         pushBox(minX - wallT, trenchFloorY - wallT, minZ - wallT, maxX + wallT, bottomDeckY, trenchFrontZ, COLOR_DEFAULT);
+
+        // Exterior Left & Right Vertical Side Cheeks (Seals outer wedge profile so zero gaps exist)
+        pushTri(
+          [minX - wallT, bottomDeckY, maxZ],
+          [minX - wallT, bottomDeckY, trenchFrontZ],
+          [minX - wallT, rampFloorEndY - wallT, trenchFrontZ],
+          [-1, 0, 0],
+          COLOR_DEFAULT
+        );
+        pushTri(
+          [maxX + wallT, bottomDeckY, trenchFrontZ],
+          [maxX + wallT, bottomDeckY, maxZ],
+          [maxX + wallT, rampFloorEndY - wallT, trenchFrontZ],
+          [1, 0, 0],
+          COLOR_DEFAULT
+        );
+
+        // Sloped Edge Thickness Closures (Sealing gap between inner sidewall & outer underbelly)
+        pushQuad(
+          [minX - wallT, bottomDeckY, maxZ],
+          [minX, frontFloorY, maxZ],
+          [minX, rampFloorEndY, trenchFrontZ],
+          [minX - wallT, rampFloorEndY - wallT, trenchFrontZ],
+          [-1, -1, 0],
+          COLOR_DEFAULT
+        );
+        pushQuad(
+          [maxX, frontFloorY, maxZ],
+          [maxX + wallT, bottomDeckY, maxZ],
+          [maxX + wallT, rampFloorEndY - wallT, trenchFrontZ],
+          [maxX, rampFloorEndY, trenchFrontZ],
+          [1, -1, 0],
+          COLOR_DEFAULT
+        );
+
+        // Underside Deck Bridge Flanges (Flush connection to countertop deck cutout)
+        pushQuad([minX - wallT, bottomDeckY, minZ], [minX - wallT, bottomDeckY, maxZ], [minX, bottomDeckY, maxZ], [minX, bottomDeckY, minZ], [0, -1, 0], COLOR_DEFAULT);
+        pushQuad([maxX, bottomDeckY, minZ], [maxX, bottomDeckY, maxZ], [maxX + wallT, bottomDeckY, maxZ], [maxX + wallT, bottomDeckY, minZ], [0, -1, 0], COLOR_DEFAULT);
 
         // 8. Concealed / Slot Drain in Rear Trench
         pushDetailedSinkDrain(bX, trenchFloorY + 0.001, minZ + trenchDepth * 0.5, trenchFloorY - wallT, false);
@@ -2590,6 +2668,12 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           [1, 0, 0],
           COLOR_DEFAULT
         );
+
+        // Watertight Deck Cutout Flanges at bottomDeckY (Eliminate any seam gaps under countertop deck)
+        pushQuad([minX - wallT, bottomDeckY, maxZ + wallT], [maxX + wallT, bottomDeckY, maxZ + wallT], [maxX, bottomDeckY, maxZ], [minX, bottomDeckY, maxZ], [0, -1, 0], COLOR_DEFAULT);
+        pushQuad([maxX + wallT, bottomDeckY, minZ - wallT], [minX - wallT, bottomDeckY, minZ - wallT], [minX, bottomDeckY, minZ], [maxX, bottomDeckY, minZ], [0, -1, 0], COLOR_DEFAULT);
+        pushQuad([minX - wallT, bottomDeckY, minZ - wallT], [minX - wallT, bottomDeckY, maxZ + wallT], [minX, bottomDeckY, maxZ], [minX, bottomDeckY, minZ], [0, -1, 0], COLOR_DEFAULT);
+        pushQuad([maxX, bottomDeckY, maxZ], [maxX, bottomDeckY, minZ], [maxX + wallT, bottomDeckY, minZ - wallT], [maxX + wallT, bottomDeckY, maxZ + wallT], [0, -1, 0], COLOR_DEFAULT);
 
         // 7. Pop-up Circular Chrome Drain at Deep End (Matching WDT icon)
         const drainOffset = Math.min(0.120, bW * 0.22);

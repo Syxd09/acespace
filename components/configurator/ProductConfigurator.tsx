@@ -78,18 +78,18 @@ export default function ProductConfigurator({
 
   const [pricing, setPricing] = useState<PriceBreakdown>(() => calculateIndicativePrice(config));
 
-  // Accordion Sections Open State (01 to 11)
+  // Accordion Sections Open State (only one section open at a time)
   const [openSections, setOpenSections] = useState<Record<string, boolean>>({
     '01': false, // Studio Guidance
     '02': true,  // Dimensions
     '03': false, // Corner Treatments
-    '04': true,  // Basin & Sink Integration
+    '04': false, // Basin & Sink Integration
     '05': false, // Downstands & Aprons
     '06': false, // Upstands & Splashbacks
     '07': false, // Towel-Holder Cut-out
     '08': false, // Vanity Top Edge Finishing
     '09': false, // Waste & Drain System
-    '10': true,  // Material & Colour
+    '10': false, // Material & Colour
     '11': false, // Project Notes & Ref
   });
 
@@ -222,9 +222,13 @@ export default function ProductConfigurator({
     setPricing(calculateIndicativePrice(config));
   }, [config]);
 
-  // Section Toggle Handler
+  // Section Toggle Handler (Accordion behavior: only one section can be open at a time)
   const toggleSection = (id: string) => {
-    setOpenSections(prev => ({ ...prev, [id]: !prev[id] }));
+    setOpenSections(prev => {
+      const isCurrentlyOpen = !!prev[id];
+      // If currently open, toggle it closed. If currently closed, open ONLY this section and close all others.
+      return isCurrentlyOpen ? {} : { [id]: true };
+    });
   };
 
   // Preset Change Handler
@@ -895,99 +899,101 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['02'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['02'] && (
-              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
-                {/* Width Control */}
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                      Width
-                    </label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <input
-                        type="number"
-                        min={380}
-                        max={3600}
-                        step={10}
-                        value={config.width}
-                        onChange={e => setConfig({ ...config, width: Number(e.target.value) })}
-                        style={{
-                          width: '75px',
-                          textAlign: 'right',
-                          padding: '4px 6px',
-                          fontFamily: 'DM Mono, monospace',
-                          fontSize: '12px',
-                          border: '1px solid rgba(30,33,29,0.2)',
-                          outline: 'none',
-                        }}
-                      />
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#888' }}>mm</span>
+            <div className={`accordion-collapse-wrapper ${openSections['02'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                  {/* Width Control */}
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                        Width
+                      </label>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <input
+                          type="number"
+                          min={380}
+                          max={3600}
+                          step={10}
+                          value={config.width}
+                          onChange={e => setConfig({ ...config, width: Number(e.target.value) })}
+                          style={{
+                            width: '75px',
+                            textAlign: 'right',
+                            padding: '4px 6px',
+                            fontFamily: 'DM Mono, monospace',
+                            fontSize: '12px',
+                            border: '1px solid rgba(30,33,29,0.2)',
+                            outline: 'none',
+                          }}
+                        />
+                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#888' }}>mm</span>
+                      </div>
+                    </div>
+                    <input
+                      type="range"
+                      min={380}
+                      max={2200}
+                      step={10}
+                      value={Math.min(config.width, 2200)}
+                      onChange={e => setConfig({ ...config, width: Number(e.target.value) })}
+                      style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
+                    />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '3px' }}>
+                      <span>380mm</span>
+                      <span>2200mm</span>
                     </div>
                   </div>
-                  <input
-                    type="range"
-                    min={380}
-                    max={2200}
-                    step={10}
-                    value={Math.min(config.width, 2200)}
-                    onChange={e => setConfig({ ...config, width: Number(e.target.value) })}
-                    style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
-                  />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '3px' }}>
-                    <span>380mm</span>
-                    <span>2200mm</span>
-                  </div>
-                </div>
 
-                {/* Depth Control */}
-                <div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                    <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
-                      Depth
-                    </label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                      <input
-                        type="number"
-                        min={270}
-                        max={1000}
-                        step={10}
-                        value={config.depth}
-                        onChange={e => setConfig({ ...config, depth: Number(e.target.value) })}
-                        style={{
-                          width: '75px',
-                          textAlign: 'right',
-                          padding: '4px 6px',
-                          fontFamily: 'DM Mono, monospace',
-                          fontSize: '12px',
-                          border: '1px solid rgba(30,33,29,0.2)',
-                          outline: 'none',
-                        }}
-                      />
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#888' }}>mm</span>
+                  {/* Depth Control */}
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                      <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
+                        Depth
+                      </label>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+                        <input
+                          type="number"
+                          min={270}
+                          max={1000}
+                          step={10}
+                          value={config.depth}
+                          onChange={e => setConfig({ ...config, depth: Number(e.target.value) })}
+                          style={{
+                            width: '75px',
+                            textAlign: 'right',
+                            padding: '4px 6px',
+                            fontFamily: 'DM Mono, monospace',
+                            fontSize: '12px',
+                            border: '1px solid rgba(30,33,29,0.2)',
+                            outline: 'none',
+                          }}
+                        />
+                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#888' }}>mm</span>
+                      </div>
+                    </div>
+                    <input
+                      type="range"
+                      min={270}
+                      max={700}
+                      step={10}
+                      value={Math.min(config.depth, 700)}
+                      onChange={e => setConfig({ ...config, depth: Number(e.target.value) })}
+                      style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
+                    />
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '3px' }}>
+                      <span>270mm</span>
+                      <span>700mm</span>
                     </div>
                   </div>
-                  <input
-                    type="range"
-                    min={270}
-                    max={700}
-                    step={10}
-                    value={Math.min(config.depth, 700)}
-                    onChange={e => setConfig({ ...config, depth: Number(e.target.value) })}
-                    style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
-                  />
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '3px' }}>
-                    <span>270mm</span>
-                    <span>700mm</span>
-                  </div>
-                </div>
 
-                {/* Slab Thickness Badge */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '3px' }}>
-                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#667066' }}>Slab Thickness</span>
-                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: 600, color: '#1e211d' }}>12 mm Solid Surface</span>
+                  {/* Slab Thickness Badge */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '3px' }}>
+                    <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#667066' }}>Slab Thickness</span>
+                    <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: 600, color: '#1e211d' }}>12 mm Solid Surface</span>
+                  </div>
                 </div>
               </div>
-            )}
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -1018,8 +1024,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['03'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['03'] && (
-              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['03'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* LEFT CORNER */}
                 <div>
                   <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
@@ -1394,7 +1401,8 @@ export default function ProductConfigurator({
                   )}
                 </div>
               </div>
-            )}
+              </div>
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -1425,8 +1433,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['04'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['04'] && (
-              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['04'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* 1. TAP LOCATION */}
                 <div>
                   <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
@@ -2010,7 +2019,8 @@ export default function ProductConfigurator({
                   </div>
                 )}
               </div>
-            )}
+              </div>
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -2041,8 +2051,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['05'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['05'] && (
-              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['05'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* INDEPENDENT SIDE TOGGLES */}
                 <div>
                   <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
@@ -2172,7 +2183,8 @@ export default function ProductConfigurator({
                   </div>
                 </div>
               </div>
-            )}
+              </div>
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -2203,8 +2215,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['06'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['06'] && (
-              <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['06'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* BACK UPSTAND MODE */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -2385,7 +2398,8 @@ export default function ProductConfigurator({
                   </span>
                 </div>
               </div>
-            )}
+              </div>
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -2416,8 +2430,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['07'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['07'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['07'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {/* ENABLE / DISABLE TOGGLE */}
                 <div
                   onClick={() => {
@@ -2541,7 +2556,8 @@ export default function ProductConfigurator({
                   </>
                 )}
               </div>
-            )}
+              </div>
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -2572,8 +2588,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['08'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['08'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['08'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
                   {TOP_EDGE_OPTIONS.map(opt => {
                     const isActive =
@@ -2656,7 +2673,8 @@ export default function ProductConfigurator({
                   </div>
                 )}
               </div>
-            )}
+              </div>
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -2687,8 +2705,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['09'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['09'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['09'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
                   {DRAIN_OPTIONS.map(opt => (
                     <TechnicalOptionCard
@@ -2704,7 +2723,8 @@ export default function ProductConfigurator({
                   ))}
                 </div>
               </div>
-            )}
+              </div>
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -2735,8 +2755,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['10'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['10'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['10'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
                 {/* Active Material Architectural Specimen Hero */}
                 {(() => {
@@ -3162,7 +3183,8 @@ export default function ProductConfigurator({
                   );
                 })()}
               </div>
-            )}
+              </div>
+            </div>
           </div>
 
           {/* ======================================================= */}
@@ -3193,8 +3215,9 @@ export default function ProductConfigurator({
               <span style={{ fontSize: '12px', color: '#888' }}>{openSections['11'] ? '▲' : '▼'}</span>
             </button>
 
-            {openSections['11'] && (
-              <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            <div className={`accordion-collapse-wrapper ${openSections['11'] ? 'is-open' : ''}`}>
+              <div className="accordion-collapse-inner">
+                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
                   <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
                     Project Name
@@ -3234,7 +3257,8 @@ export default function ProductConfigurator({
                   />
                 </div>
               </div>
-            )}
+              </div>
+            </div>
           </div>
         </div>
       </div>

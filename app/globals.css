@@ -567,6 +567,15 @@ button {
   color: #697067;
 }
 
+/* Ensure breadcrumbs and flex containers reset eyebrow bottom margin */
+div > .eyebrow,
+nav > .eyebrow,
+.breadcrumb > .eyebrow,
+[style*="display: flex"] > .eyebrow,
+[style*="display:flex"] > .eyebrow {
+  margin-bottom: 0 !important;
+}
+
 .eyebrow span {
   white-space: nowrap;
 }
@@ -6331,5 +6340,31 @@ html, body {
     font-size: 10px !important;
   }
 }
+
+/* ========================================================================== */
+/* CONFIGURATOR ACCORDION SMOOTH OPEN/CLOSE ANIMATION                        */
+/* ========================================================================== */
+.accordion-collapse-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-collapse-wrapper.is-open {
+  grid-template-rows: 1fr;
+}
+
+.accordion-collapse-inner {
+  overflow: hidden;
+  min-height: 0;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.accordion-collapse-wrapper.is-open .accordion-collapse-inner {
+  opacity: 1;
+  transition: opacity 0.32s ease 0.05s;
+}
+
 
 

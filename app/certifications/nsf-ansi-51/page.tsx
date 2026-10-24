@@ -22,12 +22,12 @@ export default function NsfAnsi51Page() {
       <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '140px 24px 100px' }}>
         
         {/* Breadcrumb */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '24px' }}>
-          <Link href="/certifications" style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', textDecoration: 'none' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '24px', lineHeight: 1 }}>
+          <Link href="/certifications" style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', textDecoration: 'none', margin: 0, lineHeight: 1 }}>
             Technical Governance &amp; Standards
           </Link>
-          <span style={{ color: 'var(--muted, #788078)', fontSize: '12px' }}>/</span>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', fontWeight: 600 }}>
+          <span style={{ color: 'var(--muted, #788078)', fontSize: '11px', fontFamily: 'DM Mono, monospace', lineHeight: 1, userSelect: 'none', opacity: 0.6 }}>/</span>
+          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', fontWeight: 600, margin: 0, lineHeight: 1 }}>
             NSF/ANSI Standard 51
           </span>
         </div>

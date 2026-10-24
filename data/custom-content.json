@@ -72,7 +72,7 @@
                        },
                        {
                            "id":  6,
-                           "image":  "/images/images/app_commercial_grinds_excavage.jpg",
+                           "image":  "/images/washplane-commercial-multistation.jpg",
                            "eyebrow":  "06 / 100% Non-Porous · Zero Silica Purity",
                            "title":  "Engineered to endure,",
                            "subtitle":  "renewable for generations.",
@@ -7494,7 +7494,7 @@
                           "inSituImages":  [
                                                "/images/images/app_residential_excavage_1.jpg",
                                                "/images/images/app_residential_excavage_2.jpg",
-                                               "/images/images/app_commercial_grinds_excavage.jpg"
+                                               "/images/washplane-commercial-multistation.jpg"
                                            ]
                       },
                       {
@@ -7531,7 +7531,7 @@
                           "inSituImages":  [
                                                "/images/images/app_residential_pebble_lane_1.jpg",
                                                "/images/images/app_residential_pebble_lane_2.jpg",
-                                               "/images/images/app_commercial_grinds_pebble_lane.jpg"
+                                               "/images/washplane-trough-cantilever.jpg"
                                            ]
                       },
                       {
@@ -7941,7 +7941,7 @@
                                                       "tag":  "Integrated Sink"
                                                   },
                                                   {
-                                                      "src":  "/images/images/app_residential_cirrus_white_1.jpg",
+                                                      "src":  "/images/integrated-sink-installation.jpg",
                                                       "alt":  "Thermo-welded sink transition and seamless drainage detail in Cirrus White",
                                                       "caption":  "Thermo-Welded Basin Transition with Coved Internal Corners",
                                                       "tag":  "Coved Basin Detail"
@@ -8028,7 +8028,7 @@
                                                       "tag":  "Curved Cladding"
                                                   },
                                                   {
-                                                      "src":  "/images/images/app_residential_artista_mist_1.jpg",
+                                                      "src":  "/images/basin-vanity-thermoformed-double.jpg",
                                                       "alt":  "Luxury boutique hotel suite double vanity in Artista Mist",
                                                       "caption":  "Bespoke Boutique Suite Double Basin Floating Vanity in Artista Mist",
                                                       "tag":  "Suite Vanities"
@@ -8109,13 +8109,13 @@
                                                       "tag":  "Collaboration Island"
                                                   },
                                                   {
-                                                      "src":  "/images/images/app_commercial_grinds_excavage.jpg",
+                                                      "src":  "/images/washplane-commercial-multistation.jpg",
                                                       "alt":  "Wall-to-wall seamless commercial washroom trough vanity in Excavage",
                                                       "caption":  "Continuous Wall-to-Wall Commercial Washroom Trough in Excavage",
                                                       "tag":  "Commercial Trough"
                                                   },
                                                   {
-                                                      "src":  "/images/images/app_commercial_grinds_pebble_lane.jpg",
+                                                      "src":  "/images/washplane-trough-cantilever.jpg",
                                                       "alt":  "Seamless basin junction and concealed sloped drain detail in Pebble Lane solid surface",
                                                       "caption":  "Precision CNC-Milled Sloped Drain Detail with Zero Bacterial Traps",
                                                       "tag":  "Sloped Drain Detail"
@@ -8299,13 +8299,7 @@
                                                       "tag":  "Clinical Reception"
                                                   },
                                                   {
-                                                      "src":  "/images/images/app_residential_stonique_1.jpg",
-                                                      "alt":  "Specialist operatory treatment room countertops and splashbacks in seamless solid surface",
-                                                      "caption":  "Hygienic Operatory Countertops \u0026 Integrated Splashbacks in Stonique",
-                                                      "tag":  "Operatory Surfaces"
-                                                  },
-                                                  {
-                                                      "src":  "/images/images/app_commercial_grinds_archeologic.jpg",
+                                                      "src":  "/images/healthcare-clinical-reception-station.jpg",
                                                       "alt":  "Sterile scrub sink with thermo-welded basin and zero silicone seals",
                                                       "caption":  "Seamless Scrub Basin with Continuous Wall Splash Transition in Archeologic",
                                                       "tag":  "Scrub Station"

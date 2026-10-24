@@ -127,12 +127,12 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       {/* Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px' }}>
-            <Link href="/products" className="eyebrow" style={{ textDecoration: 'none' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', lineHeight: 1 }}>
+            <Link href="/products" style={{ textDecoration: 'none', color: '#697067', margin: 0, lineHeight: 1 }}>
               Products
             </Link>
-            <span style={{ color: 'var(--muted)', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>/</span>
-            <span className="eyebrow" style={{ color: 'var(--ink)' }}>{product.categoryName}</span>
+            <span style={{ color: 'var(--muted, #788078)', fontSize: '11px', lineHeight: 1, userSelect: 'none', opacity: 0.6 }}>/</span>
+            <span style={{ color: 'var(--ink)', margin: 0, lineHeight: 1 }}>{product.categoryName}</span>
           </div>
 
           <h1

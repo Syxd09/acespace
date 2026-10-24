@@ -853,14 +853,14 @@ export default function AboutPage() {
                   Strategic Alliance Status
                 </div>
                 <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>
-                  Official DuPont™ Corian® Quality Network Industrial Partner
+                  Authorised DuPont™ Corian® Quality Network Industrial Partner
                 </div>
                 <div style={{ fontSize: '12px', color: '#6e766c', marginTop: '6px', lineHeight: 1.5 }}>
-                  Certified industrial master fabricator and stockist backed by DuPont's official 10-year installed manufacturer warranty.
+                  Certified industrial master fabricator and stockist backed by DuPont's 10-year installed manufacturer warranty.
                 </div>
               </div>
 
-              {/* Official Alliance Brand Logos Lockup */}
+              {/* Authorised Alliance Brand Logos Lockup */}
               <div
                 style={{
                   marginTop: '20px',
@@ -896,7 +896,7 @@ export default function AboutPage() {
                       color: 'var(--muted)',
                     }}
                   >
-                    Official Strategic Partnership Lockup
+                    Authorised Strategic Partnership Lockup
                   </span>
                 </div>
 
@@ -930,7 +930,7 @@ export default function AboutPage() {
                   <div style={{ maxWidth: '200px', flex: '1 1 160px', display: 'flex', justifyContent: 'center' }}>
                     <Image
                       src="/assets/dupont-corian-quality-network-partner.png"
-                      alt="DuPont™ Corian® Quality Network Industrial Partner Official Badge"
+                      alt="DuPont™ Corian® Quality Network Industrial Partner Authorised Badge"
                       width={220}
                       height={76}
                       style={{ height: 'auto', width: '100%', maxWidth: '200px', objectFit: 'contain' }}
@@ -970,14 +970,14 @@ export default function AboutPage() {
                     lineHeight: 1.5,
                   }}
                 >
-                  Authorized Master Fabricator · 10-Year Installed Warranty
+                  Authorised Master Fabricator · 10-Year Installed Warranty
                 </div>
               </div>
             </div>
 
             <div>
               <p className="lead" style={{ fontSize: '17px', lineHeight: 1.7, color: 'var(--ink)', marginBottom: '18px' }}>
-                To achieve true architectural permanence, craftsmanship must be grounded in verified material science. Ace Spaces is an official <strong>Quality Network Industrial Partner of DuPont™ Corian®</strong>, supplying and fabricating genuine solid surfaces across India.
+                To achieve true architectural permanence, craftsmanship must be grounded in verified material science. Ace Spaces is an authorised <strong>Quality Network Industrial Partner of DuPont™ Corian®</strong>, supplying and fabricating genuine solid surfaces across India.
               </p>
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#555e54', marginBottom: '18px' }}>
                 Invented by DuPont scientists, Corian® blends approximately two-thirds natural Aluminium Trihydrate (ATH, purified bauxite mineral) with high-grade acrylic polymer (PMMA). This precise formula guarantees through-body consistency, complete non-porosity, and total freedom from crystalline silica hazards.
@@ -1012,7 +1012,7 @@ export default function AboutPage() {
                     </div>
                     <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Quality Network Partner</h4>
                     <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                      Official DuPont™ Corian® Industrial Partner. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
+                      Authorised DuPont™ Corian® Industrial Partner. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
                     </p>
                   </div>
                 </div>

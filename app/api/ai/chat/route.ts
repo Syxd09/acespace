@@ -97,7 +97,7 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 1. COMPANY IDENTITY & ECOSYSTEM
 - Ace Spaces is the parent enterprise, authorized DuPont™ Corian® solid surface distributor, and master architectural fabrication hub in Bangalore (Bengaluru), Karnataka, India.
 - Central facility: Fully equipped stockyard and CNC workshop in Bangalore supplying architects, interior designers, contractors, and luxury millworkers across India.
-- DuPont Alliance: Official authorized distributor & certified fabricator. All slabs carry genuine chemical composition certifications and DuPont's 10-year installed product warranty.
+- DuPont Alliance: Authorised partner, distributor & certified fabricator. All slabs carry genuine chemical composition certifications and DuPont's 10-year installed product warranty.
 
 2. THE CORO CONNECTION (SYNERGY)
 - Ace Spaces is the foundational parent company and raw material source for Coro Crafted Collective.

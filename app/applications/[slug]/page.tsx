@@ -5,7 +5,6 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { applicationSectors, getApplicationSector } from '@/data/applications';
 import { materials as allMaterials } from '@/data/materials';
-import ApplicationSlider from '@/components/ApplicationSlider';
 import ApplicationMaterialGallery from '@/components/ApplicationMaterialGallery';
 
 interface PageProps {
@@ -150,56 +149,98 @@ export default function ApplicationDetailPage({ params }: PageProps) {
       </div>
 
       {/* Sector Hero Section */}
-      <section className="page-split-hero" style={{ alignItems: 'start', paddingBottom: '60px' }}>
+      <section className="page-split-hero">
         <div>
-          <span className="eyebrow" style={{ color: 'var(--muted)', display: 'block', marginBottom: '14px' }}>
+          <p className="eyebrow">
             Sector {sector.sectorNumber} / Typology Case
-          </span>
-          <h1 style={{ fontSize: 'clamp(40px, 5.2vw, 70px)', lineHeight: 0.94, margin: '0 0 20px', letterSpacing: '-0.02em' }}>
+          </p>
+          <h1
+            style={{
+              fontSize: 'clamp(44px, 5.5vw, 84px)',
+              lineHeight: 0.98,
+              margin: '0 0 24px',
+              letterSpacing: '-0.04em',
+            }}
+          >
             {sector.title.split(' ')[0]}
             <br />
-            <i>{sector.title.split(' ').slice(1).join(' ')}</i>
+            <i>{sector.title.split(' ').slice(1).join(' ') || 'Typology.'}</i>
           </h1>
-          <p style={{ fontSize: '13px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '24px' }}>
-            {sector.tagline}
-          </p>
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#3d433b', marginBottom: '36px' }}>
-            {sector.overview}
+
+          <p
+            style={{
+              fontSize: '17px',
+              lineHeight: 1.7,
+              color: '#4a5249',
+              maxWidth: '520px',
+              marginBottom: '32px',
+            }}
+          >
+            {sector.overview || sector.heroDescription}
           </p>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px' }}>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="button button-dark" href="/contact">
               Discuss a {sector.title.split(' ')[0]} Brief <span>↗</span>
             </Link>
-            <Link
-              href="/materials"
-              style={{
-                padding: '12px 22px',
-                fontSize: '12px',
-                fontFamily: 'DM Mono, monospace',
-                textTransform: 'uppercase',
-                letterSpacing: '0.08em',
-                border: '1px solid var(--line)',
-                background: 'transparent',
-                color: 'var(--ink)',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-              }}
-            >
-              Request Sector Samples <span>↗</span>
+            <Link className="text-link" href="/materials">
+              View Materials <span>↗</span>
             </Link>
+          </div>
+
+          <div className="hero-stats-row">
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Typology
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+                Sector {sector.sectorNumber}
+              </strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Joinery
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+                Zero-Joint Spec
+              </strong>
+            </div>
+            <div>
+              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                Compliance
+              </span>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+                Commercial Grade
+              </strong>
+            </div>
           </div>
         </div>
 
-        {/* Hero Slider with all sector images */}
-        <div>
-          <ApplicationSlider
-            images={sector.images}
-            sectorTitle={sector.title}
-            sectorSlug={sector.id}
-            priority={true}
+        {/* Hero Architectural Accent */}
+        <div className="hero-image-frame">
+          <Image
+            src={sector.images[0]?.src || '/images/images/app_residential_calacatta_greige_1.jpg'}
+            alt={sector.images[0]?.alt || `${sector.title} architectural solid surface application`}
+            fill
+            sizes="(max-width: 800px) 100vw, 40vw"
+            quality={75}
+            decoding="async"
+            style={{ objectFit: 'cover' }}
+            priority
           />
+          <div className="hero-image-badge">
+            <div>
+              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+                Typology Focus
+              </span>
+              <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
+                {sector.tagline}
+              </strong>
+            </div>
+            <Link href="#gallery" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+              Explore Gallery <span>↓</span>
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -242,7 +283,7 @@ export default function ApplicationDetailPage({ params }: PageProps) {
       </section>
 
       {/* Photographic Gallery Grid of all spatial room images */}
-      <section style={{ padding: '80px 0', borderBottom: '1px solid var(--line)' }}>
+      <section id="gallery" style={{ padding: '80px 0', borderBottom: '1px solid var(--line)' }}>
         <p className="eyebrow" style={{ color: 'var(--muted)', marginBottom: '14px' }}>
           Spatial Environments
         </p>

@@ -279,19 +279,6 @@ export default function ApplicationMaterialGallery({
                   >
                     {badgeText}
                   </span>
-                  <span
-                    style={{
-                      background: 'rgba(233, 232, 226, 0.92)',
-                      backdropFilter: 'blur(8px)',
-                      color: 'var(--ink)',
-                      padding: '4px 8px',
-                      fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
-                      border: '1px solid rgba(30, 33, 29, 0.2)',
-                    }}
-                  >
-                    🔍
-                  </span>
                 </div>
 
                 {/* Bottom Overlay Pill on Hover Hint */}

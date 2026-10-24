@@ -92,11 +92,11 @@ export const productsData: ProductItem[] = [
       'Seamlessly integrated kitchen and utility sinks chemically bonded directly to solid surface benchtops. The absence of top-mount rims, silicone sealants, and grout lines ensures that food debris and water can be wiped directly into the bowl with effortless hygiene.',
     overview:
       'Fabricated from the same high-performance mineral acrylic composite as the surrounding worktop, Ace Spaces integrated sinks become one monolithic entity. Heat-resistant cast bottoms and gently curved internal corners prevent dirt accumulation, while thermal shock resistance withstands boiling liquids and daily culinary use.',
-    image: '/images/images/app_residential_cirrus_white_1.jpg',
+    image: '/images/integrated-sink-installation.jpg',
     galleryImages: [
       {
-        src: '/images/images/app_residential_cirrus_white_1.jpg',
-        alt: 'Under-mount integrated solid surface sink in Cirrus White',
+        src: '/images/integrated-sink-installation.jpg',
+        alt: 'Seamless undermount integrated solid surface vanity sink',
         caption: 'Seamless sink-to-benchtop transition with precision drainage grooves.'
       },
       {
@@ -139,17 +139,17 @@ export const productsData: ProductItem[] = [
       'Engineered for premium commercial amenities, corporate headquarters, airports, and luxury hospitality venues. Ace Spaces linear washplanes feature gentle sloping planes that guide water toward a concealed continuous trough drain, delivering a dramatic, minimalist aesthetic paired with high-volume capacity.',
     overview:
       'Traditional individual basins in commercial restrooms frequently trap water and cause puddling around faucets. Ace Spaces solid surface washplanes provide a clean, monolithic horizontal plane spanning up to 5 meters without joints. Designed for wall-mounted sensor taps and soap dispensers, they optimize flow rate, eliminate standing water, and reduce maintenance costs.',
-    image: '/images/images/app_commercial_grinds_excavage.jpg',
+    image: '/images/washplane-commercial-multistation.jpg',
     galleryImages: [
       {
-        src: '/images/images/app_commercial_grinds_excavage.jpg',
-        alt: 'Multi-station linear solid surface washplane in Excavage',
-        caption: 'Triple-station continuous commercial washplane with integrated sensor faucets.'
+        src: '/images/washplane-commercial-multistation.jpg',
+        alt: 'Multi-station linear solid surface washplane in marble-veined finish with integrated deck',
+        caption: 'Multi-station continuous commercial washplane with integrated undermount basin deck and towel rails.'
       },
       {
-        src: '/images/images/app_commercial_grinds_pebble_lane.jpg',
-        alt: 'Single basin sloped washplane in Pebble Lane',
-        caption: 'Wall-hung executive washplane with removable access tray for trap cleaning.'
+        src: '/images/washplane-trough-cantilever.jpg',
+        alt: 'Monolithic cantilevered trough washplane in dark aggregate finish',
+        caption: 'Monolithic floating trough washplane with multi-tap sensor array for high-traffic amenities.'
       }
     ],
     keyFeatures: [
@@ -192,17 +192,17 @@ export const productsData: ProductItem[] = [
       'Tailored for master bathrooms, boutique hotels, and guest powder suites. Ace Spaces basins and vanities feature seamlessly integrated solid surface washbowls welded directly to the vanity top, creating a monolithic, zero-grout sculpted fixture that resists makeup, cosmetics, and standing water.',
     overview:
       'From floating wall-hung cantilevered slabs with soft apron skirts to double-basin vanity suites with concealed tissue slots and integrated towel rails, our bathroom vanities unite horizontal countertop and vertical bowl into a fluid single piece. Scratches buff out easily, ensuring everlasting elegance.',
-    image: '/images/images/app_residential_artista_mist_1.jpg',
+    image: '/images/basin-vanity-thermoformed-double.jpg',
     galleryImages: [
       {
-        src: '/images/images/app_residential_artista_mist_1.jpg',
-        alt: 'Monolithic wall-hung bathroom vanity with integrated basin in Artista Mist',
-        caption: 'Bespoke floating vanity console with 120mm mitred apron and integrated coved basin.'
+        src: '/images/basin-vanity-thermoformed-double.jpg',
+        alt: 'Thermoformed wall-hung double basin vanity with coved splashback',
+        caption: 'Bespoke floating dual-basin vanity console with seamless coved wall splashback.'
       },
       {
-        src: '/images/images/app_residential_stonique_2.jpg',
-        alt: 'Pure white floating vanity suite in Stonique',
-        caption: 'Double basin vanity console with seamless drawer fronts and integrated finger-pulls.'
+        src: '/images/basin-vanity-round-vessel.jpg',
+        alt: 'Countertop solid surface round vessel basin on vanity unit',
+        caption: 'Circular solid surface vessel basin on minimalist bathroom vanity suite.'
       }
     ],
     keyFeatures: [
@@ -245,28 +245,30 @@ export const productsData: ProductItem[] = [
       'High-performance commercial washroom and End-of-Trip (EOT) grooming stations designed for active corporate lifestyle facilities, fitness clubs, and commercial property towers. Non-porous solid surface structures resist heavy daily impacts, moisture saturation, and graffiti.',
     overview:
       'Modern commercial developments compete on the quality of their End-of-Trip (EOT) commuter facilities. Ace Spaces provides turn-key vanity suites, grooming islands with built-in hair styling appliance holders, wireless charging points, and full-height wet wall linings that withstand heavy steam, damp towels, and intense multi-shift cleaning regimens.',
-    image: '/images/images/app_commercial_terrazzo_laguna.jpg',
+    image: '/images/eot-bathroom-cubicle-partitions.jpg',
     galleryImages: [
       {
-        src: '/images/images/app_commercial_terrazzo_laguna.jpg',
-        alt: 'Corporate end-of-trip grooming counter with vanity mirror illumination in Terrazzo Laguna',
-        caption: 'Executive EOT groom station featuring heat-resistant appliance cradles and coved edges.'
+        src: '/images/eot-bathroom-cubicle-partitions.jpg',
+        alt: 'Full-height commercial toilet cubicle partitions and matching solid surface washbasin',
+        caption: 'Full-height solid surface toilet cubicle partition system with seamless privacy rebating and integrated washbasin.'
       },
       {
-        src: '/images/images/app_commercial_grinds_stonique.jpg',
-        alt: 'Heavy duty commercial washroom bank in Stonique',
-        caption: 'Vandal-resistant solid surface vanity bank with under-counter service access panels.'
+        src: '/images/eot-urinal-modesty-screens.jpg',
+        alt: 'Wall-mounted solid surface urinal modesty partition screens with radius corners',
+        caption: 'Wall-mounted solid surface urinal modesty privacy screens with soft radius corners against fluted architectural cladding.'
       }
     ],
     keyFeatures: [
+      'Full-height solid surface toilet cubicle partition systems with seamless privacy rebating',
+      'Wall-mounted urinal modesty screens with radiused corners and concealed structural fixings',
       'Impact-resistant through-body solid surface that cannot delaminate or chip like stone',
       'Graffiti and chemical resistant — aerosol paint and markers buff off with Scotch-Brite',
       'Integrated amenities: heat-resistant hairdryer cradles, power pop-ups, waste slots',
-      'Full-height non-porous wall cladding for high-steam shower locker zones',
-      'Seamless joinery panels that prevent moisture swelling from wet bags and towels'
+      'Full-height non-porous wall cladding for high-steam shower locker zones'
     ],
     specifications: [
       { label: 'Traffic Rating', value: 'Heavy commercial (500+ daily cycles)' },
+      { label: 'Cubicle & Screen Height', value: 'Full-height floor-to-ceiling (up to 3000mm) or suspended cantilever' },
       { label: 'Graffiti Removal', value: '100% surface renewable with light scouring pad' },
       { label: 'Substrate Integration', value: 'Anodized aluminum framing and moisture-proof compact laminate' },
       { label: 'Accessories', value: 'Integrated Dyson Airblade wash & dry taps, waste hatches, heat rings' },
@@ -305,9 +307,9 @@ export const productsData: ProductItem[] = [
         caption: 'Double-bay surgical scrub trough with zero-joint wall integration.'
       },
       {
-        src: '/images/images/app_commercial_grinds_archeologic.jpg',
-        alt: 'Accessible DDA compliant bathroom vanity in Archeologic',
-        caption: 'Wheelchair-accessible front contour vanity with concealed protective pipe cover.'
+        src: '/images/healthcare-clinical-reception-station.jpg',
+        alt: 'Hygienic curved nurse station and clinical reception desk in solid surface',
+        caption: 'Seamless clinical nurse station and patient reception desk with thermoformed curved gables.'
       }
     ],
     keyFeatures: [
@@ -345,17 +347,17 @@ export const productsData: ProductItem[] = [
       'Pushing the boundary between architectural joinery and sculptural artwork. Ace Spaces bespoke fabrication studio transforms 2D solid surface sheets into compound-curved organic desks, illuminated retail plinths, acoustic ceiling ribbons, and backlit interior monuments using 5-axis CNC machining and calibrated thermoforming.',
     overview:
       'Solid surface exhibits unique thermoplastic properties: when heated to 160°C in our computer-controlled platen ovens, it achieves the flexibility of leather and can be vacuum-formed over custom timber bucks down to tight 25mm radii without structural blanching. Once cooled, it returns to stone-like permanence.',
-    image: '/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg',
+    image: '/images/bespoke-sculptural-lounge-monolith.jpg',
     galleryImages: [
       {
-        src: '/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg',
-        alt: 'Compound curved solid surface cocktail bar with integrated mood lighting',
-        caption: 'Dual-axis thermoformed bar counter with organic fluted texture and LED underglow.'
+        src: '/images/bespoke-sculptural-lounge-monolith.jpg',
+        alt: 'Sculptural monolithic solid surface curved lounge and 3D botanical wall relief panels',
+        caption: 'Monolithic organic curved solid surface lounge seating paired with 3D precision-carved botanical wall reliefs and acoustic wave surfaces.'
       },
       {
-        src: '/images/images/coriansolidsurface-goldenonyx-application.jpg',
-        alt: 'Sculptural illuminated reception desk monolith in Golden Onyx',
-        caption: 'Monolithic illuminated reception desk with internal optical diffuser cavity.'
+        src: '/images/bespoke-backlit-gallery-feature-wall.jpg',
+        alt: 'Backlit translucent solid surface architectural feature wall with relief medallions and curved archways',
+        caption: 'Translucent solid surface illuminated gallery feature wall with recessed lighting niches and organic arch portals.'
       }
     ],
     keyFeatures: [

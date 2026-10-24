@@ -74,8 +74,8 @@ export const applicationSectors: ApplicationSector[] = [
         tag: 'Integrated Sink'
       },
       {
-        src: '/images/images/app_residential_cirrus_white_1.jpg',
-        alt: 'Thermo-welded sink transition and seamless drainage detail in Cirrus White',
+        src: '/images/integrated-sink-installation.jpg',
+        alt: 'Thermo-welded vanity basin transition and seamless coved detail',
         caption: 'Thermo-Welded Basin Transition with Coved Internal Corners',
         tag: 'Coved Basin Detail'
       }
@@ -206,9 +206,9 @@ export const applicationSectors: ApplicationSector[] = [
         tag: 'Curved Cladding'
       },
       {
-        src: '/images/images/app_residential_artista_mist_1.jpg',
-        alt: 'Luxury boutique hotel suite double vanity in Artista Mist',
-        caption: 'Bespoke Boutique Suite Double Basin Floating Vanity in Artista Mist',
+        src: '/images/basin-vanity-thermoformed-double.jpg',
+        alt: 'Luxury boutique hotel suite double vanity with seamless coved basins',
+        caption: 'Bespoke Boutique Suite Double Basin Floating Vanity with Seamless Coved Basins',
         tag: 'Suite Vanities'
       }
     ],
@@ -267,16 +267,10 @@ export const applicationSectors: ApplicationSector[] = [
         tag: 'Clinical Reception'
       },
       {
-        src: '/images/images/app_residential_stonique_1.jpg',
-        alt: 'Specialist operatory treatment room countertops and splashbacks in seamless solid surface',
-        caption: 'Hygienic Operatory Countertops & Integrated Splashbacks in Stonique',
-        tag: 'Operatory Surfaces'
-      },
-      {
-        src: '/images/images/app_commercial_grinds_archeologic.jpg',
-        alt: 'Sterile scrub sink with thermo-welded basin and zero silicone seals',
-        caption: 'Seamless Scrub Basin with Continuous Wall Splash Transition in Archeologic',
-        tag: 'Scrub Station'
+        src: '/images/healthcare-clinical-reception-station.jpg',
+        alt: 'Hygienic curved nurse station and clinical reception desk in solid surface',
+        caption: 'Seamless Clinical Nurse Station & Patient Reception Counter with Antimicrobial Surfaces',
+        tag: 'Clinical Station'
       }
     ],
     specifications: [
@@ -333,16 +327,16 @@ export const applicationSectors: ApplicationSector[] = [
         tag: 'Collaboration Island'
       },
       {
-        src: '/images/images/app_commercial_grinds_excavage.jpg',
-        alt: 'Wall-to-wall seamless commercial washroom trough vanity in Excavage',
-        caption: 'Continuous Wall-to-Wall Commercial Washroom Trough in Excavage',
-        tag: 'Commercial Trough'
+        src: '/images/washplane-commercial-multistation.jpg',
+        alt: 'Multi-station linear solid surface washplane in marble-veined finish with integrated deck',
+        caption: 'Continuous Wall-to-Wall Commercial Washroom Washplane with Towel Rails',
+        tag: 'Commercial Washplane'
       },
       {
-        src: '/images/images/app_commercial_grinds_pebble_lane.jpg',
-        alt: 'Seamless basin junction and concealed sloped drain detail in Pebble Lane solid surface',
-        caption: 'Precision CNC-Milled Sloped Drain Detail with Zero Bacterial Traps',
-        tag: 'Sloped Drain Detail'
+        src: '/images/washplane-trough-cantilever.jpg',
+        alt: 'Monolithic cantilevered trough washplane in dark aggregate finish',
+        caption: 'Monolithic Cantilevered Trough Washplane with Multi-Tap Sensor Array',
+        tag: 'Commercial Trough'
       }
     ],
     specifications: [
@@ -393,22 +387,16 @@ export const applicationSectors: ApplicationSector[] = [
       'Keil undercut rear anchor system and precision CNC expansion joints allow thermal movement while presenting a flawless monolithic facade.',
     images: [
       {
-        src: '/images/images/coriansolidsurface-beechnuwood-application.jpg',
-        alt: 'Exterior architectural facade cladding and canopy soffits in durable solid surface',
-        caption: 'Ventilated Facade Cassettes & Thermoformed Soffit in Beech Nuwood',
-        tag: 'Facade Cassettes'
+        src: '/images/exterior-cladding-curved-facade-balconies.jpg',
+        alt: 'Multi-storey architectural building facade with curved solid surface balcony ribbons and perforated screens',
+        caption: 'Thermoformed Monolithic Curved Facade Balconies & Wave Parapet Cladding',
+        tag: 'Curved Balcony Facade'
       },
       {
-        src: '/images/images/app_commercial_bleached_nuwood.jpg',
-        alt: 'Exterior architectural rain-screen panel detail and UV-resistant finish',
-        caption: 'Seamless Architectural Weather Envelope with Concealed Mechanical Anchors',
-        tag: 'Rain-Screen System'
-      },
-      {
-        src: '/images/images/coriansolidsurface-carbonaggregate-application.jpg',
-        alt: 'Thermoformed exterior curved column encasement in monolithic composite',
-        caption: 'Thermoformed Monolithic Column Encasement & Portal Cladding',
-        tag: 'Column Cladding'
+        src: '/images/exterior-cladding-fluted-storefront-facade.jpg',
+        alt: 'Architectural storefront facade with fluted solid surface cladding, entrance portal, and 3D typography',
+        caption: 'Continuous Fluted Solid Surface Storefront Facade with Monolithic Typography & Entrance Portal',
+        tag: 'Storefront Facade'
       }
     ],
     specifications: [
