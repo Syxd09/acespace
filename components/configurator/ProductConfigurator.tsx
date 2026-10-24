@@ -21,10 +21,10 @@ import {
   TAP_LOCATION_OPTIONS,
   DOWNSTAND_HEIGHT_OPTIONS,
   UPSTAND_MODE_OPTIONS,
-  RO_SIZE_OPTIONS,
   WDT_DEPTH_OPTIONS,
-  SINK_WIDTH_OPTIONS,
-  SINK_DEPTH_OPTIONS,
+  CUSTOM_BASIN_WIDTH_OPTIONS,
+  CUSTOM_BASIN_DEPTH_OPTIONS,
+  CUSTOM_BASIN_HEIGHT_OPTIONS,
 } from '@/data/configuratorData';
 import { Configurator3DEngine, DimensionCallout, CadDimensionData } from '@/lib/configurator/webglEngine';
 import { decodeUrlParamsToConfig } from '@/lib/configurator/urlParams';
@@ -1033,37 +1033,23 @@ export default function ProductConfigurator({
                   </div>
                 </div>
 
-                {/* Slab Thickness Selection */}
+                {/* Standard Slab Thickness (12mm Standard - Non-customizable) */}
                 <div>
                   <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
                     Solid Body Thickness
                   </label>
-                  <div className="configurator-thickness-grid">
-                    {([12, 19, 24, 60] as const).map(t => {
-                      const isSelected = config.thickness === t;
-                      return (
-                        <button
-                          key={t}
-                          type="button"
-                          className="configurator-thickness-btn"
-                          onClick={() => setConfig({ ...config, thickness: t })}
-                          style={{
-                            background: isSelected ? '#1e211d' : '#f5f4ef',
-                            color: isSelected ? '#fff' : '#1e211d',
-                            border: isSelected ? '1px solid #1e211d' : '1px solid rgba(30,33,29,0.16)',
-                            textAlign: 'center',
-                            cursor: 'pointer',
-                          }}
-                        >
-                          <strong style={{ display: 'block', fontSize: '13px', fontWeight: 600, whiteSpace: 'nowrap' }}>
-                            {t} mm
-                          </strong>
-                          <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', opacity: isSelected ? 0.9 : 0.7, whiteSpace: 'nowrap', marginTop: '2px' }}>
-                            {t === 12 ? 'Standard' : t === 19 ? 'Heavy' : t === 24 ? 'Commercial' : 'Built-Up'}
-                          </span>
-                        </button>
-                      );
-                    })}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 14px', background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.12)', borderRadius: '2px' }}>
+                    <div>
+                      <div style={{ fontSize: '14px', fontWeight: 600, fontFamily: 'DM Mono, monospace', color: '#1e211d' }}>
+                        12 mm
+                      </div>
+                      <div style={{ fontSize: '11px', color: '#666', marginTop: '2px' }}>
+                        Standard architectural calibrated solid surface for all sinks &amp; countertops
+                      </div>
+                    </div>
+                    <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', background: '#1e211d', color: '#fff', padding: '3px 8px', borderRadius: '2px', letterSpacing: '0.04em' }}>
+                      STANDARD FIXED
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1596,7 +1582,7 @@ export default function ProductConfigurator({
                             if (newIntegration === 'none') {
                               updates.basinModelId = 'none';
                             } else if (config.basinModelId === 'none') {
-                              updates.basinModelId = 'coved-oval';
+                              updates.basinModelId = 'oval-5';
                             }
                             setConfig({ ...config, ...updates });
                           }}
@@ -1623,466 +1609,506 @@ export default function ProductConfigurator({
                   </div>
                 </div>
 
-                {/* 3. SINK MODEL */}
-                {config.sinkIntegration !== 'none' && (
-                  <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                      SINK MODEL
-                    </label>
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(68px, 1fr))', gap: '8px' }}>
-                      {[
-                        { id: 'round-bowl', code: 'RO', name: 'Round Bowl (RO)' },
-                        { id: 'coved-oval', code: 'OV', name: 'Oval Basin (OV)' },
-                        { id: 'coved-rect', code: 'A', name: 'Rectangular Basin (A)' },
-                        { id: 'crisp-rect', code: 'B', name: 'Soft-Rect Basin (B)' },
-                        { id: 'double-basin', code: 'DB', name: 'Curved Basin (DB)' },
-                        { id: 'undermount-box', code: 'UB', name: 'Undermount Box (UB)' },
-                        { id: 'undermount-channel', code: 'UC', name: 'Undermount Channel (UC)' },
-                        { id: 'washdesk-trough', code: 'WDT', name: 'Washdesk Trough (WDT)' },
-                      ].map(item => {
-                        const isAct = config.basinModelId === item.id ||
-                          (item.code === 'A' && (config.basinModelId === 'coved-rect' || config.basinModelId === 'A')) ||
-                          (item.code === 'B' && (config.basinModelId === 'crisp-rect' || config.basinModelId === 'B')) ||
-                          (item.code === 'RO' && (config.basinModelId === 'round-bowl' || config.basinModelId === 'RO')) ||
-                          (item.code === 'OV' && (config.basinModelId === 'coved-oval' || config.basinModelId === 'OV')) ||
-                          (item.code === 'DB' && (config.basinModelId === 'double-basin' || config.basinModelId === 'DB')) ||
-                          (item.code === 'UB' && (config.basinModelId === 'undermount-box' || config.basinModelId === 'UB')) ||
-                          (item.code === 'UC' && (config.basinModelId === 'undermount-channel' || config.basinModelId === 'UC')) ||
-                          (item.code === 'WDT' && (config.basinModelId === 'washdesk-trough' || config.basinModelId === 'WDT'));
+                {/* 3. SINK MODEL SELECTION (Store inventory + Customizable troughs) */}
+                {config.sinkIntegration !== 'none' && (() => {
+                  const currentBasin = AVAILABLE_BASINS.find(b => b.id === config.basinModelId) ||
+                    AVAILABLE_BASINS.find(b => b.code.toLowerCase() === (config.basinModelId || '').toLowerCase()) ||
+                    AVAILABLE_BASINS[0];
+                  const isCustom = Boolean(currentBasin?.isCustomizable);
 
-                        return (
-                          <div
-                            key={item.id}
-                            title={item.name}
-                            onClick={() => {
-                              const updates: Partial<ProductConfiguration> = { basinModelId: item.id };
-                              if (config.sinkIntegration === 'none') {
-                                updates.sinkIntegration = 'integrated';
-                              }
-                              if (item.code === 'A') {
-                                updates.basinWidthMm = config.basinWidthMm || 500;
-                                updates.basinDepthMm = config.basinDepthMm || 350;
-                                updates.basinHeightMm = 135;
-                              } else if (item.code === 'B') {
-                                updates.basinWidthMm = config.basinWidthMm || 520;
-                                updates.basinDepthMm = config.basinDepthMm || 350;
-                                updates.basinHeightMm = 130;
-                              } else if (item.code === 'RO') {
-                                updates.basinWidthMm = config.basinWidthMm || 350;
-                                updates.basinDepthMm = config.basinWidthMm || 350;
-                                updates.basinHeightMm = 135;
-                                updates.basinSizeCode = config.basinSizeCode || 'RO350';
-                              } else if (item.code === 'WDT') {
-                                updates.basinWidthMm = config.basinWidthMm || 600;
-                                updates.basinDepthMm = config.basinDepthMm || 260;
-                                updates.basinHeightMm = 120;
-                                updates.basinSizeCode = config.basinSizeCode || 'WDT260';
-                              } else if (item.code === 'UB') {
-                                updates.basinWidthMm = config.basinWidthMm || 500;
-                                updates.basinDepthMm = config.basinDepthMm || 350;
-                                updates.basinHeightMm = 140;
-                              } else if (item.code === 'UC') {
-                                updates.basinWidthMm = config.basinWidthMm || 580;
-                                updates.basinDepthMm = config.basinDepthMm || 360;
-                                updates.basinHeightMm = 120;
-                              }
-                              setConfig({ ...config, ...updates });
-                            }}
-                            style={{
-                              padding: '8px 4px 6px',
-                              border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                              background: isAct ? '#ffffff' : '#fcfbfa',
-                              borderRadius: '2px',
-                              cursor: 'pointer',
-                              display: 'flex',
-                              flexDirection: 'column',
-                              alignItems: 'center',
-                              gap: '4px',
-                              transition: 'all 0.15s ease',
-                            }}
-                          >
-                            <SinkModelDiagram model={item.code as any} active={isAct} />
-                            <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
-                              {item.code}
+                  const selectModel = (item: typeof AVAILABLE_BASINS[number]) => {
+                    const updates: Partial<ProductConfiguration> = {
+                      basinModelId: item.id,
+                    };
+                    if (config.sinkIntegration === 'none') {
+                      updates.sinkIntegration = 'integrated';
+                    }
+                    if (!item.isCustomizable) {
+                      // Store model dimensions are fixed and cannot be customized
+                      updates.basinWidthMm = item.width;
+                      updates.basinDepthMm = item.depth;
+                      updates.basinHeightMm = item.height;
+                      updates.basinSizeCode = item.code;
+                    } else {
+                      updates.basinWidthMm = config.basinWidthMm || item.width;
+                      updates.basinDepthMm = config.basinDepthMm || item.depth;
+                      updates.basinHeightMm = config.basinHeightMm || item.height;
+                      updates.basinSizeCode = item.code;
+                    }
+                    setConfig({ ...config, ...updates });
+                  };
+
+                  return (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      <div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                          <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                            SINK MODEL SELECTION
+                          </label>
+                          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888' }}>
+                            12 Store Models • 3 Customizable
+                          </span>
+                        </div>
+
+                        {/* STORE MODELS: Oval & Capsule */}
+                        <div style={{ marginBottom: '12px' }}>
+                          <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+                            Store Inventory — Oval &amp; Capsule
+                          </div>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                            {AVAILABLE_BASINS.filter(b => b.category === 'oval').map(item => {
+                              const isAct = config.basinModelId === item.id || config.basinModelId === item.code;
+                              return (
+                                <div
+                                  key={item.id}
+                                  title={`${item.name} (${item.width} × ${item.depth} × ${item.height} mm)`}
+                                  onClick={() => selectModel(item)}
+                                  style={{
+                                    padding: '8px 4px 6px',
+                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    background: isAct ? '#ffffff' : '#fcfbfa',
+                                    borderRadius: '2px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '3px',
+                                    transition: 'all 0.15s ease',
+                                  }}
+                                >
+                                  <SinkModelDiagram model={item.code} active={isAct} />
+                                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
+                                    {item.code}
+                                  </span>
+                                  <span style={{ fontSize: '8px', fontFamily: 'DM Mono, monospace', color: '#777' }}>
+                                    {item.width}×{item.depth}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* STORE MODELS: Circular */}
+                        <div style={{ marginBottom: '12px' }}>
+                          <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+                            Store Inventory — Circular
+                          </div>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px' }}>
+                            {AVAILABLE_BASINS.filter(b => b.category === 'circular').map(item => {
+                              const isAct = config.basinModelId === item.id || config.basinModelId === item.code;
+                              return (
+                                <div
+                                  key={item.id}
+                                  title={`${item.name} (${item.width} × ${item.depth} × ${item.height} mm)`}
+                                  onClick={() => selectModel(item)}
+                                  style={{
+                                    padding: '8px 6px 6px',
+                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    background: isAct ? '#ffffff' : '#fcfbfa',
+                                    borderRadius: '2px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '3px',
+                                    transition: 'all 0.15s ease',
+                                  }}
+                                >
+                                  <SinkModelDiagram model={item.code} active={isAct} />
+                                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
+                                    {item.code}
+                                  </span>
+                                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#777' }}>
+                                    Ø {item.width} × {item.height} mm
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* STORE MODELS: Square & Rectangular */}
+                        <div style={{ marginBottom: '14px' }}>
+                          <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+                            Store Inventory — Square &amp; Rectangular
+                          </div>
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                            {AVAILABLE_BASINS.filter(b => b.category === 'square').map(item => {
+                              const isAct = config.basinModelId === item.id || config.basinModelId === item.code;
+                              return (
+                                <div
+                                  key={item.id}
+                                  title={`${item.name} (${item.width} × ${item.depth} × ${item.height} mm)`}
+                                  onClick={() => selectModel(item)}
+                                  style={{
+                                    padding: '8px 4px 6px',
+                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    background: isAct ? '#ffffff' : '#fcfbfa',
+                                    borderRadius: '2px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '3px',
+                                    transition: 'all 0.15s ease',
+                                  }}
+                                >
+                                  <SinkModelDiagram model={item.code} active={isAct} />
+                                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
+                                    {item.code}
+                                  </span>
+                                  <span style={{ fontSize: '8px', fontFamily: 'DM Mono, monospace', color: '#777' }}>
+                                    {item.width}×{item.depth}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        {/* CUSTOMIZABLE TROUGHS: WDT, UC, UB */}
+                        <div>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+                            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                              Customizable Architectural Troughs (Custom H, W, D)
+                            </span>
+                            <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', background: 'rgba(212,56,51,0.08)', color: 'var(--brand-red, #d43833)', padding: '1px 5px', borderRadius: '2px' }}>
+                              Parametric
                             </span>
                           </div>
-                        );
-                      })}
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
+                            {AVAILABLE_BASINS.filter(b => b.category === 'custom').map(item => {
+                              const isAct = config.basinModelId === item.id || config.basinModelId === item.code;
+                              return (
+                                <div
+                                  key={item.id}
+                                  title={`${item.name} (Customizable)`}
+                                  onClick={() => selectModel(item)}
+                                  style={{
+                                    padding: '10px 6px 8px',
+                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                    background: isAct ? '#ffffff' : '#fcfbfa',
+                                    borderRadius: '2px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'center',
+                                    gap: '4px',
+                                    transition: 'all 0.15s ease',
+                                  }}
+                                >
+                                  <SinkModelDiagram model={item.code} active={isAct} />
+                                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 700 : 600, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
+                                    {item.code}
+                                  </span>
+                                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: isAct ? 'var(--brand-red, #d43833)' : '#666' }}>
+                                    Custom W / D / H
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* 4. SINK SPECIFICATION / SIZE DISPLAY */}
+                      {/* CASE 1: FIXED STORE MODEL (Depth & Size CANNOT be customized) */}
+                      {!isCustom && (
+                        <div style={{ background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.12)', padding: '14px 16px', borderRadius: '2px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                              STORE MODEL SPECIFICATIONS ({currentBasin.name})
+                            </span>
+                            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', background: '#1e211d', color: '#fff', padding: '2px 8px', borderRadius: '2px', letterSpacing: '0.04em' }}>
+                              FIXED STORE MODEL
+                            </span>
+                          </div>
+
+                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginTop: '10px' }}>
+                            <div style={{ background: '#ffffff', border: '1px solid #e0ded7', padding: '10px 8px', textAlign: 'center' }}>
+                              <div style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#777', textTransform: 'uppercase' }}>WIDTH</div>
+                              <div style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', fontWeight: 700, color: '#1e211d', marginTop: '2px' }}>
+                                {currentBasin.width} mm
+                              </div>
+                            </div>
+                            <div style={{ background: '#ffffff', border: '1px solid #e0ded7', padding: '10px 8px', textAlign: 'center' }}>
+                              <div style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#777', textTransform: 'uppercase' }}>DEPTH (F-B)</div>
+                              <div style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', fontWeight: 700, color: '#1e211d', marginTop: '2px' }}>
+                                {currentBasin.depth} mm
+                              </div>
+                            </div>
+                            <div style={{ background: '#ffffff', border: '1px solid #e0ded7', padding: '10px 8px', textAlign: 'center' }}>
+                              <div style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#777', textTransform: 'uppercase' }}>BOWL DEPTH (H)</div>
+                              <div style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', fontWeight: 700, color: '#1e211d', marginTop: '2px' }}>
+                                {currentBasin.height} mm
+                              </div>
+                            </div>
+                          </div>
+
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '12px', paddingTop: '10px', borderTop: '1px solid #e8e5dc', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#555' }}>
+                            <span>Thickness: 12mm Standard</span>
+                            <span style={{ color: '#888' }}>Pre-molded Store Inventory</span>
+                          </div>
+                          <div style={{ marginTop: '6px', fontSize: '11px', color: '#888', fontStyle: 'italic', lineHeight: 1.4 }}>
+                            * Depth and dimensions are fixed factory standards for this model and cannot be customized.
+                          </div>
+                        </div>
+                      )}
+
+                      {/* CASE 2: CUSTOMIZABLE SINK MODELS (WDT, UC, UB) */}
+                      {isCustom && (
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', background: '#faf9f6', padding: '14px', border: '1px solid rgba(212,56,51,0.2)', borderRadius: '2px' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                              CUSTOM DIMENSION CONTROLS ({currentBasin.code})
+                            </span>
+                            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
+                              CUSTOMIZABLE H / W / D
+                            </span>
+                          </div>
+
+                          {/* WIDTH (SPAN) CUSTOMIZATION */}
+                          <div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                              <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                                SINK WIDTH (SPAN)
+                              </label>
+                              <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                                {config.basinWidthMm || currentBasin.width} mm
+                              </span>
+                            </div>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                              {[500, 600, 700, 800, 900].map(w => {
+                                const isAct = (config.basinWidthMm || currentBasin.width) === w;
+                                return (
+                                  <button
+                                    key={w}
+                                    type="button"
+                                    onClick={() => setConfig({ ...config, basinWidthMm: w })}
+                                    style={{
+                                      padding: '8px 4px',
+                                      background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
+                                      color: isAct ? '#fff' : '#1e211d',
+                                      border: isAct ? '1px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                      fontSize: '11px',
+                                      fontFamily: 'DM Mono, monospace',
+                                      cursor: 'pointer',
+                                    }}
+                                  >
+                                    {w} mm
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          {/* DEPTH (FRONT-TO-BACK) CUSTOMIZATION */}
+                          <div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                              <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                                SINK DEPTH (FRONT-TO-BACK)
+                              </label>
+                              <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                                {config.basinDepthMm || currentBasin.depth} mm
+                              </span>
+                            </div>
+                            {currentBasin.id === 'wdt' ? (
+                              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                                {WDT_DEPTH_OPTIONS.slice(0, 5).map(opt => {
+                                  const isAct = (config.basinDepthMm || 260) === opt.depth;
+                                  return (
+                                    <button
+                                      key={opt.code}
+                                      type="button"
+                                      onClick={() => setConfig({ ...config, basinDepthMm: opt.depth, basinSizeCode: opt.code })}
+                                      style={{
+                                        padding: '8px 2px',
+                                        border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                        background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
+                                        color: isAct ? '#ffffff' : '#1e211d',
+                                        borderRadius: '2px',
+                                        cursor: 'pointer',
+                                        textAlign: 'center',
+                                        fontFamily: 'DM Mono, monospace',
+                                        fontSize: '11px',
+                                        fontWeight: isAct ? 600 : 400,
+                                      }}
+                                    >
+                                      {opt.depth} mm
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            ) : (
+                              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                                {[260, 300, 350, 400, 450].map(d => {
+                                  const isAct = (config.basinDepthMm || currentBasin.depth) === d;
+                                  return (
+                                    <button
+                                      key={d}
+                                      type="button"
+                                      onClick={() => setConfig({ ...config, basinDepthMm: d })}
+                                      style={{
+                                        padding: '8px 2px',
+                                        border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                        background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
+                                        color: isAct ? '#ffffff' : '#1e211d',
+                                        borderRadius: '2px',
+                                        cursor: 'pointer',
+                                        textAlign: 'center',
+                                        fontFamily: 'DM Mono, monospace',
+                                        fontSize: '11px',
+                                        fontWeight: isAct ? 600 : 400,
+                                      }}
+                                    >
+                                      {d} mm
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+
+                          {/* BOWL DEPTH / HEIGHT (H) CUSTOMIZATION */}
+                          <div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                              <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                                BOWL INTERNAL DEPTH / FALL HEIGHT (H)
+                              </label>
+                              <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                                {config.basinHeightMm || currentBasin.height} mm
+                              </span>
+                            </div>
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
+                              {[100, 120, 140, 160, 180].map(h => {
+                                const isAct = (config.basinHeightMm || currentBasin.height) === h;
+                                return (
+                                  <button
+                                    key={h}
+                                    type="button"
+                                    onClick={() => setConfig({ ...config, basinHeightMm: h })}
+                                    style={{
+                                      padding: '8px 2px',
+                                      border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                      background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
+                                      color: isAct ? '#ffffff' : '#1e211d',
+                                      borderRadius: '2px',
+                                      cursor: 'pointer',
+                                      textAlign: 'center',
+                                      fontFamily: 'DM Mono, monospace',
+                                      fontSize: '11px',
+                                      fontWeight: isAct ? 600 : 400,
+                                    }}
+                                  >
+                                    {h} mm
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          {/* WDT SPECIFIC: SLOPE ORIENTATION & INCLINE ANGLE */}
+                          {currentBasin.id === 'wdt' && (
+                            <>
+                              <div style={{ marginTop: '4px' }}>
+                                <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                                  WDT TROUGH SLOPE ORIENTATION
+                                </label>
+                                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                                  <button
+                                    type="button"
+                                    onClick={() => setConfig({ ...config, wdtSlopeDirection: 'right-to-left' })}
+                                    style={{
+                                      padding: '8px 6px',
+                                      background: (config.wdtSlopeDirection || 'right-to-left') === 'right-to-left' ? '#1e211d' : '#f8f7f4',
+                                      color: (config.wdtSlopeDirection || 'right-to-left') === 'right-to-left' ? '#fff' : '#1e211d',
+                                      border: '1px solid rgba(30,33,29,0.15)',
+                                      fontSize: '11px',
+                                      fontFamily: 'DM Mono, monospace',
+                                      cursor: 'pointer',
+                                    }}
+                                  >
+                                    Slopes Right ↘ Left (Deep Left)
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => setConfig({ ...config, wdtSlopeDirection: 'left-to-right' })}
+                                    style={{
+                                      padding: '8px 6px',
+                                      background: config.wdtSlopeDirection === 'left-to-right' ? '#1e211d' : '#f8f7f4',
+                                      color: config.wdtSlopeDirection === 'left-to-right' ? '#fff' : '#1e211d',
+                                      border: '1px solid rgba(30,33,29,0.15)',
+                                      fontSize: '11px',
+                                      fontFamily: 'DM Mono, monospace',
+                                      cursor: 'pointer',
+                                    }}
+                                  >
+                                    Slopes Left ↙ Right (Deep Right)
+                                  </button>
+                                </div>
+                              </div>
+
+                              <div style={{ background: '#fff', padding: '12px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                                  <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                                    WDT SLOPE INCLINE ANGLE
+                                  </label>
+                                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
+                                    {(config.wdtSlopeAngleDeg || 8).toFixed(1)}° ({Math.round((config.basinWidthMm || 600) * Math.tan(((config.wdtSlopeAngleDeg || 8) * Math.PI) / 180))} mm fall)
+                                  </span>
+                                </div>
+
+                                <input
+                                  type="range"
+                                  min={2}
+                                  max={20}
+                                  step={0.5}
+                                  value={config.wdtSlopeAngleDeg || 8}
+                                  onChange={e => setConfig({ ...config, wdtSlopeAngleDeg: Number(e.target.value) })}
+                                  style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', marginBottom: '8px' }}
+                                />
+
+                                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
+                                  {[
+                                    { deg: 4, label: '4° Subtle' },
+                                    { deg: 8, label: '8° Standard' },
+                                    { deg: 12, label: '12° Fast' },
+                                    { deg: 16, label: '16° Steep' },
+                                  ].map(p => {
+                                    const isCur = Math.abs((config.wdtSlopeAngleDeg || 8) - p.deg) < 0.3;
+                                    return (
+                                      <button
+                                        key={p.deg}
+                                        type="button"
+                                        onClick={() => setConfig({ ...config, wdtSlopeAngleDeg: p.deg })}
+                                        style={{
+                                          padding: '6px 2px',
+                                          background: isCur ? 'var(--brand-red, #d43833)' : '#f8f7f4',
+                                          color: isCur ? '#ffffff' : '#333333',
+                                          border: isCur ? '1px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
+                                          fontSize: '10px',
+                                          fontFamily: 'DM Mono, monospace',
+                                          cursor: 'pointer',
+                                        }}
+                                      >
+                                        {p.label}
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            </>
+                          )}
+
+                          <div style={{ fontSize: '11px', color: '#687268', fontFamily: 'DM Mono, monospace', paddingTop: '4px' }}>
+                            Standard 12mm solid surface thickness applied to all trough facets.
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                )}
-
-                {/* 4. SINK SIZE / SINK DEPTH / SINK WIDTH OPTIONS (Exact matching reference images) */}
-                {config.sinkIntegration !== 'none' && (
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                    {/* CASE A: Round Bowl (RO) -> SINK SIZE (Image 2: RO250 - RO400) */}
-                    {(config.basinModelId === 'round-bowl' || config.basinModelId === 'RO') && (
-                      <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                          SINK SIZE
-                        </label>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
-                          {RO_SIZE_OPTIONS.map(opt => {
-                            const isAct = config.basinSizeCode === opt.code || (!config.basinSizeCode && config.basinWidthMm === opt.diameter) || (opt.code === 'RO350' && !config.basinSizeCode);
-                            return (
-                              <div
-                                key={opt.code}
-                                onClick={() => {
-                                  setConfig({
-                                    ...config,
-                                    basinWidthMm: opt.diameter,
-                                    basinDepthMm: opt.diameter,
-                                    basinHeightMm: opt.height,
-                                    basinSizeCode: opt.code,
-                                  });
-                                }}
-                                style={{
-                                  padding: '8px 2px 6px',
-                                  border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                                  background: isAct ? '#ffffff' : '#fcfbfa',
-                                  borderRadius: '2px',
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  alignItems: 'center',
-                                  gap: '4px',
-                                  transition: 'all 0.15s ease',
-                                }}
-                              >
-                                <SinkModelDiagram model="RO" active={isAct} />
-                                <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
-                                  {opt.label}
-                                </span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* CASE B: Washdesk Trough (WDT) -> SINK DEPTH (Image 3: WDT180 - WDT400) */}
-                    {(config.basinModelId === 'washdesk-trough' || config.basinModelId === 'WDT') && (
-                      <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                          SINK DEPTH (FRONT-TO-BACK)
-                        </label>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px', marginBottom: '10px' }}>
-                          {WDT_DEPTH_OPTIONS.slice(0, 5).map(opt => {
-                            const isAct = config.basinSizeCode === opt.code || (!config.basinSizeCode && config.basinDepthMm === opt.depth) || (opt.code === 'WDT260' && !config.basinSizeCode);
-                            return (
-                              <div
-                                key={opt.code}
-                                onClick={() => {
-                                  setConfig({
-                                    ...config,
-                                    basinDepthMm: opt.depth,
-                                    basinSizeCode: opt.code,
-                                  });
-                                }}
-                                style={{
-                                  padding: '8px 2px 6px',
-                                  border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                                  background: isAct ? '#ffffff' : '#fcfbfa',
-                                  borderRadius: '2px',
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  alignItems: 'center',
-                                  gap: '4px',
-                                  transition: 'all 0.15s ease',
-                                }}
-                              >
-                                <SinkModelDiagram model="WDT" active={isAct} />
-                                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
-                                  {opt.label}
-                                </span>
-                              </div>
-                            );
-                          })}
-                        </div>
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
-                          {WDT_DEPTH_OPTIONS.slice(5).map(opt => {
-                            const isAct = config.basinSizeCode === opt.code || (config.basinDepthMm === opt.depth);
-                            return (
-                              <div
-                                key={opt.code}
-                                onClick={() => {
-                                  setConfig({
-                                    ...config,
-                                    basinDepthMm: opt.depth,
-                                    basinSizeCode: opt.code,
-                                  });
-                                }}
-                                style={{
-                                  padding: '8px 2px 6px',
-                                  border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                                  background: isAct ? '#ffffff' : '#fcfbfa',
-                                  borderRadius: '2px',
-                                  cursor: 'pointer',
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  alignItems: 'center',
-                                  gap: '4px',
-                                  transition: 'all 0.15s ease',
-                                }}
-                              >
-                                <SinkModelDiagram model="WDT" active={isAct} />
-                                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
-                                  {opt.label}
-                                </span>
-                              </div>
-                            );
-                          })}
-                        </div>
-
-                        {/* WDT Trough Width */}
-                        <div style={{ marginTop: '12px' }}>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                            SINK WIDTH (SPAN)
-                          </label>
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
-                            {[500, 600, 700, 800, 900].map(w => {
-                              const isAct = (config.basinWidthMm || 600) === w;
-                              return (
-                                <button
-                                  key={w}
-                                  type="button"
-                                  onClick={() => setConfig({ ...config, basinWidthMm: w })}
-                                  style={{
-                                    padding: '8px 4px',
-                                    background: isAct ? 'var(--brand-red, #d43833)' : '#f8f7f4',
-                                    color: isAct ? '#fff' : '#1e211d',
-                                    border: isAct ? '1px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                                    fontSize: '11px',
-                                    fontFamily: 'DM Mono, monospace',
-                                    cursor: 'pointer',
-                                  }}
-                                >
-                                  {w} mm
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        {/* WDT Sideways Slope Direction */}
-                        <div style={{ marginTop: '12px' }}>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                            WDT TROUGH SLOPE ORIENTATION
-                          </label>
-                          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-                            <button
-                              type="button"
-                              onClick={() => setConfig({ ...config, wdtSlopeDirection: 'right-to-left' })}
-                              style={{
-                                padding: '8px 6px',
-                                background: (config.wdtSlopeDirection || 'right-to-left') === 'right-to-left' ? '#1e211d' : '#f8f7f4',
-                                color: (config.wdtSlopeDirection || 'right-to-left') === 'right-to-left' ? '#fff' : '#1e211d',
-                                border: '1px solid rgba(30,33,29,0.15)',
-                                fontSize: '11px',
-                                fontFamily: 'DM Mono, monospace',
-                                cursor: 'pointer',
-                              }}
-                            >
-                              Slopes Right ↘ Left (Deep Left)
-                            </button>
-                            <button
-                              type="button"
-                              onClick={() => setConfig({ ...config, wdtSlopeDirection: 'left-to-right' })}
-                              style={{
-                                padding: '8px 6px',
-                                background: config.wdtSlopeDirection === 'left-to-right' ? '#1e211d' : '#f8f7f4',
-                                color: config.wdtSlopeDirection === 'left-to-right' ? '#fff' : '#1e211d',
-                                border: '1px solid rgba(30,33,29,0.15)',
-                                fontSize: '11px',
-                                fontFamily: 'DM Mono, monospace',
-                                cursor: 'pointer',
-                              }}
-                            >
-                              Slopes Left ↙ Right (Deep Right)
-                            </button>
-                          </div>
-                        </div>
-
-                        {/* WDT Slope Angle / Degree Controller */}
-                        <div style={{ marginTop: '14px', background: 'rgba(30,33,29,0.03)', padding: '12px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                            <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                              WDT SLOPE INCLINE ANGLE
-                            </label>
-                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
-                              {(config.wdtSlopeAngleDeg || 8).toFixed(1)}° ({Math.round((config.basinWidthMm || 600) * Math.tan(((config.wdtSlopeAngleDeg || 8) * Math.PI) / 180))} mm fall)
-                            </span>
-                          </div>
-
-                          <input
-                            type="range"
-                            min={2}
-                            max={20}
-                            step={0.5}
-                            value={config.wdtSlopeAngleDeg || 8}
-                            onChange={e => setConfig({ ...config, wdtSlopeAngleDeg: Number(e.target.value) })}
-                            style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', marginBottom: '10px' }}
-                          />
-
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
-                            {[
-                              { deg: 4, label: '4° Subtle' },
-                              { deg: 8, label: '8° Standard' },
-                              { deg: 12, label: '12° Fast Fall' },
-                              { deg: 16, label: '16° Steep' },
-                            ].map(p => {
-                              const isCur = Math.abs((config.wdtSlopeAngleDeg || 8) - p.deg) < 0.3;
-                              return (
-                                <button
-                                  key={p.deg}
-                                  type="button"
-                                  onClick={() => setConfig({ ...config, wdtSlopeAngleDeg: p.deg })}
-                                  style={{
-                                    padding: '6px 2px',
-                                    background: isCur ? 'var(--brand-red, #d43833)' : '#ffffff',
-                                    color: isCur ? '#ffffff' : '#333333',
-                                    border: isCur ? '1px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                                    fontSize: '10px',
-                                    fontFamily: 'DM Mono, monospace',
-                                    cursor: 'pointer',
-                                  }}
-                                >
-                                  {p.label}
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* CASE C: B, OV, DB, UB, UC -> SINK WIDTH & SINK DEPTH (Image 4) */}
-                    {(config.basinModelId !== 'round-bowl' && config.basinModelId !== 'RO' &&
-                      config.basinModelId !== 'washdesk-trough' && config.basinModelId !== 'WDT') && (
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                            SINK WIDTH (SPAN)
-                          </label>
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
-                            {SINK_WIDTH_OPTIONS.map(w => {
-                              const isAct = (config.basinWidthMm || 500) === w;
-                              const modelCode = (config.basinModelId === 'coved-rect' || config.basinModelId === 'A') ? 'A' :
-                                (config.basinModelId === 'coved-oval' || config.basinModelId === 'OV') ? 'OV' :
-                                (config.basinModelId === 'crisp-rect' || config.basinModelId === 'B') ? 'B' :
-                                (config.basinModelId === 'double-basin' || config.basinModelId === 'DB') ? 'DB' :
-                                (config.basinModelId === 'undermount-box' || config.basinModelId === 'UB') ? 'UB' :
-                                (config.basinModelId === 'undermount-channel' || config.basinModelId === 'UC') ? 'UC' : 'A';
-                              return (
-                                <div
-                                  key={w}
-                                  onClick={() => setConfig({ ...config, basinWidthMm: w })}
-                                  style={{
-                                    padding: '8px 2px 6px',
-                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                                    background: isAct ? '#ffffff' : '#fcfbfa',
-                                    borderRadius: '2px',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    gap: '4px',
-                                    transition: 'all 0.15s ease',
-                                  }}
-                                >
-                                  <SinkModelDiagram model={modelCode} active={isAct} />
-                                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
-                                    {w}
-                                  </span>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
-                            SINK LENGTH / DEPTH (FRONT-TO-BACK)
-                          </label>
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
-                            {SINK_DEPTH_OPTIONS.map(d => {
-                              const isAct = (config.basinDepthMm || 350) === d;
-                              const modelCode = (config.basinModelId === 'coved-rect' || config.basinModelId === 'A') ? 'A' :
-                                (config.basinModelId === 'coved-oval' || config.basinModelId === 'OV') ? 'OV' :
-                                (config.basinModelId === 'crisp-rect' || config.basinModelId === 'B') ? 'B' :
-                                (config.basinModelId === 'double-basin' || config.basinModelId === 'DB') ? 'DB' :
-                                (config.basinModelId === 'undermount-box' || config.basinModelId === 'UB') ? 'UB' :
-                                (config.basinModelId === 'undermount-channel' || config.basinModelId === 'UC') ? 'UC' : 'A';
-                              return (
-                                <div
-                                  key={d}
-                                  onClick={() => setConfig({ ...config, basinDepthMm: d })}
-                                  style={{
-                                    padding: '8px 2px 6px',
-                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                                    background: isAct ? '#ffffff' : '#fcfbfa',
-                                    borderRadius: '2px',
-                                    cursor: 'pointer',
-                                    display: 'flex',
-                                    flexDirection: 'column',
-                                    alignItems: 'center',
-                                    gap: '4px',
-                                    transition: 'all 0.15s ease',
-                                  }}
-                                >
-                                  <SinkModelDiagram model={modelCode} active={isAct} />
-                                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
-                                    {d}
-                                  </span>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        </div>
-
-                        {/* BOWL INTERNAL DEPTH (HEIGHT) */}
-                        <div>
-                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                            <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
-                              BOWL DEPTH (INTERNAL)
-                            </label>
-                            <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
-                              {config.basinHeightMm || 135} mm
-                            </span>
-                          </div>
-                          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
-                            {[110, 130, 150, 170].map(h => {
-                              const isAct = (config.basinHeightMm || 135) === h;
-                              return (
-                                <button
-                                  key={h}
-                                  type="button"
-                                  onClick={() => setConfig({ ...config, basinHeightMm: h })}
-                                  style={{
-                                    padding: '8px 2px',
-                                    border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
-                                    background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
-                                    color: isAct ? '#ffffff' : '#1e211d',
-                                    borderRadius: '2px',
-                                    cursor: 'pointer',
-                                    textAlign: 'center',
-                                    fontFamily: 'DM Mono, monospace',
-                                    fontSize: '11px',
-                                    fontWeight: isAct ? 600 : 400,
-                                    transition: 'all 0.15s ease',
-                                  }}
-                                >
-                                  {h} mm
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                )}
+                  );
+                })()}
 
 
                 {/* TAP HOLES DRILLING */}

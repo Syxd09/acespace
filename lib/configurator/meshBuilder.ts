@@ -21,59 +21,255 @@ interface BasinSpec {
 function resolveBasinSpec(modelId?: string, cfg?: ProductConfiguration): BasinSpec {
   let spec: BasinSpec;
   switch (modelId) {
+    // ==========================================
+    // STORE INVENTORY MODELS (Fixed Dimensions from Catalog)
+    // ==========================================
+    case 'oval-5':
+    case 'oval 5':
+      spec = { id: 'oval-5', width: 0.560, depth: 0.395, height: 0.160, shape: 'oval', covedRadius: 0.012 };
+      break;
+    case 'capsule-6':
+    case 'capsule 6':
+      spec = { id: 'capsule-6', width: 0.530, depth: 0.355, height: 0.150, shape: 'capsule', covedRadius: 0.012 };
+      break;
+    case 'oval-7':
+    case 'oval 7':
+      spec = { id: 'oval-7', width: 0.365, depth: 0.230, height: 0.120, shape: 'oval', covedRadius: 0.010 };
+      break;
+    case 'oval-10':
+    case 'oval 10':
+      spec = { id: 'oval-10', width: 0.365, depth: 0.265, height: 0.125, shape: 'oval', covedRadius: 0.010 };
+      break;
+    case 'oval-12':
+    case 'oval 12':
+      spec = { id: 'oval-12', width: 0.490, depth: 0.350, height: 0.150, shape: 'oval', covedRadius: 0.012 };
+      break;
+
+    case 'circ-8':
+    case 'circ 8':
+      spec = { id: 'circ-8', width: 0.320, depth: 0.320, height: 0.150, shape: 'round', covedRadius: 0.010 };
+      break;
+    case 'circ-9':
+    case 'circ 9':
+      spec = { id: 'circ-9', width: 0.385, depth: 0.385, height: 0.150, shape: 'round', covedRadius: 0.010 };
+      break;
+
+    case 'sq-1':
+    case 'sq 1':
+      spec = { id: 'sq-1', width: 0.580, depth: 0.375, height: 0.185, shape: 'rectangular', covedRadius: 0.015 };
+      break;
+    case 'sq-2':
+    case 'sq 2':
+      spec = { id: 'sq-2', width: 0.530, depth: 0.405, height: 0.210, shape: 'rectangular', covedRadius: 0.015 };
+      break;
+    case 'sq-3':
+    case 'sq 3':
+      spec = { id: 'sq-3', width: 0.385, depth: 0.385, height: 0.160, shape: 'rectangular', covedRadius: 0.015 };
+      break;
+    case 'sq-4':
+    case 'sq 4':
+      spec = { id: 'sq-4', width: 0.475, depth: 0.350, height: 0.160, shape: 'rectangular', covedRadius: 0.015 };
+      break;
+    case 'sq-11':
+    case 'sq 11':
+      spec = { id: 'sq-11', width: 0.425, depth: 0.330, height: 0.200, shape: 'rectangular', covedRadius: 0.015 };
+      break;
+
+    // ==========================================
+    // CUSTOMIZABLE TROUGHS & CHANNELS (W, D, H)
+    // ==========================================
+    case 'ub':
+    case 'UB':
+    case 'undermount-box':
+      spec = { id: 'ub', width: 0.50, depth: 0.35, height: 0.14, shape: 'ub-sloped', covedRadius: 0.008 };
+      break;
+    case 'uc':
+    case 'UC':
+    case 'undermount-channel':
+      spec = { id: 'uc', width: 0.58, depth: 0.36, height: 0.12, shape: 'uc-sloped', covedRadius: 0.010 };
+      break;
+    case 'wdt':
+    case 'WDT':
+    case 'washdesk-trough':
+    case 'linear-trough':
+      spec = { id: 'wdt', width: 0.60, depth: 0.26, height: 0.12, shape: 'wdt-sloped', covedRadius: 0.008 };
+      break;
+
+    // Legacy Fallbacks
     case 'RO':
     case 'round-bowl':
-      spec = { id: 'round-bowl', width: 0.42, depth: 0.42, height: 0.135, shape: 'round', covedRadius: 0.012 };
+      spec = { id: 'circ-8', width: 0.320, depth: 0.320, height: 0.150, shape: 'round', covedRadius: 0.010 };
       break;
     case 'OV':
     case 'coved-oval':
-      spec = { id: 'coved-oval', width: 0.50, depth: 0.35, height: 0.14, shape: 'oval', covedRadius: 0.012 };
+      spec = { id: 'oval-5', width: 0.560, depth: 0.395, height: 0.160, shape: 'oval', covedRadius: 0.012 };
       break;
     case 'A':
     case 'coved-rect':
-      spec = { id: 'coved-rect', width: 0.50, depth: 0.35, height: 0.135, shape: 'rectangular', covedRadius: 0.015 };
+      spec = { id: 'sq-1', width: 0.580, depth: 0.375, height: 0.185, shape: 'rectangular', covedRadius: 0.015 };
       break;
     case 'B':
     case 'crisp-rect':
-      spec = { id: 'crisp-rect', width: 0.52, depth: 0.35, height: 0.13, shape: 'soft-rect', covedRadius: 0.035 };
+      spec = { id: 'sq-4', width: 0.475, depth: 0.350, height: 0.160, shape: 'rectangular', covedRadius: 0.015 };
       break;
     case 'DB':
     case 'double-basin':
-      spec = { id: 'double-basin', width: 0.56, depth: 0.36, height: 0.135, shape: 'oval', covedRadius: 0.014 };
-      break;
-    case 'UB':
-    case 'undermount-box':
-      spec = { id: 'undermount-box', width: 0.50, depth: 0.35, height: 0.14, shape: 'ub-sloped', covedRadius: 0.008 };
-      break;
-    case 'UC':
-    case 'undermount-channel':
-      spec = { id: 'undermount-channel', width: 0.58, depth: 0.36, height: 0.12, shape: 'uc-sloped', covedRadius: 0.010 };
-      break;
-    case 'WDT':
-    case 'washdesk-trough':
-      spec = { id: 'washdesk-trough', width: 0.60, depth: 0.26, height: 0.12, shape: 'wdt-sloped', covedRadius: 0.008 };
-      break;
-    case 'linear-trough':
-      spec = { id: 'linear-trough', width: 0.60, depth: 0.36, height: 0.12, shape: 'sloped', covedRadius: 0.008 };
+      spec = { id: 'oval-12', width: 0.490, depth: 0.350, height: 0.150, shape: 'oval', covedRadius: 0.012 };
       break;
     case 'capsule-pill':
-      spec = { id: 'capsule-pill', width: 0.50, depth: 0.32, height: 0.135, shape: 'capsule', covedRadius: 0.014 };
+      spec = { id: 'capsule-6', width: 0.530, depth: 0.355, height: 0.150, shape: 'capsule', covedRadius: 0.012 };
       break;
     case 'none':
       return { id: 'none', width: 0, depth: 0, height: 0, shape: 'none', covedRadius: 0 };
     default:
-      spec = { id: 'coved-oval', width: 0.50, depth: 0.35, height: 0.14, shape: 'oval', covedRadius: 0.012 };
+      spec = { id: 'oval-5', width: 0.560, depth: 0.395, height: 0.160, shape: 'oval', covedRadius: 0.012 };
       break;
   }
 
-  // Override with user's customized sink width, depth, and height from UI
-  if (cfg) {
+  // ONLY allow customizing width, depth, and height for wdt, uc, ub!
+  // All store models have locked fixed dimensions from the manufacturer catalog.
+  const isCustomizableModel = spec.id === 'ub' || spec.id === 'uc' || spec.id === 'wdt' ||
+    modelId === 'ub' || modelId === 'uc' || modelId === 'wdt' ||
+    modelId === 'UB' || modelId === 'UC' || modelId === 'WDT' ||
+    modelId === 'undermount-box' || modelId === 'undermount-channel' || modelId === 'washdesk-trough';
+
+  if (cfg && isCustomizableModel) {
     if (cfg.basinWidthMm && cfg.basinWidthMm > 0) spec.width = cfg.basinWidthMm / 1000;
     if (cfg.basinDepthMm && cfg.basinDepthMm > 0) spec.depth = cfg.basinDepthMm / 1000;
     if (cfg.basinHeightMm && cfg.basinHeightMm > 0) spec.height = cfg.basinHeightMm / 1000;
   }
 
   return spec;
+}
+
+interface PerimeterPoint {
+  x: number;
+  z: number;
+  nx: number;
+  nz: number;
+}
+
+/**
+ * Generates an exact counter-clockwise perimeter loop for a rounded rectangle
+ * with straight planar edges and cylindrical corner fillets.
+ */
+function getRoundedRectPoints(
+  cX: number,
+  cZ: number,
+  halfW: number,
+  halfD: number,
+  radius: number,
+  cornerSegs: number = 6,
+  edgeSegs: number = 6
+): PerimeterPoint[] {
+  const r = Math.min(radius, Math.min(halfW, halfD) * 0.90);
+  const pts: PerimeterPoint[] = [];
+
+  // Corner 1: Front-Right (+X, +Z)
+  const c1X = cX + halfW - r;
+  const c1Z = cZ + halfD - r;
+  for (let i = 0; i < cornerSegs; i++) {
+    const psi = (i / cornerSegs) * (Math.PI * 0.5);
+    const sn = Math.sin(psi);
+    const cs = Math.cos(psi);
+    pts.push({
+      x: c1X + r * sn,
+      z: c1Z + r * cs,
+      nx: -sn,
+      nz: -cs,
+    });
+  }
+
+  // Right Edge (+X)
+  const c2X = cX + halfW - r;
+  const c2Z = cZ - halfD + r;
+  for (let i = 0; i < edgeSegs; i++) {
+    const u = i / edgeSegs;
+    pts.push({
+      x: cX + halfW,
+      z: c1Z + (c2Z - c1Z) * u,
+      nx: -1,
+      nz: 0,
+    });
+  }
+
+  // Corner 2: Back-Right (+X, -Z)
+  for (let i = 0; i < cornerSegs; i++) {
+    const psi = (i / cornerSegs) * (Math.PI * 0.5);
+    const cs = Math.cos(psi);
+    const sn = Math.sin(psi);
+    pts.push({
+      x: c2X + r * cs,
+      z: c2Z - r * sn,
+      nx: -cs,
+      nz: sn,
+    });
+  }
+
+  // Back Edge (-Z)
+  const c3X = cX - halfW + r;
+  const c3Z = cZ - halfD + r;
+  for (let i = 0; i < edgeSegs; i++) {
+    const u = i / edgeSegs;
+    pts.push({
+      x: c2X + (c3X - c2X) * u,
+      z: cZ - halfD,
+      nx: 0,
+      nz: 1,
+    });
+  }
+
+  // Corner 3: Back-Left (-X, -Z)
+  for (let i = 0; i < cornerSegs; i++) {
+    const psi = (i / cornerSegs) * (Math.PI * 0.5);
+    const sn = Math.sin(psi);
+    const cs = Math.cos(psi);
+    pts.push({
+      x: c3X - r * sn,
+      z: c3Z - r * cs,
+      nx: sn,
+      nz: cs,
+    });
+  }
+
+  // Left Edge (-X)
+  const c4X = cX - halfW + r;
+  const c4Z = cZ + halfD - r;
+  for (let i = 0; i < edgeSegs; i++) {
+    const u = i / edgeSegs;
+    pts.push({
+      x: cX - halfW,
+      z: c3Z + (c4Z - c3Z) * u,
+      nx: 1,
+      nz: 0,
+    });
+  }
+
+  // Corner 4: Front-Left (-X, +Z)
+  for (let i = 0; i < cornerSegs; i++) {
+    const psi = (i / cornerSegs) * (Math.PI * 0.5);
+    const cs = Math.cos(psi);
+    const sn = Math.sin(psi);
+    pts.push({
+      x: c4X - r * cs,
+      z: c4Z + r * sn,
+      nx: cs,
+      nz: -sn,
+    });
+  }
+
+  // Front Edge (+Z)
+  for (let i = 0; i < edgeSegs; i++) {
+    const u = i / edgeSegs;
+    pts.push({
+      x: c4X + (c1X - c4X) * u,
+      z: cZ + halfD,
+      nx: 0,
+      nz: -1,
+    });
+  }
+
+  return pts;
 }
 
 /**
@@ -252,6 +448,24 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
         pushQuadSmooth(p1, p2, p3, p4, [0, c1, s1], [0, c2, s2], [0, c2, s2], [0, c1, s1], c);
       }
     }
+  };
+
+  /**
+   * Helper: Superellipse / Squircle Profile Evaluator
+   * Provides mathematically smooth, continuous profiles for oval (pExp=2), capsule (pExp=2.5), and soft-rect (pExp=3.8).
+   * Generates exact matching perimeters and analytical XZ normals without discontinuous jumps.
+   */
+  const getSuperellipsePt = (th: number, radX: number, radZ: number, pExp: number) => {
+    const c = Math.cos(th);
+    const s = Math.sin(th);
+    const absC = Math.abs(c);
+    const absS = Math.abs(s);
+    const x = radX * Math.sign(c) * (absC < 1e-7 ? 0 : Math.pow(absC, 2 / pExp));
+    const z = radZ * Math.sign(s) * (absS < 1e-7 ? 0 : Math.pow(absS, 2 / pExp));
+    const nx = (absC < 1e-7 ? 0 : Math.sign(c) * Math.pow(absC, Math.max(0, 2 - 2 / pExp))) / radX;
+    const nz = (absS < 1e-7 ? 0 : Math.sign(s) * Math.pow(absS, Math.max(0, 2 - 2 / pExp))) / radZ;
+    const len = Math.hypot(nx, nz) || 1;
+    return { x, z, nx: nx / len, nz: nz / len };
   };
 
   /**
@@ -790,26 +1004,23 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
     pushQuad([bMinX, bottomDeckY, -halfD], [bMaxX, bottomDeckY, -halfD], [bMaxX, bottomDeckY, bMinZ], [bMinX, bottomDeckY, bMinZ], [0, -1, 0]);
 
     // 4. Watertight Spandrel Corner Triangulation around basin rim (Top & Bottom)
-    if (basinSpec.shape === 'oval' || basinSpec.shape === 'round' || basinSpec.shape === 'capsule' || basinSpec.shape === 'soft-rect' || basinSpec.id === 'crisp-rect' || basinSpec.shape === 'rectangular' || basinSpec.id === 'coved-rect') {
+    if (basinSpec.shape === 'oval' || basinSpec.shape === 'round' || basinSpec.shape === 'capsule' || basinSpec.shape === 'soft-rect') {
       const segs = 48;
-      const isRect = basinSpec.shape === 'rectangular' || basinSpec.id === 'coved-rect';
-      const isSoftRect = basinSpec.shape === 'soft-rect' || basinSpec.id === 'crisp-rect';
-      const pExp = isRect ? 6.5 : (isSoftRect ? 3.8 : 2.0);
+      const isCapsule = basinSpec.shape === 'capsule' || basinSpec.id === 'capsule-6';
+      const isSoftRect = basinSpec.shape === 'soft-rect';
+      const pExp = isSoftRect ? 3.8 : isCapsule ? 2.5 : 2.0;
 
       for (let i = 0; i < segs; i++) {
         const th1 = (i / segs) * Math.PI * 2;
         const th2 = ((i + 1) / segs) * Math.PI * 2;
         const midTh = (th1 + th2) / 2;
 
-        const c1 = Math.cos(th1);
-        const s1m = Math.sin(th1);
-        const c2 = Math.cos(th2);
-        const s2m = Math.sin(th2);
-
-        const p1X = bX + rx * ((isRect || isSoftRect) ? Math.sign(c1) * Math.pow(Math.abs(c1), 2 / pExp) : c1);
-        const p1Z = bZ + rz * ((isRect || isSoftRect) ? Math.sign(s1m) * Math.pow(Math.abs(s1m), 2 / pExp) : s1m);
-        const p2X = bX + rx * ((isRect || isSoftRect) ? Math.sign(c2) * Math.pow(Math.abs(c2), 2 / pExp) : c2);
-        const p2Z = bZ + rz * ((isRect || isSoftRect) ? Math.sign(s2m) * Math.pow(Math.abs(s2m), 2 / pExp) : s2m);
+        const pt1 = getSuperellipsePt(th1, rx, rz, pExp);
+        const pt2 = getSuperellipsePt(th2, rx, rz, pExp);
+        const p1X = bX + pt1.x;
+        const p1Z = bZ + pt1.z;
+        const p2X = bX + pt2.x;
+        const p2Z = bZ + pt2.z;
 
         let cX = bX;
         let cZ = bZ;
@@ -820,6 +1031,55 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
 
         pushTri([cX, topY, cZ], [p1X, topY, p1Z], [p2X, topY, p2Z], [0, 1, 0]);
         pushTri([cX, bottomDeckY, cZ], [p2X, bottomDeckY, p2Z], [p1X, bottomDeckY, p1Z], [0, -1, 0]);
+      }
+    } else if (basinSpec.shape === 'rectangular' || basinSpec.id.startsWith('sq') || basinSpec.id === 'coved-rect' || basinSpec.id === 'crisp-rect') {
+      // Watertight corner fillets for square store models (sq 1, sq 2, sq 3, sq 4, sq 11) - UB, UC, WDT remain crisp sharp 90°
+      const cr = basinSpec.id === 'sq-4' ? 0.035 : 0.025;
+      const cornerSegs = 6;
+      const edgeSegs = 6;
+      const rimPts = getRoundedRectPoints(bX, bZ, rx, rz, cr, cornerSegs, edgeSegs);
+
+      // Corner 1: Front-Right (+X, +Z)
+      const c1X = bMaxX;
+      const c1Z = bMaxZ;
+      for (let i = 0; i < cornerSegs; i++) {
+        const p1: [number, number, number] = [rimPts[i].x, topY, rimPts[i].z];
+        const p2: [number, number, number] = [rimPts[i + 1].x, topY, rimPts[i + 1].z];
+        pushTri([c1X, topY, c1Z], p2, p1, [0, 1, 0]);
+        pushTri([c1X, bottomDeckY, c1Z], [p1[0], bottomDeckY, p1[2]], [p2[0], bottomDeckY, p2[2]], [0, -1, 0]);
+      }
+
+      // Corner 2: Back-Right (+X, -Z)
+      const k2 = cornerSegs + edgeSegs;
+      const c2X = bMaxX;
+      const c2Z = bMinZ;
+      for (let i = 0; i < cornerSegs; i++) {
+        const p1: [number, number, number] = [rimPts[k2 + i].x, topY, rimPts[k2 + i].z];
+        const p2: [number, number, number] = [rimPts[k2 + i + 1].x, topY, rimPts[k2 + i + 1].z];
+        pushTri([c2X, topY, c2Z], p2, p1, [0, 1, 0]);
+        pushTri([c2X, bottomDeckY, c2Z], [p1[0], bottomDeckY, p1[2]], [p2[0], bottomDeckY, p2[2]], [0, -1, 0]);
+      }
+
+      // Corner 3: Back-Left (-X, -Z)
+      const k3 = 2 * (cornerSegs + edgeSegs);
+      const c3X = bMinX;
+      const c3Z = bMinZ;
+      for (let i = 0; i < cornerSegs; i++) {
+        const p1: [number, number, number] = [rimPts[k3 + i].x, topY, rimPts[k3 + i].z];
+        const p2: [number, number, number] = [rimPts[k3 + i + 1].x, topY, rimPts[k3 + i + 1].z];
+        pushTri([c3X, topY, c3Z], p2, p1, [0, 1, 0]);
+        pushTri([c3X, bottomDeckY, c3Z], [p1[0], bottomDeckY, p1[2]], [p2[0], bottomDeckY, p2[2]], [0, -1, 0]);
+      }
+
+      // Corner 4: Front-Left (-X, +Z)
+      const k4 = 3 * (cornerSegs + edgeSegs);
+      const c4X = bMinX;
+      const c4Z = bMaxZ;
+      for (let i = 0; i < cornerSegs; i++) {
+        const p1: [number, number, number] = [rimPts[k4 + i].x, topY, rimPts[k4 + i].z];
+        const p2: [number, number, number] = [rimPts[k4 + i + 1].x, topY, rimPts[k4 + i + 1].z];
+        pushTri([c4X, topY, c4Z], p2, p1, [0, 1, 0]);
+        pushTri([c4X, bottomDeckY, c4Z], [p1[0], bottomDeckY, p1[2]], [p2[0], bottomDeckY, p2[2]], [0, -1, 0]);
       }
     }
   }
@@ -1390,248 +1650,527 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
     // ===========================================================
     else {
       const isTopMount = cfg.sinkIntegration === 'topmount';
-      const topRimY = isTopMount ? topY + 0.022 : topY;
+      const topRimY = isTopMount ? topY + 0.012 : topY;
       const bH = basinSpec.height;
-      const bowlFloorY = bottomDeckY - bH;
-      const totalDepth = topRimY - bowlFloorY; // Full depth from top rim to bowl floor
+      // Bowl depth is strictly measured from the countertop top rim down to the floor of the bowl:
+      const bowlFloorY = topRimY - bH;
+      const totalDepth = bH;
+      const wallThick = 0.012; // 12mm standard solid surface
+      const underBaseY = bowlFloorY - wallThick;
       const rxRim = bW / 2;
       const rzRim = bD / 2;
 
-      if (basinSpec.shape === 'oval' || basinSpec.shape === 'round' || basinSpec.shape === 'capsule' || basinSpec.shape === 'soft-rect' || basinSpec.id === 'crisp-rect' || basinSpec.shape === 'rectangular' || basinSpec.id === 'coved-rect') {
-        const isRect = basinSpec.shape === 'rectangular' || basinSpec.id === 'coved-rect';
-        const isSoftRect = basinSpec.shape === 'soft-rect' || basinSpec.id === 'crisp-rect';
-        const rings = isRect ? 22 : 18;
-        const segs = 48;
-        const rDrain = 0.038; // 76mm drain hole connection
-        const coveH = 0.022;  // 22mm coved internal corner radius for Model A
+      if (basinSpec.id === 'sq-4') {
+        // ===========================================================
+        // SQ 4: ARCHITECTURAL CURVED DISH-SHAPED RECTANGULAR BASIN (Image 4: 475 x 350 x 160)
+        // Continuous parabolic/coved dish profile sweeping from top rim down to drain
+        // ===========================================================
+        const cr = 0.035;
+        const cornerSegs = 6;
+        const edgeSegs = 6;
+        const rings = 18;
+        const rDrain = 0.040;
 
-        // 1. Seamless Coved Inner Cavity in COLOR_DEFAULT (Corian Glacier White)
+        // Top-Mount Outer Rim Lip resting on countertop deck (when TOP is selected)
+        if (isTopMount) {
+          const lipThick = 0.012;
+          const outerLipPts = getRoundedRectPoints(bX, bZ, rxRim + lipThick, rzRim + lipThick, cr + lipThick, cornerSegs, edgeSegs);
+          const innerLipPts = getRoundedRectPoints(bX, bZ, rxRim, rzRim, cr, cornerSegs, edgeSegs);
+          const nPts = innerLipPts.length;
+          for (let i = 0; i < nPts; i++) {
+            const nextI = (i + 1) % nPts;
+            const pIn1: [number, number, number] = [innerLipPts[i].x, topRimY, innerLipPts[i].z];
+            const pIn2: [number, number, number] = [innerLipPts[nextI].x, topRimY, innerLipPts[nextI].z];
+            const pOut1: [number, number, number] = [outerLipPts[i].x, topRimY - 0.003, outerLipPts[i].z];
+            const pOut2: [number, number, number] = [outerLipPts[nextI].x, topRimY - 0.003, outerLipPts[nextI].z];
+            pushQuad(pIn1, pIn2, pOut2, pOut1, [0, 1, 0], COLOR_DEFAULT);
+            const pDeck1: [number, number, number] = [outerLipPts[i].x, topY, outerLipPts[i].z];
+            const pDeck2: [number, number, number] = [outerLipPts[nextI].x, topY, outerLipPts[nextI].z];
+            pushQuad(pOut1, pOut2, pDeck2, pDeck1, [-outerLipPts[i].nx, 0.4, -outerLipPts[i].nz], COLOR_DEFAULT);
+          }
+        }
+
+        // 1. Curved Interior Dish Cavity (sweeping down to drain)
+        let prevPts = getRoundedRectPoints(bX, bZ, rxRim, rzRim, cr, cornerSegs, edgeSegs);
+        let prevY = topRimY;
+        let prevNy = 0.0;
+        let prevNHoriz = 1.0;
+        const nRim = prevPts.length;
+
+        for (let s = 1; s <= rings; s++) {
+          const t = s / rings;
+          const ang = t * Math.PI * 0.5;
+          const sinA = Math.sin(ang); // 0 at top to 1 at floor
+          const cosA = Math.cos(ang); // 1 at top to 0 at floor
+          const curY = topRimY - bH * (1 - Math.cos(ang));
+          const radFac = Math.sin(ang); // 1 at top to 0 at drain
+          const curW = rxRim - (rxRim - rDrain) * (1 - cosA);
+          const curD = rzRim - (rzRim - rDrain) * (1 - cosA);
+          const curCr = Math.max(0.010, cr * cosA);
+          const curPts = getRoundedRectPoints(bX, bZ, curW, curD, curCr, cornerSegs, edgeSegs);
+
+          const curNy = sinA;
+          const curNHoriz = cosA;
+
+          for (let i = 0; i < nRim; i++) {
+            const nextI = (i + 1) % nRim;
+            const pA1: [number, number, number] = [prevPts[i].x, prevY, prevPts[i].z];
+            const pA2: [number, number, number] = [prevPts[nextI].x, prevY, prevPts[nextI].z];
+            const pB2: [number, number, number] = [curPts[nextI].x, curY, curPts[nextI].z];
+            const pB1: [number, number, number] = [curPts[i].x, curY, curPts[i].z];
+
+            const nA1: [number, number, number] = [prevPts[i].nx * prevNHoriz, prevNy, prevPts[i].nz * prevNHoriz];
+            const nA2: [number, number, number] = [prevPts[nextI].nx * prevNHoriz, prevNy, prevPts[nextI].nz * prevNHoriz];
+            const nB2: [number, number, number] = [curPts[nextI].nx * curNHoriz, curNy, curPts[nextI].nz * curNHoriz];
+            const nB1: [number, number, number] = [curPts[i].nx * curNHoriz, curNy, curPts[i].nz * curNHoriz];
+
+            pushQuadSmooth(pA1, pA2, pB2, pB1, nA1, nA2, nB2, nB1, COLOR_DEFAULT);
+          }
+
+          prevPts = curPts;
+          prevY = curY;
+          prevNy = curNy;
+          prevNHoriz = curNHoriz;
+        }
+
+        // Flat horizontal connection to drain opening
+        const dishFloorPts = prevPts;
+        for (let i = 0; i < nRim; i++) {
+          const nextI = (i + 1) % nRim;
+          const phi1 = Math.atan2(dishFloorPts[i].z - bZ, dishFloorPts[i].x - bX);
+          const phi2 = Math.atan2(dishFloorPts[nextI].z - bZ, dishFloorPts[nextI].x - bX);
+          const d1: [number, number, number] = [bX + rDrain * Math.cos(phi1), bowlFloorY, bZ + rDrain * Math.sin(phi1)];
+          const d2: [number, number, number] = [bX + rDrain * Math.cos(phi2), bowlFloorY, bZ + rDrain * Math.sin(phi2)];
+          const pF1: [number, number, number] = [dishFloorPts[i].x, bowlFloorY, dishFloorPts[i].z];
+          const pF2: [number, number, number] = [dishFloorPts[nextI].x, bowlFloorY, dishFloorPts[nextI].z];
+          pushQuad(pF1, pF2, d2, d1, [0, 1, 0], COLOR_DEFAULT);
+        }
+
+        // 2. Exterior Curved Underside Shell (smooth dished underbelly with 12mm thickness)
+        const outerRx = rxRim + wallThick;
+        const outerRz = rzRim + wallThick;
+        let prevOutPts = getRoundedRectPoints(bX, bZ, outerRx, outerRz, cr + wallThick, cornerSegs, edgeSegs);
+        let prevOutY = bottomDeckY;
+        let prevOutNy = 0.0;
+        let prevOutNHoriz = 1.0;
+
+        for (let s = 1; s <= rings; s++) {
+          const t = s / rings;
+          const ang = t * Math.PI * 0.5;
+          const sinA = Math.sin(ang);
+          const cosA = Math.cos(ang);
+          const curY = bottomDeckY - (bottomDeckY - underBaseY) * (1 - cosA);
+          const curW = outerRx - (outerRx - rDrain) * (1 - cosA);
+          const curD = outerRz - (outerRz - rDrain) * (1 - cosA);
+          const curCr = Math.max(0.012, (cr + wallThick) * cosA);
+          const curOutPts = getRoundedRectPoints(bX, bZ, curW, curD, curCr, cornerSegs, edgeSegs);
+
+          const curNy = -sinA;
+          const curNHoriz = cosA;
+
+          for (let i = 0; i < nRim; i++) {
+            const nextI = (i + 1) % nRim;
+            const pTop1: [number, number, number] = [prevOutPts[i].x, prevOutY, prevOutPts[i].z];
+            const pTop2: [number, number, number] = [prevOutPts[nextI].x, prevOutY, prevOutPts[nextI].z];
+            const pBot2: [number, number, number] = [curOutPts[nextI].x, curY, curOutPts[nextI].z];
+            const pBot1: [number, number, number] = [curOutPts[i].x, curY, curOutPts[i].z];
+
+            const nA1: [number, number, number] = [-prevOutPts[i].nx * prevOutNHoriz, prevOutNy, -prevOutPts[i].nz * prevOutNHoriz];
+            const nA2: [number, number, number] = [-prevOutPts[nextI].nx * prevOutNHoriz, prevOutNy, -prevOutPts[nextI].nz * prevOutNHoriz];
+            const nB2: [number, number, number] = [-curOutPts[nextI].nx * curNHoriz, curNy, -curOutPts[nextI].nz * curNHoriz];
+            const nB1: [number, number, number] = [-curOutPts[i].nx * curNHoriz, curNy, -curOutPts[i].nz * curNHoriz];
+
+            pushQuadSmooth(pTop2, pTop1, pBot1, pBot2, nA2, nA1, nB1, nB2, COLOR_DEFAULT);
+          }
+
+          prevOutPts = curOutPts;
+          prevOutY = curY;
+          prevOutNy = curNy;
+          prevOutNHoriz = curNHoriz;
+        }
+
+        // Underside drain connection
+        for (let i = 0; i < nRim; i++) {
+          const nextI = (i + 1) % nRim;
+          const phi1 = Math.atan2(prevOutPts[i].z - bZ, prevOutPts[i].x - bX);
+          const phi2 = Math.atan2(prevOutPts[nextI].z - bZ, prevOutPts[nextI].x - bX);
+          const d1: [number, number, number] = [bX + rDrain * Math.cos(phi1), underBaseY, bZ + rDrain * Math.sin(phi1)];
+          const d2: [number, number, number] = [bX + rDrain * Math.cos(phi2), underBaseY, bZ + rDrain * Math.sin(phi2)];
+          const pF1: [number, number, number] = [prevOutPts[i].x, underBaseY, prevOutPts[i].z];
+          const pF2: [number, number, number] = [prevOutPts[nextI].x, underBaseY, prevOutPts[nextI].z];
+          pushQuad(pF2, pF1, d1, d2, [0, -1, 0], COLOR_DEFAULT);
+        }
+
+        pushDetailedSinkDrain(bX, bowlFloorY, bZ, underBaseY, false);
+
+      } else if (basinSpec.shape === 'rectangular' || basinSpec.id.startsWith('sq') || basinSpec.id === 'coved-rect' || basinSpec.id === 'crisp-rect') {
+        // ===========================================================
+        // SQ 1, SQ 2, SQ 3, SQ 11: ARCHITECTURAL RECTANGULAR BOX BASINS (Images 3 & 4)
+        // Straight planar walls with smooth R25 corner fillets, R20 coved floor transition, and flat floor
+        // ===========================================================
+        const isTapered = basinSpec.id === 'sq-3';
+        const taper = isTapered ? 0.014 : 0.0; // 14mm inward taper for SQ 3
+        const cr = 0.025; // 25mm corner fillet radius
+        const coveR = 0.020; // 20mm cove transition to floor
+        const coveFloorY = bowlFloorY + coveR;
+        const cornerSegs = 6;
+        const edgeSegs = 6;
+
+        // Top-Mount Outer Rim Lip resting on countertop deck (when TOP is selected)
+        if (isTopMount) {
+          const lipThick = 0.012;
+          const outerLipPts = getRoundedRectPoints(bX, bZ, rxRim + lipThick, rzRim + lipThick, cr + lipThick, cornerSegs, edgeSegs);
+          const innerLipPts = getRoundedRectPoints(bX, bZ, rxRim, rzRim, cr, cornerSegs, edgeSegs);
+          const nPts = innerLipPts.length;
+          for (let i = 0; i < nPts; i++) {
+            const nextI = (i + 1) % nPts;
+            const pIn1: [number, number, number] = [innerLipPts[i].x, topRimY, innerLipPts[i].z];
+            const pIn2: [number, number, number] = [innerLipPts[nextI].x, topRimY, innerLipPts[nextI].z];
+            const pOut1: [number, number, number] = [outerLipPts[i].x, topRimY - 0.003, outerLipPts[i].z];
+            const pOut2: [number, number, number] = [outerLipPts[nextI].x, topRimY - 0.003, outerLipPts[nextI].z];
+            pushQuad(pIn1, pIn2, pOut2, pOut1, [0, 1, 0], COLOR_DEFAULT);
+            const pDeck1: [number, number, number] = [outerLipPts[i].x, topY, outerLipPts[i].z];
+            const pDeck2: [number, number, number] = [outerLipPts[nextI].x, topY, outerLipPts[nextI].z];
+            pushQuad(pOut1, pOut2, pDeck2, pDeck1, [-outerLipPts[i].nx, 0.4, -outerLipPts[i].nz], COLOR_DEFAULT);
+          }
+        }
+
+        // 1. VERTICAL (OR TAPERED FOR SQ 3) WALLS (from topRimY down to coveFloorY)
+        const rimPts = getRoundedRectPoints(bX, bZ, rxRim, rzRim, cr, cornerSegs, edgeSegs);
+        const lowerWallW = rxRim - taper;
+        const lowerWallD = rzRim - taper;
+        const lowerWallPts = getRoundedRectPoints(bX, bZ, lowerWallW, lowerWallD, cr, cornerSegs, edgeSegs);
+        const nRim = rimPts.length;
+
+        const vSteps = 2;
+        for (let v = 0; v < vSteps; v++) {
+          const uA = v / vSteps;
+          const uB = (v + 1) / vSteps;
+          const yA = topRimY - (topRimY - coveFloorY) * uA;
+          const yB = topRimY - (topRimY - coveFloorY) * uB;
+
+          const ptsA = getRoundedRectPoints(bX, bZ, rxRim - taper * uA, rzRim - taper * uA, cr, cornerSegs, edgeSegs);
+          const ptsB = getRoundedRectPoints(bX, bZ, rxRim - taper * uB, rzRim - taper * uB, cr, cornerSegs, edgeSegs);
+
+          for (let i = 0; i < nRim; i++) {
+            const nextI = (i + 1) % nRim;
+            const pA1: [number, number, number] = [ptsA[i].x, yA, ptsA[i].z];
+            const pA2: [number, number, number] = [ptsA[nextI].x, yA, ptsA[nextI].z];
+            const pB2: [number, number, number] = [ptsB[nextI].x, yB, ptsB[nextI].z];
+            const pB1: [number, number, number] = [ptsB[i].x, yB, ptsB[i].z];
+
+            const n1: [number, number, number] = [ptsA[i].nx, 0, ptsA[i].nz];
+            const n2: [number, number, number] = [ptsA[nextI].nx, 0, ptsA[nextI].nz];
+
+            pushQuadSmooth(pA1, pA2, pB2, pB1, n1, n2, n2, n1, COLOR_DEFAULT);
+          }
+        }
+
+        // Pill-shaped overflow slot on inside rear wall
+        const ofY = topRimY - 0.026;
+        const ofHalfW = 0.024;
+        const ofHalfH = 0.005;
+        const ofZ = bZ - rzRim + 0.003;
+        pushQuad(
+          [bX - ofHalfW, ofY - ofHalfH, ofZ],
+          [bX + ofHalfW, ofY - ofHalfH, ofZ],
+          [bX + ofHalfW, ofY + ofHalfH, ofZ],
+          [bX - ofHalfW, ofY + ofHalfH, ofZ],
+          [0, 0, 1],
+          COLOR_SHADOW
+        );
+
+        // 2. BOTTOM COVE CURVATURE (from coveFloorY down to bowlFloorY)
+        const coveSteps = 6;
+        let prevCovePts = lowerWallPts;
+        let prevY = coveFloorY;
+        let prevNy = 0;
+        let prevNHoriz = 1.0;
+
+        for (let s = 1; s <= coveSteps; s++) {
+          const ang = (s / coveSteps) * (Math.PI * 0.5);
+          const sinA = Math.sin(ang);
+          const cosA = Math.cos(ang);
+          const curY = bowlFloorY + coveR * (1 - sinA);
+          const offset = coveR * (1 - cosA);
+          const curW = lowerWallW - offset;
+          const curD = lowerWallD - offset;
+          const curR = Math.max(0.006, cr - offset);
+          const curCovePts = getRoundedRectPoints(bX, bZ, curW, curD, curR, cornerSegs, edgeSegs);
+
+          const curNy = sinA;
+          const curNHoriz = cosA;
+
+          for (let i = 0; i < nRim; i++) {
+            const nextI = (i + 1) % nRim;
+            const pA1: [number, number, number] = [prevCovePts[i].x, prevY, prevCovePts[i].z];
+            const pA2: [number, number, number] = [prevCovePts[nextI].x, prevY, prevCovePts[nextI].z];
+            const pB2: [number, number, number] = [curCovePts[nextI].x, curY, curCovePts[nextI].z];
+            const pB1: [number, number, number] = [curCovePts[i].x, curY, curCovePts[i].z];
+
+            const nA1: [number, number, number] = [prevCovePts[i].nx * prevNHoriz, prevNy, prevCovePts[i].nz * prevNHoriz];
+            const nA2: [number, number, number] = [prevCovePts[nextI].nx * prevNHoriz, prevNy, prevCovePts[nextI].nz * prevNHoriz];
+            const nB2: [number, number, number] = [curCovePts[nextI].nx * curNHoriz, curNy, curCovePts[nextI].nz * curNHoriz];
+            const nB1: [number, number, number] = [curCovePts[i].nx * curNHoriz, curNy, curCovePts[i].nz * curNHoriz];
+
+            pushQuadSmooth(pA1, pA2, pB2, pB1, nA1, nA2, nB2, nB1, COLOR_DEFAULT);
+          }
+
+          prevCovePts = curCovePts;
+          prevY = curY;
+          prevNy = curNy;
+          prevNHoriz = curNHoriz;
+        }
+
+        // 3. FLAT HORIZONTAL FLOOR (at bowlFloorY) with centered drain connection
+        const floorPts = prevCovePts;
+        const rDrain = 0.034; // 68mm drain opening, completely covered by 76mm chrome flange
+        for (let i = 0; i < nRim; i++) {
+          const nextI = (i + 1) % nRim;
+          const phi1 = Math.atan2(floorPts[i].z - bZ, floorPts[i].x - bX);
+          const phi2 = Math.atan2(floorPts[nextI].z - bZ, floorPts[nextI].x - bX);
+
+          const d1: [number, number, number] = [bX + rDrain * Math.cos(phi1), bowlFloorY, bZ + rDrain * Math.sin(phi1)];
+          const d2: [number, number, number] = [bX + rDrain * Math.cos(phi2), bowlFloorY, bZ + rDrain * Math.sin(phi2)];
+
+          const pF1: [number, number, number] = [floorPts[i].x, bowlFloorY, floorPts[i].z];
+          const pF2: [number, number, number] = [floorPts[nextI].x, bowlFloorY, floorPts[nextI].z];
+
+          pushQuad(pF1, pF2, d2, d1, [0, 1, 0], COLOR_DEFAULT);
+        }
+
+        // 4. EXTERIOR UNDERSIDE SHELL (for 360° inspection from underneath)
+        const outerRx = rxRim + wallThick;
+        const outerRz = rzRim + wallThick;
+        const outerLowerW = lowerWallW + wallThick;
+        const outerLowerD = lowerWallD + wallThick;
+        const outerCr = cr + wallThick;
+        const outerCoveR = coveR + wallThick;
+
+        // Outer vertical/tapered walls from bottomDeckY down to coveFloorY
+        for (let v = 0; v < vSteps; v++) {
+          const uA = v / vSteps;
+          const uB = (v + 1) / vSteps;
+          const yA = bottomDeckY - (bottomDeckY - coveFloorY) * uA;
+          const yB = bottomDeckY - (bottomDeckY - coveFloorY) * uB;
+
+          const ptsA = getRoundedRectPoints(bX, bZ, outerRx - taper * uA, outerRz - taper * uA, outerCr, cornerSegs, edgeSegs);
+          const ptsB = getRoundedRectPoints(bX, bZ, outerRx - taper * uB, outerRz - taper * uB, outerCr, cornerSegs, edgeSegs);
+
+          for (let i = 0; i < nRim; i++) {
+            const nextI = (i + 1) % nRim;
+            const pTop1: [number, number, number] = [ptsA[i].x, yA, ptsA[i].z];
+            const pTop2: [number, number, number] = [ptsA[nextI].x, yA, ptsA[nextI].z];
+            const pBot2: [number, number, number] = [ptsB[nextI].x, yB, ptsB[nextI].z];
+            const pBot1: [number, number, number] = [ptsB[i].x, yB, ptsB[i].z];
+
+            const nOut1: [number, number, number] = [-ptsA[i].nx, 0, -ptsA[i].nz];
+            const nOut2: [number, number, number] = [-ptsA[nextI].nx, 0, -ptsA[nextI].nz];
+
+            pushQuadSmooth(pTop2, pTop1, pBot1, pBot2, nOut2, nOut1, nOut1, nOut2, COLOR_DEFAULT);
+          }
+        }
+
+        // Outer cove curvature from coveFloorY down to underBaseY
+        let prevOutPts = getRoundedRectPoints(bX, bZ, outerLowerW, outerLowerD, outerCr, cornerSegs, edgeSegs);
+        let prevOutY = coveFloorY;
+        let prevOutNy = 0;
+        let prevOutNHoriz = 1.0;
+
+        for (let s = 1; s <= coveSteps; s++) {
+          const ang = (s / coveSteps) * (Math.PI * 0.5);
+          const sinA = Math.sin(ang);
+          const cosA = Math.cos(ang);
+          const curOutY = underBaseY + outerCoveR * (1 - sinA);
+          const offset = outerCoveR * (1 - cosA);
+          const curW = outerLowerW - offset;
+          const curD = outerLowerD - offset;
+          const curR = Math.max(0.008, outerCr - offset);
+          const curOutPts = getRoundedRectPoints(bX, bZ, curW, curD, curR, cornerSegs, edgeSegs);
+
+          const curOutNy = -sinA;
+          const curOutNHoriz = cosA;
+
+          for (let i = 0; i < nRim; i++) {
+            const nextI = (i + 1) % nRim;
+            const pTop1: [number, number, number] = [prevOutPts[i].x, prevOutY, prevOutPts[i].z];
+            const pTop2: [number, number, number] = [prevOutPts[nextI].x, prevOutY, prevOutPts[nextI].z];
+            const pBot2: [number, number, number] = [curOutPts[nextI].x, curOutY, curOutPts[nextI].z];
+            const pBot1: [number, number, number] = [curOutPts[i].x, curOutY, curOutPts[i].z];
+
+            const nA1: [number, number, number] = [-prevOutPts[i].nx * prevOutNHoriz, prevOutNy, -prevOutPts[i].nz * prevOutNHoriz];
+            const nA2: [number, number, number] = [-prevOutPts[nextI].nx * prevOutNHoriz, prevOutNy, -prevOutPts[nextI].nz * prevOutNHoriz];
+            const nB2: [number, number, number] = [-curOutPts[nextI].nx * curOutNHoriz, curOutNy, -curOutPts[nextI].nz * curOutNHoriz];
+            const nB1: [number, number, number] = [-curOutPts[i].nx * curOutNHoriz, curOutNy, -curOutPts[i].nz * curOutNHoriz];
+
+            pushQuadSmooth(pTop2, pTop1, pBot1, pBot2, nA2, nA1, nB1, nB2, COLOR_DEFAULT);
+          }
+
+          prevOutPts = curOutPts;
+          prevOutY = curOutY;
+          prevOutNy = curOutNy;
+          prevOutNHoriz = curOutNHoriz;
+        }
+
+        // Underside bottom base plate at underBaseY
+        const outFloorPts = prevOutPts;
+        for (let i = 0; i < nRim; i++) {
+          const nextI = (i + 1) % nRim;
+          const phi1 = Math.atan2(outFloorPts[i].z - bZ, outFloorPts[i].x - bX);
+          const phi2 = Math.atan2(outFloorPts[nextI].z - bZ, outFloorPts[nextI].x - bX);
+
+          const d1: [number, number, number] = [bX + rDrain * Math.cos(phi1), underBaseY, bZ + rDrain * Math.sin(phi1)];
+          const d2: [number, number, number] = [bX + rDrain * Math.cos(phi2), underBaseY, bZ + rDrain * Math.sin(phi2)];
+
+          const pF1: [number, number, number] = [outFloorPts[i].x, underBaseY, outFloorPts[i].z];
+          const pF2: [number, number, number] = [outFloorPts[nextI].x, underBaseY, outFloorPts[nextI].z];
+
+          pushQuad(pF2, pF1, d1, d2, [0, -1, 0], COLOR_DEFAULT);
+        }
+
+        // 5. Detailed Chrome Drain Fitting & Underside Boss
+        pushDetailedSinkDrain(bX, bowlFloorY, bZ, underBaseY, false);
+
+      } else if (basinSpec.shape === 'oval' || basinSpec.shape === 'round' || basinSpec.shape === 'capsule' || basinSpec.shape === 'soft-rect') {
+        // ===========================================================
+        // OVAL (5, 7, 10, 12), CAPSULE (6), CIRCULAR (8, 9): ARCHITECTURAL CURVED BOWLS (Images 1 & 2)
+        // True smooth continuous 3D ellipsoidal/hemispherical bowl geometry
+        // ===========================================================
+        const isCapsule = basinSpec.shape === 'capsule' || basinSpec.id === 'capsule-6';
+        const isRound = basinSpec.shape === 'round' || basinSpec.id === 'circ-8' || basinSpec.id === 'circ-9';
+        const isSoftRect = basinSpec.shape === 'soft-rect';
+        const pExp = isSoftRect ? 3.8 : isCapsule ? 2.5 : 2.0;
+        const rings = 22;
+        const segs = 48;
+        const rDrain = 0.034; // 68mm drain opening, completely covered by 76mm chrome flange
+
+        // 1. Seamless Smooth Curved Inner Cavity
         for (let j = 0; j < rings; j++) {
           const t1 = j / rings;
           const t2 = (j + 1) / rings;
 
-          let y1: number, y2: number;
-          let s1: number, s2: number, sz1: number, sz2: number;
-          let pExp1: number, pExp2: number;
-          let nRad1: number, nRad2: number, nY1: number, nY2: number;
+          // phi goes from 0 at the drain (bowlFloorY) to PI/2 at the top rim (topRimY)
+          const phi1 = t1 * (Math.PI * 0.5);
+          const phi2 = t2 * (Math.PI * 0.5);
 
-          if (isRect) {
-            // Model A: Architectural rectangular basin with vertical walls and smooth coved floor transitions (Images 3, 4, 5)
-            const wallRatio = 0.32; // bottom 32% is cove, top 68% is vertical wall
-            const calcRectSlice = (t: number) => {
-              if (t >= wallRatio) {
-                const u = (t - wallRatio) / (1 - wallRatio);
-                const y = bowlFloorY + coveH + (totalDepth - coveH) * u;
-                return { y, sx: rxRim, sz: rzRim, pExp: 6.5, nRad: 0.98, nY: 0.08 };
-              } else {
-                const u = t / wallRatio;
-                const ang = u * Math.PI * 0.5;
-                const sinAng = Math.sin(ang);
-                const cosAng = Math.cos(ang);
-                const y = bowlFloorY + coveH * sinAng;
-                const radFac = 0.20 * sinAng + 0.80 * Math.pow(sinAng, 0.45);
-                const sx = rDrain + (rxRim - rDrain) * radFac;
-                const sz = rDrain + (rzRim - rDrain) * radFac;
-                const pExp = 2.0 + 4.5 * Math.pow(u, 0.6);
-                return { y, sx, sz, pExp, nRad: cosAng * 0.92, nY: sinAng * 0.92 };
-              }
-            };
-            const sl1 = calcRectSlice(t1);
-            const sl2 = calcRectSlice(t2);
-            y1 = sl1.y; y2 = sl2.y;
-            s1 = sl1.sx; s2 = sl2.sx;
-            sz1 = sl1.sz; sz2 = sl2.sz;
-            pExp1 = sl1.pExp; pExp2 = sl2.pExp;
-            nRad1 = sl1.nRad; nRad2 = sl2.nRad;
-            nY1 = sl1.nY; nY2 = sl2.nY;
-          } else {
-            // Models B, RO, OV, capsule
-            const phi1 = t1 * (Math.PI * 0.5);
-            const phi2 = t2 * (Math.PI * 0.5);
-            y1 = bowlFloorY + totalDepth * Math.sin(phi1);
-            y2 = bowlFloorY + totalDepth * Math.sin(phi2);
-            pExp1 = isSoftRect ? (2.0 + 1.8 * Math.pow(Math.sin(phi1), 1.2)) : 2.0;
-            pExp2 = isSoftRect ? (2.0 + 1.8 * Math.pow(Math.sin(phi2), 1.2)) : 2.0;
-            s1 = rDrain + (rxRim - rDrain) * (0.15 * Math.sin(phi1) + 0.85 * Math.pow(Math.sin(phi1), 0.70));
-            s2 = rDrain + (rxRim - rDrain) * (0.15 * Math.sin(phi2) + 0.85 * Math.pow(Math.sin(phi2), 0.70));
-            sz1 = rDrain + (rzRim - rDrain) * (0.15 * Math.sin(phi1) + 0.85 * Math.pow(Math.sin(phi1), 0.70));
-            sz2 = rDrain + (rzRim - rDrain) * (0.15 * Math.sin(phi2) + 0.85 * Math.pow(Math.sin(phi2), 0.70));
-            nRad1 = Math.cos(phi1) * 0.65;
-            nRad2 = Math.cos(phi2) * 0.65;
-            nY1 = Math.sin(phi1);
-            nY2 = Math.sin(phi2);
-          }
+          // Smooth continuous vertical bowl profile with horizontal tangent at the drain:
+          const y1 = bowlFloorY + bH * (1 - Math.cos(phi1));
+          const y2 = bowlFloorY + bH * (1 - Math.cos(phi2));
+
+          const s1 = Math.sin(phi1);
+          const s2 = Math.sin(phi2);
+
+          const r1x = rDrain + (rxRim - rDrain) * s1;
+          const r2x = rDrain + (rxRim - rDrain) * s2;
+          const r1z = rDrain + (rzRim - rDrain) * s1;
+          const r2z = rDrain + (rzRim - rDrain) * s2;
+
+          const curExp1 = 2.0 + (pExp - 2.0) * s1;
+          const curExp2 = 2.0 + (pExp - 2.0) * s2;
+
+          const nRad1 = Math.cos(phi1);
+          const nRad2 = Math.cos(phi2);
+          const nY1 = Math.sin(phi1);
+          const nY2 = Math.sin(phi2);
 
           for (let i = 0; i < segs; i++) {
             const th1 = (i / segs) * Math.PI * 2;
             const th2 = ((i + 1) / segs) * Math.PI * 2;
 
-            const c1 = Math.cos(th1);
-            const s1m = Math.sin(th1);
-            const c2 = Math.cos(th2);
-            const s2m = Math.sin(th2);
+            const pt1A = getSuperellipsePt(th1, r1x, r1z, curExp1);
+            const pt2A = getSuperellipsePt(th2, r1x, r1z, curExp1);
+            const pt2B = getSuperellipsePt(th2, r2x, r2z, curExp2);
+            const pt1B = getSuperellipsePt(th1, r2x, r2z, curExp2);
 
-            const xp1 = Math.sign(c1) * Math.pow(Math.abs(c1), 2 / pExp1);
-            const zp1 = Math.sign(s1m) * Math.pow(Math.abs(s1m), 2 / pExp1);
-            const xp2 = Math.sign(c2) * Math.pow(Math.abs(c2), 2 / pExp1);
-            const zp2 = Math.sign(s2m) * Math.pow(Math.abs(s2m), 2 / pExp1);
+            const p1: [number, number, number] = [bX + pt1A.x, y1, bZ + pt1A.z];
+            const p2: [number, number, number] = [bX + pt2A.x, y1, bZ + pt2A.z];
+            const p3: [number, number, number] = [bX + pt2B.x, y2, bZ + pt2B.z];
+            const p4: [number, number, number] = [bX + pt1B.x, y2, bZ + pt1B.z];
 
-            const xq1 = Math.sign(c1) * Math.pow(Math.abs(c1), 2 / pExp2);
-            const zq1 = Math.sign(s1m) * Math.pow(Math.abs(s1m), 2 / pExp2);
-            const xq2 = Math.sign(c2) * Math.pow(Math.abs(c2), 2 / pExp2);
-            const zq2 = Math.sign(s2m) * Math.pow(Math.abs(s2m), 2 / pExp2);
-
-            const p1: [number, number, number] = [bX + s1 * xp1, y1, bZ + sz1 * zp1];
-            const p2: [number, number, number] = [bX + s1 * xp2, y1, bZ + sz1 * zp2];
-            const p3: [number, number, number] = [bX + s2 * xq2, y2, bZ + sz2 * zq2];
-            const p4: [number, number, number] = [bX + s2 * xq1, y2, bZ + sz2 * zq1];
-
-            // Inward normals transitioning smoothly upward into deck plane [0, 1, 0] at rim
-            const n1: [number, number, number] = [-xp1 * nRad1, nY1, -zp1 * nRad1];
-            const n2: [number, number, number] = [-xp2 * nRad1, nY1, -zp2 * nRad1];
-            const n3: [number, number, number] = [-xq2 * nRad2, nY2, -zq2 * nRad2];
-            const n4: [number, number, number] = [-xq1 * nRad2, nY2, -zq1 * nRad2];
+            const n1: [number, number, number] = [-pt1A.nx * nRad1, nY1, -pt1A.nz * nRad1];
+            const n2: [number, number, number] = [-pt2A.nx * nRad1, nY1, -pt2A.nz * nRad1];
+            const n3: [number, number, number] = [-pt2B.nx * nRad2, nY2, -pt2B.nz * nRad2];
+            const n4: [number, number, number] = [-pt1B.nx * nRad2, nY2, -pt1B.nz * nRad2];
 
             pushQuadSmooth(p4, p3, p2, p1, n4, n3, n2, n1, COLOR_DEFAULT);
           }
         }
 
-        // Pill-shaped overflow slot on inside rear wall (Image 3, 4, 5)
-        if (isSoftRect || isRect) {
-          const ofY = topRimY - 0.026;
-          const ofHalfW = 0.024;
-          const ofHalfH = 0.005;
-          const ofZ = bZ - rzRim + 0.008;
-          pushQuad(
-            [bX - ofHalfW, ofY - ofHalfH, ofZ],
-            [bX + ofHalfW, ofY - ofHalfH, ofZ],
-            [bX + ofHalfW, ofY + ofHalfH, ofZ],
-            [bX - ofHalfW, ofY + ofHalfH, ofZ],
-            [0, 0, 1],
-            COLOR_SHADOW
-          );
-        }
-
         // Top-Mount Outer Rim Lip resting on countertop deck (when TOP is selected)
         if (isTopMount) {
-          const rExtX = rxRim + 0.016;
-          const rExtZ = rzRim + 0.016;
+          const lipThick = 0.012;
           for (let i = 0; i < segs; i++) {
             const th1 = (i / segs) * Math.PI * 2;
             const th2 = ((i + 1) / segs) * Math.PI * 2;
-            const c1 = Math.cos(th1);
-            const s1m = Math.sin(th1);
-            const c2 = Math.cos(th2);
-            const s2m = Math.sin(th2);
 
-            const xp1 = isSoftRect ? Math.sign(c1) * Math.pow(Math.abs(c1), 2 / 3.8) : c1;
-            const zp1 = isSoftRect ? Math.sign(s1m) * Math.pow(Math.abs(s1m), 2 / 3.8) : s1m;
-            const xp2 = isSoftRect ? Math.sign(c2) * Math.pow(Math.abs(c2), 2 / 3.8) : c2;
-            const zp2 = isSoftRect ? Math.sign(s2m) * Math.pow(Math.abs(s2m), 2 / 3.8) : s2m;
+            const pt1In = getSuperellipsePt(th1, rxRim, rzRim, pExp);
+            const pt2In = getSuperellipsePt(th2, rxRim, rzRim, pExp);
+            const pt1Out = getSuperellipsePt(th1, rxRim + lipThick, rzRim + lipThick, pExp);
+            const pt2Out = getSuperellipsePt(th2, rxRim + lipThick, rzRim + lipThick, pExp);
 
-            const pr1: [number, number, number] = [bX + rxRim * xp1, topRimY, bZ + rzRim * zp1];
-            const pr2: [number, number, number] = [bX + rxRim * xp2, topRimY, bZ + rzRim * zp2];
-            const pro1: [number, number, number] = [bX + rExtX * xp1, topRimY - 0.003, bZ + rExtZ * zp1];
-            const pro2: [number, number, number] = [bX + rExtX * xp2, topRimY - 0.003, bZ + rExtZ * zp2];
+            const pr1: [number, number, number] = [bX + pt1In.x, topRimY, bZ + pt1In.z];
+            const pr2: [number, number, number] = [bX + pt2In.x, topRimY, bZ + pt2In.z];
+            const pro1: [number, number, number] = [bX + pt1Out.x, topRimY - 0.003, bZ + pt1Out.z];
+            const pro2: [number, number, number] = [bX + pt2Out.x, topRimY - 0.003, bZ + pt2Out.z];
             pushQuad(pr1, pr2, pro2, pro1, [0, 1, 0], COLOR_DEFAULT);
 
-            const pd1: [number, number, number] = [bX + rExtX * xp1, topY, bZ + rExtZ * zp1];
-            const pd2: [number, number, number] = [bX + rExtX * xp2, topY, bZ + rExtZ * zp2];
-            pushQuad(pro1, pro2, pd2, pd1, [xp1, 0.4, zp1], COLOR_DEFAULT);
+            const pd1: [number, number, number] = [bX + pt1Out.x, topY, bZ + pt1Out.z];
+            const pd2: [number, number, number] = [bX + pt2Out.x, topY, bZ + pt2Out.z];
+            pushQuad(pro1, pro2, pd2, pd1, [pt1Out.nx, 0.4, pt1Out.nz], COLOR_DEFAULT);
           }
         }
 
-        // 2. Exterior Underside Shell (Smooth solid surface basin underbelly for 360° inspection - Image 4)
-        const wallThick = 0.012;
-        const underBaseY = bowlFloorY - 0.005;
+        // 2. Exterior Underside Shell (Smooth curved underbelly for 360° inspection)
         for (let j = 0; j < rings; j++) {
           const t1 = j / rings;
           const t2 = (j + 1) / rings;
 
-          let y1: number, y2: number;
-          let s1: number, s2: number, sz1: number, sz2: number;
-          let pExp1: number, pExp2: number;
-          let nRad1: number, nRad2: number, nY1: number, nY2: number;
+          const phi1 = t1 * (Math.PI * 0.5);
+          const phi2 = t2 * (Math.PI * 0.5);
 
-          if (isRect) {
-            const wallRatio = 0.32;
-            const calcUnderSlice = (t: number) => {
-              if (t >= wallRatio) {
-                const u = (t - wallRatio) / (1 - wallRatio);
-                const y = underBaseY + coveH + (totalDepth - T + 0.005 - coveH) * u;
-                return { y, sx: rxRim + wallThick, sz: rzRim + wallThick, pExp: 6.5, nRad: 0.98, nY: -0.05 };
-              } else {
-                const u = t / wallRatio;
-                const ang = u * Math.PI * 0.5;
-                const sinAng = Math.sin(ang);
-                const cosAng = Math.cos(ang);
-                const y = underBaseY + coveH * sinAng;
-                const radFac = 0.20 * sinAng + 0.80 * Math.pow(sinAng, 0.45);
-                const sx = rDrain + (rxRim + wallThick - rDrain) * radFac;
-                const sz = rDrain + (rzRim + wallThick - rDrain) * radFac;
-                const pExp = 2.0 + 4.5 * Math.pow(u, 0.6);
-                return { y, sx, sz, pExp, nRad: cosAng * 0.85, nY: -sinAng * 0.85 };
-              }
-            };
-            const sl1 = calcUnderSlice(t1);
-            const sl2 = calcUnderSlice(t2);
-            y1 = sl1.y; y2 = sl2.y;
-            s1 = sl1.sx; s2 = sl2.sx;
-            sz1 = sl1.sz; sz2 = sl2.sz;
-            pExp1 = sl1.pExp; pExp2 = sl2.pExp;
-            nRad1 = sl1.nRad; nRad2 = sl2.nRad;
-            nY1 = sl1.nY; nY2 = sl2.nY;
-          } else {
-            const phi1 = t1 * (Math.PI * 0.5);
-            const phi2 = t2 * (Math.PI * 0.5);
-            y1 = underBaseY + (totalDepth - T + 0.005) * Math.sin(phi1);
-            y2 = underBaseY + (totalDepth - T + 0.005) * Math.sin(phi2);
-            pExp1 = isSoftRect ? (2.0 + 1.8 * Math.pow(Math.sin(phi1), 1.2)) : 2.0;
-            pExp2 = isSoftRect ? (2.0 + 1.8 * Math.pow(Math.sin(phi2), 1.2)) : 2.0;
-            s1 = rDrain + (rxRim + wallThick - rDrain) * Math.sin(phi1);
-            s2 = rDrain + (rxRim + wallThick - rDrain) * Math.sin(phi2);
-            sz1 = rDrain + (rzRim + wallThick - rDrain) * Math.sin(phi1);
-            sz2 = rDrain + (rzRim + wallThick - rDrain) * Math.sin(phi2);
-            nRad1 = Math.cos(phi1);
-            nRad2 = Math.cos(phi2);
-            nY1 = -Math.sin(phi1);
-            nY2 = -Math.sin(phi2);
-          }
+          const y1 = underBaseY + (bottomDeckY - underBaseY) * (1 - Math.cos(phi1));
+          const y2 = underBaseY + (bottomDeckY - underBaseY) * (1 - Math.cos(phi2));
+
+          const s1 = Math.sin(phi1);
+          const s2 = Math.sin(phi2);
+
+          const r1x = rDrain + (rxRim + wallThick - rDrain) * s1;
+          const r2x = rDrain + (rxRim + wallThick - rDrain) * s2;
+          const r1z = rDrain + (rzRim + wallThick - rDrain) * s1;
+          const r2z = rDrain + (rzRim + wallThick - rDrain) * s2;
+
+          const curExp1 = 2.0 + (pExp - 2.0) * s1;
+          const curExp2 = 2.0 + (pExp - 2.0) * s2;
+
+          const nRad1 = Math.cos(phi1);
+          const nRad2 = Math.cos(phi2);
+          const nY1 = -Math.sin(phi1);
+          const nY2 = -Math.sin(phi2);
 
           for (let i = 0; i < segs; i++) {
             const th1 = (i / segs) * Math.PI * 2;
             const th2 = ((i + 1) / segs) * Math.PI * 2;
 
-            const c1 = Math.cos(th1);
-            const s1m = Math.sin(th1);
-            const c2 = Math.cos(th2);
-            const s2m = Math.sin(th2);
+            const pt1A = getSuperellipsePt(th1, r1x, r1z, curExp1);
+            const pt2A = getSuperellipsePt(th2, r1x, r1z, curExp1);
+            const pt2B = getSuperellipsePt(th2, r2x, r2z, curExp2);
+            const pt1B = getSuperellipsePt(th1, r2x, r2z, curExp2);
 
-            const xp1 = Math.sign(c1) * Math.pow(Math.abs(c1), 2 / pExp1);
-            const zp1 = Math.sign(s1m) * Math.pow(Math.abs(s1m), 2 / pExp1);
-            const xp2 = Math.sign(c2) * Math.pow(Math.abs(c2), 2 / pExp1);
-            const zp2 = Math.sign(s2m) * Math.pow(Math.abs(s2m), 2 / pExp1);
+            const pe1: [number, number, number] = [bX + pt1A.x, y1, bZ + pt1A.z];
+            const pe2: [number, number, number] = [bX + pt2A.x, y1, bZ + pt2A.z];
+            const pe3: [number, number, number] = [bX + pt2B.x, y2, bZ + pt2B.z];
+            const pe4: [number, number, number] = [bX + pt1B.x, y2, bZ + pt1B.z];
 
-            const xq1 = Math.sign(c1) * Math.pow(Math.abs(c1), 2 / pExp2);
-            const zq1 = Math.sign(s1m) * Math.pow(Math.abs(s1m), 2 / pExp2);
-            const xq2 = Math.sign(c2) * Math.pow(Math.abs(c2), 2 / pExp2);
-            const zq2 = Math.sign(s2m) * Math.pow(Math.abs(s2m), 2 / pExp2);
-
-            const pe1: [number, number, number] = [bX + s1 * xp1, y1, bZ + sz1 * zp1];
-            const pe2: [number, number, number] = [bX + s1 * xp2, y1, bZ + sz1 * zp2];
-            const pe3: [number, number, number] = [bX + s2 * xq2, y2, bZ + sz2 * zq2];
-            const pe4: [number, number, number] = [bX + s2 * xq1, y2, bZ + sz2 * zq1];
-
-            const n1: [number, number, number] = [xp1 * nRad1, nY1, zp1 * nRad1];
-            const n2: [number, number, number] = [xp2 * nRad1, nY1, zp2 * nRad1];
-            const n3: [number, number, number] = [xq2 * nRad2, nY2, zq2 * nRad2];
-            const n4: [number, number, number] = [xq1 * nRad2, nY2, zq1 * nRad2];
+            const n1: [number, number, number] = [pt1A.nx * nRad1, nY1, pt1A.nz * nRad1];
+            const n2: [number, number, number] = [pt2A.nx * nRad1, nY1, pt2A.nz * nRad1];
+            const n3: [number, number, number] = [pt2B.nx * nRad2, nY2, pt2B.nz * nRad2];
+            const n4: [number, number, number] = [pt1B.nx * nRad2, nY2, pt1B.nz * nRad2];
 
             pushQuadSmooth(pe1, pe2, pe3, pe4, n1, n2, n3, n4, COLOR_DEFAULT);
           }
         }
 
-        // Detailed Chrome Drain Fitting & Underside Boss (Image 3 & Image 4)
+        // Detailed Chrome Drain Fitting & Underside Boss (Images 1 & 2)
         pushDetailedSinkDrain(bX, bowlFloorY, bZ, underBaseY, false);
 
       } else if (basinSpec.shape === 'ub-sloped' || basinSpec.id === 'undermount-box') {
@@ -1647,61 +2186,77 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
         const trenchFloorY = bowlFloorY; // Deep rear channel floor
         const rampFloorEndY = topRimY - frontDropH - Math.max(0.038, (topRimY - bowlFloorY) * 0.42); // Sloped ramp bottom
 
-        // 1. Front Vertical Reveal Wall (drops from deck rim down to sloped ramp)
+        // Top-Mount 12mm Solid Surface Outer Rim Border (resting flush on countertop deck)
+        if (isTopMount) {
+          const borderW = 0.012;
+          // Top horizontal border rim resting at topRimY (CCW facing +Y)
+          pushQuad([minX - borderW, topRimY, maxZ + borderW], [maxX + borderW, topRimY, maxZ + borderW], [maxX + borderW, topRimY, maxZ], [minX - borderW, topRimY, maxZ], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topRimY, minZ], [maxX + borderW, topRimY, minZ], [maxX + borderW, topRimY, minZ - borderW], [minX - borderW, topRimY, minZ - borderW], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topRimY, maxZ], [minX, topRimY, maxZ], [minX, topRimY, minZ], [minX - borderW, topRimY, minZ], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([maxX, topRimY, maxZ], [maxX + borderW, topRimY, maxZ], [maxX + borderW, topRimY, minZ], [maxX, topRimY, minZ], [0, 1, 0], COLOR_DEFAULT);
+
+          // Outer vertical perimeter drop down to countertop deck (topY)
+          pushQuad([minX - borderW, topY, maxZ + borderW], [maxX + borderW, topY, maxZ + borderW], [maxX + borderW, topRimY, maxZ + borderW], [minX - borderW, topRimY, maxZ + borderW], [0, 0, 1], COLOR_DEFAULT);
+          pushQuad([maxX + borderW, topY, minZ - borderW], [minX - borderW, topY, minZ - borderW], [minX - borderW, topRimY, minZ - borderW], [maxX + borderW, topRimY, minZ - borderW], [0, 0, -1], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topY, minZ - borderW], [minX - borderW, topY, maxZ + borderW], [minX - borderW, topRimY, maxZ + borderW], [minX - borderW, topRimY, minZ - borderW], [-1, 0, 0], COLOR_DEFAULT);
+          pushQuad([maxX + borderW, topY, maxZ + borderW], [maxX + borderW, topY, minZ - borderW], [maxX + borderW, topRimY, minZ - borderW], [maxX + borderW, topRimY, maxZ + borderW], [1, 0, 0], COLOR_DEFAULT);
+        }
+
+        // 1. Front Vertical Reveal Wall (drops from deck rim down to sloped ramp, facing -Z)
         pushQuad(
-          [minX, frontFloorY, maxZ],
           [maxX, frontFloorY, maxZ],
-          [maxX, topRimY, maxZ],
+          [minX, frontFloorY, maxZ],
           [minX, topRimY, maxZ],
+          [maxX, topRimY, maxZ],
           [0, 0, -1],
           COLOR_DEFAULT
         );
 
-        // 2. Sloped Washplane Ramp (descending from front drop towards rear trench)
+        // 2. Sloped Washplane Ramp (descending from front drop towards rear trench, CCW facing +Y/-Z)
         const dzR = maxZ - trenchFrontZ;
         const dyR = frontFloorY - rampFloorEndY;
         const lenR = Math.hypot(dyR, dzR);
-        const nRamp: [number, number, number] = [0, dzR / lenR, dyR / lenR];
+        const nRamp: [number, number, number] = [0, dzR / lenR, -dyR / lenR];
         pushQuad(
-          [minX, rampFloorEndY, trenchFrontZ],
-          [maxX, rampFloorEndY, trenchFrontZ],
-          [maxX, frontFloorY, maxZ],
           [minX, frontFloorY, maxZ],
+          [maxX, frontFloorY, maxZ],
+          [maxX, rampFloorEndY, trenchFrontZ],
+          [minX, rampFloorEndY, trenchFrontZ],
           nRamp,
           COLOR_DEFAULT
         );
 
-        // 3. Step Drop into Rear Trench (at trenchFrontZ)
+        // 3. Step Drop into Rear Trench (at trenchFrontZ, facing -Z)
         pushQuad(
-          [minX, trenchFloorY, trenchFrontZ],
           [maxX, trenchFloorY, trenchFrontZ],
-          [maxX, rampFloorEndY, trenchFrontZ],
+          [minX, trenchFloorY, trenchFrontZ],
           [minX, rampFloorEndY, trenchFrontZ],
+          [maxX, rampFloorEndY, trenchFrontZ],
           [0, 0, -1],
           COLOR_DEFAULT
         );
 
-        // 4. Rear Drainage Trench Floor
+        // 4. Rear Drainage Trench Floor (facing +Y)
         pushQuad(
-          [minX, trenchFloorY, minZ],
-          [maxX, trenchFloorY, minZ],
-          [maxX, trenchFloorY, trenchFrontZ],
           [minX, trenchFloorY, trenchFrontZ],
+          [maxX, trenchFloorY, trenchFrontZ],
+          [maxX, trenchFloorY, minZ],
+          [minX, trenchFloorY, minZ],
           [0, 1, 0],
           COLOR_DEFAULT
         );
 
-        // 5. Rear Vertical Wall (rising from trench floor up to deck top rim)
+        // 5. Rear Vertical Wall (rising from trench floor up to deck top rim, facing +Z)
         pushQuad(
-          [maxX, trenchFloorY, minZ],
           [minX, trenchFloorY, minZ],
-          [minX, topRimY, minZ],
+          [maxX, trenchFloorY, minZ],
           [maxX, topRimY, minZ],
+          [minX, topRimY, minZ],
           [0, 0, 1],
           COLOR_DEFAULT
         );
 
-        // 6. Left Vertical Sidewall (Watertight enclosure at minX)
+        // 6. Left Vertical Sidewall (Watertight enclosure at minX, facing +X)
         pushQuad(
           [minX, rampFloorEndY, trenchFrontZ],
           [minX, frontFloorY, maxZ],
@@ -1711,15 +2266,15 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           COLOR_DEFAULT
         );
         pushQuad(
-          [minX, trenchFloorY, minZ],
           [minX, trenchFloorY, trenchFrontZ],
-          [minX, topRimY, trenchFrontZ],
+          [minX, trenchFloorY, minZ],
           [minX, topRimY, minZ],
+          [minX, topRimY, trenchFrontZ],
           [1, 0, 0],
           COLOR_DEFAULT
         );
 
-        // 7. Right Vertical Sidewall (Watertight enclosure at maxX)
+        // 7. Right Vertical Sidewall (Watertight enclosure at maxX, facing -X)
         pushQuad(
           [maxX, frontFloorY, maxZ],
           [maxX, rampFloorEndY, trenchFrontZ],
@@ -1729,10 +2284,10 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           COLOR_DEFAULT
         );
         pushQuad(
-          [maxX, trenchFloorY, trenchFrontZ],
           [maxX, trenchFloorY, minZ],
-          [maxX, topRimY, minZ],
+          [maxX, trenchFloorY, trenchFrontZ],
           [maxX, topRimY, trenchFrontZ],
+          [maxX, topRimY, minZ],
           [-1, 0, 0],
           COLOR_DEFAULT
         );
@@ -1745,7 +2300,7 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           [minX - wallT, rampFloorEndY - wallT, trenchFrontZ],
           [minX - wallT, frontFloorY - wallT, maxZ],
           [maxX + wallT, frontFloorY - wallT, maxZ],
-          [0, -dzR / lenR, -dyR / lenR],
+          [0, -dzR / lenR, dyR / lenR],
           COLOR_DEFAULT
         );
         pushBox(minX - wallT, trenchFloorY - wallT, minZ - wallT, maxX + wallT, bottomDeckY, trenchFrontZ, COLOR_DEFAULT);
@@ -1753,7 +2308,7 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
         // 9. Concealed / Slot Drain in Rear Trench
         pushDetailedSinkDrain(bX, trenchFloorY + 0.001, minZ + trenchDepth * 0.5, trenchFloorY - wallT, false);
 
-      } else if (basinSpec.shape === 'uc-sloped' || basinSpec.id === 'undermount-channel') {
+      } else if (basinSpec.shape === 'uc-sloped' || basinSpec.id === 'undermount-channel' || basinSpec.id === 'uc') {
         // UC (Undermount Channel): Continuous sleek slope starting from deck rim to deep rear drainage channel (Images 3 & 4)
         const minX = bX - bW / 2;
         const maxX = bX + bW / 2;
@@ -1761,66 +2316,82 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
         const maxZ = bZ + bD / 2; // Front wall
         const trenchDepth = Math.min(0.060, Math.max(0.042, bD * 0.16)); // ~48mm rear sump trench
         const trenchFrontZ = minZ + trenchDepth;
-        const frontDropH = 0.014; // Minimal 14mm reveal from deck rim (Image 3 & 4)
-        const frontFloorY = topRimY - frontDropH;
+        // Sloped washplane ramp begins flush at countertop deck level (topY) with zero gap
+        const frontFloorY = topY;
         const trenchFloorY = bowlFloorY; // Deep rear channel floor
         const rampFloorEndY = topRimY - Math.max(0.055, (topRimY - bowlFloorY) * 0.50); // Continuous long incline
 
-        // 1. Front Minimal Lip
-        pushQuad(
-          [minX, frontFloorY, maxZ],
-          [maxX, frontFloorY, maxZ],
-          [maxX, topRimY, maxZ],
-          [minX, topRimY, maxZ],
-          [0, 0, -1],
-          COLOR_DEFAULT
-        );
+        // Top-Mount 12mm Solid Surface Outer Rim Border (resting flush on countertop deck with zero gap)
+        if (isTopMount) {
+          const borderW = 0.012;
+          // Top horizontal border rim resting at topRimY (CCW facing +Y)
+          pushQuad([minX - borderW, topRimY, maxZ + borderW], [maxX + borderW, topRimY, maxZ + borderW], [maxX + borderW, topRimY, maxZ], [minX - borderW, topRimY, maxZ], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topRimY, minZ], [maxX + borderW, topRimY, minZ], [maxX + borderW, topRimY, minZ - borderW], [minX - borderW, topRimY, minZ - borderW], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topRimY, maxZ], [minX, topRimY, maxZ], [minX, topRimY, minZ], [minX - borderW, topRimY, minZ], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([maxX, topRimY, maxZ], [maxX + borderW, topRimY, maxZ], [maxX + borderW, topRimY, minZ], [maxX, topRimY, minZ], [0, 1, 0], COLOR_DEFAULT);
 
-        // 2. Continuous Sloped Washplane Ramp (descending full length to rear trench)
+          // Outer vertical perimeter drop down to countertop deck (topY)
+          pushQuad([minX - borderW, topY, maxZ + borderW], [maxX + borderW, topY, maxZ + borderW], [maxX + borderW, topRimY, maxZ + borderW], [minX - borderW, topRimY, maxZ + borderW], [0, 0, 1], COLOR_DEFAULT);
+          pushQuad([maxX + borderW, topY, minZ - borderW], [minX - borderW, topY, minZ - borderW], [minX - borderW, topRimY, minZ - borderW], [maxX + borderW, topRimY, minZ - borderW], [0, 0, -1], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topY, minZ - borderW], [minX - borderW, topY, maxZ + borderW], [minX - borderW, topRimY, maxZ + borderW], [minX - borderW, topRimY, minZ - borderW], [-1, 0, 0], COLOR_DEFAULT);
+          pushQuad([maxX + borderW, topY, maxZ + borderW], [maxX + borderW, topY, minZ - borderW], [maxX + borderW, topRimY, minZ - borderW], [maxX + borderW, topRimY, maxZ + borderW], [1, 0, 0], COLOR_DEFAULT);
+
+          // Front Inner Lip Reveal (at maxZ between frontFloorY=topY and topRimY, CCW facing -Z into basin)
+          pushQuad(
+            [maxX, frontFloorY, maxZ],
+            [minX, frontFloorY, maxZ],
+            [minX, topRimY, maxZ],
+            [maxX, topRimY, maxZ],
+            [0, 0, -1],
+            COLOR_DEFAULT
+          );
+        }
+
+        // 1. Continuous Sloped Washplane Ramp (descending full length to rear trench, CCW facing +Y/-Z)
         const dzR = maxZ - trenchFrontZ;
         const dyR = frontFloorY - rampFloorEndY;
         const lenR = Math.hypot(dyR, dzR);
-        const nRamp: [number, number, number] = [0, dzR / lenR, dyR / lenR];
+        const nRamp: [number, number, number] = [0, dzR / lenR, -dyR / lenR];
         pushQuad(
-          [minX, rampFloorEndY, trenchFrontZ],
-          [maxX, rampFloorEndY, trenchFrontZ],
-          [maxX, frontFloorY, maxZ],
           [minX, frontFloorY, maxZ],
+          [maxX, frontFloorY, maxZ],
+          [maxX, rampFloorEndY, trenchFrontZ],
+          [minX, rampFloorEndY, trenchFrontZ],
           nRamp,
           COLOR_DEFAULT
         );
 
-        // 3. Step Drop into Rear Trench (at trenchFrontZ)
+        // 2. Step Drop into Rear Trench (at trenchFrontZ, facing -Z)
         pushQuad(
-          [minX, trenchFloorY, trenchFrontZ],
           [maxX, trenchFloorY, trenchFrontZ],
-          [maxX, rampFloorEndY, trenchFrontZ],
+          [minX, trenchFloorY, trenchFrontZ],
           [minX, rampFloorEndY, trenchFrontZ],
+          [maxX, rampFloorEndY, trenchFrontZ],
           [0, 0, -1],
           COLOR_DEFAULT
         );
 
-        // 4. Rear Drainage Trench Floor
+        // 3. Rear Drainage Trench Floor (facing +Y)
         pushQuad(
-          [minX, trenchFloorY, minZ],
-          [maxX, trenchFloorY, minZ],
-          [maxX, trenchFloorY, trenchFrontZ],
           [minX, trenchFloorY, trenchFrontZ],
+          [maxX, trenchFloorY, trenchFrontZ],
+          [maxX, trenchFloorY, minZ],
+          [minX, trenchFloorY, minZ],
           [0, 1, 0],
           COLOR_DEFAULT
         );
 
-        // 5. Rear Vertical Wall
+        // 4. Rear Vertical Wall (rising from trench floor up to topRimY, facing +Z)
         pushQuad(
-          [maxX, trenchFloorY, minZ],
           [minX, trenchFloorY, minZ],
-          [minX, topRimY, minZ],
+          [maxX, trenchFloorY, minZ],
           [maxX, topRimY, minZ],
+          [minX, topRimY, minZ],
           [0, 0, 1],
           COLOR_DEFAULT
         );
 
-        // 6. Left Vertical Sidewall (Watertight enclosure at minX)
+        // 5. Left Vertical Sidewall (Watertight enclosure at minX, facing +X)
         pushQuad(
           [minX, rampFloorEndY, trenchFrontZ],
           [minX, frontFloorY, maxZ],
@@ -1830,15 +2401,15 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           COLOR_DEFAULT
         );
         pushQuad(
-          [minX, trenchFloorY, minZ],
           [minX, trenchFloorY, trenchFrontZ],
-          [minX, topRimY, trenchFrontZ],
+          [minX, trenchFloorY, minZ],
           [minX, topRimY, minZ],
+          [minX, topRimY, trenchFrontZ],
           [1, 0, 0],
           COLOR_DEFAULT
         );
 
-        // 7. Right Vertical Sidewall (Watertight enclosure at maxX)
+        // 6. Right Vertical Sidewall (Watertight enclosure at maxX, facing -X)
         pushQuad(
           [maxX, frontFloorY, maxZ],
           [maxX, rampFloorEndY, trenchFrontZ],
@@ -1848,27 +2419,27 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           COLOR_DEFAULT
         );
         pushQuad(
-          [maxX, trenchFloorY, trenchFrontZ],
           [maxX, trenchFloorY, minZ],
-          [maxX, topRimY, minZ],
+          [maxX, trenchFloorY, trenchFrontZ],
           [maxX, topRimY, trenchFrontZ],
+          [maxX, topRimY, minZ],
           [-1, 0, 0],
           COLOR_DEFAULT
         );
 
-        // 8. Watertight Underside Shell (Continuous wedge tapering to rear sump, matching side profile of Image 4)
+        // 7. Watertight Underside Shell (Continuous wedge tapering to rear sump, matching side profile of Image 4)
         const wallT = 0.012;
         pushQuad(
           [maxX + wallT, rampFloorEndY - wallT, trenchFrontZ],
           [minX - wallT, rampFloorEndY - wallT, trenchFrontZ],
           [minX - wallT, bottomDeckY, maxZ],
           [maxX + wallT, bottomDeckY, maxZ],
-          [0, -dzR / lenR, -dyR / lenR],
+          [0, -dzR / lenR, dyR / lenR],
           COLOR_DEFAULT
         );
         pushBox(minX - wallT, trenchFloorY - wallT, minZ - wallT, maxX + wallT, bottomDeckY, trenchFrontZ, COLOR_DEFAULT);
 
-        // 9. Concealed / Slot Drain in Rear Trench
+        // 8. Concealed / Slot Drain in Rear Trench
         pushDetailedSinkDrain(bX, trenchFloorY + 0.001, minZ + trenchDepth * 0.5, trenchFloorY - wallT, false);
 
       } else if (basinSpec.shape === 'wdt-sloped' || basinSpec.id === 'washdesk-trough') {
@@ -1879,6 +2450,22 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
         const minZ = bZ - bD / 2; // Rear wall
         const maxZ = bZ + bD / 2; // Front wall
         const deepFloorY = bowlFloorY; // Deep floor level (~120-140mm below deck)
+
+        // Top-Mount 12mm Solid Surface Outer Rim Border (resting flush on countertop deck)
+        if (isTopMount) {
+          const borderW = 0.012;
+          // Top horizontal border rim resting at topRimY (CCW facing +Y)
+          pushQuad([minX - borderW, topRimY, maxZ + borderW], [maxX + borderW, topRimY, maxZ + borderW], [maxX + borderW, topRimY, maxZ], [minX - borderW, topRimY, maxZ], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topRimY, minZ], [maxX + borderW, topRimY, minZ], [maxX + borderW, topRimY, minZ - borderW], [minX - borderW, topRimY, minZ - borderW], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topRimY, maxZ], [minX, topRimY, maxZ], [minX, topRimY, minZ], [minX - borderW, topRimY, minZ], [0, 1, 0], COLOR_DEFAULT);
+          pushQuad([maxX, topRimY, maxZ], [maxX + borderW, topRimY, maxZ], [maxX + borderW, topRimY, minZ], [maxX, topRimY, minZ], [0, 1, 0], COLOR_DEFAULT);
+
+          // Outer vertical perimeter drop down to countertop deck (topY)
+          pushQuad([minX - borderW, topY, maxZ + borderW], [maxX + borderW, topY, maxZ + borderW], [maxX + borderW, topRimY, maxZ + borderW], [minX - borderW, topRimY, maxZ + borderW], [0, 0, 1], COLOR_DEFAULT);
+          pushQuad([maxX + borderW, topY, minZ - borderW], [minX - borderW, topY, minZ - borderW], [minX - borderW, topRimY, minZ - borderW], [maxX + borderW, topRimY, minZ - borderW], [0, 0, -1], COLOR_DEFAULT);
+          pushQuad([minX - borderW, topY, minZ - borderW], [minX - borderW, topY, maxZ + borderW], [minX - borderW, topRimY, maxZ + borderW], [minX - borderW, topRimY, minZ - borderW], [-1, 0, 0], COLOR_DEFAULT);
+          pushQuad([maxX + borderW, topY, maxZ + borderW], [maxX + borderW, topY, minZ - borderW], [maxX + borderW, topRimY, minZ - borderW], [maxX + borderW, topRimY, maxZ + borderW], [1, 0, 0], COLOR_DEFAULT);
+        }
 
         // User-configurable slope angle in degrees
         const slopeDeg = (typeof cfg.wdtSlopeAngleDeg === 'number' && cfg.wdtSlopeAngleDeg > 0)
@@ -1899,7 +2486,7 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
         const len = Math.hypot(dy, dx);
         const nFloor: [number, number, number] = [-dy / len, dx / len, 0];
 
-        // 1. Sideways Sloped Basin Floor
+        // 1. Sideways Sloped Basin Floor (CCW facing +Y)
         pushQuad(
           [minX, floorLeftY, maxZ],
           [maxX, floorRightY, maxZ],
@@ -1909,42 +2496,42 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
           COLOR_DEFAULT
         );
 
-        // 2. Front Vertical Trapezoid Wall (at maxZ, facing -Z into basin)
+        // 2. Front Vertical Trapezoid Wall (at maxZ, CCW facing -Z into basin)
         pushQuad(
-          [minX, floorLeftY, maxZ],
           [maxX, floorRightY, maxZ],
-          [maxX, topRimY, maxZ],
+          [minX, floorLeftY, maxZ],
           [minX, topRimY, maxZ],
+          [maxX, topRimY, maxZ],
           [0, 0, -1],
           COLOR_DEFAULT
         );
 
-        // 3. Rear Vertical Trapezoid Wall (at minZ, facing +Z into basin)
+        // 3. Rear Vertical Trapezoid Wall (at minZ, CCW facing +Z into basin)
         pushQuad(
-          [maxX, floorRightY, minZ],
           [minX, floorLeftY, minZ],
-          [minX, topRimY, minZ],
+          [maxX, floorRightY, minZ],
           [maxX, topRimY, minZ],
+          [minX, topRimY, minZ],
           [0, 0, 1],
           COLOR_DEFAULT
         );
 
-        // 4. Left Vertical End Wall (at minX, facing +X into basin)
+        // 4. Left Vertical End Wall (at minX, CCW facing +X into basin)
         pushQuad(
-          [minX, floorLeftY, minZ],
           [minX, floorLeftY, maxZ],
-          [minX, topRimY, maxZ],
+          [minX, floorLeftY, minZ],
           [minX, topRimY, minZ],
+          [minX, topRimY, maxZ],
           [1, 0, 0],
           COLOR_DEFAULT
         );
 
-        // 5. Right Vertical End Wall (at maxX, facing -X into basin)
+        // 5. Right Vertical End Wall (at maxX, CCW facing -X into basin)
         pushQuad(
-          [maxX, floorRightY, maxZ],
           [maxX, floorRightY, minZ],
-          [maxX, topRimY, minZ],
+          [maxX, floorRightY, maxZ],
           [maxX, topRimY, maxZ],
+          [maxX, topRimY, minZ],
           [-1, 0, 0],
           COLOR_DEFAULT
         );

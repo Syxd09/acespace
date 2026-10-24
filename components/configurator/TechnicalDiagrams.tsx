@@ -310,131 +310,61 @@ export function SinkModelDiagram({
   const underbelly = '#e5e1d7';
   const slotFill = active ? '#d43833' : '#222521';
 
-  const isModelA = model === 'A' || model === 'coved-rect' || model === 'rectangular';
-  const isRound = model === 'RO' || model === 'round-bowl';
-  const isOval = model === 'OV' || model === 'coved-oval' || model === 'capsule-pill';
-  const isBox = model === 'B' || model === 'crisp-rect';
-  const isDouble = model === 'DB' || model === 'double-basin';
-  const isUndermountBox = model === 'UB' || model === 'undermount-box';
-  const isUndermountChannel = model === 'UC' || model === 'undermount-channel';
-  const isWashdesk = model === 'WDT' || model === 'washdesk-trough' || model === 'linear-trough';
+  const m = (model || '').toLowerCase();
+  const isModelA = m === 'a' || m === 'coved-rect' || m === 'rectangular' || m.startsWith('sq') || m.includes('sq');
+  const isRound = m === 'ro' || m === 'round-bowl' || m.startsWith('circ') || m.includes('circ');
+  const isOval = m === 'ov' || m === 'coved-oval' || m.startsWith('oval') || m.startsWith('capsule') || m.includes('oval') || m.includes('capsule');
+  const isBox = m === 'b' || m === 'crisp-rect';
+  const isDouble = m === 'db' || m === 'double-basin';
+  const isUndermountBox = m === 'ub' || m === 'undermount-box';
+  const isUndermountChannel = m === 'uc' || m === 'undermount-channel';
+  const isWashdesk = m === 'wdt' || m === 'washdesk-trough' || m === 'linear-trough';
 
   return (
     <svg viewBox="0 0 88 56" width="100%" height="46" style={{ display: 'block' }}>
-      {/* 1. MODEL A: Rectangular Coved Basin (Matching exact user reference drawing Image 2) */}
-      {isModelA && (
-        <>
-          {/* Underbelly shell */}
-          <path
-            d="M 17,21 C 17,35 24,42 36,42 C 54,42 70,35 75,20"
-            fill={underbelly}
-            stroke={stroke}
-            strokeWidth="1.2"
-            strokeLinejoin="round"
-          />
-          {/* Outer rectangular rim with small corner fillets */}
-          <path
-            d="M 20,18 L 61,10 Q 64,10 65,11 L 74,18 Q 75,19 74,20 L 33,28 Q 31,29 29,28 L 18,20 Q 17,19 18,18 Z"
-            fill={rimFill}
-            stroke={stroke}
-            strokeWidth="1.3"
-            strokeLinejoin="round"
-          />
-          {/* Inner rim reveal (wall thickness) */}
-          <path
-            d="M 22,19 L 60,11.5 L 72,18.5 L 32,26.5 Z"
-            fill={floorFill}
-            stroke={stroke}
-            strokeWidth="0.9"
-            strokeLinejoin="round"
-          />
-          {/* Rear overflow slot */}
-          <ellipse cx="36" cy="15" rx="2.5" ry="1.1" fill={slotFill} transform="rotate(-11 36 15)" />
-          {/* Centered concentric pop-up drain */}
-          <ellipse cx="46" cy="27" rx="4.2" ry="2.2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
-          <ellipse cx="46" cy="27" rx="2.2" ry="1.1" fill={stroke} />
-        </>
+      {/* 1. SQUARE & RECTANGULAR BASINS (sq 1, sq 2, sq 3, sq 4, sq 11, Model A, Model B) */}
+      {(isModelA || isBox) && (
+        <image
+          href="/icons/basins/sink-square.png"
+          x="3"
+          y="2"
+          width="82"
+          height="52"
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            filter: active ? 'drop-shadow(0 2px 4px rgba(212, 56, 51, 0.35))' : 'drop-shadow(0 1px 2px rgba(0,0,0,0.06))',
+          }}
+        />
       )}
 
-      {/* 2. MODEL RO: Round Basin (Matching Reference Image 1) */}
+      {/* 2. CIRCULAR BASINS (circ 8, circ 9, Model RO) */}
       {isRound && (
-        <>
-          {/* Spherical bottom underbelly contour */}
-          <path
-            d="M 21,19 C 21,34 32,38 44,38 C 56,38 67,34 67,19"
-            fill={underbelly}
-            stroke={stroke}
-            strokeWidth="1.3"
-            strokeLinejoin="round"
-          />
-          {/* Outer top rim ellipse */}
-          <ellipse cx="44" cy="19" rx="23" ry="10.5" fill={rimFill} stroke={stroke} strokeWidth="1.3" />
-          {/* Inner rim lip line showing wall thickness */}
-          <ellipse cx="44" cy="19.5" rx="21.2" ry="9.2" fill={floorFill} stroke={stroke} strokeWidth="0.9" />
-          {/* Rear-left overflow slot */}
-          <ellipse cx="32" cy="15.8" rx="2.2" ry="1.1" fill={slotFill} transform="rotate(-15 32 15.8)" />
-          {/* Centered concentric pop-up drain */}
-          <ellipse cx="44" cy="27.5" rx="4" ry="2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
-          <ellipse cx="44" cy="27.5" rx="2.2" ry="1.1" fill={stroke} />
-        </>
+        <image
+          href="/icons/basins/sink-circle.png"
+          x="5"
+          y="2"
+          width="78"
+          height="52"
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            filter: active ? 'drop-shadow(0 2px 4px rgba(212, 56, 51, 0.35))' : 'drop-shadow(0 1px 2px rgba(0,0,0,0.06))',
+          }}
+        />
       )}
 
-      {/* 3. MODEL OV: Oval Basin (Matching Reference Image 2) */}
+      {/* 3. OVAL & CAPSULE BASINS (oval 5, capsule 6, oval 7, oval 10, oval 12, Model OV) */}
       {isOval && (
-        <>
-          {/* Elliptical bottom underbelly contour */}
-          <path
-            d="M 15,19 C 15,34 28,38 44,38 C 60,38 73,34 73,19"
-            fill={underbelly}
-            stroke={stroke}
-            strokeWidth="1.3"
-            strokeLinejoin="round"
-          />
-          {/* Outer top rim ellipse */}
-          <ellipse cx="44" cy="19" rx="29" ry="10.5" fill={rimFill} stroke={stroke} strokeWidth="1.3" />
-          {/* Inner rim lip line showing wall thickness */}
-          <ellipse cx="44" cy="19.5" rx="27" ry="9.2" fill={floorFill} stroke={stroke} strokeWidth="0.9" />
-          {/* Rear-left overflow slot */}
-          <ellipse cx="31" cy="15.2" rx="2.4" ry="1.1" fill={slotFill} transform="rotate(-15 31 15.2)" />
-          {/* Centered concentric pop-up drain */}
-          <ellipse cx="44" cy="27.2" rx="4" ry="2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
-          <ellipse cx="44" cy="27.2" rx="2.2" ry="1.1" fill={stroke} />
-        </>
-      )}
-
-      {/* 4. MODEL B: Soft-Rectangular Basin (Matching Reference Image 3) */}
-      {isBox && (
-        <>
-          {/* Scooped curved underside contour */}
-          <path
-            d="M 15,26 C 15,38 28,40 44,40 C 58,40 68,36 71,25"
-            fill={underbelly}
-            stroke={stroke}
-            strokeWidth="1.3"
-            strokeLinejoin="round"
-          />
-          {/* Outer squircle rim with rounded corners */}
-          <path
-            d="M 24,14 C 36,11 52,11 64,14 C 74,16.5 76,21 73,26 C 68,32 58,37 46,39 C 32,41 20,38 15,33 C 12,28 13,23 16,19 C 19,15 21,14.5 24,14 Z"
-            fill={rimFill}
-            stroke={stroke}
-            strokeWidth="1.3"
-            strokeLinejoin="round"
-          />
-          {/* Inner rim lip reveal */}
-          <path
-            d="M 26,16 C 37,13.5 50,13.5 61,16 C 69,18 71,21.5 68,25 C 64,29.5 56,33.5 46,35.5 C 34,37.5 23,35 18,31 C 15,27.5 16,24 18,20.5 C 20,17.5 23,16.5 26,16 Z"
-            fill={floorFill}
-            stroke={stroke}
-            strokeWidth="0.9"
-            strokeLinejoin="round"
-          />
-          {/* Rear-left overflow slot */}
-          <ellipse cx="33" cy="16.5" rx="2.4" ry="1.1" fill={slotFill} transform="rotate(-10 33 16.5)" />
-          {/* Centered concentric pop-up drain */}
-          <ellipse cx="44" cy="28.5" rx="3.8" ry="2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
-          <ellipse cx="44" cy="28.5" rx="2.2" ry="1.1" fill={stroke} />
-        </>
+        <image
+          href="/icons/basins/sink-oval.png"
+          x="2"
+          y="2"
+          width="84"
+          height="52"
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            filter: active ? 'drop-shadow(0 2px 4px rgba(212, 56, 51, 0.35))' : 'drop-shadow(0 1px 2px rgba(0,0,0,0.06))',
+          }}
+        />
       )}
 
       {/* 5. MODEL DB: Curved Hammock Trough Basin (Exact match to Reference Image 4) */}

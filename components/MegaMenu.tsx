@@ -152,7 +152,7 @@ export default function MegaMenu({
                     letterSpacing: '-0.02em',
                   }}
                 >
-                  Materials, Calibrated Slabs &amp; Colour Palette
+                  Materials &amp; Colours
                 </h3>
               </div>
 
@@ -183,8 +183,8 @@ export default function MegaMenu({
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <li>
                       <Link href="/materials#architectural-solids" onClick={(e) => handleLinkClick(e, '/materials#architectural-solids')} className="mega-menu-link">
-                        <strong>ARCHITECTURAL SOLIDS &amp; VEINED</strong>
-                        <small>Monolithic mineral slabs &bull; Directional marble grain</small>
+                        <strong>ARCHITECTURAL SOLIDS</strong>
+                        <small>Monolithic mineral slabs &bull; Uniform through-body depth</small>
                       </Link>
                     </li>
                     <li>
@@ -200,9 +200,9 @@ export default function MegaMenu({
                       </Link>
                     </li>
                     <li>
-                      <Link href="/materials#specs" onClick={(e) => handleLinkClick(e, '/materials#specs')} className="mega-menu-link">
-                        <strong>CALIBRATED SLABS &amp; SHEETS</strong>
-                        <small>3660 &times; 760mm &bull; 12mm &amp; 19mm zero-porosity core</small>
+                      <Link href="/materials#architectural-veined" onClick={(e) => handleLinkClick(e, '/materials#architectural-veined')} className="mega-menu-link">
+                        <strong>MARBLE VEINED &amp; FLOW</strong>
+                        <small>Directional drift veins &bull; Natural waterfall movement</small>
                       </Link>
                     </li>
                   </ul>
