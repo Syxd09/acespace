@@ -293,6 +293,8 @@ export default function ProductsCatalogPage() {
             </div>
             <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center', marginTop: '20px' }}>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>Presets:</span>
+              <Link href="/basin-configurator" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#ffb5b2', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Basins &amp; Vanities ↗</Link>
+              <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
               <Link href="/configurator?preset=vanity-single" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Single Basin ↗</Link>
               <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
               <Link href="/configurator?preset=vanity-double" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Double Basin ↗</Link>

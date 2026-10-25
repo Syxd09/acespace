@@ -102,7 +102,7 @@ export default function ProductConfigurator({
   const engineRef = useRef<Configurator3DEngine | null>(null);
   const [dimensionCallouts, setDimensionCallouts] = useState<DimensionCallout[]>([]);
   const [cadDimensions, setCadDimensions] = useState<CadDimensionData | null>(null);
-  const [activeView, setActiveView] = useState<'isometric' | 'front' | 'top' | 'side'>('isometric');
+  const [activeView, setActiveView] = useState<'isometric' | 'front' | 'top' | 'side' | 'bottom'>('isometric');
   const [showDimensions, setShowDimensions] = useState(true);
   const [isWireframe, setIsWireframe] = useState(false);
   const [isTurntable, setIsTurntable] = useState(false);
@@ -110,7 +110,6 @@ export default function ProductConfigurator({
   const workspaceContainerRef = useRef<HTMLDivElement | null>(null);
 
   // Modals
-  const [showPriceBreakdown, setShowPriceBreakdown] = useState(false);
   const [showQuoteModal, setShowQuoteModal] = useState(false);
   const [showArModal, setShowArModal] = useState(false);
   const [quoteSuccessData, setQuoteSuccessData] = useState<{ quoteNumber: string; inquiryNumber: string } | null>(null);
@@ -254,7 +253,7 @@ export default function ProductConfigurator({
   };
 
   // Camera Control Handlers
-  const handleSetView = (view: 'isometric' | 'front' | 'top' | 'side') => {
+  const handleSetView = (view: 'isometric' | 'front' | 'top' | 'side' | 'bottom') => {
     setActiveView(view);
     if (engineRef.current) {
       engineRef.current.setViewpoint(view);
@@ -308,7 +307,6 @@ export default function ProductConfigurator({
       reference: `ACE-CFG-${Math.floor(1000 + Math.random() * 9000)}`,
       timestamp: new Date().toISOString(),
       configuration: config,
-      indicativePricing: pricing,
     };
     const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -489,6 +487,7 @@ export default function ProductConfigurator({
                 { key: 'front', label: 'Front' },
                 { key: 'top', label: 'Top' },
                 { key: 'side', label: 'Side' },
+                { key: 'bottom', label: 'Bottom' },
               ].map(v => (
                 <button
                   key={v.key}
@@ -2458,7 +2457,7 @@ export default function ProductConfigurator({
                       Front Apron Towel Slot
                     </strong>
                     <span style={{ fontSize: '10px', color: '#687268' }}>
-                      CNC slot for hanging hand towels (+₹2,400)
+                      CNC precision milled slot for hanging hand towels
                     </span>
                   </div>
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
@@ -2714,7 +2713,7 @@ export default function ProductConfigurator({
                       key={opt.id}
                       title={opt.name}
                       subtitle={opt.description}
-                      badge={(opt.priceModifier || 0) > 0 ? `+₹${(opt.priceModifier || 0).toLocaleString('en-IN')}` : 'Included'}
+                      badge={((config.drainOption || config.drainTypeId || 'click-clack-corian') === opt.id) ? 'Selected' : 'Available'}
                       isActive={(config.drainOption || config.drainTypeId || 'click-clack-corian') === opt.id}
                       onClick={() => setConfig({ ...config, drainOption: opt.id, drainTypeId: opt.id })}
                     >
@@ -3282,36 +3281,16 @@ export default function ProductConfigurator({
           boxShadow: '0 -10px 30px rgba(0,0,0,0.35)',
         }}
       >
-        {/* Left: Indicative Price & Breakdown Trigger */}
+        {/* Left: Bespoke Specification & Quote Trigger */}
         <div className="configurator-action-bar-pricing">
           <div style={{ minWidth: 0, flex: 1 }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
-                Indicative Estimate
-              </span>
-              <button
-                type="button"
-                onClick={() => setShowPriceBreakdown(true)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  color: 'var(--brand-red, #d43833)',
-                  fontSize: '10.5px',
-                  fontFamily: 'DM Mono, monospace',
-                  cursor: 'pointer',
-                  textDecoration: 'underline',
-                  padding: 0,
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                Breakdown ↗
-              </button>
-            </div>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
+              BESPOKE SPECIFICATION
+            </span>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', marginTop: '2px' }}>
-              <strong style={{ fontSize: '22px', fontFamily: 'Manrope, sans-serif', color: '#fff', letterSpacing: '-0.02em', whiteSpace: 'nowrap' }}>
-                ₹{pricing.totalIndicative.toLocaleString('en-IN')}
+              <strong style={{ fontSize: '18px', fontFamily: 'Manrope, sans-serif', color: '#fff', letterSpacing: '-0.01em', whiteSpace: 'nowrap' }}>
+                Price on Request
               </strong>
-              <span style={{ fontSize: '10px', color: '#889088', whiteSpace: 'nowrap' }}>+ GST</span>
             </div>
           </div>
 
@@ -3428,138 +3407,7 @@ export default function ProductConfigurator({
         </div>
       </div>
 
-      {/* ========================================================= */}
-      {/* MODAL 1: PRICE BREAKDOWN SPECIFICATION                    */}
-      {/* ========================================================= */}
-      {showPriceBreakdown && (
-        <div
-          role="dialog"
-          style={{
-            position: 'fixed',
-            inset: 0,
-            background: 'rgba(0,0,0,0.65)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 99999,
-            padding: '16px',
-            backdropFilter: 'blur(8px)',
-            WebkitBackdropFilter: 'blur(8px)',
-          }}
-          onClick={() => setShowPriceBreakdown(false)}
-        >
-          <div
-            style={{
-              maxWidth: '480px',
-              width: '100%',
-              maxHeight: '88vh',
-              overflowY: 'auto',
-              WebkitOverflowScrolling: 'touch',
-              background: '#faf9f5',
-              padding: '24px 20px',
-              border: '1px solid rgba(30,33,29,0.18)',
-              borderTop: '3px solid var(--brand-red, #d43833)',
-              boxShadow: '0 24px 48px rgba(0,0,0,0.4)',
-              borderRadius: '2px',
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10.5px', textTransform: 'uppercase', color: '#667066', letterSpacing: '0.08em' }}>
-                Itemized Fabrication Breakdown
-              </span>
-              <button
-                type="button"
-                onClick={() => setShowPriceBreakdown(false)}
-                style={{
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '18px',
-                  lineHeight: 1,
-                  padding: '4px 6px',
-                  cursor: 'pointer',
-                  color: '#444',
-                }}
-              >
-                ✕
-              </button>
-            </div>
 
-            <h3 style={{ margin: '0 0 16px 0', fontSize: '18px', fontWeight: 600, color: '#1e211d' }}>
-              {config.title}
-            </h3>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '11px', fontSize: '12.5px', borderTop: '1px solid #e0ded6', paddingTop: '14px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
-                <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>Base Substrate ({config.materialName})</span>
-                <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
-                  ₹{pricing.baseSubstrate.toLocaleString('en-IN')}
-                </strong>
-              </div>
-              {pricing.thicknessSurcharge > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
-                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>Thickness Calibration ({config.thickness}mm)</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
-                    ₹{pricing.thicknessSurcharge.toLocaleString('en-IN')}
-                  </strong>
-                </div>
-              )}
-              {pricing.apronDownstand > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
-                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>Mitred Apron Downstands ({config.frontApronHeight}mm)</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
-                    ₹{pricing.apronDownstand.toLocaleString('en-IN')}
-                  </strong>
-                </div>
-              )}
-              {pricing.upstandSplashback > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
-                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>{config.isCovedUpstand ? '10mm Coved Splashback' : 'Standard Upstand'} ({config.rearUpstandHeight}mm)</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
-                    ₹{pricing.upstandSplashback.toLocaleString('en-IN')}
-                  </strong>
-                </div>
-              )}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
-                <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>CNC Edge Tooling &amp; Hand Polish</span>
-                <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
-                  ₹{pricing.edgeTooling.toLocaleString('en-IN')}
-                </strong>
-              </div>
-              {pricing.basinIntegration > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
-                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>Integrated Coved Washbowl(s)</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
-                    ₹{pricing.basinIntegration.toLocaleString('en-IN')}
-                  </strong>
-                </div>
-              )}
-              {pricing.tapCutouts > 0 && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '12px' }}>
-                  <span style={{ flex: 1, minWidth: 0, color: '#333', lineHeight: 1.4 }}>CNC Tap Hole Cutouts ({config.tapHoles})</span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right', color: '#1e211d' }}>
-                    ₹{pricing.tapCutouts.toLocaleString('en-IN')}
-                  </strong>
-                </div>
-              )}
-
-              <div style={{ borderTop: '2px solid #1e211d', marginTop: '14px', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '12px' }}>
-                <div>
-                  <strong style={{ fontSize: '15px', color: '#1e211d', display: 'block', lineHeight: 1.3 }}>Total Indicative Estimate</strong>
-                  <span style={{ fontSize: '10px', color: '#777', fontFamily: 'DM Mono, monospace' }}>Qty: {config.quantity} Unit(s)</span>
-                </div>
-                <strong style={{ fontSize: '20px', color: 'var(--brand-red, #d43833)', fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, textAlign: 'right' }}>
-                  ₹{pricing.totalIndicative.toLocaleString('en-IN')}
-                </strong>
-              </div>
-            </div>
-
-            <p style={{ marginTop: '16px', fontSize: '10.5px', color: '#7a8279', lineHeight: 1.5 }}>
-              * Indicative factory estimate based on raw sheet yield and 5-axis CNC digital tooling in Bengaluru. Final binding quotation issued after engineering shop-drawing validation.
-            </p>
-          </div>
-        </div>
-      )}
 
       {/* ========================================================= */}
       {/* MODAL 2: REQUEST SPECIFICATION QUOTE                     */}
@@ -3663,7 +3511,7 @@ export default function ProductConfigurator({
                   Request Specification Quotation
                 </h3>
                 <p style={{ margin: '0 0 20px 0', fontSize: '12px', color: '#667066' }}>
-                  {config.title} · {config.width}mm × {config.depth}mm · {config.materialName} · Est: ₹{pricing.totalIndicative.toLocaleString('en-IN')}
+                  {config.title} · {config.width}mm × {config.depth}mm · {config.materialName} · Qty: {config.quantity} Unit(s)
                 </p>
 
                 {quoteError && (

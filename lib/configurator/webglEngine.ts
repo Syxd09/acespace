@@ -88,6 +88,12 @@ export class Mat4 {
     ]);
   }
 
+  clone(): Mat4 {
+    const m = new Mat4();
+    m.elements.set(this.elements);
+    return m;
+  }
+
   identity(): this {
     const e = this.elements;
     e[0] = 1; e[1] = 0; e[2] = 0; e[3] = 0;
@@ -334,6 +340,9 @@ export class Configurator3DEngine {
         vec3 L2 = normalize(uLightPos2 - vWorldPos);
         float diff2 = max(dot(N, L2), 0.0) * 0.45;
 
+        // Bottom Underside Bounce Fill Light
+        float diff3 = max(dot(N, vec3(0.0, -1.0, 0.0)), 0.0) * 0.45;
+
         // Custom metallic/chrome or dark cavity test (aColor.a > 0.5)
         bool isMetal = vColor.a > 0.5;
         vec3 baseColor;
@@ -380,7 +389,7 @@ export class Configurator3DEngine {
         float fresnel = pow(1.0 - max(dot(N, V), 0.0), 3.0) * (isMetal ? 0.40 : 0.18);
 
         vec3 ambient = baseColor * hemi;
-        vec3 diffuse = baseColor * (diff1 * 0.55 + diff2);
+        vec3 diffuse = baseColor * (diff1 * 0.55 + diff2 + diff3);
         vec3 specular = (isMetal ? vec3(1.0, 1.0, 1.0) : vec3(0.96, 0.95, 0.94)) * spec1 * specIntensity;
         vec3 rim = (isMetal ? vec3(1.0, 1.0, 1.0) : vec3(1.0)) * fresnel;
 
@@ -874,7 +883,7 @@ export class Configurator3DEngine {
   // -------------------------------------------------------------
   // Camera Viewpoint Switcher & Orbiting
   // -------------------------------------------------------------
-  public setViewpoint(view: 'isometric' | 'front' | 'top' | 'side') {
+  public setViewpoint(view: 'isometric' | 'front' | 'top' | 'side' | 'bottom') {
     switch (view) {
       case 'isometric':
         this.orbitAzimuth = 0.55;
@@ -895,6 +904,11 @@ export class Configurator3DEngine {
         this.orbitAzimuth = Math.PI / 2;
         this.orbitElevation = 0.05;
         this.targetDistance = 2.0;
+        break;
+      case 'bottom':
+        this.orbitAzimuth = 0.0;
+        this.orbitElevation = -1.25;
+        this.targetDistance = 2.2;
         break;
     }
     this.cameraTarget.set(0, 0, 0);
@@ -1122,8 +1136,8 @@ export class Configurator3DEngine {
     const viewMatrix = new Mat4().lookAt(this.cameraEye, this.cameraTarget, this.cameraUp);
     const modelMatrix = new Mat4().identity();
 
-    // 1. Render Studio Ground Shadow Grid
-    if (this.gridProgram && this.gridVertexBuffer) {
+    // 1. Render Studio Ground Shadow Grid (fade or hide when looking up from underneath)
+    if (this.gridProgram && this.gridVertexBuffer && this.orbitElevation > -0.05) {
       gl.useProgram(this.gridProgram);
       const uProj = gl.getUniformLocation(this.gridProgram, 'uProjection');
       const uView = gl.getUniformLocation(this.gridProgram, 'uView');

@@ -9,8 +9,13 @@ export default function SmoothScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    // Disable Lenis on /configurator so native scrolling is 100% active and unblocked
-    if (pathname === '/configurator' || pathname?.startsWith('/configurator')) {
+    // Disable Lenis on /configurator and /basin-configurator so native scrolling is 100% active and unblocked
+    if (
+      pathname === '/configurator' ||
+      pathname?.startsWith('/configurator') ||
+      pathname === '/basin-configurator' ||
+      pathname?.startsWith('/basin-configurator')
+    ) {
       if (lenisRef.current) {
         lenisRef.current.destroy();
         lenisRef.current = null;

@@ -589,7 +589,7 @@ How may I assist your architectural practice today?`,
       .replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08); padding:1px 5px; border-radius:0px; font-family:DM Mono,monospace; font-size:11px; color:#f2f0ea; border:1px solid rgba(255,255,255,0.12);">$1</code>');
   };
 
-  const isConfigurator = pathname?.startsWith('/configurator');
+  const isConfigurator = pathname?.startsWith('/configurator') || pathname?.startsWith('/basin-configurator');
 
   return (
     <>
