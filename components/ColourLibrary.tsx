@@ -973,7 +973,7 @@ export default function ColourLibrary() {
                     color: inTray ? '#fff' : 'var(--ink)',
                     border: '1px solid rgba(0,0,0,0.15)',
                     padding: '6px 12px',
-                    borderRadius: '100px',
+                    borderRadius: '0px',
                     fontSize: '10px',
                     fontFamily: 'DM Mono, monospace',
                     textTransform: 'uppercase',
@@ -1028,7 +1028,7 @@ export default function ColourLibrary() {
                       width: '64px',
                       height: '24px',
                       background: 'rgba(30,33,29,0.06)',
-                      borderRadius: '100px',
+                      borderRadius: '0px',
                     }}
                   />
                   <div

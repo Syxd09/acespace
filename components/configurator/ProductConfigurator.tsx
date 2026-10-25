@@ -425,17 +425,17 @@ export default function ProductConfigurator({
             <div
               className="configurator-model-badge"
               style={{
-                background: 'rgba(255, 255, 255, 0.94)',
+                background: 'rgba(245, 244, 238, 0.94)',
                 backdropFilter: 'blur(12px)',
                 WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(30, 33, 29, 0.12)',
-                borderRadius: '9999px',
-                padding: '4px 10px',
+                border: '1px solid var(--line, rgba(30, 33, 29, 0.18))',
+                borderRadius: '0px',
+                padding: '5px 12px',
                 pointerEvents: 'auto',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '6px',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+                gap: '8px',
+                boxShadow: '0 2px 8px rgba(30, 33, 29, 0.06)',
                 flexShrink: 0,
               }}
             >
@@ -443,9 +443,9 @@ export default function ProductConfigurator({
                 style={{
                   width: '6px',
                   height: '6px',
-                  borderRadius: '50%',
+                  borderRadius: '0px',
                   background: 'var(--brand-red, #d43833)',
-                  boxShadow: '0 0 6px rgba(212, 56, 51, 0.6)',
+                  boxShadow: '0 0 6px rgba(212, 56, 51, 0.5)',
                   flexShrink: 0,
                 }}
               />
@@ -454,7 +454,7 @@ export default function ProductConfigurator({
                   fontFamily: 'DM Mono, monospace',
                   fontSize: '9.5px',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
+                  letterSpacing: '0.1em',
                   color: '#1e211d',
                   fontWeight: 600,
                   whiteSpace: 'nowrap',
@@ -464,21 +464,21 @@ export default function ProductConfigurator({
               </span>
             </div>
 
-            {/* Architectural Segmented Viewpoint Pill */}
+            {/* Architectural Segmented Viewpoint Controls */}
             <div
               className="configurator-viewpoint-controls"
               style={{
-                background: 'rgba(255, 255, 255, 0.94)',
+                background: 'rgba(245, 244, 238, 0.94)',
                 backdropFilter: 'blur(12px)',
                 WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(30, 33, 29, 0.12)',
-                borderRadius: '9999px',
+                border: '1px solid var(--line, rgba(30, 33, 29, 0.18))',
+                borderRadius: '0px',
                 padding: '2px',
                 pointerEvents: 'auto',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '1px',
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.05)',
+                boxShadow: '0 2px 8px rgba(30, 33, 29, 0.06)',
                 flexShrink: 0,
               }}
             >
@@ -495,17 +495,17 @@ export default function ProductConfigurator({
                   onClick={() => handleSetView(v.key as any)}
                   style={{
                     background: activeView === v.key ? '#1e211d' : 'transparent',
-                    color: activeView === v.key ? '#ffffff' : '#636c63',
+                    color: activeView === v.key ? '#ffffff' : '#555e54',
                     border: 'none',
-                    borderRadius: '9999px',
-                    padding: '3px 8px',
+                    borderRadius: '0px',
+                    padding: '4px 10px',
                     fontFamily: 'DM Mono, monospace',
                     fontSize: '9.5px',
                     fontWeight: activeView === v.key ? 600 : 500,
                     textTransform: 'uppercase',
-                    letterSpacing: '0.04em',
+                    letterSpacing: '0.06em',
                     cursor: 'pointer',
-                    transition: 'background 0.15s ease, color 0.15s ease',
+                    transition: 'all 0.15s ease',
                     whiteSpace: 'nowrap',
                   }}
                 >

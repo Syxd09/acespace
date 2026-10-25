@@ -58,7 +58,7 @@ const CERTIFICATIONS = [
 export default function CertificationsHubPage() {
   return (
     <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)', fontFamily: 'Manrope, system-ui, -apple-system, sans-serif' }}>
-      <main style={{ maxWidth: '1100px', margin: '0 auto', padding: '140px 24px 100px' }}>
+      <main style={{ maxWidth: '1360px', margin: '0 auto', padding: '140px 24px 100px' }}>
         
         {/* Header */}
         <div style={{ borderBottom: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingBottom: '36px', marginBottom: '48px' }}>
@@ -75,43 +75,37 @@ export default function CertificationsHubPage() {
           </p>
         </div>
 
-        {/* Certifications Cards Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px', marginBottom: '64px' }}>
+        {/* Certifications Cards Grid - 4 In A Row */}
+        <div className="certifications-cards-grid">
           {CERTIFICATIONS.map((cert) => (
             <div
               key={cert.code}
-              style={{
-                background: '#fff',
-                border: '1px solid var(--line, rgba(30, 33, 29, 0.18))',
-                padding: '32px 28px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
+              className="cert-card-item"
             >
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', letterSpacing: '0.08em' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', marginBottom: '16px' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
                     [{cert.code}]
                   </span>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: 'rgba(30,33,29,0.06)', padding: '3px 8px', textTransform: 'uppercase' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', background: 'rgba(30,33,29,0.06)', padding: '3px 7px', textTransform: 'uppercase', letterSpacing: '0.04em', textAlign: 'right' }}>
                     {cert.badge}
                   </span>
                 </div>
 
-                <h2 style={{ fontSize: '22px', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 14px', color: '#1a1d19' }}>
+                <h2 style={{ fontSize: 'clamp(18px, 1.35vw, 22px)', fontWeight: 600, letterSpacing: '-0.03em', lineHeight: 1.25, margin: '0 0 14px', color: '#1a1d19' }}>
                   {cert.title}
                 </h2>
 
-                <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#4a5249', margin: '0 0 24px' }}>
+                <p style={{ fontSize: '13.5px', lineHeight: 1.65, color: '#4a5249', margin: '0 0 20px' }}>
                   {cert.summary}
                 </p>
 
                 <div style={{ borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '16px', marginBottom: '24px' }}>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {cert.metrics.map((m, i) => (
-                      <li key={i} style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#1a1d19', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ color: '#2e7d32' }}>✓</span> {m}
+                      <li key={i} style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#1a1d19', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.45 }}>
+                        <span style={{ color: '#2e7d32', flexShrink: 0, marginTop: '1px' }}>✓</span>
+                        <span>{m}</span>
                       </li>
                     ))}
                   </ul>
@@ -131,7 +125,7 @@ export default function CertificationsHubPage() {
                   letterSpacing: '0.06em',
                   color: '#1a1d19',
                   textDecoration: 'none',
-                  paddingTop: '12px',
+                  paddingTop: '14px',
                   borderTop: '1px solid var(--line, rgba(30,33,29,0.18))',
                 }}
               >
@@ -143,7 +137,7 @@ export default function CertificationsHubPage() {
 
         {/* Global Compliance Statement */}
         <div style={{ background: '#141713', color: '#e9e8e2', padding: '48px 40px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '56px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '40px', alignItems: 'center' }}>
+          <div className="certifications-compliance-grid">
             <div>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#73c991', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '10px' }}>
                 Zero Crystalline Silica Declaration (RCS Safety)

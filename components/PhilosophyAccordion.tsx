@@ -6,6 +6,7 @@ export interface PhilosophyPillarItem {
   num: string;
   title: string;
   subtitle: string;
+  quote?: string;
   body: string;
   detail?: string;
 }
@@ -80,6 +81,11 @@ export default function PhilosophyAccordion({ pillars }: PhilosophyAccordionProp
             </summary>
             <div className="philosophy-content">
               <div className="philosophy-subtitle">{pillar.subtitle}</div>
+              {pillar.quote && (
+                <blockquote style={{ fontSize: '15px', fontStyle: 'italic', fontFamily: 'serif', lineHeight: 1.45, color: '#1e211d', margin: '0 0 10px', paddingLeft: '8px', borderLeft: '2px solid var(--brand-red, #d43833)' }}>
+                  “{pillar.quote}”
+                </blockquote>
+              )}
               <p className="philosophy-body">{pillar.body}</p>
               {pillar.detail && (
                 <div

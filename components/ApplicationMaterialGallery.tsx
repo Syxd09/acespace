@@ -456,7 +456,7 @@ export default function ApplicationMaterialGallery({
                       color: inTray ? '#fff' : '#fff',
                       border: 'none',
                       cursor: 'pointer',
-                      borderRadius: '100px',
+                      borderRadius: '0px',
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '6px',

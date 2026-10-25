@@ -111,7 +111,7 @@ export default function MaterialGrid() {
             color: inTray ? '#fff' : 'var(--ink)',
             border: '1px solid rgba(0,0,0,0.15)',
             padding: '6px 12px',
-            borderRadius: '100px',
+            borderRadius: '0px',
             fontSize: '10px',
             fontFamily: 'DM Mono, monospace',
             textTransform: 'uppercase',

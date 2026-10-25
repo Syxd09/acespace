@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { productsData, getProductBySlug } from '@/data/products';
+import ProductImageGallery from '@/components/ProductImageGallery';
 
 interface ProductPageProps {
   params: Promise<{ slug: string }>;
@@ -395,48 +396,32 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       </section>
 
       {/* Architectural Gallery */}
-      {product.galleryImages && product.galleryImages.length > 0 && (
-        <section style={{ marginBottom: '100px' }}>
+      {((product.galleryImages && product.galleryImages.length > 0) || product.image) && (
+        <section id="gallery" style={{ marginBottom: '100px' }}>
           <div className="section-head" style={{ marginBottom: '32px' }}>
             <div>
-              <p className="eyebrow">Installation Gallery</p>
+              <p className="eyebrow">Installation Gallery · Tap to Inspect</p>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)' }}>
                 Applied in
                 <br />
                 <i>built space.</i>
               </h2>
             </div>
+            <p style={{ fontSize: '14px', color: '#555e54', maxWidth: '440px', margin: 0, lineHeight: 1.6 }}>
+              Tap any installation photograph to inspect high-definition joinery details, fabrication methods, and complete material specifications.
+            </p>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '24px',
-            }}
-          >
-            {product.galleryImages.map((img, i) => (
-              <div
-                key={i}
-                style={{
-                  background: '#dcd7cd',
-                  border: '1px solid var(--line)',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                }}
-              >
-                <div style={{ position: 'relative', height: '280px', width: '100%' }}>
-                  <Image src={img.src} alt={img.alt} fill style={{ objectFit: 'cover' }} />
-                </div>
-                <div style={{ padding: '16px 20px', background: 'var(--paper)', flex: 1 }}>
-                  <p style={{ margin: 0, fontSize: '13px', color: '#4a5249', lineHeight: 1.5 }}>
-                    {img.caption}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+          <ProductImageGallery
+            productName={product.name}
+            productCode={product.code}
+            categoryName={product.categoryName}
+            tagline={product.tagline}
+            specifications={product.specifications}
+            compatibleMaterials={product.compatibleMaterials}
+            galleryImages={product.galleryImages || []}
+            heroImage={product.image}
+          />
         </section>
       )}
 

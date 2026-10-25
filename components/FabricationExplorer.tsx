@@ -11,6 +11,7 @@ interface MachineSpec {
   name: string;
   category: string;
   highlight: string;
+  quote: string;
   description: string;
   parameters: { label: string; value: string }[];
   architecturalBenefit: string;
@@ -24,16 +25,17 @@ const machineryFleet: MachineSpec[] = [
     name: '5-Axis High-Speed Industrial CNC Router',
     category: 'Sub-Millimeter Robotic Milling',
     highlight: '< 0.2mm positional repeatability across full 3660mm beds',
+    quote: 'Robotic precision to under 0.2mm. Direct from 3D CAD to cut.',
     description:
-      'Engineered for complex parametric CAD/BIM cutouts, deep undercut rebates, integral drainboards, flush cooktop recessing, and sub-surface inductive charging pockets.',
+      'Nested CAD/BIM cutouts, undercut rebates, integral drainboards, and flush cooktop recessing.',
     parameters: [
-      { label: 'Working Bed Envelope', value: '3700 mm × 1600 mm × 400 mm' },
+      { label: 'Working Bed Envelope', value: '3700 × 1600 × 400 mm' },
       { label: 'Positional Tolerance', value: '±0.18 mm' },
       { label: 'Spindle Velocity', value: '24,000 RPM Liquid-Cooled' },
-      { label: 'Tooling Library', value: '16-Station Auto Tool Changer' },
+      { label: 'Tooling Library', value: '16-Station Auto Changer' },
     ],
     architecturalBenefit:
-      'Allows architects to specify compound fluting, organic tapers, and sub-millimeter sink rebates directly from 3D Rhino or Revit models without manual approximation.',
+      'Direct specification from 3D Rhino or Revit models with zero manual approximation.',
     image: '/images/images/app_residential_calacatta_greige_2.jpg',
   },
   {
@@ -42,16 +44,17 @@ const machineryFleet: MachineSpec[] = [
     name: 'Dual-Platen Vacuum Membrane Thermoformer',
     category: 'Thermal Plasticization & 3D Bending',
     highlight: 'Homogeneous heating to 160°C for compound radii down to 25mm',
+    quote: 'Curvature born at 160°C. 25mm tight compound radii without blanching.',
     description:
-      'Uniform infrared platen heating softens acrylic-mineral sheets evenly throughout their cross-section. Industrial silicone vacuum membranes draw the pliable material over CNC timber bucks without surface blanching or tensile stress.',
+      'Uniform infrared platen heating draws pliable mineral sheets over CNC timber formwork.',
     parameters: [
-      { label: 'Operating Thermal Band', value: '155°C – 165°C Calibrated' },
-      { label: 'Min Inside Radius (12mm)', value: '25 mm (1.0 inch)' },
-      { label: 'Membrane Clamping Force', value: '9.2 Tonnes/m² Vacuum' },
-      { label: 'Forming Envelope', value: '3600 mm × 1300 mm Dual-Bed' },
+      { label: 'Thermal Band', value: '155°C – 165°C Calibrated' },
+      { label: 'Min Inside Radius', value: '25 mm (1.0 inch)' },
+      { label: 'Vacuum Pressure', value: '9.2 Tonnes/m²' },
+      { label: 'Forming Envelope', value: '3600 × 1300 mm Dual-Bed' },
     ],
     architecturalBenefit:
-      'Bends rigid mineral sheets into continuous organic flutes, circular bar plinths, and ergonomic curved reception monoliths without mechanical joints.',
+      'Continuous organic flutes, curved plinths, and ergonomic reception monoliths.',
     image: '/images/images/app_commercial_bleached_nuwood.jpg',
   },
   {
@@ -60,16 +63,17 @@ const machineryFleet: MachineSpec[] = [
     name: 'Reactive Methacrylate Fusion Rig',
     category: 'Molecular Joint Chemistry',
     highlight: 'Chemical cross-linking that renders joints 100% invisible & homogeneous',
+    quote: 'Two mineral sheets. One continuous body. Zero visible joint lines.',
     description:
-      'Color-matched two-component reactive adhesives dissolve the joint interface at the polymer level. Once cured, the joint exhibits identical density, thermal expansion, and mechanical strength as the virgin sheet.',
+      'Color-matched reactive adhesives dissolve the joint interface into a single geological cross-section.',
     parameters: [
-      { label: 'Joint Seam Thickness', value: '0.00 mm (True Molecular Fusion)' },
-      { label: 'Tensile Bond Strength', value: '> 32 MPa (Exceeds Substrate)' },
-      { label: 'Adhesive Formulation', value: 'Color-Matched PMMA Methacrylate' },
-      { label: 'Water & Bacterial Ingress', value: '0.00% (Hermetic Sealing)' },
+      { label: 'Joint Thickness', value: '0.00 mm (True Fusion)' },
+      { label: 'Tensile Strength', value: '> 32 MPa (Exceeds Slab)' },
+      { label: 'Formulation', value: 'Color-Matched PMMA' },
+      { label: 'Bacterial Ingress', value: '0.00% (Hermetic Seal)' },
     ],
     architecturalBenefit:
-      'Assembles 10-meter continuous monolithic reception desks and massive kitchen island expanses that read as a single geological carving with zero visible seams.',
+      'Massive 10-meter continuous monolithic expanses that read as a single carving.',
     image: '/images/images/app_residential_calacatta_greige_1.jpg',
   },
   {
@@ -78,16 +82,17 @@ const machineryFleet: MachineSpec[] = [
     name: '5-Stage Micro-Abrasive Diamond Honing Suite',
     category: 'Dust-Free Progressive Surface Finishing',
     highlight: 'Graduated 120 to 600-grit protocol for anti-glare velvety satin tactile touch',
+    quote: 'A light-absorbing, velvety touch honed from 120 to 600-grit.',
     description:
-      'Progressive orbital diamond abrasives refine the surface under HEPA extraction. Eliminates microscopic machining marks to yield an ultra-smooth, light-diffusing matte finish that repels fingerprints and resists ambient glare.',
+      'Orbital diamond abrasives yield an ultra-smooth, matte finish that diffuses light evenly.',
     parameters: [
-      { label: 'Abrasive Progression', value: '120 → 180 → 240 → 400 → 600 Grit' },
-      { label: 'Surface Sheen Spec', value: 'Velvety Matte (12–18 Gloss Units)' },
-      { label: 'In-Situ Renewability', value: '100% Through-Body Restorable' },
-      { label: 'Dust Extraction Standard', value: 'H14 Class HEPA Multi-Point' },
+      { label: 'Progression', value: '120 → 240 → 400 → 600 Grit' },
+      { label: 'Surface Sheen', value: 'Velvety Matte (12–18 GU)' },
+      { label: 'In-Situ Renewability', value: '100% Restorable' },
+      { label: 'Dust Extraction', value: 'H14 Class HEPA Multi-Point' },
     ],
     architecturalBenefit:
-      'Guarantees a soothing, warm-to-the-touch surface that diffuses architectural downlighting evenly without specular hotspots.',
+      'A warm-to-touch surface that diffuses architectural downlighting without specular glare.',
     image: '/assets/material-macro.png',
   },
 ];
@@ -132,6 +137,7 @@ interface Typology {
   name: string;
   badge: string;
   specs: string;
+  quote: string;
   description: string;
   capabilities: string[];
   image: string;
@@ -140,61 +146,65 @@ interface Typology {
 const typologies: Typology[] = [
   {
     id: 'islands',
-    name: 'Monolithic Waterfall Islands & Integrated Basins',
-    badge: 'Residential & Penthouse Luxury',
+    name: 'Monolithic Waterfall Islands',
+    badge: 'Residential & Penthouse',
     specs: 'Seamless 45° Origami Mitres • Sub-Surface Induction • Integrated Coved Sinks',
+    quote: 'Horizontal worktops and vertical waterfall returns flow as one uninterrupted plane.',
     description:
-      'We engineer massive horizontal worktops with vertical waterfall returns where the grain and material flow continuously over edges without joint interruptions. Undermount or thermoformed integral sinks seamlessly merge into the plane, eliminating silicone perimeter seals entirely.',
+      'Eliminates perimeter silicone joints entirely with integrated coved basins and flush appliances.',
     capabilities: [
-      'Compound 45° internal timber & aluminum reinforcement ribs',
-      'Undermount flush cooktop rebates and concealed wire conduits',
-      'Integrated sloping drainer grooves milled directly into slab',
-      'Zero-step transitions from horizontal bench to vertical drop',
+      '45° origami internal aluminum reinforcement',
+      'Undermount cooktop rebates & wireless Qi charging',
+      'Sloping drainer grooves milled into slab',
+      'Zero-step transition over mitred edge drops',
     ],
     image: '/images/images/app_residential_calacatta_greige_2.jpg',
   },
   {
     id: 'receptions',
-    name: 'Sculptural Curved Reception Monoliths & Plinths',
-    badge: 'Commercial & Hospitality Atriums',
+    name: 'Curved Reception Monoliths',
+    badge: 'Commercial & Hospitality',
     specs: 'Thermoformed Organic Compound Radii • 25mm Tight Bends • Cantilever Sub-Chassis',
+    quote: 'Heated and shaped over custom CNC bucks into fluid, compound curves and flutes.',
     description:
-      'Transforming static corporate lobbies into memorable architectural statements. Heated and shaped over CNC buck tooling, our mineral surfaces bend into compound curves, fluted tambours, and sculptural greeting monoliths.',
+      'Transforms corporate atriums and hotel lobbies into sculptural architectural statements.',
     capabilities: [
-      'Internal structural steel space-frame calculation and fabrication',
-      'Curved modesty panels with zero visual faceting or flat spots',
-      'Concealed maintenance access hatches with magnetic push-latches',
-      'White-glove sectioned site delivery and on-site invisible seam weld',
+      'Internal structural steel space-frame engineering',
+      'Curved modesty panels with zero visual faceting',
+      'Concealed magnetic push-latch service panels',
+      'White-glove sectioned site delivery & seamless weld',
     ],
     image: '/images/images/app_commercial_bleached_nuwood.jpg',
   },
   {
     id: 'backlit',
-    name: 'Lumen Translucent Reliefs & Backlit Feature Walls',
-    badge: 'Nocturnal Lounges & Luxury Hospitality',
+    name: 'Backlit Reliefs & Feature Walls',
+    badge: 'Lounges & Luxury Clubs',
     specs: 'Variable CNC Relief Routing • Sub-Surface LED Cavities • Optical Diffusion',
+    quote: 'Calibrated relief depth controls translucent light transmission across the slab.',
     description:
-      'By varying the CNC cut depth across the rear of Lumen Translucent sheets, we calibrate the light transmission percentage. When backlit by 3000K LED panels, the surface reveals bespoke geometric motifs or soft glowing ambient gradients without hotspot artifacts.',
+      'Warm ambient 3000K illumination reveals bespoke geometric reliefs with zero LED diode hot spots.',
     capabilities: [
-      'Sub-surface relief milling leaving 4mm to 8mm calibrated skins',
-      'Rear optical dispersion chambers engineered for heat dissipation',
-      'Modular dry-hang French cleat sub-framing for rapid LED service',
-      'Even chromatic temperature diffusion without LED diode spotting',
+      '4mm to 8mm calibrated relief milling',
+      'Rear optical dispersion chambers for heat control',
+      'Modular dry-hang French cleat sub-framing',
+      'Even chromatic diffusion without hotspot glare',
     ],
     image: '/images/images/coriansolidsurface-goldenonyx-application.jpg',
   },
   {
     id: 'clinical',
-    name: 'Hermetic Surgical Sinks & Cleanroom Linings',
-    badge: 'Healthcare & Diagnostic Facilities',
+    name: 'Hermetic Cleanroom Linings',
+    badge: 'Healthcare & Sterile Suites',
     specs: 'ISO 846 Class 0 • Seamless Coved Wall Transitions • Zero Silicone Joints',
+    quote: '10mm coved transitions that eliminate silicone joints and microbial harborage.',
     description:
-      'Designed for surgical scrub rooms, diagnostic laboratories, and sterile compounding suites where silicone joints are prohibited due to microbial growth risks. All internal corners feature 10mm integral coving, allowing easy wipe-down sanitization.',
+      'Certified non-porous and chemical-immune for surgical suites, scrub stations, and diagnostic labs.',
     capabilities: [
-      'DIN 68861 & SEFA 8 chemical immunity against hospital reagents',
-      'Integrated medical sensor spouts and hands-free drainage troughs',
-      'Monolithic vertical wet-wall cladding up to ceiling soffits',
-      'Certified 100% zero crystalline silica for worker and patient safety',
+      'DIN 68861 chemical immunity against harsh reagents',
+      'Hands-free surgical troughs & sensor spouts',
+      'Monolithic vertical wet-walls up to ceiling soffits',
+      'Certified 100% zero crystalline silica',
     ],
     image: '/images/images/coriansolidsurface-silverlinear-hospitality-application.jpg',
   },
@@ -291,6 +301,9 @@ export default function FabricationExplorer() {
               <h3 style={{ fontSize: 'clamp(17px, 1.7vw, 22px)', lineHeight: 1.15, letterSpacing: '-0.02em', margin: '0 0 6px', color: 'var(--ink)' }}>
                 {currentMachine.name}
               </h3>
+              <blockquote style={{ fontSize: '14px', fontStyle: 'italic', fontFamily: 'serif', lineHeight: 1.45, color: '#1e211d', margin: '0 0 8px', paddingLeft: '8px', borderLeft: '2px solid var(--brand-red, #d43833)' }}>
+                “{currentMachine.quote}”
+              </blockquote>
               <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#4a5249', margin: '0 0 10px' }}>
                 {currentMachine.description}
               </p>
@@ -388,9 +401,28 @@ export default function FabricationExplorer() {
             <br />
             <i>and why ours never do.</i>
           </h2>
-          <p style={{ fontSize: '13.5px', lineHeight: 1.55, color: '#4a5249', margin: 0 }}>
-            Natural stone, quartz, and porcelain inevitably rely on cold-curing silicone or epoxy joints that harbor grime and delaminate under movement. Our PMMA reactive adhesive physically dissolves and welds sheets into a single, homogeneous cross-section.
-          </p>
+          <blockquote style={{ fontSize: '16px', fontStyle: 'italic', fontFamily: 'serif', color: '#1e211d', margin: '0 0 12px', paddingLeft: '10px', borderLeft: '2px solid var(--brand-red, #d43833)' }}>
+            “Traditional stone fractures at the grout line. Ace Spaces chemically welds sheets into a single, continuous geological body.”
+          </blockquote>
+        </div>
+
+        {/* Visual Seam Comparison Cards (Instant Contrast) */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '14px', marginBottom: '24px' }}>
+          <div style={{ padding: '16px 18px', background: '#ffffff', border: '1px solid var(--line)', borderTop: '3px solid var(--brand-red, #d43833)', boxShadow: '0 2px 10px rgba(0,0,0,0.03)' }}>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', color: 'var(--muted)' }}>01 / Seam Width</span>
+            <div style={{ margin: '8px 0 4px', fontSize: '20px', fontWeight: 600, color: 'var(--ink)' }}>0.00 mm</div>
+            <p style={{ fontSize: '12px', color: '#687268', margin: 0 }}>Molecular fusion dissolves joint line entirely vs. 2.5mm traditional grout line.</p>
+          </div>
+          <div style={{ padding: '16px 18px', background: '#ffffff', border: '1px solid var(--line)', borderTop: '3px solid #22c55e', boxShadow: '0 2px 10px rgba(0,0,0,0.03)' }}>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', color: 'var(--muted)' }}>02 / Hygiene Barrier</span>
+            <div style={{ margin: '8px 0 4px', fontSize: '20px', fontWeight: 600, color: 'var(--ink)' }}>ISO 846 Class 0</div>
+            <p style={{ fontSize: '12px', color: '#687268', margin: 0 }}>Zero bacterial, fungal or mold growth. 100% hermetic culinary &amp; surgical surface.</p>
+          </div>
+          <div style={{ padding: '16px 18px', background: '#ffffff', border: '1px solid var(--line)', borderTop: '3px solid var(--ink)', boxShadow: '0 2px 10px rgba(0,0,0,0.03)' }}>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', color: 'var(--muted)' }}>03 / Longevity</span>
+            <div style={{ margin: '8px 0 4px', fontSize: '20px', fontWeight: 600, color: 'var(--ink)' }}>100% Renewable</div>
+            <p style={{ fontSize: '12px', color: '#687268', margin: 0 }}>On-site micro-honing restores day-one stillness without demolition.</p>
+          </div>
         </div>
 
         {/* Comparison Table with Mobile Scroll Container */}
@@ -497,25 +529,27 @@ export default function FabricationExplorer() {
               <span style={{ display: 'inline-block', padding: '3px 6px', background: 'rgba(30,33,29,0.06)', fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '8px' }}>
                 {currentTypology.badge}
               </span>
-              <h3 style={{ fontSize: '20px', lineHeight: 1.2, letterSpacing: '-0.02em', margin: '0 0 6px' }}>
+              <h3 style={{ fontSize: '20px', lineHeight: 1.2, letterSpacing: '-0.02em', margin: '0 0 8px' }}>
                 {currentTypology.name}
               </h3>
+              <blockquote style={{ fontSize: '14.5px', fontStyle: 'italic', fontFamily: 'serif', lineHeight: 1.45, color: '#1e211d', margin: '0 0 10px', paddingLeft: '8px', borderLeft: '2px solid var(--brand-red, #d43833)' }}>
+                “{currentTypology.quote}”
+              </blockquote>
               <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10.5px', color: '#7a8479', marginBottom: '10px' }}>
                 {currentTypology.specs}
               </div>
-              <p style={{ fontSize: '12.5px', lineHeight: 1.5, color: '#4a5249', marginBottom: '14px' }}>
+              <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#4a5249', marginBottom: '14px' }}>
                 {currentTypology.description}
               </p>
 
-              <span style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '6px' }}>
-                Engineering & Fabrication Protocols:
+              <span style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '8px' }}>
+                Key Engineering Highlights:
               </span>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                 {currentTypology.capabilities.map((cap, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'baseline', gap: '8px', fontSize: '12px', color: '#333' }}>
-                    <span style={{ fontFamily: 'DM Mono, monospace', color: 'var(--ink)', fontSize: '10px' }}>0{i + 1}.</span>
-                    <span>{cap}</span>
-                  </div>
+                  <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '4px 8px', background: '#f5f3ee', border: '1px solid rgba(30,33,29,0.1)', fontSize: '11px', color: '#2e352d', borderRadius: '2px' }}>
+                    <strong style={{ color: 'var(--brand-red, #d43833)', fontSize: '10px' }}>✓</strong> {cap}
+                  </span>
                 ))}
               </div>
             </div>

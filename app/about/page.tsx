@@ -78,36 +78,42 @@ export default function AboutPage() {
       num: '01',
       title: 'Monolithic Continuity',
       subtitle: 'Dissolving the Joint',
+      quote: '"When a space demands uninterrupted calm, we chemically fuse mineral planes so joints vanish completely into monolithic stillness."',
       body: 'We believe surfaces should not be sliced to satisfy standard tile grids. When a space demands continuity, we engineer invisible chemical joins that allow mineral surfaces to flow seamlessly. From sculptural kitchen monoliths to continuous coved wall planes, surfaces transition without interruption — eliminating visual friction and grime-harboring grout for absolute spatial tranquility.',
     },
     {
       num: '02',
       title: 'The Symbiosis of Code & Hand',
       subtitle: 'Digital Precision + Artisan Mastery',
+      quote: '"Sub-0.2mm CNC calibration paired with the tactile intuition of master joiners."',
       body: 'True spatial luxury cannot be achieved by machine or hand alone. Our 5-axis CNC routers mill CAD cutouts to under 0.2mm tolerances, while our seasoned joiners and thermoforming craftsmen hand-shape complex curvatures and finish every edge with a 600-grit velvety satin touch.',
     },
     {
       num: '03',
       title: 'Radical Material Honesty & Health',
       subtitle: 'Zero-Silica Mineral Substrates',
+      quote: '"Zero crystalline silica. 100% human-safe for craftspeople in the workshop and occupants in the home."',
       body: 'We refuse to specify materials that jeopardize the health of stone fabricators or homeowners. Unlike engineered quartz that releases lethal crystalline silica dust, our mineral-acrylic matrix contains 100% zero crystalline silica, is non-porous, NSF food-safe, and repairable in situ for life.',
     },
     {
       num: '04',
       title: 'Architect-to-Architect Co-Creation',
       subtitle: "Your Studio's Technical Extension",
+      quote: '"We speak the language of CAD, structural load, and shop drawings — translating ambitious architectural vision into flawless fabrication."',
       body: 'We are not a distant building supply outlet. We act as an active fabrication partner for architects and interior designers across India. From initial CAD shop drawings and structural sub-framing calculations to laser templating and on-site assembly, we bring ambitious concepts to reality.',
     },
     {
       num: '05',
       title: 'Thermoformed Spatial Fluidity',
       subtitle: 'Curvature Beyond the Cartesian Grid',
+      quote: '"Heated to 160°C and draped over timber bucks to unlock compound curves, gentle flutes, and organic contours."',
       body: 'Architecture is not confined to rigid 90-degree planes. Through precise thermoforming at 160°C over custom CNC formwork, we shape mineral acrylic into seamless curved plinths, organic fluted islands, and ergonomic coved wall transitions that embrace natural human movement.',
     },
     {
       num: '06',
       title: 'Circular Longevity & In-Situ Renewal',
       subtitle: 'Restored to Day-One Stillness',
+      quote: '"Homogeneous through-body chemistry means any wear, mark, or scratch can be resurfaced on site back to day-one perfection."',
       body: 'A luxury surface should outlast transient design trends. Because our material is homogeneous throughout, it never delaminates. Decades of heavy commercial or residential wear, minor scratches, or accidental blemishes can be effortlessly renewed on-site to factory-fresh perfection.',
     },
   ];
@@ -117,6 +123,7 @@ export default function AboutPage() {
         num: p.number || `0${idx + 1}`,
         title: p.title,
         subtitle: p.quote,
+        quote: p.quote,
         body: p.description,
         detail: p.detail,
       }))
@@ -1205,9 +1212,104 @@ export default function AboutPage() {
 
       {/* Coro Crafted Collective Synergy Callout */}
       <section className="callout about-coro-callout" id="coro">
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', background: 'rgba(255,255,255,0.45)', border: '1px solid var(--line)', padding: '28px 20px', borderRadius: '4px' }}>
-          <img src="/images/coro-emblem.png" alt="Coro Crafted Collective Architectural Emblem" style={{ width: '80px', height: '100px', objectFit: 'contain', marginBottom: '12px', display: 'block' }} />
-          <img src="/images/coro-wordmark.png" alt="Coro Crafted Collective Wordmark" style={{ width: '130px', height: '36px', objectFit: 'contain', display: 'block' }} />
+        <div
+          className="coro-brand-showcase"
+          style={{
+            background: 'rgba(244, 243, 239, 0.72)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            border: '1px solid rgba(30, 33, 29, 0.22)',
+            borderRadius: '4px',
+            padding: 'clamp(28px, 3.5vw, 44px) clamp(22px, 3vw, 36px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            maxWidth: '420px',
+            width: '100%',
+            margin: '0 auto',
+            boxShadow: '0 20px 50px rgba(30, 33, 29, 0.09)',
+            position: 'relative',
+            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+          }}
+        >
+          {/* Official Coro Geometric Emblem */}
+          <div
+            style={{
+              width: '140px',
+              height: '170px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '18px',
+            }}
+          >
+            <img
+              src="/images/coro-emblem.png"
+              alt="Coro Crafted Collective Emblem"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                display: 'block',
+                filter: 'contrast(1.05)',
+                transition: 'transform 0.3s ease',
+              }}
+            />
+          </div>
+
+          {/* Official Coro Geometric Wordmark */}
+          <div
+            style={{
+              width: '190px',
+              height: '52px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '14px',
+            }}
+          >
+            <img
+              src="/images/coro-wordmark.png"
+              alt="Coro Crafted Collective Wordmark"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                display: 'block',
+              }}
+            />
+          </div>
+
+          {/* Subtle Divider */}
+          <div
+            style={{
+              width: '40px',
+              height: '1px',
+              background: 'rgba(30, 33, 29, 0.25)',
+              margin: '8px 0 16px',
+            }}
+          />
+
+          {/* Studio Identity Description */}
+          <p
+            style={{
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '11px',
+              letterSpacing: '0.06em',
+              textTransform: 'uppercase',
+              color: 'rgba(30, 33, 29, 0.85)',
+              margin: 0,
+              lineHeight: 1.6,
+            }}
+          >
+            Spatial Concepts · Monolithic Interiors
+            <br />
+            <span style={{ color: 'rgba(30, 33, 29, 0.55)', fontSize: '10px' }}>
+              Powered by Ace Spaces Foundry
+            </span>
+          </p>
         </div>
         <div>
           <p className="eyebrow">Studio Synergy · Sister Spatial Brand</p>
