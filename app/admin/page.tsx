@@ -681,26 +681,6 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
     }
   };
 
-  const handleQuickBypass = async () => {
-    try {
-      const res = await fetch('/api/admin/auth', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ passkey: 'acespaces2026' }),
-      });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        if (data.token && typeof window !== 'undefined') {
-          sessionStorage.setItem('acespaces_admin_token', data.token);
-        }
-        setIsAuthenticated(true);
-        setAuthError('');
-        showToast('✓ Studio Console authenticated via Fast-Track.', 'success');
-      }
-    } catch (err) {
-      console.warn('Fast-track failed:', err);
-    }
-  };
 
   const handleLogout = async () => {
     try {
@@ -1508,25 +1488,6 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               Authenticate & Enter Console →
             </button>
 
-            {process.env.NODE_ENV !== 'production' && (
-              <button
-                type="button"
-                onClick={handleQuickBypass}
-                style={{
-                  width: '100%',
-                  padding: '10px',
-                  background: 'transparent',
-                  color: '#9ca59b',
-                  border: '1px solid rgba(255,255,255,0.15)',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '10px',
-                  letterSpacing: '0.08em',
-                  cursor: 'pointer',
-                }}
-              >
-                1-Click Studio Fast-Track (Local Dev Only)
-              </button>
-            )}
           </form>
 
           <div style={{ marginTop: '28px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

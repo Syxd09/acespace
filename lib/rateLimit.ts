@@ -34,11 +34,11 @@ export function getClientIp(req: NextRequest): string {
   const realIp = req.headers.get('x-real-ip');
   if (realIp) return realIp.trim();
 
-  // 3. Fallback to forwarded header
+  // 3. Fallback to forwarded header (client originator is first in chain)
   const forwarded = req.headers.get('x-forwarded-for');
   if (forwarded) {
     const parts = forwarded.split(',').map((p) => p.trim()).filter(Boolean);
-    if (parts.length > 0) return parts[parts.length - 1]; // Last hop is closest to server
+    if (parts.length > 0) return parts[0];
   }
 
   return '127.0.0.1';
