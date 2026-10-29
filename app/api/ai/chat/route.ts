@@ -194,21 +194,30 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
   * Oversees fabrication quality, bespoke installation projects, and the Coro Crafted Collective spatial design wing.
 - Together they established Ace Spaces as the foundational raw material authority and Coro Crafted Collective as the spatial design wing in Bengaluru.
 
-13. CLICKABLE NAVIGATION LINKS GUIDELINES
-- ALWAYS embed clickable markdown links [Label](url) so the user can directly navigate:
+13. CLICKABLE NAVIGATION LINKS GUIDELINES & REAL ROUTE VERIFICATION
+- NEVER hallucinate non-existent paths (such as /applications/kitchen or /applications/bathroom).
+- ALWAYS embed strictly valid, verified markdown links [Label](url) so the user can directly navigate:
+  • 3D Sinks, Washplanes & Vanities: [3D Sinks & Vanity Configurator](/configurator)
+  • 3D Countertop Basins & AR: [3D Basin Studio & AR](/basin-configurator)
   • Material Library: [Material Library](/materials#library)
   • Technical Specifications: [Technical Specifications](/materials#specs)
-  • 3D Product Configurator: [3D Product Configurator](/configurator)
-  • 3D Basin Studio (AR): [3D Basin Studio](/basin-configurator)
   • Architectural Projects: [Architectural Projects](/projects)
-  • Research Journal: [Spatial Journal](/journal)
+  • Spatial Research Journal: [Spatial Journal](/journal)
   • Sample Box: [Order Sample Box](/materials)
+  • Architectural Applications: [Architectural Applications](/applications)
+  • Residential Sector: [Luxury Residentials](/applications/residential)
+  • Commercial Sector: [Commercial Interiors](/applications/commercial)
+  • Healthcare Sector: [Healthcare Surfaces](/applications/healthcare)
   • Coro Crafted Collective Synergy: [The Coro Connection](/about#coro)
-  • Fabrication: [Fabrication Workshop](/fabrication)
-  • Kitchen Applications: [Kitchen Applications](/applications/kitchen)
-  • Bathroom Applications: [Bathroom Vanities](/applications/bathroom)
+  • Fabrication Workshop: [Fabrication Workshop](/fabrication)
   • Consultations: [Book Studio Consultation](/contact)
   • WhatsApp Desk: [WhatsApp Studio Desk](https://wa.me/919741044776)
+
+14. CRITICAL CUSTOMIZATION ROUTING MANDATE (SINKS / BASINS / VANITIES):
+- When a user asks to customize, design, or configure **sinks, integrated washplanes, vanities, or countertops**:
+  YOU MUST PROACTIVELY DIRECT THEM to our **[3D Sinks & Vanity Configurator ↗](/configurator)**! Explain that they can adjust length (600mm-3000mm+), depth, apron drops (100mm-500mm), integrated coved sinks, edge profiles, toggle the human silhouette scale figure, and export instant BOQ pricing.
+- When a user asks to customize or view **countertop washbasins, vessel bowls, or mobile AR**:
+  YOU MUST DIRECT THEM to our **[3D Basin Studio & AR ↗](/basin-configurator)**! Explain that they can select Oval, Capsule, Round, or Square geometries and place them directly in their room using 1:1 Augmented Reality on mobile.
 
 =======================================================
 CRITICAL PRIVACY & SCOPE GUARDRAILS
@@ -218,7 +227,7 @@ CRITICAL PRIVACY & SCOPE GUARDRAILS
 3. If the user asks about ANYTHING outside this scope (e.g. general sports, world news, politics, weather outside context, coding tutorials, recipes, stock prices, other unrelated companies like Apple or Nike):
    You MUST politely and firmly decline with dignity:
    "${GUARDRAIL_DECLINE_MESSAGE}"
-4. Always invite the user to explore our in-stock materials ([Material Library](/materials#library)), test our 3D tools ([3D Configurator](/configurator)), view case studies ([Architectural Projects](/projects)), view the Coro connection ([The Coro Synergy](/about#coro)), or connect with our Bengaluru engineers via the [WhatsApp Desk](https://wa.me/919741044776).`;
+4. Always invite the user to explore our in-stock materials ([Material Library](/materials#library)), test our 3D tools ([3D Sinks & Vanity Configurator](/configurator) & [3D Basin Studio](/basin-configurator)), view case studies ([Architectural Projects](/projects)), or connect with our Bengaluru engineers via the [WhatsApp Desk](https://wa.me/919741044776).`;
 }
 
 export async function POST(req: NextRequest) {
@@ -424,9 +433,20 @@ function generateSuggestedActions(reply: string, query: string) {
   const actions: { label: string; href?: string; prompt?: string }[] = [];
   const text = (reply + ' ' + query).toLowerCase();
 
-  if (text.includes('configur') || text.includes('3d') || text.includes('basin') || text.includes('ar') || text.includes('augmented') || text.includes('vanity') || text.includes('washplane')) {
-    actions.push({ label: '3D Product Configurator', href: '/configurator' });
-    actions.push({ label: '3D Basin Studio & AR', href: '/basin-configurator' });
+  if (text.includes('sink') || text.includes('washplane') || text.includes('vanity') || text.includes('countertop') || text.includes('benchtop')) {
+    actions.push({ label: '3D Sinks & Vanity Configurator', href: '/configurator' });
+    actions.push({ label: '3D Basin Studio (AR)', href: '/basin-configurator' });
+  } else if (text.includes('basin') || text.includes('bowl') || text.includes('washbowl') || text.includes('washbasin')) {
+    actions.push({ label: '3D Basin Studio (AR)', href: '/basin-configurator' });
+    actions.push({ label: '3D Sinks & Vanity Configurator', href: '/configurator' });
+  } else if (text.includes('configur') || text.includes('3d') || text.includes('ar') || text.includes('augmented') || text.includes('custom')) {
+    actions.push({ label: '3D Sinks & Vanity Configurator', href: '/configurator' });
+    actions.push({ label: '3D Basin Studio (AR)', href: '/basin-configurator' });
+  }
+
+  if (text.includes('application') || text.includes('sector') || text.includes('kitchen') || text.includes('bathroom') || text.includes('residential')) {
+    actions.push({ label: 'Architectural Applications', href: '/applications' });
+    actions.push({ label: 'Luxury Residentials', href: '/applications/residential' });
   }
   if (text.includes('project') || text.includes('case study') || text.includes('portfolio') || text.includes('work') || text.includes('residence') || text.includes('commercial')) {
     actions.push({ label: 'Architectural Projects', href: '/projects' });

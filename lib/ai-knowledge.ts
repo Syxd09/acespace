@@ -310,9 +310,8 @@ Standard Slab Specs:
     id: 'applications-spaces',
     topic: 'Architectural Applications: Kitchens, Bathrooms, Commercial & Healthcare',
     keywords: [
-      'kitchen', 'bathroom', 'applications', 'island', 'countertop', 'sink', 'basin',
-      'vanity', 'commercial', 'healthcare', 'hospital', 'clinic', 'retail', 'reception',
-      'backlit wall', 'waterfall'
+      'kitchen', 'bathroom', 'applications', 'island', 'countertop', 'commercial',
+      'healthcare', 'hospital', 'clinic', 'retail', 'reception', 'backlit wall', 'waterfall'
     ],
     summary: 'Monolithic kitchen waterfall islands, integrated Coro sinks, sanitary clinical counters, and luminous commercial facades.',
     details: `Solid surfaces provide unmatched versatility across interior typologies:
@@ -343,9 +342,9 @@ Standard Slab Specs:
       'Lighting Synergy': 'Backlightable at 12mm thickness with diffuser cavity'
     },
     suggestedActions: [
-      { label: 'Explore Kitchen Applications', href: '/applications/kitchen' },
-      { label: 'Explore Bathroom Vanities', href: '/applications/bathroom' },
-      { label: 'Explore Healthcare Surfaces', href: '/applications/healthcare' }
+      { label: 'Applications Overview', href: '/applications' },
+      { label: 'Luxury Residentials', href: '/applications/residential' },
+      { label: '3D Sinks & Vanity Configurator', href: '/configurator' }
     ]
   },
   {
@@ -590,53 +589,88 @@ Together, they established **Ace Spaces** as the foundational raw material autho
     ]
   },
   {
-    id: '3d-configurators',
-    topic: 'Interactive 3D Parametric Product & Basin Configurators',
+    id: '3d-sinks-vanity-configurator',
+    topic: '3D Sinks, Washplanes & Vanity Configurator (/configurator)',
     keywords: [
-      'configurator', '3d', 'parametric', 'basin configurator', 'product configurator',
-      'custom vanity', 'washplane', '3d preview', 'ar', 'augmented reality', 'render',
-      'configure', 'dimension calculator', 'instant quote', '3d basin', 'vessel bowl',
-      'interactive studio', 'cad model', 'apron drop', 'coved sink'
+      'sink', 'sinks', 'custom sink', 'customize sink', 'customize sinks', 'customise sink',
+      'customise sinks', 'customize my sink', 'customize my sinks', 'customise my sink', 'customise my sinks',
+      'sink configurator', 'sinks configurator', 'vanity', 'vanities', 'custom vanity', 'customize vanity',
+      'vanity configurator', 'washplane', 'washplanes', 'integrated sink', 'coved sink', 'undermount sink',
+      'benchtop configurator', 'countertop configurator', '3d sink', '3d vanity', 'product configurator',
+      'apron drop', 'scale figure', 'human silhouette'
     ],
-    summary: 'Ace Spaces offers two cutting-edge WebGL 3D Parametric Configurators: the Product Configurator (/configurator) for vanities & washplanes, and the Basin Configurator (/basin-configurator) for countertop washbowls with 1:1 scale AR preview.',
-    details: `Ace Spaces features two real-time interactive 3D Parametric Design Studios that enable specifiers, architects, and luxury homeowners to customize architectural solid surface fixtures with live instant quotes and millimetric precision:
+    summary: 'Interactive 3D Parametric Studio for custom solid surface sinks, integrated washplanes, monolithic basin blocks, and floating vanities with millimetric dimensions and instant BOQ estimates.',
+    details: `Ace Spaces provides an interactive WebGL 3D Parametric Product Configurator for custom architectural sinks, washplanes, and vanity consoles:
 
-### 1. Interactive 3D Product Configurator (\`/configurator\`)
-• **Typologies Supported**:
-  - **Vanity Consoles**: Floating wall-hung or plinth-supported vanity countertops with customizable width (800mm to 2400mm+), depth (450mm to 600mm), and fascia apron drops (40mm to 150mm).
-  - **Integrated Basins**: Seamlessly thermo-welded single or double washbasins with coved, groutless internal transitions (slope drain, linear slot drain, or thermoformed ramp).
-  - **Commercial Washplanes**: Multi-station continuous washplanes for luxury hospitality, corporate headquarters, and airports.
-  - **Kitchen & Island Worktops**: Monolithic slabs with waterfall return edges and sub-surface induction charging cutouts.
-• **Real-Time Features**:
-  - Live 3D WebGL rotation, panning, and lighting reflection across all DuPont™ Corian® colors.
-  - Architectural Human Figure Scale reference toggle for ergonomic proportion verification.
-  - Automatic Bill of Quantities (BOQ), material yield calculation, and instant fabrication estimate.
-  - One-click spec sheet export and direct WhatsApp dispatch for fabrication drawings.
-  - Direct Link: [Open 3D Product Configurator](/configurator)
+👉 **[Launch 3D Sinks & Vanity Configurator ↗](/configurator)**
 
-### 2. Interactive 3D Basin Studio (\`/basin-configurator\`)
-• **Vessel Bowl Geometries**:
-  - **Oval / Elliptical**: Organic curved contour with zero sharp interior crevices.
-  - **Capsule / Pill**: Elongated architectural capsule geometry with parallel linear walls and radiused ends.
-  - **Round / Cylindrical**: Pure minimalist circular vessel with calibrated 10mm-12mm rim profiles.
-  - **Square / Soft-Rectangular**: Modern geometric form with 15mm soft-coved internal corners for effortless cleaning.
-• **Advanced Capabilities**:
-  - Millimetric parameter adjustments (Diameter/Length, Width, Height, Wall Thickness).
-  - Authentic DuPont™ Corian® material finish mapping (Honed Satin, Velvet Matte, High Honed).
-  - Integrated pop-up drain color-matching (solid surface cap or brushed brass/black PVD).
-  - **1:1 Scale Augmented Reality (AR)**: Project and view the basin directly on your actual bathroom vanity deck using smartphone cameras.
-  - Direct Link: [Open 3D Basin Studio](/basin-configurator)`,
+**Customization Capabilities:**
+• **Parametric Dimensions**:
+  - Length: 600 mm to 3000 mm+ (millimetric slider precision).
+  - Depth: 400 mm to 800 mm.
+  - Fascia Apron Drops: 100 mm to 500 mm with seamless mitred waterfall returns.
+• **Sink & Basin Configurations**:
+  - Seamless integrated undermount sinks fabricated directly from matching solid surface slab.
+  - Zero-silicone coved transitions eliminating grime-collecting joints.
+  - Sloping ramp basins, continuous slot drainage, or commercial multi-user washplanes.
+• **Material & Edge Detailing**:
+  - Live 3D texture mapping across all certified in-stock DuPont™ Corian® mineral surfaces.
+  - Edge profiles: Square Minimalist, Shark-nose floating reveal, Mitred Apron, or Soft Bullnose.
+• **Architectural Proportion Verification**:
+  - Toggle the **Human Silhouette Figure** to inspect true real-world architectural proportions.
+  - Inspect wireframe mesh topology and download instant Bill of Quantities (BOQ) with fabrication lead times.
+
+*(Looking for standalone countertop washbowls with 1:1 mobile Augmented Reality? Visit our **[3D Basin Studio ↗](/basin-configurator)**).*`,
     specs: {
-      'Product Configurator URL': '/configurator',
-      'Basin Configurator URL': '/basin-configurator',
-      'Rendering Engine': 'Client-Side WebGL Parametric Mesh Engine (Three.js / React Three Fiber)',
-      'Dimensions Precision': 'Sub-millimetre CAD accuracy (±0.5mm)',
-      'AR Capability': '1:1 True-Scale Augmented Reality (USDZ & WebXR)'
+      'Configurator URL': '/configurator',
+      'Fixtures Supported': 'Vanities, Integrated Sinks, Washplanes, Countertops',
+      'Length Range': '600 mm to 3000 mm (parametric)',
+      'Depth Range': '400 mm to 800 mm',
+      'Scale Reference': 'Interactive Human Silhouette Figure',
+      'Instant Output': 'Live Bill of Quantities (BOQ) & Weight Calculation'
     },
     suggestedActions: [
-      { label: 'Launch 3D Product Configurator', href: '/configurator' },
-      { label: 'Launch 3D Basin Studio', href: '/basin-configurator' },
-      { label: 'WhatsApp CAD Support', href: 'https://wa.me/919741044776' }
+      { label: '3D Sinks & Vanity Configurator', href: '/configurator' },
+      { label: '3D Basin Studio (AR)', href: '/basin-configurator' },
+      { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919741044776' }
+    ]
+  },
+  {
+    id: '3d-basin-ar-configurator',
+    topic: '3D Basin Studio & 1:1 Mobile Augmented Reality (/basin-configurator)',
+    keywords: [
+      'basin', 'basins', 'custom basin', 'customize basin', 'customise basin', 'customize my basin',
+      'customise my basin', 'basin configurator', 'washbasin', 'washbowl', 'vessel bowl', 'countertop basin',
+      'oval basin', 'capsule basin', 'round basin', 'square basin', 'ar', 'augmented reality', 'mobile ar',
+      'quick look', '1:1 scale', 'place basin', 'view in room'
+    ],
+    summary: 'Interactive 3D geometry laboratory for thermoformed solid surface countertop basins (Oval, Capsule, Round, Square) with 1:1 true-scale mobile Augmented Reality.',
+    details: `Ace Spaces provides an interactive 3D Basin Studio for designing bespoke solid surface vessel washbowls and inspecting them in 1:1 Augmented Reality:
+
+👉 **[Launch 3D Basin Studio & AR ↗](/basin-configurator)**
+
+**Geometries & Features:**
+• **Geometric Profiles**:
+  - **Oval / Elliptical**: Organic fluid contour with zero sharp interior crevices.
+  - **Capsule / Pill**: Architectural pill geometry with parallel linear walls and radiused ends.
+  - **Round / Cylindrical**: Minimalist circular vessel with calibrated rim profiles.
+  - **Square / Soft-Rectangular**: Modern geometric form with 15mm soft-coved internal corners.
+• **Parametric Sizing**: Millimetric customization of Length, Width, Height, Wall Thickness, and integrated pop-up drain covers.
+• **1:1 Augmented Reality (AR)**:
+  - On iOS (Quick Look) or Android (WebXR), tap "View in AR" to project the life-sized basin onto your countertop or client bathroom in real time.
+
+*(Looking for integrated undermount sinks, custom washplanes, or complete vanity slabs? Visit our **[3D Product Configurator ↗](/configurator)**).*`,
+    specs: {
+      'Basin Studio URL': '/basin-configurator',
+      'Profiles': 'Oval, Capsule, Round, Square',
+      'AR Technology': '1:1 True-Scale Augmented Reality (USDZ / WebXR)',
+      'Hygiene': '100% Non-Porous Zero-Silica Corian®',
+      'Drainage': 'Integrated Pop-Up or Hidden Slot Drainage'
+    },
+    suggestedActions: [
+      { label: '3D Basin Studio (AR)', href: '/basin-configurator' },
+      { label: '3D Sinks & Vanity Configurator', href: '/configurator' },
+      { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919741044776' }
     ]
   },
   {
@@ -1252,6 +1286,83 @@ How can I assist your practice today? You can ask me about:
         { label: 'WhatsApp for CAD Quote', href: 'https://wa.me/919741044776' },
       ],
     };
+  }
+
+  // 5B. DEDICATED 3D CONFIGURATOR & CUSTOMIZATION INTENT ROUTING
+  // Specifically intercepts all inquiries about customizing sinks, basins, vanities, or accessing 3D design tools
+  const mentionsConfigOrCustom = /\b(configur|configurator|configure|customize|customise|customizing|customising|custom|bespoke|design my|build my|make my|3d|parametric|dimension|dimensions)\b/i.test(query);
+  const mentionsSinkOnly = /\b(sink|sinks|washplane|washplanes|undermount|coved sink|trough)\b/i.test(query);
+  const mentionsBasinOnly = /\b(basin|basins|bowl|bowls|washbowl|washbasin|vessel)\b/i.test(query);
+  const mentionsVanityOnly = /\b(vanity|vanities|countertop|counter|benchtop|apron)\b/i.test(query);
+
+  if (
+    mentionsConfigOrCustom ||
+    mentionsSinkOnly ||
+    mentionsBasinOnly ||
+    (mentionsVanityOnly && !query.includes('project') && !query.includes('photo'))
+  ) {
+    // If specifically asking about sinks, washplanes, vanities, or countertops:
+    if (mentionsSinkOnly || mentionsVanityOnly || (mentionsConfigOrCustom && !mentionsBasinOnly)) {
+      return {
+        answer: `### 3D Sinks, Washplanes & Vanity Configurator
+
+To design and customize your bespoke solid surface sinks, integrated washplanes, or monolithic vanity units, launch our interactive 3D studio:
+
+👉 **[Launch 3D Sinks & Vanity Configurator ↗](/configurator)**
+
+**Real-Time Customization Controls:**
+• **Exact Millimetric Dimensions**:
+  - Length: Parametric slider from **600 mm up to 3000 mm+**
+  - Depth: **400 mm to 800 mm**
+  - Fascia Apron Drops: **100 mm to 500 mm** with seamless mitred waterfall returns
+• **Integrated Sink Detailing**:
+  - Seamless undermount coved sinks fabricated from the identical slab material — eliminating silicone joints and grime traps.
+  - Choose between single basin, double basin, or continuous multi-station commercial washplanes with slot drainage.
+• **Material & Edge Profiles**:
+  - Real-time 3D texture and light reflection mapping across all in-stock **DuPont™ Corian®** colours.
+  - Minimalist Square Chamfer, Shark-nose floating reveal, or Mitred Aprons.
+• **Architectural Proportion Verification**:
+  - Toggle the **Human Silhouette Figure** for true ergonomic height and scale verification.
+  - View wireframe mesh topology and download an instant **Bill of Quantities (BOQ)** estimate.
+
+*(Note: If you are looking for standalone countertop washbowls with 1:1 Augmented Reality mobile preview, visit our **[3D Basin Studio ↗](/basin-configurator)**).*`,
+        matchedTopic: '3D Sinks & Vanity Configurator',
+        suggestedActions: [
+          { label: '3D Sinks & Vanity Configurator', href: '/configurator' },
+          { label: '3D Basin Studio (AR)', href: '/basin-configurator' },
+          { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919741044776' },
+        ],
+      };
+    }
+
+    // If specifically asking about countertop washbasins or vessel bowls:
+    if (mentionsBasinOnly) {
+      return {
+        answer: `### 3D Basin Studio & 1:1 Augmented Reality
+
+To design bespoke solid surface countertop washbowls and test them in your space with mobile AR, launch our interactive 3D geometry lab:
+
+👉 **[Launch 3D Basin Studio & AR ↗](/basin-configurator)**
+
+**Real-Time Customization Controls:**
+• **Geometric Profiles**:
+  - **Oval / Elliptical**: Organic fluid contours with zero sharp interior crevices.
+  - **Capsule / Pill**: Architectural pill geometry with parallel linear walls and radiused ends.
+  - **Round / Cylindrical**: Minimalist circular vessel with calibrated rim thickness.
+  - **Square / Soft-Rectangular**: Modern geometric form with 15mm soft-coved internal corners.
+• **Parametric Dimensions**: Millimetric control over length, width, bowl depth, wall gauge, and pop-up drain finish.
+• **1:1 Augmented Reality (AR)**:
+  - On any iPhone (Quick Look) or Android device (WebXR), tap "View in AR" to project the life-sized basin onto your countertop or client bathroom deck in real time.
+
+*(Note: If you are looking for integrated countertop sinks, monolithic washplanes, or complete floating vanities, visit our **[3D Product Configurator ↗](/configurator)**).*`,
+        matchedTopic: '3D Basin Studio & AR',
+        suggestedActions: [
+          { label: '3D Basin Studio (AR)', href: '/basin-configurator' },
+          { label: '3D Sinks & Vanity Configurator', href: '/configurator' },
+          { label: 'WhatsApp Specifier Desk', href: 'https://wa.me/919741044776' },
+        ],
+      };
+    }
   }
 
   // 6. COLOR PALETTE & ARCHITECTURAL RECOMMENDATION ENGINE
