@@ -127,7 +127,6 @@ export default function ProductsCatalogPage() {
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="btn-3d-configurator" href="/configurator" style={{ padding: '12px 22px' }}>
-              <span className="btn-3d-live-pip" aria-hidden="true" />
               <span className="btn-3d-label">LAUNCH 3D CONFIGURATOR</span>
               <span className="btn-3d-icon-badge" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
@@ -308,10 +307,9 @@ export default function ProductsCatalogPage() {
             <div style={{ border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.25)', padding: '24px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '12px', marginBottom: '16px' }}>
                 <div>
-                  <span style={{ display: 'block', fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>CAD Calibrator</span>
+                  <span style={{ display: 'block', fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Dimensional Bounds</span>
                   <strong style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: '#fff', letterSpacing: '0.04em' }}>STUDIO PARAMETERS</strong>
                 </div>
-                <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)' }}>● 1:1 LIVE ENGINE</span>
               </div>
               <div style={{ display: 'grid', gap: '10px', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>

@@ -376,49 +376,6 @@ export default function BasinConfigurator({
               gap: '8px',
             }}
           >
-            {/* 3D Studio Badge */}
-            <div
-              className="configurator-model-badge"
-              style={{
-                background: 'rgba(245, 244, 238, 0.94)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid var(--line, rgba(30, 33, 29, 0.18))',
-                borderRadius: '0px',
-                padding: '5px 12px',
-                pointerEvents: 'auto',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                boxShadow: '0 2px 8px rgba(30, 33, 29, 0.06)',
-                flexShrink: 0,
-              }}
-            >
-              <span
-                style={{
-                  width: '6px',
-                  height: '6px',
-                  borderRadius: '0px',
-                  background: 'var(--brand-red, #d43833)',
-                  boxShadow: '0 0 6px rgba(212, 56, 51, 0.5)',
-                  flexShrink: 0,
-                }}
-              />
-              <span
-                style={{
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '9.5px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  color: '#1e211d',
-                  fontWeight: 600,
-                  whiteSpace: 'nowrap',
-                }}
-              >
-                3D Studio · 1:1
-              </span>
-            </div>
-
             {/* Viewpoint Controls (Matching user reference: Iso / Front / Top / Side / Bottom) */}
             <div
               className="configurator-viewpoint-controls"
