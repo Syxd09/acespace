@@ -8,7 +8,7 @@ import { projects } from '@/data/projects';
 import { getSiteContent } from '@/data/contentStore';
 import SpecimenZoomViewer from '@/components/SpecimenZoomViewer';
 
-export function findMaterialBySlug(source: typeof defaultMaterials, inputSlug: string) {
+function findMaterialBySlug(source: typeof defaultMaterials, inputSlug: string) {
   if (!inputSlug) return undefined;
   const raw = decodeURIComponent(inputSlug).toLowerCase().trim();
 
