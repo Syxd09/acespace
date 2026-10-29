@@ -51,6 +51,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    // 5. Deep inspection: Validate magic bytes (file signature) to prevent disguised executable/script uploads
+    const isJpeg = buffer.length > 3 && buffer[0] === 0xFF && buffer[1] === 0xD8 && buffer[2] === 0xFF;
+    const isPng = buffer.length > 8 && buffer[0] === 0x89 && buffer[1] === 0x50 && buffer[2] === 0x4E && buffer[3] === 0x47;
+    const isWebp = buffer.length > 12 && buffer.toString('ascii', 0, 4) === 'RIFF' && buffer.toString('ascii', 8, 12) === 'WEBP';
+
+    if (!isJpeg && !isPng && !isWebp) {
+      return NextResponse.json(
+        { success: false, error: 'File content does not match genuine image binary signature (JPEG, PNG, or WEBP).' },
+        { status: 400 }
+      );
+    }
+
     // Determine target upload directory (local public/assets/uploads)
     const uploadsDir = path.join(process.cwd(), 'public', 'assets', 'uploads');
     let canWriteLocal = true;
@@ -62,9 +77,6 @@ export async function POST(req: NextRequest) {
     } catch {
       canWriteLocal = false;
     }
-
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
 
     // If local disk is writable and not in read-only serverless environment
     if (canWriteLocal && !process.env.VERCEL) {

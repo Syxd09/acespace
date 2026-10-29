@@ -19,7 +19,7 @@ import {
 
 import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
 
-const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v8';
+const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v9';
 const LEGACY_STORAGE_KEYS = [
   'acespaces_custom_content_v1',
   'acespaces_custom_content_v2',
@@ -28,6 +28,7 @@ const LEGACY_STORAGE_KEYS = [
   'acespaces_custom_content_v5',
   'acespaces_custom_content_v6',
   'acespaces_custom_content_v7',
+  'acespaces_custom_content_v8',
 ];
 
 interface SiteContentContextType {
@@ -110,7 +111,14 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
             if (parsed.materials && parsed.materials.length > 0) setMaterials(parsed.materials);
             if (parsed.applicationSectors && parsed.applicationSectors.length > 0) setApplicationSectors(parsed.applicationSectors);
             if (parsed.journalArticles && parsed.journalArticles.length > 0) setJournalArticles(parsed.journalArticles);
-            if (parsed.projects && parsed.projects.length > 0) setProjects(parsed.projects);
+            if (parsed.projects && parsed.projects.length > 0) {
+              const hasStaleProjectImages = parsed.projects.some((p: Project) => p.image?.includes('/assets/materials/'));
+              if (hasStaleProjectImages) {
+                setProjects(defaultProjectsList);
+              } else {
+                setProjects(parsed.projects);
+              }
+            }
             if (parsed.about) {
               setAbout(prev => ({ ...defaultAboutContent, ...(prev || {}), ...parsed.about }));
             }

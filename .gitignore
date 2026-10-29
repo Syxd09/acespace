@@ -48,3 +48,8 @@ data/inquiries.json
 data/subscribers.json
 data/chats.json
 data/configurations.json
+
+# Temporary processing files
+*.tmp
+*.tmp.jpg
+

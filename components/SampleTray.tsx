@@ -276,7 +276,7 @@ export default function SampleTray() {
             style={{
               width: '32px',
               height: '32px',
-              borderRadius: '50%',
+              borderRadius: '0px',
               border: '1px solid var(--line)',
               background: 'transparent',
               color: 'var(--ink)',

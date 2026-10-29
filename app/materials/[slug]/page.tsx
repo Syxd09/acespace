@@ -8,23 +8,94 @@ import { projects } from '@/data/projects';
 import { getSiteContent } from '@/data/contentStore';
 import SpecimenZoomViewer from '@/components/SpecimenZoomViewer';
 
+export function findMaterialBySlug(source: typeof defaultMaterials, inputSlug: string) {
+  if (!inputSlug) return undefined;
+  const raw = decodeURIComponent(inputSlug).toLowerCase().trim();
+
+  // 1. Direct exact slug match
+  const exact = source.find((m) => m.slug.toLowerCase() === raw);
+  if (exact) return exact;
+
+  // 2. Direct code match (e.g. 'PT-225', 'pt-225', 'cr-001')
+  const codeMatch = source.find((m) => m.code.toLowerCase() === raw);
+  if (codeMatch) return codeMatch;
+
+  // Normalization helper
+  const cleanTokens = (s: string) =>
+    s
+      .toLowerCase()
+      .replace(/^(css|pattern|corian|dupont-corian|dupont)-+/i, '')
+      .replace(/-+(sheet|slab|sample|series)$/i, '')
+      .split(/[-_\s]+/)
+      .filter((w) => w.length > 0 && !['series', 'sheet', 'slab', 'sample', 'blend', 'pattern', 'corian', 'dupont', 'css'].includes(w));
+
+  const targetTokens = cleanTokens(raw);
+  const targetKey = targetTokens.join('');
+
+  // 3. Exact token match after cleaning prefix/suffix
+  if (targetKey.length > 0) {
+    const tokenMatch = source.find((m) => {
+      const matTokens = cleanTokens(m.slug);
+      const matKey = matTokens.join('');
+      if (matKey === targetKey) return true;
+      const nameTokens = cleanTokens(m.name);
+      const nameKey = nameTokens.join('');
+      return nameKey === targetKey;
+    });
+    if (tokenMatch) return tokenMatch;
+  }
+
+  // 4. All target tokens contained in material slug or name
+  if (targetTokens.length > 0) {
+    const allTokensMatch = source.find((m) => {
+      const matSlugLower = m.slug.toLowerCase().replace(/[-_]/g, ' ');
+      const matNameLower = m.name.toLowerCase();
+      return targetTokens.every((token) => matSlugLower.includes(token) || matNameLower.includes(token));
+    });
+    if (allTokensMatch) return allTokensMatch;
+  }
+
+  // 5. Fallback: target slug is contained in material slug or vice versa
+  const partialMatch = source.find((m) => {
+    const s1 = m.slug.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const s2 = raw.replace(/[^a-z0-9]/g, '');
+    return s1.length > 3 && s2.length > 3 && (s1.includes(s2) || s2.includes(s1));
+  });
+  if (partialMatch) return partialMatch;
+
+  return undefined;
+}
+
 export async function generateStaticParams() {
   const { materials } = getSiteContent();
   const source = materials && materials.length > 0 ? materials : defaultMaterials;
-  return source.map((mat) => ({
+  const canonicalParams = source.map((mat) => ({
     slug: mat.slug,
   }));
+  const legacyAliases = [
+    'css-calacatta-greige-sheet',
+    'calacatta-greige',
+    'css-stonecrest-smoke-sheet',
+    'stonecrest-smoke',
+    'css-artista-sage-sheet',
+    'artista-sage',
+    'css-stonique-sheet',
+    'stonique',
+    'css-laguna-terrazzo-sheet',
+    'laguna-terrazzo',
+    'css-excavage-sheet',
+    'excavage',
+    'css-artista-mist-sheet',
+    'artista-mist',
+  ].map((slug) => ({ slug }));
+
+  return [...canonicalParams, ...legacyAliases];
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const { materials } = getSiteContent();
   const source = materials && materials.length > 0 ? materials : defaultMaterials;
-  const material = source.find(
-    (m) =>
-      m.slug === params.slug ||
-      m.slug === `css-${params.slug}-sheet` ||
-      m.slug.replace(/^css-/, '').replace(/-sheet$/, '') === params.slug
-  );
+  const material = findMaterialBySlug(source, params.slug);
   if (!material) return { title: 'Material Not Found — Ace Spaces' };
 
   const canonicalUrl = `https://acespacesindia.vercel.app/materials/${material.slug}`;
@@ -75,15 +146,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export default function MaterialDetailPage({ params }: { params: { slug: string } }) {
   const { materials } = getSiteContent();
   const source = materials && materials.length > 0 ? materials : defaultMaterials;
-  const material = source.find(
-    (m) =>
-      m.slug === params.slug ||
-      m.slug === `css-${params.slug}-sheet` ||
-      m.slug.replace(/^css-/, '').replace(/-sheet$/, '') === params.slug
-  );
+  const material = findMaterialBySlug(source, params.slug);
   if (!material) notFound();
 
-  const relatedProjects = projects.filter((p) => p.materialSlug === material.slug);
+  const relatedProjects = projects.filter((p) => {
+    if (p.materialSlug === material.slug) return true;
+    const pMat = findMaterialBySlug(source, p.materialSlug);
+    return pMat && pMat.slug === material.slug;
+  });
 
   const productSchema = {
     '@context': 'https://schema.org',

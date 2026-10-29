@@ -6506,4 +6506,22 @@ html, body {
   transform: none !important;
 }
 
+/* ==========================================================================
+   MATERIAL LIBRARY ARCHITECTURAL SQUARE CORNERS
+   Strict 0px border-radius across all sample buttons, cards & swatches
+   ========================================================================== */
+.card-sample-btn,
+.material-card button,
+.material-card [data-agent-action="sample-toggle"],
+[data-agent-action="sample-toggle"],
+.material-list-sample-btn,
+.material-list-link-btn,
+.material-card,
+.material-skeleton-card,
+.material-skeleton-card * {
+  border-radius: 0px !important;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+}
+
 

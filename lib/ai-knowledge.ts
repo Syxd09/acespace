@@ -588,6 +588,158 @@ Together, they established **Ace Spaces** as the foundational raw material autho
       { label: 'Order Curated Sample Tray', href: '/materials' },
       { label: 'WhatsApp Consultation', href: 'https://wa.me/919741044776' }
     ]
+  },
+  {
+    id: '3d-configurators',
+    topic: 'Interactive 3D Parametric Product & Basin Configurators',
+    keywords: [
+      'configurator', '3d', 'parametric', 'basin configurator', 'product configurator',
+      'custom vanity', 'washplane', '3d preview', 'ar', 'augmented reality', 'render',
+      'configure', 'dimension calculator', 'instant quote', '3d basin', 'vessel bowl',
+      'interactive studio', 'cad model', 'apron drop', 'coved sink'
+    ],
+    summary: 'Ace Spaces offers two cutting-edge WebGL 3D Parametric Configurators: the Product Configurator (/configurator) for vanities & washplanes, and the Basin Configurator (/basin-configurator) for countertop washbowls with 1:1 scale AR preview.',
+    details: `Ace Spaces features two real-time interactive 3D Parametric Design Studios that enable specifiers, architects, and luxury homeowners to customize architectural solid surface fixtures with live instant quotes and millimetric precision:
+
+### 1. Interactive 3D Product Configurator (\`/configurator\`)
+• **Typologies Supported**:
+  - **Vanity Consoles**: Floating wall-hung or plinth-supported vanity countertops with customizable width (800mm to 2400mm+), depth (450mm to 600mm), and fascia apron drops (40mm to 150mm).
+  - **Integrated Basins**: Seamlessly thermo-welded single or double washbasins with coved, groutless internal transitions (slope drain, linear slot drain, or thermoformed ramp).
+  - **Commercial Washplanes**: Multi-station continuous washplanes for luxury hospitality, corporate headquarters, and airports.
+  - **Kitchen & Island Worktops**: Monolithic slabs with waterfall return edges and sub-surface induction charging cutouts.
+• **Real-Time Features**:
+  - Live 3D WebGL rotation, panning, and lighting reflection across all DuPont™ Corian® colors.
+  - Architectural Human Figure Scale reference toggle for ergonomic proportion verification.
+  - Automatic Bill of Quantities (BOQ), material yield calculation, and instant fabrication estimate.
+  - One-click spec sheet export and direct WhatsApp dispatch for fabrication drawings.
+  - Direct Link: [Open 3D Product Configurator](/configurator)
+
+### 2. Interactive 3D Basin Studio (\`/basin-configurator\`)
+• **Vessel Bowl Geometries**:
+  - **Oval / Elliptical**: Organic curved contour with zero sharp interior crevices.
+  - **Capsule / Pill**: Elongated architectural capsule geometry with parallel linear walls and radiused ends.
+  - **Round / Cylindrical**: Pure minimalist circular vessel with calibrated 10mm-12mm rim profiles.
+  - **Square / Soft-Rectangular**: Modern geometric form with 15mm soft-coved internal corners for effortless cleaning.
+• **Advanced Capabilities**:
+  - Millimetric parameter adjustments (Diameter/Length, Width, Height, Wall Thickness).
+  - Authentic DuPont™ Corian® material finish mapping (Honed Satin, Velvet Matte, High Honed).
+  - Integrated pop-up drain color-matching (solid surface cap or brushed brass/black PVD).
+  - **1:1 Scale Augmented Reality (AR)**: Project and view the basin directly on your actual bathroom vanity deck using smartphone cameras.
+  - Direct Link: [Open 3D Basin Studio](/basin-configurator)`,
+    specs: {
+      'Product Configurator URL': '/configurator',
+      'Basin Configurator URL': '/basin-configurator',
+      'Rendering Engine': 'Client-Side WebGL Parametric Mesh Engine (Three.js / React Three Fiber)',
+      'Dimensions Precision': 'Sub-millimetre CAD accuracy (±0.5mm)',
+      'AR Capability': '1:1 True-Scale Augmented Reality (USDZ & WebXR)'
+    },
+    suggestedActions: [
+      { label: 'Launch 3D Product Configurator', href: '/configurator' },
+      { label: 'Launch 3D Basin Studio', href: '/basin-configurator' },
+      { label: 'WhatsApp CAD Support', href: 'https://wa.me/919741044776' }
+    ]
+  },
+  {
+    id: 'architectural-projects',
+    topic: 'Selected Architectural Case Studies & Landmark Installations',
+    keywords: [
+      'projects', 'case studies', 'case study', 'portfolio', 'installations', 'work',
+      'private residence', 'quiet arrival', 'open practice', 'material display', 'clinical precision',
+      'bengaluru', 'mumbai', 'hyderabad', 'delhi', 'hospitality project', 'hotel lobby'
+    ],
+    summary: 'Ace Spaces has engineered landmark solid surface installations across luxury residential, five-star hospitality, high-end commercial studios, boutique retail, and sterile healthcare environments in India.',
+    details: `Explore completed architectural installations engineered by Ace Spaces master fabricators:
+
+### 1. Private Residence — Bengaluru, India (\`case-01\`)
+• **Title**: *A quieter kind of luxury*
+• **Architect**: Studio Vardhan Architects | **Year**: 2024 | **Scale**: 420 sq.m
+• **Material Specified**: [Calacatta Greige (PT-225)](/materials/pattern-calacatta-greige)
+• **Architectural Scope**: Continuous 4.2-meter kitchen island moving into vertical full-height backsplash planes and integrated thermo-welded sink basin with uninterrupted linear grain alignment.
+• **Direct Link**: [Read Private Residence Case Study](/projects/private-residence)
+
+### 2. Quiet Arrival — Mumbai, India (\`case-02\`)
+• **Title**: *Quiet arrival*
+• **Architect**: Atelier Kora | **Year**: 2024 | **Scale**: 650 sq.m
+• **Material Specified**: [Stonecrest Smoke (PT-234)](/materials/pattern-stonecrest-smoke)
+• **Architectural Scope**: Monolithic 5.4-meter curved reception counter and sculpted feature wall screen thermoformed at 160°C over CNC timber bucks with warm sub-surface LED halo backlighting.
+• **Direct Link**: [Read Quiet Arrival Case Study](/projects/quiet-arrival)
+
+### 3. Open Practice — Bengaluru, India (\`case-03\`)
+• **Title**: *Open practice*
+• **Architect**: Ace Collaborative Design | **Year**: 2023 | **Scale**: 380 sq.m
+• **Material Specified**: [Grinds Excavage (PT-229)](/materials/pattern-grinds-excavage)
+• **Architectural Scope**: Architectural workshop review islands and communal conference table featuring 5-axis CNC underside pocket milling down to a 3mm membrane, allowing invisible Qi wireless charging through the solid surface.
+• **Direct Link**: [Read Open Practice Case Study](/projects/open-practice)
+
+### 4. Material Display — New Delhi, India (\`case-04\`)
+• **Title**: *Material display*
+• **Architect**: Studio Mono | **Year**: 2023 | **Scale**: 210 sq.m
+• **Material Specified**: [Terrazzo Laguna (PT-235)](/materials/pattern-terrazzo-laguna)
+• **Architectural Scope**: Bespoke luxury horology display pedestals and illuminated cashwrap featuring dual-layer optical diffuser cavities delivering 98% uniform ambient illumination without LED hotspots.
+• **Direct Link**: [Read Material Display Case Study](/projects/material-display)
+
+### 5. Clinical Precision & Surgical Hygiene — Hyderabad, India (\`case-05\`)
+• **Title**: *Clinical precision & surgical hygiene*
+• **Architect**: Arch-Med Spatial Design | **Year**: 2024 | **Scale**: 540 sq.m
+• **Material Specified**: [Grinds Stonique (PT-230)](/materials/pattern-grinds-stonique)
+• **Architectural Scope**: Hospital surgical scrub sinks, cleanroom operatory worktops, and hermetic wall coves compliant with ISO 846 Method A & C cleanroom ratings with silicone-free acrylic joint welds.
+• **Direct Link**: [Read Clinical Precision Case Study](/projects/clinical-precision)`,
+    specs: {
+      'Projects Directory': '/projects',
+      'Featured Typologies': 'Residential, Hospitality, Commercial Studios, Retail Display, Healthcare',
+      'Geographies Covered': 'Bengaluru, Mumbai, New Delhi, Hyderabad'
+    },
+    suggestedActions: [
+      { label: 'Explore All Projects', href: '/projects' },
+      { label: 'View Calacatta Case Study', href: '/projects/private-residence' },
+      { label: 'Submit Project Brief', href: '/contact' }
+    ]
+  },
+  {
+    id: 'architectural-journal',
+    topic: 'Ace Spatial Research & Material Discourse Journal',
+    keywords: [
+      'journal', 'articles', 'research', 'essays', 'spatial research', 'material discourse',
+      'the edge', 'seamless join', 'monolithic curvature', 'hygiene of light', 'matter of time',
+      'architecture articles', 'technical essays'
+    ],
+    summary: 'The Ace Spaces Architectural Journal (/journal) explores the technical philosophy, joinery precision, thermoforming physics, and hygienic performance of monolithic solid surfaces.',
+    details: `Ace Spatial Research publishes technical discourse and fabrication essays exploring the intersection of material science and spatial architecture:
+
+### 1. *The edge is where material becomes architecture*
+• **Author**: Ace Spatial Research | **Category**: Material Knowledge
+• **Focus**: How micro-geometries (45° sharp mitres, 2mm micro-radii, shark-nose chamfers) sculpt shadow and define spatial volumes with through-body mineral density.
+• **Direct Link**: [Read Essay: The Edge](/journal/the-edge-is-where-material-becomes-architecture)
+
+### 2. *On the beauty of the seamless join*
+• **Author**: Workshop Practice | **Category**: Fabrication Craft
+• **Focus**: The chemistry of two-part acrylic molecular welds and how eliminating visible seams transforms multi-slab construction into continuous geological bedrock.
+• **Direct Link**: [Read Essay: The Seamless Join](/journal/on-the-beauty-of-the-seamless-join)
+
+### 3. *Monolithic Curvature: The Physics of Thermal Bending*
+• **Author**: Digital Fabrication Lab | **Category**: Workshop Technique
+• **Focus**: Temperature curves (160°C platen heating), vacuum membrane pressure, and minimum bend radii (down to 25mm) without structural stress whitening.
+• **Direct Link**: [Read Essay: Monolithic Curvature](/journal/monolithic-curvature-the-physics-of-thermal-bending)
+
+### 4. *The Hygiene of Light: Translucent Solid Surfaces in Healthcare*
+• **Author**: Clinical Surfaces Group | **Category**: Material Science
+• **Focus**: Optical transmission formulations, antimicrobial pore-free structures, and illumination without harboring hospital pathogens.
+• **Direct Link**: [Read Essay: Hygiene of Light](/journal/the-hygiene-of-light-translucent-solid-surfaces-in-healthcare)
+
+### 5. *A Matter of Time: Renewable Longevity vs Built-in Obsolescence*
+• **Author**: Sustainability Desk | **Category**: Architectural Philosophy
+• **Focus**: Comparing sacrificial coatings with solid through-body renewable surfaces that can be fully re-honed with Scotch-Brite on-site for decades.
+• **Direct Link**: [Read Essay: A Matter of Time](/journal/a-matter-of-time-renewable-longevity-vs-built-in-obsolescence)`,
+    specs: {
+      'Journal URL': '/journal',
+      'Editorial Focus': 'Joinery Craft, Thermoforming Science, Hygiene, Material Philosophy',
+      'Frequency': 'Bi-Monthly Research Discourse'
+    },
+    suggestedActions: [
+      { label: 'Read Architectural Journal', href: '/journal' },
+      { label: 'Read Essay on Seamless Joinery', href: '/journal/on-the-beauty-of-the-seamless-join' },
+      { label: 'Subscribe to Ace Dispatch', href: '#footer-dispatch' }
+    ]
   }
 ];
 
@@ -700,7 +852,11 @@ export function detectNonStockMaterial(query: string, currentMaterials?: Materia
 
   // Helper to safely get an alternative from live catalog
   const getAlternative = (slug: string, fallbackIdx = 0): Material => {
-    return liveMats.find(m => m.slug === slug) || liveMats[fallbackIdx] || defaultMaterials[0];
+    return (
+      liveMats.find(m => m.slug === slug || m.slug === `pattern-${slug}` || m.slug.includes(slug)) ||
+      liveMats[fallbackIdx] ||
+      defaultMaterials[0]
+    );
   };
 
   // 1. Natural Marble inquiries (Italian Marble, Carrara Marble, Statuario, Calacatta Marble)
@@ -1229,6 +1385,9 @@ How can I assist your practice today? You can ask me about:
 
 As your private studio intelligence, I specialize in:
 • **In-Stock Materials (${liveMaterials.length} Specimens)**: All ${liveMaterials.length} materials currently in stock at our Bengaluru stockyard ([Explore Materials](/materials#library)).
+• **3D Parametric Configurators & AR Studio**: Custom vanities, integrated washplanes, monolithic basin blocks, and 1:1 true-scale mobile AR preview ([3D Configurator](/configurator) & [3D Basin Studio](/basin-configurator)).
+• **Architectural Projects & Case Studies**: Realized private residences, commercial reception counters, clinical wet walls, and luxury retail displays ([View Projects](/projects)).
+• **Spatial Research Journal**: Technical essays on minimal radii, chemical molecular bonding, thermoforming limits, and renewable solid surfaces ([Read Journal](/journal)).
 • **DuPont™ Corian® Specifications**: Non-porous zero-silica mineral surfaces, ATH + acrylic composition, and certified warranties.
 • **Full Sheet Sizing & Pricing**: Standard 3660 mm × 760 mm slabs across solids, veined, terrazzo, and backlit translucent series ([Technical Specifications](/materials#specs)).
 • **Coro Crafted Collective Synergy**: How Ace Spaces acts as the parent company and raw material source for Coro's spatial designs ([The Coro Synergy](/about#coro)).
@@ -1239,7 +1398,8 @@ Could you please specify your architectural requirement or material of interest,
     matchedTopic: 'Studio Advisory',
     suggestedActions: [
       { label: `View ${liveMaterials.length} In-Stock Materials`, href: '/materials#library' },
-      { label: 'Coro Crafted Collective Connection', href: '/about#coro' },
+      { label: '3D Configurator Studio', href: '/configurator' },
+      { label: 'Architectural Projects', href: '/projects' },
       { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' },
     ],
   };

@@ -19,7 +19,8 @@ function getEnvValue(keyName: string): string | null {
  * Powered by Groq / OpenAI LLM + Grounded In-House Knowledge Engine
  * Trained to act as Ace Spaces Studio Material Intelligence:
  * Advising strictly on live in-stock materials, DuPont™ Corian®, mineral surfaces,
- * fabrication tolerances, slab specifications, and interior applications across India.
+ * fabrication tolerances, slab specifications, 3D configurators, architectural projects,
+ * research journals, and interior applications across India.
  */
 
 interface ChatMessage {
@@ -145,7 +146,35 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 - Architects, designers, and project owners can curate up to 6 physical 100mm × 100mm × 12mm specimens directly from the website's Sample Tray (accessible in the top navbar).
 - Dispatched via courier across all major metros in India.
 
-8. UNIFIED STUDIO & HEADQUARTERS LOCATION, GOOGLE MAPS NAVIGATION
+8. 3D PARAMETRIC CONFIGURATORS & AR STUDIO (INTERACTIVE SPECIFIER TOOLS)
+- Product & Vanity Configurator (/configurator):
+  * Interactive 3D design studio for monolithic vanities, integrated washplanes, vessel blocks, and wall-hung modules.
+  * Real-time parametric controls: Length (600mm to 3000mm), Depth (400mm to 800mm), Apron/Height (100mm to 500mm), and edge profiles (Square, Bevel, Shark-nose, Bullnose).
+  * Direct material mapping with all live in-stock Corian® colors.
+  * Features 3D Orbit Controls, Human Silhouette scale reference toggle, wireframe preview, and instant Bill of Quantities (BOQ) with fabrication lead times.
+- 3D Basin Studio (/basin-configurator):
+  * Dedicated interactive parametric basin geometry lab for thermoformed solid surface basins.
+  * Geometries: Oval, Capsule, Round, and Square profiles with customizable dimensions, taphole configurations, and integrated slot drainage.
+  * 1:1 True-Scale Augmented Reality (AR): Specifiers on mobile devices (iOS Quick Look / Android WebXR) can place life-sized basins directly onto their real-world bathroom counters or client sites before ordering.
+- Direct links: [3D Product Configurator](/configurator) | [3D Basin Studio & AR](/basin-configurator)
+
+9. SELECTED ARCHITECTURAL PROJECTS & CASE STUDIES (/projects)
+- Private Residence (Bengaluru): Sculptural monolithic kitchen island and floating bathroom vanities fabricated in Corian® Glacier White with seamless waterfall edges and seamless undermount transitions.
+- Quiet Arrival: Commercial reception counter featuring continuous curved thermoforming, backlit translucent Corian®, and concealed joinery.
+- Open Practice: Minimalist architectural office with 4.2-meter seamless conference table and integrated acoustic cable trough.
+- Material Display: Luxury retail flagship store with tiered display pedestals, shark-nose mitred displays, and matte-honed finishes.
+- Clinical Precision: State-of-the-art medical clinic wet walls, surgical scrub sinks, and antimicrobial seamless cabinetry.
+- Link: [Explore Architectural Projects](/projects)
+
+10. SPATIAL RESEARCH JOURNAL & ESSAYS (/journal)
+- "The edge of nothing: minimal radii in monolithic solid surface" -- Deep dive into machining sub-millimeter chamfers and CNC shark-nose detailing.
+- "On the beauty of the seamless join: chemical bonding vs mechanical fasteners" -- Science of methyl methacrylate two-part adhesive molecular weld creating zero-dirt-trap transitions.
+- "Monolithic Curvature: Thermoforming limits and radius optimization" -- Technical parameters of heating solid surface to 160°C and vacuum-forming tight curves down to 25mm radii without stress bleaching.
+- "The Hygiene of Light: Translucency in healthcare and hospitality" -- Backlighting formulations and clinical cleanability standards (NSF/ANSI 51 compliant).
+- "A Matter of Time: Aging, maintenance, and the renewable lifecycle of solid surface" -- Renewable micro-sanding that restores surfaces to factory finish decades after installation.
+- Link: [Read Research Journal](/journal)
+
+11. UNIFIED STUDIO & HEADQUARTERS LOCATION, GOOGLE MAPS NAVIGATION
 - Ace Spaces & Coro Crafted Collective share ONE single unified studio and headquarters in Bengaluru, Karnataka, India. Both headquarters are located here together under one roof.
 - This is the only studio and headquarters for both Ace Spaces and Coro Crafted Collective.
 - Exact Google Maps Link: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7
@@ -153,7 +182,7 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 - Direct WhatsApp Specifier Desk: [WhatsApp Studio Desk](https://wa.me/919741044776)
 - Studio & Consultations: In-person or virtual design consultations booked via [Book Consultation](/contact).
 
-9. FOUNDERS & LEADERSHIP
+12. FOUNDERS & LEADERSHIP
 - Ace Spaces was co-founded by two partners: **Vithal Savant** and **Prashant Vinayak Naik**. Both are male; refer to each of them as him/he.
 - **Vithal Savant** -- Co-Founder & Director:
   * Spearheads Ace Spaces' strategic partnerships, distribution alliances, and business development across India.
@@ -165,10 +194,14 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
   * Oversees fabrication quality, bespoke installation projects, and the Coro Crafted Collective spatial design wing.
 - Together they established Ace Spaces as the foundational raw material authority and Coro Crafted Collective as the spatial design wing in Bengaluru.
 
-10. CLICKABLE NAVIGATION LINKS GUIDELINES
+13. CLICKABLE NAVIGATION LINKS GUIDELINES
 - ALWAYS embed clickable markdown links [Label](url) so the user can directly navigate:
   • Material Library: [Material Library](/materials#library)
   • Technical Specifications: [Technical Specifications](/materials#specs)
+  • 3D Product Configurator: [3D Product Configurator](/configurator)
+  • 3D Basin Studio (AR): [3D Basin Studio](/basin-configurator)
+  • Architectural Projects: [Architectural Projects](/projects)
+  • Research Journal: [Spatial Journal](/journal)
   • Sample Box: [Order Sample Box](/materials)
   • Coro Crafted Collective Synergy: [The Coro Connection](/about#coro)
   • Fabrication: [Fabrication Workshop](/fabrication)
@@ -181,11 +214,11 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 CRITICAL PRIVACY & SCOPE GUARDRAILS
 =======================================================
 1. You are a STRICTLY CLOSED-DOMAIN private bot. You have NO access to the public internet or external web search.
-2. You MUST ONLY answer questions strictly related to Ace Spaces, DuPont™ Corian®, Coro Crafted Collective, materials, fabrication, applications, sample trays, and studio specifications.
+2. You MUST ONLY answer questions strictly related to Ace Spaces, DuPont™ Corian®, Coro Crafted Collective, materials, fabrication, applications, sample trays, 3D configurators, architectural case studies, research journals, and studio specifications.
 3. If the user asks about ANYTHING outside this scope (e.g. general sports, world news, politics, weather outside context, coding tutorials, recipes, stock prices, other unrelated companies like Apple or Nike):
    You MUST politely and firmly decline with dignity:
    "${GUARDRAIL_DECLINE_MESSAGE}"
-4. Always invite the user to explore our in-stock materials ([Material Library](/materials#library)), view the Coro connection ([The Coro Synergy](/about#coro)), or connect with our Bengaluru engineers via the [WhatsApp Desk](https://wa.me/919741044776).`;
+4. Always invite the user to explore our in-stock materials ([Material Library](/materials#library)), test our 3D tools ([3D Configurator](/configurator)), view case studies ([Architectural Projects](/projects)), view the Coro connection ([The Coro Synergy](/about#coro)), or connect with our Bengaluru engineers via the [WhatsApp Desk](https://wa.me/919741044776).`;
 }
 
 export async function POST(req: NextRequest) {
@@ -238,6 +271,8 @@ export async function POST(req: NextRequest) {
     if (groqKey) {
       const candidateModels = Array.from(new Set([
         getEnvValue('AI_MODEL'),
+        'llama-3.3-70b-versatile',
+        'llama-3.1-8b-instant',
         'openai/gpt-oss-120b',
         'openai/gpt-oss-20b',
         'qwen/qwen3.8-27b',
@@ -309,8 +344,8 @@ export async function POST(req: NextRequest) {
           },
           body: JSON.stringify({
             model: openAiModel,
-            temperature: 0.2,
-            max_tokens: 900,
+            temperature: 0.25,
+            max_tokens: 1024,
             messages: [
               { role: 'system', content: systemPrompt },
               ...messages.slice(-8),
@@ -381,7 +416,7 @@ export async function GET() {
     model: activeModel,
     materialsInStock: liveMaterials.length,
     studioLocation: 'Bangalore, Karnataka, India',
-    scope: 'DuPont™ Corian®, Coro Crafted Collective, Mineral Surfaces, CNC & Thermoforming',
+    scope: 'DuPont™ Corian®, Coro Crafted Collective, 3D Configurators, Mineral Surfaces, CNC & Thermoforming',
   });
 }
 
@@ -389,6 +424,16 @@ function generateSuggestedActions(reply: string, query: string) {
   const actions: { label: string; href?: string; prompt?: string }[] = [];
   const text = (reply + ' ' + query).toLowerCase();
 
+  if (text.includes('configur') || text.includes('3d') || text.includes('basin') || text.includes('ar') || text.includes('augmented') || text.includes('vanity') || text.includes('washplane')) {
+    actions.push({ label: '3D Product Configurator', href: '/configurator' });
+    actions.push({ label: '3D Basin Studio & AR', href: '/basin-configurator' });
+  }
+  if (text.includes('project') || text.includes('case study') || text.includes('portfolio') || text.includes('work') || text.includes('residence') || text.includes('commercial')) {
+    actions.push({ label: 'Architectural Projects', href: '/projects' });
+  }
+  if (text.includes('journal') || text.includes('essay') || text.includes('article') || text.includes('research') || text.includes('read') || text.includes('publication')) {
+    actions.push({ label: 'Spatial Journal', href: '/journal' });
+  }
   if (text.includes('map') || text.includes('direction') || text.includes('address') || text.includes('location') || text.includes('studio') || text.includes('showroom') || text.includes('headquarters')) {
     actions.push({
       label: 'Open Studio on Google Maps ↗',
@@ -398,7 +443,7 @@ function generateSuggestedActions(reply: string, query: string) {
   if (text.includes('price') || text.includes('quote') || text.includes('rate') || text.includes('cost') || text.includes('sheet size') || text.includes('dimensions')) {
     actions.push({ label: 'View Specifications', href: '/materials#specs' });
   }
-  if (text.includes('founder') || text.includes('syed') || text.includes('story') || text.includes('leadership')) {
+  if (text.includes('founder') || text.includes('syed') || text.includes('vithal') || text.includes('prashant') || text.includes('story') || text.includes('leadership')) {
     actions.push({ label: 'Founders & Vision', href: '/about' });
   }
   if (text.includes('sample') || text.includes('swatch') || text.includes('specimen')) {
@@ -425,4 +470,3 @@ function generateSuggestedActions(reply: string, query: string) {
 
   return actions.slice(0, 3);
 }
-

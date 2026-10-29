@@ -132,10 +132,36 @@ export function saveSiteContent(content: Partial<SiteContent>): SiteContent {
   let written = false;
   const localDir = path.dirname(localDataPath);
   const localTmp = path.join(localDir, `.custom-content.tmp.${Date.now()}`);
+  const backupsDir = path.join(localDir, 'backups');
+
   try {
     if (!fs.existsSync(localDir)) {
       fs.mkdirSync(localDir, { recursive: true });
     }
+
+    // Auto-backup existing content before modifying (keeps safety history)
+    if (fs.existsSync(localDataPath)) {
+      try {
+        if (!fs.existsSync(backupsDir)) {
+          fs.mkdirSync(backupsDir, { recursive: true });
+        }
+        const backupFile = path.join(backupsDir, `content_backup_${Date.now()}.json`);
+        fs.copyFileSync(localDataPath, backupFile);
+
+        // Keep at most 10 recent backups to avoid disk bloat
+        const allBackups = fs.readdirSync(backupsDir)
+          .filter(f => f.startsWith('content_backup_') && f.endsWith('.json'))
+          .sort();
+        if (allBackups.length > 10) {
+          allBackups.slice(0, allBackups.length - 10).forEach(oldFile => {
+            try { fs.unlinkSync(path.join(backupsDir, oldFile)); } catch {}
+          });
+        }
+      } catch (backupErr) {
+        console.warn('Backup creation warning:', backupErr);
+      }
+    }
+
     fs.writeFileSync(localTmp, payload, 'utf8');
     fs.renameSync(localTmp, localDataPath);
     written = true;

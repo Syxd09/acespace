@@ -112,8 +112,100 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      {
+        source: '/assets/materials/css-calacatta-greige-sheet.jpg',
+        destination: '/materials/pattern_calacatta_greige.jpg',
+      },
+      {
+        source: '/assets/materials/css-stonecrest-smoke-sheet.jpg',
+        destination: '/materials/pattern_stonecrest_smoke.jpg',
+      },
+      {
+        source: '/assets/materials/css-artista-sage-sheet.jpg',
+        destination: '/materials/pattern_artista_sage.jpg',
+      },
+      {
+        source: '/assets/materials/css-stonique-sheet.jpg',
+        destination: '/materials/pattern_grinds_stonique.jpg',
+      },
+      {
+        source: '/assets/materials/css-laguna-terrazzo-sheet.jpg',
+        destination: '/materials/pattern_terrazzo_laguna.jpg',
+      },
+      {
+        source: '/assets/materials/css-excavage-sheet.jpg',
+        destination: '/materials/pattern_grinds_excavage.jpg',
+      },
+      {
+        source: '/assets/materials/:path*',
+        destination: '/materials/:path*',
+      },
+    ];
+  },
   async redirects() {
     return [
+      {
+        source: '/materials/css-calacatta-greige-sheet',
+        destination: '/materials/pattern-calacatta-greige',
+        permanent: true,
+      },
+      {
+        source: '/materials/calacatta-greige',
+        destination: '/materials/pattern-calacatta-greige',
+        permanent: true,
+      },
+      {
+        source: '/materials/css-stonecrest-smoke-sheet',
+        destination: '/materials/pattern-stonecrest-smoke',
+        permanent: true,
+      },
+      {
+        source: '/materials/stonecrest-smoke',
+        destination: '/materials/pattern-stonecrest-smoke',
+        permanent: true,
+      },
+      {
+        source: '/materials/css-artista-sage-sheet',
+        destination: '/materials/pattern-artista-sage',
+        permanent: true,
+      },
+      {
+        source: '/materials/artista-sage',
+        destination: '/materials/pattern-artista-sage',
+        permanent: true,
+      },
+      {
+        source: '/materials/css-stonique-sheet',
+        destination: '/materials/pattern-grinds-stonique',
+        permanent: true,
+      },
+      {
+        source: '/materials/stonique',
+        destination: '/materials/pattern-grinds-stonique',
+        permanent: true,
+      },
+      {
+        source: '/materials/css-laguna-terrazzo-sheet',
+        destination: '/materials/pattern-terrazzo-laguna',
+        permanent: true,
+      },
+      {
+        source: '/materials/laguna-terrazzo',
+        destination: '/materials/pattern-terrazzo-laguna',
+        permanent: true,
+      },
+      {
+        source: '/materials/css-excavage-sheet',
+        destination: '/materials/pattern-grinds-excavage',
+        permanent: true,
+      },
+      {
+        source: '/materials/excavage',
+        destination: '/materials/pattern-grinds-excavage',
+        permanent: true,
+      },
       {
         source: '/about-us',
         destination: '/about',

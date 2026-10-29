@@ -7,13 +7,13 @@ const SESSION_MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 if (process.env.NODE_ENV === 'production') {
   if (!process.env.ADMIN_PASSKEY || process.env.ADMIN_PASSKEY === 'acespaces2026') {
-    console.warn(
-      '[SECURITY NOTICE] ADMIN_PASSKEY is not customized in environment variables. Falling back to default studio passkey.'
+    console.error(
+      '[CRITICAL SECURITY WARNING] ADMIN_PASSKEY is not configured or using default fallback in production. Set ADMIN_PASSKEY in your deployment environment variables.'
     );
   }
   if (!process.env.ADMIN_SECRET || process.env.ADMIN_SECRET === 'acespaces-studio-secret-salt-2026') {
-    console.warn(
-      '[SECURITY NOTICE] ADMIN_SECRET is not customized in environment variables. Falling back to default salt.'
+    console.error(
+      '[CRITICAL SECURITY WARNING] ADMIN_SECRET is not configured or using default fallback in production. Set ADMIN_SECRET in your deployment environment variables.'
     );
   }
 }

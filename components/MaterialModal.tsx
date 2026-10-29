@@ -674,7 +674,7 @@ export default function MaterialModal({
           max-height: 32px !important;
           aspect-ratio: 1 / 1 !important;
           flex-shrink: 0 !important;
-          border-radius: 50% !important;
+          border-radius: 0px !important;
           padding: 0 !important;
           box-sizing: border-box !important;
           border: 1px solid var(--line);

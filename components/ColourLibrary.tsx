@@ -952,6 +952,7 @@ export default function ColourLibrary() {
                 {/* Sample Shortlist Quick Button */}
                 <button
                   type="button"
+                  className="card-sample-btn"
                   aria-label={inTray ? `Remove ${mat.name} sample from tray` : `Add ${mat.name} sample to tray`}
                   data-agent-action="sample-toggle"
                   data-material-slug={mat.slug}
@@ -1133,6 +1134,7 @@ export default function ColourLibrary() {
                 <div style={{ marginTop: '12px', borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '10px' }}>
                   <button
                     type="button"
+                    className="card-sample-btn"
                     onClick={(e) => {
                       e.stopPropagation();
                       if (inTray) {
@@ -1151,6 +1153,7 @@ export default function ColourLibrary() {
                       color: inTray ? '#fff' : 'var(--ink)',
                       border: '1px solid var(--line)',
                       cursor: 'pointer',
+                      borderRadius: '0px',
                     }}
                   >
                     {inTray ? 'In Tray ✓' : '+ Sample'}
@@ -1295,7 +1298,7 @@ export default function ColourLibrary() {
                         addSample(mat);
                       }
                     }}
-                    className="material-list-sample-btn"
+                    className="card-sample-btn material-list-sample-btn"
                     style={{
                       padding: '8px 14px',
                       fontSize: '10.5px',
@@ -1307,6 +1310,7 @@ export default function ColourLibrary() {
                       border: '1px solid var(--line)',
                       cursor: 'pointer',
                       whiteSpace: 'nowrap',
+                      borderRadius: '0px',
                     }}
                   >
                     {inTray ? 'In Tray ✓' : '+ Sample'}
@@ -1478,6 +1482,14 @@ export default function ColourLibrary() {
       )}
 
       <style jsx>{`
+        :global(.card-sample-btn),
+        :global(.material-card button),
+        :global([data-agent-action="sample-toggle"]) {
+          border-radius: 0px !important;
+          -webkit-border-radius: 0px !important;
+          -moz-border-radius: 0px !important;
+        }
+
         .spinner-loader {
           width: 14px;
           height: 14px;

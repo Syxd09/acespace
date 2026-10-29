@@ -654,6 +654,59 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
     showToast('✓ Exported dispatch_subscribers.csv', 'success');
   };
 
+  const handleExportOrdersCSV = () => {
+    const rows = [
+      ['Order Ref', 'Date', 'Status', 'Client Name', 'Studio', 'Email', 'Phone', 'City', 'Pincode', 'Specimen Count', 'Materials'],
+      ...orders.map((o) => [
+        o.orderNumber,
+        new Date(o.createdAt).toLocaleDateString(),
+        o.status,
+        `"${(o.customer?.name || '').replace(/"/g, '""')}"`,
+        `"${(o.customer?.studio || '').replace(/"/g, '""')}"`,
+        o.customer?.email || '',
+        o.customer?.phone || '',
+        `"${(o.customer?.city || '').replace(/"/g, '""')}"`,
+        o.customer?.pincode || '',
+        o.items?.length || 0,
+        `"${(o.items || []).map(i => i.name).join('; ').replace(/"/g, '""')}"`,
+      ]),
+    ];
+    const csvContent = 'data:text/csv;charset=utf-8,' + rows.map((e) => e.join(',')).join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `sample_orders_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast('✓ Exported sample_orders.csv', 'success');
+  };
+
+  const handleExportInquiriesCSV = () => {
+    const rows = [
+      ['Inquiry Ref', 'Date', 'Status', 'Client Name', 'Email', 'Phone', 'Project Type', 'Message Preview'],
+      ...inquiries.map((i) => [
+        i.inquiryNumber || i.id,
+        new Date(i.createdAt).toLocaleDateString(),
+        i.status,
+        `"${(i.name || '').replace(/"/g, '""')}"`,
+        i.email || '',
+        i.phone || '',
+        `"${(i.projectType || '').replace(/"/g, '""')}"`,
+        `"${(i.message || '').slice(0, 150).replace(/[\r\n]+/g, ' ').replace(/"/g, '""')}"`,
+      ]),
+    ];
+    const csvContent = 'data:text/csv;charset=utf-8,' + rows.map((e) => e.join(',')).join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', `project_inquiries_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast('✓ Exported project_inquiries.csv', 'success');
+  };
+
   // Server-side Auth submission
   const handleLogin = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -7229,6 +7282,23 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 >
                   ↻ {isLoadingOrders ? 'Refreshing...' : 'Refresh'}
                 </button>
+                <button
+                  onClick={handleExportOrdersCSV}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#1a1d19',
+                    color: '#ffffff',
+                    border: 'none',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  📥 Export Orders CSV ({orders.length})
+                </button>
               </div>
             </div>
 
@@ -7647,6 +7717,23 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   }}
                 >
                   ↻ {isLoadingInquiries ? 'Refreshing...' : 'Refresh Enquiries'}
+                </button>
+                <button
+                  onClick={handleExportInquiriesCSV}
+                  style={{
+                    padding: '8px 16px',
+                    background: '#1a1d19',
+                    color: '#ffffff',
+                    border: 'none',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                  }}
+                >
+                  📥 Export Inquiries CSV ({inquiries.length})
                 </button>
               </div>
             </div>
