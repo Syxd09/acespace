@@ -1009,7 +1009,7 @@ export default function ColourLibrary() {
                     />
                   </div>
                   <p style={{ marginTop: '2px' }}>
-                    {mat.code} · {mat.finish}
+                    {mat.code} / {mat.finish}
                   </p>
                 </div>
               </div>
@@ -1245,7 +1245,7 @@ export default function ColourLibrary() {
 
                   <div className="material-list-title-block">
                     <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-                      {mat.code} · {mat.collection}
+                      {mat.code} / {mat.collection}
                     </span>
                     <h4 style={{ fontSize: '17px', fontWeight: 500, margin: '2px 0 0', color: 'var(--ink)', lineHeight: 1.25 }}>
                       {(() => {
@@ -1272,7 +1272,7 @@ export default function ColourLibrary() {
                     Finish & Tone
                   </span>
                   <span style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                    {mat.finish} · {mat.colour}
+                    {mat.finish} / {mat.colour}
                   </span>
                 </div>
 
@@ -1461,7 +1461,7 @@ export default function ColourLibrary() {
               </div>
             ) : (
               <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.04em' }}>
-                ✓ All {filteredMaterials.length} architectural materials loaded · Custom blend required?{' '}
+                All {filteredMaterials.length} materials displayed. Looking for a custom shade?{' '}
                 <Link href="/contact" style={{ textDecoration: 'underline', color: 'var(--ink)' }}>
                   Consult our Studio Desk ↗
                 </Link>

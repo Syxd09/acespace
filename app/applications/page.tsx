@@ -110,7 +110,7 @@ export default function ApplicationsPage() {
               marginBottom: '32px',
             }}
           >
-            From quiet residential monoliths to high-traffic commercial atriums, Ace Spaces solid mineral surfaces bring seamless hygiene, thermal stability, and bespoke fabrication to six distinct architectural typologies.
+            Seamless surfaces engineered for kitchens, luxury hospitality, workspaces, retail flagships, and healthcare environments.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
@@ -162,7 +162,7 @@ export default function ApplicationsPage() {
                 Typology Focus
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Curved Monoliths • Seamless Thermal Forming
+                Curved Monoliths / Seamless Thermal Forming
               </strong>
             </div>
             <Link href="#sectors" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>

@@ -644,7 +644,7 @@ export default function SpecimenZoomViewer({
                 <h3 className="fullscreen-main-title">
                   {materialName}{' '}
                   <span className="fullscreen-finish-tag">
-                    · {materialFinish} {materialColour ? `(${materialColour})` : ''}
+                    / {materialFinish} {materialColour ? `(${materialColour})` : ''}
                   </span>
                 </h3>
               </div>

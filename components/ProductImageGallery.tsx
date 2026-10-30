@@ -193,46 +193,7 @@ export default function ProductImageGallery({
                 PHOTO {String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
               </div>
 
-              {/* Hover Overlay Hint */}
-              <div
-                className="gallery-card-overlay"
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(to top, rgba(15, 18, 15, 0.85) 0%, rgba(15, 18, 15, 0.15) 50%, rgba(15, 18, 15, 0.3) 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  opacity: 0,
-                  transition: 'opacity 0.25s ease',
-                  zIndex: 3,
-                }}
-              >
-                <span
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.96)',
-                    color: '#1a1d19',
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    letterSpacing: '0.08em',
-                    padding: '8px 16px',
-                    textTransform: 'uppercase',
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                  }}
-                >
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="11" cy="11" r="8" />
-                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
-                    <line x1="11" y1="8" x2="11" y2="14" />
-                    <line x1="8" y1="11" x2="14" y2="11" />
-                  </svg>
-                  Tap to Inspect Details ↗
-                </span>
-              </div>
+
             </div>
 
             {/* Caption & Metadata Foot */}
@@ -330,7 +291,7 @@ export default function ProductImageGallery({
                   marginBottom: '2px',
                 }}
               >
-                [{productCode}] · {categoryName}
+                {productCode} / {categoryName}
               </span>
               <h3
                 style={{
@@ -633,7 +594,7 @@ export default function ProductImageGallery({
                       Architectural Palette Range
                     </span>
                     <p style={{ margin: 0, fontSize: '11px', color: '#c4cdc4', lineHeight: 1.45, fontFamily: 'DM Mono, monospace' }}>
-                      {compatibleMaterials.join(' · ')}
+                      {compatibleMaterials.join(', ')}
                     </p>
                   </div>
                 )}

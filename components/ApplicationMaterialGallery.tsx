@@ -39,33 +39,33 @@ export default function ApplicationMaterialGallery({
   const getSectorBadge = (mat: Material, index: number) => {
     if (sectorSlug.includes('health') || sectorSlug.includes('custom') || sectorSlug.includes('hospital')) {
       const badges = [
-        'ISO 846 RATING 0 • ZERO BACTERIAL GROWTH',
-        'NSF / ANSI 51 • CLEANROOM & SURGICAL CERTIFIED',
-        'DIN 68861 • CHEMICAL & REAGENT IMMUNE',
-        'HERMETIC WELD • ZERO SILICONE JOINTS',
-        '100% NON-POROUS • ASTM D570 < 0.03%',
+        'ISO 846 RATING 0 / ZERO BACTERIAL GROWTH',
+        'NSF / ANSI 51 / CLEANROOM & SURGICAL CERTIFIED',
+        'DIN 68861 / CHEMICAL & REAGENT IMMUNE',
+        'HERMETIC WELD / ZERO SILICONE JOINTS',
+        '100% NON-POROUS / ASTM D570 < 0.03%',
       ];
       return badges[index % badges.length];
     }
     if (sectorSlug.includes('resident')) {
       const badges = [
-        'NSF 51 CERTIFIED • CULINARY FOOD SAFE',
-        'SEAMLESS 45° MITRE • WATERFALL COMPLIANT',
-        'ZERO-GROUT • INTEGRAL COVED BASINS',
-        'ASTM D570 < 0.03% • ZERO OIL ABSORPTION',
+        'NSF 51 CERTIFIED / CULINARY FOOD SAFE',
+        'SEAMLESS 45° MITRE / WATERFALL COMPLIANT',
+        'ZERO-GROUT / INTEGRAL COVED BASINS',
+        'ASTM D570 < 0.03% / ZERO OIL ABSORPTION',
       ];
       return badges[index % badges.length];
     }
     if (sectorSlug.includes('hospit')) {
       const badges = [
-        'EN 13501-1 CLASS B-S1 • LOW FLAMMABILITY',
-        'SEFA 8.1 • ETHANOL & MIXER RESISTANT',
-        'FIELD RENEWABLE • SCRATCH REPAIRABLE',
-        'OPTICAL DIFFUSION • SUB-SURFACE BACKLIT',
+        'EN 13501-1 CLASS B-S1 / LOW FLAMMABILITY',
+        'SEFA 8.1 / ETHANOL & MIXER RESISTANT',
+        'FIELD RENEWABLE / SCRATCH REPAIRABLE',
+        'OPTICAL DIFFUSION / SUB-SURFACE BACKLIT',
       ];
       return badges[index % badges.length];
     }
-    return 'ARCHITECTURAL GRADE • SOLID THROUGH-BODY';
+    return 'ARCHITECTURAL GRADE / SOLID THROUGH-BODY';
   };
 
   const getApplicationSuitability = (mat: Material) => {
@@ -591,7 +591,7 @@ export default function ApplicationMaterialGallery({
                       letterSpacing: '0.08em',
                     }}
                   >
-                    {inspectingMaterial.collection} • {inspectingMaterial.code}
+                    {inspectingMaterial.collection} / {inspectingMaterial.code}
                   </span>
                   <button
                     type="button"

@@ -20,7 +20,7 @@ export default function WhatsAppConcierge() {
   const studioContact = content.studioContact;
   const whatsappNumber = studioContact?.whatsappNumber || DEFAULT_WHATSAPP_NUMBER;
   const displayPhone = studioContact?.whatsappDisplay || DEFAULT_WHATSAPP_DISPLAY;
-  const statusNote = studioContact?.availabilityStatus || 'Studio Online · Material Advisory';
+  const statusNote = studioContact?.availabilityStatus || 'Studio Online / Material Advisory';
 
   // Do not render on the admin portal
   if (pathname?.startsWith('/admin')) {
@@ -138,7 +138,7 @@ export default function WhatsAppConcierge() {
                     fontFamily: 'DM Mono, monospace',
                   }}
                 >
-                  Direct WhatsApp Liaison · {displayPhone}
+                  Direct WhatsApp / {displayPhone}
                 </div>
               </div>
 
@@ -288,7 +288,7 @@ export default function WhatsAppConcierge() {
                 }}
               >
                 <span>Bengaluru UTC+5:30</span>
-                <span style={{ color: '#25D366' }}>● Available on WhatsApp</span>
+                <span style={{ color: '#25D366' }}>Available on WhatsApp</span>
               </div>
             </div>
           </div>

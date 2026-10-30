@@ -63,7 +63,7 @@ export default function CertificationsHubPage() {
         {/* Header */}
         <div style={{ borderBottom: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingBottom: '36px', marginBottom: '48px' }}>
           <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', display: 'block', marginBottom: '12px' }}>
-            Technical Governance · Material Safety · Building Compliance
+            Technical Standards, Material Safety and Building Compliance
           </span>
           <h1 style={{ fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.02, margin: '0 0 24px', letterSpacing: '-0.05em', color: 'var(--ink, #1e211d)' }}>
             Technical Standards &amp;
@@ -71,7 +71,7 @@ export default function CertificationsHubPage() {
             Material <i>certifications.</i>
           </h1>
           <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '820px', margin: 0 }}>
-            Ace Spaces supplies authentic DuPont™ Corian® solid surfaces fabricated to the highest global material benchmarks. Every calibrated mineral slab delivered from our Bengaluru foundry carries full laboratory verification across indoor air purity, commercial food safety, life-safety fire resistance, and worker safety mandates.
+            Authentic DuPont™ Corian® solid surfaces tested and certified for indoor air quality, food safety, fire performance, and zero crystalline silica.
           </p>
         </div>
 
@@ -85,7 +85,7 @@ export default function CertificationsHubPage() {
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', marginBottom: '16px' }}>
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
-                    [{cert.code}]
+                    {cert.code}
                   </span>
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', background: 'rgba(30,33,29,0.06)', padding: '3px 7px', textTransform: 'uppercase', letterSpacing: '0.04em', textAlign: 'right' }}>
                     {cert.badge}
@@ -146,7 +146,7 @@ export default function CertificationsHubPage() {
                 100% Non-Hazardous to Cut, Route &amp; Polish
               </h3>
               <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#c2cdc2', margin: 0 }}>
-                Following nationwide bans on high-silica engineered stone in Australia and tightening occupational safety standards across Europe and North America, Ace Spaces confirms that our mineral solid surface slabs contain <strong>0.00% respirable crystalline silica</strong>. Safe for stone masons, CNC operators, site installers, and building occupants.
+                Unlike engineered quartz, solid surface contains <strong>0.00% crystalline silica</strong>. Fabricating, routing, and sanding produce zero toxic silica dust—ensuring safety for workshop craftspeople, site workers, and occupants.
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', borderLeft: '1px solid rgba(255,255,255,0.15)', paddingLeft: '32px' }}>
@@ -177,7 +177,7 @@ export default function CertificationsHubPage() {
                   alignSelf: 'flex-start',
                 }}
               >
-                Request Specifier Certificate Dossier →
+                Request Certificates →
               </Link>
             </div>
           </div>

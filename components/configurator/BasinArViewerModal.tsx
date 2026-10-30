@@ -194,7 +194,7 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
           <div>
             <div style={{ fontWeight: 600, color: '#1e211d' }}>Countertop Basin {config.modelName}</div>
             <div style={{ color: '#667066', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
-              {config.width} × {config.depth} × {config.height} mm • {config.materialName}
+              {config.width} × {config.depth} × {config.height} mm / {config.materialName}
             </div>
           </div>
           <div

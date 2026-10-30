@@ -36,7 +36,7 @@ export default function GuaranteePage() {
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(30, 33, 29, 0.05)', border: '1px solid rgba(30, 33, 29, 0.12)', padding: '6px 14px', marginBottom: '20px' }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#73c991', display: 'inline-block' }} />
             <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
-              DuPont™ Corian® Quality Network Partner Warranty · Certified In Bengaluru
+              DuPont™ Corian® Quality Network Partner Warranty (Bengaluru)
             </span>
           </div>
 
@@ -46,7 +46,7 @@ export default function GuaranteePage() {
             Material <i>guarantee.</i>
           </h1>
           <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '800px', margin: 0 }}>
-            Architecture should outlive trends. Ace Spaces warrants every authentic DuPont™ Corian® solid surface installation with an industry-defining 10-Year Renewable Guarantee—covering both raw material formulation and atelier fabrication integrity.
+            Ace Spaces warrants every authentic DuPont™ Corian® solid surface installation with a 10-Year Guarantee covering material integrity and seamless joinery.
           </p>
         </div>
 
@@ -80,20 +80,20 @@ export default function GuaranteePage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '40px' }}>
             <div style={{ fontSize: '15px', lineHeight: 1.8, color: '#2f352e', display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <p>
-                Most luxury surfaces are disposable when damaged. If granite cracks, it must be jackhammered out. If marble is etched by lemon juice, the stone is permanently discolored. If quartz chips, the repair resin leaves an unsightly patch.
+                Natural stone fractures and stains easily, while chipped tiles or quartz require messy patches or costly replacements.
               </p>
               <p>
-                <strong>Solid surface is fundamentally different because it is homogeneous through-body mineral.</strong> The color, aggregate pattern, and silky tactile density on the surface exists continuously through the entire 12mm or 19mm thickness of the slab.
+                <strong>Solid surface is homogeneous through its entire thickness.</strong> The color, pattern, and mineral structure are consistent from surface to core, which means it never delaminates.
               </p>
               <p>
-                If your kitchen benchtop or commercial reception desk suffers heavy scratching after five years of intensive service, our atelier technician simply re-sands the surface using orbital fine-grit abrasives (120 to 600 grit) and buffs it back to original atelier finish right inside your space in under two hours—with zero dust and zero cabinet demolition.
+                If a surface is scratched or marked over years of everyday use, our technicians can re-sand and buff it right on site in under two hours—returning it to factory-fresh condition without replacing a single panel.
               </p>
             </div>
 
             <div style={{ background: 'rgba(30, 33, 29, 0.03)', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '28px 24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
                 <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', margin: '0 0 14px' }}>
-                  [On-Site Restoration Protocol]
+                  On-Site Restoration Protocol
                 </h3>
                 <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#4a5249' }}>
                   <li><strong>Stage 1:</strong> Chemical clean with micro-degreaser</li>
@@ -105,7 +105,7 @@ export default function GuaranteePage() {
 
               <div style={{ borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '16px', marginTop: '20px' }}>
                 <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block' }}>
-                  RESULT: ZERO VISIBLE WEAR · INFINITE LIFECYCLE
+                  RESULT: ZERO VISIBLE WEAR / FULLY RESTORABLE
                 </span>
               </div>
             </div>
@@ -144,19 +144,19 @@ export default function GuaranteePage() {
             </h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', lineHeight: 1.6, color: '#596059' }}>
               <li style={{ display: 'flex', gap: '10px' }}>
-                <span style={{ color: '#788078' }}>·</span>
+                <span style={{ color: '#788078' }}>–</span>
                 <span><strong>Thermal Shock:</strong> Direct placement of cookware straight from 250°C+ open gas flames without a silicone trivet.</span>
               </li>
               <li style={{ display: 'flex', gap: '10px' }}>
-                <span style={{ color: '#788078' }}>·</span>
+                <span style={{ color: '#788078' }}>–</span>
                 <span><strong>Severe Impact:</strong> Heavy blunt trauma or physical abuse using metal hammers or heavy tools.</span>
               </li>
               <li style={{ display: 'flex', gap: '10px' }}>
-                <span style={{ color: '#788078' }}>·</span>
+                <span style={{ color: '#788078' }}>–</span>
                 <span><strong>Harsh Industrial Solvents:</strong> Sustained soaking in methylene chloride paint strippers or concentrated drain acids.</span>
               </li>
               <li style={{ display: 'flex', gap: '10px' }}>
-                <span style={{ color: '#788078' }}>·</span>
+                <span style={{ color: '#788078' }}>–</span>
                 <span><strong>Unauthorized Modifications:</strong> Modifications or on-site cutting executed by non-certified third-party contractors.</span>
               </li>
             </ul>

@@ -134,7 +134,7 @@ export default function HeroSlider() {
       <div className="hero-slider-controls">
         {/* Specimen Tag */}
         <div className="specimen-tag" style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          {activeSlide.specimen} <span style={{ color: 'var(--brand-red, #d43833)', margin: '0 5px' }}>•</span> {activeSlide.location}
+          {activeSlide.specimen} <span style={{ color: 'var(--muted)', margin: '0 6px' }}>/</span> {activeSlide.location}
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

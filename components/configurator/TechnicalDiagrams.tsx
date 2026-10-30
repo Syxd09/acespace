@@ -685,7 +685,7 @@ export function TowelHolderDiagram({
       {/* CNC Center Axis Marker */}
       <line x1={slotX + 14} y1="16" x2={slotX + 14} y2="34" stroke={accent} strokeWidth="0.8" strokeDasharray="2,2" />
       <text x="40" y="46" fill={accent} fontSize="6" fontFamily="DM Mono, monospace" textAnchor="middle">
-        {lengthMm ? `${lengthMm}mm` : `${(position || 'right').toUpperCase()} · R${effectiveFillet}mm`}
+        {lengthMm ? `${lengthMm}mm` : `${(position || 'right').toUpperCase()} / R${effectiveFillet}mm`}
       </text>
     </svg>
   );

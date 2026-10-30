@@ -169,7 +169,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
               letterSpacing: '0.08em',
             }}
           >
-            {project.category.toUpperCase()} • {project.location} • {project.year}
+            {project.category.toUpperCase()} / {project.location} / {project.year}
           </div>
         </div>
       )}

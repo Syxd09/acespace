@@ -87,7 +87,7 @@ export default function ContactPage() {
           the <i>brief.</i>
         </h1>
         <p>
-          Choose the conversation that best fits your project. Our technical team is ready to consult on mineral composite specs, thermoforming feasibility, and bespoke CNC fabrication.
+          Tell us about your project. Our Bengaluru team is available for material consultations, sample dispatch, CAD drawing reviews, and custom quotations.
         </p>
       </section>
 
@@ -100,7 +100,7 @@ export default function ContactPage() {
             <i>help with?</i>
           </h2>
           <p style={{ marginTop: '20px', fontSize: '15px', color: '#5d665c', lineHeight: 1.7, maxWidth: '380px' }}>
-            Every project begins with a conversation. Select a pathway to pre-populate your brief, or connect directly on WhatsApp for expedited material guidance.
+            Select a category below to tailor your inquiry, or reach out directly on WhatsApp.
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px' }}>
             <a className="button button-dark" href="#enquiry">
@@ -136,7 +136,7 @@ export default function ContactPage() {
             <i>coordinates.</i>
           </h2>
           <p style={{ marginTop: '20px', fontSize: '15px', color: '#5d665c', lineHeight: 1.7, maxWidth: '440px' }}>
-            Our Bengaluru studio headquarters hosts physical 1:1 joinery mockups, backlit translucency samples, and full-slab veining displays for trade architects, interior specifiers, and private clients.
+            Our Bengaluru studio features full-scale slab displays, backlit samples, and joinery prototypes. We welcome architects, interior designers, and clients by appointment.
           </p>
           <div style={{ marginTop: '24px' }}>
             <a
@@ -170,7 +170,7 @@ export default function ContactPage() {
             </div>
             <div className="atelier-detail-item">
               <span className="atelier-detail-label">Hours</span>
-              <span>Monday &ndash; Saturday &middot; 09:30 &ndash; 19:00 IST (Appointments Preferred)</span>
+              <span>Monday to Saturday, 09:30 to 19:00 IST (Appointments Preferred)</span>
             </div>
             <div className="atelier-detail-item">
               <span className="atelier-detail-label">Phone</span>
@@ -186,7 +186,7 @@ export default function ContactPage() {
             </div>
             <div className="atelier-detail-item">
               <span className="atelier-detail-label">Turnaround</span>
-              <span>Same-day brief acknowledgment &middot; CAD shop review within 24h&ndash;48h</span>
+              <span>Same-day brief acknowledgment, CAD shop review within 24h to 48h</span>
             </div>
           </div>
         </div>
@@ -201,7 +201,7 @@ export default function ContactPage() {
           <i>on your desk?</i>
         </h2>
         <p>
-          Before confirming your specification, feel the stone-smooth non-porous finish, inspect veining under studio light, and test thermoformed curvature with our calibrated 4-specimen swatch box.
+          Review colours, veining, and finishes under natural light with our complimentary 4-swatch specimen tray.
         </p>
         <Link className="button button-dark" href="/materials#sample-tray" prefetch={false}>
           Request Specifier Swatch Tray <span>↗</span>
@@ -212,7 +212,7 @@ export default function ContactPage() {
       <section style={{ borderTop: '1px solid var(--line)', paddingTop: '60px' }}>
         <p className="eyebrow">Consultation Brief</p>
         <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 48px)', marginBottom: '32px' }}>
-          Transmit your <i>project scope.</i>
+          Send us your <i>project details.</i>
         </h2>
         <EnquiryForm />
       </section>

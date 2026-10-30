@@ -385,7 +385,7 @@ export default function SampleTray() {
               {shortlist.length > 0 && (
                 <div style={{ margin: '6px 0 8px', flex: '0 1 auto', minHeight: 0, overflow: 'hidden' }}>
                   <span style={{ fontSize: '9.5px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '5px', letterSpacing: '0.05em' }}>
-                    Specimens in this dispatch ({shortlist.length}) · Click to inspect
+                    Specimens in this tray ({shortlist.length})
                   </span>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', maxHeight: '130px', overflowY: 'auto', paddingRight: '2px' }}>
                     {shortlist.map((mat) => {
@@ -438,7 +438,7 @@ export default function SampleTray() {
                               {fullMat.name}
                             </strong>
                             <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                              {fullMat.finish} · 12mm Specimen
+                              {fullMat.finish} / 12mm
                             </span>
                           </div>
                           <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '2px' }}>
@@ -594,7 +594,7 @@ export default function SampleTray() {
                             display: 'block',
                           }}
                         >
-                          {fullMat.finish} · 12mm Specimen
+                          {fullMat.finish} / 12mm
                         </span>
                       </div>
 
@@ -711,7 +711,7 @@ export default function SampleTray() {
                       {isSubmitting ? 'Registering Order...' : `Order Complimentary Sample Box (${shortlist.length}) ↗`}
                     </button>
                     <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textAlign: 'center', marginTop: '10px', textTransform: 'uppercase' }}>
-                      Free delivery to studios across India · 100mm × 100mm
+                      Free delivery to studios across India / 100mm × 100mm
                     </span>
                   </div>
                 </form>

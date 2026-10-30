@@ -184,25 +184,25 @@ export default function MegaMenu({
                     <li>
                       <Link href="/materials#architectural-solids" onClick={(e) => handleLinkClick(e, '/materials#architectural-solids')} className="mega-menu-link">
                         <strong>ARCHITECTURAL SOLIDS</strong>
-                        <small>Monolithic mineral slabs &bull; Uniform through-body depth</small>
+                        <small>Monolithic mineral slabs, uniform through-body depth</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials#terrazzo-aggregates" onClick={(e) => handleLinkClick(e, '/materials#terrazzo-aggregates')} className="mega-menu-link">
                         <strong>TERRAZZO &amp; AGGREGATES</strong>
-                        <small>Sedimentary micro-terrazzo &bull; Architectural grinds</small>
+                        <small>Sedimentary micro-terrazzo, architectural grinds</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials#onyx-translucent" onClick={(e) => handleLinkClick(e, '/materials#onyx-translucent')} className="mega-menu-link">
                         <strong>ONYX &amp; TRANSLUCENT</strong>
-                        <small>Translucent mineral fields &bull; Backlit halo effects</small>
+                        <small>Translucent mineral fields, backlit halo effects</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials#architectural-veined" onClick={(e) => handleLinkClick(e, '/materials#architectural-veined')} className="mega-menu-link">
                         <strong>MARBLE VEINED &amp; FLOW</strong>
-                        <small>Directional drift veins &bull; Natural waterfall movement</small>
+                        <small>Directional drift veins, natural waterfall movement</small>
                       </Link>
                     </li>
                   </ul>
@@ -228,25 +228,25 @@ export default function MegaMenu({
                     <li>
                       <Link href="/materials?family=white#library" onClick={(e) => handleLinkClick(e, '/materials?family=white#library')} className="mega-menu-link">
                         <strong>WHITES &amp; WARM CHALKS</strong>
-                        <small>Soft light-diffusing alabaster &bull; Linen undertones</small>
+                        <small>Soft light-diffusing alabaster, linen undertones</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials?family=grey#library" onClick={(e) => handleLinkClick(e, '/materials?family=grey#library')} className="mega-menu-link">
                         <strong>NATURAL GREIGES &amp; CONCRETE</strong>
-                        <small>Understated architectural greys &bull; Earthy neutrals</small>
+                        <small>Understated architectural greys, earthy neutrals</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials?family=earth#library" onClick={(e) => handleLinkClick(e, '/materials?family=earth#library')} className="mega-menu-link">
                         <strong>WARM EARTH &amp; TERRAS</strong>
-                        <small>Geological sand, desert clay &bull; Raw terracotta</small>
+                        <small>Geological sand, desert clay, raw terracotta</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/materials?family=black#library" onClick={(e) => handleLinkClick(e, '/materials?family=black#library')} className="mega-menu-link">
                         <strong>OBSIDIAN NOIR &amp; INKS</strong>
-                        <small>Deep light-absorbing charcoals &bull; Graphic blacks</small>
+                        <small>Deep light-absorbing charcoals, graphic blacks</small>
                       </Link>
                     </li>
                   </ul>
@@ -394,7 +394,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>CORIAN&reg; MATERIAL</strong>
-                        <small>Calibrated slabs &bull; 20+ through-body palette</small>
+                        <small>Calibrated slabs, 20+ through-body palette</small>
                       </Link>
                     </li>
                     <li>
@@ -404,7 +404,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>SINKS</strong>
-                        <small>Undermount chemically welded bowls &bull; Zero silicone joints</small>
+                        <small>Undermount chemically welded bowls, zero silicone joints</small>
                       </Link>
                     </li>
                     <li>
@@ -414,7 +414,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>WASHPLANES</strong>
-                        <small>Linear sloping planes &bull; Concealed continuous trough drain</small>
+                        <small>Linear sloping planes, concealed continuous trough drain</small>
                       </Link>
                     </li>
                     <li>
@@ -424,7 +424,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>HEALTH &amp; AGED CARE SOLUTIONS</strong>
-                        <small>Infection-controlled scrub sinks &bull; Accessible DDA vanities</small>
+                        <small>Infection-controlled scrub sinks, accessible DDA vanities</small>
                       </Link>
                     </li>
                   </ul>
@@ -454,7 +454,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>BENCHTOPS</strong>
-                        <small>Monolithic islands &bull; Mitred waterfalls &bull; Coved splash</small>
+                        <small>Monolithic islands, mitred waterfalls, coved splash</small>
                       </Link>
                     </li>
                     <li>
@@ -464,7 +464,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>BASINS &amp; VANITIES</strong>
-                        <small>Floating cantilever consoles &bull; Seamlessly fused bowls</small>
+                        <small>Floating cantilever consoles, seamlessly fused bowls</small>
                       </Link>
                     </li>
                     <li>
@@ -474,7 +474,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>PUBLIC BATHROOMS AND EOT SOLUTIONS</strong>
-                        <small>Commercial groom stations &bull; Vandal-resistant wash</small>
+                        <small>Commercial groom stations, vandal-resistant wash</small>
                       </Link>
                     </li>
                     <li>
@@ -484,7 +484,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>BESPOKE</strong>
-                        <small>3D thermoformed organic volumes &bull; 5-axis CNC</small>
+                        <small>3D thermoformed organic volumes, 5-axis CNC</small>
                       </Link>
                     </li>
                   </ul>
@@ -505,17 +505,10 @@ export default function MegaMenu({
                 <Link
                   href="/configurator"
                   onClick={(e) => handleLinkClick(e, '/configurator')}
-                  className="btn-3d-configurator"
+                  className="button"
+                  style={{ fontSize: '11px', padding: '12px 20px', background: 'var(--ink)', color: '#ffffff', border: '1px solid var(--ink)' }}
                 >
-                  <span className="btn-3d-cube" aria-hidden="true">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                      <line x1="12" y1="22.08" x2="12" y2="12" />
-                    </svg>
-                  </span>
-                  <span className="btn-3d-label">3D PRODUCT CONFIGURATOR</span>
-                  <span className="btn-3d-arrow">↗</span>
+                  3D Configurator <span>↗</span>
                 </Link>
                 <Link
                   href="/products"
@@ -523,7 +516,7 @@ export default function MegaMenu({
                   className="button"
                   style={{ fontSize: '11px', padding: '12px 20px', border: '1px solid var(--line)', background: 'transparent', color: 'var(--ink)' }}
                 >
-                  EXPLORE ALL PRODUCTS <span>↗</span>
+                  Explore All Products <span>↗</span>
                 </Link>
                 <Link
                   href="/products/design-certainty"
@@ -531,7 +524,7 @@ export default function MegaMenu({
                   className="text-link"
                   style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
                 >
-                  DESIGN CERTAINTY SERVICE <span>↗</span>
+                  Design Certainty Service <span>↗</span>
                 </Link>
               </div>
             </div>
@@ -541,7 +534,7 @@ export default function MegaMenu({
               <div className="mega-menu-feature-image">
                 <Image
                   src="/images/images/app_residential_artista_mist_1.jpg"
-                  alt="Interactive 3D Solid Surface Product Configurator"
+                  alt="Solid Surface Product Configurator"
                   fill
                   sizes="400px"
                   quality={70}
@@ -549,34 +542,26 @@ export default function MegaMenu({
                   decoding="async"
                   style={{ objectFit: 'cover' }}
                 />
-                <span className="mega-menu-badge" style={{ background: 'var(--accent, #d43833)', color: '#fff' }}>
-                  Interactive 3D Studio
+                <span className="mega-menu-badge" style={{ background: 'var(--ink)', color: '#fff' }}>
+                  3D Workspace
                 </span>
               </div>
               <div className="mega-menu-feature-body">
                 <div>
                   <strong style={{ display: 'block', fontSize: '15px', color: 'var(--ink)', marginBottom: '6px' }}>
-                    Interactive 3D Workspace
+                    Interactive 3D Configurator
                   </strong>
                   <p style={{ margin: '0 0 16px', fontSize: '13px', lineHeight: 1.6, color: '#4a5249' }}>
-                    Calibrate vanities, washplanes &amp; monolithic worktops in real-time WebGL. Test Corian® finishes, adjust dimensions in millimetres, and receive verified indicative quotes.
+                    Configure vanities, washplanes, and monolithic worktops. Preview Corian® colours, select dimensions, and download detailed estimates.
                   </p>
                 </div>
                 <Link
                   href="/configurator"
                   onClick={(e) => handleLinkClick(e, '/configurator')}
-                  className="btn-3d-configurator"
-                  style={{ fontSize: '10px', padding: '9px 16px', alignSelf: 'flex-start' }}
+                  className="button"
+                  style={{ fontSize: '10px', padding: '9px 16px', alignSelf: 'flex-start', background: 'var(--ink)', color: '#ffffff' }}
                 >
-                  <span className="btn-3d-cube" aria-hidden="true">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                      <line x1="12" y1="22.08" x2="12" y2="12" />
-                    </svg>
-                  </span>
-                  <span className="btn-3d-label" style={{ fontSize: '10px' }}>LAUNCH 3D STUDIO</span>
-                  <span className="btn-3d-arrow" style={{ fontSize: '13px' }}>↗</span>
+                  Open Configurator <span>↗</span>
                 </Link>
               </div>
             </div>
@@ -656,7 +641,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>01 / LUXURY RESIDENTIAL</strong>
-                        <small>Monolithic islands &bull; Waterfall gables &bull; Coved vanities</small>
+                        <small>Monolithic islands, waterfall gables, coved vanities</small>
                       </Link>
                     </li>
                     <li>
@@ -666,7 +651,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>02 / SPIRITUAL SANCTUMS</strong>
-                        <small>Mandir altars &bull; Backlit translucent jali &bull; Non-porous decks</small>
+                        <small>Mandir altars, backlit translucent jali, non-porous decks</small>
                       </Link>
                     </li>
                     <li>
@@ -676,7 +661,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>03 / HOSPITALITY &amp; DINING</strong>
-                        <small>Thermoformed bars &bull; Cocktail counters &bull; Monolithic buffets</small>
+                        <small>Thermoformed bars, cocktail counters, monolithic buffets</small>
                       </Link>
                     </li>
                     <li>
@@ -686,7 +671,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>07 / BESPOKE JOINERY</strong>
-                        <small>3D thermoformed curves &bull; Fluid pods &bull; Sculptural seating</small>
+                        <small>3D thermoformed curves, fluid pods, sculptural seating</small>
                       </Link>
                     </li>
                   </ul>
@@ -716,7 +701,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>04 / HEALTHCARE &amp; CLINICAL</strong>
-                        <small>Surgical scrub bays &bull; NSF/ANSI 51 tops &bull; Zero silicone seams</small>
+                        <small>Surgical scrub bays, NSF/ANSI 51 tops, zero silicone seams</small>
                       </Link>
                     </li>
                     <li>
@@ -726,7 +711,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>05 / COMMERCIAL INTERIORS</strong>
-                        <small>Executive boardrooms &bull; Wireless Qi &bull; Continuous wash troughs</small>
+                        <small>Executive boardrooms, wireless Qi, continuous wash troughs</small>
                       </Link>
                     </li>
                     <li>
@@ -736,17 +721,17 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>06 / EXTERIOR CLADDING</strong>
-                        <small>Ventilated rain-screens &bull; Facade cassettes &bull; Entry portals</small>
+                        <small>Ventilated rain-screens, facade cassettes, entry portals</small>
                       </Link>
                     </li>
                     <li>
                       <Link
-                        href="/fabrication#process"
-                        onClick={(e) => handleLinkClick(e, '/fabrication#process')}
+                        href="/fabrication#protocols"
+                        onClick={(e) => handleLinkClick(e, '/fabrication#protocols')}
                         className="mega-menu-link"
                       >
                         <strong>08 / ARCHITECTURAL SPECIFIER</strong>
-                        <small>CAD shop drawings &bull; ASTM test data &bull; Certified installation</small>
+                        <small>CAD shop drawings, ASTM test data, certified installation</small>
                       </Link>
                     </li>
                   </ul>
@@ -1128,25 +1113,25 @@ export default function MegaMenu({
                     <li>
                       <Link href="/about#story" onClick={(e) => handleLinkClick(e, '/about#story')} className="mega-menu-link">
                         <strong>OUR ARCHITECTURAL STORY</strong>
-                        <small>Dissolving seams &bull; Monolithic spatial continuity</small>
+                        <small>Dissolving seams, monolithic spatial continuity</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/about#team" onClick={(e) => handleLinkClick(e, '/about#team')} className="mega-menu-link">
                         <strong>THE ATELIER &amp; CRAFTSMEN</strong>
-                        <small>Master joiners, thermoformers &bull; In-house CAD team</small>
+                        <small>Master joiners, thermoformers, in-house CAD team</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/about#philosophy" onClick={(e) => handleLinkClick(e, '/about#philosophy')} className="mega-menu-link">
                         <strong>CORE DESIGN INTEGRITY</strong>
-                        <small>Radical permanence &bull; Zero-silica safe mineral matrix</small>
+                        <small>Permanence, zero-silica safe mineral matrix</small>
                       </Link>
                     </li>
                     <li>
                       <Link href="/about#foundation" onClick={(e) => handleLinkClick(e, '/about#foundation')} className="mega-menu-link">
                         <strong>DUPONT™ QUALITY ALLIANCE</strong>
-                        <small>Certified ATH substrate lineage &bull; 10-year warranty</small>
+                        <small>Certified ATH substrate lineage, 10-year warranty</small>
                       </Link>
                     </li>
                   </ul>
@@ -1172,7 +1157,7 @@ export default function MegaMenu({
                     <li>
                       <Link href="/about#locations" onClick={(e) => handleLinkClick(e, '/about#locations')} className="mega-menu-link">
                         <strong>BENGALURU HEADQUARTERS</strong>
-                        <small>Unified gallery, mockup labs &bull; Precision workshop</small>
+                        <small>Unified gallery, mockup labs, precision workshop</small>
                       </Link>
                     </li>
                     <li>
@@ -1190,7 +1175,7 @@ export default function MegaMenu({
                     <li>
                       <Link href="/contact" onClick={(e) => handleLinkClick(e, '/contact')} className="mega-menu-link">
                         <strong>SCHEDULE STUDIO VISIT</strong>
-                        <small>Meet our architects &bull; Review 1:1 scale mockups</small>
+                        <small>Meet our architects, review 1:1 scale mockups</small>
                       </Link>
                     </li>
                   </ul>

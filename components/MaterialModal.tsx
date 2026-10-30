@@ -247,7 +247,7 @@ export default function MaterialModal({
               {/* Header Meta & Pagination Indicator */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px', gap: '8px', flexShrink: 0 }}>
                 <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
-                  {currentMaterial.code} • {currentMaterial.collection}
+                  {currentMaterial.code} / {currentMaterial.collection}
                 </span>
 
                 {/* In-Card Quick Left/Right Controls for Touch / Mobile */}

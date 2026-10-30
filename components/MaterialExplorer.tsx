@@ -263,7 +263,7 @@ export default function MaterialExplorer() {
                   />
                 </div>
                 <p style={{ marginTop: '2px' }}>
-                  {material.code} · {material.finish}
+                  {material.code} / {material.finish}
                 </p>
               </div>
             </div>

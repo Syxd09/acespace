@@ -743,7 +743,7 @@ How may I assist your architectural practice today?`,
                       gap: '8px',
                     }}
                   >
-                    <span>Private Material Intelligence · Grounded</span>
+                    <span>Private Material Intelligence</span>
                     {isHalfScreen && (
                       <span
                         style={{
@@ -1224,7 +1224,7 @@ How may I assist your architectural practice today?`,
                   letterSpacing: '0.02em',
                 }}
               >
-                <span>Press Enter to send · Shift+Enter for newline</span>
+                <span>Press Enter to send, Shift+Enter for newline</span>
                 <Link
                   href="https://wa.me/919741044776"
                   target="_blank"

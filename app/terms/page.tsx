@@ -19,7 +19,7 @@ export default function TermsPage() {
             Terms of Architectural <i>Specification.</i>
           </h1>
           <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#596059' }}>
-            Edition 2026.1 · Certified Mineral Composites &amp; Monolithic Slabs
+            Edition 2026.1, Mineral Composites &amp; Slabs
           </p>
         </div>
 

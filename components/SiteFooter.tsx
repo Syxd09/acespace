@@ -100,8 +100,8 @@ export default function SiteFooter() {
             maxWidth: '440px',
             margin: '0',
           }}>
-            The Raw Material Source for Architects, Specifiers & Interior Designers.
-            Foundry for mineral composites, seamless solid surfaces, and the foundational material powering Coro Crafted Collective.
+            Authorized DuPont™ Corian® distributor and fabrication atelier in Bengaluru.
+            Calibrated mineral slabs, custom thermoforming, and seamless joinery across India.
           </p>
         </div>
 
@@ -123,7 +123,7 @@ export default function SiteFooter() {
             color: '#8c968c',
             marginBottom: '6px',
           }}>
-            Specifier Dispatch & Formulation Monographs
+            Ace Spaces Journal &amp; Updates
           </div>
           <div style={{
             fontFamily: 'var(--serif, serif)',
@@ -133,7 +133,7 @@ export default function SiteFooter() {
             marginBottom: '16px',
             lineHeight: 1.3,
           }}>
-            Quarterly updates on novel mineral formulations, technical data sheets & project case studies.
+            Updates on new materials, technical specifications &amp; recent projects.
           </div>
 
           {isSubscribed ? (
@@ -190,7 +190,7 @@ export default function SiteFooter() {
                     justifyContent: 'center',
                   }}
                 >
-                  {isSubmitting ? 'Joining...' : 'Join Dispatch →'}
+                  {isSubmitting ? 'Joining...' : 'Subscribe →'}
                 </button>
               </div>
               {subscribeError && (
@@ -221,7 +221,7 @@ export default function SiteFooter() {
             color: '#8c968c',
             marginBottom: '16px',
           }}>
-            [01 Studio & Practice]
+            Studio & Practice
           </div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
@@ -261,7 +261,7 @@ export default function SiteFooter() {
             color: '#8c968c',
             marginBottom: '16px',
           }}>
-            [02 Collections & Slabs]
+            Collections & Slabs
           </div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
@@ -301,7 +301,7 @@ export default function SiteFooter() {
             color: '#8c968c',
             marginBottom: '16px',
           }}>
-            [03 Spatial Typologies]
+            Spatial Typologies
           </div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
@@ -342,7 +342,7 @@ export default function SiteFooter() {
             color: '#8c968c',
             marginBottom: '16px',
           }}>
-            [04 Technical & Governance]
+            Technical & Governance
           </div>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {[
@@ -415,7 +415,7 @@ export default function SiteFooter() {
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
           <span>© 2026 Ace Spaces</span>
-          <span>·</span>
+          <span>/</span>
           <span>The Raw Material Source for Architects & Designers</span>
         </div>
 

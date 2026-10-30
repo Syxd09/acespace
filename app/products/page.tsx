@@ -109,7 +109,7 @@ export default function ProductsCatalogPage() {
               marginBottom: '20px',
             }}
           >
-            From monolithic kitchen benchtops with coved splashbacks to multi-station commercial washplanes and infection-controlled surgical scrub bays. Ace Spaces precision-fabricates solid surface into finished architectural fixtures that unite seamless beauty with permanent non-porous hygiene.
+            Seamless kitchen benchtops, integrated sinks, commercial washplanes, and bespoke vanities. Fabricated in Bengaluru with 5-axis CNC accuracy and invisible chemical bonding.
           </p>
 
           <div
@@ -122,19 +122,12 @@ export default function ProductsCatalogPage() {
               marginBottom: '28px',
             }}
           >
-            Calibrated DuPont™ Corian® &amp; ATH Mineral Fabrication
+            Certified DuPont™ Corian® Fabrication, Bengaluru Workshop
           </div>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
-            <Link className="btn-3d-configurator" href="/configurator" style={{ padding: '12px 22px' }}>
-              <span className="btn-3d-label">LAUNCH 3D CONFIGURATOR</span>
-              <span className="btn-3d-icon-badge" aria-hidden="true">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                  <line x1="12" y1="22.08" x2="12" y2="12" />
-                </svg>
-              </span>
+            <Link className="button button-dark" href="/configurator">
+              3D Configurator <span>↗</span>
             </Link>
             <Link className="button button-dark" href="#products-grid">
               Browse Range <span>↓</span>
@@ -232,115 +225,7 @@ export default function ProductsCatalogPage() {
         </div>
       </section>
 
-      {/* Interactive 3D Configurator Feature Banner (Architectural Editorial Theme) */}
-      <section className="products-feature-banner" style={{ margin: '60px 0 40px', background: 'var(--ink, #1e211d)', color: '#fff', border: '1px solid var(--line, rgba(255,255,255,0.08))', boxSizing: 'border-box', width: '100%', overflow: 'hidden' }}>
-        <div className="products-feature-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))', alignItems: 'stretch' }}>
-          <div style={{ padding: 'clamp(36px, 5vw, 64px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <p className="eyebrow" style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '18px', display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', flexShrink: 0, whiteSpace: 'nowrap' }}>
-                <span style={{ color: 'var(--brand-red, #d43833)', fontWeight: 600, whiteSpace: 'nowrap', flexShrink: 0, display: 'inline-block' }}>02</span>
-                <span style={{ color: 'rgba(255,255,255,0.25)', flexShrink: 0 }}>/</span>
-              </span>
-              <span style={{ whiteSpace: 'nowrap', flexShrink: 0 }}>Interactive 3D Specification Studio</span>
-            </p>
-            <h2 style={{ fontSize: 'clamp(30px, 4vw, 50px)', lineHeight: 1.12, color: '#fff', marginBottom: '18px', fontWeight: 400, letterSpacing: '-0.02em' }}>
-              Parametric fixtures,
-              <br />
-              <i style={{ fontFamily: 'var(--serif)', fontStyle: 'italic', color: '#e9e8e2' }}>calibrated to the millimetre.</i>
-            </h2>
-            <p style={{ fontSize: '15px', color: 'rgba(233, 232, 226, 0.72)', lineHeight: 1.7, maxWidth: '520px', marginBottom: '28px' }}>
-              Directly calibrate vanities, washplanes, monolithic benchtops, and clinical stations in real-time WebGL. Test calibrated Corian® mineral surfaces, configure custom coved splashbacks, and generate verified engineering quote briefs.
-            </p>
-            <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link
-                href="/configurator"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '14px',
-                  padding: '14px 24px',
-                  background: '#f2f0ea',
-                  color: '#1e211d',
-                  border: '1px solid #ffffff',
-                  borderLeft: '3px solid var(--brand-red, #d43833)',
-                  borderRadius: '0',
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 16px rgba(0, 0, 0, 0.22)',
-                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                  cursor: 'pointer',
-                }}
-              >
-                <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', color: 'var(--brand-red, #d43833)', flexShrink: 0, lineHeight: 0 }}>
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                    <line x1="12" y1="22.08" x2="12" y2="12" />
-                  </svg>
-                </span>
-                <span style={{ color: '#1e211d', fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, letterSpacing: '0.08em' }}>
-                  LAUNCH 3D STUDIO WORKSPACE
-                </span>
-                <span style={{ color: '#1e211d', fontSize: '15px', lineHeight: 0 }}>
-                  ↗
-                </span>
-              </Link>
-            </div>
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center', marginTop: '20px' }}>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase' }}>Presets:</span>
-              <Link href="/basin-configurator" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#ffb5b2', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Basins &amp; Vanities ↗</Link>
-              <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
-              <Link href="/configurator?preset=vanity-single" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Single Basin ↗</Link>
-              <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
-              <Link href="/configurator?preset=vanity-double" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Double Basin ↗</Link>
-              <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
-              <Link href="/configurator?preset=washplane-linear" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Washplane ↗</Link>
-              <span style={{ color: 'rgba(255,255,255,0.2)' }}>·</span>
-              <Link href="/configurator?preset=healthcare-station" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Clinical Scrub ↗</Link>
-            </div>
-          </div>
-          <div style={{ background: '#161815', borderLeft: '1px solid rgba(255,255,255,0.08)', padding: 'clamp(28px, 4vw, 44px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <div style={{ border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(0,0,0,0.25)', padding: '24px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '12px', marginBottom: '16px' }}>
-                <div>
-                  <span style={{ display: 'block', fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Dimensional Bounds</span>
-                  <strong style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: '#fff', letterSpacing: '0.04em' }}>STUDIO PARAMETERS</strong>
-                </div>
-              </div>
-              <div style={{ display: 'grid', gap: '10px', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Parametric Length</span>
-                  <span style={{ color: '#fff' }}>600 — 3600 mm</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Front Apron Drop</span>
-                  <span style={{ color: '#fff' }}>12 — 350 mm Mitred</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Splashback Cove</span>
-                  <span style={{ color: '#fff' }}>R10 Seamless Fusion</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Basin Integration</span>
-                  <span style={{ color: '#fff' }}>Single · Double · Trough</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Fabrication Quote</span>
-                  <span style={{ color: '#fff' }}>Instant Real-Time INR</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                  <span style={{ color: 'rgba(255,255,255,0.45)' }}>Submittal Export</span>
-                  <span style={{ color: '#fff' }}>Dimensioned CAD PNG</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* Products Grid Section */}
       <section id="products-grid" style={{ margin: '80px 0 100px' }}>
@@ -354,7 +239,7 @@ export default function ProductsCatalogPage() {
             </h2>
           </div>
           <p style={{ fontSize: '15px', color: 'var(--muted)', maxWidth: '460px', margin: 0, lineHeight: 1.6 }}>
-            Select a product category to explore technical shop drawings, edge detailing, hygiene certifications, and CAD/BIM download options.
+            Explore fabricated fixtures, edge details, and drawings for residential, commercial, and healthcare spaces.
           </p>
         </div>
 
@@ -422,7 +307,7 @@ export default function ProductsCatalogPage() {
                   marginBottom: '8px',
                 }}
               >
-                SUBSTRATES · 3660 × 760 MM
+                SUBSTRATES / 3660 × 760 MM
               </span>
               <h3 style={{ fontSize: '22px', margin: '0 0 12px', fontWeight: 500, color: 'var(--ink)' }}>
                 CORIAN&reg; MATERIAL
@@ -560,7 +445,7 @@ export default function ProductsCatalogPage() {
               <i>Service.</i>
             </h2>
             <p style={{ fontSize: '15px', lineHeight: 1.7, color: '#c2cdc2', maxWidth: '520px', marginBottom: '32px' }}>
-              Eliminate technical risks in complex solid surface detailing. We partner with architects from the schematic phase with submittal-ready CAD/BIM shop drawings, structural expansion calculations, digital on-site 3D laser templating, and full 10-year fabrication warranty sign-offs.
+              We partner with architects from concept through handover—providing CAD shop drawings, expansion calculations, on-site laser templating, and 10-year warranty sign-offs.
             </p>
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
               <Link className="button button-light" href="/products/design-certainty">
@@ -615,7 +500,7 @@ export default function ProductsCatalogPage() {
           <i>project drawings.</i>
         </h2>
         <p>
-          Upload your DWG, PDF, or 3D CAD models. Our senior fabrication team will review joinery details, advise on seamless joint placements, and provide guaranteed trade pricing within 48 hours.
+          Upload your drawings or 3D models. Our workshop team will review joinery details and provide trade pricing within 48 hours.
         </p>
         <Link className="button button-dark" href="/contact">
           Submit Drawings for Quotation <span>↗</span>

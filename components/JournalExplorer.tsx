@@ -140,7 +140,7 @@ export default function JournalExplorer() {
                   {leadArticle.category}
                 </span>
                 <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
-                  {leadArticle.readTime} • {leadArticle.date}
+                  {leadArticle.readTime} / {leadArticle.date}
                 </span>
                 {leadArticle.galleryImages && leadArticle.galleryImages.length > 0 && (
                   <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', padding: '3px 8px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
@@ -262,7 +262,7 @@ export default function JournalExplorer() {
                     Core Takeaway
                   </span>
                   <p style={{ fontSize: '12px', color: 'var(--ink)', margin: 0, lineHeight: 1.5 }}>
-                    • {art.takeaways[0]}
+                    {art.takeaways[0]}
                   </p>
                 </div>
               )}
@@ -270,7 +270,7 @@ export default function JournalExplorer() {
 
             <div style={{ borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                {art.author} • {art.date}
+                {art.author} / {art.date}
               </span>
               <span style={{ fontSize: '16px', color: 'var(--ink)' }}>↗</span>
             </div>
@@ -326,7 +326,7 @@ export default function JournalExplorer() {
                   {activeArticle.category}
                 </span>
                 <span className="journal-modal-meta-text">
-                  {activeArticle.readTime} • {activeArticle.date}
+                  {activeArticle.readTime} / {activeArticle.date}
                 </span>
               </div>
 
@@ -348,7 +348,7 @@ export default function JournalExplorer() {
             </h1>
 
             <p style={{ fontSize: '13px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '32px' }}>
-              By {activeArticle.author} • Bengaluru Studio
+              By {activeArticle.author} / Bengaluru Studio
             </p>
 
             {activeArticle.quote && (

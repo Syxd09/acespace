@@ -37,7 +37,7 @@ export default function AstmFireRatedPage() {
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(30, 33, 29, 0.05)', border: '1px solid rgba(30, 33, 29, 0.12)', padding: '6px 14px', marginBottom: '20px' }}>
             <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#73c991', display: 'inline-block' }} />
             <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
-              Fire Safety Code Certified · ASTM E84 / NFPA 255 Class A
+              Fire Safety Code Certified / ASTM E84 / NFPA 255 Class A
             </span>
           </div>
 
@@ -101,7 +101,7 @@ export default function AstmFireRatedPage() {
           {/* Code Compliance Table */}
           <div style={{ background: 'rgba(30, 33, 29, 0.03)', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '32px 28px' }}>
             <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 20px', color: '#1a1d19' }}>
-              [Building Code Equivalencies &amp; Approvals]
+              Building Code Equivalencies &amp; Approvals
             </h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}>
               {[

@@ -261,7 +261,7 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
           <div>
             <div style={{ fontWeight: 600, color: '#1e211d' }}>{config.title}</div>
             <div style={{ color: '#667066', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
-              {config.width} × {config.depth} × {config.thickness} mm • {config.colorName || config.materialName}
+              {config.width} × {config.depth} × {config.thickness} mm / {config.colorName || config.materialName}
             </div>
           </div>
           <div

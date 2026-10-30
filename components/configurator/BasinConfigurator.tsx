@@ -532,7 +532,7 @@ export default function BasinConfigurator({
                 backdropFilter: 'blur(6px)',
               }}
             >
-              Left Drag: Orbit · Right Drag: Pan · Scroll: Zoom
+              Left Drag: Orbit / Right Drag: Pan / Scroll: Zoom
             </div>
 
             {/* Viewport Floating Toolbar */}
@@ -1549,7 +1549,7 @@ export default function BasinConfigurator({
                 </div>
 
                 <div style={{ background: '#f0eee8', padding: '10px 14px', marginBottom: '18px', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
-                  {config.width} × {config.depth} × {config.height} mm · {config.materialName} · Qty: {config.quantity} Unit(s)
+                  {config.width} × {config.depth} × {config.height} mm / {config.materialName} / Qty: {config.quantity}
                 </div>
 
                 {quoteError && (

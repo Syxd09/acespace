@@ -612,7 +612,7 @@ export default function ProductConfigurator({
                 backdropFilter: 'blur(6px)',
               }}
             >
-              Left Drag: Orbit · Right Drag: Pan · Scroll: Zoom
+              Left Drag: Orbit / Right Drag: Pan / Scroll: Zoom
             </div>
 
             {/* Viewport Floating Icon Toolbar (Sleek, Architectural, Responsive) */}
@@ -1686,7 +1686,7 @@ export default function ProductConfigurator({
                               {currentBasin.name} ({currentBasin.code})
                             </div>
                             <div style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '2px' }}>
-                              {currentBasin.width} × {currentBasin.depth} × {currentBasin.height} mm · Standard Size
+                              {currentBasin.width} × {currentBasin.depth} × {currentBasin.height} mm (Standard Size)
                             </div>
                           </div>
                           <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', background: '#1e211d', color: '#fff', padding: '3px 8px', borderRadius: '2px' }}>
@@ -2820,7 +2820,7 @@ export default function ProductConfigurator({
                         </strong>
 
                         <div style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '2px' }}>
-                          DuPont™ Corian® • {(config.materialFinish || activeMat?.finish || 'Honed Satin Matte').toUpperCase()}
+                          DuPont™ Corian® / {(config.materialFinish || activeMat?.finish || 'Honed Satin Matte').toUpperCase()}
                         </div>
                       </div>
                     </div>
@@ -3001,7 +3001,7 @@ export default function ProductConfigurator({
                                 });
                               }
                             }}
-                            title={`${mat.name} (${mat.code}) • ${mat.collection} • ${mat.finish}`}
+                            title={`${mat.name} (${mat.code}) / ${mat.collection} / ${mat.finish}`}
                             style={{
                               display: 'flex',
                               flexDirection: 'column',
@@ -3468,7 +3468,7 @@ export default function ProductConfigurator({
                   Request Specification Quotation
                 </h3>
                 <p style={{ margin: '0 0 20px 0', fontSize: '12px', color: '#667066' }}>
-                  {config.title} · {config.width}mm × {config.depth}mm · {config.materialName} · Qty: {config.quantity} Unit(s)
+                  {config.title} / {config.width}mm × {config.depth}mm / {config.materialName} / Qty: {config.quantity}
                 </p>
 
                 {quoteError && (

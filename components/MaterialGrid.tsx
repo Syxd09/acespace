@@ -148,7 +148,7 @@ export default function MaterialGrid() {
             />
           </div>
           <p style={{ marginTop: '2px' }}>
-            {badgeLabel ? badgeLabel : `${m.code} · ${m.finish}`}
+            {badgeLabel ? badgeLabel : `${m.code} / ${m.finish}`}
           </p>
         </div>
       </article>
@@ -161,7 +161,7 @@ export default function MaterialGrid() {
       <section id="materials" className="materials section-pad">
         <ScrollReveal className="section-head">
           <div>
-            <p className="eyebrow">Featured Collections · Materials</p>
+            <p className="eyebrow">Materials</p>
             <h2>
               New material releases.
               <br />
@@ -179,7 +179,7 @@ export default function MaterialGrid() {
 
         <div style={{ marginTop: '36px', paddingTop: '24px', borderTop: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
           <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
-            16+ Architectural Slabs · 12mm &amp; 19mm Thicknesses · Custom CNC
+            Architectural Slabs / 12mm &amp; 19mm Thicknesses / Custom CNC
           </span>
           <Link className="text-link dark" href="/materials">
             See more materials <span>↗</span>
@@ -191,7 +191,7 @@ export default function MaterialGrid() {
       <section id="colours" className="materials section-pad" style={{ borderTop: '1px solid var(--line)', background: '#dcd7cd' }}>
         <ScrollReveal className="section-head">
           <div>
-            <p className="eyebrow">Featured Collections · Colours</p>
+            <p className="eyebrow">Colours</p>
             <h2>
               Curated palette.
               <br />
@@ -204,12 +204,12 @@ export default function MaterialGrid() {
         </ScrollReveal>
 
         <div className="material-grid">
-          {displayColours.map((m) => renderCard(m, `${m.colorFamily.toUpperCase()} PALETTE · ${m.code}`))}
+          {displayColours.map((m) => renderCard(m, `${m.colorFamily.toUpperCase()} / ${m.code}`))}
         </div>
 
         <div style={{ marginTop: '36px', paddingTop: '24px', borderTop: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
           <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
-            Curated Across 7 Color Families · Light Transmission &amp; Undertones
+            Curated Across 7 Color Families / Light Transmission &amp; Undertones
           </span>
           <Link className="text-link dark" href="/materials#library">
             See more colours <span>↗</span>

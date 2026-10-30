@@ -81,7 +81,7 @@ export default function JournalPage() {
           </h1>
 
           <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
-            Material knowledge, fabrication thinking, and observations from the world of considered architectural interiors and solid mineral joinery.
+            Articles, case notes, and technical guidance from our Bengaluru workshop and fabrication team.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>

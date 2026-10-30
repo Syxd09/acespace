@@ -130,11 +130,11 @@ export default function MaterialsAndColoursPage() {
           </h1>
 
           <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '540px', marginBottom: '16px' }}>
-            Ace Spaces is the primary raw material source and architectural colour library for architects and interior designers — providing calibrated solid surface slabs (3660mm &times; 760mm &times; 12mm/19mm), custom blanks, and 20+ through-body mineral hues that power seamless spatial creations.
+            Calibrated DuPont™ Corian® slabs, 20+ architectural tones, and zero-silica mineral surfaces for residential, commercial, and hospitality projects across India.
           </p>
 
           <div style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '24px' }}>
-            Direct Material Supply &amp; Curated Tonal Palette for Designers &amp; Architects
+            Calibrated Slabs / Swatch Library / Pan-India Dispatch
           </div>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
@@ -213,36 +213,36 @@ export default function MaterialsAndColoursPage() {
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>01</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Architectural Solids</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
-              Pure, monolithic acrylic mineral formulations offering uniform color depth and ultra-smooth tactile honings.
+              Solid through-body formulations with uniform color depth and an ultra-smooth satin touch.
             </p>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Opaque • Non-Porous • Zero Seams</span>
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Opaque / Non-Porous / Zero Seams</span>
           </div>
 
           <div id="architectural-veined" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>02</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Architectural Veined</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
-              Directional marble drift veins engineered throughout the entire sheet depth for dramatic waterfall ends.
+              Natural veining that flows through the full thickness of the slab, ideal for seamless waterfall edges.
             </p>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Directional Flow • Acid Resistant</span>
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Directional Flow / Acid Resistant</span>
           </div>
 
           <div id="terrazzo-aggregates" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>03</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Terrazzo &amp; Aggregates</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
-              Multi-scale mineral particulates and Venetian terrazzo aggregates providing earth-inspired tactile depth.
+              Mineral particulates and aggregate flecks that bring natural texture and visual depth to high-traffic areas.
             </p>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Quartz Chips • Micro-Honed Grain</span>
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Quartz Chips / Micro-Honed Grain</span>
           </div>
 
           <div id="onyx-translucent" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
             <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>04</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Onyx &amp; Translucent</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
-              High-dispersion translucent minerals that transform internal LED illumination into soft, diffused architectural halos.
+              Translucent mineral sheets that diffuse backlighting for illuminated bars, reception portals, and feature walls.
             </p>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Backlit • 38% Light Transmission</span>
+            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Backlit / 38% Light Transmission</span>
           </div>
         </div>
       </section>
@@ -318,7 +318,7 @@ export default function MaterialsAndColoursPage() {
           <i>specimen boxes.</i>
         </h2>
         <p>
-          Experience our mineral depth in your studio under natural daylight. Select up to 6 colour specimens from our library above and order a complimentary 100mm &times; 100mm specimen box delivered directly to your studio.
+          Review finishes and veining under natural daylight. Select up to 6 material samples from our library for complimentary delivery to your studio.
         </p>
         <Link className="button button-dark" href="/contact">
           Request Studio Specimen Box <span>↗</span>

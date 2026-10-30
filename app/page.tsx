@@ -57,10 +57,10 @@ export default function HomePage() {
           </h2>
           <div style={{ maxWidth: '480px' }}>
             <p className="lead" style={{ maxWidth: '100%', marginBottom: '20px' }}>
-              Surfaces carry the light and the silence of a room. As the parent company and authorized partner for <strong>DuPont™ Corian®</strong>, Ace Spaces develops solid surfaces and mineral substrates that reward touch and outlast time.
+              Surfaces shape how a room feels. As an authorized partner for <strong>DuPont™ Corian®</strong>, Ace Spaces supplies and fabricates seamless solid surfaces that reward touch and outlast trends.
             </p>
             <p style={{ maxWidth: '100%', marginBottom: '26px' }}>
-              Operating our central stockyard and precision workshop in Bangalore, we are the direct material source for architects and designers across India - powering Coro Crafted Collective with full-dimension slabs, bespoke thermoforming, and precision fabrication.
+              From our stockyard and workshop in Bengaluru, we work directly with architects and interior studios across India—supplying calibrated slabs, custom thermoforming, and precision fabrication.
             </p>
 
             {/* Architectural Credential Strip */}
@@ -108,7 +108,7 @@ export default function HomePage() {
                   Central Hub
                 </span>
                 <span style={{ fontSize: '13px', color: '#5d665c' }}>
-                  Bangalore Stockyard · Pan-India
+                  Bangalore Stockyard, Pan-India
                 </span>
               </div>
               <div>
@@ -205,7 +205,7 @@ export default function HomePage() {
             <i>way you imagine.</i>
           </h2>
           <p>
-            We shape solid surfaces into seamless, sculptural and deeply considered architectural elements - with craft at every scale.
+            We fabricate solid surfaces into seamless architectural fixtures—from kitchen monoliths to curved washplanes.
           </p>
           <div className="process">
             <div>
@@ -412,7 +412,7 @@ export default function HomePage() {
                 lineHeight: 1.6,
               }}
             >
-              Spatial Concepts · Monolithic Interiors
+              Spatial Concepts & Monolithic Interiors
               <br />
               <span style={{ color: 'rgba(30, 33, 29, 0.55)', fontSize: '10px' }}>
                 Powered by Ace Spaces Foundry
@@ -422,7 +422,7 @@ export default function HomePage() {
         </ScrollReveal>
         <ScrollReveal>
           <p className="eyebrow" style={{ marginBottom: '16px' }}>
-            Foundational Foundry · Material Origin
+            Studio Sister Brand
           </p>
           <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', lineHeight: 1.05, margin: '16px 0 24px' }}>
             The source where
@@ -430,10 +430,10 @@ export default function HomePage() {
             Coro Crafted Collective <i>begins.</i>
           </h2>
           <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'rgba(30,33,29,0.9)', marginBottom: '16px' }}>
-            Ace Spaces is the foundational authority and master material foundry behind Coro Crafted Collective. While Coro conceives complete, finished interior environments, every monolithic surface, mineral slab, and seamless join originates from the Ace Spaces raw material library.
+            Ace Spaces is the material and fabrication house behind Coro Crafted Collective. Every monolithic counter, sculpted basin, and curved plinth in Coro&apos;s interiors is built right here from authentic DuPont™ Corian®.
           </p>
           <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'rgba(30,33,29,0.75)', marginBottom: '32px' }}>
-            We supply the very same architectural-grade raw materials directly to independent architects, interior designers, and contractors for their own bespoke projects.
+            Independent architects, interior designers, and builders have direct factory-gate access to the same calibrated slabs and master fabrication services.
           </p>
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
             <Link className="button button-dark" href="/materials">
@@ -494,7 +494,7 @@ export default function HomePage() {
             <br />
             in <i>mind?</i>
           </h2>
-          <p>Tell us what you are imagining. We will bring the right material perspective.</p>
+          <p>Tell us about your project. Our Bengaluru team can help with material selection, joinery details, and quotations.</p>
 
           <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginTop: '24px' }}>
             <Link className="button button-light" href="/contact">

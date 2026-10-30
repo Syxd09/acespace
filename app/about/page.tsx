@@ -11,31 +11,31 @@ import { getSiteContent } from '@/data/contentStore';
 import { defaultAboutContent } from '@/data/contentTypes';
 
 export const metadata: Metadata = {
-  title: 'About Us - Architectural Atelier, Lineage & Coro Crafted Collective Partnership',
+  title: 'About Us — Studio Philosophy, Craft & DuPont™ Corian® Partnership',
   description:
-    'Ace Spaces is a Bengaluru-based architectural fabrication atelier and master raw material distributor for DuPont™ Corian®. Discover our code-meets-craft philosophy, 0% silica commitment, and symbiotic partnership powering Coro Crafted Collective.',
+    'Ace Spaces is a Bengaluru-based architectural fabrication studio and authorized DuPont™ Corian® partner. Precision CNC cutting, thermoforming, and zero-silica mineral surfaces powering projects across India.',
   keywords: [
     'about Ace Spaces',
     'Coro Crafted Collective sister brand',
     'DuPont Corian partner India',
-    'architectural solid surface foundry',
-    'zero-silica atelier Bengaluru',
-    'monolithic architecture practice',
+    'architectural solid surface Bengaluru',
+    'zero-silica atelier',
+    'solid surface fabrication Bangalore',
   ],
   alternates: {
     canonical: 'https://acespacesindia.vercel.app/about',
   },
   openGraph: {
-    title: 'About Us - Architectural Practice & Atelier | Ace Spaces',
+    title: 'About Us — Studio Philosophy & Craft | Ace Spaces',
     description:
-      'We are architects, digital fabricators, and master joiners founded in Bengaluru to dissolve the seams that divide contemporary space.',
+      'Architectural fabrication atelier in Bengaluru. Certified DuPont™ Corian® solid surfaces, 5-axis CNC machining, and bespoke joinery.',
     url: 'https://acespacesindia.vercel.app/about',
     images: [
       {
         url: '/images/images/app_commercial_bleached_nuwood.jpg',
         width: 1200,
         height: 630,
-        alt: 'Ace Spaces Atelier Craft & Philosophy',
+        alt: 'Ace Spaces Studio & Craft',
       },
     ],
   },
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'About Us | Ace Spaces',
     description:
-      'Architectural fabrication atelier, DuPont™ Corian® partnership, and the lineage powering Coro Crafted Collective in India.',
+      'Architectural fabrication atelier and DuPont™ Corian® partner in Bengaluru, India.',
     images: ['/images/images/app_commercial_bleached_nuwood.jpg'],
   },
 };
@@ -54,13 +54,13 @@ const aboutJsonLd = {
   name: 'About Ace Spaces',
   url: 'https://acespacesindia.vercel.app/about',
   description:
-    'Ace Spaces is an architectural fabrication atelier, mineral solid surface distributor, and engineering facility in Bengaluru, India.',
+    'Ace Spaces is an architectural fabrication studio and authorized DuPont™ Corian® distributor in Bengaluru, India.',
   mainEntity: {
     '@type': 'Organization',
     name: 'Ace Spaces',
     legalName: 'Ace Spaces Private Limited',
     foundingLocation: 'Bengaluru, India',
-    knowsAbout: ['DuPont™ Corian® Solid Surface', 'Zero-Silica Mineral Craft', '5-Axis CNC Milling', 'Thermoforming'],
+    knowsAbout: ['DuPont™ Corian® Solid Surface', 'Zero-Silica Mineral Surfaces', '5-Axis CNC Milling', 'Thermoforming'],
     subOrganization: {
       '@type': 'Organization',
       name: 'Coro Crafted Collective',
@@ -76,45 +76,45 @@ export default function AboutPage() {
   const defaultPhilosophyPillars = [
     {
       num: '01',
-      title: 'Monolithic Continuity',
-      subtitle: 'Dissolving the Joint',
-      quote: '"When a space demands uninterrupted calm, we chemically fuse mineral planes so joints vanish completely into monolithic stillness."',
-      body: 'We believe surfaces should not be sliced to satisfy standard tile grids. When a space demands continuity, we engineer invisible chemical joins that allow mineral surfaces to flow seamlessly. From sculptural kitchen monoliths to continuous coved wall planes, surfaces transition without interruption — eliminating visual friction and grime-harboring grout for absolute spatial tranquility.',
+      title: 'Seamless Continuity',
+      subtitle: 'Joints that disappear',
+      quote: 'Surfaces designed to flow without visual interruptions or grout lines.',
+      body: 'We bond solid surfaces with color-matched acrylic resins so seams become invisible. Countertops, integrated sinks, and wall returns read as one continuous piece, eliminating dirt traps and creating calm, unified spaces.',
     },
     {
       num: '02',
-      title: 'The Symbiosis of Code & Hand',
-      subtitle: 'Digital Precision + Artisan Mastery',
-      quote: '"Sub-0.2mm CNC calibration paired with the tactile intuition of master joiners."',
-      body: 'True spatial luxury cannot be achieved by machine or hand alone. Our 5-axis CNC routers mill CAD cutouts to under 0.2mm tolerances, while our seasoned joiners and thermoforming craftsmen hand-shape complex curvatures and finish every edge with a 600-grit velvety satin touch.',
+      title: 'Precision Meets Hand Craft',
+      subtitle: 'Digital accuracy, artisan finish',
+      quote: 'CNC machining for accuracy; hand-honing for tactile warmth.',
+      body: 'Our 5-axis CNC handles cutouts, rebates, and drainboards with sub-millimeter accuracy. Each piece is then hand-sanded to a velvety satin matte finish that feels warm and natural to the touch.',
     },
     {
       num: '03',
-      title: 'Radical Material Honesty & Health',
-      subtitle: 'Zero-Silica Mineral Substrates',
-      quote: '"Zero crystalline silica. 100% human-safe for craftspeople in the workshop and occupants in the home."',
-      body: 'We refuse to specify materials that jeopardize the health of stone fabricators or homeowners. Unlike engineered quartz that releases lethal crystalline silica dust, our mineral-acrylic matrix contains 100% zero crystalline silica, is non-porous, NSF food-safe, and repairable in situ for life.',
+      title: 'Zero-Silica & Non-Porous',
+      subtitle: 'Safe to shape, safe to live with',
+      quote: '100% free of crystalline silica, naturally hygienic, and food-safe.',
+      body: 'Solid surface is composed of natural bauxite mineral and acrylic polymer—completely free of respirable crystalline silica. It does not harbor bacteria, requires no chemical sealers, and carries NSF/ANSI 51 food-contact certification.',
     },
     {
       num: '04',
-      title: 'Architect-to-Architect Co-Creation',
-      subtitle: "Your Studio's Technical Extension",
-      quote: '"We speak the language of CAD, structural load, and shop drawings — translating ambitious architectural vision into flawless fabrication."',
-      body: 'We are not a distant building supply outlet. We act as an active fabrication partner for architects and interior designers across India. From initial CAD shop drawings and structural sub-framing calculations to laser templating and on-site assembly, we bring ambitious concepts to reality.',
+      title: 'Direct Studio Collaboration',
+      subtitle: 'From CAD drawings to installation',
+      quote: 'We partner directly with architects, interior studios, and builders.',
+      body: 'We speak the language of construction drawings, joinery tolerances, and site logistics. Our team reviews CAD files, builds 1:1 prototypes, and coordinates on-site installation across India.',
     },
     {
       num: '05',
-      title: 'Thermoformed Spatial Fluidity',
-      subtitle: 'Curvature Beyond the Cartesian Grid',
-      quote: '"Heated to 160°C and draped over timber bucks to unlock compound curves, gentle flutes, and organic contours."',
-      body: 'Architecture is not confined to rigid 90-degree planes. Through precise thermoforming at 160°C over custom CNC formwork, we shape mineral acrylic into seamless curved plinths, organic fluted islands, and ergonomic coved wall transitions that embrace natural human movement.',
+      title: 'Bespoke Thermoforming',
+      subtitle: 'Curves without limits',
+      quote: 'Heated to 160°C to achieve tight radii and organic curves.',
+      body: 'By thermoforming sheets over custom timber formwork, we craft curved reception desks, fluted counters, and contoured bathroom fixtures without color distortion or micro-fractures.',
     },
     {
       num: '06',
-      title: 'Circular Longevity & In-Situ Renewal',
-      subtitle: 'Restored to Day-One Stillness',
-      quote: '"Homogeneous through-body chemistry means any wear, mark, or scratch can be resurfaced on site back to day-one perfection."',
-      body: 'A luxury surface should outlast transient design trends. Because our material is homogeneous throughout, it never delaminates. Decades of heavy commercial or residential wear, minor scratches, or accidental blemishes can be effortlessly renewed on-site to factory-fresh perfection.',
+      title: 'Repairable & Long-Lasting',
+      subtitle: 'Renewed on-site at any time',
+      quote: 'Homogeneous material that never delaminates and is easy to refresh.',
+      body: 'Because solid surface is identical through its entire thickness, everyday scuffs, minor stains, or scratches can be buffed out on-site in an hour, returning the surface to its original day-one condition.',
     },
   ];
 
@@ -131,54 +131,80 @@ export default function AboutPage() {
 
   const atelierTeams = [
     {
-      role: 'Parametric CAD/CAM Engineers',
-      focus: 'Digital Unfolding & 3D Toolpaths',
-      description: 'Translate complex architectural models (Rhino, Revit, AutoCAD) into sub-millimeter nested CNC cutting paths, undercut sink rebates, and internal steel reinforcement frameworks.',
+      role: 'CAD/CAM Engineering',
+      focus: 'Digital Unfolding & Toolpaths',
+      description: 'Translating architectural models (Rhino, Revit, AutoCAD) into clean nested CNC cutting paths, sink rebates, and internal steel sub-frames.',
     },
     {
       role: 'Master Thermoformers',
-      focus: 'Thermal Platen Ovens & Vacuum Pressing',
-      description: 'Form heated 160 deg C mineral acrylic sheets over custom CNC timber bucks to achieve organic compound curves, gentle flutes, and tight 25mm radii without blanching or structural stress.',
+      focus: 'Vacuum Forming & Platen Ovens',
+      description: 'Heating mineral acrylic to 160°C to form tight 25mm radii, curved reception islands, and fluid flutes over custom timber bucks.',
     },
     {
-      role: 'Precision Joinery Technicians',
-      focus: 'Molecular Fusion & Inconspicuous Seams',
-      description: 'Apply reactive two-part color-matched methacrylate adhesives with specialized clamping jigs to physically fuse sheets, creating homogeneous joints with zero visible glue lines.',
+      role: 'Precision Joiners',
+      focus: 'Invisible Chemical Bonding',
+      description: 'Using color-matched methacrylate bonding systems and custom clamping jigs to create seamless joints with zero visible glue lines.',
     },
     {
-      role: 'Artisan Finishers & Installers',
-      focus: 'Progressive Honing & On-Site Assembly',
-      description: 'Execute a 5-stage progressive diamond honing protocol (120 to 600-grit) for light-absorbing matte finishes, and handle white-glove site delivery, seam blending, and commissioning.',
+      role: 'Finishing & Installation',
+      focus: 'Hand-Honing & Site Assembly',
+      description: 'Progressive diamond honing (120 to 600-grit) for a light-absorbing matte touch, followed by white-glove delivery and on-site seam blending.',
     },
   ];
+
+  // Resolve family photo or fall back to high-res studio shot
+  let familyPhotoSrc: string | null = null;
+  if (about.familyPhotoUrl) {
+    if (about.familyPhotoUrl.startsWith('data:') || about.familyPhotoUrl.startsWith('http')) {
+      familyPhotoSrc = about.familyPhotoUrl;
+    } else {
+      const localPath = path.join(process.cwd(), 'public', about.familyPhotoUrl.replace(/^\//, ''));
+      if (fs.existsSync(localPath)) {
+        familyPhotoSrc = about.familyPhotoUrl;
+      }
+    }
+  }
+  if (!familyPhotoSrc) {
+    const familyPhotoDir = path.join(process.cwd(), 'public', 'images', 'about');
+    const supportedFamilyExts = ['jpg', 'jpeg', 'png', 'webp'];
+    for (const ext of supportedFamilyExts) {
+      if (fs.existsSync(path.join(familyPhotoDir, `company-family.${ext}`))) {
+        familyPhotoSrc = `/images/about/company-family.${ext}`;
+        break;
+      }
+    }
+  }
+
+  const studioImageSrc = familyPhotoSrc || '/images/images/app_commercial_bleached_nuwood.jpg';
 
   return (
     <main className="page-main">
       <AboutScrollHandler />
       <JsonLd data={aboutJsonLd} />
-      {/* Rich Split Architectural Hero */}
+
+      {/* Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: '24px' }}>
-            About Us / Notes on Practice, Craft &amp; Lineage
+          <p className="eyebrow" style={{ marginBottom: '20px' }}>
+            About Us / Studio &amp; Lineage
           </p>
 
-          <h1 style={{ fontSize: 'clamp(48px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+          <h1 style={{ fontSize: 'clamp(44px, 6.5vw, 96px)', lineHeight: 0.98, margin: '0 0 24px', letterSpacing: '-0.05em' }}>
             Form &amp;
             <br />
             <i>continuity.</i>
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '540px', marginBottom: '36px' }}>
-            <strong>From material to masterpiece — we engineer possibilities into form.</strong> At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces.
+          <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '520px', marginBottom: '28px' }}>
+            We fabricate solid surfaces into seamless architectural fixtures, working directly with architects, interior designers, and creators across India.
           </p>
 
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+          <div style={{ display: 'flex', gap: '14px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="button button-dark" href="#story">
-              Our Architectural Story <span>↓</span>
+              Our Story <span>↓</span>
             </Link>
             <Link className="text-link" href="/contact">
-              Visit Bengaluru Atelier <span>↗</span>
+              Visit Bengaluru Studio <span>↗</span>
             </Link>
           </div>
 
@@ -187,19 +213,19 @@ export default function AboutPage() {
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Origin
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Bengaluru</strong>
+              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Bengaluru</strong>
             </div>
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Atelier
+                Facility
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>15,000 sq.ft</strong>
+              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>15,000 sq.ft</strong>
             </div>
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Material Standard
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>0% Silica</strong>
+              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>0% Silica</strong>
             </div>
           </div>
         </div>
@@ -215,15 +241,14 @@ export default function AboutPage() {
             decoding="async"
             style={{ objectFit: 'cover' }}
             priority
-            suppressHydrationWarning
           />
           <div className="hero-image-badge">
             <div>
               <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
-                Studio Discipline
+                Studio Focus
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Architectural Monoliths &amp; Joinery
+                Bespoke Monoliths &amp; Joinery
               </strong>
             </div>
             <Link href="#philosophy" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
@@ -233,121 +258,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Atelier Manifesto: From Material to Masterpiece */}
-      <section
-        style={{
-          background: '#f4f0e8',
-          borderBottom: '1px solid var(--line)',
-          padding: 'clamp(52px, 7vw, 92px) 5vw',
-        }}
-      >
-        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <p className="eyebrow" style={{ margin: 0 }}>Atelier Manifesto · The Core Premise</p>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: 'clamp(28px, 4vw, 64px)',
-              alignItems: 'center',
-            }}
-          >
-            <div>
-              <h2
-                style={{
-                  fontSize: 'clamp(32px, 4.4vw, 56px)',
-                  lineHeight: 1.1,
-                  fontWeight: 400,
-                  letterSpacing: '-0.04em',
-                  margin: 0,
-                  color: 'var(--ink)',
-                }}
-              >
-                {about.manifestoHeadline ? (
-                  about.manifestoHeadline
-                ) : (
-                  <>
-                    From material to masterpiece —
-                    <br />
-                    <i>we engineer possibilities into form.</i>
-                  </>
-                )}
-              </h2>
-            </div>
-
-            <div>
-              <p
-                style={{
-                  fontSize: 'clamp(16px, 1.4vw, 19px)',
-                  lineHeight: 1.75,
-                  color: '#2e352d',
-                  marginBottom: '16px',
-                  fontWeight: 400,
-                }}
-              >
-                {about.manifestoLead ||
-                  'At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces.'}
-              </p>
-              <p
-                style={{
-                  fontSize: '15px',
-                  lineHeight: 1.7,
-                  color: '#656e64',
-                  margin: 0,
-                }}
-              >
-                {about.manifestoSub ||
-                  'Every detail is considered. Every dimension matters. Every creation is built around your vision.'}
-              </p>
-
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
-                  gap: '14px',
-                  marginTop: '28px',
-                  paddingTop: '20px',
-                  borderTop: '1px solid rgba(30, 33, 29, 0.15)',
-                }}
-              >
-                <div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
-                    01 / Materials
-                  </span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--ink)' }}>
-                    Premium Solid Surface
-                  </strong>
-                </div>
-                <div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
-                    02 / Engineering
-                  </span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--ink)' }}>
-                    Precision Manufacturing
-                  </strong>
-                </div>
-                <div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
-                    03 / Fabrication
-                  </span>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--ink)' }}>
-                    Bespoke Monoliths
-                  </strong>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Sub-Navigation Quick Anchor Bar */}
       <nav
         style={{
           display: 'flex',
-          gap: 'clamp(12px, 3vw, 36px)',
+          gap: 'clamp(14px, 3vw, 36px)',
           padding: '16px 5vw',
           borderBottom: '1px solid var(--line)',
           overflowX: 'auto',
@@ -362,282 +277,110 @@ export default function AboutPage() {
       >
         <a href="#story" style={{ color: 'inherit', textDecoration: 'none' }}>01 / Our Story</a>
         <a href="#philosophy" style={{ color: 'inherit', textDecoration: 'none' }}>02 / Design Philosophy</a>
-        <a href="#team" style={{ color: 'inherit', textDecoration: 'none' }}>03 / The Atelier &amp; Makers</a>
+        <a href="#team" style={{ color: 'inherit', textDecoration: 'none' }}>03 / The Workshop</a>
         <a href="#dupont" style={{ color: 'inherit', textDecoration: 'none' }}>04 / DuPont™ Alliance</a>
-        <a href="#locations" style={{ color: 'inherit', textDecoration: 'none' }}>05 / Locations &amp; Gallery</a>
+        <a href="#locations" style={{ color: 'inherit', textDecoration: 'none' }}>05 / Bengaluru Studio</a>
       </nav>
 
       {/* Section 01: The Architectural Story */}
       <section id="story" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <p className="eyebrow" style={{ margin: 0 }}>Chapter 01 · Origin &amp; Vision</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
+            <p className="eyebrow" style={{ margin: 0 }}>01 / Origin &amp; Purpose</p>
           </div>
 
           <div className="about-two-col">
             <div>
-              <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 20px', letterSpacing: '-0.04em' }}>
-                Why we exist:
+              <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, fontWeight: 400, margin: '0 0 18px', letterSpacing: '-0.04em' }}>
+                Surfaces that
                 <br />
-                {about.chapter1Title ? (
-                  <i>{about.chapter1Title}</i>
-                ) : (
-                  <>
-                    Dissolving the friction
-                    <br />
-                    <i>of the joint.</i>
-                  </>
-                )}
+                <i>outlast trends.</i>
               </h2>
-              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.6, margin: '0 0 4px' }}>
-                Founded in Bengaluru to bridge the divide between pure architectural intent and physical craft.
+              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.6, margin: '0 0 24px' }}>
+                Founded in Bengaluru to connect architectural vision with precision fabrication.
               </p>
 
-              {/* Company Family & Leadership Photo Space */}
-              {(() => {
-                let familyPhotoSrc: string | null = null;
-                if (about.familyPhotoUrl) {
-                  if (about.familyPhotoUrl.startsWith('data:') || about.familyPhotoUrl.startsWith('http')) {
-                    familyPhotoSrc = about.familyPhotoUrl;
-                  } else {
-                    const localPath = path.join(process.cwd(), 'public', about.familyPhotoUrl.replace(/^\//, ''));
-                    if (fs.existsSync(localPath)) {
-                      familyPhotoSrc = about.familyPhotoUrl;
-                    }
-                  }
-                }
-                if (!familyPhotoSrc) {
-                  const familyPhotoDir = path.join(process.cwd(), 'public', 'images', 'about');
-                  const supportedFamilyExts = ['jpg', 'jpeg', 'png', 'webp'];
-                  for (const ext of supportedFamilyExts) {
-                    if (fs.existsSync(path.join(familyPhotoDir, `company-family.${ext}`))) {
-                      familyPhotoSrc = `/images/about/company-family.${ext}`;
-                      break;
-                    }
-                  }
-                }
-
-                return (
-                  <div
-                    style={{
-                      marginTop: '28px',
-                      background: 'rgba(255, 255, 255, 0.85)',
-                      border: '1px solid var(--line)',
-                      borderRadius: '2px',
-                      overflow: 'hidden',
-                      boxShadow: '0 2px 16px rgba(0, 0, 0, 0.04)',
-                    }}
-                  >
-                    {/* Photo Frame */}
-                    <div
-                      style={{
-                        position: 'relative',
-                        width: '100%',
-                        aspectRatio: '4 / 3',
-                        background: '#f4f0e8',
-                        overflow: 'hidden',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      {familyPhotoSrc ? (
-                        <Image
-                          src={familyPhotoSrc}
-                          alt="Ace Spaces Founding Family and Atelier Leadership"
-                          fill
-                          sizes="(max-width: 768px) 100vw, 480px"
-                          style={{
-                            objectFit: 'cover',
-                          }}
-                        />
-                      ) : (
-                        /* Architectural Placeholder Frame if image file not placed yet */
-                        <div
-                          style={{
-                            padding: '24px 20px',
-                            textAlign: 'center',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            width: '100%',
-                            height: '100%',
-                            border: '2px dashed rgba(26, 29, 25, 0.18)',
-                            margin: '8px',
-                            background: 'rgba(255, 255, 255, 0.4)',
-                            boxSizing: 'border-box',
-                          }}
-                        >
-                          <div
-                            style={{
-                              width: '42px',
-                              height: '42px',
-                              borderRadius: '50%',
-                              background: 'rgba(30, 33, 29, 0.06)',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              marginBottom: '10px',
-                              color: 'var(--ink)',
-                            }}
-                          >
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                              <circle cx="9" cy="7" r="4" />
-                              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                            </svg>
-                          </div>
-
-                          <span
-                            style={{
-                              fontFamily: 'DM Mono, monospace',
-                              fontSize: '10px',
-                              textTransform: 'uppercase',
-                              letterSpacing: '0.1em',
-                              color: 'var(--muted)',
-                              marginBottom: '4px',
-                            }}
-                          >
-                            Family Portrait Space
-                          </span>
-
-                          <strong style={{ fontSize: '13px', color: 'var(--ink)', fontWeight: 600, marginBottom: '6px' }}>
-                            Ready for Your Family Photo
-                          </strong>
-
-                          <p style={{ fontSize: '11px', lineHeight: 1.45, color: '#6e766c', margin: '0 0 8px', maxWidth: '280px' }}>
-                            Drop your photo at:
-                          </p>
-                          <code style={{ background: 'rgba(0,0,0,0.06)', padding: '4px 8px', borderRadius: '2px', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)', wordBreak: 'break-all', display: 'inline-block', maxWidth: '100%' }}>
-                            public/images/about/company-family.jpg
-                          </code>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Caption & Context Block */}
-                    <div style={{ padding: '16px 18px', borderTop: '1px solid var(--line)', background: 'rgba(255, 255, 255, 0.95)' }}>
-                      <span
-                        style={{
-                          fontFamily: 'DM Mono, monospace',
-                          fontSize: '9px',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.12em',
-                          color: 'var(--muted)',
-                          display: 'block',
-                          marginBottom: '4px',
-                        }}
-                      >
-                        01.A · Origin &amp; Stewardship
-                      </span>
-
-                      <strong
-                        style={{
-                          display: 'block',
-                          fontSize: '15px',
-                          fontWeight: 600,
-                          color: 'var(--ink)',
-                          marginBottom: '2px',
-                          letterSpacing: '-0.02em',
-                        }}
-                      >
-                        {about.familyPhotoCaption || 'The Family Behind Ace Spaces'}
-                      </strong>
-
-                      <div
-                        style={{
-                          fontFamily: 'DM Mono, monospace',
-                          fontSize: '11px',
-                          color: '#7a8479',
-                          marginBottom: '6px',
-                        }}
-                      >
-                        {about.familyPhotoSubtitle || 'Founders & Atelier Leadership · Bengaluru'}
-                      </div>
-
-                      <p
-                        style={{
-                          fontSize: '12px',
-                          lineHeight: 1.5,
-                          color: '#555e54',
-                          margin: 0,
-                        }}
-                      >
-                        United by a generational commitment to architectural stillness, physical craft, and personal stewardship.
-                      </p>
-                    </div>
-                  </div>
-                );
-              })()}
+              {/* Studio & Team Photo Frame */}
+              <div
+                style={{
+                  background: 'rgba(255, 255, 255, 0.85)',
+                  border: '1px solid var(--line)',
+                  borderRadius: '2px',
+                  overflow: 'hidden',
+                  boxShadow: '0 2px 14px rgba(0, 0, 0, 0.04)',
+                }}
+              >
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    aspectRatio: '4 / 3',
+                    background: '#f4f0e8',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Image
+                    src={studioImageSrc}
+                    alt={familyPhotoSrc ? 'Ace Spaces Founding Team' : 'Ace Spaces Studio & Workshop'}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 480px"
+                    style={{ objectFit: 'cover' }}
+                  />
+                </div>
+                <div style={{ padding: '14px 18px', borderTop: '1px solid var(--line)', background: '#fff' }}>
+                  <strong style={{ display: 'block', fontSize: '14px', fontWeight: 600, color: 'var(--ink)', marginBottom: '2px' }}>
+                    {familyPhotoSrc ? (about.familyPhotoCaption || 'The Team Behind Ace Spaces') : 'Ace Spaces Studio & Workshop'}
+                  </strong>
+                  <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#656e64', margin: 0 }}>
+                    Craftspeople, CAD engineers, and joiners united by a commitment to lasting quality.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '16px', lineHeight: 1.7, color: '#4a5249' }}>
-              <div
-                style={{
-                  padding: '24px 26px',
-                  background: 'rgba(255, 255, 255, 0.85)',
-                  border: '1px solid var(--line)',
-                  borderLeft: '4px solid var(--ink)',
-                  marginBottom: '6px',
-                  boxShadow: '0 2px 14px rgba(0, 0, 0, 0.03)',
-                }}
-              >
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--muted)', marginBottom: '8px' }}>
-                  The Foundry Promise
-                </div>
-                <strong style={{ fontSize: '18px', lineHeight: 1.35, color: 'var(--ink)', display: 'block', marginBottom: '10px', letterSpacing: '-0.02em', fontWeight: 600 }}>
-                  {about.manifestoHeadline || 'From material to masterpiece — we engineer possibilities into form.'}
-                </strong>
-                <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#4a5249', margin: '0 0 10px' }}>
-                  {about.manifestoLead || 'At Ace Spaces, we bring together premium solid-surface materials, precision engineering, and bespoke fabrication to transform ambitious ideas into exceptional spaces.'}
-                </p>
-                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#7a8479', margin: 0, fontFamily: 'DM Mono, monospace' }}>
-                  {about.manifestoSub || 'Every detail is considered. Every dimension matters. Every creation is built around your vision.'}
-                </p>
+              <p className="lead" style={{ fontSize: '18px', color: 'var(--ink)', margin: 0 }}>
+                Traditional stone surfaces come with unavoidable compromises: natural marble stains and fissures easily, engineered quartz carries toxic crystalline silica risks, and tiles leave grout lines that collect grime.
+              </p>
+              <p>
+                <strong>Ace Spaces was started to give designers a cleaner alternative.</strong> From our stockyard and fabrication workshop in Bengaluru, we provide authentic DuPont™ Corian® solid surfaces shaped with sub-millimeter CNC accuracy and bonded with invisible seams.
+              </p>
+              <p>
+                Whether it is a 5-meter monolithic kitchen island with an integrated seamless sink, a curved backlit reception counter, or clinical healthcare washplanes, we turn raw sheets into durable, sculptural spaces.
+              </p>
+              <div style={{ display: 'flex', gap: '14px', marginTop: '10px', flexWrap: 'wrap' }}>
+                <Link className="button button-dark" href="/materials">
+                  View Materials Palette <span>↗</span>
+                </Link>
+                <Link className="text-link" href="/fabrication" style={{ alignSelf: 'center' }}>
+                  Explore Fabrication Capabilities <span>→</span>
+                </Link>
               </div>
-
-              <p>
-                For generations, architects and interior designers were constrained by the physical limits of traditional stone and ceramic tiles. Natural marble fractures along concealed fissures; quartz harbors lethal crystalline silica dust; and ceramic slabs inevitably require grout lines that attract grime, harbor bacteria, and shatter visual tranquility.
-              </p>
-              <p>
-                <strong>Ace Spaces was born to eliminate these compromises.</strong> Operating from our central fabrication atelier and material stockyard in Bengaluru, we provide architects with an uncompromising, monolithic canvas: ultra-refined mineral acrylic solid surfaces that can be shaped with sub-millimeter robotic precision and fused with molecularly invisible seams.
-              </p>
-              <p>
-                An entire 6-meter kitchen island with an integrated seamless sink basin, a curving reception desk with concealed ambient backlighting, or a continuous clinical wet-wall can now read as a single, uninterrupted sculpture carved from pure geological stillness.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section 02: Our Design Philosophy */}
+      {/* Section 02: Design Philosophy */}
       <section id="philosophy" className="section-pad" style={{ borderBottom: '1px solid var(--line)', background: '#ece8df' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <p className="eyebrow" style={{ margin: 0 }}>Chapter 02 · Architectural Philosophy</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
+            <p className="eyebrow" style={{ margin: 0 }}>02 / Design Philosophy</p>
           </div>
 
-          <div className="about-two-col-wide" style={{ marginBottom: '40px' }}>
+          <div className="about-two-col-wide" style={{ marginBottom: '36px' }}>
             <div>
-              <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: 0, letterSpacing: '-0.04em' }}>
-                {about.chapter2Title ? (
-                  <i>{about.chapter2Title}</i>
-                ) : (
-                  <>
-                    Principles of
-                    <br />
-                    <i>spatial stillness.</i>
-                  </>
-                )}
+              <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, fontWeight: 400, margin: 0, letterSpacing: '-0.04em' }}>
+                Principles of
+                <br />
+                <i>our craft.</i>
               </h2>
             </div>
             <div>
-              <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', margin: 0 }}>
-                Every counter, sink, plinth, and wall plane crafted in our workshop is governed by six core architectural convictions. We do not chase decorative trends; we pursue timeless geometry, tactile warmth, and permanent structural honesty.
+              <p style={{ fontSize: '16px', lineHeight: 1.7, color: '#4a5249', margin: 0 }}>
+                Every surface, sink, and plinth we craft is guided by six principles: seamless geometry, tactile warmth, material safety, and honest construction.
               </p>
             </div>
           </div>
@@ -646,38 +389,24 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Section 03: The Atelier & Craftsmen */}
+      {/* Section 03: The Atelier & Makers */}
       <section id="team" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <p className="eyebrow" style={{ margin: 0 }}>Chapter 03 · The Atelier &amp; Makers</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
+            <p className="eyebrow" style={{ margin: 0 }}>03 / Workshop &amp; Makers</p>
           </div>
 
-          <div className="about-two-col-team" style={{ marginBottom: '44px' }}>
+          <div className="about-two-col-team" style={{ marginBottom: '40px' }}>
             <div>
-              <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 18px', letterSpacing: '-0.04em' }}>
-                {about.chapter3Title ? (
-                  <i>{about.chapter3Title}</i>
-                ) : (
-                  <>
-                    The hands behind
-                    <br />
-                    <i>the surfaces.</i>
-                  </>
-                )}
+              <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, fontWeight: 400, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
+                The hands behind
+                <br />
+                <i>the surfaces.</i>
               </h2>
-              <p style={{ fontSize: '15px', lineHeight: 1.7, color: '#555e54', margin: '0 0 24px' }}>
-                Our integrated facility in Bengaluru operates as an architectural laboratory. Here, industrial machinery is guided by the discerning eyes of computational designers, thermoforming masters, and artisanal finishers.
+              <p style={{ fontSize: '15px', lineHeight: 1.65, color: '#555e54', margin: '0 0 20px' }}>
+                Our integrated facility in Bengaluru operates as an architectural laboratory, where CNC machinery is guided by computational designers, thermoforming specialists, and master joiners.
               </p>
-              <div style={{ padding: '20px', background: 'rgba(30, 33, 29, 0.04)', borderLeft: '3px solid var(--ink)' }}>
-                <strong style={{ fontSize: '13px', display: 'block', color: 'var(--ink)', marginBottom: '4px' }}>
-                  White-Glove Architectural Execution
-                </strong>
-                <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                  We maintain full chain-of-custody from raw slab arrival and CNC cut-sheets to on-site assembly across India.
-                </p>
-              </div>
             </div>
 
             <div className="about-units-grid">
@@ -685,21 +414,21 @@ export default function AboutPage() {
                 <div
                   key={team.role}
                   style={{
-                    padding: '24px',
-                    background: 'rgba(255, 255, 255, 0.6)',
+                    padding: '22px',
+                    background: 'rgba(255, 255, 255, 0.7)',
                     border: '1px solid var(--line)',
                   }}
                 >
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
                     Unit 0{idx + 1}
                   </span>
                   <h4 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', margin: '0 0 4px' }}>
                     {team.role}
                   </h4>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#7a8479', marginBottom: '10px' }}>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#7a8479', marginBottom: '8px' }}>
                     {team.focus}
                   </div>
-                  <p style={{ fontSize: '12px', lineHeight: 1.6, color: '#6e766c', margin: 0 }}>
+                  <p style={{ fontSize: '12.5px', lineHeight: 1.55, color: '#656e64', margin: 0 }}>
                     {team.description}
                   </p>
                 </div>
@@ -719,7 +448,7 @@ export default function AboutPage() {
             <div
               style={{
                 position: 'relative',
-                height: 'clamp(280px, 42vw, 480px)',
+                height: 'clamp(260px, 38vw, 440px)',
                 width: '100%',
                 overflow: 'hidden',
                 background: '#ece8df',
@@ -750,41 +479,15 @@ export default function AboutPage() {
               }}
             >
               <div>
-                <span
-                  style={{
-                    fontFamily: 'DM Mono, monospace',
-                    fontSize: '9px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    color: 'var(--muted)',
-                    display: 'block',
-                    marginBottom: '3px',
-                  }}
-                >
-                  Fabrication Atelier · Bengaluru
+                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
+                  Bengaluru Workshop
                 </span>
-                <strong
-                  style={{
-                    fontSize: '14px',
-                    fontWeight: 600,
-                    color: 'var(--ink)',
-                    display: 'block',
-                    letterSpacing: '-0.01em',
-                  }}
-                >
+                <strong style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>
                   {about.workshopPhotoCaption || 'Continuous 4.2-Meter Island with Integrated Sub-Surface Sink'}
                 </strong>
               </div>
-              <p
-                style={{
-                  fontSize: '12px',
-                  lineHeight: 1.5,
-                  color: '#555e54',
-                  margin: 0,
-                  maxWidth: '460px',
-                }}
-              >
-                Fabricated with 45° mitred waterfalls and zero visible joints at our Bengaluru studio atelier.
+              <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#555e54', margin: 0, maxWidth: '440px' }}>
+                Fabricated with 45° mitred waterfall ends and seamless invisible joints.
               </p>
             </div>
           </div>
@@ -802,273 +505,99 @@ export default function AboutPage() {
           scrollMarginTop: '20px',
         }}
       >
-        {/* Anchor aliases for #foundation, #partnership, and #alliance */}
-        <div
-          id="foundation"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '1px',
-            height: '1px',
-            pointerEvents: 'none',
-            opacity: 0,
-            scrollMarginTop: '96px',
-          }}
-        />
-        <div
-          id="partnership"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '1px',
-            height: '1px',
-            pointerEvents: 'none',
-            opacity: 0,
-            scrollMarginTop: '96px',
-          }}
-        />
-        <div
-          id="alliance"
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '1px',
-            height: '1px',
-            pointerEvents: 'none',
-            opacity: 0,
-            scrollMarginTop: '96px',
-          }}
-        />
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <p className="eyebrow" style={{ margin: 0 }}>Chapter 04 · Material Foundation &amp; Sourcing Alliance</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
+            <p className="eyebrow" style={{ margin: 0 }}>04 / Material Sourcing</p>
           </div>
 
-          <div className="about-two-col" style={{ marginBottom: '36px' }}>
+          <div className="about-two-col" style={{ marginBottom: '32px' }}>
             <div>
-              <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 20px', letterSpacing: '-0.04em' }}>
-                Our studio is the vision.
+              <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, fontWeight: 400, margin: '0 0 18px', letterSpacing: '-0.04em' }}>
+                Our craft.
                 <br />
-                <i>DuPont™ is our medium.</i>
+                <i>DuPont™ Corian®.</i>
               </h2>
-              <div style={{ padding: '18px 22px', background: 'rgba(255, 255, 255, 0.75)', border: '1px solid var(--line)', borderRadius: '2px' }}>
+              <div style={{ padding: '18px 20px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)', borderRadius: '2px', marginBottom: '20px' }}>
                 <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
-                  Strategic Alliance Status
+                  Strategic Partnership
                 </div>
                 <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>
-                  Authorised DuPont™ Corian® Quality Network Industrial Partner
+                  Authorized DuPont™ Corian® Quality Network Industrial Partner
                 </div>
-                <div style={{ fontSize: '12px', color: '#6e766c', marginTop: '6px', lineHeight: 1.5 }}>
-                  Certified industrial master fabricator and stockist backed by DuPont's 10-year installed manufacturer warranty.
+                <div style={{ fontSize: '12px', color: '#656e64', marginTop: '6px', lineHeight: 1.5 }}>
+                  Certified master fabricator and stockist backed by DuPont's 10-year installed warranty.
                 </div>
               </div>
 
-              {/* Authorised Alliance Brand Logos Lockup */}
+              {/* Co-Branded Alliance Lockup */}
               <div
                 style={{
-                  marginTop: '20px',
-                  padding: '26px 22px',
+                  padding: '20px',
                   background: '#ffffff',
                   border: '1px solid var(--line)',
                   borderRadius: '2px',
                   display: 'flex',
-                  flexDirection: 'column',
-                  gap: '18px',
                   alignItems: 'center',
-                  textAlign: 'center',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
+                  justifyContent: 'center',
+                  gap: '20px',
+                  flexWrap: 'wrap',
                 }}
               >
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      borderRadius: '50%',
-                      background: '#22c55e',
-                      boxShadow: '0 0 8px rgba(34, 197, 94, 0.6)',
-                      display: 'inline-block',
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: 'DM Mono, monospace',
-                      fontSize: '9px',
-                      letterSpacing: '0.12em',
-                      textTransform: 'uppercase',
-                      color: 'var(--muted)',
-                    }}
-                  >
-                    Authorised Strategic Partnership Lockup
-                  </span>
-                </div>
-
-                {/* Co-Branded Alliance Lockup: Ace Spaces × DuPont Corian */}
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '20px',
-                    flexWrap: 'wrap',
-                    padding: '8px 0',
-                    width: '100%',
-                  }}
-                >
-                  <div style={{ maxWidth: '170px', flex: '1 1 140px', display: 'flex', justifyContent: 'center' }}>
-                    <Image
-                      src="/logo/full-logo-transparent.png"
-                      alt="Ace Spaces India"
-                      width={170}
-                      height={54}
-                      style={{ height: 'auto', width: '100%', maxWidth: '160px', objectFit: 'contain' }}
-                      priority
-                    />
-                  </div>
-
-                  <span style={{ fontSize: '16px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace', fontWeight: 300 }}>
-                    ×
-                  </span>
-
-                  <div style={{ maxWidth: '200px', flex: '1 1 160px', display: 'flex', justifyContent: 'center' }}>
-                    <Image
-                      src="/assets/dupont-corian-quality-network-partner.png"
-                      alt="DuPont™ Corian® Quality Network Industrial Partner Authorised Badge"
-                      width={220}
-                      height={76}
-                      style={{ height: 'auto', width: '100%', maxWidth: '200px', objectFit: 'contain' }}
-                      priority
-                    />
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '100%',
-                    paddingTop: '14px',
-                    borderTop: '1px solid var(--line)',
-                  }}
-                >
-                  <Image
-                    src="/assets/Corian-Red-logo.png.webp"
-                    alt="Corian® Solid Surface"
-                    width={160}
-                    height={64}
-                    style={{ height: '36px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
-                  />
-                </div>
-
-                <div
-                  style={{
-                    fontSize: '11px',
-                    fontFamily: 'DM Mono, monospace',
-                    color: '#6e766c',
-                    borderTop: '1px solid var(--line)',
-                    paddingTop: '12px',
-                    width: '100%',
-                    letterSpacing: '0.04em',
-                    lineHeight: 1.5,
-                  }}
-                >
-                  Authorised Master Fabricator · 10-Year Installed Warranty
-                </div>
+                <Image
+                  src="/logo/full-logo-transparent.png"
+                  alt="Ace Spaces India"
+                  width={150}
+                  height={48}
+                  style={{ height: 'auto', width: '130px', objectFit: 'contain' }}
+                />
+                <span style={{ fontSize: '16px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>×</span>
+                <Image
+                  src="/assets/dupont-corian-quality-network-partner.png"
+                  alt="DuPont™ Corian® Quality Network Industrial Partner"
+                  width={180}
+                  height={62}
+                  style={{ height: 'auto', width: '160px', objectFit: 'contain' }}
+                />
               </div>
             </div>
 
             <div>
-              <p className="lead" style={{ fontSize: '17px', lineHeight: 1.7, color: 'var(--ink)', marginBottom: '18px' }}>
-                To achieve true architectural permanence, craftsmanship must be grounded in verified material science. Ace Spaces is an authorised <strong>Quality Network Industrial Partner of DuPont™ Corian®</strong>, supplying and fabricating genuine solid surfaces across India.
+              <p className="lead" style={{ fontSize: '17px', lineHeight: 1.65, color: 'var(--ink)', marginBottom: '16px' }}>
+                Craftsmanship is only as good as the raw material. Ace Spaces is an authorized <strong>Quality Network Industrial Partner of DuPont™ Corian®</strong>, supplying and fabricating genuine solid surface sheets across India.
               </p>
-              <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#555e54', marginBottom: '18px' }}>
-                Invented by DuPont scientists, Corian® blends approximately two-thirds natural Aluminium Trihydrate (ATH, purified bauxite mineral) with high-grade acrylic polymer (PMMA). This precise formula guarantees through-body consistency, complete non-porosity, and total freedom from crystalline silica hazards.
-              </p>
-              <p style={{ fontSize: '14px', lineHeight: 1.7, color: '#555e54', marginBottom: '28px' }}>
-                As an accredited Quality Network partner, our fabrication foundry adheres strictly to DuPont's technical specifications. Every raw slab dispatched from our stockyard carries genuine chemical traceability, NSF/ANSI 51 food-contact safety certification, Greenguard Gold compliance, and DuPont's 10-year installed warranty.
+              <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#555e54', marginBottom: '24px' }}>
+                Corian® combines natural bauxite mineral (Aluminium Trihydrate) with pure acrylic resin (PMMA). The result is non-porous, completely free of crystalline silica, and repairable in situ. Every sheet we dispatch carries authentic chemical traceability and a 10-year warranty.
               </p>
 
-              {/* The 3-Entity Ecosystem Clarification */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
-                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                      Material Origin &amp; Accreditation
-                    </span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', margin: '12px 0 14px', flexWrap: 'wrap' }}>
-                      <Image
-                        src="/assets/dupont-corian-quality-network-partner.png"
-                        alt="DuPont™ Corian® Quality Network Industrial Partner"
-                        width={180}
-                        height={60}
-                        style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
-                      />
-                      <div style={{ width: '1px', height: '24px', background: 'var(--line)' }} />
-                      <Image
-                        src="/assets/Corian-Red-logo.png.webp"
-                        alt="Corian® Solid Surface"
-                        width={120}
-                        height={48}
-                        style={{ height: '30px', width: 'auto', objectFit: 'contain' }}
-                      />
-                    </div>
-                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Quality Network Partner</h4>
-                    <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                      Authorised DuPont™ Corian® Industrial Partner. Certified ATH + PMMA chemistry, 10-year warranty, zero-silica safety.
-                    </p>
-                  </div>
+              {/* 3-Entity Overview */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
+                <div style={{ padding: '16px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                    01 / Material Origin
+                  </span>
+                  <h4 style={{ fontSize: '13px', fontWeight: 600, margin: '0 0 4px' }}>DuPont™ Corian®</h4>
+                  <p style={{ fontSize: '11.5px', lineHeight: 1.5, color: '#656e64', margin: 0 }}>
+                    Certified ATH + acrylic chemistry with zero crystalline silica and a 10-year manufacturer warranty.
+                  </p>
                 </div>
-                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                      Practice &amp; Atelier
-                    </span>
-                    <div style={{ display: 'flex', alignItems: 'center', height: '34px', margin: '12px 0 14px' }}>
-                      <Image
-                        src="/logo/full-logo-transparent.png"
-                        alt="Ace Spaces India"
-                        width={130}
-                        height={36}
-                        style={{ height: '32px', width: 'auto', objectFit: 'contain' }}
-                      />
-                    </div>
-                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Ace Spaces</h4>
-                    <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                      The architectural atelier, 5-axis CNC router, thermoforming workshop, stockyard, and nationwide installer.
-                    </p>
-                  </div>
+                <div style={{ padding: '16px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                    02 / Fabrication
+                  </span>
+                  <h4 style={{ fontSize: '13px', fontWeight: 600, margin: '0 0 4px' }}>Ace Spaces</h4>
+                  <p style={{ fontSize: '11.5px', lineHeight: 1.5, color: '#656e64', margin: 0 }}>
+                    The central stockyard, 5-axis CNC routing suite, thermoforming ovens, and on-site assembly team.
+                  </p>
                 </div>
-                <div style={{ padding: '20px 18px', background: 'rgba(255, 255, 255, 0.7)', border: '1px solid var(--line)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                  <div>
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                      Spatial Living Brand
-                    </span>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', height: '34px', margin: '12px 0 14px' }}>
-                      <Image
-                        src="/images/coro-emblem.png"
-                        alt="Coro Crafted Collective Emblem"
-                        width={30}
-                        height={36}
-                        style={{ height: '28px', width: 'auto', objectFit: 'contain' }}
-                      />
-                      <Image
-                        src="/images/coro-wordmark.png"
-                        alt="Coro Crafted Collective Wordmark"
-                        width={90}
-                        height={26}
-                        style={{ height: '18px', width: 'auto', objectFit: 'contain' }}
-                      />
-                    </div>
-                    <h4 style={{ fontSize: '14px', fontWeight: 600, margin: '0 0 4px' }}>Coro Crafted Collective</h4>
-                    <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#6e766c', margin: 0 }}>
-                      Our sister spatial studio and collectible furniture label, creating bespoke interior architecture powered by Ace Spaces.
-                    </p>
-                  </div>
+                <div style={{ padding: '16px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                    03 / Spatial Brand
+                  </span>
+                  <h4 style={{ fontSize: '13px', fontWeight: 600, margin: '0 0 4px' }}>Coro Crafted Collective</h4>
+                  <p style={{ fontSize: '11.5px', lineHeight: 1.5, color: '#656e64', margin: 0 }}>
+                    Our sister spatial studio and collectible furniture label, powered by Ace Spaces materials.
+                  </p>
                 </div>
               </div>
             </div>
@@ -1079,20 +608,20 @@ export default function AboutPage() {
       {/* Section 05: Studio Headquarters */}
       <section id="locations" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <p className="eyebrow" style={{ margin: 0 }}>Chapter 05 · Studio Headquarters</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
+            <p className="eyebrow" style={{ margin: 0 }}>05 / Bengaluru Studio</p>
           </div>
 
-          <div className="about-two-col-wide" style={{ marginBottom: '36px' }}>
+          <div className="about-two-col-wide">
             <div>
-              <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', lineHeight: 1.08, fontWeight: 400, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
+              <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, fontWeight: 400, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
                 Visit our studio
                 <br />
                 <i>in Bengaluru.</i>
               </h2>
-              <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#555e54', margin: '0 0 20px' }}>
-                Ace Spaces and Coro Crafted Collective share one single, unified studio and headquarters in Bengaluru. We welcome architects, interior designers, and clients for tactile consultations, custom mockups, and private material reviews under one roof.
+              <p style={{ fontSize: '14px', lineHeight: 1.65, color: '#555e54', margin: '0 0 24px' }}>
+                Our unified facility brings together our slab gallery, material sample trays, and fabrication workshop under one roof. Architects and designers are welcome for hands-on material reviews and drawing discussions.
               </p>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <a
@@ -1114,54 +643,50 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Single Unified Headquarters Card */}
-            <div style={{ padding: '32px', background: 'rgba(255, 255, 255, 0.75)', border: '1px solid var(--line)', backdropFilter: 'blur(8px)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '12px', marginBottom: '16px' }}>
+            {/* Studio Info Card */}
+            <div style={{ padding: '28px', background: 'rgba(255, 255, 255, 0.75)', border: '1px solid var(--line)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '10px', marginBottom: '14px' }}>
                 <div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
-                    Single Unified Studio Headquarters
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)', display: 'block', marginBottom: '4px' }}>
+                    Unified Studio &amp; Atelier
                   </span>
-                  <h3 style={{ fontSize: '22px', fontWeight: 600, color: 'var(--ink)', margin: 0, letterSpacing: '-0.02em' }}>
-                    Coro Crafted Collective &amp; Ace Spaces Studio Headquarters
+                  <h3 style={{ fontSize: '20px', fontWeight: 600, color: 'var(--ink)', margin: 0 }}>
+                    Ace Spaces &amp; Coro Crafted Collective
                   </h3>
                 </div>
                 <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', padding: '4px 10px', background: 'var(--ink)', color: '#fff', borderRadius: '2px', textTransform: 'uppercase' }}>
-                  Bengaluru · Headquarters
+                  Bengaluru
                 </span>
               </div>
 
-              <p style={{ fontSize: '13.5px', lineHeight: 1.6, color: '#444d43', margin: '0 0 24px' }}>
-                Bengaluru, Karnataka, India · Our unified facility brings together the tactile design gallery, full-scale 20+ calibrated slab library, 5-axis CNC digital fabrication suite, and vacuum thermoforming ovens in one singular address.
+              <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', margin: '0 0 20px' }}>
+                Bengaluru, Karnataka, India — Design gallery, 20+ calibrated slab library, 5-axis CNC suite, and thermoforming ovens in one address.
               </p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '24px', paddingTop: '20px', borderTop: '1px solid var(--line)' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '18px', paddingTop: '16px', borderTop: '1px solid var(--line)' }}>
                 <div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', fontWeight: 600, marginBottom: '8px' }}>
-                    Design Gallery &amp; Specifier Library
-                  </span>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6e766c', lineHeight: 1.7 }}>
-                    • 20+ Calibrated Full-Scale Slabs on Display
+                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>
+                    Gallery &amp; Slab Library
+                  </strong>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#656e64', lineHeight: 1.6 }}>
+                    20+ Calibrated Full-Scale Slabs
                     <br />
-                    • Backlit Translucent Light Simulator Suite
+                    Backlit Translucency Displays
                     <br />
-                    • Complimentary Physical Specifier Sample Trays
-                    <br />
-                    • Dedicated Architect &amp; Designer Consultation Desks
+                    Physical Specifier Swatch Trays
                   </div>
                 </div>
 
                 <div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', fontWeight: 600, marginBottom: '8px' }}>
-                    Fabrication Atelier &amp; CNC Suite
-                  </span>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6e766c', lineHeight: 1.7 }}>
-                    • 5-Axis CNC Precision Milling &amp; Sub-Surface Joinery
+                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>
+                    Fabrication Atelier
+                  </strong>
+                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#656e64', lineHeight: 1.6 }}>
+                    5-Axis CNC Precision Milling
                     <br />
-                    • Industrial Vacuum Membrane Thermoforming Ovens
+                    Vacuum Membrane Thermoforming
                     <br />
-                    • Monolithic Pre-Assembly &amp; Custom Mockup Testing
-                    <br />
-                    • Direct Pan-India Dispatch &amp; Installation Logistics
+                    Direct Pan-India Delivery &amp; Install
                   </div>
                 </div>
               </div>
@@ -1170,166 +695,67 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Comprehensive Studio Specification Directory */}
-      <section className="spec-table">
-        <div className="spec-row">
-          <span>Practice Name</span>
-          <div>Ace Spaces - Architectural Solid Surface Atelier &amp; Precision Fabrication Practice</div>
-        </div>
-        <div className="spec-row">
-          <span>Founding Ethos</span>
-          <div>Eliminating seams and visual friction in contemporary architecture through monolithic mineral surfaces</div>
-        </div>
-        <div className="spec-row">
-          <span>Material Alliance</span>
-          <div>Authorized DuPont™ Corian® Distributor &amp; Certified Master Fabricator</div>
-        </div>
-        <div className="spec-row">
-          <span>Studio Headquarters</span>
-          <div>Coro Crafted Collective &amp; Ace Spaces Studio Headquarters, Bengaluru, Karnataka, India (Single Unified Facility: Design Gallery, Full-Scale Slab Library &amp; CNC Fabrication Atelier)</div>
-        </div>
-        <div className="spec-row">
-          <span>Google Maps</span>
-          <div>
-            <a href="https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'inherit' }}>
-              Direct Navigation: maps.app.goo.gl/eNFxtR7WPqRS8gpd7 ↗
-            </a>
-          </div>
-        </div>
-        <div className="spec-row">
-          <span>Services for Architects</span>
-          <div>CAD/Rhino shop drawing translation, custom thermoform buck tooling, laser templating, on-site monolithic assembly</div>
-        </div>
-        <div className="spec-row">
-          <span>Health &amp; Safety Standard</span>
-          <div>100% Zero Crystalline Silica, NSF/ANSI 51 Food-Safe, Greenguard Gold Ultra-Low VOC, Class A ASTM E84 Fire Rating</div>
-        </div>
-        <div className="spec-row">
-          <span>Ecosystem Synergy</span>
-          <div>Ace Spaces (Material &amp; Fabrication Atelier) → Coro Crafted Collective (Turnkey Spatial &amp; Collectible Furniture Studio)</div>
-        </div>
-      </section>
-
-      {/* Coro Crafted Collective Synergy Callout */}
+      {/* Coro Crafted Collective Callout */}
       <section className="callout about-coro-callout" id="coro">
         <div
           className="coro-brand-showcase"
           style={{
             background: 'rgba(244, 243, 239, 0.72)',
             backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
             border: '1px solid rgba(30, 33, 29, 0.22)',
             borderRadius: '4px',
-            padding: 'clamp(28px, 3.5vw, 44px) clamp(22px, 3vw, 36px)',
+            padding: '32px 24px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             textAlign: 'center',
-            maxWidth: '420px',
+            maxWidth: '360px',
             width: '100%',
             margin: '0 auto',
-            boxShadow: '0 20px 50px rgba(30, 33, 29, 0.09)',
-            position: 'relative',
-            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+            boxShadow: '0 16px 40px rgba(30, 33, 29, 0.08)',
           }}
         >
-          {/* Official Coro Geometric Emblem */}
-          <div
-            style={{
-              width: '140px',
-              height: '170px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '18px',
-            }}
-          >
+          <div style={{ width: '110px', height: '130px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '14px' }}>
             <img
               src="/images/coro-emblem.png"
               alt="Coro Crafted Collective Emblem"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                display: 'block',
-                filter: 'contrast(1.05)',
-                transition: 'transform 0.3s ease',
-              }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
             />
           </div>
-
-          {/* Official Coro Geometric Wordmark */}
-          <div
-            style={{
-              width: '190px',
-              height: '52px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '14px',
-            }}
-          >
+          <div style={{ width: '160px', height: '44px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
             <img
               src="/images/coro-wordmark.png"
               alt="Coro Crafted Collective Wordmark"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                display: 'block',
-              }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
             />
           </div>
-
-          {/* Subtle Divider */}
-          <div
-            style={{
-              width: '40px',
-              height: '1px',
-              background: 'rgba(30, 33, 29, 0.25)',
-              margin: '8px 0 16px',
-            }}
-          />
-
-          {/* Studio Identity Description */}
-          <p
-            style={{
-              fontFamily: 'DM Mono, monospace',
-              fontSize: '11px',
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              color: 'rgba(30, 33, 29, 0.85)',
-              margin: 0,
-              lineHeight: 1.6,
-            }}
-          >
-            Spatial Concepts · Monolithic Interiors
+          <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(30, 33, 29, 0.75)', margin: 0 }}>
+            Spatial Concepts and Collectible Furniture
             <br />
-            <span style={{ color: 'rgba(30, 33, 29, 0.55)', fontSize: '10px' }}>
-              Powered by Ace Spaces Foundry
-            </span>
+            <span style={{ color: 'rgba(30, 33, 29, 0.5)', fontSize: '9px' }}>Powered by Ace Spaces</span>
           </p>
         </div>
+
         <div>
-          <p className="eyebrow">Studio Synergy · Sister Spatial Brand</p>
+          <p className="eyebrow">Sister Spatial Brand</p>
           <h2>
             Powering
             <br />
             <i>Coro Crafted Collective.</i>
           </h2>
           <p>
-            Coro Crafted Collective was born out of Ace Spaces to showcase what is possible when our monolithic surfaces are shaped into turnkey living spaces, sculptural reception monoliths, and bespoke collectible furniture.
+            Coro Crafted Collective is our spatial studio and collectible furniture label, creating bespoke residential interiors and sculptural pieces shaped from raw Corian® slabs.
           </p>
-          <p style={{ marginTop: '14px', color: '#6e766c', fontSize: '15px' }}>
-            Independent architects and designers enjoy direct access to the very same precision fabrication atelier and raw mineral materials that make Coro's spaces celebrated.
+          <p style={{ marginTop: '12px', color: '#656e64', fontSize: '14px' }}>
+            Independent architects and designers have factory-direct access to the same precision workshop and certified materials that power Coro's work.
           </p>
-          <div style={{ display: 'flex', gap: '16px', marginTop: '28px', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '14px', marginTop: '24px', flexWrap: 'wrap' }}>
             <Link className="button button-dark" href="/materials">
               Browse Material Palette <span>↗</span>
             </Link>
             <Link className="button" href="/contact" style={{ background: 'transparent', border: '1px solid var(--ink)' }}>
-              Start Architectural Consultation <span>↗</span>
+              Start Consultation <span>↗</span>
             </Link>
           </div>
         </div>

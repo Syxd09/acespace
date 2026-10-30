@@ -83,7 +83,7 @@ export default function ProjectsPage() {
           </h1>
 
           <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
-            A curated selection of completed spaces where Ace Spaces through-body mineral surfaces define the architectural experience and seamless continuity.
+            A selection of residential, hospitality, and commercial spaces crafted with seamless solid surfaces across India.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
@@ -135,7 +135,7 @@ export default function ProjectsPage() {
                 Featured Case Study
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Private Residence • Studio Vardhan Architects
+                Private Residence / Studio Vardhan Architects
               </strong>
             </div>
             <Link href="/projects/private-residence" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>

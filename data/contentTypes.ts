@@ -22,7 +22,7 @@ export const defaultHeroSlides: HeroSlide[] = [
   {
     id: 1,
     image: '/images/images/app_residential_calacatta_greige_1.jpg',
-    eyebrow: '01 / Foundational Authority · Bangalore Stockyard',
+    eyebrow: '01 / Stockyard & Inventory / Bengaluru',
     title: 'The source of material,',
     subtitle: 'where spaces begin.',
     copy: 'Continuous 3660mm calibrated solid surface slabs, through-body mineral pigments, and the raw foundational material powering Coro Crafted Collective.',
@@ -36,7 +36,7 @@ export const defaultHeroSlides: HeroSlide[] = [
   {
     id: 2,
     image: '/images/images/app_commercial_grinds_stonique.jpg',
-    eyebrow: '02 / Zero-Joint Fabrication · Master Foundry',
+    eyebrow: '02 / Seamless Joining / Workshop',
     title: 'Continuous plane,',
     subtitle: 'monolithic peace.',
     copy: 'Through-body mineral compositions chemically welded and hand-honed into unified, monolithic volumes that feel carved from single stone.',
@@ -50,7 +50,7 @@ export const defaultHeroSlides: HeroSlide[] = [
   {
     id: 3,
     image: '/images/images/app_commercial_bleached_nuwood.jpg',
-    eyebrow: '03 / Compound Thermoforming · Bespoke Geometry',
+    eyebrow: '03 / Thermoforming & Shaping',
     title: 'Bending stone,',
     subtitle: 'releasing form.',
     copy: 'Heated to 160°C and vacuum-formed down to 25mm radii, transforming rigid mineral sheets into fluid, organic hospitality gestures.',
@@ -64,7 +64,7 @@ export const defaultHeroSlides: HeroSlide[] = [
   {
     id: 4,
     image: '/images/images/coriansolidsurface-goldenonyx-application.jpg',
-    eyebrow: '04 / Lumen Translucent · Light Transmission',
+    eyebrow: '04 / Backlit Mineral Translucency',
     title: 'When mineral',
     subtitle: 'conducts light.',
     copy: 'High-dispersion optical formulations that transform internal LED illumination into soft, diffused architectural halos after dusk.',
@@ -78,7 +78,7 @@ export const defaultHeroSlides: HeroSlide[] = [
   {
     id: 5,
     image: '/images/images/app_commercial_provence_nuwood.jpg',
-    eyebrow: '05 / Central Bangalore Foundry · The Coro Connection',
+    eyebrow: '05 / Central Studio / Bengaluru',
     title: 'From Bangalore foundry,',
     subtitle: 'to living sanctuaries.',
     copy: 'The exact same 5-axis CNC machining, computerized ovens, and artisanal craft powering Coro Crafted Collective, engineered for your studio\'s drawings.',
@@ -92,7 +92,7 @@ export const defaultHeroSlides: HeroSlide[] = [
   {
     id: 6,
     image: '/images/images/app_commercial_grinds_excavage.jpg',
-    eyebrow: '06 / 100% Non-Porous · Zero Silica Purity',
+    eyebrow: '06 / Non-Porous & Zero Silica',
     title: 'Engineered to endure,',
     subtitle: 'renewable for generations.',
     copy: 'Zero crystalline silica, non-porous chemical purity, and an official 10-year DuPont™ warranty. Order 6 curated specimens direct to your studio desk.',
@@ -116,7 +116,7 @@ export const defaultStudioContact: StudioContactConfig = {
   whatsappNumber: '+91 97410 44776',
   whatsappDisplay: '+91 97410 44776',
   whatsappDefaultMessage: 'Hello Ace Spaces Studio, I would like to consult on material specifications for an upcoming architectural project.',
-  availabilityStatus: 'Studio Online · Material Advisory',
+  availabilityStatus: 'Studio Online / Material Advisory',
 };
 
 export interface AboutPhilosophyPillar {

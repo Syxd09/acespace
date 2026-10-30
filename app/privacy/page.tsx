@@ -19,7 +19,7 @@ export default function PrivacyPage() {
             Privacy <i>Policy.</i>
           </h1>
           <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#596059' }}>
-            Last updated: September 2026 · Bengaluru Architectural Foundry
+            Last updated: September 2026, Bengaluru
           </p>
         </div>
 

@@ -164,35 +164,21 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             {slug === 'sinks' && (
               <Link
-                className="btn-3d-configurator"
+                className="button"
                 href="/configurator?preset=single-basin-vanity"
+                style={{ border: '1px solid var(--ink)', background: 'var(--ink)', color: '#ffffff' }}
               >
-                <span className="btn-3d-cube" aria-hidden="true">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                    <line x1="12" y1="22.08" x2="12" y2="12" />
-                  </svg>
-                </span>
-                <span className="btn-3d-label">CONFIGURE IN 3D</span>
-                <span className="btn-3d-arrow">↗</span>
+                Configure in 3D <span>↗</span>
               </Link>
             )}
 
             {slug === 'basins-vanities' && (
               <Link
-                className="btn-3d-configurator"
+                className="button"
                 href="/basin-configurator"
+                style={{ border: '1px solid var(--ink)', background: 'var(--ink)', color: '#ffffff' }}
               >
-                <span className="btn-3d-cube" aria-hidden="true">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
-                    <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
-                    <line x1="12" y1="22.08" x2="12" y2="12" />
-                  </svg>
-                </span>
-                <span className="btn-3d-label">CONFIGURE BASIN IN 3D</span>
-                <span className="btn-3d-arrow">↗</span>
+                Configure Basin in 3D <span>↗</span>
               </Link>
             )}
 
@@ -386,7 +372,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           ))}
           <div className="spec-row">
             <span>Primary Sector Applications</span>
-            <strong>{product.applications.join(' • ')}</strong>
+            <strong>{product.applications.join(', ')}</strong>
           </div>
           <div className="spec-row">
             <span>Recommended Material Palettes</span>
@@ -400,7 +386,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
         <section id="gallery" style={{ marginBottom: '100px' }}>
           <div className="section-head" style={{ marginBottom: '32px' }}>
             <div>
-              <p className="eyebrow">Installation Gallery · Tap to Inspect</p>
+              <p className="eyebrow">Installation Gallery</p>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)' }}>
                 Applied in
                 <br />
@@ -408,7 +394,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
               </h2>
             </div>
             <p style={{ fontSize: '14px', color: '#555e54', maxWidth: '440px', margin: 0, lineHeight: 1.6 }}>
-              Tap any installation photograph to inspect high-definition joinery details, fabrication methods, and complete material specifications.
+              Selected architectural installations showing joinery, surface finishes, and detailing across residential and commercial environments.
             </p>
           </div>
 

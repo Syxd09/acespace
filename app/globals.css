@@ -4921,21 +4921,7 @@ main.page-main {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12) !important;
 }
 
-.btn-3d-cube {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: var(--brand-red, #d43833) !important;
-  flex-shrink: 0 !important;
-  line-height: 0 !important;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.btn-3d-configurator:hover .btn-3d-cube {
-  transform: scale(1.15) rotate(4deg) !important;
-}
-
-.btn-3d-label {
+.btn-3d-configurator:hover .btn-3d-label {
   font-family: 'DM Mono', monospace !important;
   font-size: 11px !important;
   font-weight: 500 !important;

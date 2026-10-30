@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import EdgeProfileCatalog from '@/components/EdgeProfileCatalog';
-import FabricationExplorer from '@/components/FabricationExplorer';
+// Fabrication components
 import JsonLd from '@/components/JsonLd';
 
 export const metadata: Metadata = {
@@ -108,9 +108,9 @@ export default function FabricationPage() {
       id: 'cnc',
       num: '01',
       title: '5-Axis CNC Precision',
-      quote: 'Robotic precision to under 0.2mm. Direct from CAD to cut.',
+      quote: 'Robotic accuracy direct from your CAD model.',
       badge: '< 0.2 mm Tolerance',
-      tagline: 'Nested parametric milling with robotic repeatability.',
+      tagline: 'Nested CNC milling for precise cutouts, rebates, and tapers.',
       image: '/images/images/app_residential_calacatta_greige_2.jpg',
       metric: '±0.18 mm',
       metricLabel: 'Positional Tolerance',
@@ -118,10 +118,10 @@ export default function FabricationPage() {
     {
       id: 'seamless',
       num: '02',
-      title: 'Molecular Seam Fusion',
-      quote: 'Two mineral sheets. One continuous geological body.',
+      title: 'Invisible Seam Fusion',
+      quote: 'Two mineral sheets bonded into one continuous surface.',
       badge: '0.0 mm Invisible Seam',
-      tagline: 'Reactive color-matched chemistry that dissolves the joint.',
+      tagline: 'Color-matched acrylic adhesives that cure without visible joint lines.',
       image: '/images/images/app_residential_calacatta_greige_1.jpg',
       metric: '0.00 mm',
       metricLabel: 'Visible Joint Line',
@@ -130,9 +130,9 @@ export default function FabricationPage() {
       id: 'thermoforming',
       num: '03',
       title: '160°C Thermoforming',
-      quote: 'Curvature beyond the grid. Shaped over bespoke timber bucks.',
+      quote: 'Shaping tight radii and organic curves over bespoke timber bucks.',
       badge: '25 mm Tight Radii',
-      tagline: 'Vacuum-formed compound 3D curves with zero surface blanching.',
+      tagline: 'Vacuum-forming heated sheets into compound 3D curves with zero blanching.',
       image: '/images/images/app_commercial_bleached_nuwood.jpg',
       metric: '160°C',
       metricLabel: 'Thermal Plasticity',
@@ -140,10 +140,10 @@ export default function FabricationPage() {
     {
       id: 'honing',
       num: '04',
-      title: 'Progressive Hand Honing',
-      quote: 'A light-absorbing, velvety touch honed from 120 to 600-grit.',
+      title: 'Hand-Honed Finishing',
+      quote: 'A velvety, light-absorbing satin touch honed up to 600-grit.',
       badge: '600-Grit Matte Touch',
-      tagline: 'Anti-glare satin tactile finish, 100% renewable in situ.',
+      tagline: 'Anti-glare satin finish, easily renewable on site at any time.',
       image: '/assets/material-macro.png',
       metric: '600 Grit',
       metricLabel: 'Diamond Honed',
@@ -197,19 +197,19 @@ export default function FabricationPage() {
 
           {/* Editorial Pull Quote */}
           <blockquote style={{ fontSize: '18px', fontStyle: 'italic', fontFamily: 'serif', lineHeight: 1.5, color: '#1e211d', margin: '0 0 24px', paddingLeft: '14px', borderLeft: '3px solid var(--brand-red, #d43833)' }}>
-            “Where code-driven robotic accuracy meets the 600-grit touch of master joinery.”
+            “Where CNC precision meets master hand-joinery.”
           </blockquote>
 
           <p style={{ fontSize: '15px', lineHeight: 1.65, color: '#4a5249', maxWidth: '520px', marginBottom: '32px' }}>
-            Transforming raw mineral slabs into seamless, monumental architectural interiors across India.
+            From parametric shop drawings to on-site assembly, our Bengaluru workshop crafts bespoke solid surface counters, basins, and curved elements for projects across India.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="button button-dark" href="/contact">
               Discuss Fabrication Brief <span>↗</span>
             </Link>
-            <Link className="text-link" href="#capabilities">
-              Explore Machinery Fleet <span>↓</span>
+            <Link className="text-link" href="#process">
+              Workshop Sequence <span>↓</span>
             </Link>
           </div>
 
@@ -260,7 +260,7 @@ export default function FabricationPage() {
                 Craft Focus
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Hand-Honed Satin Edge • Sub-millimeter Tolerance
+                Hand-Honed Satin Edge / Sub-millimeter Tolerance
               </strong>
             </div>
             <Link href="#edges" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
@@ -288,16 +288,16 @@ export default function FabricationPage() {
         }}
         aria-label="Fabrication page sections"
       >
-        <a href="#capabilities" style={{ color: 'inherit', textDecoration: 'none' }}>01 / Machinery Fleet</a>
-        <a href="#joint-chemistry" style={{ color: 'inherit', textDecoration: 'none' }}>02 / Seam Technology</a>
-        <a href="#typologies" style={{ color: 'inherit', textDecoration: 'none' }}>03 / Spatial Typologies</a>
-        <a href="#process" style={{ color: 'inherit', textDecoration: 'none' }}>04 / 4-Stage Sequence</a>
-        <a href="#edges" style={{ color: 'inherit', textDecoration: 'none' }}>05 / Edge Profiles</a>
-        <a href="#protocols" style={{ color: 'inherit', textDecoration: 'none' }}>06 / Site Protocols</a>
+
+
+
+        <a href="#process" style={{ color: 'inherit', textDecoration: 'none' }}>01 / Workshop Sequence</a>
+        <a href="#edges" style={{ color: 'inherit', textDecoration: 'none' }}>02 / Edge Profiles</a>
+        <a href="#protocols" style={{ color: 'inherit', textDecoration: 'none' }}>03 / Site Protocols</a>
       </nav>
 
-      {/* Interactive Fabrication Rig Fleet, Seam Matrix & Typologies */}
-      <FabricationExplorer />
+
+
 
       {/* 4-Step Craft Sequence — Editorial Visual Cards */}
       <section id="process" style={{ margin: '60px 0 100px' }}>
@@ -444,17 +444,17 @@ export default function FabricationPage() {
       </section>
 
       <section className="callout" id="consultation">
-        <p className="eyebrow">Technical fabrication consultation · Bengaluru Atelier</p>
+        <p className="eyebrow">Technical fabrication consultation / Bengaluru Workshop</p>
         <h2>
           Make the
           <br />
           <i>unusual possible.</i>
         </h2>
         <p style={{ fontStyle: 'italic', fontFamily: 'serif', fontSize: '18px', color: '#2e352d', marginBottom: '12px' }}>
-          “Send your drawings, CAD cutouts, or 3D Rhino &amp; Revit models.”
+          “Share your drawings or 3D CAD models.”
         </p>
         <p style={{ maxWidth: '520px', fontSize: '14px', color: '#555e54', margin: '0 0 24px', lineHeight: 1.6 }}>
-          Our engineering desk reviews joint locations, calculates steel sub-framing, and delivers physical 1:1 mockups.
+          Our workshop team reviews joint placements, calculates steel sub-framing, and provides physical mockups.
         </p>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
           <Link className="button button-dark" href="/contact">
