@@ -5,12 +5,16 @@
   --paper: #e9e8e2;
   --warm: #d8d2c5;
   --muted: #667066;
-  --line: rgba(30, 33, 29, 0.18);
+  --line: rgba(30, 33, 29, 0.09);
+  --line-strong: rgba(30, 33, 29, 0.16);
+  --paper-soft: #f2efe9;
+  --card-radius: 6px;
+  --btn-radius: 4px;
   --serif: Georgia, 'Times New Roman', serif;
-  --brand-red: #d43833;
-  --brand-red-subtle: rgba(212, 56, 51, 0.08);
-  --brand-red-border: rgba(212, 56, 51, 0.28);
-  --brand-red-glow: rgba(212, 56, 51, 0.4);
+  --brand-red: #c4433d;
+  --brand-red-subtle: rgba(196, 67, 61, 0.08);
+  --brand-red-border: rgba(196, 67, 61, 0.22);
+  --brand-red-glow: rgba(196, 67, 61, 0.3);
   --z-header: 20;
   --z-modal: 100;
   --z-toast: 120;
@@ -674,6 +678,12 @@ h1 i, h2 i, h3 i {
   color: #fff;
 }
 
+.live-pulse,
+.status-pulse-dot,
+.green-dot {
+  display: none !important;
+}
+
 @keyframes livePulseGlow {
   0% {
     transform: scale(0.92);
@@ -719,26 +729,18 @@ h1 i, h2 i, h3 i {
 
 .button-outline-glass .wa-svg {
   flex-shrink: 0;
-  color: #73c991;
+  color: currentColor;
   opacity: 0.9;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 .button-outline-glass:hover .wa-svg {
   opacity: 1;
-  color: #8be4aa;
+  color: currentColor;
   transform: scale(1.1);
 }
 
-.button-outline-glass .live-pulse {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #73c991;
-  display: inline-block;
-  flex-shrink: 0;
-  animation: livePulseGlow 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+.button-outline-glass .live-pulse { display: none !important; }
 
 .button-outline-glass span.arrow {
   font-size: 18px;
@@ -780,26 +782,18 @@ h1 i, h2 i, h3 i {
 
 .button-outline-dark .wa-svg {
   flex-shrink: 0;
-  color: #1e7033;
+  color: currentColor;
   opacity: 0.9;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 .button-outline-dark:hover .wa-svg {
   opacity: 1;
-  color: #155d28;
+  color: currentColor;
   transform: scale(1.1);
 }
 
-.button-outline-dark .live-pulse {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #2e7d32;
-  display: inline-block;
-  flex-shrink: 0;
-  animation: livePulseGlow 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+.button-outline-dark .live-pulse { display: none !important; }
 
 .button-outline-dark span.arrow {
   font-size: 18px;
@@ -1440,20 +1434,7 @@ h1 i, h2 i, h3 i {
   line-height: 1 !important;
 }
 
-.enquiry-direct-indicator .status-pulse-dot {
-  width: 6px !important;
-  height: 6px !important;
-  min-width: 6px !important;
-  min-height: 6px !important;
-  border-radius: 50% !important;
-  background: #73c991 !important;
-  box-shadow: 0 0 6px rgba(115, 201, 145, 0.7) !important;
-  display: inline-block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  flex-shrink: 0 !important;
-  vertical-align: middle !important;
-}
+.enquiry-direct-indicator .status-pulse-dot { display: none !important; }
 
 .enquiry-direct-indicator span:not(.status-pulse-dot) {
   display: inline !important;
@@ -1649,7 +1630,7 @@ h1 i, h2 i, h3 i {
 
 @keyframes heroScale {
   from {
-    transform: scale(1.08);
+    transform: scale(1.025);
   }
   to {
     transform: scale(1);
@@ -3415,7 +3396,7 @@ main.page-main {
 
 /* AI Studio Material Intelligence Inline Navigation Links */
 .ai-inline-nav-link {
-  color: #73c991;
+  color: currentColor;
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 600;
@@ -6511,3 +6492,145 @@ html, body {
 }
 
 
+
+.fabrication-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+.fabrication-card:hover .fabrication-card-img {
+  transform: scale(1.03);
+}
+
+.product-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
+}
+.product-card-hover:hover .product-card-img {
+  transform: scale(1.03);
+}
+
+/* Softness and Architectural Serenity Overrides */
+.card,
+.product-card,
+.fabrication-card,
+.lookbook-card,
+.project-card,
+.project-hero-card,
+.product-gallery-card,
+.contact-atelier-card {
+  border-radius: var(--card-radius, 6px) !important;
+  border-color: var(--line, rgba(30, 33, 29, 0.09)) !important;
+}
+
+.button,
+.button-dark,
+.button-outline-dark,
+.button-outline-glass,
+.specifier-chip {
+  border-radius: var(--btn-radius, 4px) !important;
+}
+
+/* Remove any unwanted aggressive red left-borders */
+blockquote {
+  border-left: 2px solid var(--brand-red-border, rgba(196, 67, 61, 0.22)) !important;
+}
+
+/* ============================================================ */
+/* RESTRAINED EDITORIAL ANIMATIONS (Subtle, tactile, architectural) */
+/* ============================================================ */
+
+/* Text Entrance Utilities */
+.anim-fade-up {
+  animation: animFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.anim-delay-1 { animation-delay: 70ms; }
+.anim-delay-2 { animation-delay: 140ms; }
+.anim-delay-3 { animation-delay: 210ms; }
+.anim-delay-4 { animation-delay: 280ms; }
+
+@keyframes animFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtle Photo Reveal & Hover Breath */
+.hero-image-frame img {
+  animation: subtlePhotoReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hero-image-frame:hover img {
+  transform: scale(1.02);
+}
+
+@keyframes subtlePhotoReveal {
+  from {
+    opacity: 0.4;
+    transform: scale(1.025);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Card Hover Lift & Gentle Warm Depth (Restrained - No Jarring Motion) */
+.product-card,
+.fabrication-card,
+.lookbook-card,
+.project-grid-card,
+.project-hero-card,
+.product-gallery-card,
+.contact-atelier-card {
+  transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.32s ease, border-color 0.25s ease !important;
+  will-change: transform, box-shadow;
+}
+
+.product-card:hover,
+.fabrication-card:hover,
+.lookbook-card:hover,
+.project-grid-card:hover,
+.product-gallery-card:hover,
+.contact-atelier-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 14px 30px rgba(30, 33, 29, 0.07) !important;
+  border-color: rgba(30, 33, 29, 0.16) !important;
+}
+
+/* Gentle image scale within cards */
+.fabrication-card .fabrication-card-img,
+.lookbook-card .lookbook-card-image,
+.project-grid-card .project-grid-img,
+.product-gallery-card .gallery-card-img {
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.fabrication-card:hover .fabrication-card-img,
+.lookbook-card:hover .lookbook-card-image,
+.project-grid-card:hover .project-grid-img,
+.product-gallery-card:hover .gallery-card-img {
+  transform: scale(1.025) !important;
+}
+
+/* Toned Down Button States - Subtle & Elegant */
+.button,
+.button-dark,
+.button-outline-dark {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, background 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
+}
+
+.button:hover,
+.button-dark:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(30, 33, 29, 0.12) !important;
+}
+
+.button-outline-dark:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(30, 33, 29, 0.06) !important;
+}

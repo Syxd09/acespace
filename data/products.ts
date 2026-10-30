@@ -22,11 +22,11 @@ export const productsData: ProductItem[] = [
     name: 'Benchtops & Worktops',
     categoryName: 'BENCHTOPS',
     code: 'PRD-BT-01',
-    tagline: 'Monolithic surfaces with seamless waterfalls and coved transitions',
+    tagline: 'Seamless kitchen islands and worktops with continuous waterfall drops.',
     heroDescription:
-      'Engineered for residential kitchens, luxury hospitality, and high-performance commercial reception counters. Ace Spaces solid surface benchtops feature inconspicuous chemically welded joints, mitred apron drop fronts, and continuous coved splashbacks that permanently eliminate silicone mould rims.',
+      'Custom kitchen islands and commercial counters crafted from DuPont™ Corian®. Chemical acrylic fusion creates continuous planes with zero silicone joints or dirt traps.',
     overview:
-      'Unlike stone or laminate, solid surface benchtops can be joined on-site to create infinite continuous work surfaces with zero visible seams. Heat-formed waterfall ends flow gracefully to the floor, while thermo-welded joints provide an impervious, hygienic barrier against moisture and bacteria.',
+      'Unlike natural stone or laminate, solid surface can be joined on-site into seamless lengths. Scratches buff out easily, and coved splashbacks eliminate perimeter mould forever.',
     image: '/images/images/app_residential_calacatta_greige_1.jpg',
     galleryImages: [
       {
@@ -46,11 +46,11 @@ export const productsData: ProductItem[] = [
       }
     ],
     keyFeatures: [
-      'Inconspicuous molecularly fused joints create seamless infinite lengths',
-      'Coved splashback transitions permanently eliminate dirty silicone lines',
-      'Mitred waterfall gable ends with continuous through-body veining',
-      'Sub-surface steel and moisture-resistant substrate reinforcement',
-      'Renewable surface — scratches and stains can be restored on-site'
+      'Seamless chemical bonding with zero visible joints',
+      'Coved splashback transitions that eliminate silicone grime',
+      'Mitred waterfall edges with continuous veining',
+      'Sub-surface steel and moisture-resistant reinforcement',
+      'Renewable surface—everyday scuffs buff out on-site'
     ],
     specifications: [
       { label: 'Standard Slab Dimension', value: '3660 mm (L) × 760 mm (W)' },
@@ -78,7 +78,7 @@ export const productsData: ProductItem[] = [
       'NSF/ANSI 51 Certified',
       'GREENGUARD Gold',
       'EN 13501-1 Fire Rating B-s1, d0',
-      'ISO 846 Microbial Resistance Rating 0'
+      'ISO 846 Microbial Resistance'
     ],
     cadAvailable: true
   },
@@ -87,11 +87,11 @@ export const productsData: ProductItem[] = [
     name: 'Integrated Sinks',
     categoryName: 'SINKS',
     code: 'PRD-SNK-02',
-    tagline: 'Thermo-welded undermount basins with zero silicone grime joints',
+    tagline: 'Integrated sinks welded directly into solid surface counters.',
     heroDescription:
-      'Seamlessly integrated kitchen and utility sinks chemically bonded directly to solid surface benchtops. The absence of top-mount rims, silicone sealants, and grout lines ensures that food debris and water can be wiped directly into the bowl with effortless hygiene.',
+      'Under-mount sinks fused seamlessly into your benchtop. With no raised rims or silicone caulking, water and food debris wipe straight into the bowl.',
     overview:
-      'Fabricated from the same high-performance mineral acrylic composite as the surrounding worktop, Ace Spaces integrated sinks become one monolithic entity. Heat-resistant cast bottoms and gently curved internal corners prevent dirt accumulation, while thermal shock resistance withstands boiling liquids and daily culinary use.',
+      'Milled and bonded from matching DuPont™ Corian® mineral composite, each sink becomes one continuous piece with the counter. Soft rounded internal corners make cleaning effortless.',
     image: '/images/integrated-sink-installation.jpg',
     galleryImages: [
       {
@@ -106,11 +106,11 @@ export const productsData: ProductItem[] = [
       }
     ],
     keyFeatures: [
-      '100% silicone-free molecular fusion to solid surface benchtop',
-      'No rim, lip, or ledge where grease, grime, or mould can foster',
-      '10mm soft radius internal corners for effortless wipe-down cleaning',
-      'Thermal shock resistant reinforced base prevents hot water warping',
-      'Integrated runnel drainage grooves carved directly into the adjacent benchtop'
+      '100% silicone-free chemical fusion to countertop',
+      'Zero rims or crevices where grime and moisture can gather',
+      'Smooth curved corners for easy wipe-down cleaning',
+      'Thermal shock resistant base for hot culinary liquids',
+      'Directly carved sloped drainage grooves'
     ],
     specifications: [
       { label: 'Configuration Options', value: 'Single bowl, 1.5 bowl, double bowl, utility deep bowl' },
@@ -134,11 +134,11 @@ export const productsData: ProductItem[] = [
     name: 'Linear Washplanes',
     categoryName: 'WASHPLANES',
     code: 'PRD-WP-03',
-    tagline: 'Continuous sloped drainage planes for high-traffic public & commercial amenities',
+    tagline: 'Minimalist sloped washplanes for commercial and public amenities.',
     heroDescription:
-      'Engineered for premium commercial amenities, corporate headquarters, airports, and luxury hospitality venues. Ace Spaces linear washplanes feature gentle sloping planes that guide water toward a concealed continuous trough drain, delivering a dramatic, minimalist aesthetic paired with high-volume capacity.',
+      'Continuous linear washplanes designed for offices, airports, and restaurants. A gentle slope directs water into a concealed drainage trough, eliminating standing water.',
     overview:
-      'Traditional individual basins in commercial restrooms frequently trap water and cause puddling around faucets. Ace Spaces solid surface washplanes provide a clean, monolithic horizontal plane spanning up to 5 meters without joints. Designed for wall-mounted sensor taps and soap dispensers, they optimize flow rate, eliminate standing water, and reduce maintenance costs.',
+      'Traditional individual basins often leave water pooled on countertops. Ace Spaces washplanes provide an unbroken horizontal surface spanning up to 5 meters, built for hands-free wall-mounted taps.',
     image: '/images/washplane-commercial-multistation.jpg',
     galleryImages: [
       {
@@ -153,11 +153,11 @@ export const productsData: ProductItem[] = [
       }
     ],
     keyFeatures: [
-      'Continuous linear drainage trough eliminates standing water puddling',
-      'Multi-station modules up to 5000mm length with completely invisible field seams',
-      'Concealed heavy-duty steel cantilever support brackets',
-      'Removable acoustic-dampened solid surface access plates for rapid plumbing maintenance',
-      'Precision CNC cutouts for sensor tapware, soap dispensers, and waste chutes'
+      'Concealed linear drainage trough prevents water pooling',
+      'Spans up to 5 meters with invisible chemical joints',
+      'Concealed steel cantilever support framing',
+      'Lift-out access covers for easy plumbing maintenance',
+      'CNC cutouts for sensor tapware and soap dispensers'
     ],
     specifications: [
       { label: 'Module Lengths', value: '1-Station (900mm), 2-Station (1500mm), 3-Station (2200mm), Custom up to 5000mm' },
@@ -187,11 +187,11 @@ export const productsData: ProductItem[] = [
     name: 'Basins & Vanities',
     categoryName: 'BASINS & VANITIES',
     code: 'PRD-BV-04',
-    tagline: 'Architectural bathroom vanities with seamlessly fused bowls',
+    tagline: 'Monolithic bathroom vanities with seamlessly sculpted washbowls.',
     heroDescription:
-      'Tailored for master bathrooms, boutique hotels, and guest powder suites. Ace Spaces basins and vanities feature seamlessly integrated solid surface washbowls welded directly to the vanity top, creating a monolithic, zero-grout sculpted fixture that resists makeup, cosmetics, and standing water.',
+      'Custom bathroom vanities for residences and boutique hotels. Countertop and washbowl are fused into one continuous form that resists cosmetics, water marks, and daily wear.',
     overview:
-      'From floating wall-hung cantilevered slabs with soft apron skirts to double-basin vanity suites with concealed tissue slots and integrated towel rails, our bathroom vanities unite horizontal countertop and vertical bowl into a fluid single piece. Scratches buff out easily, ensuring everlasting elegance.',
+      'Available as wall-hung cantilevered slabs or joinery-mounted vanity consoles. The non-porous mineral acrylic surface does not harbor mould or water marks.',
     image: '/images/basin-vanity-thermoformed-double.jpg',
     galleryImages: [
       {
@@ -206,11 +206,11 @@ export const productsData: ProductItem[] = [
       }
     ],
     keyFeatures: [
-      'Seamlessly fused bowl eliminates silicone caulking and black mould',
-      'Wall-hung cantilever or joinery-mounted vanity configurations',
-      'Available with soft oval, capsule, or crisp rectangular basin profiles',
-      'Built-in accessory details: towel slots, recessed soap niches, waste chutes',
-      'Stain-proof against cosmetic pigments, skincare oils, and hair dyes'
+      'Seamless integrated bowl with zero silicone joints',
+      'Wall-hung floating or furniture-mounted configurations',
+      'Oval, capsule, or crisp rectangular basin profiles',
+      'Resistant to makeup, skincare oils, and hair products',
+      'Integrated towel slots and concealed waste covers'
     ],
     specifications: [
       { label: 'Length Options', value: '600mm, 900mm, 1200mm, 1500mm, 1800mm, custom' },
@@ -240,11 +240,11 @@ export const productsData: ProductItem[] = [
     name: 'Public Bathrooms & End-of-Trip (EOT)',
     categoryName: 'PUBLIC BATHROOMS AND EOT SOLUTIONS',
     code: 'PRD-EOT-05',
-    tagline: 'Heavy-duty grooming counters, locker amenities & vandal-resistant washstations',
+    tagline: 'Durable washstations and privacy partitions for commercial amenities.',
     heroDescription:
-      'High-performance commercial washroom and End-of-Trip (EOT) grooming stations designed for active corporate lifestyle facilities, fitness clubs, and commercial property towers. Non-porous solid surface structures resist heavy daily impacts, moisture saturation, and graffiti.',
+      'Heavy-duty vanity suites and privacy screens built for corporate end-of-trip facilities, gyms, and commercial washrooms. Non-porous solid surface resists moisture and heavy use.',
     overview:
-      'Modern commercial developments compete on the quality of their End-of-Trip (EOT) commuter facilities. Ace Spaces provides turn-key vanity suites, grooming islands with built-in hair styling appliance holders, wireless charging points, and full-height wet wall linings that withstand heavy steam, damp towels, and intense multi-shift cleaning regimens.',
+      'Built to handle high-traffic daily use. Surfaces wipe clean without harsh chemicals, and minor scuffs or marks can be refreshed on-site with a simple scouring pad.',
     image: '/images/eot-bathroom-cubicle-partitions.jpg',
     galleryImages: [
       {
@@ -259,12 +259,11 @@ export const productsData: ProductItem[] = [
       }
     ],
     keyFeatures: [
-      'Full-height solid surface toilet cubicle partition systems with seamless privacy rebating',
-      'Wall-mounted urinal modesty screens with radiused corners and concealed structural fixings',
-      'Impact-resistant through-body solid surface that cannot delaminate or chip like stone',
-      'Graffiti and chemical resistant — aerosol paint and markers buff off with Scotch-Brite',
-      'Integrated amenities: heat-resistant hairdryer cradles, power pop-ups, waste slots',
-      'Full-height non-porous wall cladding for high-steam shower locker zones'
+      'Full-height floor-to-ceiling privacy cubicle partitions',
+      'Urinal modesty screens with rounded safety corners',
+      'Through-body material that will not chip or peel',
+      'Resistant to moisture, steam, and cleaning chemicals',
+      'Integrated grooming amenities and appliance holders'
     ],
     specifications: [
       { label: 'Traffic Rating', value: 'Heavy commercial (500+ daily cycles)' },
@@ -294,11 +293,11 @@ export const productsData: ProductItem[] = [
     name: 'Health & Aged Care Solutions',
     categoryName: 'HEALTH & AGED CARE SOLUTIONS',
     code: 'PRD-HAC-06',
-    tagline: 'Infection-controlled scrub sinks, clinical counters & accessible DDA vanities',
+    tagline: 'Hygienic scrub sinks and clinical counters with zero grout lines.',
     heroDescription:
-      'Purpose-engineered for acute hospitals, medical surgeries, surgical suites, and aged-care residences. Solid surface is the premier clinical material specified globally for surgical scrub sinks, clean-utility benches, and wheelchair-accessible DDA vanities because it is 100% non-porous, inherently antimicrobial, and void of grout lines.',
+      'Engineered for hospitals, surgical suites, and clinics. Solid surface is completely non-porous and free of grout lines, making it the premier material for clinical hygiene.',
     overview:
-      'Healthcare infections frequently originate in micro-crevices around sink silicones and tile grout. Ace Spaces clinical fixtures eliminate these failure points with continuous coved radiuses, thermoformed anti-splash scrub troughs, and chemical resistance against harsh hospital cleansers including chlorine bleach, betadine, and isopropyl alcohol.',
+      'Microorganisms thrive in moist silicone seams. Ace Spaces clinical fixtures eliminate these failure points with coved corners, anti-splash basins, and resistance to hospital disinfectants.',
     image: '/images/images/app_commercial_grinds_stonique.jpg',
     galleryImages: [
       {
@@ -313,11 +312,11 @@ export const productsData: ProductItem[] = [
       }
     ],
     keyFeatures: [
-      'Zero porosity prevents harborage of MRSA, E. coli, COVID-19, and pathogens',
-      'Antimicrobial through-body structure does not rely on transient chemical coatings',
-      'Seamless 20mm coved internal corners prevent water pooling and bacterial colonies',
-      'Chemical resistance against bleach, hydrogen peroxide, Betadine, and medical stains',
-      'Wheelchair-accessible DDA/ADA compliant knee clearance profiles with soft ergonomic edges'
+      'Non-porous surface that does not harbor bacteria',
+      'Seamless 20mm coved corners prevent moisture accumulation',
+      'Resistant to bleach, alcohol, and iodine cleaners',
+      'Wheelchair-accessible DDA compliant knee clearance',
+      'NSF/ANSI 51 certified for sterile environments'
     ],
     specifications: [
       { label: 'Clinical Standards', value: 'Complies with Australasian Health Facility Guidelines (AHFG) & AIA' },
@@ -342,11 +341,11 @@ export const productsData: ProductItem[] = [
     name: 'Bespoke Architectural Fabrications',
     categoryName: 'BESPOKE',
     code: 'PRD-BSK-07',
-    tagline: '3D thermoformed organic volumes, fluid reception desks & illuminated retail fixtures',
+    tagline: 'Custom curved monoliths, reception desks, and illuminated fixtures.',
     heroDescription:
-      'Pushing the boundary between architectural joinery and sculptural artwork. Ace Spaces bespoke fabrication studio transforms 2D solid surface sheets into compound-curved organic desks, illuminated retail plinths, acoustic ceiling ribbons, and backlit interior monuments using 5-axis CNC machining and calibrated thermoforming.',
+      'Pushing solid surface beyond straight lines. We heat mineral sheets to 160°C to vacuum-form fluid curved desks, fluted wall panels, and backlit translucent counters.',
     overview:
-      'Solid surface exhibits unique thermoplastic properties: when heated to 160°C in our computer-controlled platen ovens, it achieves the flexibility of leather and can be vacuum-formed over custom timber bucks down to tight 25mm radii without structural blanching. Once cooled, it returns to stone-like permanence.',
+      'When heated in our platen ovens, DuPont™ Corian® becomes flexible enough to form over timber bucks down to 25mm radii without micro-cracking. Once cooled, it returns to rigid stone strength.',
     image: '/images/bespoke-sculptural-lounge-monolith.jpg',
     galleryImages: [
       {
@@ -361,11 +360,11 @@ export const productsData: ProductItem[] = [
       }
     ],
     keyFeatures: [
-      'Vacuum membrane thermoforming capable of complex double-curved 3D geometry',
-      '5-Axis CNC milling delivering sub-millimetre tolerances for interlocking joints',
-      'Internal structural steel and rib cage fabrication for massive architectural spans',
-      'Sub-surface wireless charging pockets, recessed lighting grooves, and ventilation grilles',
-      'Complete workshop mock-up, dry-assembly, and on-site crane/rigging installation'
+      'Vacuum membrane forming for complex 3D curves',
+      '5-Axis CNC routing for precise joinery tolerances',
+      'Concealed internal steel sub-frames for large spans',
+      'Translucent grades for ambient backlighting',
+      'Full workshop dry-fit before on-site installation'
     ],
     specifications: [
       { label: 'Thermoforming Temperature', value: '155°C – 165°C calibrated heating cycle' },
@@ -394,11 +393,11 @@ export const productsData: ProductItem[] = [
     name: 'Design Certainty Service',
     categoryName: 'DESIGN CERTAINTY SERVICE',
     code: 'SVC-DCS-08',
-    tagline: 'Complete technical advisory: CAD/BIM shop drawings, CNC toolpathing, and on-site templating',
+    tagline: 'CAD drawings, on-site laser templating, and guaranteed site fitment.',
     heroDescription:
-      'Eliminating technical risk for architects, interior designers, and head contractors. Our Design Certainty Service provides end-to-end engineering support from initial concept sketches and digital 3D templating through to CNC nesting, structural framing certification, and guaranteed site fitment.',
+      'End-to-end technical support for architects and builders. We review your plans, create detailed shop drawings, and verify site measurements with 3D laser scanning.',
     overview:
-      'Complex solid surface architecture requires meticulous detailing. With our Design Certainty Service, our senior fabrication engineers partner with your design studio to draft submittal-ready CAD shop drawings, optimize sheet yield to reduce project costs, verify expansion joints and thermal movement, and conduct precision laser 3D scanning on site before fabrication begins.',
+      'From initial sketches to final handover, our workshop engineers partner with your studio to optimize sheet yield, verify joint locations, and ensure a flawless fit.',
     image: '/images/images/app_commercial_bleached_nuwood.jpg',
     galleryImages: [
       {
@@ -413,12 +412,11 @@ export const productsData: ProductItem[] = [
       }
     ],
     keyFeatures: [
-      'Submittal-ready architectural shop drawings with joinery section details',
-      '3D CAD & BIM models (Revit, Rhino, SketchUp, STEP) ready for project integration',
-      'On-site laser 3D scanning and digital templating to capture true wall plumb and level',
-      'Structural substrate framing and expansion joint calculations',
-      'Physical prototype mock-ups and custom finish sample coupons',
-      '10-Year commercial product and fabrication warranty certification'
+      'Detailed 2D CAD shop drawings and 3D BIM models',
+      'On-site 3D digital laser templating for true walls',
+      'Expansion calculations and structural sub-framing',
+      'Physical material sample coupons and mockups',
+      '10-Year installed warranty sign-off'
     ],
     specifications: [
       { label: 'Deliverables', value: '2D PDF shop drawings, 3D BIM/CAD models, material sample packs, engineering sign-off' },

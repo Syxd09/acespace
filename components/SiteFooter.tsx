@@ -365,7 +365,7 @@ export default function SiteFooter() {
                       fontFamily: 'DM Mono, monospace',
                       fontSize: '11px',
                       fontWeight: 600,
-                      color: '#25D366',
+                      color: '#c2cdc2',
                       textDecoration: 'none',
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -373,9 +373,9 @@ export default function SiteFooter() {
                       transition: 'color 0.15s ease',
                     }}
                     onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#25D366')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#c2cdc2')}
                   >
-                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#25D366' }} />
+
                     {item.label}
                   </a>
                 ) : (

@@ -28,7 +28,7 @@ export function formatSampleOrderMessage(order: SampleOrder): string {
 
   const moreNotice = order.items.length > 8 ? `\n  ...and ${order.items.length - 8} more specimen(s)` : '';
 
-  return `*ACE SPACES — NEW SPECIMEN SAMPLE ORDER* 📦
+  return `*ACE SPACES — NEW SPECIMEN SAMPLE ORDER*
 *Order Reference:* ${order.orderNumber}
 *Status:* ${order.status.toUpperCase()}
 
@@ -50,7 +50,7 @@ ${itemsList}${moreNotice}
  * Format a project inquiry into a clear brief message
  */
 export function formatInquiryMessage(inquiry: ProjectInquiry): string {
-  return `*ACE SPACES — NEW PROJECT BRIEF / INQUIRY* 📐
+  return `*ACE SPACES — NEW PROJECT BRIEF / INQUIRY*
 *Reference:* ${inquiry.inquiryNumber}
 
 *Client / Architect:*

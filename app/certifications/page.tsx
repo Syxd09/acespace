@@ -139,7 +139,7 @@ export default function CertificationsHubPage() {
         <div style={{ background: '#141713', color: '#e9e8e2', padding: '48px 40px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '56px' }}>
           <div className="certifications-compliance-grid">
             <div>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#73c991', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '10px' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--brand-red, #c4433d)', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '10px' }}>
                 Zero Crystalline Silica Declaration (RCS Safety)
               </span>
               <h3 style={{ fontSize: '26px', fontWeight: 600, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 16px' }}>

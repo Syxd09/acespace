@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import ProjectGallery from '@/components/ProjectGallery';
+import ScrollReveal from '@/components/ScrollReveal';
 import JsonLd from '@/components/JsonLd';
 import { getSiteContent } from '@/data/contentStore';
 import { defaultProjectsList } from '@/data/contentTypes';
@@ -74,15 +75,15 @@ export default function ProjectsPage() {
       {/* Rich Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: "24px" }}>Projects / Selected Architectural Work</p>
+          <p className="eyebrow anim-fade-up" style={{ marginBottom: "24px" }}>Projects / Selected Architectural Work</p>
 
-          <h1 style={{ fontSize: 'clamp(44px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+          <h1 className="anim-fade-up anim-delay-1" style={{ fontSize: 'clamp(44px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
             Material
             <br />
             in <i>practice.</i>
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
+          <p className="anim-fade-up anim-delay-2" style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '520px', marginBottom: '36px' }}>
             A selection of residential, hospitality, and commercial spaces crafted with seamless solid surfaces across India.
           </p>
 
@@ -95,7 +96,7 @@ export default function ProjectsPage() {
             </Link>
           </div>
 
-          <div className="hero-stats-row">
+          <div className="hero-stats-row anim-fade-up anim-delay-3">
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Typologies
@@ -120,7 +121,7 @@ export default function ProjectsPage() {
         {/* Hero Architectural Image Frame */}
         <div className="hero-image-frame">
           <Image
-            src="/assets/hero-ace.png"
+            src="/images/images/app_residential_stonecrest_smoke_1.jpg"
             alt="Completed private residence kitchen island by Studio Vardhan Architects"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"

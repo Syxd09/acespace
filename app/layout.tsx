@@ -5,9 +5,9 @@ import SiteFooter from '@/components/SiteFooter';
 import { SampleProvider } from '@/context/SampleContext';
 import { SiteContentProvider } from '@/context/SiteContentContext';
 import SampleTray from '@/components/SampleTray';
-import ArchitecturalAIBot from '@/components/ArchitecturalAIBot';
 import PageTransition from '@/components/PageTransition';
 import SmoothScroll from '@/components/SmoothScroll';
+import ArchitecturalAIBot from '@/components/ArchitecturalAIBot';
 import CookieConsent from '@/components/CookieConsent';
 
 // Root layout for Ace Spaces India architectural platform

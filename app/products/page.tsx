@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import JsonLd from '@/components/JsonLd';
+import ScrollReveal from '@/components/ScrollReveal';
 import { productsData } from '@/data/products';
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     url: 'https://acespacesindia.vercel.app/products',
     images: [
       {
-        url: '/images/images/app_residential_artista_mist_1.jpg',
+        url: '/images/images/app_residential_calacatta_greige_1.jpg',
         width: 1200,
         height: 630,
         alt: 'Ace Spaces Architectural Products Catalog',
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     title: 'Architectural Products | Ace Spaces',
     description:
       'Explore monolithic benchtops, seamlessly fused sinks, commercial washplanes, and bespoke architectural fixtures.',
-    images: ['/images/images/app_residential_artista_mist_1.jpg'],
+    images: ['/images/images/app_residential_calacatta_greige_1.jpg'],
   },
 };
 
@@ -80,14 +81,15 @@ export default function ProductsCatalogPage() {
   return (
     <main className="page-main">
       <JsonLd data={productsJsonLd} />
+
       {/* Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: '24px' }}>
+          <p className="eyebrow anim-fade-up" style={{ marginBottom: '24px' }}>
             Fabrication &amp; Systems / Architectural Products
           </p>
 
-          <h1
+          <h1 className="anim-fade-up anim-delay-1"
             style={{
               fontSize: 'clamp(44px, 7vw, 108px)',
               lineHeight: 0.96,
@@ -100,7 +102,7 @@ export default function ProductsCatalogPage() {
             <i>purpose.</i>
           </h1>
 
-          <p
+          <p className="anim-fade-up anim-delay-2"
             style={{
               fontSize: '17px',
               lineHeight: 1.7,
@@ -116,7 +118,7 @@ export default function ProductsCatalogPage() {
             style={{
               fontSize: '11px',
               fontFamily: 'DM Mono, monospace',
-              letterSpacing: '0.08em',
+              letterSpacing: '0.08em', borderRadius: '3px',
               textTransform: 'uppercase',
               color: 'var(--muted)',
               marginBottom: '28px',
@@ -125,7 +127,7 @@ export default function ProductsCatalogPage() {
             Certified DuPont™ Corian® Fabrication, Bengaluru Workshop
           </div>
 
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+          <div className="anim-fade-up anim-delay-3" style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
             <Link className="button button-dark" href="/configurator">
               3D Configurator <span>↗</span>
             </Link>
@@ -137,7 +139,7 @@ export default function ProductsCatalogPage() {
             </Link>
           </div>
 
-          <div className="hero-stats-row">
+          <div className="hero-stats-row anim-fade-up anim-delay-4">
             <div>
               <span
                 style={{
@@ -225,11 +227,9 @@ export default function ProductsCatalogPage() {
         </div>
       </section>
 
-
-
       {/* Products Grid Section */}
       <section id="products-grid" style={{ margin: '80px 0 100px' }}>
-        <div className="section-head" style={{ marginBottom: '40px' }}>
+        <ScrollReveal className="section-head" style={{ marginBottom: '40px' }}>
           <div>
             <p className="eyebrow">Comprehensive Product Range</p>
             <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)' }}>
@@ -241,7 +241,7 @@ export default function ProductsCatalogPage() {
           <p style={{ fontSize: '15px', color: 'var(--muted)', maxWidth: '460px', margin: 0, lineHeight: 1.6 }}>
             Explore fabricated fixtures, edge details, and drawings for residential, commercial, and healthcare spaces.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Product Cards Grid */}
         <div
@@ -259,11 +259,7 @@ export default function ProductsCatalogPage() {
             style={{
               textDecoration: 'none',
               color: 'inherit',
-              background: '#dcd7cd',
-              border: '1px solid var(--line)',
-              display: 'flex',
-              flexDirection: 'column',
-              overflow: 'hidden',
+              background: '#f5f3ec', border: '1px solid var(--line)', borderRadius: '6px', display: 'flex', flexDirection: 'column', overflow: 'hidden',
               transition: 'transform 0.25s ease, box-shadow 0.25s ease',
             }}
           >
@@ -289,7 +285,7 @@ export default function ProductsCatalogPage() {
                   fontSize: '10px',
                   padding: '4px 10px',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
+                  letterSpacing: '0.08em', borderRadius: '3px',
                 }}
               >
                 Raw Substrates &amp; Slabs
@@ -332,7 +328,7 @@ export default function ProductsCatalogPage() {
             </div>
           </Link>
 
-          {/* Render Fabricated Products */}
+          {/* Render All Fabricated Products */}
           {mainProducts.map((product) => (
             <Link
               key={product.slug}
@@ -340,11 +336,7 @@ export default function ProductsCatalogPage() {
               style={{
                 textDecoration: 'none',
                 color: 'inherit',
-                background: '#dcd7cd',
-                border: '1px solid var(--line)',
-                display: 'flex',
-                flexDirection: 'column',
-                overflow: 'hidden',
+                background: '#f5f3ec', border: '1px solid var(--line)', borderRadius: '6px', display: 'flex', flexDirection: 'column', overflow: 'hidden',
                 transition: 'transform 0.25s ease, box-shadow 0.25s ease',
               }}
             >
@@ -370,7 +362,7 @@ export default function ProductsCatalogPage() {
                     fontSize: '10px',
                     padding: '4px 10px',
                     textTransform: 'uppercase',
-                    letterSpacing: '0.08em',
+                    letterSpacing: '0.08em', borderRadius: '3px',
                   }}
                 >
                   {product.code}
@@ -482,7 +474,7 @@ export default function ProductsCatalogPage() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
               {designCertainty.keyFeatures.map((feat, i) => (
                 <li key={i} style={{ display: 'flex', gap: '12px', fontSize: '13px', color: '#e0e5e0', lineHeight: 1.5, alignItems: 'flex-start' }}>
-                  <span style={{ color: '#73c991', fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, fontWeight: 600 }}>0{i + 1}</span>
+                  <span style={{ color: 'var(--brand-red, #c4433d)', fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, fontWeight: 600 }}>0{i + 1}</span>
                   <span>{feat}</span>
                 </li>
               ))}

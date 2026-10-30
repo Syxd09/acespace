@@ -6,7 +6,8 @@ import fs from 'fs';
 import path from 'path';
 import JsonLd from '@/components/JsonLd';
 import AboutScrollHandler from '@/components/AboutScrollHandler';
-import PhilosophyAccordion from '@/components/PhilosophyAccordion';
+import AboutTenetsViewer from '@/components/AboutTenetsViewer';
+import ScrollReveal from '@/components/ScrollReveal';
 import { getSiteContent } from '@/data/contentStore';
 import { defaultAboutContent } from '@/data/contentTypes';
 
@@ -73,77 +74,21 @@ export default function AboutPage() {
   const siteContent = getSiteContent();
   const about = { ...defaultAboutContent, ...(siteContent?.about || {}) };
 
-  const defaultPhilosophyPillars = [
-    {
-      num: '01',
-      title: 'Seamless Continuity',
-      subtitle: 'Joints that disappear',
-      quote: 'Surfaces designed to flow without visual interruptions or grout lines.',
-      body: 'We bond solid surfaces with color-matched acrylic resins so seams become invisible. Countertops, integrated sinks, and wall returns read as one continuous piece, eliminating dirt traps and creating calm, unified spaces.',
-    },
-    {
-      num: '02',
-      title: 'Precision Meets Hand Craft',
-      subtitle: 'Digital accuracy, artisan finish',
-      quote: 'CNC machining for accuracy; hand-honing for tactile warmth.',
-      body: 'Our 5-axis CNC handles cutouts, rebates, and drainboards with sub-millimeter accuracy. Each piece is then hand-sanded to a velvety satin matte finish that feels warm and natural to the touch.',
-    },
-    {
-      num: '03',
-      title: 'Zero-Silica & Non-Porous',
-      subtitle: 'Safe to shape, safe to live with',
-      quote: '100% free of crystalline silica, naturally hygienic, and food-safe.',
-      body: 'Solid surface is composed of natural bauxite mineral and acrylic polymer—completely free of respirable crystalline silica. It does not harbor bacteria, requires no chemical sealers, and carries NSF/ANSI 51 food-contact certification.',
-    },
-    {
-      num: '04',
-      title: 'Direct Studio Collaboration',
-      subtitle: 'From CAD drawings to installation',
-      quote: 'We partner directly with architects, interior studios, and builders.',
-      body: 'We speak the language of construction drawings, joinery tolerances, and site logistics. Our team reviews CAD files, builds 1:1 prototypes, and coordinates on-site installation across India.',
-    },
-    {
-      num: '05',
-      title: 'Bespoke Thermoforming',
-      subtitle: 'Curves without limits',
-      quote: 'Heated to 160°C to achieve tight radii and organic curves.',
-      body: 'By thermoforming sheets over custom timber formwork, we craft curved reception desks, fluted counters, and contoured bathroom fixtures without color distortion or micro-fractures.',
-    },
-    {
-      num: '06',
-      title: 'Repairable & Long-Lasting',
-      subtitle: 'Renewed on-site at any time',
-      quote: 'Homogeneous material that never delaminates and is easy to refresh.',
-      body: 'Because solid surface is identical through its entire thickness, everyday scuffs, minor stains, or scratches can be buffed out on-site in an hour, returning the surface to its original day-one condition.',
-    },
-  ];
-
-  const philosophyPillars = (about.pillars && about.pillars.length >= 6)
-    ? about.pillars.map((p, idx) => ({
-        num: p.number || `0${idx + 1}`,
-        title: p.title,
-        subtitle: p.quote,
-        quote: p.quote,
-        body: p.description,
-        detail: p.detail,
-      }))
-    : defaultPhilosophyPillars;
-
   const atelierTeams = [
     {
       role: 'CAD/CAM Engineering',
       focus: 'Digital Unfolding & Toolpaths',
-      description: 'Translating architectural models (Rhino, Revit, AutoCAD) into clean nested CNC cutting paths, sink rebates, and internal steel sub-frames.',
+      description: 'Translating architectural 3D models into nested CNC toolpaths, coved rebates, and concealed internal sub-framing.',
     },
     {
       role: 'Master Thermoformers',
       focus: 'Vacuum Forming & Platen Ovens',
-      description: 'Heating mineral acrylic to 160°C to form tight 25mm radii, curved reception islands, and fluid flutes over custom timber bucks.',
+      description: 'Heating mineral acrylic to 160°C to form tight 25mm radii, curved reception islands, and fluid flutes over timber bucks.',
     },
     {
       role: 'Precision Joiners',
       focus: 'Invisible Chemical Bonding',
-      description: 'Using color-matched methacrylate bonding systems and custom clamping jigs to create seamless joints with zero visible glue lines.',
+      description: 'Using colour-matched methacrylate bonding systems and custom clamping jigs to create seamless joints with zero visible glue lines.',
     },
     {
       role: 'Finishing & Installation',
@@ -152,7 +97,7 @@ export default function AboutPage() {
     },
   ];
 
-  // Resolve family photo or fall back to high-res studio shot
+  // Resolve team photo or fall back to high-res studio shot
   let familyPhotoSrc: string | null = null;
   if (about.familyPhotoUrl) {
     if (about.familyPhotoUrl.startsWith('data:') || about.familyPhotoUrl.startsWith('http')) {
@@ -185,17 +130,17 @@ export default function AboutPage() {
       {/* Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: '20px' }}>
+          <p className="eyebrow anim-fade-up" style={{ marginBottom: '20px' }}>
             About Us / Studio &amp; Lineage
           </p>
 
-          <h1 style={{ fontSize: 'clamp(44px, 6.5vw, 96px)', lineHeight: 0.98, margin: '0 0 24px', letterSpacing: '-0.05em' }}>
+          <h1 className="anim-fade-up anim-delay-1" style={{ fontSize: 'clamp(44px, 6.5vw, 96px)', lineHeight: 0.98, margin: '0 0 24px', letterSpacing: '-0.05em' }}>
             Form &amp;
             <br />
             <i>continuity.</i>
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '520px', marginBottom: '28px' }}>
+          <p className="anim-fade-up anim-delay-2" style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '520px', marginBottom: '28px' }}>
             We fabricate solid surfaces into seamless architectural fixtures, working directly with architects, interior designers, and creators across India.
           </p>
 
@@ -208,7 +153,7 @@ export default function AboutPage() {
             </Link>
           </div>
 
-          <div className="hero-stats-row">
+          <div className="hero-stats-row anim-fade-up anim-delay-3">
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Origin
@@ -237,7 +182,7 @@ export default function AboutPage() {
             alt="Monolithic architectural counter crafted by Ace Spaces"
             fill
             sizes="(max-width: 860px) 100vw, 45vw"
-            quality={75}
+            quality={80}
             decoding="async"
             style={{ objectFit: 'cover' }}
             priority
@@ -251,8 +196,8 @@ export default function AboutPage() {
                 Bespoke Monoliths &amp; Joinery
               </strong>
             </div>
-            <Link href="#philosophy" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
-              Philosophy <span>↓</span>
+            <Link href="#story" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+              Explore Atelier <span>↓</span>
             </Link>
           </div>
         </div>
@@ -276,17 +221,17 @@ export default function AboutPage() {
         aria-label="About page sections"
       >
         <a href="#story" style={{ color: 'inherit', textDecoration: 'none' }}>01 / Our Story</a>
-        <a href="#philosophy" style={{ color: 'inherit', textDecoration: 'none' }}>02 / Design Philosophy</a>
-        <a href="#team" style={{ color: 'inherit', textDecoration: 'none' }}>03 / The Workshop</a>
-        <a href="#dupont" style={{ color: 'inherit', textDecoration: 'none' }}>04 / DuPont™ Alliance</a>
-        <a href="#locations" style={{ color: 'inherit', textDecoration: 'none' }}>05 / Bengaluru Studio</a>
+        <a href="#tenets" style={{ color: 'inherit', textDecoration: 'none' }}>02 / Craft Disciplines</a>
+        <a href="#workshop" style={{ color: 'inherit', textDecoration: 'none' }}>03 / The Workshop</a>
+        <a href="#dupont" style={{ color: 'inherit', textDecoration: 'none' }}>04 / DuPont Alliance</a>
+        <a href="#studio" style={{ color: 'inherit', textDecoration: 'none' }}>05 / Bengaluru Studio</a>
+        <a href="#coro" style={{ color: 'inherit', textDecoration: 'none' }}>06 / Sister Brand</a>
       </nav>
 
       {/* Section 01: The Architectural Story */}
       <section id="story" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
             <p className="eyebrow" style={{ margin: 0 }}>01 / Origin &amp; Purpose</p>
           </div>
 
@@ -298,7 +243,7 @@ export default function AboutPage() {
                 <i>outlast trends.</i>
               </h2>
               <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.6, margin: '0 0 24px' }}>
-                Founded in Bengaluru to connect architectural vision with precision fabrication.
+                Founded in Bengaluru to connect architectural vision directly with precision fabrication.
               </p>
 
               {/* Studio & Team Photo Frame */}
@@ -339,22 +284,22 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '16px', lineHeight: 1.7, color: '#4a5249' }}>
-              <p className="lead" style={{ fontSize: '18px', color: 'var(--ink)', margin: 0 }}>
-                Traditional stone surfaces come with unavoidable compromises: natural marble stains and fissures easily, engineered quartz carries toxic crystalline silica risks, and tiles leave grout lines that collect grime.
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', fontSize: '15px', lineHeight: 1.7, color: '#4a5249' }}>
+              <p className="lead" style={{ fontSize: '18px', color: 'var(--ink)', margin: 0, lineHeight: 1.5 }}>
+                We believe architectural surfaces should be durable, seamless, and safe to live with.
               </p>
               <p>
-                <strong>Ace Spaces was started to give designers a cleaner alternative.</strong> From our stockyard and fabrication workshop in Bengaluru, we provide authentic DuPont™ Corian® solid surfaces shaped with sub-millimeter CNC accuracy and bonded with invisible seams.
+                From our stockyard and workshop in Bengaluru, we fabricate genuine DuPont™ Corian® solid surface fixtures directly for architects, interior designers, and builders across India.
               </p>
               <p>
-                Whether it is a 5-meter monolithic kitchen island with an integrated seamless sink, a curved backlit reception counter, or clinical healthcare washplanes, we turn raw sheets into durable, sculptural spaces.
+                Because solid surface is non-porous and free of crystalline silica, it creates calm, hygienic spaces—from continuous kitchen islands and coved washplanes to sculptural curved desks.
               </p>
-              <div style={{ display: 'flex', gap: '14px', marginTop: '10px', flexWrap: 'wrap' }}>
-                <Link className="button button-dark" href="/materials">
-                  View Materials Palette <span>↗</span>
+              <div style={{ display: 'flex', gap: '14px', marginTop: '8px', flexWrap: 'wrap' }}>
+                <Link className="button button-dark" href="/products">
+                  Explore Products <span>↗</span>
                 </Link>
-                <Link className="text-link" href="/fabrication" style={{ alignSelf: 'center' }}>
-                  Explore Fabrication Capabilities <span>→</span>
+                <Link className="text-link" href="/materials" style={{ alignSelf: 'center' }}>
+                  Corian® Palette <span>↗</span>
                 </Link>
               </div>
             </div>
@@ -362,12 +307,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Section 02: Design Philosophy */}
-      <section id="philosophy" className="section-pad" style={{ borderBottom: '1px solid var(--line)', background: '#ece8df' }}>
+      {/* Section 02: Craft Disciplines */}
+      <section id="tenets" className="section-pad" style={{ borderBottom: '1px solid var(--line)', background: '#ece8df' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
-            <p className="eyebrow" style={{ margin: 0 }}>02 / Design Philosophy</p>
+            <p className="eyebrow" style={{ margin: 0 }}>02 / Craft Disciplines</p>
           </div>
 
           <div className="about-two-col-wide" style={{ marginBottom: '36px' }}>
@@ -380,20 +324,88 @@ export default function AboutPage() {
             </div>
             <div>
               <p style={{ fontSize: '16px', lineHeight: 1.7, color: '#4a5249', margin: 0 }}>
-                Every surface, sink, and plinth we craft is guided by six principles: seamless geometry, tactile warmth, material safety, and honest construction.
+                Every surface, sink, and plinth we craft is guided by four disciplines: invisible chemical fusion, 160°C thermoforming, 5-axis CNC accuracy, and diamond hand honing.
               </p>
             </div>
           </div>
 
-          <PhilosophyAccordion pillars={philosophyPillars} />
+          <AboutTenetsViewer />
+        </div>
+      </section>
+
+      {/* Cinematic Panoramic Feature Break */}
+      <section
+        style={{
+          position: 'relative',
+          height: 'clamp(320px, 45vw, 540px)',
+          width: '100%',
+          overflow: 'hidden',
+          background: '#1a1d19',
+        }}
+      >
+        <Image
+          src="/images/images/coriansolidsurface-verdantlaguna-application.jpg"
+          alt="Monolithic DuPont™ Corian® surface with continuous joinery"
+          fill
+          sizes="100vw"
+          quality={80}
+          style={{ objectFit: 'cover' }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(20,23,19,0.3) 0%, rgba(20,23,19,0.85) 100%)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            padding: 'clamp(32px, 5vw, 64px)',
+            color: '#fff',
+          }}
+        >
+          <div style={{ maxWidth: '720px' }}>
+            <p
+              style={{
+                fontFamily: 'DM Mono, monospace',
+                fontSize: '11px',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: 'rgba(255, 255, 255, 0.65)',
+                margin: '0 0 14px',
+              }}
+            >
+              The Monolithic Philosophy
+            </p>
+            <h3
+              style={{
+                fontSize: 'clamp(26px, 3.8vw, 44px)',
+                lineHeight: 1.15,
+                fontWeight: 400,
+                color: '#fff',
+                margin: '0 0 16px',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              A single uninterrupted plane from horizontal worktop to vertical waterfall.
+            </h3>
+            <p
+              style={{
+                fontSize: '14px',
+                lineHeight: 1.6,
+                color: 'rgba(255, 255, 255, 0.8)',
+                margin: 0,
+              }}
+            >
+              DuPont™ Corian® solid surfaces eliminate dirt-trapping grout joints and perimeter gaps, creating calm and monolithic architectural environments.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Section 03: The Atelier & Makers */}
-      <section id="team" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
+      <section id="workshop" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
             <p className="eyebrow" style={{ margin: 0 }}>03 / Workshop &amp; Makers</p>
           </div>
 
@@ -405,7 +417,7 @@ export default function AboutPage() {
                 <i>the surfaces.</i>
               </h2>
               <p style={{ fontSize: '15px', lineHeight: 1.65, color: '#555e54', margin: '0 0 20px' }}>
-                Our integrated facility in Bengaluru operates as an architectural laboratory, where CNC machinery is guided by computational designers, thermoforming specialists, and master joiners.
+                Our 15,000 sq.ft facility in Bengaluru operates as an architectural laboratory, where CNC machinery is guided by computational designers, thermoforming specialists, and master joiners.
               </p>
             </div>
 
@@ -459,7 +471,7 @@ export default function AboutPage() {
                 alt={about.workshopPhotoCaption || 'Ace Spaces fabrication workshop and finished monolithic installation'}
                 fill
                 sizes="(max-width: 900px) 100vw, 85vw"
-                quality={75}
+                quality={80}
                 loading="lazy"
                 decoding="async"
                 style={{ objectFit: 'cover' }}
@@ -483,7 +495,7 @@ export default function AboutPage() {
                   Bengaluru Workshop
                 </span>
                 <strong style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>
-                  {about.workshopPhotoCaption || 'Continuous 4.2-Meter Island with Integrated Sub-Surface Sink'}
+                  {about.workshopPhotoCaption || 'Continuous Monolithic Island with Integrated Sub-Surface Sink'}
                 </strong>
               </div>
               <p style={{ fontSize: '12px', lineHeight: 1.5, color: '#555e54', margin: 0, maxWidth: '440px' }}>
@@ -494,7 +506,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Section 04: Material Foundation & DuPont™ Alliance */}
+      {/* Section 04: Material Foundation & DuPont Alliance */}
       <section
         id="dupont"
         className="section-pad"
@@ -507,7 +519,6 @@ export default function AboutPage() {
       >
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
             <p className="eyebrow" style={{ margin: 0 }}>04 / Material Sourcing</p>
           </div>
 
@@ -526,7 +537,7 @@ export default function AboutPage() {
                   Authorized DuPont™ Corian® Quality Network Industrial Partner
                 </div>
                 <div style={{ fontSize: '12px', color: '#656e64', marginTop: '6px', lineHeight: 1.5 }}>
-                  Certified master fabricator and stockist backed by DuPont's 10-year installed warranty.
+                  Certified master fabricator and stockist backed by DuPont 10-year installed warranty.
                 </div>
               </div>
 
@@ -606,10 +617,9 @@ export default function AboutPage() {
       </section>
 
       {/* Section 05: Studio Headquarters */}
-      <section id="locations" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
+      <section id="studio" className="section-pad" style={{ borderBottom: '1px solid var(--line)' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-            <span style={{ display: 'inline-block', width: '7px', height: '7px', borderRadius: '50%', background: 'var(--ink)' }} />
             <p className="eyebrow" style={{ margin: 0 }}>05 / Bengaluru Studio</p>
           </div>
 
@@ -695,7 +705,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Coro Crafted Collective Callout */}
+      {/* Section 06: Coro Crafted Collective Callout */}
       <section className="callout about-coro-callout" id="coro">
         <div
           className="coro-brand-showcase"

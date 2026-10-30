@@ -140,13 +140,13 @@ export default function JournalArticlePage({ params }: { params: { slug: string 
                 padding: '3px 8px',
                 background: 'rgba(255,255,255,0.1)',
                 border: '1px solid rgba(255,255,255,0.15)',
-                color: '#73c991',
+                color: '#d4cfc5',
               }}
             >
               {article.category}
             </span>
             <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#a0aba0' }}>
-              {article.date} • {article.readTime}
+              {article.date} — {article.readTime}
             </span>
           </div>
 
@@ -196,7 +196,7 @@ export default function JournalArticlePage({ params }: { params: { slug: string 
               letterSpacing: '0.08em',
             }}
           >
-            Author: {article.author} • Ace Spaces Monograph
+            Author: {article.author} — Ace Spaces Monograph
           </div>
         </div>
       )}
@@ -247,13 +247,13 @@ export default function JournalArticlePage({ params }: { params: { slug: string 
               border: '1px solid rgba(255,255,255,0.1)',
             }}
           >
-            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#73c991', marginBottom: '16px' }}>
+            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--brand-red, #c4433d)', marginBottom: '16px' }}>
               Key Technical & Spatial Takeaways
             </div>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {article.takeaways.map((point, tIdx) => (
                 <li key={tIdx} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', fontSize: '15px', lineHeight: 1.6, color: '#dcd7cd' }}>
-                  <span style={{ color: '#73c991', fontWeight: 700, fontFamily: 'DM Mono, monospace' }}>✓</span>
+                  <span style={{ color: 'var(--brand-red, #c4433d)', fontWeight: 700, fontFamily: 'DM Mono, monospace' }}>✓</span>
                   <span>{point}</span>
                 </li>
               ))}
@@ -310,7 +310,7 @@ export default function JournalArticlePage({ params }: { params: { slug: string 
                 }}
               >
                 <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
-                  {other.category} • {other.readTime}
+                  {other.category} — {other.readTime}
                 </span>
                 <h4 style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', fontWeight: 500, margin: '0 0 10px 0', lineHeight: 1.3 }}>
                   {other.title}

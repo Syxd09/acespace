@@ -99,16 +99,6 @@ export default function WhatsAppConcierge() {
                 >
                   <span
                     style={{
-                      width: '7px',
-                      height: '7px',
-                      borderRadius: '50%',
-                      background: '#25D366',
-                      boxShadow: '0 0 10px #25D366',
-                      display: 'inline-block',
-                    }}
-                  />
-                  <span
-                    style={{
                       fontFamily: 'DM Mono, monospace',
                       fontSize: '10px',
                       letterSpacing: '0.1em',
@@ -210,18 +200,15 @@ export default function WhatsAppConcierge() {
                       transition: 'all 0.2s ease',
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(37, 211, 102, 0.12)';
-                      e.currentTarget.style.borderColor = 'rgba(37, 211, 102, 0.35)';
+                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.08)';
+                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.25)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                       e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
                     }}
                   >
-                    <span>
-                      <span style={{ marginRight: '6px' }}>{prompt.icon}</span>
-                      {prompt.label}
-                    </span>
+                    <span>{prompt.label}</span>
                     <span style={{ opacity: 0.6, fontSize: '11px' }}>↗</span>
                   </button>
                 ))}
@@ -250,8 +237,8 @@ export default function WhatsAppConcierge() {
                   <button
                     type="submit"
                     style={{
-                      background: '#25D366',
-                      color: '#0e2b15',
+                      background: 'rgba(255, 255, 255, 0.12)',
+                      color: '#ffffff',
                       border: 'none',
                       borderRadius: '3px',
                       padding: '0 14px',
@@ -288,7 +275,7 @@ export default function WhatsAppConcierge() {
                 }}
               >
                 <span>Bengaluru UTC+5:30</span>
-                <span style={{ color: '#25D366' }}>Available on WhatsApp</span>
+                <span style={{ color: '#c2cdc2' }}>Available on WhatsApp</span>
               </div>
             </div>
           </div>
@@ -318,8 +305,8 @@ export default function WhatsAppConcierge() {
             transform: isOpen ? 'scale(0.98)' : 'scale(1)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(37, 211, 102, 0.6)';
-            e.currentTarget.style.boxShadow = '0 12px 35px rgba(37, 211, 102, 0.22)';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+            e.currentTarget.style.boxShadow = '0 12px 35px rgba(0, 0, 0, 0.4)';
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
@@ -332,7 +319,7 @@ export default function WhatsAppConcierge() {
               width: '24px',
               height: '24px',
               borderRadius: '50%',
-              background: '#25D366',
+              background: 'rgba(255, 255, 255, 0.1)',
               display: 'grid',
               placeItems: 'center',
               color: '#ffffff',
@@ -365,15 +352,6 @@ export default function WhatsAppConcierge() {
               >
                 WhatsApp Advisory
               </span>
-              <span
-                style={{
-                  width: '5px',
-                  height: '5px',
-                  borderRadius: '50%',
-                  background: '#25D366',
-                  display: 'inline-block',
-                }}
-              />
             </div>
             <span
               style={{
@@ -391,7 +369,7 @@ export default function WhatsAppConcierge() {
             style={{
               fontFamily: 'DM Mono, monospace',
               fontSize: '11px',
-              color: '#25D366',
+              color: 'var(--brand-red, #c4433d)',
               marginLeft: '2px',
             }}
           >

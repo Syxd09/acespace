@@ -271,7 +271,7 @@ export default function JournalGallery({ images, articleTitle = 'Journal Essay' 
                     borderRadius: '2px',
                     overflow: 'hidden',
                     cursor: 'pointer',
-                    border: tIdx === activePhotoIndex ? '2px solid #73c991' : '1px solid rgba(255,255,255,0.3)',
+                    border: tIdx === activePhotoIndex ? '2px solid var(--brand-red, #c4433d)' : '1px solid rgba(255,255,255,0.3)',
                     opacity: tIdx === activePhotoIndex ? 1 : 0.6,
                     flexShrink: 0,
                   }}

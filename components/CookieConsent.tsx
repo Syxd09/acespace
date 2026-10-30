@@ -122,7 +122,7 @@ export default function CookieConsent() {
     >
       <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '14px', marginBottom: '12px' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--brand-red, #d43833)' }} />
+
           <span
             style={{
               fontFamily: 'DM Mono, monospace',
@@ -183,7 +183,7 @@ export default function CookieConsent() {
               <div style={{ fontSize: '12px', fontWeight: 600, color: '#f0efe9' }}>Strictly Essential</div>
               <div style={{ fontSize: '11px', color: '#8c968c', lineHeight: 1.4 }}>Security, sample tray state, CSRF tokens</div>
             </div>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#73c991', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#a3aca3', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
               Required
             </span>
           </div>

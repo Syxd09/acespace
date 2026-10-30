@@ -484,12 +484,12 @@ Renewability & Scratch Repair:
     summary: 'Coro Crafted Collective & Ace Spaces share one single unified studio headquarters in Bengaluru, Karnataka. Direct Google Maps navigation: https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
     details: `Architects, interior designers, and project owners are welcome to experience our monolithic material volumes, full slab catalog, and spatial installations at our studio:
 
-📍 **Coro Crafted Collective & Ace Spaces Studio Headquarters:**
+**Coro Crafted Collective & Ace Spaces Studio Headquarters:**
 Bengaluru, Karnataka, India.
 *(This is our single, unified studio headquarters for both Ace Spaces and Coro Crafted Collective)*
 *Hours: Monday - Saturday, 09:30 - 18:30 IST (Sundays by appointment).*
 
-🗺️ **Direct Google Maps Navigation:**
+**Direct Google Maps Navigation:**
 [Open Studio Headquarters on Google Maps ↗](https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7)
 
 Here under one roof, you can:
@@ -602,7 +602,7 @@ Together, they established **Ace Spaces** as the foundational raw material autho
     summary: 'Interactive 3D Parametric Studio for custom solid surface sinks, integrated washplanes, monolithic basin blocks, and floating vanities with millimetric dimensions and instant BOQ estimates.',
     details: `Ace Spaces provides an interactive WebGL 3D Parametric Product Configurator for custom architectural sinks, washplanes, and vanity consoles:
 
-👉 **[Launch 3D Sinks & Vanity Configurator ↗](/configurator)**
+**[Launch 3D Sinks & Vanity Configurator ↗](/configurator)**
 
 **Customization Capabilities:**
 • **Parametric Dimensions**:
@@ -647,7 +647,7 @@ Together, they established **Ace Spaces** as the foundational raw material autho
     summary: 'Interactive 3D geometry laboratory for thermoformed solid surface countertop basins (Oval, Capsule, Round, Square) with 1:1 true-scale mobile Augmented Reality.',
     details: `Ace Spaces provides an interactive 3D Basin Studio for designing bespoke solid surface vessel washbowls and inspecting them in 1:1 Augmented Reality:
 
-👉 **[Launch 3D Basin Studio & AR ↗](/basin-configurator)**
+**[Launch 3D Basin Studio & AR ↗](/basin-configurator)**
 
 **Geometries & Features:**
 • **Geometric Profiles**:
@@ -1049,7 +1049,7 @@ export function getMaterialPricing(material: Material): MaterialPricingInfo {
  */
 export function formatFullMaterialExplanation(mat: Material, pricing: MaterialPricingInfo): string {
   let doc = `### ${mat.name} (${mat.code}) - Architectural Specification\n\n`;
-  doc += `**Stock Status**: ✅ **Present in Stock at Ace Spaces**\n`;
+  doc += `**Stock Status**: In Stock at Bengaluru Stockyard\n`;
   doc += `*Available at Ace Spaces Bengaluru stockyard for immediate full-sheet supply, 5-axis CNC digital routing, vacuum thermoforming, and physical sample tray dispatch.*\n\n`;
   doc += `${mat.description}\n\n`;
 
@@ -1121,7 +1121,7 @@ export function formatFullMaterialExplanation(mat: Material, pricing: MaterialPr
  * and recommends the closest in-stock alternative.
  */
 export function formatNonStockExplanation(detected: NonStockDetection, pricing: MaterialPricingInfo): string {
-  let doc = `### Stock Status: ❌ NOT Present in Stock at Ace Spaces\n\n`;
+  let doc = `### Stock Status: Non-Stocked Material / Special Consultation\n\n`;
   doc += `**Material Inquired**: **${detected.detectedTerm}**\n`;
   doc += `**Stock Availability**: **Not present in the stock of Ace Spaces.**\n\n`;
   doc += `Ace Spaces operates exclusively as a master solid surface fabricator and authorized DuPont™ Corian® partner. We do not stock or supply ${detected.detectedTerm.toLowerCase()}.\n\n`;
@@ -1130,7 +1130,7 @@ export function formatNonStockExplanation(detected: NonStockDetection, pricing: 
   doc += `${detected.reason}\n\n`;
 
   doc += `---\n\n`;
-  doc += `### Recommended In-Stock Alternative: ✅ Present in Stock at Ace Spaces\n\n`;
+  doc += `### Recommended In-Stock Alternative: In Stock at Bengaluru Stockyard\n\n`;
   doc += `To achieve this aesthetic with **100% zero-silica safety**, zero porosity, and seamless joining, Ace Spaces maintains in-stock inventory of:\n\n`;
 
   const alt = detected.suggestedAlternative;
@@ -1156,7 +1156,7 @@ export function formatCatalogStockInventory(liveMats?: Material[]): string {
   }
 
   let doc = `### Ace Spaces Live In-Stock Materials Inventory (${count} Certified Surfaces)\n\n`;
-  doc += `**Stock Status**: ✅ **All ${count} materials listed below are present in stock at Ace Spaces Bengaluru stockyard.**\n`;
+  doc += `**Stock Status**: All ${count} materials listed below are present in stock at Ace Spaces Bengaluru stockyard.\n`;
   doc += `Every specimen is available for immediate full-sheet supply (3660 × 760 mm), 5-axis CNC digital routing, vacuum thermoforming, and physical sample tray dispatch.\n\n`;
 
   for (const [colName, items] of Object.entries(collections)) {
@@ -1308,7 +1308,7 @@ How can I assist your practice today? You can ask me about:
 
 To design and customize your bespoke solid surface sinks, integrated washplanes, or monolithic vanity units, launch our interactive 3D studio:
 
-👉 **[Launch 3D Sinks & Vanity Configurator ↗](/configurator)**
+**[Launch 3D Sinks & Vanity Configurator ↗](/configurator)**
 
 **Real-Time Customization Controls:**
 • **Exact Millimetric Dimensions**:
@@ -1342,7 +1342,7 @@ To design and customize your bespoke solid surface sinks, integrated washplanes,
 
 To design bespoke solid surface countertop washbowls and test them in your space with mobile AR, launch our interactive 3D geometry lab:
 
-👉 **[Launch 3D Basin Studio & AR ↗](/basin-configurator)**
+**[Launch 3D Basin Studio & AR ↗](/basin-configurator)**
 
 **Real-Time Customization Controls:**
 • **Geometric Profiles**:
@@ -1378,33 +1378,33 @@ To design bespoke solid surface countertop washbowls and test them in your space
 
     if (mentionsRed || (mentionsBlue && mentionsRed)) {
       advisory += `#### 1. Red, Warm Earth & Terracotta Surfaces\n`;
-      advisory += `• **[Sandstorm (COR-SS47)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: A dynamic swirl particulate evoking desert earth and warm clay tones. Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
-      advisory += `• **[Lava Rock (COR-LR29)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Deep charcoal and warm terracotta-hued volcanic mineral matrix with tactile aggregate depth.\n\n`;
+      advisory += `• **[Sandstorm (COR-SS47)](/materials#library)** — *In Stock*: A dynamic swirl particulate evoking desert earth and warm clay tones. Engineered with **100% zero crystalline silica**, non-porous stain resistance, and a velvety matte surface. It is exceptionally well-suited for kitchen island waterfall aprons, warm powder room vanity counters, and seamless coved backsplashes.\n`;
+      advisory += `• **[Lava Rock (COR-LR29)](/materials#library)** — *In Stock*: Deep charcoal and warm terracotta-hued volcanic mineral matrix with tactile aggregate depth.\n\n`;
     }
 
     if (mentionsBlue || (mentionsBlue && mentionsRed)) {
       advisory += `#### 2. Blue & Cool Oceanic Surfaces\n`;
-      advisory += `• **[Vasto Laguna (COR-VL13)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Deep oceanic minerals with cool teal and blue particulate accents, 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins.\n`;
-      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Translucent mineral surface that diffuses light with up to 38% transmission. When illuminated from behind with cool-spectrum (4500K-6500K) LED matrices, it glows with radiant crystalline depth.\n\n`;
+      advisory += `• **[Vasto Laguna (COR-VL13)](/materials#library)** — *In Stock*: Deep oceanic minerals with cool teal and blue particulate accents, 5-axis CNC fabricated at our Bangalore workshop with seamless molecular joins.\n`;
+      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** — *In Stock*: Translucent mineral surface that diffuses light with up to 38% transmission. When illuminated from behind with cool-spectrum (4500K-6500K) LED matrices, it glows with radiant crystalline depth.\n\n`;
     }
 
     if (mentionsGreen && !mentionsBlue && !mentionsRed) {
       advisory += `#### Botanic & Earthy Green Surfaces\n`;
-      advisory += `• **[Artista Sage (COR-AS05)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n`;
-      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Translucent green-tinted mineral matrix ideal for backlit botanical feature walls.\n\n`;
+      advisory += `• **[Artista Sage (COR-AS05)](/materials#library)** — *In Stock*: A calming celadon sage green with soft mineral powdering, pairing effortlessly with pale oak, linen textiles, and brushed brass fixtures.\n`;
+      advisory += `• **[Jade Onyx (COR-JO24)](/materials#library)** — *In Stock*: Translucent green-tinted mineral matrix ideal for backlit botanical feature walls.\n\n`;
     }
 
     if (!mentionsBlue && !mentionsRed && !mentionsGreen) {
       advisory += `#### Recommended Architectural Collections\n`;
-      advisory += `• **[Calacatta Greige (COR-CG01)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Sculptural warm greige marble movement with continuous bookmatching.\n`;
-      advisory += `• **[Stonique (COR-SQ03)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Pure monolithic architectural solid surface with zero visible seams.\n`;
-      advisory += `• **[Bleached Nuwood (COR-BN06)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Warm mineral wood-grain surface with non-porous resilience.\n\n`;
+      advisory += `• **[Calacatta Greige (COR-CG01)](/materials#library)** — *In Stock*: Sculptural warm greige marble movement with continuous bookmatching.\n`;
+      advisory += `• **[Stonique (COR-SQ03)](/materials#library)** — *In Stock*: Pure monolithic architectural solid surface with zero visible seams.\n`;
+      advisory += `• **[Bleached Nuwood (COR-BN06)](/materials#library)** — *In Stock*: Warm mineral wood-grain surface with non-porous resilience.\n\n`;
     }
 
     advisory += `#### Balanced Architectural Pairings\n`;
     advisory += `To ensure bold statement surfaces harmonize with interior volumes, we recommend pairing them with neutral grounds:\n`;
-    advisory += `• **[Linen (COR-LN46)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
-    advisory += `• **[Venaro White (COR-VW64)](/materials#library)** - ✅ **Present in Stock at Ace Spaces**: Luminous crisp white with gossamer linear veining.\n\n`;
+    advisory += `• **[Linen (COR-LN46)](/materials#library)** — *In Stock*: Warm cream mineral ground that softens bold chromatic contrasts.\n`;
+    advisory += `• **[Venaro White (COR-VW64)](/materials#library)** — *In Stock*: Luminous crisp white with gossamer linear veining.\n\n`;
 
     advisory += `**Stock Confirmation**: All ${liveMaterials.length} materials in our catalog are **currently present in stock at Ace Spaces** Bengaluru stockyard, featuring **100% zero crystalline silica** (silicosis-safe), seamless inconspicuous joins, and vacuum thermoforming capabilities down to 25mm radii.\n\n`;
     advisory += `Would you like to curate physical 100 × 100 mm specimens via our [Sample Tray](/materials), or discuss CAD drawings directly with our Bengaluru engineers on [WhatsApp](https://wa.me/919741044776)?`;

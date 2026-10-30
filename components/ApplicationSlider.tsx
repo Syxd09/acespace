@@ -217,7 +217,7 @@ export default function ApplicationSlider({
             {currentImage.caption}
           </p>
           <span className="application-slider-sub">
-            Auto-sliding • Slide {currentIndex + 1} of {total}
+            Auto-sliding — Slide {currentIndex + 1} of {total}
           </span>
         </div>
 

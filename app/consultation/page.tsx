@@ -116,7 +116,6 @@ ${message}
         {/* Hero Header */}
         <div style={{ borderBottom: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingBottom: '36px', marginBottom: '48px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(30, 33, 29, 0.05)', border: '1px solid rgba(30, 33, 29, 0.12)', padding: '6px 14px', marginBottom: '20px' }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#73c991', display: 'inline-block' }} />
             <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
               Atelier Engineering Desk / Direct CAD &amp; Material Review
             </span>
@@ -128,7 +127,7 @@ ${message}
             &amp; Drawing <i>review.</i>
           </h1>
           <p style={{ fontSize: '17px', lineHeight: 1.65, color: '#4a5249', maxWidth: '800px', margin: 0 }}>
-            Collaborate directly with Ace Spaces senior fabrication engineers. Submit your project requirements, CAD/BIM shop drawings, or architectural material schedules for estimation, nesting yield optimization, and on-site fitment feasibility in Bengaluru.
+            Share your project drawings, sketches, or material requirements. Our Bengaluru workshop team will review dimensions, seamless joint layouts, and provide pricing within 24 hours.
           </p>
         </div>
 
@@ -136,7 +135,7 @@ ${message}
         <div className="consultation-layout-grid" style={{ gap: '48px', alignItems: 'start' }}>
           
           {/* Left: The Form */}
-          <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '36px 32px' }}>
+          <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '36px 32px', borderRadius: '6px' }}>
             {submitted ? (
               <div style={{ padding: '24px 0', textAlign: 'left' }}>
                 <div style={{ display: 'inline-block', background: 'rgba(46, 125, 50, 0.1)', color: '#2e7d32', padding: '6px 12px', fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600, marginBottom: '16px' }}>
@@ -146,7 +145,7 @@ ${message}
                   Brief Received at Bengaluru Atelier Desk
                 </h3>
                 <p style={{ fontSize: '15px', lineHeight: 1.7, color: '#4a5249', marginBottom: '24px' }}>
-                  Thank you, <strong>{name}</strong>. Your project dossier has been catalogued under reference code <span style={{ fontFamily: 'DM Mono, monospace', fontWeight: 600, color: '#1a1d19' }}>{inquiryNumber}</span>. Our senior technical estimator will review your specification and reach out within 24 business hours.
+                  Thank you, <strong>{name}</strong>. We have received your project details (Ref: <span style={{ fontFamily: 'DM Mono, monospace', fontWeight: 600, color: '#1a1d19' }}>{inquiryNumber}</span>). Our workshop team will review your drawings and respond within 24 hours.
                 </p>
                 <div style={{ borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '20px', display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
                   <a
@@ -157,7 +156,7 @@ ${message}
                       display: 'inline-flex',
                       alignItems: 'center',
                       gap: '8px',
-                      background: '#25D366',
+                      background: 'var(--ink, #1e211d)',
                       color: '#fff',
                       padding: '12px 20px',
                       fontFamily: 'DM Mono, monospace',
@@ -167,7 +166,7 @@ ${message}
                       textDecoration: 'none',
                     }}
                   >
-                    Direct WhatsApp Escalation ({inquiryNumber}) ↗
+                    Message on WhatsApp (Ref {inquiryNumber}) ↗
                   </a>
                   <button
                     onClick={() => {
@@ -332,7 +331,7 @@ ${message}
                     transition: 'opacity 0.2s ease',
                   }}
                 >
-                  {isSubmitting ? 'Transmitting Brief...' : 'Transmit Project Brief to Atelier Desk →'}
+                  {isSubmitting ? 'Sending Brief...' : 'Send Project Brief →'}
                 </button>
               </form>
             )}
@@ -340,7 +339,7 @@ ${message}
 
           {/* Right: Technical Advisory & Assurance Card */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <div style={{ background: 'rgba(30, 33, 29, 0.03)', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '32px 28px' }}>
+            <div style={{ background: 'rgba(30, 33, 29, 0.03)', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '32px 28px', borderRadius: '6px' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#788078', display: 'block', marginBottom: '8px' }}>
                 Atelier Drawing Protocols
               </span>
@@ -359,8 +358,8 @@ ${message}
               </ul>
             </div>
 
-            <div style={{ background: '#141713', color: '#e9e8e2', padding: '32px 28px', border: '1px solid rgba(255,255,255,0.1)' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#73c991', display: 'block', marginBottom: '8px' }}>
+            <div style={{ background: '#141713', color: '#e9e8e2', padding: '32px 28px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#c2cdc2', display: 'block', marginBottom: '8px' }}>
                 Direct Specifier Hotline
               </span>
               <h4 style={{ fontSize: '19px', fontWeight: 600, letterSpacing: '-0.02em', color: '#fff', margin: '0 0 10px' }}>
@@ -377,7 +376,7 @@ ${message}
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  background: '#25D366',
+                  background: 'var(--ink, #1e211d)',
                   color: '#fff',
                   padding: '10px 18px',
                   fontFamily: 'DM Mono, monospace',

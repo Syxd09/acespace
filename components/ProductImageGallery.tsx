@@ -139,9 +139,7 @@ export default function ProductImageGallery({
             aria-label={`Open photo ${i + 1}: ${img.caption}`}
             className="product-gallery-card"
             style={{
-              background: '#dcd7cd',
-              border: '1px solid var(--line, rgba(30, 33, 29, 0.18))',
-              overflow: 'hidden',
+              background: '#f5f3ec', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', borderRadius: '6px', overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column',
               cursor: 'pointer',
@@ -482,7 +480,7 @@ export default function ProductImageGallery({
                     style={{
                       fontFamily: 'DM Mono, monospace',
                       fontSize: '10px',
-                      color: '#73c991',
+                      color: '#c2cdc2',
                       letterSpacing: '0.12em',
                       textTransform: 'uppercase',
                       display: 'block',
@@ -532,19 +530,19 @@ export default function ProductImageGallery({
                     }}
                   >
                     <li style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
-                      <span style={{ color: '#73c991' }}>✓</span>
+                      <span style={{ color: '#c2cdc2' }}>✓</span>
                       <span><strong>Substrate:</strong> Authentic DuPont™ Corian® Solid Surface</span>
                     </li>
                     <li style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
-                      <span style={{ color: '#73c991' }}>✓</span>
-                      <span><strong>Jointing:</strong> Inconspicuous Seamless Chemical Fusion (0.00mm)</span>
+                      <span style={{ color: '#c2cdc2' }}>✓</span>
+                      <span><strong>Jointing:</strong> Seamless chemical jointing (zero visible seams)</span>
                     </li>
                     <li style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
-                      <span style={{ color: '#73c991' }}>✓</span>
-                      <span><strong>Health:</strong> 100% Zero Respirable Crystalline Silica (0.00% RCS)</span>
+                      <span style={{ color: '#c2cdc2' }}>✓</span>
+                      <span><strong>Health:</strong> 100% Zero-Silica (safe to fabricate and live with)</span>
                     </li>
                     <li style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
-                      <span style={{ color: '#73c991' }}>✓</span>
+                      <span style={{ color: '#c2cdc2' }}>✓</span>
                       <span><strong>Hygiene:</strong> NSF/ANSI 51 Food Zone &amp; Cleanroom Certified</span>
                     </li>
                   </ul>

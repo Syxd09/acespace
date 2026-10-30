@@ -3,13 +3,13 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import EdgeProfileCatalog from '@/components/EdgeProfileCatalog';
-// Fabrication components
 import JsonLd from '@/components/JsonLd';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export const metadata: Metadata = {
   title: 'Digital Fabrication & Architectural Engineering — 5-Axis CNC & Thermoforming',
   description:
-    'Advanced digital fabrication atelier in Bengaluru, India: automated 5-axis CNC routing (<0.2mm tolerance), vacuum membrane thermoforming (25mm tight radii), inconspicuous molecular seaming, and hand-honed finishing.',
+    'Advanced solid surface workshop in Bengaluru: 5-axis CNC routing (<0.2mm tolerance), vacuum thermoforming (25mm tight radii), molecular seaming, and hand-honed finishing.',
   keywords: [
     'solid surface fabrication Bengaluru',
     '5-axis CNC routing India',
@@ -35,13 +35,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Fabrication Craft & Machinery | Ace Spaces',
-    description:
-      'Precision CNC routing, thermoforming, and monolithic joint chemistry for solid surfaces in India.',
-    images: ['/images/images/app_residential_calacatta_greige_2.jpg'],
-  },
 };
 
 const fabricationJsonLd = {
@@ -58,46 +51,7 @@ const fabricationJsonLd = {
       serviceType: 'Digital Architectural Fabrication & Engineering',
       areaServed: 'India',
       description:
-        'Turnkey 5-axis CNC routing, vacuum thermoforming, invisible molecular welding, and certified installation across India.',
-      hasOfferCatalog: {
-        '@type': 'OfferCatalog',
-        name: 'Fabrication Capabilities',
-        itemListElement: [
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '5-Axis CNC Precision Routing (<0.2mm)' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Industrial Vacuum Membrane Thermoforming (down to 25mm radius)' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Inconspicuous Molecular Seam Welding' } },
-          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'CAD/BIM Shop Drawings & Laser Scanning' } },
-        ],
-      },
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'What tolerances does Ace Spaces 5-axis CNC achieve?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Our automated 5-axis industrial CNC routers operate with sub-millimeter positional repeatability under 0.2mm, accommodating complex nested CAD cutouts, drainage channels, flush cooktop rebates, and sub-surface Qi charging pockets.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Can solid surfaces be curved and thermoformed without whitening?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Yes. Heated to 160°C in calibrated platen ovens, Ace Spaces homogeneous mineral-acrylic sheets become fully pliable and are vacuum-formed over CNC timber bucks down to a 25mm internal radius without color blanching or micro-fissuring.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Are solid surface seams completely invisible and water-tight?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Yes. Using two-component color-matched methacrylate structural adhesives, adjacent sheets are molecularly welded together. Once cured and hand-honed to a 600-grit matte finish, the joint is chemically fused, 100% water-impervious, and invisible to touch and sight.',
-          },
-        },
-      ],
+        '5-axis CNC routing, vacuum thermoforming, invisible molecular welding, and certified installation across India.',
     },
   ],
 };
@@ -105,102 +59,118 @@ const fabricationJsonLd = {
 export default function FabricationPage() {
   const steps = [
     {
-      id: 'cnc',
       num: '01',
       title: '5-Axis CNC Precision',
-      quote: 'Robotic accuracy direct from your CAD model.',
-      badge: '< 0.2 mm Tolerance',
-      tagline: 'Nested CNC milling for precise cutouts, rebates, and tapers.',
+      badge: 'Sub-Millimeter Cut',
+      tagline: 'Nested cutting paths, sink rebates, and custom edge profiles machined to ±0.18mm accuracy.',
       image: '/images/images/app_residential_calacatta_greige_2.jpg',
-      metric: '±0.18 mm',
-      metricLabel: 'Positional Tolerance',
+      stat: '±0.18 mm',
+      statLabel: 'Tolerance',
     },
     {
-      id: 'seamless',
       num: '02',
-      title: 'Invisible Seam Fusion',
-      quote: 'Two mineral sheets bonded into one continuous surface.',
-      badge: '0.0 mm Invisible Seam',
-      tagline: 'Color-matched acrylic adhesives that cure without visible joint lines.',
-      image: '/images/images/app_residential_calacatta_greige_1.jpg',
-      metric: '0.00 mm',
-      metricLabel: 'Visible Joint Line',
-    },
-    {
-      id: 'thermoforming',
-      num: '03',
-      title: '160°C Thermoforming',
-      quote: 'Shaping tight radii and organic curves over bespoke timber bucks.',
-      badge: '25 mm Tight Radii',
-      tagline: 'Vacuum-forming heated sheets into compound 3D curves with zero blanching.',
+      title: '160°C Vacuum Forming',
+      badge: '25 mm Radii',
+      tagline: 'Mineral sheets heated in platen ovens and vacuum-formed over timber formwork into organic curves.',
       image: '/images/images/app_commercial_bleached_nuwood.jpg',
-      metric: '160°C',
-      metricLabel: 'Thermal Plasticity',
+      stat: '160°C',
+      statLabel: 'Forming Temp',
     },
     {
-      id: 'honing',
+      num: '03',
+      title: 'Invisible Seam Fusion',
+      badge: 'Seamless Joints',
+      tagline: 'Sheets bonded with color-matched acrylic resin to create seamless, continuous surfaces.',
+      image: '/images/images/app_residential_calacatta_greige_1.jpg',
+      stat: '0.0 mm',
+      statLabel: 'Seam Line',
+    },
+    {
       num: '04',
-      title: 'Hand-Honed Finishing',
-      quote: 'A velvety, light-absorbing satin touch honed up to 600-grit.',
-      badge: '600-Grit Matte Touch',
-      tagline: 'Anti-glare satin finish, easily renewable on site at any time.',
+      title: 'Diamond Hand Honing',
+      badge: 'Satin Touch',
+      tagline: 'Multi-stage diamond sanding for a smooth satin touch that resists glare and refreshes on-site.',
       image: '/assets/material-macro.png',
-      metric: '600 Grit',
-      metricLabel: 'Diamond Honed',
+      stat: '600 Grit',
+      statLabel: 'Finish Grade',
     },
   ];
 
   const protocols = [
     {
       num: '01',
-      title: '3D Laser Digital Templating',
-      quote: 'Zero margin of error on site.',
-      detail: 'Sub-millimeter laser scans accommodate out-of-square walls and structural columns prior to cutting.',
-      badge: '±0.5mm Scan',
+      title: '3D Laser Templating',
+      detail: 'Digital spatial scans ensure an accurate fit against existing site walls.',
+      badge: 'Laser Scan',
     },
     {
       num: '02',
-      title: 'Workshop Dry-Fit Inspection',
-      quote: '100% pre-assembled in Bengaluru.',
-      detail: 'Large architectural monoliths are fully dry-fitted, clamped, and laser-checked before dispatch.',
+      title: 'Workshop Dry-Fit',
+      detail: 'Monolithic assemblies are pre-assembled and inspected in Bengaluru before packing.',
       badge: 'Pre-Assembled',
     },
     {
       num: '03',
-      title: 'On-Site Molecular Welding',
-      quote: 'Seamless on-site fusion.',
-      detail: 'Certified master joiners fuse adjacent sections with zero silicone lines and zero visible joints.',
-      badge: 'Hermetic Join',
+      title: 'On-Site Assembly',
+      detail: 'Experienced joiners assemble and seam sections on site with zero visible joints.',
+      badge: 'Seamless Fit',
     },
     {
       num: '04',
-      title: 'Permanent In-Situ Renewal',
-      quote: 'Restorable to day-one beauty.',
-      detail: 'Full architectural maintenance, on-site blemish removal, and diamond re-honing across India.',
-      badge: '100% Renewable',
+      title: 'In-Situ Renewal',
+      detail: 'Everyday scuffs or marks can be refreshed on-site with simple hand sanding.',
+      badge: 'Renewable',
     },
   ];
 
   return (
     <main className="page-main">
       <JsonLd data={fabricationJsonLd} />
-      {/* Rich Split Architectural Hero */}
-      <section className="page-split-hero">
-        <div>
-          <p className="eyebrow" style={{ marginBottom: "24px" }}>Fabrication / Advanced Workshop &amp; Craft</p>
 
-          <h1 style={{ fontSize: 'clamp(44px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 24px', letterSpacing: '-0.06em' }}>
+      {/* Editorial Visual Hero */}
+      <section className="page-split-hero" style={{ marginBottom: '60px' }}>
+        <div>
+          <p className="eyebrow anim-fade-up" style={{ marginBottom: '24px' }}>
+            Fabrication / Atelier &amp; Workshop
+          </p>
+
+          <h1
+            style={{
+              fontSize: 'clamp(44px, 6.5vw, 96px)',
+              lineHeight: 0.96,
+              margin: '0 0 24px',
+              letterSpacing: '-0.05em',
+            }}
+          >
             From sheet
             <br />
             to <i>space.</i>
           </h1>
 
-          {/* Editorial Pull Quote */}
-          <blockquote style={{ fontSize: '18px', fontStyle: 'italic', fontFamily: 'serif', lineHeight: 1.5, color: '#1e211d', margin: '0 0 24px', paddingLeft: '14px', borderLeft: '3px solid var(--brand-red, #d43833)' }}>
-            “Where CNC precision meets master hand-joinery.”
+          <blockquote
+            style={{
+              fontSize: '18px',
+              fontStyle: 'italic',
+              fontFamily: 'serif',
+              lineHeight: 1.5,
+              color: '#1e211d',
+              margin: '0 0 24px',
+              paddingLeft: '14px',
+              borderLeft: '2px solid rgba(196, 67, 61, 0.28)',
+            }}
+          >
+            “Where CNC precision meets the tactile touch of master hand joinery.”
           </blockquote>
 
-          <p style={{ fontSize: '15px', lineHeight: 1.65, color: '#4a5249', maxWidth: '520px', marginBottom: '32px' }}>
+          <p
+            style={{
+              fontSize: '16px',
+              lineHeight: 1.65,
+              color: '#4a5249',
+              maxWidth: '520px',
+              marginBottom: '32px',
+            }}
+          >
             From parametric shop drawings to on-site assembly, our Bengaluru workshop crafts bespoke solid surface counters, basins, and curved elements for projects across India.
           </p>
 
@@ -208,35 +178,35 @@ export default function FabricationPage() {
             <Link className="button button-dark" href="/contact">
               Discuss Fabrication Brief <span>↗</span>
             </Link>
-            <Link className="text-link" href="#process">
+            <Link className="text-link" href="#sequence">
               Workshop Sequence <span>↓</span>
             </Link>
           </div>
 
-          <div className="hero-stats-row">
+          <div className="hero-stats-row anim-fade-up anim-delay-4">
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Tolerance
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>&lt; 0.2 mm</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+                &lt; 0.2 mm
+              </strong>
             </div>
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Forming
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>160°C Bending</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+                Fluid Curves
+              </strong>
             </div>
             <div>
               <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Joint
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>0.0 mm Seam</strong>
-            </div>
-            <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Finishing
-              </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>600-Grit Honed</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+                Seamless Joint
+              </strong>
             </div>
           </div>
         </div>
@@ -244,20 +214,18 @@ export default function FabricationPage() {
         {/* Hero Architectural Image Frame */}
         <div className="hero-image-frame">
           <Image
-            src="/assets/material-macro.png"
+            src="/images/images/app_residential_calacatta_greige_2.jpg"
             alt="Hand honing and CNC carving of monolithic mineral surface"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"
-            quality={75}
-            decoding="async"
-            style={{ objectFit: 'cover' }}
+            quality={80}
             priority
-            suppressHydrationWarning
+            style={{ objectFit: 'cover' }}
           />
           <div className="hero-image-badge">
             <div>
               <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
-                Craft Focus
+                Workshop Focus
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
                 Hand-Honed Satin Edge / Sub-millimeter Tolerance
@@ -270,110 +238,251 @@ export default function FabricationPage() {
         </div>
       </section>
 
-      {/* Sub-Navigation Quick Anchor Bar */}
-      <nav
-        style={{
-          display: 'flex',
-          gap: 'clamp(12px, 3vw, 36px)',
-          padding: '16px 5vw',
-          borderBottom: '1px solid var(--line)',
-          overflowX: 'auto',
-          whiteSpace: 'nowrap',
-          fontFamily: 'DM Mono, monospace',
-          fontSize: '11px',
-          textTransform: 'uppercase',
-          letterSpacing: '0.08em',
-          color: 'var(--muted)',
-          marginBottom: '24px',
-        }}
-        aria-label="Fabrication page sections"
-      >
-
-
-
-        <a href="#process" style={{ color: 'inherit', textDecoration: 'none' }}>01 / Workshop Sequence</a>
-        <a href="#edges" style={{ color: 'inherit', textDecoration: 'none' }}>02 / Edge Profiles</a>
-        <a href="#protocols" style={{ color: 'inherit', textDecoration: 'none' }}>03 / Site Protocols</a>
-      </nav>
-
-
-
-
-      {/* 4-Step Craft Sequence — Editorial Visual Cards */}
-      <section id="process" style={{ margin: '60px 0 100px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '16px', marginBottom: '32px' }}>
+      {/* Workshop Sequence — 4-Stage Visual Monograph Grid */}
+      <section id="sequence" style={{ margin: '80px 0 100px' }}>
+        <ScrollReveal className="section-head" style={{ marginBottom: '40px' }}>
           <div>
-            <p className="eyebrow" style={{ margin: '0 0 8px' }}>The 4-Stage Workshop Sequence</p>
-            <h2 style={{ fontSize: 'clamp(28px, 3.8vw, 48px)', margin: 0, letterSpacing: '-0.03em', lineHeight: 1.1 }}>
-              Crafted in four movements. <i>Felt in one.</i>
+            <p className="eyebrow">The 4-Stage Workshop Sequence</p>
+            <h2 style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}>
+              Crafted in four movements.
+              <br />
+              <i>Felt in one.</i>
             </h2>
           </div>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-            Bengaluru Fabrication Atelier
-          </span>
-        </div>
+          <p style={{ fontSize: '14.5px', color: '#5d665c', maxWidth: '440px', margin: 0, lineHeight: 1.6 }}>
+            Every custom fixture moves through CNC routing, thermal forming, molecular seam welding, and diamond hand-honing in our Bengaluru workshop.
+          </p>
+        </ScrollReveal>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '22px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
+            gap: '32px',
+          }}
+        >
           {steps.map((step) => (
-            <div
+            <article
               key={step.num}
-              id={step.id}
               style={{
-                background: '#ffffff',
-                border: '1px solid var(--line)',
-                borderRadius: '3px',
-                overflow: 'hidden',
+                background: 'var(--paper, #f5f4ee)', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', borderRadius: '6px', overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
-                boxShadow: '0 4px 20px rgba(30, 33, 29, 0.04)',
-                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease',
               }}
+              className="fabrication-card"
             >
-              {/* Photo Frame */}
-              <div style={{ position: 'relative', width: '100%', height: '200px', overflow: 'hidden', background: '#e8e5dc' }}>
+              <div
+                style={{
+                  position: 'relative',
+                  height: '260px',
+                  width: '100%',
+                  background: '#1a1d19',
+                  overflow: 'hidden',
+                }}
+              >
                 <Image
                   src={step.image}
                   alt={step.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 320px"
-                  style={{ objectFit: 'cover' }}
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{
+                    objectFit: 'cover',
+                    transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                  }}
+                  className="fabrication-card-img"
                 />
-                <div style={{ position: 'absolute', top: '12px', left: '14px', background: 'rgba(30, 33, 29, 0.88)', color: '#fff', padding: '3px 8px', borderRadius: '2px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.06em' }}>
-                  {step.num} / STAGE
-                </div>
-                <div style={{ position: 'absolute', bottom: '12px', right: '14px', background: 'rgba(255, 255, 255, 0.94)', color: 'var(--ink)', padding: '4px 10px', borderRadius: '2px', fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, backdropFilter: 'blur(6px)', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
-                  {step.metric}
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '14px',
+                    left: '14px',
+                    background: 'rgba(20, 23, 20, 0.85)',
+                    backdropFilter: 'blur(8px)',
+                    color: '#ffffff',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '10px',
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    padding: '4px 10px',
+                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                  }}
+                >
+                  Stage {step.num}
+                </span>
+
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '14px',
+                    right: '14px',
+                    background: 'rgba(255, 255, 255, 0.94)',
+                    color: 'var(--ink, #1e211d)',
+                    padding: '4px 10px',
+                    fontFamily: 'DM Mono, monospace',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                  }}
+                >
+                  {step.stat}
                 </div>
               </div>
 
-              {/* Editorial Quote & Key Stat */}
-              <div style={{ padding: '24px 22px 20px', display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
+              <div
+                style={{
+                  padding: '24px 24px 20px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  flex: 1,
+                }}
+              >
                 <div>
-                  <span style={{ display: 'inline-block', padding: '2px 8px', background: 'rgba(212,56,51,0.08)', color: 'var(--brand-red, #d43833)', border: '1px solid rgba(212,56,51,0.2)', fontFamily: 'DM Mono, monospace', fontSize: '10px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '12px' }}>
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      padding: '3px 8px', background: 'rgba(30, 33, 29, 0.06)', borderRadius: '3px',
+                      fontFamily: 'DM Mono, monospace',
+                      fontSize: '10px',
+                      fontWeight: 600,
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em',
+                      marginBottom: '12px',
+                    }}
+                  >
                     {step.badge}
                   </span>
-                  <h3 style={{ fontSize: '18px', fontWeight: 600, margin: '0 0 10px', color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+                  <h3
+                    style={{
+                      fontSize: '19px',
+                      fontWeight: 500,
+                      margin: '0 0 10px',
+                      color: 'var(--ink, #1e211d)',
+                      letterSpacing: '-0.02em',
+                    }}
+                  >
                     {step.title}
                   </h3>
-                  <blockquote style={{ fontSize: '15px', fontStyle: 'italic', fontFamily: 'serif', lineHeight: 1.45, color: '#1e211d', margin: '0 0 12px', paddingLeft: '10px', borderLeft: '2px solid var(--ink)' }}>
-                    “{step.quote}”
-                  </blockquote>
-                  <p style={{ fontSize: '12.5px', lineHeight: 1.55, color: '#687268', margin: 0 }}>
+                  <p
+                    style={{
+                      fontSize: '13.5px',
+                      lineHeight: 1.6,
+                      color: '#555e54',
+                      margin: 0,
+                    }}
+                  >
                     {step.tagline}
                   </p>
                 </div>
 
-                <div style={{ borderTop: '1px solid rgba(30,33,29,0.1)', marginTop: '18px', paddingTop: '12px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div
+                  style={{
+                    marginTop: '20px',
+                    paddingTop: '14px',
+                    borderTop: '1px dashed rgba(30, 33, 29, 0.14)',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
                   <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                    {step.metricLabel}
+                    {step.statLabel}
                   </span>
                   <strong style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
                     {step.badge}
                   </strong>
                 </div>
               </div>
-            </div>
+            </article>
           ))}
+        </div>
+      </section>
+
+      {/* Full-Bleed Workshop Feature Break */}
+      <section
+        style={{
+          margin: '100px calc(-50vw + 50%)',
+          width: '100vw',
+          position: 'relative',
+          height: '60vh',
+          minHeight: '440px',
+          overflow: 'hidden',
+          background: '#161815',
+        }}
+      >
+        <Image
+          src="/images/images/app_commercial_bleached_nuwood.jpg"
+          alt="160 degree thermoforming solid surface workshop in Bengaluru"
+          fill
+          sizes="100vw"
+          quality={80}
+          style={{ objectFit: 'cover', opacity: 0.85 }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(20,23,20,0.2) 0%, rgba(20,23,20,0.8) 100%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '48px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: 'calc(100% - 64px)',
+            maxWidth: '1240px',
+            color: '#ffffff',
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'flex-end',
+            flexWrap: 'wrap',
+            gap: '24px',
+          }}
+        >
+          <div style={{ maxWidth: '640px' }}>
+            <span
+              style={{
+                fontFamily: 'DM Mono, monospace',
+                fontSize: '11px',
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: '#dcd7cd',
+                display: 'block',
+                marginBottom: '10px',
+              }}
+            >
+              Curvature Beyond The Grid
+            </span>
+            <blockquote
+              style={{
+                fontFamily: 'var(--serif, serif)',
+                fontSize: 'clamp(24px, 3.5vw, 38px)',
+                lineHeight: 1.25,
+                margin: 0,
+                fontStyle: 'italic',
+                color: '#f5f4ee',
+              }}
+            >
+              “Heated to 160°C, mineral sheets become supple as leather, forming compound curves without surface blanching.”
+            </blockquote>
+          </div>
+
+          <Link
+            className="button"
+            href="/contact"
+            style={{
+              background: '#ffffff',
+              color: '#1a1d19',
+              border: 'none',
+              padding: '14px 26px',
+              fontSize: '11px',
+              fontFamily: 'DM Mono, monospace',
+            }}
+          >
+            Request Thermoformed Mockup <span>↗</span>
+          </Link>
         </div>
       </section>
 
@@ -396,27 +505,37 @@ export default function FabricationPage() {
         <EdgeProfileCatalog />
       </section>
 
-      {/* Workshop Specifications & Site Protocols — Visual Architectural Grid */}
+      {/* Workshop Specifications & Site Protocols */}
       <section id="protocols" style={{ marginBottom: '100px' }}>
-        <div style={{ marginBottom: '24px' }}>
-          <p className="eyebrow">Workshop Specifications &amp; Site Protocols</p>
-          <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', letterSpacing: '-0.03em', margin: 0 }}>
-            Precision protocols. <i>Zero guesswork.</i>
-          </h2>
-        </div>
+        <ScrollReveal className="section-head" style={{ marginBottom: '32px' }}>
+          <div>
+            <p className="eyebrow">Workshop Protocols</p>
+            <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', letterSpacing: '-0.03em', margin: 0 }}>
+              Precision protocols.
+              <br />
+              <i>Zero guesswork.</i>
+            </h2>
+          </div>
+          <p style={{ fontSize: '14px', color: '#5d665c', maxWidth: '420px', margin: 0, lineHeight: 1.6 }}>
+            Laser templating and certified installation ensure seamless integration into rough architectural framing.
+          </p>
+        </ScrollReveal>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '18px' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: '20px',
+          }}
+        >
           {protocols.map((proto) => (
             <div
               key={proto.num}
               style={{
-                background: '#ffffff',
-                border: '1px solid var(--line)',
-                padding: '24px 22px',
+                background: 'var(--paper, #f5f4ee)', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', padding: '24px 22px', borderRadius: '6px',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                boxShadow: '0 2px 12px rgba(0,0,0,0.03)',
               }}
             >
               <div>
@@ -424,17 +543,14 @@ export default function FabricationPage() {
                   <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                     {proto.num}
                   </span>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: 'rgba(30,33,29,0.06)', padding: '2px 8px', borderRadius: '2px', textTransform: 'uppercase' }}>
+                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: 'rgba(30,33,29,0.06)', padding: '2px 8px', textTransform: 'uppercase' }}>
                     {proto.badge}
                   </span>
                 </div>
-                <h4 style={{ fontSize: '16px', fontWeight: 600, margin: '0 0 8px', color: 'var(--ink)' }}>
+                <h4 style={{ fontSize: '16px', fontWeight: 600, margin: '0 0 10px', color: 'var(--ink, #1e211d)' }}>
                   {proto.title}
                 </h4>
-                <div style={{ fontSize: '14px', fontStyle: 'italic', fontFamily: 'serif', color: 'var(--ink)', marginBottom: '10px' }}>
-                  “{proto.quote}”
-                </div>
-                <p style={{ fontSize: '12px', lineHeight: 1.55, color: '#687268', margin: 0 }}>
+                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#555e54', margin: 0 }}>
                   {proto.detail}
                 </p>
               </div>
@@ -443,7 +559,8 @@ export default function FabricationPage() {
         </div>
       </section>
 
-      <section className="callout" id="consultation">
+      {/* Consultation Callout */}
+      <section className="callout" style={{ margin: '80px 0 100px' }}>
         <p className="eyebrow">Technical fabrication consultation / Bengaluru Workshop</p>
         <h2>
           Make the
@@ -474,4 +591,3 @@ export default function FabricationPage() {
     </main>
   );
 }
-

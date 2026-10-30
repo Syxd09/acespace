@@ -144,7 +144,7 @@ export default function JournalExplorer() {
                 </span>
                 {leadArticle.galleryImages && leadArticle.galleryImages.length > 0 && (
                   <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', padding: '3px 8px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
-                    📷 {leadArticle.galleryImages.length} Photos
+                    {leadArticle.galleryImages.length} Photos
                   </span>
                 )}
               </div>
@@ -242,7 +242,7 @@ export default function JournalExplorer() {
                   </span>
                   {art.galleryImages && art.galleryImages.length > 0 && (
                     <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', padding: '2px 6px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
-                      📷 {art.galleryImages.length}
+                      {art.galleryImages.length}
                     </span>
                   )}
                 </div>

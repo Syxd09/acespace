@@ -16,27 +16,27 @@ interface ChatMessage {
 
 const STARTER_PROMPTS = [
   {
-    title: '📦 In-Stock Materials',
+    title: 'In-Stock Slabs',
     prompt: 'Which materials are currently in stock at Ace Spaces?',
   },
   {
-    title: '🔬 Calacatta Greige Specs',
-    prompt: 'Tell me everything about Calacatta Greige (COR-CG01) and if it is in stock',
+    title: 'Calacatta Greige Specs',
+    prompt: 'Tell me about Calacatta Greige (COR-CG01) and if it is in stock',
   },
   {
-    title: '⚖️ Marble vs Corian Stock',
-    prompt: 'Is Italian marble in stock at Ace Spaces, or what in-stock alternative do you recommend?',
+    title: 'Marble vs Corian',
+    prompt: 'How does Corian solid surface compare to natural marble for kitchen countertops?',
   },
   {
-    title: '✨ Kitchen Island Advice',
-    prompt: 'Suggest the best in-stock material for a luxury seamless kitchen island with waterfall edges',
+    title: 'Waterfall Islands',
+    prompt: 'Suggest the best in-stock material for a seamless kitchen island with waterfall edges',
   },
   {
-    title: '📍 Studio Maps Location',
-    prompt: 'Where is the Ace Spaces & Coro Crafted Collective showroom located in Bangalore, and can you share Google Maps directions?',
+    title: 'Studio Location',
+    prompt: 'Where is the Ace Spaces studio located in Bengaluru, and how can I visit?',
   },
   {
-    title: '🛡️ Zero-Silica Safety',
+    title: 'Zero-Silica Safety',
     prompt: 'What makes DuPont™ Corian® 100% zero-silica and safe?',
   },
 ];
@@ -64,7 +64,7 @@ export default function ArchitecturalAIBot() {
       setCustomWidth(420);
     } else {
       setIsHalfScreen(true);
-      setCustomWidth(null); // CSS defaults to 50vw
+      setCustomWidth(null);
     }
   };
 
@@ -104,13 +104,11 @@ export default function ArchitecturalAIBot() {
   const navigateToSiteLink = (href: string) => {
     if (!href) return;
 
-    // External link
     if (href.startsWith('http://') || href.startsWith('https://') || href.startsWith('//')) {
       window.open(href, '_blank', 'noopener,noreferrer');
       return;
     }
 
-    // Auto close chat on mobile screens so user can see target content
     if (typeof window !== 'undefined' && window.innerWidth <= 640) {
       handleCloseChat();
     }
@@ -181,7 +179,6 @@ export default function ArchitecturalAIBot() {
     }
   };
 
-  // Keyboard shortcut: ESC to gracefully close chat
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && (isOpen || isClosing)) {
@@ -192,41 +189,31 @@ export default function ArchitecturalAIBot() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, isClosing]);
 
-  // Clean up timeout on unmount
   useEffect(() => {
     return () => {
       if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     };
   }, []);
 
-  // Load or initialize chat from sessionStorage
   useEffect(() => {
     try {
       const saved = sessionStorage.getItem('acespaces_ai_chat_history');
       if (saved) {
         setMessages(JSON.parse(saved));
       } else {
-        // Initial welcome message
         const welcomeMessage: ChatMessage = {
           id: 'welcome-0',
           role: 'assistant',
-          content: `Welcome to **Ace Spaces Studio Material Intelligence**.
+          content: `Welcome to the **Ace Spaces Studio Desk**.
 
-I am your private architectural consultant, grounded directly in our Bengaluru central stockyard inventory, certified DuPont™ Corian® solid surface engineering, and 5-axis CNC digital fabrication.
+We can help you with in-stock DuPont™ Corian® mineral slabs, sample dispatch, 5-axis CNC machining, and joint details for kitchen islands, vanities, and commercial fixtures.
 
-I can assist with:
-• **Live In-Stock Inventory & Stock Availability Verification**
-• **Comprehensive Material Specifications (Dimensions, Thicknesses, Zero-Silica ATH Chemistry, Finishes & Pricing)**
-• **Why Natural Marble & Quartz Are NOT Stocked, and Certified In-Stock Alternatives**
-• **Unified Studio Headquarters & Google Maps Directions**
-• **Sub-0.2mm 5-Axis CNC Precision & 160 deg C Vacuum Thermoforming**
-
-How may I assist your specifications today?`,
+How can we help with your drawings or material selection today?`,
           timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
           suggestedActions: [
-            { label: 'View In-Stock Materials', prompt: 'Which materials are currently in stock at Ace Spaces?' },
-            { label: 'Calacatta Greige Specs', prompt: 'Tell me everything about Calacatta Greige (COR-CG01) and if it is in stock' },
-            { label: 'Open Studio on Google Maps ↗', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
+            { label: 'In-Stock Materials', prompt: 'Which materials are currently in stock at Ace Spaces?' },
+            { label: 'Calacatta Greige Specs', prompt: 'Tell me about Calacatta Greige (COR-CG01) and if it is in stock' },
+            { label: 'Studio on Google Maps', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
           ],
         };
         setMessages([welcomeMessage]);
@@ -236,7 +223,6 @@ How may I assist your specifications today?`,
     }
   }, []);
 
-  // Save messages to sessionStorage
   useEffect(() => {
     if (messages.length > 0) {
       try {
@@ -247,14 +233,12 @@ How may I assist your specifications today?`,
     }
   }, [messages]);
 
-  // Auto scroll to bottom
   useEffect(() => {
     if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages, isLoading, isOpen]);
 
-  // Focus input when opened
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => {
@@ -263,7 +247,6 @@ How may I assist your specifications today?`,
     }
   }, [isOpen]);
 
-  // Lock background body scroll when open on mobile
   useEffect(() => {
     if (isOpen && typeof window !== 'undefined' && window.innerWidth <= 640) {
       const originalOverflow = document.body.style.overflow;
@@ -274,7 +257,6 @@ How may I assist your specifications today?`,
     }
   }, [isOpen]);
 
-  // Hide bot on admin portal
   if (pathname?.startsWith('/admin')) {
     return null;
   }
@@ -316,7 +298,7 @@ How may I assist your specifications today?`,
       const botMessage: ChatMessage = {
         id: `assistant-${Date.now()}`,
         role: 'assistant',
-        content: data.response || 'Our studio intelligence has received your query. Please review our material catalog.',
+        content: data.response || 'Thank you. Please review our material catalog or connect with our workshop team.',
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         suggestedActions: data.suggestedActions,
         matchedTopic: data.matchedTopic,
@@ -329,15 +311,15 @@ How may I assist your specifications today?`,
       const fallbackMessage: ChatMessage = {
         id: `assistant-error-${Date.now()}`,
         role: 'assistant',
-        content: `Thank you for your architectural inquiry. 
+        content: `Thank you for your inquiry.
 
-Our studio engineers specialize in DuPont™ Corian® solid surfaces, sub-0.2mm 5-axis CNC machining, thermoforming, and Coro Crafted Collective spatial integration.
+Our workshop team in Bengaluru works directly with DuPont™ Corian® mineral surfaces, 5-axis CNC routing, and custom thermoforming.
 
-To discuss your project drawings or obtain immediate material estimates, please tap the **WhatsApp Desk** button in the top navigation bar or browse our certified materials.`,
+You can message our studio directly via the WhatsApp link in the top navigation or explore our in-stock materials.`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         suggestedActions: [
           { label: 'Browse Materials', href: '/materials' },
-          { label: 'WhatsApp in Navbar', href: 'https://wa.me/919741044776' },
+          { label: 'WhatsApp Studio Line', href: 'https://wa.me/919741044776' },
         ],
       };
       setMessages((prev) => [...prev, fallbackMessage]);
@@ -354,125 +336,34 @@ To discuss your project drawings or obtain immediate material estimates, please 
   };
 
   const handleClearChat = () => {
-    const freshWelcome: ChatMessage = {
-      id: `welcome-${Date.now()}`,
+    try {
+      sessionStorage.removeItem('acespaces_ai_chat_history');
+    } catch {
+      // ignore
+    }
+    const welcomeMessage: ChatMessage = {
+      id: 'welcome-fresh',
       role: 'assistant',
       content: `Conversation refreshed.
 
-I am Ace Spaces' private material intelligence, strictly grounded in DuPont™ Corian®, Coro Crafted Collective spatial lineage, 5-axis CNC fabrication, and zero-silica surface engineering.
-
-How may I assist your architectural practice today?`,
+Ask about in-stock slabs, custom fabrication tolerances, or visit details for our Bengaluru workshop.`,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       suggestedActions: [
-        { label: 'Explore Materials', href: '/materials' },
-        { label: 'The Coro Synergy', href: '/about#coro' },
+        { label: 'In-Stock Materials', prompt: 'Which materials are currently in stock at Ace Spaces?' },
+        { label: 'Studio Location', href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7' },
       ],
     };
-    setMessages([freshWelcome]);
-    try {
-      sessionStorage.removeItem('acespaces_ai_chat_history');
-    } catch (e) {}
+    setMessages([welcomeMessage]);
   };
 
-  // Format markdown-like text (bold, headers, bullets, tables)
   const renderFormattedContent = (content: string) => {
     const lines = content.split('\n');
     const elements: React.ReactNode[] = [];
     let i = 0;
 
     while (i < lines.length) {
-      const trimmed = lines[i].trim();
-
-      // --- TABLE DETECTION ---
-      // A markdown table line starts and ends with `|`, or has multiple `|` chars
-      if (trimmed.startsWith('|') && trimmed.includes('|', 1)) {
-        // Collect all consecutive table lines
-        const tableLines: string[] = [];
-        while (i < lines.length && lines[i].trim().startsWith('|')) {
-          tableLines.push(lines[i].trim());
-          i++;
-        }
-        // Parse rows - skip separator lines (---|---)
-        const rows = tableLines
-          .filter(row => !/^\|[\s|:-]+\|$/.test(row))
-          .map(row =>
-            row
-              .replace(/^\|/, '')
-              .replace(/\|$/, '')
-              .split('|')
-              .map(cell => cell.trim())
-          );
-
-        if (rows.length > 0) {
-          const [headerRow, ...bodyRows] = rows;
-          elements.push(
-            <div
-              key={`table-${i}`}
-              style={{ overflowX: 'auto', marginBottom: '10px', marginTop: '4px' }}
-            >
-              <table
-                style={{
-                  width: '100%',
-                  borderCollapse: 'collapse',
-                  fontSize: '11.5px',
-                  fontFamily: 'DM Mono, monospace',
-                  letterSpacing: '0.02em',
-                }}
-              >
-                <thead>
-                  <tr>
-                    {headerRow.map((cell, ci) => (
-                      <th
-                        key={ci}
-                        style={{
-                          padding: '7px 10px',
-                          textAlign: 'left',
-                          color: '#f2f0ea',
-                          fontWeight: 700,
-                          fontSize: '10px',
-                          textTransform: 'uppercase',
-                          letterSpacing: '0.08em',
-                          background: 'rgba(242, 240, 234, 0.1)',
-                          borderBottom: '1px solid rgba(242, 240, 234, 0.25)',
-                          borderRight: ci < headerRow.length - 1 ? '1px solid rgba(242,240,234,0.08)' : 'none',
-                          whiteSpace: 'nowrap',
-                        }}
-                        dangerouslySetInnerHTML={{ __html: formatInline(cell) }}
-                      />
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {bodyRows.map((row, ri) => (
-                    <tr
-                      key={ri}
-                      style={{
-                        background: ri % 2 === 0 ? 'rgba(255,255,255,0.02)' : 'transparent',
-                      }}
-                    >
-                      {row.map((cell, ci) => (
-                        <td
-                          key={ci}
-                          style={{
-                            padding: '6px 10px',
-                            color: ci === 0 ? '#e5d5be' : '#c8cec8',
-                            fontWeight: ci === 0 ? 600 : 400,
-                            borderBottom: '1px solid rgba(242, 240, 234, 0.06)',
-                            borderRight: ci < row.length - 1 ? '1px solid rgba(242,240,234,0.06)' : 'none',
-                            verticalAlign: 'top',
-                          }}
-                          dangerouslySetInnerHTML={{ __html: formatInline(cell) }}
-                        />
-                      ))}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          );
-        }
-        continue;
-      }
+      const line = lines[i];
+      const trimmed = line.trim();
 
       if (!trimmed) {
         elements.push(<div key={i} style={{ height: '8px' }} />);
@@ -480,7 +371,6 @@ How may I assist your architectural practice today?`,
         continue;
       }
 
-      // Headers
       if (trimmed.startsWith('### ')) {
         elements.push(
           <h4
@@ -488,10 +378,8 @@ How may I assist your architectural practice today?`,
             style={{
               fontSize: '13px',
               fontWeight: 600,
-              color: '#e5d5be',
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              fontFamily: 'DM Mono, monospace',
+              color: '#1e211d',
+              letterSpacing: '-0.01em',
               margin: '12px 0 6px',
             }}
           >
@@ -502,9 +390,27 @@ How may I assist your architectural practice today?`,
         continue;
       }
 
-      // Bullet points
-      if (trimmed.startsWith('• ') || trimmed.startsWith('- ') || trimmed.startsWith('* ')) {
-        const text = trimmed.slice(2);
+      if (trimmed.startsWith('## ')) {
+        elements.push(
+          <h3
+            key={i}
+            style={{
+              fontSize: '14px',
+              fontWeight: 600,
+              color: '#1e211d',
+              letterSpacing: '-0.02em',
+              margin: '14px 0 8px',
+            }}
+          >
+            {trimmed.replace('## ', '')}
+          </h3>
+        );
+        i++;
+        continue;
+      }
+
+      if (trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
+        const itemText = trimmed.replace(/^[-•]s*/, '');
         elements.push(
           <div
             key={i}
@@ -512,22 +418,30 @@ How may I assist your architectural practice today?`,
               display: 'flex',
               alignItems: 'flex-start',
               gap: '8px',
-              fontSize: '12px',
+              fontSize: '12.5px',
               lineHeight: '1.6',
-              color: '#d6dcd6',
-              marginBottom: '4px',
+              color: '#384037',
+              margin: '3px 0',
             }}
           >
-            <span style={{ color: '#73c991', fontSize: '14px', lineHeight: '1.4' }}>•</span>
-            <span dangerouslySetInnerHTML={{ __html: formatInline(text) }} />
+            <span
+              style={{
+                color: 'var(--brand-red, #c4433d)',
+                fontSize: '11px',
+                marginTop: '1px',
+                flexShrink: 0,
+              }}
+            >
+              —
+            </span>
+            <span dangerouslySetInnerHTML={{ __html: formatInline(itemText) }} />
           </div>
         );
         i++;
         continue;
       }
 
-      // Numbered lists
-      const numMatch = trimmed.match(/^(\d+)\.\s+(.*)/);
+      const numMatch = trimmed.match(/^(\d+)\.\s*(.*)/);
       if (numMatch) {
         elements.push(
           <div
@@ -536,18 +450,18 @@ How may I assist your architectural practice today?`,
               display: 'flex',
               alignItems: 'flex-start',
               gap: '8px',
-              fontSize: '12px',
+              fontSize: '12.5px',
               lineHeight: '1.6',
-              color: '#d6dcd6',
-              marginBottom: '4px',
+              color: '#384037',
+              margin: '3px 0',
             }}
           >
             <span
               style={{
-                color: '#f2f0ea',
                 fontFamily: 'DM Mono, monospace',
                 fontSize: '11px',
-                fontWeight: 600,
+                color: '#6f786f',
+                flexShrink: 0,
                 minWidth: '16px',
               }}
             >
@@ -564,9 +478,9 @@ How may I assist your architectural practice today?`,
         <p
           key={i}
           style={{
-            fontSize: '12px',
+            fontSize: '12.5px',
             lineHeight: '1.6',
-            color: '#d6dcd6',
+            color: '#384037',
             margin: '0 0 6px',
           }}
           dangerouslySetInnerHTML={{ __html: formatInline(trimmed) }}
@@ -584,19 +498,18 @@ How may I assist your architectural practice today?`,
         const isExternal = href.startsWith('http') || href.startsWith('//');
         return `<a href="${href}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} class="ai-inline-nav-link" data-href="${href}">${label}</a>`;
       })
-      .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#ffffff; font-weight:600;">$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em style="color:#f2f0ea;">$1</em>')
-      .replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08); padding:1px 5px; border-radius:0px; font-family:DM Mono,monospace; font-size:11px; color:#f2f0ea; border:1px solid rgba(255,255,255,0.12);">$1</code>');
+      .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#1e211d; font-weight:600;">$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em style="color:#2a3029;">$1</em>')
+      .replace(/`([^`]+)`/g, '<code style="background:rgba(30,33,29,0.06); padding:1px 5px; border-radius:3px; font-family:DM Mono,monospace; font-size:11px; color:#1e211d; border:1px solid rgba(30,33,29,0.1);">$1</code>');
   };
 
   const isConfigurator = pathname?.startsWith('/configurator') || pathname?.startsWith('/basin-configurator');
 
   return (
     <>
-      {/* Floating Container (replaces previous floating pill) */}
       <aside
         className={`ace-ai-bot-root ${isOpen ? 'is-open' : ''} ${isClosing ? 'is-closing' : ''} ${isConfigurator ? 'is-configurator' : ''}`}
-        aria-label="Ace Spaces Private Studio Material Intelligence"
+        aria-label="Ace Spaces Studio Desk Advisory"
         style={{
           position: 'fixed',
           bottom: isConfigurator ? '96px' : '24px',
@@ -606,7 +519,6 @@ How may I assist your architectural practice today?`,
           transition: 'bottom 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        {/* Expanded Chat Pane with Open and Close Animations */}
         {(isOpen || isClosing) && (
           <div
             className={`ace-ai-chat-window ${isClosing ? 'ai-window-closing' : 'ai-window-opening'} ${isHalfScreen ? 'is-half-screen' : ''}`}
@@ -614,39 +526,31 @@ How may I assist your architectural practice today?`,
               position: 'absolute',
               bottom: '58px',
               right: '0',
-              width: customWidth
-                ? `${customWidth}px`
-                : isHalfScreen
-                ? '50vw'
-                : '420px',
+              width: customWidth ? `${customWidth}px` : isHalfScreen ? '50vw' : '420px',
               minWidth: '380px',
               maxWidth: 'calc(100vw - 32px)',
               height: isHalfScreen ? 'calc(100vh - 96px)' : '620px',
               maxHeight: 'calc(100vh - 96px)',
-              background: '#121512',
-              color: '#f4f3ef',
-              border: '1px solid rgba(242, 240, 234, 0.22)',
-              borderRadius: '0px',
-              boxShadow: isHalfScreen
-                ? '0 28px 80px rgba(0, 0, 0, 0.85), -14px 0 40px rgba(0, 0, 0, 0.45), 0 0 0 1px rgba(242, 240, 234, 0.16)'
-                : '0 24px 60px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(242, 240, 234, 0.12)',
+              background: '#fcfbf9',
+              color: '#1e211d',
+              border: '1px solid rgba(30, 33, 29, 0.12)',
+              borderRadius: '6px',
+              boxShadow: '0 24px 60px rgba(30, 33, 29, 0.15), 0 4px 16px rgba(30, 33, 29, 0.05)',
               display: 'flex',
               flexDirection: 'column',
               overflow: 'hidden',
               transformOrigin: 'bottom right',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
               transition: isDragging
                 ? 'none'
                 : 'width 0.35s cubic-bezier(0.16, 1, 0.3, 1), height 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease',
             }}
           >
-            {/* Left Edge Drag / Spread Handle */}
+            {/* Left Edge Drag Handle */}
             <div
               className="ace-ai-resize-handle"
               onMouseDown={handleMouseDownResize}
               onDoubleClick={toggleHalfScreen}
-              title="Drag left to spread across the screen (Double-click to toggle 50% half-screen)"
+              title="Drag left to resize (Double-click to toggle 50% spread)"
               style={{
                 position: 'absolute',
                 left: 0,
@@ -666,20 +570,19 @@ How may I assist your architectural practice today?`,
                   width: '3px',
                   height: isDragging ? '46px' : '26px',
                   borderRadius: '2px',
-                  background: isDragging ? '#73c991' : 'rgba(242, 240, 234, 0.22)',
-                  boxShadow: isDragging ? '0 0 8px rgba(115, 201, 145, 0.8)' : 'none',
+                  background: isDragging ? 'var(--brand-red, #c4433d)' : 'rgba(30, 33, 29, 0.16)',
                   transition: 'background 0.2s ease, height 0.2s ease',
                 }}
               />
             </div>
 
-            {/* Architectural Header */}
+            {/* Studio Header */}
             <header
               className="ace-ai-chat-header"
               style={{
                 padding: '14px 18px',
-                background: 'linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%)',
-                borderBottom: '1px solid rgba(242, 240, 234, 0.12)',
+                background: '#ffffff',
+                borderBottom: '1px solid rgba(30, 33, 29, 0.08)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
@@ -687,11 +590,10 @@ How may I assist your architectural practice today?`,
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                {/* Official Studio Icon Emblem */}
                 <div
                   style={{
-                    width: '24px',
-                    height: '24px',
+                    width: '26px',
+                    height: '26px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -699,120 +601,77 @@ How may I assist your architectural practice today?`,
                   }}
                 >
                   <img
-                    src="/logo/icon-logo-white-transparent.png"
-                    alt="Ace Spaces Icon Logo"
+                    src="/logo/icon-logo-transparent.png"
+                    alt="Ace Spaces Logo"
                     style={{ width: '22px', height: '22px', objectFit: 'contain', display: 'block' }}
                   />
                 </div>
                 <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-                    <h3
-                      style={{
-                        margin: 0,
-                        fontSize: '12px',
-                        fontWeight: 600,
-                        letterSpacing: '0.08em',
-                        textTransform: 'uppercase',
-                        color: '#f4f3ef',
-                        fontFamily: 'DM Mono, monospace',
-                      }}
-                    >
-                      Ace Spaces AI
-                    </h3>
-                    {/* Live Indicator Dot */}
-                    <span
-                      style={{
-                        width: '5px',
-                        height: '5px',
-                        borderRadius: '50%',
-                        background: '#73c991',
-                        boxShadow: '0 0 7px rgba(115, 201, 145, 0.8)',
-                        display: 'inline-block',
-                      }}
-                    />
-                  </div>
-                  <div
+                  <h3
                     style={{
-                      fontSize: '10px',
-                      color: 'rgba(242, 240, 234, 0.55)',
+                      margin: 0,
+                      fontSize: '12px',
+                      fontWeight: 600,
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
+                      color: '#1e211d',
                       fontFamily: 'DM Mono, monospace',
-                      letterSpacing: '0.04em',
-                      marginTop: '1px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
                     }}
                   >
-                    <span>Private Material Intelligence</span>
-                    {isHalfScreen && (
-                      <span
-                        style={{
-                          fontSize: '8.5px',
-                          color: '#73c991',
-                          border: '1px solid rgba(115, 201, 145, 0.4)',
-                          padding: '0 4px',
-                          borderRadius: '0px',
-                          letterSpacing: '0.06em',
-                          textTransform: 'uppercase',
-                        }}
-                      >
-                        50% Spread
-                      </span>
-                    )}
+                    Ace Spaces Studio Desk
+                  </h3>
+                  <div
+                    style={{
+                      fontSize: '11px',
+                      color: '#6f786f',
+                      fontFamily: 'var(--serif)',
+                      fontStyle: 'italic',
+                      marginTop: '1px',
+                    }}
+                  >
+                    Atelier Material &amp; Technical Advisory
                   </div>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                {/* Clear Conversation */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <button
                   type="button"
                   className="ace-ai-header-btn"
                   onClick={handleClearChat}
-                  title="Refresh & Clear Conversation"
+                  title="Refresh Conversation"
                   aria-label="Refresh conversation"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.04)',
-                    border: '1px solid rgba(242, 240, 234, 0.18)',
-                    color: '#f2f0ea',
-                    width: '26px',
-                    height: '26px',
-                    borderRadius: '0px',
+                    background: 'transparent',
+                    border: '1px solid rgba(30, 33, 29, 0.12)',
+                    color: '#495248',
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '4px',
                     display: 'grid',
                     placeItems: 'center',
                     cursor: 'pointer',
-                    fontSize: '12px',
+                    fontSize: '13px',
                     transition: 'all 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#f2f0ea';
-                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.18)';
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                   }}
                 >
                   ↻
                 </button>
 
-                {/* Half-Screen Spread Toggle Button */}
                 <button
                   type="button"
                   className="ace-ai-header-btn"
                   onClick={toggleHalfScreen}
-                  title={isHalfScreen ? 'Compact View (420px)' : 'Spread to Half-Screen (50% View)'}
-                  aria-label={isHalfScreen ? 'Compact View' : 'Spread to Half-Screen View'}
+                  title={isHalfScreen ? 'Compact View' : 'Spread View'}
+                  aria-label={isHalfScreen ? 'Compact View' : 'Spread View'}
                   style={{
-                    background: isHalfScreen ? 'rgba(242, 240, 234, 0.14)' : 'rgba(255, 255, 255, 0.04)',
-                    border: isHalfScreen ? '1px solid rgba(242, 240, 234, 0.45)' : '1px solid rgba(242, 240, 234, 0.18)',
-                    color: isHalfScreen ? '#ffffff' : '#f2f0ea',
-                    width: '26px',
-                    height: '26px',
-                    borderRadius: '0px',
+                    background: isHalfScreen ? 'rgba(30, 33, 29, 0.08)' : 'transparent',
+                    border: '1px solid rgba(30, 33, 29, 0.12)',
+                    color: '#495248',
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '4px',
                     display: 'grid',
                     placeItems: 'center',
                     cursor: 'pointer',
@@ -820,49 +679,28 @@ How may I assist your architectural practice today?`,
                     fontFamily: 'DM Mono, monospace',
                     transition: 'all 0.2s ease',
                   }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.14)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = isHalfScreen ? '#ffffff' : '#f2f0ea';
-                    e.currentTarget.style.borderColor = isHalfScreen ? 'rgba(242, 240, 234, 0.45)' : 'rgba(242, 240, 234, 0.18)';
-                    e.currentTarget.style.background = isHalfScreen ? 'rgba(242, 240, 234, 0.14)' : 'rgba(255, 255, 255, 0.04)';
-                  }}
                 >
                   {isHalfScreen ? '⤡' : '⤢'}
                 </button>
 
-                {/* Close Button */}
                 <button
                   type="button"
                   className="ace-ai-header-btn"
                   onClick={handleCloseChat}
-                  title="Close AI Material Concierge"
+                  title="Close Advisory Desk"
                   aria-label="Close conversation"
                   style={{
-                    background: 'rgba(255, 255, 255, 0.04)',
-                    border: '1px solid rgba(242, 240, 234, 0.18)',
-                    color: '#f2f0ea',
-                    width: '26px',
-                    height: '26px',
-                    borderRadius: '0px',
+                    background: 'transparent',
+                    border: '1px solid rgba(30, 33, 29, 0.12)',
+                    color: '#495248',
+                    width: '28px',
+                    height: '28px',
+                    borderRadius: '4px',
                     display: 'grid',
                     placeItems: 'center',
                     cursor: 'pointer',
                     fontSize: '12px',
                     transition: 'all 0.2s ease',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = '#ffffff';
-                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = '#f2f0ea';
-                    e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.18)';
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
                   }}
                 >
                   ✕
@@ -882,6 +720,7 @@ How may I assist your architectural practice today?`,
                 flexDirection: 'column',
                 gap: '14px',
                 scrollBehavior: 'smooth',
+                background: '#fbfaf7',
               }}
               onWheel={(e) => e.stopPropagation()}
               onClick={(e) => {
@@ -905,27 +744,17 @@ How may I assist your architectural practice today?`,
                     maxWidth: '100%',
                   }}
                 >
-                  {/* Message Bubble */}
                   <div
                     style={{
                       maxWidth: msg.role === 'user' ? '86%' : '94%',
                       padding: msg.role === 'user' ? '10px 14px' : '14px 16px',
-                      borderRadius: '0px',
-                      background:
-                        msg.role === 'user'
-                          ? '#f2f0ea'
-                          : 'rgba(255, 255, 255, 0.03)',
-                      color: msg.role === 'user' ? '#161815' : '#f2f0ea',
-                      border:
-                        msg.role === 'user'
-                          ? '1px solid #e0ded6'
-                          : msg.isGuardrailTriggered
-                          ? '1px solid rgba(220, 90, 90, 0.35)'
-                          : '1px solid rgba(242, 240, 234, 0.12)',
-                      boxShadow:
-                        msg.role === 'user'
-                          ? '0 2px 8px rgba(0,0,0,0.15)'
-                          : '0 4px 16px rgba(0,0,0,0.25)',
+                      borderRadius: msg.role === 'user' ? '14px 14px 3px 14px' : '14px 14px 14px 3px',
+                      background: msg.role === 'user' ? '#eae6dc' : '#ffffff',
+                      color: '#1e211d',
+                      border: '1px solid rgba(30, 33, 29, 0.08)',
+                      boxShadow: msg.role === 'user'
+                        ? '0 2px 6px rgba(30, 33, 29, 0.04)'
+                        : '0 2px 10px rgba(30, 33, 29, 0.04)',
                     }}
                   >
                     {msg.role === 'user' ? (
@@ -936,13 +765,12 @@ How may I assist your architectural practice today?`,
                       renderFormattedContent(msg.content)
                     )}
 
-                    {/* Suggested In-Context Actions */}
                     {msg.suggestedActions && msg.suggestedActions.length > 0 && (
                       <div
                         style={{
                           marginTop: '12px',
                           paddingTop: '10px',
-                          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                          borderTop: '1px solid rgba(30, 33, 29, 0.07)',
                           display: 'flex',
                           flexWrap: 'wrap',
                           gap: '6px',
@@ -959,25 +787,17 @@ How may I assist your architectural practice today?`,
                                 fontFamily: 'DM Mono, monospace',
                                 letterSpacing: '0.04em',
                                 textTransform: 'uppercase',
-                                color: '#f2f0ea',
-                                background: 'rgba(255, 255, 255, 0.05)',
-                                border: '1px solid rgba(242, 240, 234, 0.2)',
-                                padding: '5px 9px',
-                                borderRadius: '0px',
+                                color: '#2d332c',
+                                background: 'rgba(30, 33, 29, 0.04)',
+                                border: '1px solid rgba(30, 33, 29, 0.12)',
+                                padding: '5px 10px',
+                                borderRadius: '4px',
                                 textDecoration: 'none',
                                 display: 'inline-flex',
                                 alignItems: 'center',
                                 gap: '5px',
                                 cursor: 'pointer',
                                 transition: 'all 0.15s ease',
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.background = 'rgba(242, 240, 234, 0.12)';
-                                e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                                e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.2)';
                               }}
                             >
                               <span>{action.label}</span>
@@ -993,21 +813,13 @@ How may I assist your architectural practice today?`,
                                 fontFamily: 'DM Mono, monospace',
                                 letterSpacing: '0.04em',
                                 textTransform: 'uppercase',
-                                color: '#f2f0ea',
-                                background: 'rgba(255, 255, 255, 0.05)',
-                                border: '1px solid rgba(242, 240, 234, 0.18)',
-                                padding: '5px 9px',
-                                borderRadius: '0px',
+                                color: '#2d332c',
+                                background: 'rgba(30, 33, 29, 0.04)',
+                                border: '1px solid rgba(30, 33, 29, 0.12)',
+                                padding: '5px 10px',
+                                borderRadius: '4px',
                                 cursor: 'pointer',
                                 transition: 'all 0.15s ease',
-                              }}
-                              onMouseEnter={(e) => {
-                                e.currentTarget.style.background = 'rgba(242, 240, 234, 0.12)';
-                                e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-                                e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.18)';
                               }}
                             >
                               {action.label}
@@ -1018,11 +830,10 @@ How may I assist your architectural practice today?`,
                     )}
                   </div>
 
-                  {/* Timestamp */}
                   <span
                     style={{
                       fontSize: '9px',
-                      color: 'rgba(242, 240, 234, 0.45)',
+                      color: '#8a9489',
                       fontFamily: 'DM Mono, monospace',
                       marginTop: '3px',
                       padding: '0 4px',
@@ -1033,7 +844,6 @@ How may I assist your architectural practice today?`,
                 </div>
               ))}
 
-              {/* Loading Synthesizer State */}
               {isLoading && (
                 <div
                   style={{
@@ -1046,28 +856,23 @@ How may I assist your architectural practice today?`,
                   <div
                     style={{
                       padding: '12px 16px',
-                      borderRadius: '0px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(242, 240, 234, 0.16)',
+                      borderRadius: '12px 12px 12px 3px',
+                      background: '#ffffff',
+                      border: '1px solid rgba(30, 33, 29, 0.08)',
                       display: 'flex',
                       alignItems: 'center',
                       gap: '10px',
                     }}
                   >
-                    <div style={{ display: 'flex', gap: '4px' }}>
-                      <span className="ai-dot-pulse" style={{ animationDelay: '0ms' }} />
-                      <span className="ai-dot-pulse" style={{ animationDelay: '150ms' }} />
-                      <span className="ai-dot-pulse" style={{ animationDelay: '300ms' }} />
-                    </div>
                     <span
                       style={{
-                        fontSize: '11px',
+                        fontSize: '11.5px',
                         fontFamily: 'DM Mono, monospace',
                         letterSpacing: '0.04em',
-                        color: '#73c991',
+                        color: '#6f786f',
                       }}
                     >
-                      Synthesizing material specifications...
+                      Reviewing workshop details...
                     </span>
                   </div>
                 </div>
@@ -1076,13 +881,13 @@ How may I assist your architectural practice today?`,
               <div ref={messagesEndRef} />
             </div>
 
-            {/* Starter Prompt Chips (shown if only 1 message exists) */}
+            {/* Starter Prompt Chips */}
             {messages.length <= 1 && (
               <div
                 style={{
                   padding: '8px 16px 12px',
-                  background: 'rgba(0, 0, 0, 0.25)',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+                  background: '#f5f3ec',
+                  borderTop: '1px solid rgba(30, 33, 29, 0.08)',
                 }}
               >
                 <div
@@ -1091,11 +896,11 @@ How may I assist your architectural practice today?`,
                     fontFamily: 'DM Mono, monospace',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
-                    color: '#849084',
+                    color: '#6f786f',
                     marginBottom: '6px',
                   }}
                 >
-                  Quick Architectural Topics:
+                  Quick Topics:
                 </div>
                 <div
                   style={{
@@ -1110,26 +915,26 @@ How may I assist your architectural practice today?`,
                       type="button"
                       onClick={() => handleSendMessage(starter.prompt)}
                       style={{
-                        fontSize: '10px',
+                        fontSize: '10.5px',
                         fontFamily: 'DM Mono, monospace',
-                        padding: '5px 10px',
-                        borderRadius: '0px',
-                        background: 'rgba(255, 255, 255, 0.04)',
-                        border: '1px solid rgba(242, 240, 234, 0.16)',
-                        color: 'rgba(242, 240, 234, 0.8)',
+                        padding: '6px 11px',
+                        borderRadius: '4px',
+                        background: '#ffffff',
+                        border: '1px solid rgba(30, 33, 29, 0.12)',
+                        color: '#2a3029',
                         cursor: 'pointer',
                         textAlign: 'left',
-                        transition: 'all 0.15s ease',
+                        transition: 'all 0.18s ease',
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.6)';
-                        e.currentTarget.style.background = 'rgba(242, 240, 234, 0.08)';
+                        e.currentTarget.style.background = '#1e211d';
                         e.currentTarget.style.color = '#ffffff';
+                        e.currentTarget.style.borderColor = '#1e211d';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.16)';
-                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)';
-                        e.currentTarget.style.color = 'rgba(242, 240, 234, 0.8)';
+                        e.currentTarget.style.background = '#ffffff';
+                        e.currentTarget.style.color = '#2a3029';
+                        e.currentTarget.style.borderColor = 'rgba(30, 33, 29, 0.12)';
                       }}
                     >
                       {starter.title} ↗
@@ -1148,8 +953,8 @@ How may I assist your architectural practice today?`,
               }}
               style={{
                 padding: '12px 14px',
-                background: '#0d100d',
-                borderTop: '1px solid rgba(242, 240, 234, 0.12)',
+                background: '#ffffff',
+                borderTop: '1px solid rgba(30, 33, 29, 0.08)',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '8px',
@@ -1160,9 +965,9 @@ How may I assist your architectural practice today?`,
                   display: 'flex',
                   alignItems: 'flex-end',
                   gap: '8px',
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(242, 240, 234, 0.18)',
-                  borderRadius: '0px',
+                  background: 'rgba(30, 33, 29, 0.03)',
+                  border: '1px solid rgba(30, 33, 29, 0.12)',
+                  borderRadius: '6px',
                   padding: '8px 12px',
                 }}
               >
@@ -1172,7 +977,7 @@ How may I assist your architectural practice today?`,
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Inquire about Corian®, Coro, slab gauges, CNC tolerances..."
+                  placeholder="Ask about slabs, finishes, kitchen islands, or vanities..."
                   rows={2}
                   disabled={isLoading}
                   style={{
@@ -1180,8 +985,8 @@ How may I assist your architectural practice today?`,
                     background: 'transparent',
                     border: 'none',
                     outline: 'none',
-                    color: '#f4f3ef',
-                    fontSize: '12px',
+                    color: '#1e211d',
+                    fontSize: '12.5px',
                     lineHeight: '1.5',
                     fontFamily: 'inherit',
                     resize: 'none',
@@ -1193,17 +998,17 @@ How may I assist your architectural practice today?`,
                   disabled={!input.trim() || isLoading}
                   aria-label="Send Inquiry"
                   style={{
-                    background: input.trim() && !isLoading ? '#f2f0ea' : 'rgba(255, 255, 255, 0.08)',
-                    color: input.trim() && !isLoading ? '#161815' : 'rgba(242, 240, 234, 0.3)',
+                    background: input.trim() && !isLoading ? '#1e211d' : 'rgba(30, 33, 29, 0.08)',
+                    color: input.trim() && !isLoading ? '#ffffff' : '#8c968b',
                     border: 'none',
                     width: '32px',
                     height: '32px',
-                    borderRadius: '0px',
+                    borderRadius: '4px',
                     display: 'grid',
                     placeItems: 'center',
                     cursor: input.trim() && !isLoading ? 'pointer' : 'not-allowed',
-                    fontSize: '14px',
-                    fontWeight: 700,
+                    fontSize: '13px',
+                    fontWeight: 600,
                     transition: 'all 0.2s ease',
                     flexShrink: 0,
                   }}
@@ -1212,201 +1017,144 @@ How may I assist your architectural practice today?`,
                 </button>
               </div>
 
-              {/* Sub-label reminding of navbar WhatsApp line */}
               <div
                 style={{
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'space-between',
-                  fontSize: '9px',
+                  fontSize: '9.5px',
                   fontFamily: 'DM Mono, monospace',
-                  color: 'rgba(242, 240, 234, 0.5)',
+                  color: '#788278',
                   letterSpacing: '0.02em',
                 }}
               >
-                <span>Press Enter to send, Shift+Enter for newline</span>
+                <span>Enter to send · Shift+Enter for new line</span>
                 <Link
                   href="https://wa.me/919741044776"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{ color: '#73c991', textDecoration: 'none' }}
+                  style={{ color: '#1e211d', textDecoration: 'none', fontWeight: 500 }}
                 >
-                  WhatsApp in Navbar ↗
+                  WhatsApp Studio Line ↗
                 </Link>
               </div>
             </form>
           </div>
         )}
 
-        {/* Floating Trigger Plaque (Architectural Specifier Plaque) */}
-        {/* Bottom Floating Trigger Button */}
+        {/* Architectural Floating Trigger Seal */}
         <button
           type="button"
           onClick={handleToggleChat}
           aria-expanded={isOpen}
-          aria-label="Ace Spaces Private AI Material Intelligence"
-          className="ace-ai-trigger-pill"
+          aria-label="Ace Spaces Studio Desk Advisory"
+          className="ace-ai-trigger-seal"
           style={{
-            background: (isOpen && !isClosing) ? '#141714' : 'rgba(18, 21, 18, 0.94)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            color: '#f4f3ef',
-            border: (isOpen && !isClosing) ? '1px solid rgba(242, 240, 234, 0.65)' : '1px solid rgba(242, 240, 234, 0.24)',
-            borderRadius: '0px',
-            padding: '10px 16px',
+            background: '#151714',
+            color: '#f5f2ea',
+            border: '1px solid rgba(255, 255, 255, 0.16)',
+            borderRadius: '100px',
+            height: '40px',
+            padding: '0 16px 0 12px',
             display: 'inline-flex',
             alignItems: 'center',
-            gap: '12px',
+            gap: '10px',
             cursor: 'pointer',
-            boxShadow: (isOpen && !isClosing)
-              ? '0 16px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(242, 240, 234, 0.15)'
-              : '0 12px 32px rgba(0, 0, 0, 0.45)',
-            transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-            transform: (isOpen && !isClosing) ? 'scale(0.98)' : 'scale(1)',
+            boxShadow: '0 12px 32px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.16)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            transition: 'all 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
+            transform: (isOpen && !isClosing) ? 'scale(0.97)' : 'scale(1)',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.7)';
-            e.currentTarget.style.background = 'rgba(26, 30, 26, 0.98)';
-            e.currentTarget.style.boxShadow = '0 18px 45px rgba(0, 0, 0, 0.55)';
-            e.currentTarget.style.transform = 'translateY(-3px)';
+            e.currentTarget.style.borderColor = 'rgba(196, 67, 61, 0.55)';
+            e.currentTarget.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.38)';
+            e.currentTarget.style.transform = 'translateY(-2px)';
           }}
           onMouseLeave={(e) => {
-            if (!isOpen || isClosing) {
-              e.currentTarget.style.borderColor = 'rgba(242, 240, 234, 0.24)';
-              e.currentTarget.style.background = 'rgba(18, 21, 18, 0.94)';
-              e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.45)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.16)';
+            e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.16)';
+            e.currentTarget.style.transform = 'translateY(0)';
           }}
         >
-          {/* Architectural Desktop Emblem Frame */}
+          {/* Logo Monogram */}
           <div
-            className="ace-ai-trigger-emblem-desktop"
             style={{
-              width: '20px',
-              height: '20px',
-              border: '1px solid rgba(242, 240, 234, 0.35)',
-              background: 'rgba(255, 255, 255, 0.05)',
-              display: 'grid',
-              placeItems: 'center',
-              color: '#f4f3ef',
-              flexShrink: 0,
-              fontSize: '11px',
-              fontFamily: 'DM Mono, monospace',
-              letterSpacing: 0,
-              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-              transform: (isOpen && !isClosing) ? 'rotate(45deg)' : 'rotate(0deg)',
-            }}
-          >
-            +
-          </div>
-
-          {/* Architectural Mobile Emblem (Compact 44x44 trigger badge) */}
-          <div
-            className="ace-ai-trigger-emblem-mobile"
-            style={{
-              display: 'none',
+              width: '18px',
+              height: '18px',
+              display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              position: 'relative',
-              width: '100%',
-              height: '100%',
-              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-              transform: (isOpen && !isClosing) ? 'rotate(90deg)' : 'rotate(0deg)',
+              flexShrink: 0,
             }}
           >
-            {(isOpen && !isClosing) ? (
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '15px', color: '#f4f3ef' }}>✕</span>
-            ) : (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#f4f3ef', letterSpacing: '0.04em' }}>
-                  AI
-                </span>
-                <span
-                  style={{
-                    width: '5px',
-                    height: '5px',
-                    borderRadius: '50%',
-                    background: '#73c991',
-                    boxShadow: '0 0 6px rgba(115, 201, 145, 0.95)',
-                    display: 'inline-block',
-                  }}
-                />
-              </div>
-            )}
+            <img
+              src="/logo/icon-logo-white-transparent.png"
+              alt="Ace Spaces Logo"
+              style={{ width: '18px', height: '18px', objectFit: 'contain', display: 'block' }}
+            />
           </div>
 
-          {/* Text & Active Indicator (Desktop) */}
-          <div className="ace-ai-trigger-text" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-              <span
-                style={{
-                  fontFamily: 'DM Mono, monospace',
-                  fontSize: '11px',
-                  fontWeight: 600,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  color: '#f4f3ef',
-                }}
-              >
-                Ace Spaces AI
-              </span>
-              <span
-                style={{
-                  width: '5px',
-                  height: '5px',
-                  borderRadius: '50%',
-                  background: '#73c991',
-                  boxShadow: '0 0 6px rgba(115, 201, 145, 0.85)',
-                  display: 'inline-block',
-                }}
-              />
-            </div>
-            <span
-              style={{
-                fontSize: '9px',
-                color: 'rgba(242, 240, 234, 0.55)',
-                fontFamily: 'DM Mono, monospace',
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                marginTop: '1px',
-              }}
-            >
-              Material Intelligence
-            </span>
-          </div>
-
+          {/* Clean Single-Line Architectural Monogram Label */}
           <span
-            className="ace-ai-trigger-arrow"
             style={{
               fontFamily: 'DM Mono, monospace',
-              fontSize: '13px',
-              color: '#f4f3ef',
-              marginLeft: '4px',
+              fontSize: '11px',
+              fontWeight: 500,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+              color: '#f5f2ea',
               lineHeight: 1,
-              display: 'inline-block',
-              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-              transform: (isOpen && !isClosing) ? 'rotate(45deg)' : 'rotate(0deg)',
             }}
           >
-            ↗
+            Studio Desk
+          </span>
+
+          <span
+            style={{
+              width: '1px',
+              height: '12px',
+              background: 'rgba(255, 255, 255, 0.18)',
+              margin: '0 1px',
+            }}
+          />
+
+          <span
+            style={{
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '10px',
+              letterSpacing: '0.04em',
+              color: 'rgba(245, 242, 234, 0.62)',
+              lineHeight: 1,
+            }}
+          >
+            Advisory
+          </span>
+
+          <span
+            style={{
+              fontFamily: 'DM Mono, monospace',
+              fontSize: '12px',
+              color: 'var(--brand-red, #c4433d)',
+              marginLeft: '2px',
+              lineHeight: 1,
+              transition: 'transform 0.2s ease',
+            }}
+          >
+            {isOpen ? '✕' : '↗'}
           </span>
         </button>
       </aside>
 
-      {/* Global CSS for Animations and Full Responsiveness */}
       <style jsx global>{`
-        /* Desktop Architectural Open / Close Animations */
         @keyframes aiWindowPopIn {
           0% {
             opacity: 0;
-            transform: translateY(18px) scale(0.95);
-            filter: blur(4px);
+            transform: translateY(14px) scale(0.96);
           }
           100% {
             opacity: 1;
             transform: translateY(0) scale(1);
-            filter: blur(0px);
           }
         }
 
@@ -1414,113 +1162,44 @@ How may I assist your architectural practice today?`,
           0% {
             opacity: 1;
             transform: translateY(0) scale(1);
-            filter: blur(0px);
           }
           100% {
             opacity: 0;
-            transform: translateY(14px) scale(0.96);
-            filter: blur(3px);
+            transform: translateY(10px) scale(0.97);
           }
         }
 
         .ace-ai-chat-window.ai-window-opening {
-          animation: aiWindowPopIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: aiWindowPopIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .ace-ai-chat-window.ai-window-closing {
-          animation: aiWindowPopOut 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          animation: aiWindowPopOut 0.22s cubic-bezier(0.4, 0, 0.2, 1) forwards;
           pointer-events: none;
         }
 
-        .ai-dot-pulse {
-          width: 5px;
-          height: 5px;
-          background: #73c991;
-          border-radius: 50%;
-          display: inline-block;
-          animation: aiPulse 1.2s infinite ease-in-out;
-        }
-
-        @keyframes aiPulse {
-          0%, 80%, 100% {
-            transform: scale(0.6);
-            opacity: 0.4;
-          }
-          40% {
-            transform: scale(1.1);
-            opacity: 1;
-          }
-        }
-
-        /* Custom Scrollbar for Chat Feed */
         .ace-ai-messages-scroll::-webkit-scrollbar {
           width: 4px;
         }
         .ace-ai-messages-scroll::-webkit-scrollbar-track {
-          background: rgba(0, 0, 0, 0.1);
+          background: transparent;
         }
         .ace-ai-messages-scroll::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.15);
-          border-radius: 2px;
-        }
-        .ace-ai-messages-scroll::-webkit-scrollbar-thumb:hover {
-          background: rgba(242, 240, 234, 0.35);
+          background: rgba(30, 33, 29, 0.14);
+          border-radius: 4px;
         }
 
-        @keyframes aiMobileSlideUp {
-          from {
-            transform: translateY(100%);
-            opacity: 0.4;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
+        .ai-inline-nav-link {
+          color: var(--brand-red, #c4433d);
+          font-weight: 500;
+          text-decoration: underline;
+          text-underline-offset: 3px;
         }
 
-        @keyframes aiMobileSlideDown {
-          from {
-            transform: translateY(0);
-            opacity: 1;
-          }
-          to {
-            transform: translateY(100%);
-            opacity: 0.4;
-          }
-        }
-
-        .ace-ai-resize-handle:hover > div {
-          background: rgba(242, 240, 234, 0.6) !important;
-          height: 42px !important;
-        }
-
-        /* Responsive Mobile Behavior (<640px) */
         @media (max-width: 640px) {
           .ace-ai-bot-root {
             bottom: max(16px, env(safe-area-inset-bottom)) !important;
             right: 16px !important;
-          }
-          .ace-ai-bot-root.is-open .ace-ai-trigger-pill {
-            display: none !important;
-          }
-          .ace-ai-trigger-pill {
-            width: 46px !important;
-            height: 46px !important;
-            min-width: 46px !important;
-            padding: 0 !important;
-            gap: 0 !important;
-            justify-content: center !important;
-            align-items: center !important;
-            border-radius: 50% !important;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
-          }
-          .ace-ai-trigger-emblem-desktop,
-          .ace-ai-trigger-text,
-          .ace-ai-trigger-arrow {
-            display: none !important;
-          }
-          .ace-ai-trigger-emblem-mobile {
-            display: flex !important;
           }
           .ace-ai-chat-window {
             position: fixed !important;
@@ -1534,38 +1213,6 @@ How may I assist your architectural practice today?`,
             bottom: 0 !important;
             right: 0 !important;
             z-index: 10000 !important;
-          }
-          .ace-ai-chat-window.ai-window-opening {
-            animation: aiMobileSlideUp 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
-          }
-          .ace-ai-chat-window.ai-window-closing {
-            animation: aiMobileSlideDown 0.26s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
-          }
-          .ace-ai-chat-header {
-            padding-top: max(16px, env(safe-area-inset-top)) !important;
-            padding-left: 16px !important;
-            padding-right: 16px !important;
-          }
-          .ace-ai-header-btn {
-            width: 36px !important;
-            height: 36px !important;
-            font-size: 15px !important;
-          }
-          .ace-ai-chat-footer {
-            padding-bottom: max(14px, env(safe-area-inset-bottom)) !important;
-            padding-left: 12px !important;
-            padding-right: 12px !important;
-          }
-          .ace-ai-textarea {
-            font-size: 16px !important;
-          }
-        }
-
-        /* Responsive Tablet Behavior (641px - 1024px) */
-        @media (min-width: 641px) and (max-width: 1024px) {
-          .ace-ai-chat-window {
-            width: 390px !important;
-            height: 560px !important;
           }
         }
       `}</style>

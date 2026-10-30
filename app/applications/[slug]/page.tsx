@@ -337,7 +337,7 @@ export default function ApplicationDetailPage({ params }: PageProps) {
                   {img.caption}
                 </strong>
                 <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
-                  View 0{idx + 1} • Inconspicuous joint tolerance &lt; 0.08mm
+                  View 0{idx + 1} — Inconspicuous joint tolerance &lt; 0.08mm
                 </span>
               </div>
             </div>

@@ -451,17 +451,6 @@ export default function SiteHeader() {
               transition: 'all 0.3s ease',
             }}
           >
-            <span
-              style={{
-                width: '6px',
-                height: '6px',
-                borderRadius: '50%',
-                background: '#73c991',
-                boxShadow: '0 0 8px rgba(115, 201, 145, 0.7)',
-                display: 'inline-block',
-                flexShrink: 0,
-              }}
-            />
             <svg
               width="13"
               height="13"
@@ -600,9 +589,9 @@ export default function SiteHeader() {
                   width: '26px',
                   height: '26px',
                   borderRadius: '50%',
-                  background: 'rgba(115, 201, 145, 0.15)',
-                  border: '1px solid rgba(115, 201, 145, 0.35)',
-                  color: '#73c991',
+                  background: 'rgba(255, 255, 255, 0.08)',
+                  border: '1px solid rgba(255, 255, 255, 0.16)',
+                  color: '#f4f3ef',
                   display: 'grid',
                   placeItems: 'center',
                   flexShrink: 0,
@@ -621,7 +610,7 @@ export default function SiteHeader() {
                 </div>
               </div>
             </div>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#73c991' }}>Chat ↗</span>
+            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #c4433d)' }}>Chat ↗</span>
           </a>
         </div>
 
@@ -735,8 +724,8 @@ export default function SiteHeader() {
               alignItems: 'center',
               justifyContent: 'space-between',
               padding: '12px 14px',
-              background: 'rgba(37, 211, 102, 0.08)',
-              border: '1px solid rgba(37, 211, 102, 0.3)',
+              background: 'rgba(30, 33, 29, 0.04)',
+              border: '1px solid rgba(30, 33, 29, 0.12)',
               borderRadius: '6px',
               marginBottom: '16px',
               textDecoration: 'none',
@@ -745,16 +734,6 @@ export default function SiteHeader() {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span
-                style={{
-                  width: '7px',
-                  height: '7px',
-                  borderRadius: '50%',
-                  background: '#73c991',
-                  boxShadow: '0 0 8px rgba(115, 201, 145, 0.6)',
-                  flexShrink: 0,
-                }}
-              />
               <div>
                 <strong style={{ fontSize: '12px', display: 'block', fontFamily: 'DM Mono, monospace', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                   WhatsApp Studio Line
@@ -764,7 +743,7 @@ export default function SiteHeader() {
                 </small>
               </div>
             </div>
-            <span style={{ color: '#73c991', fontWeight: 600, fontSize: '14px' }}>↗</span>
+            <span style={{ color: 'var(--brand-red, #c4433d)', fontWeight: 600, fontSize: '14px' }}>↗</span>
           </a>
 
           <div className="drawer-coro-box">

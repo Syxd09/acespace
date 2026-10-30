@@ -35,7 +35,6 @@ export default function NsfAnsi51Page() {
         {/* Hero Header */}
         <div style={{ borderBottom: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingBottom: '36px', marginBottom: '48px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(30, 33, 29, 0.05)', border: '1px solid rgba(30, 33, 29, 0.12)', padding: '6px 14px', marginBottom: '20px' }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#73c991', display: 'inline-block' }} />
             <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
               Food Zone &amp; Direct Contact Certified / NSF International
             </span>
@@ -99,8 +98,8 @@ export default function NsfAnsi51Page() {
             </h3>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}>
               {[
-                { reagent: 'Sodium Hypochlorite (Bleach 5%)', result: 'Zero Staining · Washable' },
-                { reagent: 'Citric Acid / Lemon Juice', result: 'Zero Etching · Intact' },
+                { reagent: 'Sodium Hypochlorite (Bleach 5%)', result: 'Zero Staining — Washable' },
+                { reagent: 'Citric Acid / Lemon Juice', result: 'Zero Etching — Intact' },
                 { reagent: 'Turmeric & Beet Extract', result: 'Fully Removable on-site' },
                 { reagent: 'Boiling Water (100°C shock)', result: 'No Blistering / Crazing' },
                 { reagent: 'Isopropyl Alcohol (70%)', result: 'Safe Disinfection' },

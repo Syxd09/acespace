@@ -34,7 +34,6 @@ export default function GuaranteePage() {
         {/* Hero Header */}
         <div style={{ borderBottom: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingBottom: '36px', marginBottom: '48px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(30, 33, 29, 0.05)', border: '1px solid rgba(30, 33, 29, 0.12)', padding: '6px 14px', marginBottom: '20px' }}>
-            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#73c991', display: 'inline-block' }} />
             <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
               DuPont™ Corian® Quality Network Partner Warranty (Bengaluru)
             </span>
@@ -54,11 +53,11 @@ export default function GuaranteePage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px', marginBottom: '56px' }}>
           {[
             { label: 'Warranty Duration', value: '10 Full Years', sub: 'From certified installation handover and digital sign-off' },
-            { label: 'Coverage Scope', value: 'Material + Joints', sub: 'Covers slab structural integrity and seamless molecular weld lines' },
+            { label: 'Coverage Scope', value: 'Material + Joints', sub: 'Covers slab structural integrity and seamless bonded joints' },
             { label: 'Renewability', value: '100% On-Site', sub: 'Scratches, heat marks, and stains are fully buffable back to new' },
             { label: 'Transferability', value: 'Fully Transferable', sub: 'Warranty transfers to new property buyers and tenants' },
           ].map((stat, i) => (
-            <div key={i} style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '24px 22px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div key={i} style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', padding: '24px 22px', borderRadius: '6px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
                 {stat.label}
               </span>
@@ -73,7 +72,7 @@ export default function GuaranteePage() {
         </div>
 
         {/* What "Renewable" Means Section */}
-        <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '44px 36px', marginBottom: '56px' }}>
+        <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', padding: '44px 36px', borderRadius: '6px', marginBottom: '56px' }}>
           <h2 style={{ fontSize: '26px', fontWeight: 600, letterSpacing: '-0.03em', margin: '0 0 16px', color: '#1a1d19' }}>
             What makes solid surface <i>renewable?</i>
           </h2>
@@ -114,7 +113,7 @@ export default function GuaranteePage() {
 
         {/* Detailed Coverage Matrix */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '32px', marginBottom: '56px' }}>
-          <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '32px 28px' }}>
+          <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', padding: '32px 28px', borderRadius: '6px' }}>
             <h3 style={{ fontSize: '19px', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 0 16px', color: '#1a1d19' }}>
               ✓ What Is Covered Under the 10-Year Guarantee
             </h3>
@@ -138,7 +137,7 @@ export default function GuaranteePage() {
             </ul>
           </div>
 
-          <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '32px 28px' }}>
+          <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', padding: '32px 28px', borderRadius: '6px' }}>
             <h3 style={{ fontSize: '19px', fontWeight: 600, letterSpacing: '-0.02em', margin: '0 0 16px', color: '#1a1d19' }}>
               General Care &amp; Exclusions
             </h3>
@@ -164,10 +163,10 @@ export default function GuaranteePage() {
         </div>
 
         {/* Claim / Inspection Contact Card */}
-        <div style={{ background: '#141713', color: '#e9e8e2', padding: '40px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '56px' }}>
+        <div style={{ background: '#141713', color: '#e9e8e2', padding: '40px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '56px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '24px' }}>
             <div>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#73c991', display: 'block', marginBottom: '8px' }}>
+              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#c2cdc2', display: 'block', marginBottom: '8px' }}>
                 Warranty Desk &amp; Atelier Service Handover
               </span>
               <h3 style={{ fontSize: '24px', fontWeight: 600, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 8px' }}>
@@ -182,7 +181,7 @@ export default function GuaranteePage() {
               style={{
                 background: '#e9e8e2',
                 color: '#141713',
-                padding: '12px 24px',
+                padding: '12px 24px', borderRadius: '4px',
                 fontFamily: 'DM Mono, monospace',
                 fontSize: '11px',
                 fontWeight: 600,
