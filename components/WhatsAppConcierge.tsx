@@ -99,7 +99,7 @@ export default function WhatsAppConcierge() {
                 >
                   <span
                     style={{
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10px',
                       letterSpacing: '0.1em',
                       textTransform: 'uppercase',
@@ -125,7 +125,7 @@ export default function WhatsAppConcierge() {
                     fontSize: '11px',
                     color: '#8c968c',
                     marginTop: '2px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                   }}
                 >
                   Direct WhatsApp / {displayPhone}
@@ -170,7 +170,7 @@ export default function WhatsAppConcierge() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginBottom: '16px' }}>
                 <span
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '9px',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
@@ -196,7 +196,7 @@ export default function WhatsAppConcierge() {
                       color: '#e9e8e2',
                       cursor: 'pointer',
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       transition: 'all 0.2s ease',
                     }}
                     onMouseEnter={(e) => {
@@ -244,7 +244,7 @@ export default function WhatsAppConcierge() {
                       padding: '0 14px',
                       fontSize: '11px',
                       fontWeight: 700,
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       letterSpacing: '0.04em',
                       cursor: 'pointer',
                       display: 'inline-flex',
@@ -270,7 +270,7 @@ export default function WhatsAppConcierge() {
                   justifyContent: 'space-between',
                   alignItems: 'center',
                   fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   color: '#717c71',
                 }}
               >
@@ -342,7 +342,7 @@ export default function WhatsAppConcierge() {
             <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span
                 style={{
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   fontWeight: 600,
                   letterSpacing: '0.08em',
@@ -357,7 +357,7 @@ export default function WhatsAppConcierge() {
               style={{
                 fontSize: '9px',
                 color: '#8c968c',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 letterSpacing: '0.02em',
               }}
             >
@@ -367,7 +367,7 @@ export default function WhatsAppConcierge() {
 
           <span
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               color: 'var(--brand-red, #c4433d)',
               marginLeft: '2px',

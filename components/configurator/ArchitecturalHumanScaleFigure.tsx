@@ -82,7 +82,7 @@ export const ArchitecturalHumanScaleFigure: React.FC<ArchitecturalHumanScaleFigu
             y={bottomY - 3}
             textAnchor="end"
             fill="rgba(30, 33, 29, 0.50)"
-            fontFamily="DM Mono, monospace"
+            fontFamily="Urbanist, sans-serif"
             fontSize="8.5px"
             letterSpacing="0.04em"
           >
@@ -104,7 +104,7 @@ export const ArchitecturalHumanScaleFigure: React.FC<ArchitecturalHumanScaleFigu
             y={topY + 3}
             textAnchor="end"
             fill="rgba(212, 56, 51, 0.80)"
-            fontFamily="DM Mono, monospace"
+            fontFamily="Urbanist, sans-serif"
             fontSize="8.5px"
             fontWeight="600"
             letterSpacing="0.04em"

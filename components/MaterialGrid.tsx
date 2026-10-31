@@ -50,22 +50,27 @@ export default function MaterialGrid() {
     .filter(Boolean) as Material[];
   const displayColours = featuredColours.length >= 4 ? featuredColours : materials.slice(4, 8);
 
-  const renderCard = (m: Material, badgeLabel?: string) => {
+  const renderCard = (m: Material, badgeLabel?: string, delay: number = 0) => {
     const inTray = isShortlisted(m.slug);
     return (
-      <article
+      <ScrollReveal
         key={m.slug}
-        className="material-card"
-        tabIndex={0}
-        onClick={() => setSelectedMaterial(m)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            setSelectedMaterial(m);
-          }
-        }}
-        style={{ position: 'relative', cursor: 'pointer' }}
+        variant="image"
+        delay={delay}
+        style={{ height: '100%', display: 'flex', flexDirection: 'column' }}
       >
+        <article
+          className="material-card"
+          tabIndex={0}
+          onClick={() => setSelectedMaterial(m)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              setSelectedMaterial(m);
+            }
+          }}
+          style={{ position: 'relative', cursor: 'pointer', flex: 1, minHeight: '340px' }}
+        >
         <div
           className="swatch"
           style={{
@@ -113,7 +118,7 @@ export default function MaterialGrid() {
             padding: '6px 12px',
             borderRadius: '0px',
             fontSize: '10px',
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             textTransform: 'uppercase',
             cursor: 'pointer',
             transition: 'all 0.25s ease',
@@ -151,7 +156,8 @@ export default function MaterialGrid() {
             {badgeLabel ? badgeLabel : `${m.code} / ${m.finish}`}
           </p>
         </div>
-      </article>
+        </article>
+      </ScrollReveal>
     );
   };
 
@@ -174,11 +180,11 @@ export default function MaterialGrid() {
         </ScrollReveal>
 
         <div className="material-grid">
-          {displayMaterials.map((m) => renderCard(m))}
+          {displayMaterials.map((m, idx) => renderCard(m, undefined, idx * 80))}
         </div>
 
         <div style={{ marginTop: '36px', paddingTop: '24px', borderTop: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
             Architectural Slabs / 12mm &amp; 19mm Thicknesses / Custom CNC
           </span>
           <Link className="text-link dark" href="/materials">
@@ -204,11 +210,11 @@ export default function MaterialGrid() {
         </ScrollReveal>
 
         <div className="material-grid">
-          {displayColours.map((m) => renderCard(m, `${m.colorFamily.toUpperCase()} / ${m.code}`))}
+          {displayColours.map((m, idx) => renderCard(m, `${m.colorFamily.toUpperCase()} / ${m.code}`, idx * 80))}
         </div>
 
         <div style={{ marginTop: '36px', paddingTop: '24px', borderTop: '1px solid var(--line)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px' }}>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
             Curated Across 7 Color Families / Light Transmission &amp; Undertones
           </span>
           <Link className="text-link dark" href="/materials#library">

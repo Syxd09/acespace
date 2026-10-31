@@ -163,11 +163,11 @@ COMPREHENSIVE STUDIO DOMAIN KNOWLEDGE
 - Quiet Arrival: Commercial reception counter featuring continuous curved thermoforming, backlit translucent Corian®, and concealed joinery.
 - Open Practice: Minimalist architectural office with 4.2-meter seamless conference table and integrated acoustic cable trough.
 - Material Display: Luxury retail flagship store with tiered display pedestals, shark-nose mitred displays, and matte-honed finishes.
-- Clinical Precision: State-of-the-art medical clinic wet walls, surgical scrub sinks, and antimicrobial seamless cabinetry.
+- Clinical Precision: Antimicrobial certified medical clinic wet walls, surgical scrub sinks, and seamless monolithic cabinetry.
 - Link: [Explore Architectural Projects](/projects)
 
 10. SPATIAL RESEARCH JOURNAL & ESSAYS (/journal)
-- "The edge of nothing: minimal radii in monolithic solid surface" -- Deep dive into machining sub-millimeter chamfers and CNC shark-nose detailing.
+- "The edge of nothing: minimal radii in monolithic solid surface" -- Technical monograph on machining sub-millimeter chamfers and CNC shark-nose detailing.
 - "On the beauty of the seamless join: chemical bonding vs mechanical fasteners" -- Science of methyl methacrylate two-part adhesive molecular weld creating zero-dirt-trap transitions.
 - "Monolithic Curvature: Thermoforming limits and radius optimization" -- Technical parameters of heating solid surface to 160°C and vacuum-forming tight curves down to 25mm radii without stress bleaching.
 - "The Hygiene of Light: Translucency in healthcare and hospitality" -- Backlighting formulations and clinical cleanability standards (NSF/ANSI 51 compliant).

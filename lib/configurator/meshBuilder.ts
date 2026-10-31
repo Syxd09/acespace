@@ -134,9 +134,17 @@ function resolveBasinSpec(modelId?: string, cfg?: ProductConfiguration): BasinSp
     modelId === 'undermount-box' || modelId === 'undermount-channel' || modelId === 'washdesk-trough';
 
   if (cfg && isCustomizableModel) {
-    if (cfg.basinWidthMm && cfg.basinWidthMm > 0) spec.width = cfg.basinWidthMm / 1000;
-    if (cfg.basinDepthMm && cfg.basinDepthMm > 0) spec.depth = cfg.basinDepthMm / 1000;
-    if (cfg.basinHeightMm && cfg.basinHeightMm > 0) spec.height = cfg.basinHeightMm / 1000;
+    const slabWM = Math.max(0.3, (Number(cfg.width) || 1200) / 1000);
+    const slabDM = Math.max(0.3, (Number(cfg.depth) || 600) / 1000);
+    if (cfg.basinWidthMm && cfg.basinWidthMm > 0) {
+      spec.width = Math.min(cfg.basinWidthMm / 1000, slabWM * 0.88);
+    }
+    if (cfg.basinDepthMm && cfg.basinDepthMm > 0) {
+      spec.depth = Math.min(cfg.basinDepthMm / 1000, slabDM * 0.88);
+    }
+    if (cfg.basinHeightMm && cfg.basinHeightMm > 0) {
+      spec.height = Math.max(0.08, Math.min(0.40, cfg.basinHeightMm / 1000));
+    }
   }
 
   return spec;
@@ -291,10 +299,10 @@ export function buildProductMesh(cfg: ProductConfiguration): ProceduralMeshData 
   const COLOR_PULL_RING: [number, number, number, number] = [0.80, 0.82, 0.86, 1.0];   // Ring-pull loop
   const COLOR_TAPWARE: [number, number, number, number] = [0.84, 0.86, 0.90, 1.0];     // Brushed chrome tapware
 
-  // Dimensions in meters (1000mm = 1.0m)
-  const W = cfg.width / 1000;
-  const D = cfg.depth / 1000;
-  const T = cfg.thickness / 1000;
+  // Dimensions in meters (1000mm = 1.0m) - Sanitized and clamped against NaN or zero
+  const W = Math.max(0.3, Math.min(6.0, (Number(cfg.width) || 1200) / 1000));
+  const D = Math.max(0.3, Math.min(2.0, (Number(cfg.depth) || 600) / 1000));
+  const T = Math.max(0.012, Math.min(0.12, (Number(cfg.thickness) || 12) / 1000));
 
   // Upstands & Wall Splashbacks (Supports Standard 80mm lip, Custom full height & side returns)
   const isBackDisabled = cfg.upstands?.backMode === 'none';

@@ -547,7 +547,7 @@ export function DownstandDiagram({
       <line x1="72" y1="18" x2="72" y2={18 + h} stroke={accent} strokeWidth="1" strokeDasharray="1,1" />
       <line x1="70" y1="18" x2="74" y2="18" stroke={accent} strokeWidth="1" />
       <line x1="70" y1={18 + h} x2="74" y2={18 + h} stroke={accent} strokeWidth="1" />
-      <text x="76" y={18 + h / 2 + 2} fill={accent} fontSize="6" fontFamily="DM Mono, monospace">
+      <text x="76" y={18 + h / 2 + 2} fill={accent} fontSize="6" fontFamily="Urbanist, sans-serif">
         {effectivePreset === 'front' ? 'F' : effectivePreset === 'sides' ? 'S' : `${effectivePreset}mm`}
       </text>
     </svg>
@@ -585,7 +585,7 @@ export function UpstandDiagram({
         <>
           {/* Flush Worktop directly touching wall without upstand */}
           <polygon points="18,34 70,34 70,42 18,42" fill={fill} stroke={stroke} strokeWidth="1.5" />
-          <text x="44" y="24" fill={accent} fontSize="6.5" fontFamily="DM Mono, monospace" textAnchor="middle">
+          <text x="44" y="24" fill={accent} fontSize="6.5" fontFamily="Urbanist, sans-serif" textAnchor="middle">
             NO UPSTAND
           </text>
         </>
@@ -598,7 +598,7 @@ export function UpstandDiagram({
           {/* 90° Standard Upstand Lip */}
           <rect x="18" y="20" width="8" height="14" fill={active ? 'rgba(212,56,51,0.2)' : 'rgba(30,33,29,0.08)'} stroke={stroke} strokeWidth="1.5" />
           <line x1="26" y1="34" x2="18" y2="34" stroke={accent} strokeWidth="1" strokeDasharray="1,1" />
-          <text x="44" y="22" fill={accent} fontSize="6" fontFamily="DM Mono, monospace">
+          <text x="44" y="22" fill={accent} fontSize="6" fontFamily="Urbanist, sans-serif">
             80mm LIP
           </text>
         </>
@@ -616,7 +616,7 @@ export function UpstandDiagram({
           />
           {/* Coved Radius Arc Guide */}
           <circle cx="28" cy="30" r="1.5" fill={accent} />
-          <text x="42" y="22" fill={accent} fontSize="6" fontFamily="DM Mono, monospace">
+          <text x="42" y="22" fill={accent} fontSize="6" fontFamily="Urbanist, sans-serif">
             R10 COVED
           </text>
         </>
@@ -627,7 +627,7 @@ export function UpstandDiagram({
           {/* High 300mm Full Splashback Panel */}
           <polygon points="26,34 70,34 70,42 18,42 18,8 26,8 26,34" fill={fill} stroke={stroke} strokeWidth="1.6" />
           <line x1="26" y1="8" x2="26" y2="34" stroke={accent} strokeWidth="1.2" />
-          <text x="42" y="16" fill={accent} fontSize="6" fontFamily="DM Mono, monospace">
+          <text x="42" y="16" fill={accent} fontSize="6" fontFamily="Urbanist, sans-serif">
             300mm WALL
           </text>
         </>
@@ -684,7 +684,7 @@ export function TowelHolderDiagram({
 
       {/* CNC Center Axis Marker */}
       <line x1={slotX + 14} y1="16" x2={slotX + 14} y2="34" stroke={accent} strokeWidth="0.8" strokeDasharray="2,2" />
-      <text x="40" y="46" fill={accent} fontSize="6" fontFamily="DM Mono, monospace" textAnchor="middle">
+      <text x="40" y="46" fill={accent} fontSize="6" fontFamily="Urbanist, sans-serif" textAnchor="middle">
         {lengthMm ? `${lengthMm}mm` : `${(position || 'right').toUpperCase()} / R${effectiveFillet}mm`}
       </text>
     </svg>
@@ -719,7 +719,7 @@ export function EdgeFinishDiagram({
           {/* Micro-Arris Sharp Pencil Corner */}
           <polygon points="16,40 16,14 64,14 64,40" fill={fill} stroke={stroke} strokeWidth="1.6" />
           <circle cx="16" cy="14" r="2" fill={accent} />
-          <text x="40" y="32" fill={accent} fontSize="6" fontFamily="DM Mono, monospace" textAnchor="middle">
+          <text x="40" y="32" fill={accent} fontSize="6" fontFamily="Urbanist, sans-serif" textAnchor="middle">
             SHARP ARRIS
           </text>
         </>
@@ -736,7 +736,7 @@ export function EdgeFinishDiagram({
           />
           {/* Radius Dimension Arc */}
           <path d="M 18,22 Q 18,16 24,16" fill="none" stroke={accent} strokeWidth="1" strokeDasharray="1,1" />
-          <text x="40" y="32" fill={accent} fontSize="6" fontFamily="DM Mono, monospace" textAnchor="middle">
+          <text x="40" y="32" fill={accent} fontSize="6" fontFamily="Urbanist, sans-serif" textAnchor="middle">
             R{effectiveRadius}mm FILLET
           </text>
         </>
@@ -747,7 +747,7 @@ export function EdgeFinishDiagram({
           {/* 45° Chamfer Bevel Profile */}
           <polygon points="16,40 16,24 26,14 64,14 64,40" fill={fill} stroke={stroke} strokeWidth="1.6" />
           <line x1="16" y1="24" x2="26" y2="14" stroke={accent} strokeWidth="1.2" />
-          <text x="40" y="32" fill={accent} fontSize="6" fontFamily="DM Mono, monospace" textAnchor="middle">
+          <text x="40" y="32" fill={accent} fontSize="6" fontFamily="Urbanist, sans-serif" textAnchor="middle">
             {chamferMm ? `${chamferMm}mm BEVEL` : '45° BEVEL'}
           </text>
         </>
@@ -902,7 +902,7 @@ export function TechnicalOptionCard({
             top: '4px',
             right: '5px',
             fontSize: '8px',
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             letterSpacing: '0.04em',
             padding: '1px 4px',
             borderRadius: '2px',
@@ -924,7 +924,7 @@ export function TechnicalOptionCard({
       <div style={{ textAlign: 'center', width: '100%', marginTop: '6px' }}>
         <div
           style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '10px',
             fontWeight: isCurrentActive ? 600 : 500,
             color: isCurrentActive ? 'var(--brand-red, #d43833)' : '#1e211d',
@@ -937,7 +937,7 @@ export function TechnicalOptionCard({
         {displaySubtitle && (
           <div
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '8.5px',
               color: '#8b948b',
               marginTop: '2px',

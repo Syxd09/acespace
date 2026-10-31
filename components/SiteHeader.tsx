@@ -210,7 +210,7 @@ export default function SiteHeader() {
           borderBottom: isHome
             ? (isScrolled || activeMegaMenu)
               ? '1px solid rgba(30, 33, 29, 0.14)'
-              : '1px solid rgba(255, 255, 255, 0.12)'
+              : 'none'
             : '1px solid var(--line)',
           color: isLightText ? '#fff' : 'var(--ink)',
           boxShadow: (isScrolled || activeMegaMenu) ? '0 10px 30px rgba(0, 0, 0, 0.05)' : 'none',
@@ -232,7 +232,7 @@ export default function SiteHeader() {
             src={isLightText ? '/logo/full-logo-white-transparent.png' : '/logo/full-logo-transparent.png'}
             alt="Ace Spaces India"
             width={160}
-            height={44}
+            height={59}
             priority
             style={{
               height: isScrolled ? '34px' : '40px',
@@ -388,7 +388,7 @@ export default function SiteHeader() {
               alignItems: 'center',
               gap: '8px',
               fontSize: '10px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               color: 'inherit',
@@ -442,7 +442,7 @@ export default function SiteHeader() {
               alignItems: 'center',
               gap: '7px',
               fontSize: '10px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
               color: 'inherit',
@@ -503,6 +503,7 @@ export default function SiteHeader() {
             transition: 'opacity 0.2s ease, background 0.3s ease, box-shadow 0.3s ease',
             pointerEvents: 'none',
             zIndex: 10,
+            display: isScrolled ? 'block' : 'none',
           }}
         />
       </header>
@@ -538,7 +539,9 @@ export default function SiteHeader() {
               src="/logo/full-logo-transparent.png"
               alt="Ace Spaces India"
               width={130}
-              height={36}
+              height={48}
+              loading="lazy"
+              sizes="130px"
               style={{
                 height: '32px',
                 width: 'auto',
@@ -602,15 +605,15 @@ export default function SiteHeader() {
                 </svg>
               </div>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                   WhatsApp Studio Line
                 </div>
-                <div style={{ fontSize: '10px', color: '#9da79d', fontFamily: 'DM Mono, monospace' }}>
+                <div style={{ fontSize: '10px', color: '#9da79d', fontFamily: 'Urbanist, sans-serif' }}>
                   Direct Material Advisory / Bengaluru
                 </div>
               </div>
             </div>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #c4433d)' }}>Chat ↗</span>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: 'var(--brand-red, #c4433d)' }}>Chat ↗</span>
           </a>
         </div>
 
@@ -735,7 +738,7 @@ export default function SiteHeader() {
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
               <div>
-                <strong style={{ fontSize: '12px', display: 'block', fontFamily: 'DM Mono, monospace', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
+                <strong style={{ fontSize: '12px', display: 'block', fontFamily: 'Urbanist, sans-serif', letterSpacing: '0.04em', textTransform: 'uppercase' }}>
                   WhatsApp Studio Line
                 </strong>
                 <small style={{ fontSize: '11px', color: '#6e766c' }}>

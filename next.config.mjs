@@ -266,6 +266,26 @@ const nextConfig = {
         destination: '/guarantee',
         permanent: true,
       },
+      {
+        source: '/astm-fire-rated',
+        destination: '/certifications/astm-fire-rated',
+        permanent: true,
+      },
+      {
+        source: '/greenguard-gold',
+        destination: '/certifications/greenguard-gold',
+        permanent: true,
+      },
+      {
+        source: '/nsf-ansi-51',
+        destination: '/certifications/nsf-ansi-51',
+        permanent: true,
+      },
+      {
+        source: '/10-year-renewable-guarantee',
+        destination: '/guarantee',
+        permanent: true,
+      },
     ];
   },
 };

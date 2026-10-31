@@ -12,13 +12,13 @@ export default function PrivacyPage() {
     <div style={{ minHeight: '100vh', background: 'var(--paper, #f5f4ee)', color: 'var(--ink, #1a1d19)' }}>
       <main style={{ maxWidth: '960px', margin: '0 auto', padding: '140px 24px 80px' }}>
         <div style={{ marginBottom: '40px' }}>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)' }}>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)' }}>
             Governance &amp; Legal Standards
           </span>
           <h1 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: 'clamp(36px, 5vw, 48px)', fontWeight: 500, margin: '8px 0 16px', letterSpacing: '-0.03em', lineHeight: 1.15, color: '#1a1d19' }}>
             Privacy <i>Policy.</i>
           </h1>
-          <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#596059' }}>
+          <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#596059' }}>
             Last updated: September 2026, Bengaluru
           </p>
         </div>
@@ -26,7 +26,7 @@ export default function PrivacyPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '36px', fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', lineHeight: 1.8, fontSize: '15px', color: '#2f352e' }}>
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
             <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>01.</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>01.</span>
               <span>Architectural Client Information &amp; Data Collection</span>
             </h2>
             <p>
@@ -36,7 +36,7 @@ export default function PrivacyPage() {
 
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
             <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>02.</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>02.</span>
               <span>Purpose of Processing &amp; Sample Fulfillment</span>
             </h2>
             <p>
@@ -52,7 +52,7 @@ export default function PrivacyPage() {
 
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
             <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>03.</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>03.</span>
               <span>Confidentiality of Architectural Briefs</span>
             </h2>
             <p>
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
 
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
             <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>04.</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>04.</span>
               <span>Data Retention &amp; Studio Rights</span>
             </h2>
             <p>
@@ -72,7 +72,7 @@ export default function PrivacyPage() {
 
           <section style={{ borderTop: '1px solid var(--line, #ddd8ce)', paddingTop: '24px' }}>
             <h2 style={{ fontFamily: 'Manrope, system-ui, -apple-system, sans-serif', fontSize: '20px', fontWeight: 600, margin: '0 0 12px', color: '#1a1d19', letterSpacing: '-0.02em', display: 'flex', alignItems: 'baseline', gap: '10px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>05.</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '13px', color: '#788078', fontWeight: 500, letterSpacing: '0.04em' }}>05.</span>
               <span>Cookies &amp; Telemetry Architecture</span>
             </h2>
             <p>
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
         </div>
 
         <div style={{ marginTop: '60px', paddingTop: '24px', borderTop: '1px solid var(--line, #ddd8ce)' }}>
-          <Link href="/" style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#1a1d19', textDecoration: 'none' }}>
+          <Link href="/" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#1a1d19', textDecoration: 'none' }}>
             ← Return to Ace Spaces Homepage
           </Link>
         </div>

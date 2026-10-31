@@ -134,7 +134,7 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
               <span
                 style={{
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
@@ -148,7 +148,7 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
                 style={{
                   background: '#1e211d',
                   color: '#fff',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '9px',
                   padding: '2px 6px',
                   letterSpacing: '0.05em',
@@ -193,13 +193,13 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
         >
           <div>
             <div style={{ fontWeight: 600, color: '#1e211d' }}>Countertop Basin {config.modelName}</div>
-            <div style={{ color: '#667066', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+            <div style={{ color: '#667066', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
               {config.width} × {config.depth} × {config.height} mm / {config.materialName}
             </div>
           </div>
           <div
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               color: 'var(--brand-red, #d43833)',
               fontWeight: 600,
@@ -314,7 +314,7 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
                   color: '#fff',
                   border: 'none',
                   fontSize: '12px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   cursor: 'pointer',
                   letterSpacing: '0.04em',
                 }}
@@ -331,7 +331,7 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
                   color: '#1e211d',
                   border: '1px solid rgba(30,33,29,0.25)',
                   fontSize: '12px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   cursor: 'pointer',
                   letterSpacing: '0.04em',
                 }}

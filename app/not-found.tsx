@@ -63,7 +63,7 @@ export default function NotFound() {
           }}
         >
           <div>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>
               01 / Palette
             </span>
             <Link href="/materials" className="text-link" style={{ fontSize: '14px', fontWeight: 600 }}>
@@ -71,7 +71,7 @@ export default function NotFound() {
             </Link>
           </div>
           <div>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>
               02 / Systems
             </span>
             <Link href="/products" className="text-link" style={{ fontSize: '14px', fontWeight: 600 }}>
@@ -79,7 +79,7 @@ export default function NotFound() {
             </Link>
           </div>
           <div>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>
               04 / Workshop
             </span>
             <Link href="/fabrication" className="text-link" style={{ fontSize: '14px', fontWeight: 600 }}>
@@ -87,7 +87,7 @@ export default function NotFound() {
             </Link>
           </div>
           <div>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', marginBottom: '4px' }}>
               06 / Discourse
             </span>
             <Link href="/journal" className="text-link" style={{ fontSize: '14px', fontWeight: 600 }}>

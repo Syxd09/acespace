@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { journalArticles, JournalArticle } from '@/data/journal';
 import { useSiteContent } from '@/context/SiteContentContext';
 import JournalGallery from '@/components/JournalGallery';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export default function JournalExplorer() {
   const { journalArticles: liveArticles } = useSiteContent();
@@ -129,6 +130,7 @@ export default function JournalExplorer() {
 
       {/* Featured Lead Article Split Card */}
       {leadArticle && (
+        <ScrollReveal className="journal-lead-card-wrapper" style={{ marginBottom: '40px' }}>
         <div
           className="journal-lead-card"
           onClick={() => setActiveArticle(leadArticle)}
@@ -139,11 +141,11 @@ export default function JournalExplorer() {
                 <span className="eyebrow" style={{ margin: 0, color: 'var(--ink)', fontWeight: 600 }}>
                   {leadArticle.category}
                 </span>
-                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
+                <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)' }}>
                   {leadArticle.readTime} / {leadArticle.date}
                 </span>
                 {leadArticle.galleryImages && leadArticle.galleryImages.length > 0 && (
-                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', padding: '3px 8px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
+                  <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', padding: '3px 8px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
                     {leadArticle.galleryImages.length} Photos
                   </span>
                 )}
@@ -175,7 +177,7 @@ export default function JournalExplorer() {
             </div>
 
             <div className="journal-lead-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '20px' }}>
-              <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>
                 Written by {leadArticle.author}
               </span>
               <button
@@ -202,11 +204,13 @@ export default function JournalExplorer() {
             />
           </div>
         </div>
+        </ScrollReveal>
       )}
 
       {/* Grid of Remaining Articles */}
       <div className="journal-articles-grid">
-        {gridArticles.map((art) => (
+        {gridArticles.map((art, idx) => (
+          <ScrollReveal key={art.slug} delay={(idx % 2) * 100} style={{ height: '100%' }}>
           <article
             key={art.slug}
             style={{
@@ -237,11 +241,11 @@ export default function JournalExplorer() {
                   {art.category}
                 </span>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
+                  <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)' }}>
                     {art.readTime}
                   </span>
                   {art.galleryImages && art.galleryImages.length > 0 && (
-                    <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', padding: '2px 6px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
+                    <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', padding: '2px 6px', background: 'rgba(30,33,29,0.06)', borderRadius: '2px', color: '#3a4239', fontWeight: 600 }}>
                       {art.galleryImages.length}
                     </span>
                   )}
@@ -258,7 +262,7 @@ export default function JournalExplorer() {
 
               {art.takeaways && art.takeaways.length > 0 && (
                 <div style={{ background: 'var(--paper)', padding: '16px', border: '1px solid var(--line)', marginBottom: '20px' }}>
-                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
+                  <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block', marginBottom: '8px' }}>
                     Core Takeaway
                   </span>
                   <p style={{ fontSize: '12px', color: 'var(--ink)', margin: 0, lineHeight: 1.5 }}>
@@ -269,12 +273,13 @@ export default function JournalExplorer() {
             </div>
 
             <div style={{ borderTop: '1px solid rgba(30,33,29,0.15)', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>
                 {art.author} / {art.date}
               </span>
               <span style={{ fontSize: '16px', color: 'var(--ink)' }}>↗</span>
             </div>
           </article>
+          </ScrollReveal>
         ))}
       </div>
 
@@ -347,7 +352,7 @@ export default function JournalExplorer() {
               {activeArticle.title}
             </h1>
 
-            <p style={{ fontSize: '13px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '32px' }}>
+            <p style={{ fontSize: '13px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', marginBottom: '32px' }}>
               By {activeArticle.author} / Bengaluru Studio
             </p>
 
@@ -383,7 +388,7 @@ export default function JournalExplorer() {
 
             {activeArticle.takeaways && (
               <div style={{ background: '#dcd7cd', padding: '30px', border: '1px solid var(--line)', marginBottom: '32px' }}>
-                <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '14px' }}>
+                <span style={{ display: 'block', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '14px' }}>
                   Architectural Summary & Key Findings
                 </span>
                 <ul style={{ margin: 0, paddingLeft: '20px', display: 'grid', gap: '10px', fontSize: '14px', color: 'var(--ink)' }}>
@@ -395,7 +400,7 @@ export default function JournalExplorer() {
             )}
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--line)', paddingTop: '24px' }}>
-              <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
+              <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)' }}>
                 Ace Spaces Architectural Research
               </span>
               <button

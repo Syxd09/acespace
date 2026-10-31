@@ -62,7 +62,7 @@ export default function CertificationsHubPage() {
         
         {/* Header */}
         <div style={{ borderBottom: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingBottom: '36px', marginBottom: '48px' }}>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', display: 'block', marginBottom: '12px' }}>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', display: 'block', marginBottom: '12px' }}>
             Technical Standards, Material Safety and Building Compliance
           </span>
           <h1 style={{ fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.02, margin: '0 0 24px', letterSpacing: '-0.05em', color: 'var(--ink, #1e211d)' }}>
@@ -84,10 +84,10 @@ export default function CertificationsHubPage() {
             >
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '8px', marginBottom: '16px' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
                     {cert.code}
                   </span>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', background: 'rgba(30,33,29,0.06)', padding: '3px 7px', textTransform: 'uppercase', letterSpacing: '0.04em', textAlign: 'right' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9.5px', background: 'rgba(30,33,29,0.06)', padding: '3px 7px', textTransform: 'uppercase', letterSpacing: '0.04em', textAlign: 'right' }}>
                     {cert.badge}
                   </span>
                 </div>
@@ -103,7 +103,7 @@ export default function CertificationsHubPage() {
                 <div style={{ borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '16px', marginBottom: '24px' }}>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
                     {cert.metrics.map((m, i) => (
-                      <li key={i} style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#1a1d19', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.45 }}>
+                      <li key={i} style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#1a1d19', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.45 }}>
                         <span style={{ color: '#2e7d32', flexShrink: 0, marginTop: '1px' }}>✓</span>
                         <span>{m}</span>
                       </li>
@@ -118,7 +118,7 @@ export default function CertificationsHubPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   fontWeight: 600,
                   textTransform: 'uppercase',
@@ -139,7 +139,7 @@ export default function CertificationsHubPage() {
         <div style={{ background: '#141713', color: '#e9e8e2', padding: '48px 40px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '56px' }}>
           <div className="certifications-compliance-grid">
             <div>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--brand-red, #c4433d)', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '10px' }}>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: 'var(--brand-red, #c4433d)', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '10px' }}>
                 Zero Crystalline Silica Declaration (RCS Safety)
               </span>
               <h3 style={{ fontSize: '26px', fontWeight: 600, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 16px' }}>
@@ -150,13 +150,13 @@ export default function CertificationsHubPage() {
               </p>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', borderLeft: '1px solid rgba(255,255,255,0.15)', paddingLeft: '32px' }}>
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#fff' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#fff' }}>
                 ✓ Certified Zero RCS (Respirable Crystalline Silica)
               </div>
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#fff' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#fff' }}>
                 ✓ Safe for Dry Cutting &amp; CNC Routing
               </div>
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#fff' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#fff' }}>
                 ✓ Complies with OSHA &amp; Safe Work Australia Rules
               </div>
               <Link
@@ -168,7 +168,7 @@ export default function CertificationsHubPage() {
                   background: '#e9e8e2',
                   color: '#141713',
                   padding: '12px 20px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   fontWeight: 600,
                   textTransform: 'uppercase',
@@ -185,10 +185,10 @@ export default function CertificationsHubPage() {
 
         {/* Footer Navigation */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', borderTop: '1px solid var(--line, rgba(30,33,29,0.18))', paddingTop: '28px' }}>
-          <Link href="/guarantee" style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#1a1d19', textDecoration: 'none' }}>
+          <Link href="/guarantee" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#1a1d19', textDecoration: 'none' }}>
             ← Inspect 10-Year Renewable Guarantee
           </Link>
-          <Link href="/consultation" style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#1a1d19', textDecoration: 'none', fontWeight: 600 }}>
+          <Link href="/consultation" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#1a1d19', textDecoration: 'none', fontWeight: 600 }}>
             Project Consultation Form →
           </Link>
         </div>

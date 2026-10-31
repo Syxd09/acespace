@@ -135,7 +135,7 @@ export default function ApplicationDetailPage({ params }: PageProps) {
           href="/applications"
           style={{
             fontSize: '11px',
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             textTransform: 'uppercase',
             color: 'var(--muted)',
             display: 'inline-flex',
@@ -190,26 +190,26 @@ export default function ApplicationDetailPage({ params }: PageProps) {
 
           <div className="hero-stats-row">
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Typology
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 Sector {sector.sectorNumber}
               </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Joinery
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 Zero-Joint Spec
               </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Compliance
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 Commercial Grade
               </strong>
             </div>
@@ -230,14 +230,14 @@ export default function ApplicationDetailPage({ params }: PageProps) {
           />
           <div className="hero-image-badge">
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Typology Focus
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
                 {sector.tagline}
               </strong>
             </div>
-            <Link href="#gallery" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="#gallery" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
               Explore Gallery <span>↓</span>
             </Link>
           </div>
@@ -269,7 +269,7 @@ export default function ApplicationDetailPage({ params }: PageProps) {
               }}
             >
               <div>
-                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>
+                <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>
                   SPEC 0{i + 1}
                 </span>
                 <h3 style={{ fontSize: '20px', margin: '0 0 14px', color: 'var(--ink)' }}>{spec.title}</h3>
@@ -314,30 +314,14 @@ export default function ApplicationDetailPage({ params }: PageProps) {
                   sizes="(max-width: 800px) 100vw, 33vw"
                   style={{ objectFit: 'cover' }}
                 />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '14px',
-                    left: '14px',
-                    background: 'rgba(23, 26, 23, 0.8)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#fff',
-                    padding: '4px 10px',
-                    fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
-                    letterSpacing: '0.06em',
-                    textTransform: 'uppercase',
-                  }}
-                >
-                  {img.tag}
-                </span>
+
               </div>
               <div style={{ padding: '18px 22px', background: 'var(--paper)', borderTop: '1px solid var(--line)', flex: 1 }}>
                 <strong style={{ display: 'block', fontSize: '13px', color: 'var(--ink)', marginBottom: '4px' }}>
                   {img.caption}
                 </strong>
-                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
-                  View 0{idx + 1} — Inconspicuous joint tolerance &lt; 0.08mm
+                <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)' }}>
+                  {img.tag ? `${img.tag} · ` : ''}Detail 0{idx + 1}
                 </span>
               </div>
             </div>
@@ -367,16 +351,16 @@ export default function ApplicationDetailPage({ params }: PageProps) {
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid var(--line)', background: '#dcd7cd' }}>
-                <th style={{ padding: '16px 24px', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>Feature</th>
-                <th style={{ padding: '16px 24px', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>Test Standard</th>
-                <th style={{ padding: '16px 24px', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>Architectural Benefit</th>
+                <th style={{ padding: '16px 24px', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>Feature</th>
+                <th style={{ padding: '16px 24px', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>Test Standard</th>
+                <th style={{ padding: '16px 24px', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>Architectural Benefit</th>
               </tr>
             </thead>
             <tbody>
               {sector.hygieneAndPerformance.map((item, i) => (
                 <tr key={item.feature} style={{ borderBottom: i !== sector.hygieneAndPerformance.length - 1 ? '1px solid var(--line)' : 'none' }}>
                   <td style={{ padding: '18px 24px', fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>{item.feature}</td>
-                  <td style={{ padding: '18px 24px', fontSize: '13px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>{item.standard}</td>
+                  <td style={{ padding: '18px 24px', fontSize: '13px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)' }}>{item.standard}</td>
                   <td style={{ padding: '18px 24px', fontSize: '14px', color: '#4a5249' }}>{item.benefit}</td>
                 </tr>
               ))}
@@ -403,7 +387,7 @@ export default function ApplicationDetailPage({ params }: PageProps) {
             style={{
               padding: '12px 22px',
               fontSize: '12px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
               border: '1px solid var(--line)',

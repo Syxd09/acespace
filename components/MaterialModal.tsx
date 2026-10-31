@@ -246,7 +246,7 @@ export default function MaterialModal({
             <div className="modal-body-top">
               {/* Header Meta & Pagination Indicator */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px', gap: '8px', flexShrink: 0 }}>
-                <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
+                <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
                   {currentMaterial.code} / {currentMaterial.collection}
                 </span>
 
@@ -295,7 +295,7 @@ export default function MaterialModal({
               <p
                 style={{
                   fontSize: '11px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   textTransform: 'uppercase',
                   color: 'var(--muted)',
                   margin: '0 0 8px',
@@ -341,7 +341,7 @@ export default function MaterialModal({
                 }}
               >
                 <div>
-                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
+                  <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                     Light Transmission
                   </span>
                   <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
@@ -349,7 +349,7 @@ export default function MaterialModal({
                   </strong>
                 </div>
                 <div>
-                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
+                  <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                     Standard Sheet
                   </span>
                   <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
@@ -357,7 +357,7 @@ export default function MaterialModal({
                   </strong>
                 </div>
                 <div>
-                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
+                  <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                     Thickness Options
                   </span>
                   <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
@@ -367,7 +367,7 @@ export default function MaterialModal({
                   </strong>
                 </div>
                 <div>
-                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
+                  <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                     Fire Performance
                   </span>
                   <strong style={{ fontSize: '11px', color: 'var(--ink)' }}>
@@ -378,7 +378,7 @@ export default function MaterialModal({
 
               {/* Primary Applications Pills */}
               <div style={{ marginBottom: '10px', flexShrink: 0 }}>
-                <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '6px', letterSpacing: '0.06em' }}>
+                <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '6px', letterSpacing: '0.06em' }}>
                   Primary Applications
                 </span>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
@@ -390,7 +390,7 @@ export default function MaterialModal({
                       key={app}
                       style={{
                         fontSize: '9.5px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         padding: '3px 8px',
                         background: '#dcd7cd',
                         border: '1px solid var(--line)',
@@ -655,7 +655,7 @@ export default function MaterialModal({
         }
 
         .inline-nav-counter {
-          font-family: 'DM Mono', monospace;
+          font-family: 'Urbanist', sans-serif;
           font-size: 10px;
           color: var(--muted);
           padding: 0 4px;
@@ -733,7 +733,7 @@ export default function MaterialModal({
 
         .recommendations-eyebrow {
           display: block;
-          font-family: 'DM Mono', monospace;
+          font-family: 'Urbanist', sans-serif;
           font-size: 8.5px;
           text-transform: uppercase;
           letter-spacing: 0.1em;
@@ -750,7 +750,7 @@ export default function MaterialModal({
         }
 
         .recommendations-badge {
-          font-family: 'DM Mono', monospace;
+          font-family: 'Urbanist', sans-serif;
           font-size: 9.5px;
           color: #5d665b;
           text-transform: capitalize;
@@ -804,7 +804,7 @@ export default function MaterialModal({
         }
 
         .recommendation-code {
-          font-family: 'DM Mono', monospace;
+          font-family: 'Urbanist', sans-serif;
           font-size: 8px;
           color: var(--muted);
           text-transform: uppercase;

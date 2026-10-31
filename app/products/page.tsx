@@ -76,7 +76,6 @@ const productsJsonLd = {
 
 export default function ProductsCatalogPage() {
   const mainProducts = productsData.filter((p) => p.slug !== 'design-certainty');
-  const designCertainty = productsData.find((p) => p.slug === 'design-certainty');
 
   return (
     <main className="page-main">
@@ -117,7 +116,7 @@ export default function ProductsCatalogPage() {
           <div
             style={{
               fontSize: '11px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               letterSpacing: '0.08em', borderRadius: '3px',
               textTransform: 'uppercase',
               color: 'var(--muted)',
@@ -144,7 +143,7 @@ export default function ProductsCatalogPage() {
               <span
                 style={{
                   fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   color: 'var(--muted)',
                   display: 'block',
                   textTransform: 'uppercase',
@@ -152,7 +151,7 @@ export default function ProductsCatalogPage() {
               >
                 Joint Integrity
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 100% Inconspicuous
               </strong>
             </div>
@@ -160,7 +159,7 @@ export default function ProductsCatalogPage() {
               <span
                 style={{
                   fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   color: 'var(--muted)',
                   display: 'block',
                   textTransform: 'uppercase',
@@ -168,7 +167,7 @@ export default function ProductsCatalogPage() {
               >
                 Silicone Grout
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 Zero (Silicone-Free)
               </strong>
             </div>
@@ -176,7 +175,7 @@ export default function ProductsCatalogPage() {
               <span
                 style={{
                   fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   color: 'var(--muted)',
                   display: 'block',
                   textTransform: 'uppercase',
@@ -184,7 +183,7 @@ export default function ProductsCatalogPage() {
               >
                 Machining
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 5-Axis CNC &plusmn;0.2mm
               </strong>
             </div>
@@ -192,7 +191,7 @@ export default function ProductsCatalogPage() {
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div className="hero-image-frame">
+        <ScrollReveal variant="image" className="hero-image-frame">
           <Image
             src="/images/images/app_residential_calacatta_greige_1.jpg"
             alt="Seamless architectural solid surface benchtop with integrated coved sink"
@@ -208,7 +207,7 @@ export default function ProductsCatalogPage() {
               <span
                 style={{
                   fontSize: '9px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   color: 'var(--muted)',
                   textTransform: 'uppercase',
                   display: 'block',
@@ -220,11 +219,11 @@ export default function ProductsCatalogPage() {
                 Sinks, Benchtops, Washplanes &amp; Clinical Systems
               </strong>
             </div>
-            <Link href="#products-grid" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="#products-grid" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
               Explore Products <span>↓</span>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Products Grid Section */}
@@ -254,6 +253,7 @@ export default function ProductsCatalogPage() {
           }}
         >
           {/* 1. Special Corian Material Card */}
+          <ScrollReveal delay={0} style={{ height: '100%' }}>
           <Link
             href="/materials"
             style={{
@@ -281,7 +281,7 @@ export default function ProductsCatalogPage() {
                   left: '14px',
                   background: 'rgba(30, 33, 29, 0.88)',
                   color: '#fff',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   padding: '4px 10px',
                   textTransform: 'uppercase',
@@ -295,7 +295,7 @@ export default function ProductsCatalogPage() {
               <span
                 style={{
                   fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   color: 'var(--muted)',
                   textTransform: 'uppercase',
                   letterSpacing: '0.1em',
@@ -320,13 +320,14 @@ export default function ProductsCatalogPage() {
                   paddingTop: '16px',
                 }}
               >
-                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>
                   View Slabs &amp; Swatches
                 </span>
                 <span style={{ fontSize: '14px' }}>↗</span>
               </div>
             </div>
           </Link>
+          </ScrollReveal>
 
           {/* Render All Fabricated Products */}
           {mainProducts.map((product) => (
@@ -358,7 +359,7 @@ export default function ProductsCatalogPage() {
                     left: '14px',
                     background: 'rgba(30, 33, 29, 0.88)',
                     color: '#fff',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     padding: '4px 10px',
                     textTransform: 'uppercase',
@@ -372,7 +373,7 @@ export default function ProductsCatalogPage() {
                 <span
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     color: 'var(--muted)',
                     textTransform: 'uppercase',
                     letterSpacing: '0.1em',
@@ -397,7 +398,7 @@ export default function ProductsCatalogPage() {
                     paddingTop: '16px',
                   }}
                 >
-                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                  <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>
                     Technical Specs &amp; Drawings
                   </span>
                   <span style={{ fontSize: '14px' }}>↗</span>
@@ -407,81 +408,6 @@ export default function ProductsCatalogPage() {
           ))}
         </div>
       </section>
-
-      {/* Design Certainty Service Spotlight Banner */}
-      {designCertainty && (
-        <section
-          className="products-design-certainty-banner"
-          style={{
-            margin: '0 0 100px',
-            background: 'var(--ink)',
-            color: '#fff',
-            border: '1px solid var(--line)',
-            padding: '60px clamp(20px, 4vw, 64px)',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))',
-            gap: '36px',
-            alignItems: 'center',
-            boxSizing: 'border-box',
-            width: '100%',
-            overflow: 'hidden',
-          }}
-        >
-          <div>
-            <p className="eyebrow" style={{ color: '#8c968c', marginBottom: '16px' }}>
-              Specialized Engineering Advisory
-            </p>
-            <h2 style={{ fontSize: 'clamp(32px, 4vw, 54px)', color: '#fff', margin: '0 0 20px', lineHeight: 1.05 }}>
-              Design Certainty
-              <br />
-              <i>Service.</i>
-            </h2>
-            <p style={{ fontSize: '15px', lineHeight: 1.7, color: '#c2cdc2', maxWidth: '520px', marginBottom: '32px' }}>
-              We partner with architects from concept through handover—providing CAD shop drawings, expansion calculations, on-site laser templating, and 10-year warranty sign-offs.
-            </p>
-            <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-              <Link className="button button-light" href="/products/design-certainty">
-                Learn About Design Certainty <span>↗</span>
-              </Link>
-              <Link className="text-link" href="/contact" style={{ color: '#fff' }}>
-                Book Engineering Consultation <span>↗</span>
-              </Link>
-            </div>
-          </div>
-
-          <div
-            className="products-design-certainty-card"
-            style={{
-              background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              padding: 'clamp(20px, 4vw, 36px)',
-              boxSizing: 'border-box',
-              width: '100%',
-            }}
-          >
-            <span
-              style={{
-                fontSize: '11px',
-                fontFamily: 'DM Mono, monospace',
-                textTransform: 'uppercase',
-                color: '#8c968c',
-                display: 'block',
-                marginBottom: '20px',
-              }}
-            >
-              Architectural Service Guarantees
-            </span>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              {designCertainty.keyFeatures.map((feat, i) => (
-                <li key={i} style={{ display: 'flex', gap: '12px', fontSize: '13px', color: '#e0e5e0', lineHeight: 1.5, alignItems: 'flex-start' }}>
-                  <span style={{ color: 'var(--brand-red, #c4433d)', fontFamily: 'DM Mono, monospace', whiteSpace: 'nowrap', flexShrink: 0, fontWeight: 600 }}>0{i + 1}</span>
-                  <span>{feat}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </section>
-      )}
 
       {/* Engineering Consultation Callout */}
       <section className="callout">

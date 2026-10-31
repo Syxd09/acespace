@@ -17,6 +17,11 @@ import {
 
 export * from './contentTypes';
 
+declare global {
+  // eslint-disable-next-line no-var
+  var __inMemorySiteContent: SiteContent | undefined;
+}
+
 // Primary local path & secondary /tmp path for Vercel Serverless read-only environment
 const localDataPath = path.join(process.cwd(), 'data', 'custom-content.json');
 const vercelTmpPath = path.join('/tmp', 'acespaces-custom-content.json');
@@ -36,6 +41,9 @@ function getDataFilePath(): string {
 }
 
 export function getSiteContent(): SiteContent {
+  if (globalThis.__inMemorySiteContent) {
+    return globalThis.__inMemorySiteContent;
+  }
   const primaryPath = getDataFilePath();
 
   try {
@@ -86,7 +94,7 @@ export function getSiteContent(): SiteContent {
         });
       }
 
-      return {
+      const contentResult: SiteContent = {
         heroSlides: parsed.heroSlides || defaultHeroSlides,
         materials: resolvedMaterials,
         applicationSectors: resolvedSectors,
@@ -96,6 +104,8 @@ export function getSiteContent(): SiteContent {
         about: parsed.about || defaultAboutContent,
         updatedAt: parsed.updatedAt || new Date().toISOString(),
       };
+      globalThis.__inMemorySiteContent = contentResult;
+      return contentResult;
     }
   } catch (err) {
     console.warn('Error reading content file, falling back to defaults:', err);
@@ -126,6 +136,7 @@ export function saveSiteContent(content: Partial<SiteContent>): SiteContent {
     updatedAt: new Date().toISOString(),
   };
 
+  globalThis.__inMemorySiteContent = updated;
   const payload = JSON.stringify(updated, null, 2);
 
   // 1. Try writing atomically to local project path
@@ -205,6 +216,7 @@ export function resetSiteContent(): SiteContent {
     updatedAt: new Date().toISOString(),
   };
 
+  globalThis.__inMemorySiteContent = defaultContent;
   try {
     if (fs.existsSync(localDataPath)) fs.unlinkSync(localDataPath);
   } catch (e) {}

@@ -1,1 +1,5 @@
-export { default, metadata } from '@/app/certifications/nsf-ansi-51/page';
+import { redirect } from 'next/navigation';
+
+export default function Page() {
+  redirect('/certifications/nsf-ansi-51');
+}

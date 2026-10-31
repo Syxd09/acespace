@@ -133,7 +133,7 @@ export default function MegaMenu({
                 <span
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: 'var(--muted)',
@@ -169,7 +169,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -213,7 +213,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -275,7 +275,7 @@ export default function MegaMenu({
                   href="/contact"
                   onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
-                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
+                  style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif' }}
                 >
                   ORDER STUDIO SAMPLE BOX <span>↗</span>
                 </Link>
@@ -339,7 +339,7 @@ export default function MegaMenu({
                 <span
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: 'var(--muted)',
@@ -375,7 +375,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -435,7 +435,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -519,12 +519,12 @@ export default function MegaMenu({
                   Explore All Products <span>↗</span>
                 </Link>
                 <Link
-                  href="/products/design-certainty"
-                  onClick={(e) => handleLinkClick(e, '/products/design-certainty')}
+                  href="/contact"
+                  onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
-                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
+                  style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif' }}
                 >
-                  Design Certainty Service <span>↗</span>
+                  Engineering Consultation <span>↗</span>
                 </Link>
               </div>
             </div>
@@ -586,7 +586,7 @@ export default function MegaMenu({
                 <span
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: 'var(--muted)',
@@ -622,7 +622,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -682,7 +682,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -760,7 +760,7 @@ export default function MegaMenu({
                   href="/contact"
                   onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
-                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
+                  style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif' }}
                 >
                   DISCUSS A PROJECT BRIEF <span>↗</span>
                 </Link>
@@ -824,7 +824,7 @@ export default function MegaMenu({
                 <span
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: 'var(--muted)',
@@ -860,7 +860,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -920,7 +920,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -949,7 +949,7 @@ export default function MegaMenu({
                         className="mega-menu-link"
                       >
                         <strong>Bengaluru Fabrication Facility</strong>
-                        <small>State-of-the-art precision workshop and clean room</small>
+                        <small>5-Axis CNC Milling & Clean Thermoforming Foundry</small>
                       </Link>
                     </li>
                     <li>
@@ -998,7 +998,7 @@ export default function MegaMenu({
                   href="/contact"
                   onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
-                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
+                  style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif' }}
                 >
                   Submit Architectural Drawings <span>↗</span>
                 </Link>
@@ -1062,7 +1062,7 @@ export default function MegaMenu({
                 <span
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: 'var(--muted)',
@@ -1098,7 +1098,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -1142,7 +1142,7 @@ export default function MegaMenu({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       color: 'var(--muted)',
                       display: 'block',
@@ -1204,7 +1204,7 @@ export default function MegaMenu({
                   href="/contact"
                   onClick={(e) => handleLinkClick(e, '/contact')}
                   className="text-link"
-                  style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}
+                  style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif' }}
                 >
                   VISIT OUR BANGALORE ATELIER <span>↗</span>
                 </Link>

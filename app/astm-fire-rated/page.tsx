@@ -1,1 +1,5 @@
-export { default, metadata } from '@/app/certifications/astm-fire-rated/page';
+import { redirect } from 'next/navigation';
+
+export default function Page() {
+  redirect('/certifications/astm-fire-rated');
+}

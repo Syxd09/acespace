@@ -129,7 +129,7 @@ export default function EnquiryForm() {
               background: '#dcd7cd',
               border: '1px solid var(--line)',
               padding: '6px 14px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               letterSpacing: '0.08em',
               textTransform: 'uppercase',
@@ -161,7 +161,7 @@ export default function EnquiryForm() {
             border: '1px solid rgba(215, 65, 50, 0.3)',
             color: '#b93222',
             fontSize: '13px',
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             marginBottom: '16px',
           }}
         >
@@ -254,7 +254,7 @@ export default function EnquiryForm() {
             onChange={(e) => setMessage(e.target.value)}
             disabled={isSubmitting}
           />
-          <div style={{ marginTop: '8px', fontSize: '11px', color: '#5d665c', fontFamily: 'DM Mono, monospace', lineHeight: 1.5 }}>
+          <div style={{ marginTop: '8px', fontSize: '11px', color: '#5d665c', fontFamily: 'Urbanist, sans-serif', lineHeight: 1.5 }}>
             ⓘ <strong>CAD & BIM Drawings:</strong> If you have shop drawings (.dwg, .step, .skp, .rvt), mention them above or forward directly to <strong>studio@acespaces.in</strong> referencing this submission.
           </div>
         </div>
@@ -264,7 +264,7 @@ export default function EnquiryForm() {
         <button className="button" type="submit" disabled={isSubmitting}>
           {isSubmitting ? 'Transmitting brief...' : 'Transmit Consultation Brief ↗'}
         </button>
-        <span style={{ fontSize: '12px', color: '#5d665c', fontFamily: 'DM Mono, monospace' }}>
+        <span style={{ fontSize: '12px', color: '#5d665c', fontFamily: 'Urbanist, sans-serif' }}>
           Response within 24h &middot; Bengaluru Studio Team
         </span>
       </div>

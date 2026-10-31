@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { ApplicationImage } from '@/data/applications';
 
 interface ApplicationSliderProps {
@@ -15,7 +14,6 @@ interface ApplicationSliderProps {
 export default function ApplicationSlider({
   images,
   sectorTitle,
-  sectorSlug,
   priority = false,
 }: ApplicationSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,12 +29,12 @@ export default function ApplicationSlider({
     setCurrentIndex((prev) => (prev - 1 + total) % total);
   }, [total]);
 
-  // Continuous auto-slide every 4.5s
+  // Subtle auto-advance every 5.5s
   useEffect(() => {
     if (total <= 1) return;
     timerRef.current = setInterval(() => {
       nextSlide();
-    }, 4500);
+    }, 5500);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
@@ -73,25 +71,26 @@ export default function ApplicationSlider({
 
   return (
     <div
-      className="application-slider"
+      className="application-slider-refined"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onKeyDown={handleKeyDown}
       tabIndex={0}
       role="region"
-      aria-label={`${sectorTitle} Image Showcase`}
+      aria-label={`${sectorTitle} Photo Gallery`}
       style={{
         position: 'relative',
         width: '100%',
         height: '460px',
-        backgroundColor: '#dcd7cd',
-        border: '1px solid var(--line)',
+        backgroundColor: '#e6e3dc',
+        border: '1px solid var(--line, rgba(30, 33, 29, 0.09))',
+        borderRadius: 'var(--card-radius, 6px)',
         overflow: 'hidden',
-        boxShadow: '0 20px 45px rgba(0, 0, 0, 0.07)',
+        boxShadow: '0 12px 32px rgba(30, 33, 29, 0.06)',
         outline: 'none',
       }}
     >
-      {/* Images with smooth cross-fade and scale */}
+      {/* Photos with smooth cross-fade */}
       {images.map((img, idx) => {
         const isActive = idx === currentIndex;
         return (
@@ -101,8 +100,8 @@ export default function ApplicationSlider({
               position: 'absolute',
               inset: 0,
               opacity: isActive ? 1 : 0,
-              transform: isActive ? 'scale(1)' : 'scale(1.04)',
-              transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+              transform: isActive ? 'scale(1)' : 'scale(1.025)',
+              transition: 'opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.95s cubic-bezier(0.16, 1, 0.3, 1)',
               pointerEvents: isActive ? 'auto' : 'none',
             }}
           >
@@ -118,136 +117,159 @@ export default function ApplicationSlider({
         );
       })}
 
-      {/* Top Meta Bar: Sector Tag & Counter */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '18px',
-          left: '18px',
-          right: '18px',
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          zIndex: 10,
-          pointerEvents: 'none',
-        }}
-      >
-        <span
+      {/* Discreet Navigation Arrows */}
+      {total > 1 && (
+        <div
           style={{
-            background: 'rgba(23, 26, 23, 0.78)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            color: '#f4f3ee',
-            padding: '6px 12px',
-            fontSize: '10px',
-            fontFamily: 'DM Mono, monospace',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            border: '1px solid rgba(255, 255, 255, 0.18)',
+            position: 'absolute',
+            top: '50%',
+            left: '12px',
+            right: '12px',
+            transform: 'translateY(-50%)',
+            display: 'flex',
+            justifyContent: 'space-between',
+            pointerEvents: 'none',
+            zIndex: 10,
           }}
         >
-          {currentImage.tag}
-        </span>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              prevSlide();
+            }}
+            aria-label="Previous photo"
+            style={{
+              pointerEvents: 'auto',
+              width: '34px',
+              height: '34px',
+              borderRadius: '50%',
+              background: 'rgba(20, 23, 19, 0.55)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              color: '#ffffff',
+              display: 'grid',
+              placeItems: 'center',
+              cursor: 'pointer',
+              padding: 0,
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(20, 23, 19, 0.85)';
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(20, 23, 19, 0.55)';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
 
-        <span
-          style={{
-            background: 'rgba(23, 26, 23, 0.78)',
-            backdropFilter: 'blur(10px)',
-            WebkitBackdropFilter: 'blur(10px)',
-            color: '#f4f3ee',
-            padding: '6px 12px',
-            fontSize: '11px',
-            fontFamily: 'DM Mono, monospace',
-            letterSpacing: '0.1em',
-            border: '1px solid rgba(255, 255, 255, 0.18)',
-          }}
-        >
-          {String(currentIndex + 1).padStart(2, '0')} / {String(total).padStart(2, '0')}
-        </span>
-      </div>
-
-      {/* Manual Slide Navigation Buttons: Prev & Next Arrows */}
-      <div
-        className="application-slider-nav-row"
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '12px',
-          right: '12px',
-          transform: 'translateY(-50%)',
-          display: 'flex',
-          justifyContent: 'space-between',
-          pointerEvents: 'none',
-          zIndex: 10,
-        }}
-      >
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            prevSlide();
-          }}
-          aria-label="Previous Slide"
-          className="application-slider-arrow application-slider-arrow-prev"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
-        </button>
-
-        <button
-          type="button"
-          onClick={(e) => {
-            e.stopPropagation();
-            nextSlide();
-          }}
-          aria-label="Next Slide"
-          className="application-slider-arrow application-slider-arrow-next"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </button>
-      </div>
-
-      {/* Bottom Glassmorphic Control & Caption Dock */}
-      <div className="application-slider-dock">
-        <div className="application-slider-caption-box">
-          <p className="application-slider-caption">
-            {currentImage.caption}
-          </p>
-          <span className="application-slider-sub">
-            Auto-sliding — Slide {currentIndex + 1} of {total}
-          </span>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              nextSlide();
+            }}
+            aria-label="Next photo"
+            style={{
+              pointerEvents: 'auto',
+              width: '34px',
+              height: '34px',
+              borderRadius: '50%',
+              background: 'rgba(20, 23, 19, 0.55)',
+              backdropFilter: 'blur(8px)',
+              WebkitBackdropFilter: 'blur(8px)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              color: '#ffffff',
+              display: 'grid',
+              placeItems: 'center',
+              cursor: 'pointer',
+              padding: 0,
+              transition: 'all 0.2s ease',
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = 'rgba(20, 23, 19, 0.85)';
+              e.currentTarget.style.transform = 'scale(1.05)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = 'rgba(20, 23, 19, 0.55)';
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
         </div>
+      )}
 
-        {/* Slide Indicator Dots + Link to Application Page */}
-        <div className="application-slider-actions-row">
-          <div className="application-slider-dots">
+      {/* Understated Bottom Strip: Natural Caption & Minimal Dashes */}
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          padding: '24px 18px 14px',
+          background: 'linear-gradient(180deg, transparent 0%, rgba(15, 18, 15, 0.65) 100%)',
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+          gap: '12px',
+          zIndex: 10,
+          pointerEvents: 'none',
+        }}
+      >
+        <p
+          style={{
+            margin: 0,
+            fontSize: '13px',
+            color: '#f5f2eb',
+            fontWeight: 400,
+            lineHeight: 1.35,
+            letterSpacing: '-0.01em',
+            textShadow: '0 1px 3px rgba(0, 0, 0, 0.5)',
+            maxWidth: '80%',
+          }}
+        >
+          {currentImage.caption}
+        </p>
+
+        {total > 1 && (
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              pointerEvents: 'auto',
+              flexShrink: 0,
+            }}
+          >
             {images.map((_, i) => (
               <button
                 key={i}
                 type="button"
                 onClick={() => setCurrentIndex(i)}
-                aria-label={`Go to slide ${i + 1}`}
-                className="application-slider-dot"
+                aria-label={`Go to photo ${i + 1}`}
                 style={{
-                  width: i === currentIndex ? '22px' : '6px',
-                  minWidth: i === currentIndex ? '22px' : '6px',
-                  maxWidth: i === currentIndex ? '22px' : '6px',
-                  background: i === currentIndex ? 'var(--ink)' : 'rgba(30, 33, 29, 0.28)',
+                  width: i === currentIndex ? '18px' : '6px',
+                  height: '4px',
+                  borderRadius: '100px',
+                  border: 'none',
+                  background: i === currentIndex ? '#ffffff' : 'rgba(255, 255, 255, 0.45)',
+                  cursor: 'pointer',
+                  padding: 0,
+                  transition: 'all 0.25s ease',
                 }}
               />
             ))}
           </div>
-
-          <Link
-            href={`/applications/${sectorSlug}`}
-            className="application-slider-cta"
-          >
-            Explore Application <span>↗</span>
-          </Link>
-        </div>
+        )}
       </div>
     </div>
   );

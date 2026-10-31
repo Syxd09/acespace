@@ -8,7 +8,7 @@ const ProductConfigurator = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f4ee', fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#687268' }}>
+      <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f4ee', fontFamily: 'Urbanist, sans-serif', fontSize: '13px', color: '#687268' }}>
         <div style={{ textAlign: 'center' }}>
           <div style={{ width: '40px', height: '40px', border: '3px solid rgba(30,33,29,0.15)', borderTopColor: 'var(--brand-red, #d43833)', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 0.8s linear infinite' }} />
           <span>Initializing 3D Parametric Studio...</span>
@@ -77,7 +77,7 @@ export default function ConfiguratorPage({ searchParams }: ConfiguratorPageProps
       <JsonLd data={configuratorJsonLd} />
       <Suspense
         fallback={
-          <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f4ee', fontFamily: 'DM Mono, monospace', fontSize: '13px', color: '#687268' }}>
+          <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#f5f4ee', fontFamily: 'Urbanist, sans-serif', fontSize: '13px', color: '#687268' }}>
             <div style={{ textAlign: 'center' }}>
               <div style={{ width: '40px', height: '40px', border: '3px solid rgba(30,33,29,0.15)', borderTopColor: 'var(--brand-red, #d43833)', borderRadius: '50%', margin: '0 auto 16px', animation: 'spin 0.8s linear infinite' }} />
               <span>Initializing 3D Parametric Studio...</span>

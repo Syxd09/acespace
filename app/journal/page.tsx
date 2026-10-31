@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import JournalExplorer from '@/components/JournalExplorer';
+import ScrollReveal from '@/components/ScrollReveal';
 import JsonLd from '@/components/JsonLd';
 import { journalArticles } from '@/data/journal';
 
@@ -95,28 +96,28 @@ export default function JournalPage() {
 
           <div className="hero-stats-row">
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Publications
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>06 Essays</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>06 Essays</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Research
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Optical & Joinery</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>Optical & Joinery</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Format
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Open Access</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>Open Access</strong>
             </div>
           </div>
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div className="hero-image-frame">
+        <ScrollReveal variant="image" className="hero-image-frame">
           <Image
             src="/assets/material-macro.png"
             alt="Macro detail of architectural mineral surface edge profile"
@@ -129,18 +130,18 @@ export default function JournalPage() {
           />
           <div className="hero-image-badge">
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Featured Essay
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
                 The Edge is Where Material Becomes Architecture
               </strong>
             </div>
-            <Link href="#essays" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="#essays" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
               Read <span>↗</span>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Interactive Journal Explorer Component */}
@@ -149,7 +150,7 @@ export default function JournalPage() {
       </section>
 
       {/* Newsletter / Stay Close to the Work */}
-      <section className="callout">
+      <ScrollReveal className="callout">
         <p className="eyebrow">Stay close to the work</p>
         <h2>
           Architectural
@@ -162,7 +163,7 @@ export default function JournalPage() {
         <Link className="button button-dark" href="/contact">
           Subscribe for Studio Notes <span>↗</span>
         </Link>
-      </section>
+      </ScrollReveal>
     </main>
   );
 }

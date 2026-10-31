@@ -155,13 +155,16 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
     return pMat && pMat.slug === material.slug;
   });
 
+  const rawMatImg = material.image || material.textureImage || '/assets/hero-ace.png';
+  const schemaMatImg = rawMatImg.startsWith('http') ? rawMatImg : `https://acespacesindia.vercel.app${rawMatImg.startsWith('/') ? '' : '/'}${rawMatImg}`;
+
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: material.name,
     productID: material.code,
     sku: material.code,
-    image: material.image || material.textureImage || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    image: schemaMatImg,
     description: material.description,
     brand: {
       '@type': 'Brand',
@@ -176,7 +179,10 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
     material: 'Acrylic Solid Surface (ATH-PMMA Matrix, Zero Silica)',
     offers: {
       '@type': 'AggregateOffer',
+      lowPrice: '18500',
+      highPrice: '42000',
       priceCurrency: 'INR',
+      offerCount: 1,
       availability: 'https://schema.org/InStock',
       priceSpecification: {
         '@type': 'PriceSpecification',
@@ -231,7 +237,7 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
                 High-Resolution Specimen Surface
               </h3>
             </div>
-            <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
+            <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>
               Scroll wheel or click +/− to zoom / Drag to pan / Fullscreen ↗
             </span>
           </div>
@@ -350,7 +356,7 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
                         background: 'rgba(25, 28, 24, 0.7)',
                         backdropFilter: 'blur(6px)',
                         color: '#ede8db',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '9px',
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase',
@@ -370,12 +376,12 @@ export default function MaterialDetailPage({ params }: { params: { slug: string 
                       <h3 style={{ fontFamily: 'var(--serif)', fontSize: '26px', fontWeight: 400, margin: '0 0 10px', lineHeight: 1.15, color: 'var(--ink)' }}>
                         {p.title}
                       </h3>
-                      <p style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', margin: 0 }}>
+                      <p style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', margin: 0 }}>
                         {p.application}
                       </p>
                     </div>
                     <div style={{ marginTop: '22px', paddingTop: '16px', borderTop: '1px solid rgba(30, 33, 29, 0.1)' }}>
-                      <span className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+                      <span className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
                         View Case Study <span>↗</span>
                       </span>
                     </div>

@@ -23,11 +23,11 @@ export default function GreenguardGoldPage() {
         
         {/* Breadcrumb & Technical Badge */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '24px', lineHeight: 1 }}>
-          <Link href="/certifications" style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', textDecoration: 'none', margin: 0, lineHeight: 1 }}>
+          <Link href="/certifications" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', textDecoration: 'none', margin: 0, lineHeight: 1 }}>
             Technical Governance &amp; Standards
           </Link>
-          <span style={{ color: 'var(--muted, #788078)', fontSize: '11px', fontFamily: 'DM Mono, monospace', lineHeight: 1, userSelect: 'none', opacity: 0.6 }}>/</span>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', fontWeight: 600, margin: 0, lineHeight: 1 }}>
+          <span style={{ color: 'var(--muted, #788078)', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', lineHeight: 1, userSelect: 'none', opacity: 0.6 }}>/</span>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', fontWeight: 600, margin: 0, lineHeight: 1 }}>
             UL 2818 GREENGUARD Gold
           </span>
         </div>
@@ -35,7 +35,7 @@ export default function GreenguardGoldPage() {
         {/* Hero Header */}
         <div style={{ borderBottom: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingBottom: '36px', marginBottom: '48px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(30, 33, 29, 0.05)', border: '1px solid rgba(30, 33, 29, 0.12)', padding: '6px 14px', marginBottom: '20px' }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
               Standard UL 2818 / Low Chemical Emissions
             </span>
           </div>
@@ -59,13 +59,13 @@ export default function GreenguardGoldPage() {
             { label: 'LEED & WELL Alignment', value: 'Credit EQ 4.1', sub: 'Complies with CDPH Standard Method v1.2' },
           ].map((stat, i) => (
             <div key={i} style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '24px 22px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
                 {stat.label}
               </span>
               <div style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '-0.03em', color: '#1a1d19', margin: '14px 0 6px' }}>
                 {stat.value}
               </div>
-              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', margin: 0, lineHeight: 1.5 }}>
+              <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#596059', margin: 0, lineHeight: 1.5 }}>
                 {stat.sub}
               </p>
             </div>
@@ -93,10 +93,10 @@ export default function GreenguardGoldPage() {
 
           {/* Testing Criteria Matrix */}
           <div style={{ background: 'rgba(30, 33, 29, 0.03)', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '32px 28px' }}>
-            <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 20px', color: '#1a1d19' }}>
+            <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 20px', color: '#1a1d19' }}>
               Technical Chamber Limits (UL 2818)
             </h3>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}>
               {[
                 { param: 'Individual VOCs', limit: '≤ 1/100th TLV', status: 'Passed' },
                 { param: 'Formaldehyde (HCHO)', limit: '≤ 9.0 µg/m³', status: 'Passed' },
@@ -119,15 +119,15 @@ export default function GreenguardGoldPage() {
         {/* Specifier Tender Copy Block */}
         <div style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '36px', marginBottom: '64px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', flexWrap: 'wrap', gap: '12px' }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#788078' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#788078' }}>
               Architectural Specification Clause (CSI Section 06 61 16)
             </span>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: 'rgba(30,33,29,0.06)', padding: '3px 8px' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: 'rgba(30,33,29,0.06)', padding: '3px 8px' }}>
               Ready for Studio Tender Docs
             </span>
           </div>
           <pre style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '12px',
             lineHeight: 1.7,
             color: '#1a1d19',
@@ -144,24 +144,24 @@ export default function GreenguardGoldPage() {
 
         {/* Cross-Navigation to Other Technical Governance Pages */}
         <div style={{ borderTop: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingTop: '40px' }}>
-          <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#788078', marginBottom: '20px' }}>
+          <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#788078', marginBottom: '20px' }}>
             Related Technical Standards &amp; Warranties
           </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
             <Link href="/certifications/nsf-ansi-51" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>HYGIENE &amp; FOOD SAFETY</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>HYGIENE &amp; FOOD SAFETY</span>
               <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>NSF/ANSI 51 Food Safe →</strong>
             </Link>
             <Link href="/certifications/astm-fire-rated" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>FIRE SAFETY CODE</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>FIRE SAFETY CODE</span>
               <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>ASTM Class 1 Fire Rated →</strong>
             </Link>
             <Link href="/guarantee" style={{ padding: '20px', background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.18))', textDecoration: 'none', color: 'inherit' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>WARRANTY ASSURANCE</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', display: 'block', marginBottom: '6px' }}>WARRANTY ASSURANCE</span>
               <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', display: 'block' }}>10-Year Renewable Guarantee →</strong>
             </Link>
             <Link href="/consultation" style={{ padding: '20px', background: '#141713', color: '#fff', border: '1px solid #141713', textDecoration: 'none' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#97a397', display: 'block', marginBottom: '6px' }}>SPECIFIER DESK</span>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#97a397', display: 'block', marginBottom: '6px' }}>SPECIFIER DESK</span>
               <strong style={{ fontSize: '15px', fontWeight: 600, letterSpacing: '-0.02em', color: '#fff', display: 'block' }}>Consultation Form →</strong>
             </Link>
           </div>

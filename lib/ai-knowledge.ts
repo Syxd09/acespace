@@ -86,7 +86,7 @@ You can inspect technical data on our [Technical Specifications](/materials#spec
       'partner', 'authorized', 'distributor', 'bangalore', 'bengaluru', 'location', 'address'
     ],
     summary: 'Ace Spaces is the parent enterprise, authorized DuPont™ Corian® distributor, and master architectural fabrication hub in Bangalore, India.',
-    details: `Ace Spaces operates from a state-of-the-art central fabrication facility and distribution stockyard in Bangalore, Karnataka. 
+    details: `Ace Spaces operates from a 5-axis CNC digital fabrication facility and calibrated mineral distribution stockyard in Bangalore, Karnataka. 
 
 As an authorized DuPont™ Corian® partner and stockist, Ace Spaces supplies full-dimension certified raw slabs (3660mm × 760mm in 12mm & 19mm gauges), precision-cut CNC blanks, and bespoke thermoformed assemblies to leading architects, interior designers, and luxury millworkers across India.
 

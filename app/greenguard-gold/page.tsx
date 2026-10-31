@@ -1,1 +1,5 @@
-export { default, metadata } from '@/app/certifications/greenguard-gold/page';
+import { redirect } from 'next/navigation';
+
+export default function Page() {
+  redirect('/certifications/greenguard-gold');
+}

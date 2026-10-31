@@ -73,13 +73,16 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
   const prevProduct = productsData[(currentIndex - 1 + productsData.length) % productsData.length];
   const nextProduct = productsData[(currentIndex + 1) % productsData.length];
 
+  const rawProdImg = product.image || '/assets/hero-ace.png';
+  const schemaProdImg = rawProdImg.startsWith('http') ? rawProdImg : `https://acespacesindia.vercel.app${rawProdImg.startsWith('/') ? '' : '/'}${rawProdImg}`;
+
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
     name: product.name,
     productID: product.code,
     sku: product.code,
-    image: product.image || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    image: schemaProdImg,
     description: product.heroDescription,
     category: product.categoryName,
     brand: {
@@ -94,7 +97,10 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
     material: 'DuPont™ Corian® Solid Surface (Zero Silica)',
     offers: {
       '@type': 'AggregateOffer',
+      lowPrice: '15000',
+      highPrice: '120000',
       priceCurrency: 'INR',
+      offerCount: 1,
       availability: 'https://schema.org/InStock',
     },
   };
@@ -110,7 +116,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
       {/* Split Architectural Hero */}
       <section className="page-split-hero">
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '20px', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
             <Link href="/products" style={{ textDecoration: 'none', color: '#697067' }}>
               Products
             </Link>
@@ -164,26 +170,26 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
           <div className="hero-stats-row">
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Code
               </span>
-              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '15px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 {product.code}
               </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 CAD / BIM
               </span>
-              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '15px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 {product.cadAvailable ? 'Available (.DWG / .RVT)' : 'On Request'}
               </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Fabrication
               </span>
-              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '15px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 Custom Made to Measure
               </strong>
             </div>
@@ -202,14 +208,14 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           />
           <div className="hero-image-badge">
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Fabrication Detail
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
                 {product.tagline}
               </strong>
             </div>
-            <Link href="#gallery" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="#gallery" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
               View Gallery <span>↓</span>
             </Link>
           </div>
@@ -272,7 +278,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
                   key={cert}
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     background: '#faf9f6',
                     border: '1px solid var(--line)',
                     padding: '5px 10px',
@@ -296,7 +302,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <span
               style={{
                 fontSize: '10px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 textTransform: 'uppercase',
                 color: 'var(--muted)',
                 letterSpacing: '0.08em',
@@ -309,7 +315,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '14px' }}>
               {product.keyFeatures.map((feat, i) => (
                 <li key={i} style={{ display: 'flex', gap: '12px', fontSize: '13.5px', color: '#2a3028', lineHeight: 1.55 }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', color: 'var(--muted)', fontSize: '11px', flexShrink: 0 }}>0{i + 1}</span>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', fontSize: '11px', flexShrink: 0 }}>0{i + 1}</span>
                   <span>{feat}</span>
                 </li>
               ))}
@@ -370,7 +376,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           href={`/products/${prevProduct.slug}`}
           style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', gap: '4px' }}
         >
-          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
+          <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>
             ← Previous Fixture
           </span>
           <strong style={{ fontSize: '16px', color: 'var(--ink)' }}>{prevProduct.name}</strong>
@@ -388,7 +394,7 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
           href={`/products/${nextProduct.slug}`}
           style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', gap: '4px', textAlign: 'right' }}
         >
-          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
+          <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>
             Next Fixture →
           </span>
           <strong style={{ fontSize: '16px', color: 'var(--ink)' }}>{nextProduct.name}</strong>

@@ -201,7 +201,7 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
               <span
                 style={{
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
@@ -215,7 +215,7 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
                 style={{
                   background: '#1e211d',
                   color: '#fff',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '9px',
                   padding: '2px 6px',
                   letterSpacing: '0.05em',
@@ -260,13 +260,13 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
         >
           <div>
             <div style={{ fontWeight: 600, color: '#1e211d' }}>{config.title}</div>
-            <div style={{ color: '#667066', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+            <div style={{ color: '#667066', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
               {config.width} × {config.depth} × {config.thickness} mm / {config.colorName || config.materialName}
             </div>
           </div>
           <div
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               color: '#1e211d',
               textAlign: 'right',
@@ -355,7 +355,7 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
                       border: '1px solid rgba(30,33,29,0.18)',
                       fontSize: '11px',
                       textDecoration: 'none',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -374,7 +374,7 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
                       color: '#1e211d',
                       border: '1px solid rgba(30,33,29,0.18)',
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       cursor: 'pointer',
                     }}
                   >
@@ -502,7 +502,7 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
                   color: '#fff',
                   border: 'none',
                   fontSize: '12px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   cursor: 'pointer',
                   transition: 'background 0.2s ease',
                   letterSpacing: '0.04em',
@@ -520,7 +520,7 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
                   color: '#1e211d',
                   border: '1px solid rgba(30,33,29,0.25)',
                   fontSize: '12px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   cursor: 'pointer',
                   letterSpacing: '0.04em',
                 }}

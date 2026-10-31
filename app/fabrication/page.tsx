@@ -185,26 +185,26 @@ export default function FabricationPage() {
 
           <div className="hero-stats-row anim-fade-up anim-delay-4">
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Tolerance
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 &lt; 0.2 mm
               </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Forming
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 Fluid Curves
               </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Joint
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                 Seamless Joint
               </strong>
             </div>
@@ -224,14 +224,14 @@ export default function FabricationPage() {
           />
           <div className="hero-image-badge">
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Workshop Focus
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
                 Hand-Honed Satin Edge / Sub-millimeter Tolerance
               </strong>
             </div>
-            <Link href="#edges" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="#edges" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
               Edge Profiles <span>↗</span>
             </Link>
           </div>
@@ -300,7 +300,7 @@ export default function FabricationPage() {
                     background: 'rgba(20, 23, 20, 0.85)',
                     backdropFilter: 'blur(8px)',
                     color: '#ffffff',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
@@ -319,7 +319,7 @@ export default function FabricationPage() {
                     background: 'rgba(255, 255, 255, 0.94)',
                     color: 'var(--ink, #1e211d)',
                     padding: '4px 10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     fontWeight: 600,
                   }}
@@ -342,7 +342,7 @@ export default function FabricationPage() {
                     style={{
                       display: 'inline-block',
                       padding: '3px 8px', background: 'rgba(30, 33, 29, 0.06)', borderRadius: '3px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10px',
                       fontWeight: 600,
                       textTransform: 'uppercase',
@@ -385,10 +385,10 @@ export default function FabricationPage() {
                     alignItems: 'center',
                   }}
                 >
-                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
+                  <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>
                     {step.statLabel}
                   </span>
-                  <strong style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>
+                  <strong style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
                     {step.badge}
                   </strong>
                 </div>
@@ -444,7 +444,7 @@ export default function FabricationPage() {
           <div style={{ maxWidth: '640px' }}>
             <span
               style={{
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
@@ -478,7 +478,7 @@ export default function FabricationPage() {
               border: 'none',
               padding: '14px 26px',
               fontSize: '11px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
             }}
           >
             Request Thermoformed Mockup <span>↗</span>
@@ -540,10 +540,10 @@ export default function FabricationPage() {
             >
               <div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                     {proto.num}
                   </span>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: 'rgba(30,33,29,0.06)', padding: '2px 8px', textTransform: 'uppercase' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: 'rgba(30,33,29,0.06)', padding: '2px 8px', textTransform: 'uppercase' }}>
                     {proto.badge}
                   </span>
                 </div>

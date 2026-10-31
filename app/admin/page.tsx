@@ -1006,9 +1006,9 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
       colour: newColorForm.name,
       hexColor: newColorForm.hexColor,
       textureCss: `linear-gradient(135deg, ${newColorForm.hexColor || '#e5e4de'} 0%, rgba(20,23,19,0.06) 100%)`,
-      textureImage: newColorForm.textureImage || '/images/images/pattern_calacatta_greige.jpg',
+      textureImage: newColorForm.textureImage || '/materials/pattern_calacatta_greige.jpg',
       description: 'Bespoke architectural solid surface slab with seamless thermoformable capability.',
-      swatch: newColorForm.textureImage || '/images/images/lshape_calacatta_greige.png',
+      swatch: newColorForm.textureImage || '/materials/pattern_calacatta_greige.jpg',
       image: newColorForm.textureImage || '/images/images/app_residential_calacatta_greige_1.jpg',
       inSituImage: newColorForm.textureImage || '/images/images/app_residential_calacatta_greige_1.jpg',
       inSituImages: [newColorForm.textureImage || '/images/images/app_residential_calacatta_greige_1.jpg'],
@@ -1479,7 +1479,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               background: '#222620',
             }}>A</div>
             <div>
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.15em', color: '#9ca59b', textTransform: 'uppercase' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', letterSpacing: '0.15em', color: '#9ca59b', textTransform: 'uppercase' }}>
                 Ace Spaces · Bengaluru
               </div>
               <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', letterSpacing: '0.02em' }}>
@@ -1488,13 +1488,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             </div>
           </div>
 
-          <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', lineHeight: '1.6', color: '#a0aba0', marginBottom: '24px' }}>
+          <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', lineHeight: '1.6', color: '#a0aba0', marginBottom: '24px' }}>
             Administrative console for architectural curators to manage hero slides, materials, colours, sector photography, and media assets.
           </p>
 
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
             <div>
-              <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#8c968c', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#8c968c', marginBottom: '6px' }}>
                 Studio Passkey
               </label>
               <input
@@ -1508,7 +1508,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   background: '#121411',
                   border: '1px solid rgba(255,255,255,0.2)',
                   color: '#fff',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '13px',
                   outline: 'none',
                 }}
@@ -1516,7 +1516,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             </div>
 
             {authError && (
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#e57373' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#e57373' }}>
                 {authError}
               </div>
             )}
@@ -1529,7 +1529,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 background: '#e9e8e2',
                 color: '#131512',
                 border: 'none',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 fontWeight: '600',
                 letterSpacing: '0.1em',
@@ -1544,10 +1544,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           </form>
 
           <div style={{ marginTop: '28px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Link href="/" style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#808a80', textDecoration: 'none' }}>
+            <Link href="/" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#808a80', textDecoration: 'none' }}>
               ← Return to Ace Spaces
             </Link>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#606860' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#606860' }}>
               v2.4 Production
             </span>
           </div>
@@ -1579,7 +1579,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           color: '#ffffff',
           padding: '12px 20px',
           boxShadow: '0 8px 24px rgba(0,0,0,0.25)',
-          fontFamily: 'DM Mono, monospace',
+          fontFamily: 'Urbanist, sans-serif',
           fontSize: '12px',
           display: 'flex',
           alignItems: 'center',
@@ -1618,7 +1618,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               background: isSidebarOpen ? 'rgba(255,255,255,0.08)' : '#e9e8e2',
               color: isSidebarOpen ? '#c2cdc2' : '#1a1d19',
               border: '1px solid rgba(255,255,255,0.25)',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               fontWeight: 600,
               letterSpacing: '0.06em',
@@ -1643,13 +1643,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               fontSize: '16px',
             }}>A</span>
             <div style={{ lineHeight: 1.1 }}>
-              <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', letterSpacing: '0.15em' }}>ACE SPACES</strong>
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#9ca59b', letterSpacing: '0.1em' }}>STUDIO CONSOLE · CMS</div>
+              <strong style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', letterSpacing: '0.15em' }}>ACE SPACES</strong>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#9ca59b', letterSpacing: '0.1em' }}>STUDIO CONSOLE · CMS</div>
             </div>
           </Link>
           <div style={{ height: '24px', width: '1px', background: 'rgba(255,255,255,0.15)' }} />
           <span style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '10px',
             color: '#73c991',
             display: 'flex',
@@ -1669,7 +1669,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               background: 'transparent',
               border: '1px solid rgba(255,255,255,0.25)',
               color: '#c2cdc2',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '10px',
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
@@ -1686,7 +1686,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               background: '#e9e8e2',
               border: 'none',
               color: '#1a1d19',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               fontWeight: '600',
               textTransform: 'uppercase',
@@ -1704,7 +1704,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               background: '#2a3029',
               border: '1px solid rgba(255,255,255,0.15)',
               color: '#fff',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '10px',
               textDecoration: 'none',
               letterSpacing: '0.08em',
@@ -1718,7 +1718,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               background: 'transparent',
               border: 'none',
               color: '#8c968c',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '10px',
               cursor: 'pointer',
               marginLeft: '8px',
@@ -1759,10 +1759,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               }}
             >
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#73c991', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#73c991', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
                   STUDIO CONSOLE
                 </div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#e9e8e2', fontWeight: 600, letterSpacing: '0.08em' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#e9e8e2', fontWeight: 600, letterSpacing: '0.08em' }}>
                   NAVIGATION MATRIX
                 </div>
               </div>
@@ -1773,7 +1773,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   border: '1px solid rgba(255,255,255,0.15)',
                   color: '#9ca59b',
                   cursor: 'pointer',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   padding: '4px 8px',
                   display: 'flex',
@@ -1790,7 +1790,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             {/* Sidebar Navigation Items */}
             <div style={{ flex: 1, overflowY: 'auto', padding: '16px 12px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
               {/* Category 1 */}
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#6d746d', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '8px 12px 4px 12px' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#6d746d', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '8px 12px 4px 12px' }}>
                 Foundry Curation & Assets
               </div>
               {[
@@ -1818,7 +1818,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       border: 'none',
                       borderLeft: isActive ? '3px solid #73c991' : '3px solid transparent',
                       color: isActive ? '#ffffff' : '#9ca59b',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       fontWeight: isActive ? 600 : 400,
                       textAlign: 'left',
@@ -1849,7 +1849,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               })}
 
               {/* Category 2 */}
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#6d746d', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '16px 12px 4px 12px' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#6d746d', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '16px 12px 4px 12px' }}>
                 Real-Time Leads & Stream
               </div>
               {[
@@ -1890,7 +1890,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       border: 'none',
                       borderLeft: isActive ? '3px solid #73c991' : '3px solid transparent',
                       color: isActive ? '#ffffff' : '#9ca59b',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       fontWeight: isActive ? 600 : 400,
                       textAlign: 'left',
@@ -1925,7 +1925,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             <div style={{ padding: '16px 20px', borderTop: '1px solid rgba(255,255,255,0.08)', background: '#111410' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#73c991' }} />
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#73c991' }}>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#73c991' }}>
                   Live Data Stream Synced
                 </span>
               </div>
@@ -1936,7 +1936,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   display: 'block',
                   color: '#9ca59b',
                   textDecoration: 'none',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   letterSpacing: '0.05em',
                 }}
@@ -1960,7 +1960,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               color: '#ffffff',
               border: '1px solid rgba(255,255,255,0.25)',
               padding: '10px 16px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               fontWeight: 600,
               letterSpacing: '0.08em',
@@ -1985,13 +1985,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
         {activeTab === 'overview' && (
           <div>
             <div style={{ marginBottom: '28px' }}>
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
                 Studio Dashboard · Live Content Matrix
               </div>
               <h1 style={{ fontFamily: 'var(--serif, serif)', fontSize: '28px', fontWeight: 400, marginTop: '4px', margin: 0 }}>
                 Ace Spaces Architectural Content System
               </h1>
-              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#596059', maxWidth: '720px', lineHeight: 1.6, marginTop: '8px' }}>
+              <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#596059', maxWidth: '720px', lineHeight: 1.6, marginTop: '8px' }}>
                 Control the raw material catalog, Corian-style colour swatches, landing page hero carousels, and architectural case study photography in real-time.
               </p>
             </div>
@@ -2022,13 +2022,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     transition: 'all 0.15s ease',
                   }}
                 >
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                     {stat.title}
                   </div>
                   <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '36px', margin: '8px 0 4px 0' }}>
                     {stat.count}
                   </div>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#889088' }}>
+                  <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#889088' }}>
                     {stat.desc} →
                   </div>
                 </div>
@@ -2041,14 +2041,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                     <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#25D366', display: 'inline-block' }} />
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
                       Live Architectural WhatsApp Advisory
                     </span>
                   </div>
                   <h3 style={{ fontSize: '18px', fontWeight: 500, margin: 0 }}>
                     Studio WhatsApp Desk & Specifier Hotline
                   </h3>
-                  <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#6c746c', margin: '4px 0 0 0' }}>
+                  <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#6c746c', margin: '4px 0 0 0' }}>
                     Configures the direct contact number powering the top navbar button, mobile drawer card, home page enquiry desk, and floating concierge widget.
                   </p>
                 </div>
@@ -2064,7 +2064,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       color: '#0e2b15',
                       padding: '8px 14px',
                       borderRadius: '3px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       fontWeight: 600,
                       textDecoration: 'none',
@@ -2088,7 +2088,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
+                  <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
                     WhatsApp Phone Number (with Country Code)
                   </label>
                   <input
@@ -2100,17 +2100,17 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       width: '100%',
                       padding: '8px 12px',
                       border: '1px solid #d4d8d4',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '12px',
                     }}
                   />
-                  <small style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#889088' }}>
+                  <small style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#889088' }}>
                     E.g., +91 98450 12345 (digits are automatically cleaned for wa.me)
                   </small>
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
+                  <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
                     Display Label in Studio UI
                   </label>
                   <input
@@ -2122,14 +2122,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       width: '100%',
                       padding: '8px 12px',
                       border: '1px solid #d4d8d4',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '12px',
                     }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
+                  <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
                     Studio Status Badge Note
                   </label>
                   <input
@@ -2141,7 +2141,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       width: '100%',
                       padding: '8px 12px',
                       border: '1px solid #d4d8d4',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '12px',
                     }}
                   />
@@ -2149,7 +2149,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               </div>
 
               <div style={{ marginTop: '16px' }}>
-                <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
+                <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#6c746c', marginBottom: '6px' }}>
                   Default Opening Greeting (Pre-filled in client WhatsApp chat)
                 </label>
                 <input
@@ -2171,10 +2171,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             {/* System Status and Documentation */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
               <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
-                <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 16px 0' }}>
+                <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 16px 0' }}>
                   Data Persistence & File Status
                 </h3>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
                     <span style={{ color: '#6c746c' }}>Storage Path:</span>
                     <span>data/custom-content.json</span>
@@ -2195,7 +2195,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               </div>
 
               <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
-                <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 16px 0' }}>
+                <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 16px 0' }}>
                   Quick Action Tasks
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -2206,7 +2206,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '10px 14px',
                       background: '#f5f4ee',
                       border: '1px solid rgba(0,0,0,0.08)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2220,7 +2220,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '10px 14px',
                       background: '#f5f4ee',
                       border: '1px solid rgba(0,0,0,0.08)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2234,7 +2234,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '10px 14px',
                       background: '#f5f4ee',
                       border: '1px solid rgba(0,0,0,0.08)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2248,7 +2248,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '10px 14px',
                       background: '#f5f4ee',
                       border: '1px solid rgba(0,0,0,0.08)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2262,7 +2262,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '10px 14px',
                       background: '#f5f4ee',
                       border: '1px solid rgba(0,0,0,0.08)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2276,7 +2276,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '10px 14px',
                       background: '#f5f4ee',
                       border: '1px solid rgba(0,0,0,0.08)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2293,14 +2293,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
                     <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#2e7d32', display: 'inline-block' }} />
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#2e7d32', fontWeight: 600 }}>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#2e7d32', fontWeight: 600 }}>
                       Live Footer Dispatch Subscribers
                     </span>
                   </div>
                   <h3 style={{ fontSize: '18px', fontWeight: 500, margin: 0 }}>
                     Latest Newsletter &amp; Monograph Signups ({subscribers.length})
                   </h3>
-                  <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6d746d', margin: '4px 0 0 0' }}>
+                  <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#6d746d', margin: '4px 0 0 0' }}>
                     Emails submitted via the footer &quot;Specifier Dispatch &amp; Formulation Monographs&quot; form across the site.
                   </p>
                 </div>
@@ -2313,7 +2313,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       background: '#1a1d19',
                       color: '#ffffff',
                       border: 'none',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2326,7 +2326,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '8px 14px',
                       background: '#ffffff',
                       border: '1px solid rgba(0,0,0,0.15)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2337,12 +2337,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               </div>
 
               {subscribers.length === 0 ? (
-                <div style={{ padding: '24px', background: '#faf9f5', border: '1px dashed rgba(0,0,0,0.15)', textAlign: 'center', fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#788078' }}>
+                <div style={{ padding: '24px', background: '#faf9f5', border: '1px dashed rgba(0,0,0,0.15)', textAlign: 'center', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#788078' }}>
                   No newsletter subscribers yet. Enter an email in the website footer to see it appear here instantly in real time.
                 </div>
               ) : (
                 <div style={{ overflowX: 'auto' }}>
-                  <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                  <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                     <thead>
                       <tr style={{ background: '#f5f4ee', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
                         <th style={{ padding: '10px 14px', color: '#788078', fontWeight: 500, width: '40px' }}>#</th>
@@ -2381,7 +2381,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 background: 'transparent',
                                 border: '1px solid #ccc',
                                 padding: '4px 8px',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '10px',
                                 cursor: 'pointer',
                                 marginRight: '8px',
@@ -2396,7 +2396,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 color: '#1a1d19',
                                 border: '1px solid #ccc',
                                 padding: '4px 8px',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '10px',
                               }}
                             >
@@ -2418,21 +2418,21 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#73c991', display: 'inline-block' }} />
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
                       AI Studio Assistant · Active
                     </span>
                   </div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#eef7ee', color: '#1e5f22', padding: '3px 8px', borderRadius: '2px', border: '1px solid #c2e2c5' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: '#eef7ee', color: '#1e5f22', padding: '3px 8px', borderRadius: '2px', border: '1px solid #c2e2c5' }}>
                     Groq LPU / OpenAI Ready
                   </span>
                 </div>
                 <h3 style={{ fontSize: '16px', fontWeight: 500, margin: '0 0 8px 0' }}>
                   Architectural Intelligence Engine
                 </h3>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', lineHeight: 1.6, margin: '0 0 16px 0' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#596059', lineHeight: 1.6, margin: '0 0 16px 0' }}>
                   Powers the floating client concierge with grounded material knowledge, thermoforming specs, comparison tables, and sample shortcuts.
                 </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '6px', borderBottom: '1px solid #f0efe8' }}>
                     <span style={{ color: '#788078' }}>Interface Layout:</span>
                     <span style={{ fontWeight: 600 }}>Half-Screen Spreadable & Full-Screen Dock</span>
@@ -2457,7 +2457,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '8px 14px',
                       background: '#1a1d19',
                       color: '#ffffff',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       textDecoration: 'none',
                     }}
@@ -2472,21 +2472,21 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                     <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#25D366', display: 'inline-block' }} />
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#168a3e', fontWeight: 600 }}>
                       Multi-Channel Dispatch Hub
                     </span>
                   </div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#f5f4ee', color: '#4a504a', padding: '3px 8px', borderRadius: '2px' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: '#f5f4ee', color: '#4a504a', padding: '3px 8px', borderRadius: '2px' }}>
                     Auto-Alerts
                   </span>
                 </div>
                 <h3 style={{ fontSize: '16px', fontWeight: 500, margin: '0 0 8px 0' }}>
                   Instant Specifier Order Alerts
                 </h3>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', lineHeight: 1.6, margin: '0 0 16px 0' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#596059', lineHeight: 1.6, margin: '0 0 16px 0' }}>
                   Every sample box request and project brief dispatches structured notifications across studio communication channels.
                 </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '6px', borderBottom: '1px solid #f0efe8' }}>
                     <span style={{ color: '#788078' }}>Direct WhatsApp Forwarding:</span>
                     <span style={{ color: '#25D366', fontWeight: 600 }}>Active (1-Click Liaison Link)</span>
@@ -2507,7 +2507,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '8px 14px',
                       background: '#f5f4ee',
                       border: '1px solid rgba(0,0,0,0.15)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2520,7 +2520,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '8px 14px',
                       background: '#f5f4ee',
                       border: '1px solid rgba(0,0,0,0.15)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -2540,7 +2540,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Homepage Sequence Manager
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
@@ -2554,7 +2554,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   background: '#1a1d19',
                   color: '#fff',
                   border: 'none',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   letterSpacing: '0.06em',
                   cursor: 'pointer',
@@ -2597,7 +2597,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '9px',
                         letterSpacing: '0.1em',
                         color: selectedSlideIndex === idx ? '#9ca59b' : '#788078',
@@ -2616,7 +2616,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         {slide.title} {slide.subtitle}
                       </div>
                       <div style={{
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '10px',
                         color: selectedSlideIndex === idx ? '#c4cdc4' : '#8c968c',
                       }}>
@@ -2647,7 +2647,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               {localHeroSlides[selectedSlideIndex] && (
                 <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '12px', borderBottom: '1px solid #f0efe8' }}>
-                    <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
+                    <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
                       Editing Slide 0{selectedSlideIndex + 1}
                     </h3>
                     <button
@@ -2657,7 +2657,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         border: '1px solid #e57373',
                         color: '#d32f2f',
                         padding: '4px 10px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '10px',
                         cursor: 'pointer',
                       }}
@@ -2668,7 +2668,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Image Path (select from library or enter URL)
                       </label>
                       <div style={{ display: 'flex', gap: '8px' }}>
@@ -2680,7 +2680,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             flex: 1,
                             padding: '8px 12px',
                             border: '1px solid #ddd',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '12px',
                           }}
                         />
@@ -2690,7 +2690,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           style={{
                             padding: '8px 12px',
                             border: '1px solid #ddd',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '11px',
                             background: '#f8f7f2',
                           }}
@@ -2704,31 +2704,31 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Eyebrow Label
                       </label>
                       <input
                         type="text"
                         value={localHeroSlides[selectedSlideIndex].eyebrow}
                         onChange={e => updateSlideField(selectedSlideIndex, 'eyebrow', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Specimen Tag
                       </label>
                       <input
                         type="text"
                         value={localHeroSlides[selectedSlideIndex].specimen}
                         onChange={e => updateSlideField(selectedSlideIndex, 'specimen', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Primary Headline (Title)
                       </label>
                       <input
@@ -2740,7 +2740,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Subtitle / Serif Accent
                       </label>
                       <input
@@ -2752,33 +2752,33 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Editorial Narrative Copy
                       </label>
                       <textarea
                         rows={3}
                         value={localHeroSlides[selectedSlideIndex].copy}
                         onChange={e => updateSlideField(selectedSlideIndex, 'copy', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.5 }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', lineHeight: 1.5 }}
                       />
                     </div>
 
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Location / Typology Note
                       </label>
                       <input
                         type="text"
                         value={localHeroSlides[selectedSlideIndex].location}
                         onChange={e => updateSlideField(selectedSlideIndex, 'location', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
 
                   {/* Live Hero Card Preview */}
                   <div style={{ marginTop: '20px', border: '1px solid #ecebe4', padding: '16px', background: '#1a1d19', color: '#fff' }}>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#8c968c', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>
+                    <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#8c968c', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>
                       Preview As Rendered In Homepage Hero
                     </div>
                     <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
@@ -2794,14 +2794,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         )}
                       </div>
                       <div>
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#9ca59b', letterSpacing: '0.08em' }}>
+                        <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#9ca59b', letterSpacing: '0.08em' }}>
                           {localHeroSlides[selectedSlideIndex].eyebrow}
                         </div>
                         <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', margin: '4px 0' }}>
                           {localHeroSlides[selectedSlideIndex].title}{' '}
                           <em style={{ fontStyle: 'italic' }}>{localHeroSlides[selectedSlideIndex].subtitle}</em>
                         </div>
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#a0aba0', maxWidth: '480px', lineHeight: 1.4 }}>
+                        <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#a0aba0', maxWidth: '480px', lineHeight: 1.4 }}>
                           {localHeroSlides[selectedSlideIndex].copy}
                         </div>
                       </div>
@@ -2822,13 +2822,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             <div style={{ marginBottom: '24px', background: '#ffffff', padding: '22px 24px', border: '1px solid rgba(0,0,0,0.08)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '20px', flexWrap: 'wrap', marginBottom: '18px' }}>
                 <div>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                     03 / Unified Specimen & Swatch Catalog
                   </div>
                   <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
                     Materials, Finishes & Colour Swatches ({localMaterials.length})
                   </h2>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', marginTop: '4px' }}>
+                  <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', marginTop: '4px' }}>
                     Comprehensive architectural slab dimensions, mineral formulations, high-res photography, and color tones.
                   </div>
                 </div>
@@ -2843,7 +2843,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       style={{
                         padding: '8px 12px',
                         border: '1px solid #ccc',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '11px',
                         width: '260px',
                         background: '#faf9f5',
@@ -2876,7 +2876,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       background: '#1a1d19',
                       color: '#fff',
                       border: 'none',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                       display: 'flex',
@@ -2896,7 +2896,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       background: '#233021',
                       color: '#ffffff',
                       border: 'none',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       fontWeight: 600,
                       cursor: isContextLoading ? 'wait' : 'pointer',
@@ -2913,7 +2913,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
               {/* Color Family Filter Pills */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', paddingTop: '14px', borderTop: '1px solid #f0efe8' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginRight: '6px' }}>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginRight: '6px' }}>
                   Filter by Palette:
                 </span>
                 {[
@@ -2935,7 +2935,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         background: isActive ? '#1a1d19' : '#f4f3ed',
                         color: isActive ? '#ffffff' : '#333333',
                         border: isActive ? '1px solid #1a1d19' : '1px solid rgba(0,0,0,0.06)',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '11px',
                         cursor: 'pointer',
                         display: 'flex',
@@ -2983,7 +2983,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '14px', borderBottom: '1px solid #e5e4de' }}>
                   <div>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
+                    <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
                       Foundry Inventory • Catalog Addition
                     </div>
                     <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
@@ -2999,7 +2999,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       padding: '4px 10px',
                       cursor: 'pointer',
                       fontSize: '16px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                     }}
                     title="Close"
                   >
@@ -3011,7 +3011,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Row 1: Core Identifiers */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr 1fr', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Material Slab Name *
                       </label>
                       <input
@@ -3020,11 +3020,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Calacatta Nuvo Gold"
                         value={newMaterialForm.name}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, name: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Material Code (e.g. AC-3040)
                       </label>
                       <input
@@ -3032,11 +3032,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="Auto-generated if empty"
                         value={newMaterialForm.code}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, code: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Collection Series
                       </label>
                       <input
@@ -3044,7 +3044,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Noma Solids / Veined Mineral"
                         value={newMaterialForm.collection}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, collection: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
@@ -3052,13 +3052,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Row 2: Aesthetic & Material Taxonomy */}
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Color Family
                       </label>
                       <select
                         value={newMaterialForm.colorFamily}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, colorFamily: e.target.value as Material['colorFamily'] }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#fff' }}
                       >
                         <option value="white">White</option>
                         <option value="cream">Cream</option>
@@ -3070,13 +3070,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Pattern / Aesthetic
                       </label>
                       <select
                         value={newMaterialForm.pattern}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, pattern: e.target.value as Material['pattern'] }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#fff' }}
                       >
                         <option value="solid">Solid</option>
                         <option value="veined">Veined</option>
@@ -3086,13 +3086,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Substrate Type
                       </label>
                       <select
                         value={newMaterialForm.type}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, type: e.target.value as Material['type'] }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#fff' }}
                       >
                         <option value="mineral">Mineral</option>
                         <option value="veined">Veined</option>
@@ -3102,7 +3102,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Finish Spec
                       </label>
                       <input
@@ -3110,7 +3110,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Honed Satin Matte"
                         value={newMaterialForm.finish}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, finish: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
@@ -3118,7 +3118,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Row 3: Tone & Hex Color & Transmission */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1.2fr 1fr', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Color Tone / Nuance (e.g. Pure Chalk White)
                       </label>
                       <input
@@ -3126,12 +3126,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Warm Linen Cream with golden taupe undertones"
                         value={newMaterialForm.colour}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, colour: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Hex Color Swatch
                       </label>
                       <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
@@ -3146,13 +3146,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           value={newMaterialForm.hexColor}
                           onChange={e => setNewMaterialForm(prev => ({ ...prev, hexColor: e.target.value }))}
                           placeholder="#f4f3ef"
-                          style={{ flex: 1, padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          style={{ flex: 1, padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Light Transmission
                       </label>
                       <input
@@ -3160,7 +3160,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Low (6%) or Opaque"
                         value={newMaterialForm.lightTransmission}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, lightTransmission: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
@@ -3168,7 +3168,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Row 4: Dimensions, Thicknesses & Fire Rating */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Standard Slab Dimensions
                       </label>
                       <input
@@ -3176,12 +3176,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. 3660 mm × 760 mm"
                         value={newMaterialForm.dimensions}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, dimensions: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Thickness Options (comma separated)
                       </label>
                       <input
@@ -3189,12 +3189,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="12mm, 19mm"
                         value={newMaterialForm.thicknessOptions}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, thicknessOptions: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Fire Performance Rating
                       </label>
                       <input
@@ -3202,7 +3202,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Class 1 / Class A (ASTM E84)"
                         value={newMaterialForm.fireRating}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, fireRating: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
@@ -3210,7 +3210,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Row 5: Applications & Care Guide */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Recommended Applications (comma separated)
                       </label>
                       <input
@@ -3218,12 +3218,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Kitchen Worktops, Wall Cladding, Monoliths"
                         value={newMaterialForm.applications}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, applications: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Architectural Care & Maintenance Guide
                       </label>
                       <input
@@ -3231,7 +3231,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Daily cleaning with damp microfibre cloth and mild neutral detergent."
                         value={newMaterialForm.careGuide}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, careGuide: e.target.value }))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
@@ -3239,23 +3239,23 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Row 6: Imagery & In-Situ Gallery */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Macro Slab Texture Specimen Image
                       </label>
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
                         <input
                           type="text"
-                          placeholder="/materials/sample_macro.jpg"
+                          placeholder="/materials/pattern_calacatta_greige.jpg"
                           value={newMaterialForm.textureImage}
                           onChange={e => setNewMaterialForm(prev => ({ ...prev, textureImage: e.target.value }))}
-                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                         <select
                           value=""
                           onChange={e => {
                             if (e.target.value) setNewMaterialForm(prev => ({ ...prev, textureImage: e.target.value }));
                           }}
-                          style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         >
                           <option value="">Media Asset...</option>
                           {mediaAssets.map(img => (
@@ -3271,7 +3271,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             style={{ width: '64px', height: '48px', objectFit: 'cover', border: '1px solid #ccc' }}
                             onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
                           />
-                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                             Macro Texture Specimen Preview
                           </span>
                         </div>
@@ -3279,7 +3279,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Primary In-Situ Spatial Application Photo
                       </label>
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
@@ -3288,14 +3288,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           placeholder="/images/images/app_residential_stonique_1.jpg"
                           value={newMaterialForm.inSituImage || newMaterialForm.image}
                           onChange={e => setNewMaterialForm(prev => ({ ...prev, inSituImage: e.target.value, image: e.target.value }))}
-                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                         <select
                           value=""
                           onChange={e => {
                             if (e.target.value) setNewMaterialForm(prev => ({ ...prev, inSituImage: e.target.value, image: e.target.value }));
                           }}
-                          style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         >
                           <option value="">Media Asset...</option>
                           {mediaAssets.map(img => (
@@ -3311,7 +3311,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             style={{ width: '64px', height: '48px', objectFit: 'cover', border: '1px solid #ccc' }}
                             onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
                           />
-                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                             Primary In-Situ Installation Preview
                           </span>
                         </div>
@@ -3322,7 +3322,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Row 6B: Specimen Zoom Multi-Angle Gallery & CSS Fallback Gradient */}
                   <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '16px' }}>
                     <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                         Specimen Zoom Multi-Angle Gallery URLs (comma separated)
                       </label>
                       <input
@@ -3330,16 +3330,16 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. /images/images/app_1.jpg, /images/images/app_2.jpg"
                         value={newMaterialForm.inSituImagesText}
                         onChange={e => setNewMaterialForm(prev => ({ ...prev, inSituImagesText: e.target.value }))}
-                        style={{ width: '100%', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', marginBottom: '6px' }}
+                        style={{ width: '100%', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', marginBottom: '6px' }}
                       />
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                         Powers the interactive multi-angle specimen carousel on the specimen detail page.
                       </div>
                     </div>
 
                     <div style={{ border: '1px solid #e5e4de', padding: '14px', background: '#faf9f6' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                        <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.05em' }}>
+                        <label style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.05em' }}>
                           Live CSS Gradient Fallback
                         </label>
                         <button
@@ -3353,7 +3353,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             color: '#ffffff',
                             border: 'none',
                             padding: '2px 8px',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '9px',
                             cursor: 'pointer',
                           }}
@@ -3377,7 +3377,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           placeholder="linear-gradient(135deg, #f4f3ef 0%, rgba(20,23,19,0.06) 100%)"
                           value={newMaterialForm.textureCss}
                           onChange={e => setNewMaterialForm(prev => ({ ...prev, textureCss: e.target.value }))}
-                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ flex: 1, padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                     </div>
@@ -3385,7 +3385,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   {/* Row 7: Architectural Description */}
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px', letterSpacing: '0.05em' }}>
                       Architectural Narrative & Specification Description
                     </label>
                     <textarea
@@ -3393,7 +3393,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       placeholder="e.g. Engineered solid surface architectural slab formulated for high-traffic monolithic surfaces, seamless fabrication, and tactile warmth."
                       value={newMaterialForm.description}
                       onChange={e => setNewMaterialForm(prev => ({ ...prev, description: e.target.value }))}
-                      style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.5 }}
+                      style={{ width: '100%', padding: '10px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', lineHeight: 1.5 }}
                     />
                   </div>
 
@@ -3407,7 +3407,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         background: '#f0efe8',
                         color: '#1a1d19',
                         border: '1px solid #ccc',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '11px',
                         cursor: 'pointer',
                       }}
@@ -3422,7 +3422,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         background: '#1a1d19',
                         color: '#ffffff',
                         border: 'none',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '11px',
                         fontWeight: 600,
                         letterSpacing: '0.05em',
@@ -3445,7 +3445,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               {/* Materials Filter and List */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '780px', overflowY: 'auto', paddingRight: '6px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 2px 8px 2px', borderBottom: '1px solid #f0efe8', marginBottom: '2px' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
                     Specimens ({
                       localMaterials.filter(m => {
                         if (materialFamilyFilter !== 'all' && (m.colorFamily || '').toLowerCase() !== materialFamilyFilter.toLowerCase()) return false;
@@ -3466,7 +3466,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {materialFamilyFilter !== 'all' && (
                     <button
                       onClick={() => setMaterialFamilyFilter('all')}
-                      style={{ background: 'none', border: 'none', color: '#788078', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer', textDecoration: 'underline' }}
+                      style={{ background: 'none', border: 'none', color: '#788078', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', cursor: 'pointer', textDecoration: 'underline' }}
                     >
                       Reset filter
                     </button>
@@ -3554,14 +3554,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '13px', fontWeight: 500, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {mat.name}
                           </div>
-                          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: isSelected ? '#a3aea0' : '#788078', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                          <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: isSelected ? '#a3aea0' : '#788078', marginTop: '2px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {mat.code || 'SLAB'} · {mat.finish || mat.collection}
                           </div>
                         </div>
 
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '3px', flexShrink: 0 }}>
                           <span style={{
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '9px',
                             textTransform: 'uppercase',
                             padding: '2px 6px',
@@ -3571,7 +3571,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           }}>
                             {mat.colorFamily}
                           </span>
-                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: isSelected ? '#8c9689' : '#888888' }}>
+                          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: isSelected ? '#8c9689' : '#888888' }}>
                             {mat.hexColor}
                           </span>
                         </div>
@@ -3585,7 +3585,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '12px', borderBottom: '1px solid #f0efe8' }}>
                     <div>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
                         Material Specification
                       </div>
                       <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', margin: '4px 0 0 0' }}>
@@ -3601,7 +3601,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           background: '#1a1d19',
                           color: '#ffffff',
                           border: 'none',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           fontWeight: 600,
                           letterSpacing: '0.05em',
@@ -3621,7 +3621,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           padding: '6px 12px',
                           background: '#f0efe8',
                           color: '#1a1d19',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           textDecoration: 'none',
                         }}
@@ -3635,7 +3635,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           border: '1px solid #e57373',
                           color: '#d32f2f',
                           padding: '6px 12px',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           cursor: 'pointer',
                         }}
@@ -3649,10 +3649,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     {/* CARD 1: Swatch & Visual Color Tone */}
                     <div style={{ background: '#faf9f5', border: '1px solid #e8e6df', padding: '18px 20px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #e5e3dc' }}>
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                        <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                           01 / Swatch & Visual Color Tone
                         </div>
-                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                        <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                           Live Preview & Tone Formula
                         </span>
                       </div>
@@ -3684,14 +3684,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               <div style={{ width: '100%', height: '100%', background: selectedMaterial.textureCss || selectedMaterial.hexColor }} />
                             )}
                           </div>
-                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#788078' }}>
+                          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#788078' }}>
                             Swatch
                           </span>
                         </div>
 
                         {/* Hex Picker & Input */}
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Hex Tone & Color Picker
                           </label>
                           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
@@ -3706,20 +3706,20 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               value={selectedMaterial.hexColor || ''}
                               onChange={e => updateMaterialField(selectedMaterial.slug, 'hexColor', e.target.value)}
                               placeholder="#e5e4de"
-                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#ffffff' }}
+                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#ffffff' }}
                             />
                           </div>
                         </div>
 
                         {/* Color Family */}
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Color Family
                           </label>
                           <select
                             value={selectedMaterial.colorFamily}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'colorFamily', e.target.value)}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#fff' }}
                           >
                             <option value="white">White</option>
                             <option value="cream">Cream</option>
@@ -3733,7 +3733,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Finish Surface Spec
                           </label>
                           <input
@@ -3741,18 +3741,18 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             value={selectedMaterial.finish || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'finish', e.target.value)}
                             placeholder="e.g. Honed Satin Matte"
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#ffffff' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#ffffff' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Substrate Type
                           </label>
                           <select
                             value={selectedMaterial.type || 'mineral'}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'type', e.target.value)}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#fff' }}
                           >
                             <option value="mineral">Mineral</option>
                             <option value="veined">Veined</option>
@@ -3762,13 +3762,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Pattern / Aesthetic
                           </label>
                           <select
                             value={selectedMaterial.pattern || 'solid'}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'pattern', e.target.value)}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#fff' }}
                           >
                             <option value="solid">Solid</option>
                             <option value="veined">Veined</option>
@@ -3781,7 +3781,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       {/* Live CSS Gradient Swatch Fallback */}
                       <div style={{ marginTop: '14px', paddingTop: '12px', borderTop: '1px solid #e5e3dc' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                          <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
+                          <label style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
                             Live CSS Gradient Fallback (Instant Specimen Texture)
                           </label>
                           <button
@@ -3795,7 +3795,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               color: '#ffffff',
                               border: 'none',
                               padding: '3px 8px',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                               fontSize: '9px',
                               cursor: 'pointer',
                             }}
@@ -3808,56 +3808,56 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           value={selectedMaterial.textureCss || ''}
                           onChange={e => updateMaterialField(selectedMaterial.slug, 'textureCss', e.target.value)}
                           placeholder="e.g. linear-gradient(135deg, #e8e2d5 0%, rgba(20,23,19,0.06) 100%)"
-                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#ffffff' }}
+                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#ffffff' }}
                         />
                       </div>
                     </div>
 
                     {/* CARD 2: Slab Specifications & Sizing */}
                     <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', padding: '18px 20px' }}>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
                         02 / Architectural Specifications & Sizing
                       </div>
 
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '14px' }}>
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Material Name
                           </label>
                           <input
                             type="text"
                             value={selectedMaterial.name}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'name', e.target.value)}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Material Code
                           </label>
                           <input
                             type="text"
                             value={selectedMaterial.code}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'code', e.target.value)}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Collection Series
                           </label>
                           <input
                             type="text"
                             value={selectedMaterial.collection}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'collection', e.target.value)}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Color Tone Nuance / Hue Description
                           </label>
                           <input
@@ -3865,12 +3865,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             value={selectedMaterial.colour || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'colour', e.target.value)}
                             placeholder="e.g. Pure Chalk White / Warm Alabaster"
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Light Transmission
                           </label>
                           <input
@@ -3878,12 +3878,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             value={selectedMaterial.lightTransmission || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'lightTransmission', e.target.value)}
                             placeholder="e.g. Low (6%) or Opaque"
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Fire Performance Rating
                           </label>
                           <input
@@ -3891,33 +3891,33 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             value={selectedMaterial.fireRating || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'fireRating', e.target.value)}
                             placeholder="e.g. Class 1 / Class A (ASTM E84)"
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
                       </div>
 
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Dimensions (e.g. 3660 mm × 760 mm)
                           </label>
                           <input
                             type="text"
                             value={selectedMaterial.dimensions || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'dimensions', e.target.value)}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Thicknesses (comma separated: 12mm, 20mm)
                           </label>
                           <input
                             type="text"
                             value={selectedMaterial.thicknessOptions?.join(', ') || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'thicknessOptions', e.target.value.split(',').map(s => s.trim()))}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
                       </div>
@@ -3925,14 +3925,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                     {/* CARD 3: Photography & High-Res Specimens */}
                     <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', padding: '18px 20px' }}>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
                         03 / Photography & High-Res Specimens
                       </div>
 
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
                         {/* Macro Texture */}
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Macro Slab Texture Specimen Image URL
                           </label>
                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
@@ -3941,12 +3941,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               value={selectedMaterial.textureImage || ''}
                               onChange={e => updateMaterialField(selectedMaterial.slug, 'textureImage', e.target.value)}
                               placeholder="/assets/..."
-                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                             />
                             <select
                               onChange={e => { if (e.target.value) updateMaterialField(selectedMaterial.slug, 'textureImage', e.target.value); }}
                               value=""
-                              style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                              style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#f8f7f2' }}
                             >
                               <option value="">Media...</option>
                               {mediaAssets.map(img => (
@@ -3962,7 +3962,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 style={{ width: '40px', height: '30px', objectFit: 'cover', border: '1px solid #ddd' }}
                                 onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
                               />
-                              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                                 Texture Macro Specimen
                               </span>
                             </div>
@@ -3971,7 +3971,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                         {/* Primary In-Situ / Application Photo */}
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Primary In-Situ Installation Photo URL
                           </label>
                           <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
@@ -3983,7 +3983,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 updateMaterialField(selectedMaterial.slug, 'image', e.target.value);
                               }}
                               placeholder="/assets/..."
-                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                              style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                             />
                             <select
                               onChange={e => {
@@ -3993,7 +3993,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 }
                               }}
                               value=""
-                              style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                              style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#f8f7f2' }}
                             >
                               <option value="">Media...</option>
                               {mediaAssets.map(img => (
@@ -4009,7 +4009,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 style={{ width: '40px', height: '30px', objectFit: 'cover', border: '1px solid #ddd' }}
                                 onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
                               />
-                              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                                 Primary Installation Preview
                               </span>
                             </div>
@@ -4021,11 +4021,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       <div style={{ padding: '14px', background: '#faf9f6', border: '1px solid #e5e4de' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                           <div>
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
+                            <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>
                               Interactive Specimen Zoom Gallery (Multi-Angle Photography)
                             </div>
                             <div style={{ fontFamily: 'system-ui, sans-serif', fontSize: '11px', color: '#555', marginTop: '2px' }}>
-                              Powers the multi-angle zoom viewer (<code style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>SpecimenZoomViewer</code>) on public specimen detail pages.
+                              Powers the multi-angle zoom viewer (<code style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}>SpecimenZoomViewer</code>) on public specimen detail pages.
                             </div>
                           </div>
                           <button
@@ -4039,7 +4039,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               color: '#ffffff',
                               border: 'none',
                               padding: '4px 10px',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                               fontSize: '10px',
                               cursor: 'pointer',
                             }}
@@ -4054,7 +4054,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             : (selectedMaterial.image ? [selectedMaterial.image] : [])
                           ).map((angleImg, idx) => (
                             <div key={`mat-angle-${idx}`} style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#fff', padding: '8px 12px', border: '1px solid #ddd' }}>
-                              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', width: '60px', color: '#888' }}>
+                              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', width: '60px', color: '#888' }}>
                                 Angle #{idx + 1}
                               </span>
                               <img
@@ -4071,7 +4071,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   current[idx] = e.target.value;
                                   updateMaterialField(selectedMaterial.slug, 'inSituImages', current);
                                 }}
-                                style={{ flex: 1, padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                                style={{ flex: 1, padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                               />
                               <select
                                 onChange={e => {
@@ -4082,7 +4082,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   }
                                 }}
                                 value=""
-                                style={{ padding: '6px 8px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#f8f7f2' }}
+                                style={{ padding: '6px 8px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: '#f8f7f2' }}
                               >
                                 <option value="">Media...</option>
                                 {mediaAssets.map(img => (
@@ -4100,7 +4100,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   border: '1px solid #e57373',
                                   color: '#d32f2f',
                                   padding: '4px 8px',
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '10px',
                                   cursor: 'pointer',
                                 }}
@@ -4115,13 +4115,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                     {/* CARD 4: Applications, Care & Description */}
                     <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', padding: '18px 20px' }}>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: '#1a1d19', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '14px', paddingBottom: '8px', borderBottom: '1px solid #f0efe8' }}>
                         04 / Architectural Applications & Care
                       </div>
 
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Recommended Applications (comma separated)
                           </label>
                           <input
@@ -4129,12 +4129,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             value={selectedMaterial.applications?.join(', ') || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'applications', e.target.value.split(',').map(s => s.trim()))}
                             placeholder="e.g. Kitchen Worktops, Wall Cladding, Bespoke Monoliths"
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Architectural Care & Maintenance Guide
                           </label>
                           <input
@@ -4142,19 +4142,19 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             value={selectedMaterial.careGuide || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'careGuide', e.target.value)}
                             placeholder="e.g. Daily cleaning with damp microfibre cloth and mild neutral detergent."
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                           />
                         </div>
 
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                             Architectural Description & Specification Narrative
                           </label>
                           <textarea
                             rows={3}
                             value={selectedMaterial.description || ''}
                             onChange={e => updateMaterialField(selectedMaterial.slug, 'description', e.target.value)}
-                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.5 }}
+                            style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', lineHeight: 1.5 }}
                           />
                         </div>
                       </div>
@@ -4174,7 +4174,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Architectural Typology Manager
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
@@ -4188,7 +4188,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   padding: '8px 16px',
                   background: '#1a1d19',
                   color: '#fff',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   textDecoration: 'none',
                 }}
@@ -4208,7 +4208,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: selectedSectorId === sec.id ? '#1a1d19' : '#ffffff',
                     color: selectedSectorId === sec.id ? '#ffffff' : '#1a1d19',
                     border: '1px solid rgba(0,0,0,0.08)',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                   }}
@@ -4223,13 +4223,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
                 {/* Sector Narrative Form */}
                 <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
-                  <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 16px 0' }}>
+                  <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: '0 0 16px 0' }}>
                     Sector Narrative & Architectural Specs
                   </h3>
 
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Sector Title
                       </label>
                       <input
@@ -4241,56 +4241,56 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Tagline / Architectural Concept
                       </label>
                       <input
                         type="text"
                         value={selectedSector.tagline}
                         onChange={e => updateSectorField(selectedSector.id, 'tagline', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Overview Paragraph
                       </label>
                       <textarea
                         rows={3}
                         value={selectedSector.overview}
                         onChange={e => updateSectorField(selectedSector.id, 'overview', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.5 }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', lineHeight: 1.5 }}
                       />
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                           Typical Thickness
                         </label>
                         <input
                           type="text"
                           value={selectedSector.typicalThickness || ''}
                           onChange={e => updateSectorField(selectedSector.id, 'typicalThickness', e.target.value)}
-                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                           Joint Visibility
                         </label>
                         <input
                           type="text"
                           value={selectedSector.jointVisibility || ''}
                           onChange={e => updateSectorField(selectedSector.id, 'jointVisibility', e.target.value)}
-                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Fabrication & Seam Detailing Note
                       </label>
                       <textarea
@@ -4298,13 +4298,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         value={selectedSector.fabricationNote || ''}
                         onChange={e => updateSectorField(selectedSector.id, 'fabricationNote', e.target.value)}
                         placeholder="e.g. Custom thermoformed integral coved corners and silicone-free chemical welding..."
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', lineHeight: 1.5 }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', lineHeight: 1.5 }}
                       />
                     </div>
 
                     {/* Sector Architectural Elements */}
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '6px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '6px' }}>
                         Typical Architectural Elements ({selectedSector.elements?.length || 0})
                       </label>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxHeight: '180px', overflowY: 'auto', marginBottom: '8px' }}>
@@ -4319,7 +4319,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               padding: '6px 10px',
                               border: '1px solid #eee',
                               fontSize: '11px',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                             }}
                           >
                             <span style={{ color: '#73c991', fontSize: '12px' }}>•</span>
@@ -4347,12 +4347,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               addSectorElement(selectedSector.id, newSectorElementText);
                             }
                           }}
-                          style={{ flex: 1, padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ flex: 1, padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                         <button
                           type="button"
                           onClick={() => addSectorElement(selectedSector.id, newSectorElementText)}
-                          style={{ padding: '6px 12px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer' }}
+                          style={{ padding: '6px 12px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', cursor: 'pointer' }}
                         >
                           + Add
                         </button>
@@ -4364,7 +4364,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 {/* Sector Photography Gallery Manager */}
                 <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                    <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
+                    <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
                       Sector Photography Gallery ({selectedSector.images?.length || 0})
                     </h3>
                     <button
@@ -4374,7 +4374,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         background: '#1a1d19',
                         color: '#fff',
                         border: 'none',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '10px',
                         cursor: 'pointer',
                       }}
@@ -4388,7 +4388,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     <div style={{ background: '#f8f7f2', padding: '16px', border: '1px solid #ddd', marginBottom: '16px' }}>
                       <form onSubmit={handleAddSectorPhoto} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666' }}>
                             Image Path (or select from media)
                           </label>
                           <div style={{ display: 'flex', gap: '6px' }}>
@@ -4398,12 +4398,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               placeholder="/images/images/..."
                               value={newSectorPhotoForm.src}
                               onChange={e => setNewSectorPhotoForm(prev => ({ ...prev, src: e.target.value }))}
-                              style={{ flex: 1, padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                              style={{ flex: 1, padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                             />
                             <select
                               onChange={e => { if (e.target.value) setNewSectorPhotoForm(prev => ({ ...prev, src: e.target.value })); }}
                               value=""
-                              style={{ padding: '6px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}
+                              style={{ padding: '6px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}
                             >
                               <option value="">Pick Asset...</option>
                               {mediaAssets.map(img => (
@@ -4418,27 +4418,27 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             placeholder="Caption (e.g. Monolithic Island)"
                             value={newSectorPhotoForm.caption}
                             onChange={e => setNewSectorPhotoForm(prev => ({ ...prev, caption: e.target.value }))}
-                            style={{ padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                            style={{ padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                           />
                           <input
                             type="text"
                             placeholder="Tag (e.g. Countertop)"
                             value={newSectorPhotoForm.tag}
                             onChange={e => setNewSectorPhotoForm(prev => ({ ...prev, tag: e.target.value }))}
-                            style={{ padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                            style={{ padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                           />
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px' }}>
                           <button
                             type="button"
                             onClick={() => setIsAddingSectorPhoto(false)}
-                            style={{ padding: '4px 10px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer' }}
+                            style={{ padding: '4px 10px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', cursor: 'pointer' }}
                           >
                             Cancel
                           </button>
                           <button
                             type="submit"
-                            style={{ padding: '4px 12px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer' }}
+                            style={{ padding: '4px 12px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', cursor: 'pointer' }}
                           >
                             Add To Gallery
                           </button>
@@ -4460,7 +4460,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             style={{ objectFit: 'cover' }}
                           />
                         </div>
-                        <div style={{ padding: '6px', fontFamily: 'DM Mono, monospace', fontSize: '9px' }}>
+                        <div style={{ padding: '6px', fontFamily: 'Urbanist, sans-serif', fontSize: '9px' }}>
                           <div style={{ color: '#333', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                             {img.caption || img.tag}
                           </div>
@@ -4485,10 +4485,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)', marginTop: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                       <div>
-                        <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
+                        <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
                           Sector Recommended Materials Gallery ({selectedSector.recommendedMaterials?.length || 0})
                         </h3>
-                        <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', margin: '4px 0 0 0' }}>
+                        <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', margin: '4px 0 0 0' }}>
                           Powers the interactive material palette & spec gallery on the /applications/{selectedSector.id} frontend page.
                         </p>
                       </div>
@@ -4496,14 +4496,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                     {/* Add Material to Sector Palette Bar */}
                     <div style={{ background: '#f8f7f2', padding: '14px', border: '1px solid #e5e4de', marginBottom: '18px' }}>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#555', marginBottom: '8px' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#555', marginBottom: '8px' }}>
                         + Add Material to this Sector Palette
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1.4fr 1.6fr auto', gap: '8px' }}>
                         <select
                           value={newSectorMaterialSlug}
                           onChange={e => setNewSectorMaterialSlug(e.target.value)}
-                          style={{ padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         >
                           <option value="">Select Material from Catalog...</option>
                           {localMaterials.map(m => (
@@ -4517,7 +4517,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           placeholder="Recommended Finish (e.g. Ultra-smooth Satin Clean)"
                           value={newSectorMaterialFinish}
                           onChange={e => setNewSectorMaterialFinish(e.target.value)}
-                          style={{ padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         />
                         <button
                           type="button"
@@ -4527,7 +4527,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             background: '#1a1d19',
                             color: '#fff',
                             border: 'none',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '10px',
                             cursor: 'pointer',
                             letterSpacing: '0.06em',
@@ -4599,14 +4599,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '14px', fontWeight: 600, color: '#1a1d19', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                   {matDetail?.name || rec.name}
                                 </div>
-                                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#788078', textTransform: 'uppercase' }}>
+                                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#788078', textTransform: 'uppercase' }}>
                                   {matDetail?.collection || 'Curated Spec'} • /{matDetail?.slug || rec.slug}
                                 </div>
                               </div>
                             </div>
 
                             <div>
-                              <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '3px' }}>
+                              <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '3px' }}>
                                 Recommended Finish
                               </label>
                               <input
@@ -4618,7 +4618,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   boxSizing: 'border-box',
                                   padding: '5px 8px',
                                   border: '1px solid #d0cfc7',
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '10px',
                                   background: '#fff',
                                 }}
@@ -4629,7 +4629,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               <Link
                                 href={`/materials/${matDetail?.slug || rec.slug}`}
                                 target="_blank"
-                                style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', color: '#2a3029', textDecoration: 'none' }}
+                                style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', color: '#2a3029', textDecoration: 'none' }}
                               >
                                 Inspect Material ↗
                               </Link>
@@ -4640,7 +4640,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   background: 'transparent',
                                   border: 'none',
                                   color: '#c62828',
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '9px',
                                   cursor: 'pointer',
                                   padding: 0,
@@ -4653,7 +4653,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         );
                       })}
                       {(!selectedSector.recommendedMaterials || selectedSector.recommendedMaterials.length === 0) && (
-                        <div style={{ gridColumn: '1 / -1', padding: '24px', textAlign: 'center', color: '#888', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#faf9f5', border: '1px dashed #d5d4cd' }}>
+                        <div style={{ gridColumn: '1 / -1', padding: '24px', textAlign: 'center', color: '#888', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#faf9f5', border: '1px dashed #d5d4cd' }}>
                           No sector recommended materials configured. Add materials from the catalog above to populate the frontend material gallery.
                         </div>
                       )}
@@ -4664,10 +4664,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)', marginTop: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
                       <div>
-                        <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
+                        <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.1em', margin: 0 }}>
                           Hygiene & Performance Compliance Standards ({selectedSector.hygieneAndPerformance?.length || 0})
                         </h3>
-                        <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', margin: '4px 0 0 0' }}>
+                        <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', margin: '4px 0 0 0' }}>
                           Certifications, resistance criteria & architectural compliance parameters displayed on the sector page.
                         </p>
                       </div>
@@ -4679,7 +4679,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           background: '#1a1d19',
                           color: '#fff',
                           border: 'none',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           cursor: 'pointer',
                           letterSpacing: '0.05em',
@@ -4694,7 +4694,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       <div style={{ background: '#f8f7f2', padding: '16px', border: '1px solid #ddd', marginBottom: '16px' }}>
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 2fr', gap: '10px', marginBottom: '10px' }}>
                           <div>
-                            <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                            <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                               Performance Feature
                             </label>
                             <input
@@ -4702,11 +4702,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               placeholder="e.g. Bacterial & Microbe Resistance"
                               value={newHygieneForm.feature}
                               onChange={e => setNewHygieneForm(prev => ({ ...prev, feature: e.target.value }))}
-                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}
+                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}
                             />
                           </div>
                           <div>
-                            <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                            <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                               Test Standard / Certification
                             </label>
                             <input
@@ -4714,11 +4714,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               placeholder="e.g. ISO 846 Class 0"
                               value={newHygieneForm.standard}
                               onChange={e => setNewHygieneForm(prev => ({ ...prev, standard: e.target.value }))}
-                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}
+                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}
                             />
                           </div>
                           <div>
-                            <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                            <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                               Architectural & Clinical Benefit
                             </label>
                             <input
@@ -4726,7 +4726,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               placeholder="e.g. Zero fungal & bacterial colony formation over 28-day continuous exposure."
                               value={newHygieneForm.benefit}
                               onChange={e => setNewHygieneForm(prev => ({ ...prev, benefit: e.target.value }))}
-                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}
+                              style={{ width: '100%', boxSizing: 'border-box', padding: '6px 8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}
                             />
                           </div>
                         </div>
@@ -4734,14 +4734,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           <button
                             type="button"
                             onClick={() => setIsAddingHygieneRow(false)}
-                            style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer' }}
+                            style={{ padding: '5px 12px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', cursor: 'pointer' }}
                           >
                             Cancel
                           </button>
                           <button
                             type="button"
                             onClick={() => addSectorHygieneRow(selectedSector.id, newHygieneForm.feature, newHygieneForm.standard, newHygieneForm.benefit)}
-                            style={{ padding: '5px 14px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '10px', cursor: 'pointer' }}
+                            style={{ padding: '5px 14px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', cursor: 'pointer' }}
                           >
                             Save Standard
                           </button>
@@ -4751,7 +4751,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                     {/* Standards Table */}
                     <div style={{ overflowX: 'auto' }}>
-                      <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}>
                         <thead>
                           <tr style={{ background: '#f4f3ed', borderBottom: '1px solid #e0ded4', textAlign: 'left' }}>
                             <th style={{ padding: '8px 10px', textTransform: 'uppercase', color: '#555', width: '25%' }}>Performance Feature</th>
@@ -4768,7 +4768,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   type="text"
                                   value={row.feature}
                                   onChange={e => updateSectorHygieneRow(selectedSector.id, rIdx, 'feature', e.target.value)}
-                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace' }}
+                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'Urbanist, sans-serif' }}
                                 />
                               </td>
                               <td style={{ padding: '6px 8px' }}>
@@ -4776,7 +4776,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   type="text"
                                   value={row.standard}
                                   onChange={e => updateSectorHygieneRow(selectedSector.id, rIdx, 'standard', e.target.value)}
-                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: 600 }}
+                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', fontWeight: 600 }}
                                 />
                               </td>
                               <td style={{ padding: '6px 8px' }}>
@@ -4784,7 +4784,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   type="text"
                                   value={row.benefit}
                                   onChange={e => updateSectorHygieneRow(selectedSector.id, rIdx, 'benefit', e.target.value)}
-                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace' }}
+                                  style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'Urbanist, sans-serif' }}
                                 />
                               </td>
                               <td style={{ padding: '6px 8px', textAlign: 'center' }}>
@@ -4822,7 +4822,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Built Work & Realised Interventions
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
@@ -4837,7 +4837,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 14px',
                     background: '#2a3029',
                     color: '#fff',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     textDecoration: 'none',
                     letterSpacing: '0.05em',
@@ -4852,7 +4852,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#1a1d19',
                     color: '#fff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                     letterSpacing: '0.05em',
@@ -4877,7 +4877,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     boxSizing: 'border-box',
                     padding: '8px 12px',
                     border: '1px solid #ccc',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                   }}
                 />
@@ -4894,7 +4894,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       color: projectCategoryFilter === cat ? '#fff' : '#444',
                       border: '1px solid',
                       borderColor: projectCategoryFilter === cat ? '#1a1d19' : '#ddd',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10px',
                       textTransform: 'uppercase',
                       cursor: 'pointer',
@@ -4925,7 +4925,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <form onSubmit={handleCreateProject} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Project Title *
                       </label>
                       <input
@@ -4934,11 +4934,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Clinical precision & surgical hygiene"
                         value={newProjectForm.title}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, title: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Subtitle / Tagline
                       </label>
                       <input
@@ -4946,17 +4946,17 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Advanced Surgical Suite & Cleanroom Integration"
                         value={newProjectForm.subtitle}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, subtitle: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Typology / Category *
                       </label>
                       <select
                         value={newProjectForm.category}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, category: e.target.value as any }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#fff' }}
                       >
                         <option value="residential">Residential</option>
                         <option value="hospitality">Hospitality</option>
@@ -4969,7 +4969,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Location
                       </label>
                       <input
@@ -4977,11 +4977,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Hyderabad, Telangana"
                         value={newProjectForm.location}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, location: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Year Completed
                       </label>
                       <input
@@ -4989,11 +4989,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="2024"
                         value={newProjectForm.year}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, year: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Architect / Studio
                       </label>
                       <input
@@ -5001,11 +5001,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Matrix Health Architects"
                         value={newProjectForm.architect}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, architect: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Scale / Area
                       </label>
                       <input
@@ -5013,14 +5013,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. 4,200 sq.m Surgical Wing"
                         value={newProjectForm.area}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, area: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
 
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Featured Surface Material
                       </label>
                       <input
@@ -5028,17 +5028,17 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Noma / White Chalk"
                         value={newProjectForm.materialUsed}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, materialUsed: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Linked Material in Catalog
                       </label>
                       <select
                         value={newProjectForm.materialSlug}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, materialSlug: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px', background: '#fff' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', background: '#fff' }}
                       >
                         <option value="">Select Material...</option>
                         {localMaterials.map(m => (
@@ -5047,7 +5047,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </select>
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Application Typology
                       </label>
                       <input
@@ -5055,13 +5055,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. Scrub Sinks & Cleanroom Cladding"
                         value={newProjectForm.application}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, application: e.target.value }))}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                       Primary Installation Photography (URL or Media Asset)
                     </label>
                     <div style={{ display: 'flex', gap: '8px' }}>
@@ -5070,12 +5070,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="/images/images/..."
                         value={newProjectForm.image}
                         onChange={e => setNewProjectForm(prev => ({ ...prev, image: e.target.value }))}
-                        style={{ flex: 1, padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ flex: 1, padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                       <select
                         onChange={e => { if (e.target.value) setNewProjectForm(prev => ({ ...prev, image: e.target.value })); }}
                         value=""
-                        style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        style={{ padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                       >
                         <option value="">Select Media Asset...</option>
                         {mediaAssets.map(img => (
@@ -5086,7 +5086,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                       Project Description & Narrative
                     </label>
                     <textarea
@@ -5100,7 +5100,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Architectural Challenge
                       </label>
                       <textarea
@@ -5112,7 +5112,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Engineering & Material Solution
                       </label>
                       <textarea
@@ -5126,7 +5126,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                       Technical Specifications (One per line as: Label: Value)
                     </label>
                     <textarea
@@ -5134,7 +5134,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       placeholder={`Surface Material: Noma Solid Mineral\nHygiene Standard: ISO 846 Class 0\nJoinery Type: Inconspicuous Thermo-weld`}
                       value={newProjectForm.specs}
                       onChange={e => setNewProjectForm(prev => ({ ...prev, specs: e.target.value }))}
-                      style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                      style={{ width: '100%', boxSizing: 'border-box', padding: '8px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                     />
                   </div>
 
@@ -5142,13 +5142,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     <button
                       type="button"
                       onClick={() => setIsAddingProject(false)}
-                      style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer' }}
+                      style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', cursor: 'pointer' }}
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      style={{ padding: '8px 20px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer', textTransform: 'uppercase' }}
+                      style={{ padding: '8px 20px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', cursor: 'pointer', textTransform: 'uppercase' }}
                     >
                       Publish Case Study
                     </button>
@@ -5161,7 +5161,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: '24px', alignItems: 'start' }}>
               {/* Left Column: Projects List */}
               <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}>
-                <div style={{ padding: '12px 16px', background: '#f8f7f2', borderBottom: '1px solid #eee', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#666' }}>
+                <div style={{ padding: '12px 16px', background: '#f8f7f2', borderBottom: '1px solid #eee', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: '#666' }}>
                   Indexed Projects ({
                     localProjects.filter(p => {
                       const matchesCategory = projectCategoryFilter === 'all' || p.category === projectCategoryFilter;
@@ -5204,7 +5204,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             {p.image && isValidImageSrc(p.image) ? (
                               <Image src={p.image} alt={p.title} fill sizes="48px" style={{ objectFit: 'cover' }} />
                             ) : (
-                              <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '9px', fontFamily: 'DM Mono, monospace' }}>
+                              <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontSize: '9px', fontFamily: 'Urbanist, sans-serif' }}>
                                 ARCH
                               </div>
                             )}
@@ -5213,7 +5213,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '14px', fontWeight: 600, color: '#1a1d19', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                               {p.title}
                             </div>
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', marginTop: '2px', display: 'flex', gap: '6px', alignItems: 'center' }}>
+                            <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', marginTop: '2px', display: 'flex', gap: '6px', alignItems: 'center' }}>
                               <span style={{
                                 textTransform: 'uppercase',
                                 padding: '1px 5px',
@@ -5241,7 +5241,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Top Bar with Quick Actions */}
                   <div style={{ background: '#ffffff', padding: '18px 24px', border: '1px solid rgba(0,0,0,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
                         Selected Architectural Project
                       </div>
                       <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', fontWeight: 500, margin: '2px 0 0 0' }}>
@@ -5256,7 +5256,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           padding: '6px 12px',
                           background: '#2a3029',
                           color: '#fff',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           textDecoration: 'none',
                         }}
@@ -5271,7 +5271,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           background: 'transparent',
                           border: '1px solid #c62828',
                           color: '#c62828',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           cursor: 'pointer',
                         }}
@@ -5283,7 +5283,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   {/* Visual Photography Asset Card */}
                   <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
-                    <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 14px 0', color: '#444' }}>
+                    <h4 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 14px 0', color: '#444' }}>
                       Project Hero Photography
                     </h4>
                     <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: '20px', alignItems: 'center' }}>
@@ -5291,28 +5291,28 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         {selectedProject.image && isValidImageSrc(selectedProject.image) ? (
                           <Image src={selectedProject.image} alt={selectedProject.title} fill sizes="240px" style={{ objectFit: 'cover' }} />
                         ) : (
-                          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                          <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}>
                             No Hero Photo
                           </div>
                         )}
                       </div>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '3px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '3px' }}>
                             Image Path (or Pick from Media Library)
                           </label>
                           <input
                             type="text"
                             value={selectedProject.image}
                             onChange={e => updateProjectField(selectedProject.slug, 'image', e.target.value)}
-                            style={{ width: '100%', boxSizing: 'border-box', padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                            style={{ width: '100%', boxSizing: 'border-box', padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                           />
                         </div>
                         <div>
                           <select
                             onChange={e => { if (e.target.value) updateProjectField(selectedProject.slug, 'image', e.target.value); }}
                             value=""
-                            style={{ padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#fff' }}
+                            style={{ padding: '6px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: '#fff' }}
                           >
                             <option value="">Pick from Uploaded Assets...</option>
                             {mediaAssets.map(img => (
@@ -5326,40 +5326,40 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   {/* Core Information Card */}
                   <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
-                    <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
+                    <h4 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
                       Spatial Typology & Project Identifiers
                     </h4>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '16px' }}>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Project Title
                         </label>
                         <input
                           type="text"
                           value={selectedProject.title}
                           onChange={e => updateProjectField(selectedProject.slug, 'title', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Subtitle / Spatial Subhead
                         </label>
                         <input
                           type="text"
                           value={selectedProject.subtitle}
                           onChange={e => updateProjectField(selectedProject.slug, 'subtitle', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Category / Architectural Typology
                         </label>
                         <select
                           value={selectedProject.category}
                           onChange={e => updateProjectField(selectedProject.slug, 'category', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         >
                           <option value="residential">Residential</option>
                           <option value="hospitality">Hospitality</option>
@@ -5372,47 +5372,47 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Location
                         </label>
                         <input
                           type="text"
                           value={selectedProject.location}
                           onChange={e => updateProjectField(selectedProject.slug, 'location', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Year
                         </label>
                         <input
                           type="text"
                           value={selectedProject.year}
                           onChange={e => updateProjectField(selectedProject.slug, 'year', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Architectural Practice
                         </label>
                         <input
                           type="text"
                           value={selectedProject.architect}
                           onChange={e => updateProjectField(selectedProject.slug, 'architect', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Floor Area / Scope
                         </label>
                         <input
                           type="text"
                           value={selectedProject.area}
                           onChange={e => updateProjectField(selectedProject.slug, 'area', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                     </div>
@@ -5420,29 +5420,29 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   {/* Surface Specification & Catalog Link */}
                   <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
-                    <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
+                    <h4 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
                       Surface Specification & Catalog Connectivity
                     </h4>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginBottom: '16px' }}>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Material Display Name
                         </label>
                         <input
                           type="text"
                           value={selectedProject.materialUsed}
                           onChange={e => updateProjectField(selectedProject.slug, 'materialUsed', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Linked Catalog Material (/materials/[slug])
                         </label>
                         <select
                           value={selectedProject.materialSlug}
                           onChange={e => updateProjectField(selectedProject.slug, 'materialSlug', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         >
                           <option value="">Select Material...</option>
                           {localMaterials.map(m => (
@@ -5451,38 +5451,38 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         </select>
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Application Type
                         </label>
                         <input
                           type="text"
                           value={selectedProject.application}
                           onChange={e => updateProjectField(selectedProject.slug, 'application', e.target.value)}
-                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                       </div>
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                         Fabrication & Joinery Techniques
                       </label>
                       <input
                         type="text"
                         value={selectedProject.fabrication}
                         onChange={e => updateProjectField(selectedProject.slug, 'fabrication', e.target.value)}
-                        style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        style={{ width: '100%', boxSizing: 'border-box', padding: '7px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                       />
                     </div>
                   </div>
 
                   {/* Architectural Narrative, Challenge & Solution */}
                   <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
-                    <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
+                    <h4 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: '0 0 16px 0', color: '#444' }}>
                       Architectural Case Study Narrative
                     </h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                           Executive Project Summary & Context
                         </label>
                         <textarea
@@ -5494,7 +5494,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </div>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                             Spatial & Structural Challenge
                           </label>
                           <textarea
@@ -5505,7 +5505,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           />
                         </div>
                         <div>
-                          <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
+                          <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#666', marginBottom: '4px' }}>
                             Engineering & Material Solution
                           </label>
                           <textarea
@@ -5522,7 +5522,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Technical Specifications Table */}
                   <div style={{ background: '#ffffff', padding: '24px', border: '1px solid rgba(0,0,0,0.08)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                      <h4 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0, color: '#444' }}>
+                      <h4 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', margin: 0, color: '#444' }}>
                         Technical Specifications Matrix ({selectedProject.specs?.length || 0})
                       </h4>
                       <button
@@ -5533,7 +5533,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           background: '#1a1d19',
                           color: '#fff',
                           border: 'none',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           cursor: 'pointer',
                         }}
@@ -5542,7 +5542,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </button>
                     </div>
 
-                    <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                    <table style={{ width: '100%', borderCollapse: 'collapse', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}>
                       <thead>
                         <tr style={{ background: '#f4f3ed', borderBottom: '1px solid #e0ded4', textAlign: 'left' }}>
                           <th style={{ padding: '8px 10px', textTransform: 'uppercase', color: '#555', width: '40%' }}>Parameter / Label</th>
@@ -5558,7 +5558,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 type="text"
                                 value={sp.label}
                                 onChange={e => updateProjectSpec(selectedProject.slug, sIdx, 'label', e.target.value)}
-                                style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace' }}
+                                style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'Urbanist, sans-serif' }}
                               />
                             </td>
                             <td style={{ padding: '6px 8px' }}>
@@ -5566,7 +5566,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 type="text"
                                 value={sp.value}
                                 onChange={e => updateProjectSpec(selectedProject.slug, sIdx, 'value', e.target.value)}
-                                style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'DM Mono, monospace' }}
+                                style={{ width: '100%', boxSizing: 'border-box', padding: '4px 6px', border: '1px solid #e5e4de', fontSize: '10px', fontFamily: 'Urbanist, sans-serif' }}
                               />
                             </td>
                             <td style={{ padding: '6px 8px', textAlign: 'center' }}>
@@ -5602,7 +5602,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Editorial & Spatial Publications
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
@@ -5617,7 +5617,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 14px',
                     background: '#2a3029',
                     color: '#fff',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     textDecoration: 'none',
                   }}
@@ -5631,7 +5631,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#1a1d19',
                     color: '#fff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                   }}
@@ -5652,7 +5652,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px', borderBottom: '1px solid #eee', paddingBottom: '12px' }}>
                   <div>
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>Editorial Dispatch</span>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078' }}>Editorial Dispatch</span>
                     <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '2px 0 0 0' }}>Create New Architectural Essay</h3>
                   </div>
                   <button onClick={() => setIsAddingJournal(false)} style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontSize: '20px' }}>×</button>
@@ -5660,7 +5660,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                 <form onSubmit={handleCreateJournal} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Essay Title (Primary Headline)
                     </label>
                     <input
@@ -5674,13 +5674,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Category / Topic
                     </label>
                     <select
                       value={newJournalForm.category}
                       onChange={e => setNewJournalForm(prev => ({ ...prev, category: e.target.value }))}
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                     >
                       <option value="Material Knowledge">Material Knowledge</option>
                       <option value="Fabrication">Fabrication</option>
@@ -5692,7 +5692,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Publication Date & Read Time
                     </label>
                     <div style={{ display: 'flex', gap: '8px' }}>
@@ -5701,20 +5701,20 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         placeholder="e.g. August 2026"
                         value={newJournalForm.date}
                         onChange={e => setNewJournalForm(prev => ({ ...prev, date: e.target.value }))}
-                        style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                       />
                       <input
                         type="text"
                         placeholder="e.g. 05 min read"
                         value={newJournalForm.readTime}
                         onChange={e => setNewJournalForm(prev => ({ ...prev, readTime: e.target.value }))}
-                        style={{ width: '120px', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        style={{ width: '120px', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                       />
                     </div>
                   </div>
 
                   <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Hero Image Path (select from library or enter URL)
                     </label>
                     <div style={{ display: 'flex', gap: '8px' }}>
@@ -5722,12 +5722,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         type="text"
                         value={newJournalForm.image}
                         onChange={e => setNewJournalForm(prev => ({ ...prev, image: e.target.value }))}
-                        style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                       />
                       <select
                         onChange={e => { if (e.target.value) setNewJournalForm(prev => ({ ...prev, image: e.target.value })); }}
                         value=""
-                        style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                        style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#f8f7f2' }}
                       >
                         <option value="">Choose Existing Image...</option>
                         {mediaAssets.map(img => (
@@ -5740,10 +5740,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   {/* Multiple Gallery Photos for New Essay */}
                   <div style={{ gridColumn: '1 / -1', background: '#faf9f5', border: '1px solid #e5e4de', padding: '14px', borderRadius: '2px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
+                      <label style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
                         Multiple Gallery Photos ({newJournalForm.galleryImages.length})
                       </label>
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                      <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                         Add multiple photos for this article
                       </span>
                     </div>
@@ -5753,7 +5753,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         type="text"
                         id="new-gallery-photo-input"
                         placeholder="Paste image path (e.g. /images/images/... or https://...)"
-                        style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        style={{ flex: 1, padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         onKeyDown={e => {
                           if (e.key === 'Enter') {
                             e.preventDefault();
@@ -5773,7 +5773,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           e.target.value = '';
                         }}
                         defaultValue=""
-                        style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                        style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                       >
                         <option value="">+ Pick from Library...</option>
                         {mediaAssets.map(img => (
@@ -5789,7 +5789,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             el.value = '';
                           }
                         }}
-                        style={{ padding: '8px 14px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer' }}
+                        style={{ padding: '8px 14px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', cursor: 'pointer' }}
                       >
                         + Add Photo
                       </button>
@@ -5842,7 +5842,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </div>
 
                   <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Lead Summary
                     </label>
                     <textarea
@@ -5850,24 +5850,24 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       placeholder="Brief overview summarizing the core architectural observation..."
                       value={newJournalForm.summary}
                       onChange={e => setNewJournalForm(prev => ({ ...prev, summary: e.target.value }))}
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', lineHeight: 1.5 }}
+                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', lineHeight: 1.5 }}
                     />
                   </div>
 
                   <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Full Essay Text (separate paragraphs with blank lines)
                     </label>
                     <textarea
                       rows={6}
                       value={newJournalForm.content}
                       onChange={e => setNewJournalForm(prev => ({ ...prev, content: e.target.value }))}
-                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', lineHeight: 1.6 }}
+                      style={{ width: '100%', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', lineHeight: 1.6 }}
                     />
                   </div>
 
                   <div style={{ gridColumn: '1 / -1' }}>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Architectural Pull Quote (optional)
                     </label>
                     <input
@@ -5883,13 +5883,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     <button
                       type="button"
                       onClick={() => setIsAddingJournal(false)}
-                      style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer' }}
+                      style={{ padding: '8px 16px', background: 'transparent', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', cursor: 'pointer' }}
                     >
                       Cancel
                     </button>
                     <button
                       type="submit"
-                      style={{ padding: '8px 20px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'DM Mono, monospace', fontSize: '11px', cursor: 'pointer' }}
+                      style={{ padding: '8px 20px', background: '#1a1d19', color: '#fff', border: 'none', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', cursor: 'pointer' }}
                     >
                       Publish Essay to Journal →
                     </button>
@@ -5907,7 +5907,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   placeholder="Filter essays by title or category..."
                   value={journalSearchQuery}
                   onChange={e => setJournalSearchQuery(e.target.value)}
-                  style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                  style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                 />
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', maxHeight: '720px', overflowY: 'auto', paddingRight: '4px' }}>
@@ -5944,7 +5944,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         </div>
                         <div style={{ flex: 1, minWidth: 0 }}>
                           <div style={{
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '9px',
                             textTransform: 'uppercase',
                             letterSpacing: '0.08em',
@@ -5962,7 +5962,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           }}>
                             {essay.title}
                           </div>
-                          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: selectedJournalSlug === essay.slug ? '#c2cdc2' : '#889088' }}>
+                          <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: selectedJournalSlug === essay.slug ? '#c2cdc2' : '#889088' }}>
                             {essay.readTime} · {essay.author}
                           </div>
                         </div>
@@ -5992,7 +5992,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px', paddingBottom: '12px', borderBottom: '1px solid #f0efe8' }}>
                     <div>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
                         Editing Publication ({selectedJournal.slug})
                       </div>
                       <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', margin: '4px 0 0 0' }}>
@@ -6007,7 +6007,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           padding: '6px 12px',
                           background: '#f0efe8',
                           color: '#1a1d19',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           textDecoration: 'none',
                         }}
@@ -6021,7 +6021,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           border: '1px solid #e57373',
                           color: '#d32f2f',
                           padding: '6px 12px',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           cursor: 'pointer',
                         }}
@@ -6033,7 +6033,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Headline / Title
                       </label>
                       <input
@@ -6045,19 +6045,19 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Category
                       </label>
                       <input
                         type="text"
                         value={selectedJournal.category}
                         onChange={e => updateJournalField(selectedJournal.slug, 'category', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Publication Date & Read Time
                       </label>
                       <div style={{ display: 'flex', gap: '8px' }}>
@@ -6065,31 +6065,31 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           type="text"
                           value={selectedJournal.date}
                           onChange={e => updateJournalField(selectedJournal.slug, 'date', e.target.value)}
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                         />
                         <input
                           type="text"
                           value={selectedJournal.readTime}
                           onChange={e => updateJournalField(selectedJournal.slug, 'readTime', e.target.value)}
-                          style={{ width: '120px', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          style={{ width: '120px', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Author / Spatial Unit
                       </label>
                       <input
                         type="text"
                         value={selectedJournal.author}
                         onChange={e => updateJournalField(selectedJournal.slug, 'author', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Hero Image Path
                       </label>
                       <div style={{ display: 'flex', gap: '6px' }}>
@@ -6097,12 +6097,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           type="text"
                           value={selectedJournal.image}
                           onChange={e => updateJournalField(selectedJournal.slug, 'image', e.target.value)}
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                         />
                         <select
                           onChange={e => { if (e.target.value) updateJournalField(selectedJournal.slug, 'image', e.target.value); }}
                           value=""
-                          style={{ padding: '8px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#f8f7f2' }}
+                          style={{ padding: '8px 10px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: '#f8f7f2' }}
                         >
                           <option value="">Pick Asset...</option>
                           {mediaAssets.map(img => (
@@ -6113,19 +6113,19 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Lead Summary
                       </label>
                       <textarea
                         rows={2}
                         value={selectedJournal.summary}
                         onChange={e => updateJournalField(selectedJournal.slug, 'summary', e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.5 }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px', lineHeight: 1.5 }}
                       />
                     </div>
 
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Pull Quote (Editorial Accent)
                       </label>
                       <input
@@ -6137,26 +6137,26 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Full Article Paragraphs (separate paragraphs with blank lines)
                       </label>
                       <textarea
                         rows={8}
                         value={selectedJournal.content?.join('\n\n') || ''}
                         onChange={e => updateJournalField(selectedJournal.slug, 'content', e.target.value.split('\n\n').map(p => p.trim()).filter(Boolean))}
-                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', lineHeight: 1.6 }}
+                        style={{ width: '100%', padding: '10px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', lineHeight: 1.6 }}
                       />
                     </div>
 
                     <div style={{ gridColumn: '1 / -1' }}>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Key Takeaways (comma separated)
                       </label>
                       <input
                         type="text"
                         value={selectedJournal.takeaways?.join(', ') || ''}
                         onChange={e => updateJournalField(selectedJournal.slug, 'takeaways', e.target.value.split(',').map(t => t.trim()).filter(Boolean))}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}
                       />
                     </div>
                   </div>
@@ -6167,14 +6167,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   <div style={{ marginTop: '28px', borderTop: '2px solid #1a1d19', paddingTop: '20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px', flexWrap: 'wrap', gap: '10px' }}>
                       <div>
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                        <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                           Visual Documentation &amp; Monograph
                         </div>
                         <h4 style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', fontWeight: 500, margin: '2px 0 0 0', color: '#1a1d19' }}>
                           Article Photo Gallery ({(selectedJournal.galleryImages || []).length} Photos)
                         </h4>
                       </div>
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#687268' }}>
+                      <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#687268' }}>
                         Visible on essay page &amp; interactive modal
                       </span>
                     </div>
@@ -6215,7 +6215,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   position: 'absolute',
                                   top: '8px',
                                   left: '8px',
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '9px',
                                   background: 'rgba(20,23,19,0.85)',
                                   color: '#fff',
@@ -6232,7 +6232,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                     position: 'absolute',
                                     top: '8px',
                                     right: '8px',
-                                    fontFamily: 'DM Mono, monospace',
+                                    fontFamily: 'Urbanist, sans-serif',
                                     fontSize: '9px',
                                     background: '#73c991',
                                     color: '#1a1d19',
@@ -6250,7 +6250,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               <span
                                 title={photoUrl}
                                 style={{
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '10px',
                                   color: '#555',
                                   whiteSpace: 'nowrap',
@@ -6320,7 +6320,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                         padding: '3px 6px',
                                         background: '#fff',
                                         border: '1px solid #ccc',
-                                        fontFamily: 'DM Mono, monospace',
+                                        fontFamily: 'Urbanist, sans-serif',
                                         fontSize: '9px',
                                         cursor: 'pointer',
                                       }}
@@ -6367,7 +6367,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         <div style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, color: '#1a1d19' }}>
                           No gallery photos attached yet
                         </div>
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', marginTop: '2px' }}>
+                        <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', marginTop: '2px' }}>
                           Add photos below to create an architectural monograph gallery for this essay.
                         </div>
                       </div>
@@ -6375,7 +6375,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                     {/* Add Photo Tools */}
                     <div style={{ background: '#f8f7f2', border: '1px solid #e0ded6', padding: '16px', borderRadius: '2px' }}>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600, marginBottom: '8px' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600, marginBottom: '8px' }}>
                         + Add Photo to Article Gallery
                       </div>
 
@@ -6384,7 +6384,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           type="text"
                           id={`add-gallery-single-${selectedJournal.slug}`}
                           placeholder="Paste image URL or path (/images/images/...)"
-                          style={{ flex: 1, minWidth: '220px', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ flex: 1, minWidth: '220px', padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                           onKeyDown={e => {
                             if (e.key === 'Enter') {
                               e.preventDefault();
@@ -6414,7 +6414,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             e.target.value = '';
                           }}
                           defaultValue=""
-                          style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ padding: '8px 12px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         >
                           <option value="">Choose from Media Assets...</option>
                           {mediaAssets.map(img => (
@@ -6441,7 +6441,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             background: '#1a1d19',
                             color: '#fff',
                             border: 'none',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '11px',
                             cursor: 'pointer',
                           }}
@@ -6451,7 +6451,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </div>
 
                       {/* Bulk Add Photos Option */}
-                      <details style={{ marginTop: '8px', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+                      <details style={{ marginTop: '8px', fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
                         <summary style={{ cursor: 'pointer', color: '#687268' }}>
                           Bulk Add Multiple Photos (Paste multiple URLs)
                         </summary>
@@ -6460,7 +6460,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             id={`add-gallery-bulk-${selectedJournal.slug}`}
                             rows={3}
                             placeholder="Paste multiple image URLs (one per line, or comma separated)"
-                            style={{ width: '100%', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                            style={{ width: '100%', padding: '8px 10px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                           />
                           <button
                             type="button"
@@ -6484,7 +6484,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               background: '#2a3029',
                               color: '#fff',
                               border: 'none',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                               fontSize: '10px',
                               cursor: 'pointer',
                             }}
@@ -6498,7 +6498,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                   {/* Visual Preview Card */}
                   <div style={{ marginTop: '24px', borderTop: '1px solid #eee', paddingTop: '16px' }}>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '10px' }}>
+                    <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '10px' }}>
                       Journal Card Preview (as shown in /journal grid)
                     </div>
                     <div style={{ maxWidth: '420px', background: '#ffffff', border: '1px solid var(--line, #e2dfd5)', padding: '20px' }}>
@@ -6513,7 +6513,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           />
                         )}
                       </div>
-                      <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
+                      <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
                         {selectedJournal.category} · {selectedJournal.date}
                       </div>
                       <h4 style={{ fontFamily: 'var(--serif, serif)', fontSize: '17px', margin: '6px 0 8px 0', lineHeight: 1.3 }}>
@@ -6522,7 +6522,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       <p style={{ fontFamily: 'system-ui, sans-serif', fontSize: '12px', color: '#555', lineHeight: 1.5, margin: 0 }}>
                         {selectedJournal.summary}
                       </p>
-                      <div style={{ marginTop: '14px', paddingTop: '10px', borderTop: '1px solid #f0efe8', display: 'flex', justifyContent: 'space-between', fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#888' }}>
+                      <div style={{ marginTop: '14px', paddingTop: '10px', borderTop: '1px solid #f0efe8', display: 'flex', justifyContent: 'space-between', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#888' }}>
                         <span>{selectedJournal.readTime}</span>
                         <span>Read Essay ↗</span>
                       </div>
@@ -6541,13 +6541,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Foundry Lineage & Brand Identity
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
                   Studio Story, Family Photo & Architectural Philosophy
                 </h2>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#687068', margin: '6px 0 0 0' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#687068', margin: '6px 0 0 0' }}>
                   Manage the company team photo, mission manifesto, 6 architectural pillars, and Bangalore workshop story live on <code style={{ color: '#1a1d19' }}>/about</code>.
                 </p>
               </div>
@@ -6559,7 +6559,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 14px',
                     background: '#f0efe8',
                     color: '#1a1d19',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     textDecoration: 'none',
                     display: 'flex',
@@ -6583,7 +6583,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: 'transparent',
                     border: '1px solid #ccc',
                     color: '#555',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                   }}
@@ -6598,7 +6598,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#1a1d19',
                     color: '#ffffff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     fontWeight: 600,
                     cursor: isContextLoading ? 'wait' : 'pointer',
@@ -6617,7 +6617,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               {/* SECTION 1: COMPANY FAMILY PHOTO */}
               <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
                 <div style={{ borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '20px' }}>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                     Chapter 00 • Visual Lineage & Leadership
                   </div>
                   <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
@@ -6631,7 +6631,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '24px', alignItems: 'start' }}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Family Photo URL
                       </label>
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
@@ -6640,12 +6640,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           value={safeAbout.familyPhotoUrl || ''}
                           onChange={e => updateAboutField('familyPhotoUrl', e.target.value)}
                           placeholder="/images/about/company-family.jpg"
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                         />
                         <select
                           value=""
                           onChange={e => { if (e.target.value) updateAboutField('familyPhotoUrl', e.target.value); }}
-                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#f8f7f2' }}
                         >
                           <option value="">Media Asset...</option>
                           {mediaAssets.map(img => (
@@ -6655,7 +6655,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </div>
 
                       {/* Direct Upload Trigger */}
-                      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', background: '#f0efe8', border: '1px solid #ddd', cursor: 'pointer', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', background: '#f0efe8', border: '1px solid #ddd', cursor: 'pointer', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}>
                         <span>📁</span>
                         <span>Upload New Family Photo from Computer</span>
                         <input
@@ -6677,7 +6677,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Photo Headline / Caption
                       </label>
                       <input
@@ -6685,12 +6685,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         value={safeAbout.familyPhotoCaption || ''}
                         onChange={e => updateAboutField('familyPhotoCaption', e.target.value)}
                         placeholder="Ace Spaces Foundry & Craft Team"
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Subtitle / Location Narrative
                       </label>
                       <input
@@ -6698,14 +6698,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         value={safeAbout.familyPhotoSubtitle || ''}
                         onChange={e => updateAboutField('familyPhotoSubtitle', e.target.value)}
                         placeholder="The artisanal hands behind continuous monolithic mineral architecture in Bengaluru"
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
 
                   {/* Photo Live Preview Frame */}
                   <div style={{ background: '#faf9f6', padding: '16px', border: '1px solid #e5e4de' }}>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '10px' }}>
+                    <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '10px' }}>
                       Live Header Preview on /about
                     </div>
                     <div style={{ position: 'relative', width: '100%', height: '240px', background: '#1a1d19', overflow: 'hidden', border: '1px solid #ddd' }}>
@@ -6717,12 +6717,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
                         />
                       ) : (
-                        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                           No image selected
                         </div>
                       )}
                       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '12px', background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)', color: '#fff' }}>
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600 }}>
+                        <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600 }}>
                           {safeAbout.familyPhotoCaption || 'Ace Spaces Foundry & Craft Team'}
                         </div>
                         <div style={{ fontFamily: 'system-ui, sans-serif', fontSize: '10px', color: '#ccc', marginTop: '2px' }}>
@@ -6737,7 +6737,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               {/* SECTION 2: CHAPTER 01 MISSION MANIFESTO */}
               <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
                 <div style={{ borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '20px' }}>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                     Chapter 01 • Founding Manifesto
                   </div>
                   <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
@@ -6747,12 +6747,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '16px' }}>
                   <div style={{ background: '#fcfbf8', border: '1px solid #eae6de', padding: '16px', borderRadius: '4px' }}>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600, marginBottom: '12px' }}>
+                    <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600, marginBottom: '12px' }}>
                       ★ Atelier Core Vision & Manifesto Banner
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                           Manifesto Headline
                         </label>
                         <input
@@ -6764,7 +6764,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                           Manifesto Lead Narrative
                         </label>
                         <textarea
@@ -6776,7 +6776,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                           Manifesto Subtext / Core Commitment
                         </label>
                         <input
@@ -6784,14 +6784,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           value={safeAbout.manifestoSub || ''}
                           onChange={e => updateAboutField('manifestoSub', e.target.value)}
                           placeholder="Every detail is considered. Every dimension matters. Every creation is built around your vision."
-                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                         />
                       </div>
                     </div>
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Chapter Headline Title
                     </label>
                     <input
@@ -6804,7 +6804,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Manifesto Narrative (Opening Statement)
                     </label>
                     <textarea
@@ -6822,7 +6822,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
                 <div style={{ borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <div>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                       Chapter 02 • Core Philosophy
                     </div>
                     <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
@@ -6830,7 +6830,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </h3>
                   </div>
                   <div style={{ maxWidth: '320px', width: '100%' }}>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                       Section Heading
                     </label>
                     <input
@@ -6838,7 +6838,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       value={safeAbout.chapter2Title || ''}
                       onChange={e => updateAboutField('chapter2Title', e.target.value)}
                       placeholder="What we stand for."
-                      style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                      style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                     />
                   </div>
                 </div>
@@ -6860,19 +6860,19 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       }}
                     >
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 700, color: '#1a1d19', background: '#e5e4de', padding: '2px 8px' }}>
+                        <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', fontWeight: 700, color: '#1a1d19', background: '#e5e4de', padding: '2px 8px' }}>
                           Pillar {pillar.number || `0${idx + 1}`}
                         </span>
                         <input
                           type="text"
                           value={pillar.number || `0${idx + 1}`}
                           onChange={e => updateAboutPillar(idx, 'number', e.target.value)}
-                          style={{ width: '45px', padding: '4px 6px', border: '1px solid #ccc', fontFamily: 'DM Mono, monospace', fontSize: '11px', textAlign: 'center' }}
+                          style={{ width: '45px', padding: '4px 6px', border: '1px solid #ccc', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textAlign: 'center' }}
                         />
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
                           Pillar Title
                         </label>
                         <input
@@ -6885,7 +6885,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
                           Subtitle / Essence Quote
                         </label>
                         <input
@@ -6893,12 +6893,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           value={pillar.quote || ''}
                           onChange={e => updateAboutPillar(idx, 'quote', e.target.value)}
                           placeholder="e.g. Dissolving the Joint"
-                          style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#fff' }}
+                          style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#fff' }}
                         />
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
                           Description Narrative
                         </label>
                         <textarea
@@ -6911,7 +6911,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       </div>
 
                       <div>
-                        <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
+                        <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', color: '#788078', marginBottom: '3px' }}>
                           Technical Specification Detail
                         </label>
                         <input
@@ -6919,7 +6919,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           value={pillar.detail || ''}
                           onChange={e => updateAboutPillar(idx, 'detail', e.target.value)}
                           placeholder="e.g. Chemically welded PMMA matrix with zero visible joint lines under 600-grit honing."
-                          style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '10px', background: '#fff', color: '#444' }}
+                          style={{ width: '100%', padding: '6px 10px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: '#fff', color: '#444' }}
                         />
                       </div>
                     </div>
@@ -6930,7 +6930,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               {/* SECTION 4: CHAPTER 03 BANGALORE FOUNDRY & WORKSHOP */}
               <div style={{ background: '#ffffff', padding: '28px', border: '1px solid rgba(0,0,0,0.08)' }}>
                 <div style={{ borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '20px' }}>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                     Chapter 03 • Bangalore Foundry & Workshop
                   </div>
                   <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', margin: '4px 0 0 0', fontWeight: 400 }}>
@@ -6941,7 +6941,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '24px', alignItems: 'start' }}>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Chapter Heading
                       </label>
                       <input
@@ -6954,7 +6954,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Workshop Photo URL
                       </label>
                       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
@@ -6963,12 +6963,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           value={safeAbout.workshopPhotoUrl || ''}
                           onChange={e => updateAboutField('workshopPhotoUrl', e.target.value)}
                           placeholder="/images/images/app_residential_calacatta_greige_1.jpg"
-                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                          style={{ flex: 1, padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                         />
                         <select
                           value=""
                           onChange={e => { if (e.target.value) updateAboutField('workshopPhotoUrl', e.target.value); }}
-                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '11px', background: '#f8f7f2' }}
+                          style={{ padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', background: '#f8f7f2' }}
                         >
                           <option value="">Media Asset...</option>
                           {mediaAssets.map(img => (
@@ -6977,7 +6977,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         </select>
                       </div>
 
-                      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', background: '#f0efe8', border: '1px solid #ddd', cursor: 'pointer', fontFamily: 'DM Mono, monospace', fontSize: '10px' }}>
+                      <label style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '6px 12px', background: '#f0efe8', border: '1px solid #ddd', cursor: 'pointer', fontFamily: 'Urbanist, sans-serif', fontSize: '10px' }}>
                         <span>📁</span>
                         <span>Upload New Workshop Photo</span>
                         <input
@@ -6999,7 +6999,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#788078', marginBottom: '4px' }}>
                         Workshop Photo Technical Caption
                       </label>
                       <input
@@ -7007,13 +7007,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         value={safeAbout.workshopPhotoCaption || ''}
                         onChange={e => updateAboutField('workshopPhotoCaption', e.target.value)}
                         placeholder="5-Axis CNC Thermoforming and Continuous 12mm Seamless Inconspicuous Joinery"
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'DM Mono, monospace', fontSize: '12px' }}
+                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', fontFamily: 'Urbanist, sans-serif', fontSize: '12px' }}
                       />
                     </div>
                   </div>
 
                   <div style={{ background: '#faf9f6', padding: '16px', border: '1px solid #e5e4de' }}>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '10px' }}>
+                    <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '10px' }}>
                       Workshop Photo Live Preview
                     </div>
                     <div style={{ position: 'relative', width: '100%', height: '220px', background: '#1a1d19', overflow: 'hidden', border: '1px solid #ddd' }}>
@@ -7025,12 +7025,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           onError={e => { (e.target as HTMLElement).style.display = 'none'; }}
                         />
                       ) : (
-                        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                        <div style={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#888', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                           No image selected
                         </div>
                       )}
                       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '10px', background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%)', color: '#fff' }}>
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#ccc' }}>
+                        <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#ccc' }}>
                           {safeAbout.workshopPhotoCaption || 'Workshop Fabrication'}
                         </div>
                       </div>
@@ -7049,7 +7049,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#1a1d19',
                     color: '#ffffff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '12px',
                     fontWeight: 600,
                     cursor: isContextLoading ? 'wait' : 'pointer',
@@ -7073,7 +7073,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Visual Storage & Asset Repository
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
@@ -7098,7 +7098,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#1a1d19',
                     color: '#fff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     letterSpacing: '0.06em',
                     cursor: uploading ? 'wait' : 'pointer',
@@ -7125,7 +7125,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: mediaFilter === f.val ? '#1a1d19' : '#ffffff',
                     color: mediaFilter === f.val ? '#ffffff' : '#1a1d19',
                     border: '1px solid rgba(0,0,0,0.08)',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     cursor: 'pointer',
                   }}
@@ -7173,7 +7173,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                       <span style={{
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '9px',
                         padding: '1px 5px',
                         background: img.startsWith('data:') ? 'rgba(33, 150, 243, 0.1)' : 'rgba(76, 175, 80, 0.1)',
@@ -7183,7 +7183,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         {img.startsWith('data:') ? 'Inline Data URL' : 'Local Storage'}
                       </span>
                     </div>
-                    <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#555', wordBreak: 'break-all', minHeight: '28px' }}>
+                    <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#555', wordBreak: 'break-all', minHeight: '28px' }}>
                       {img.startsWith('data:') ? `Embedded Base64 (~${Math.round(img.length / 1024)} KB)` : img.split('/').pop()}
                     </div>
                     <div style={{ display: 'flex', gap: '6px', marginTop: 'auto' }}>
@@ -7194,7 +7194,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           padding: '6px',
                           background: '#f5f4ee',
                           border: '1px solid rgba(0,0,0,0.08)',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '9px',
                           cursor: 'pointer',
                         }}
@@ -7215,7 +7215,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           background: '#1a1d19',
                           color: '#fff',
                           border: 'none',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '9px',
                           cursor: 'pointer',
                         }}
@@ -7236,13 +7236,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Specimen Box Pipeline · Real-Time Client Carts
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
                   Sample Orders & Cart Tracking
                 </h2>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6d746d', margin: '6px 0 0 0' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#6d746d', margin: '6px 0 0 0' }}>
                   Track architects placing specimen sample orders, live draft checkouts as they type, delivery shipping slips, and shortlisted materials.
                 </p>
               </div>
@@ -7256,7 +7256,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#e8f5e9',
                     border: '1px solid #a5d6a7',
                     padding: '6px 12px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     color: '#2e7d32',
                     fontWeight: 600,
@@ -7272,7 +7272,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 16px',
                     background: '#ffffff',
                     border: '1px solid rgba(0,0,0,0.15)',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                     display: 'flex',
@@ -7289,7 +7289,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#1a1d19',
                     color: '#ffffff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                     display: 'flex',
@@ -7320,7 +7320,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       background: orderFilter === filter.key ? '#1a1d19' : '#ffffff',
                       color: orderFilter === filter.key ? '#ffffff' : '#4d544d',
                       border: '1px solid rgba(0,0,0,0.12)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',
@@ -7342,7 +7342,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 14px',
                     background: '#ffffff',
                     border: '1px solid rgba(0,0,0,0.15)',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     outline: 'none',
                   }}
@@ -7367,13 +7367,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               })
               .length === 0 ? (
               <div style={{ background: '#ffffff', padding: '48px', border: '1px solid rgba(0,0,0,0.08)', textAlign: 'center' }}>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#2e7d32', textTransform: 'uppercase', fontWeight: 600 }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#2e7d32', textTransform: 'uppercase', fontWeight: 600 }}>
                   ● Real-Time Listener Ready · Clean Production Database
                 </div>
                 <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', fontWeight: 400, margin: '8px 0 12px 0' }}>
                   No Sample Orders Yet
                 </h3>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#889088', maxWidth: '460px', margin: '0 auto' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#889088', maxWidth: '460px', margin: '0 auto' }}>
                   Zero mock data active. The moment an architect clicks &quot;+ Request Specimen&quot; and begins typing their details, their shortlisted materials and draft checkout will stream here in real time.
                 </p>
               </div>
@@ -7415,7 +7415,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         {/* Order Header Row */}
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', borderBottom: '1px solid #f0efe8', paddingBottom: '16px', marginBottom: '20px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '14px', fontWeight: 600, color: '#1a1d19' }}>
+                            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14px', fontWeight: 600, color: '#1a1d19' }}>
                               #{order.orderNumber}
                             </span>
                             <span
@@ -7424,7 +7424,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 color: statusBadgeColors.text,
                                 border: `1px solid ${statusBadgeColors.border}`,
                                 padding: '3px 10px',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '10px',
                                 letterSpacing: '0.06em',
                                 fontWeight: 600,
@@ -7432,7 +7432,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                             >
                               {statusBadgeColors.label}
                             </span>
-                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078' }}>
+                            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078' }}>
                               {new Date(order.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                             </span>
                           </div>
@@ -7444,7 +7444,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 padding: '6px 14px',
                                 background: '#f5f4ee',
                                 border: '1px solid rgba(0,0,0,0.15)',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '11px',
                                 cursor: 'pointer',
                                 display: 'flex',
@@ -7460,7 +7460,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 padding: '6px 14px',
                                 background: '#f5f4ee',
                                 border: '1px solid rgba(0,0,0,0.15)',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '11px',
                                 cursor: 'pointer',
                                 display: 'flex',
@@ -7477,7 +7477,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 background: 'transparent',
                                 border: '1px solid rgba(215,65,50,0.3)',
                                 color: '#b93222',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '11px',
                                 cursor: 'pointer',
                               }}
@@ -7491,18 +7491,18 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         {/* Customer & Shipping Details Grid */}
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px', marginBottom: '24px' }}>
                           <div>
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '4px' }}>
+                            <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '4px' }}>
                               Architect / Specifier
                             </div>
                             <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', fontWeight: 500, color: '#1a1d19' }}>
                               {order.customer.name}
                             </div>
                             {order.customer.studio && (
-                              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#4d544d', marginTop: '2px' }}>
+                              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#4d544d', marginTop: '2px' }}>
                                 🏛 {order.customer.studio}
                               </div>
                             )}
-                            <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                            <div style={{ marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '4px', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                               {order.customer.email && (
                                 <a href={`mailto:${order.customer.email}`} style={{ color: '#1a1d19', textDecoration: 'none' }}>
                                   ✉ {order.customer.email}
@@ -7522,10 +7522,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           </div>
 
                           <div>
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '4px' }}>
+                            <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '4px' }}>
                               Studio Courier Delivery Address
                             </div>
-                            <div style={{ background: '#faf9f5', border: '1px solid #eeece4', padding: '14px 16px', fontFamily: 'DM Mono, monospace', fontSize: '11px', lineHeight: 1.6, color: '#2a3029' }}>
+                            <div style={{ background: '#faf9f5', border: '1px solid #eeece4', padding: '14px 16px', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', lineHeight: 1.6, color: '#2a3029' }}>
                               {order.customer.address ? (
                                 <>
                                   <div>{order.customer.address}</div>
@@ -7542,7 +7542,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                         {/* Shortlisted / Cart Specimens Gallery */}
                         <div style={{ borderTop: '1px solid #f0efe8', paddingTop: '18px', marginBottom: '20px' }}>
-                          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '12px' }}>
+                          <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '12px' }}>
                             Cart Material Specimens ({order.items.length} Selected)
                           </div>
 
@@ -7590,7 +7590,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   <div style={{ fontSize: '12px', fontWeight: 600, color: '#1a1d19', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                     {it.name}
                                   </div>
-                                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                                  <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                                     {it.finish} · 100mm²
                                   </div>
                                 </div>
@@ -7602,7 +7602,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         {/* Order Management Actions Row */}
                         <div style={{ background: '#f5f4ee', padding: '12px 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap' }}>
-                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059' }}>
+                            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#596059' }}>
                               Update Status:
                             </span>
                             {(['submitted', 'in-progress', 'dispatched', 'delivered', 'cancelled'] as OrderStatus[]).map(st => (
@@ -7614,7 +7614,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   background: order.status === st ? '#1a1d19' : '#ffffff',
                                   color: order.status === st ? '#ffffff' : '#333333',
                                   border: '1px solid rgba(0,0,0,0.15)',
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '10px',
                                   textTransform: 'uppercase',
                                   cursor: 'pointer',
@@ -7637,7 +7637,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   padding: '5px 12px',
                                   background: '#25D366',
                                   color: '#ffffff',
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '10px',
                                   fontWeight: 600,
                                   textDecoration: 'none',
@@ -7651,7 +7651,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                               </a>
                             )}
                             {order.notes && (
-                              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078' }}>
+                              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078' }}>
                                 Note: {order.notes}
                               </div>
                             )}
@@ -7672,13 +7672,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Client Briefs & Architectural Consultation Requests
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
                   Project Enquiries & Leads
                 </h2>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6d746d', margin: '6px 0 0 0' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#6d746d', margin: '6px 0 0 0' }}>
                   Submissions from the Contact Consultation Form (`/contact`) covering bespoke joinery, large-scale slabs, and technical material inquiries.
                 </p>
               </div>
@@ -7692,7 +7692,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#e8f5e9',
                     border: '1px solid #a5d6a7',
                     padding: '6px 12px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     color: '#2e7d32',
                     fontWeight: 600,
@@ -7708,7 +7708,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 16px',
                     background: '#ffffff',
                     border: '1px solid rgba(0,0,0,0.15)',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                     display: 'flex',
@@ -7725,7 +7725,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#1a1d19',
                     color: '#ffffff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                     display: 'flex',
@@ -7756,7 +7756,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                       background: inquiryFilter === filter.key ? '#1a1d19' : '#ffffff',
                       color: inquiryFilter === filter.key ? '#ffffff' : '#4d544d',
                       border: '1px solid rgba(0,0,0,0.12)',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       cursor: 'pointer',
                     }}
@@ -7777,7 +7777,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 14px',
                     background: '#ffffff',
                     border: '1px solid rgba(0,0,0,0.15)',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     outline: 'none',
                   }}
@@ -7802,13 +7802,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               })
               .length === 0 ? (
               <div style={{ background: '#ffffff', padding: '48px', border: '1px solid rgba(0,0,0,0.08)', textAlign: 'center' }}>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#2e7d32', textTransform: 'uppercase', fontWeight: 600 }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#2e7d32', textTransform: 'uppercase', fontWeight: 600 }}>
                   ● Real-Time Listener Ready · Clean Production Database
                 </div>
                 <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', fontWeight: 400, margin: '8px 0 12px 0' }}>
                   {inquiries.length === 0 ? 'No Project Enquiries Yet' : `No enquiries matching filter "${inquiryFilter}"`}
                 </h3>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#889088', maxWidth: '480px', margin: '0 auto' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#889088', maxWidth: '480px', margin: '0 auto' }}>
                   Zero mock data active. The moment an architect or client submits the Contact Consultation Form (/contact), their specifications, contact info, and space brief will stream here immediately in real time.
                 </p>
               </div>
@@ -7849,7 +7849,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         {/* Header Row */}
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px', borderBottom: '1px solid #f0efe8', paddingBottom: '14px', marginBottom: '18px' }}>
                           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '13px', fontWeight: 600, color: '#1a1d19' }}>
+                            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '13px', fontWeight: 600, color: '#1a1d19' }}>
                               #{inq.inquiryNumber}
                             </span>
                             <span
@@ -7858,14 +7858,14 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 color: statusColor.text,
                                 border: `1px solid ${statusColor.border}`,
                                 padding: '3px 10px',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '10px',
                                 fontWeight: 600,
                               }}
                             >
                               {statusColor.label}
                             </span>
-                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078' }}>
+                            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078' }}>
                               {new Date(inq.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                             </span>
                           </div>
@@ -7877,7 +7877,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 padding: '6px 14px',
                                 background: '#1a1d19',
                                 color: '#ffffff',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '11px',
                                 textDecoration: 'none',
                                 display: 'flex',
@@ -7898,7 +7898,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                   padding: '6px 14px',
                                   background: '#25D366',
                                   color: '#ffffff',
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '11px',
                                   fontWeight: 600,
                                   textDecoration: 'none',
@@ -7918,7 +7918,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 background: 'transparent',
                                 border: '1px solid rgba(215,65,50,0.3)',
                                 color: '#b93222',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '11px',
                                 cursor: 'pointer',
                               }}
@@ -7932,13 +7932,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                         {/* Client details & Project typology */}
                         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px', marginBottom: '16px' }}>
                           <div>
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
+                            <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
                               Prospective Client
                             </div>
                             <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '17px', fontWeight: 500, color: '#1a1d19' }}>
                               {inq.name}
                             </div>
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#4d544d', marginTop: '4px' }}>
+                            <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#4d544d', marginTop: '4px' }}>
                               <a href={`mailto:${inq.email}`} style={{ color: '#1a1d19', textDecoration: 'none' }}>
                                 ✉ {inq.email}
                               </a>
@@ -7953,10 +7953,10 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                           </div>
 
                           <div>
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
+                            <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
                               Project Typology & Scope
                             </div>
-                            <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#1a1d19', fontWeight: 500, marginTop: '2px' }}>
+                            <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#1a1d19', fontWeight: 500, marginTop: '2px' }}>
                               {inq.projectType}
                             </div>
                           </div>
@@ -7964,17 +7964,17 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
 
                         {/* Brief Message Callout */}
                         <div style={{ background: '#faf9f5', border: '1px solid #eeece4', padding: '16px', marginBottom: '16px' }}>
-                          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '6px' }}>
+                          <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', marginBottom: '6px' }}>
                             Consultation Brief & Space Requirements
                           </div>
-                          <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', lineHeight: 1.65, color: '#2a3029', whiteSpace: 'pre-wrap' }}>
+                          <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', lineHeight: 1.65, color: '#2a3029', whiteSpace: 'pre-wrap' }}>
                             {inq.message}
                           </div>
                         </div>
 
                         {/* Status update buttons */}
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
-                          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
+                          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase' }}>
                             Update Stage:
                           </span>
                           {(['new', 'in-discussion', 'sample-sent', 'closed'] as InquiryStatus[]).map(st => (
@@ -7986,7 +7986,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 background: inq.status === st ? '#1a1d19' : '#ffffff',
                                 color: inq.status === st ? '#ffffff' : '#4d544d',
                                 border: '1px solid rgba(0,0,0,0.15)',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '10px',
                                 textTransform: 'uppercase',
                                 cursor: 'pointer',
@@ -8011,13 +8011,13 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px', flexWrap: 'wrap', gap: '16px' }}>
               <div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788078', textTransform: 'uppercase' }}>
                   Audience & Editorial Monograph Distribution
                 </div>
                 <h2 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', fontWeight: 400, margin: '4px 0 0 0' }}>
                   Dispatch Newsletter Subscribers ({subscribers.length})
                 </h2>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#6d746d', margin: '6px 0 0 0' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#6d746d', margin: '6px 0 0 0' }}>
                   Verified email addresses gathered from the footer &quot;Join the Dispatch&quot; subscription form across the site.
                 </p>
               </div>
@@ -8031,7 +8031,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#e8f5e9',
                     border: '1px solid #a5d6a7',
                     padding: '6px 12px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     color: '#2e7d32',
                     fontWeight: 600,
@@ -8048,7 +8048,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     background: '#1a1d19',
                     color: '#ffffff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                   }}
@@ -8061,7 +8061,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 16px',
                     background: '#ffffff',
                     border: '1px solid rgba(0,0,0,0.15)',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                   }}
@@ -8074,7 +8074,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                     padding: '8px 16px',
                     background: '#ffffff',
                     border: '1px solid rgba(0,0,0,0.15)',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                   }}
@@ -8097,7 +8097,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   padding: '8px 14px',
                   background: '#ffffff',
                   border: '1px solid rgba(0,0,0,0.15)',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   outline: 'none',
                 }}
@@ -8107,19 +8107,19 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             {/* Subscribers Table or Clean Empty State */}
             {subscribers.length === 0 ? (
               <div style={{ background: '#ffffff', padding: '48px', border: '1px solid rgba(0,0,0,0.08)', textAlign: 'center' }}>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#2e7d32', textTransform: 'uppercase', fontWeight: 600 }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#2e7d32', textTransform: 'uppercase', fontWeight: 600 }}>
                   ● Real-Time Listener Ready · Clean Production Database
                 </div>
                 <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', fontWeight: 400, margin: '8px 0 12px 0' }}>
                   No Newsletter Subscribers Yet
                 </h3>
-                <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#889088', maxWidth: '480px', margin: '0 auto' }}>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#889088', maxWidth: '480px', margin: '0 auto' }}>
                   Zero mock data active. The moment an architect or visitor signs up via the &quot;Join the Dispatch&quot; form in the footer, their verified email will instantly appear in this table in real time.
                 </p>
               </div>
             ) : (
               <div style={{ background: '#ffffff', border: '1px solid rgba(0,0,0,0.08)', overflowX: 'auto' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                   <thead>
                     <tr style={{ background: '#f5f4ee', borderBottom: '1px solid rgba(0,0,0,0.08)' }}>
                       <th style={{ padding: '12px 16px', color: '#788078', fontWeight: 500, width: '40px' }}>#</th>
@@ -8160,7 +8160,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 background: 'transparent',
                                 border: '1px solid #ddd',
                                 padding: '4px 8px',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '10px',
                                 cursor: 'pointer',
                                 marginRight: '8px',
@@ -8175,7 +8175,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 color: '#1a1d19',
                                 border: '1px solid #ddd',
                                 padding: '4px 8px',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '10px',
                                 marginRight: '10px',
                               }}
@@ -8189,7 +8189,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                                 border: 'none',
                                 color: '#b93222',
                                 cursor: 'pointer',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 fontSize: '11px',
                               }}
                             >
@@ -8216,7 +8216,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        fontFamily: 'DM Mono, monospace',
+        fontFamily: 'Urbanist, sans-serif',
         fontSize: '10px',
       }}>
         <span>ACE SPACES STUDIO CONSOLE · RAW ARCHITECTURAL FOUNDRY</span>

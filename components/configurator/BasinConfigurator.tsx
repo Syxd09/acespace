@@ -332,7 +332,7 @@ export default function BasinConfigurator({
             color: '#e9e8e2',
             padding: '12px 24px',
             borderRadius: '2px',
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '12px',
             letterSpacing: '0.04em',
             zIndex: 99999,
@@ -411,7 +411,7 @@ export default function BasinConfigurator({
                     border: 'none',
                     borderRadius: '0px',
                     padding: '4px 10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '9.5px',
                     fontWeight: activeView === v.key ? 600 : 500,
                     textTransform: 'uppercase',
@@ -488,7 +488,7 @@ export default function BasinConfigurator({
                         strokeWidth="3px"
                         strokeLinejoin="round"
                         paintOrder="stroke fill"
-                        fontFamily="DM Mono, monospace"
+                        fontFamily="Urbanist, sans-serif"
                         fontSize="10.5px"
                         fontWeight="600"
                         letterSpacing="0.02em"
@@ -523,7 +523,7 @@ export default function BasinConfigurator({
                 bottom: '18px',
                 left: '20px',
                 pointerEvents: 'none',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '10px',
                 color: '#7a857a',
                 letterSpacing: '0.04em',
@@ -604,7 +604,7 @@ export default function BasinConfigurator({
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M21 12a9 9 0 1 1-2.64-6.36L21 8" />
                   <path d="M21 3v5h-5" />
-                  <text x="12" y="14" fontSize="7" fontWeight="bold" fontFamily="DM Mono, monospace" textAnchor="middle" fill="currentColor" stroke="none">360</text>
+                  <text x="12" y="14" fontSize="7" fontWeight="bold" fontFamily="Urbanist, sans-serif" textAnchor="middle" fill="currentColor" stroke="none">360</text>
                 </svg>
               </button>
 
@@ -768,7 +768,7 @@ export default function BasinConfigurator({
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#737e73', fontWeight: 600 }}>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#737e73', fontWeight: 600 }}>
                 Base Model
               </span>
               <button
@@ -778,7 +778,7 @@ export default function BasinConfigurator({
                   background: 'none',
                   border: 'none',
                   color: '#737e73',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   cursor: 'pointer',
                   textDecoration: 'underline',
@@ -793,7 +793,7 @@ export default function BasinConfigurator({
                 <div style={{ fontFamily: 'Manrope, sans-serif', fontSize: '16px', fontWeight: 700, color: '#1e211d' }}>
                   Countertop Basin {config.modelName}
                 </div>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#687268', marginTop: '2px' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#687268', marginTop: '2px' }}>
                   {config.width} × {config.depth} × {config.height} mm
                 </div>
               </div>
@@ -803,7 +803,7 @@ export default function BasinConfigurator({
                   background: 'rgba(212,56,51,0.08)',
                   border: '1px solid rgba(212,56,51,0.2)',
                   color: 'var(--brand-red, #d43833)',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   fontWeight: 600,
                   textTransform: 'uppercase',
@@ -834,7 +834,7 @@ export default function BasinConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>01</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>01</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Sink Size &amp; Model
                 </span>
@@ -862,7 +862,7 @@ export default function BasinConfigurator({
                           border: modelCategoryTab === tab.key ? '1px solid #1e211d' : '1px solid #e0ded8',
                           background: modelCategoryTab === tab.key ? '#1e211d' : '#f8f7f4',
                           color: modelCategoryTab === tab.key ? '#fff' : '#4a5249',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10.5px',
                           borderRadius: '2px',
                           cursor: 'pointer',
@@ -899,10 +899,10 @@ export default function BasinConfigurator({
                         >
                           <SinkModelDiagram model={model.code} active={isAct} />
                           <div>
-                            <strong style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: isAct ? 'var(--brand-red, #d43833)' : '#1e211d' }}>
+                            <strong style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: isAct ? 'var(--brand-red, #d43833)' : '#1e211d' }}>
                               {model.name}
                             </strong>
-                            <span style={{ display: 'block', fontSize: '9.5px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '2px' }}>
+                            <span style={{ display: 'block', fontSize: '9.5px', fontFamily: 'Urbanist, sans-serif', color: '#687268', marginTop: '2px' }}>
                               {model.width} × {model.depth} × {model.height} mm
                             </span>
                           </div>
@@ -917,12 +917,12 @@ export default function BasinConfigurator({
                       <strong style={{ fontSize: '12px', fontFamily: 'Manrope, sans-serif', color: '#1e211d' }}>
                         {config.modelName} Dimensions &amp; Geometry
                       </strong>
-                      <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 6px', borderRadius: '2px' }}>
+                      <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 6px', borderRadius: '2px' }}>
                         Fixed Model
                       </span>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
                       <div>
                         <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>LENGTH (W)</span>
                         <strong style={{ color: '#1e211d' }}>{config.width} mm</strong>
@@ -974,7 +974,7 @@ export default function BasinConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>02</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>02</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Material &amp; Colour
                 </span>
@@ -1002,12 +1002,12 @@ export default function BasinConfigurator({
                         <strong style={{ fontSize: '12px', fontFamily: 'Manrope, sans-serif', color: '#1e211d', display: 'block' }}>
                           {config.materialName}
                         </strong>
-                        <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#687268' }}>
+                        <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#687268' }}>
                           {config.materialFinish}
                         </span>
                       </div>
                     </div>
-                    <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', background: '#1e211d', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
+                    <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', background: '#1e211d', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
                       DuPont™ Corian®
                     </span>
                   </div>
@@ -1031,7 +1031,7 @@ export default function BasinConfigurator({
                           border: materialFilter === f.key ? '1px solid #1e211d' : '1px solid #e0ded8',
                           background: materialFilter === f.key ? '#1e211d' : '#f8f7f4',
                           color: materialFilter === f.key ? '#fff' : '#4a5249',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
                           borderRadius: '2px',
                           cursor: 'pointer',
@@ -1052,7 +1052,7 @@ export default function BasinConfigurator({
                       width: '100%',
                       padding: '8px 12px',
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       border: '1px solid #ddd9d2',
                       borderRadius: '2px',
                       outline: 'none',
@@ -1098,7 +1098,7 @@ export default function BasinConfigurator({
                               boxShadow: isAct ? '0 0 0 2px var(--brand-red, #d43833)' : 'none',
                             }}
                           />
-                          <span style={{ fontSize: '9.5px', fontFamily: 'DM Mono, monospace', color: isAct ? 'var(--brand-red, #d43833)' : '#222', lineHeight: 1.1, wordBreak: 'break-word' }}>
+                          <span style={{ fontSize: '9.5px', fontFamily: 'Urbanist, sans-serif', color: isAct ? 'var(--brand-red, #d43833)' : '#222', lineHeight: 1.1, wordBreak: 'break-word' }}>
                             {mat.name}
                           </span>
                         </div>
@@ -1130,7 +1130,7 @@ export default function BasinConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Drain System
                 </span>
@@ -1173,14 +1173,14 @@ export default function BasinConfigurator({
                             <strong style={{ fontSize: '12px', fontFamily: 'Manrope, sans-serif', color: isAct ? 'var(--brand-red, #d43833)' : '#1e211d', display: 'block' }}>
                               {drn.name}
                             </strong>
-                            <span style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace', color: '#687268' }}>
+                            <span style={{ fontSize: '10.5px', fontFamily: 'Urbanist, sans-serif', color: '#687268' }}>
                               {drn.finish}
                             </span>
                           </div>
                         </div>
 
                         <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: 600, color: isAct ? 'var(--brand-red, #d43833)' : '#888', textTransform: 'uppercase' }}>
+                          <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, color: isAct ? 'var(--brand-red, #d43833)' : '#888', textTransform: 'uppercase' }}>
                             {isAct ? 'Selected' : 'Available'}
                           </span>
                         </div>
@@ -1212,7 +1212,7 @@ export default function BasinConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Product Notes &amp; Specification
                 </span>
@@ -1224,7 +1224,7 @@ export default function BasinConfigurator({
               <div className="accordion-collapse-inner">
                 <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
                       Project Reference / Title
                     </label>
                     <input
@@ -1236,7 +1236,7 @@ export default function BasinConfigurator({
                         width: '100%',
                         padding: '8px 12px',
                         fontSize: '12px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         border: '1px solid #ddd9d2',
                         outline: 'none',
                       }}
@@ -1244,7 +1244,7 @@ export default function BasinConfigurator({
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
                       Architecture Studio / Client
                     </label>
                     <input
@@ -1256,7 +1256,7 @@ export default function BasinConfigurator({
                         width: '100%',
                         padding: '8px 12px',
                         fontSize: '12px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         border: '1px solid #ddd9d2',
                         outline: 'none',
                       }}
@@ -1264,7 +1264,7 @@ export default function BasinConfigurator({
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
                       Location / City
                     </label>
                     <input
@@ -1276,7 +1276,7 @@ export default function BasinConfigurator({
                         width: '100%',
                         padding: '8px 12px',
                         fontSize: '12px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         border: '1px solid #ddd9d2',
                         outline: 'none',
                       }}
@@ -1284,7 +1284,7 @@ export default function BasinConfigurator({
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
                       Special Fabrication Instructions
                     </label>
                     <textarea
@@ -1296,7 +1296,7 @@ export default function BasinConfigurator({
                         width: '100%',
                         padding: '8px 12px',
                         fontSize: '12px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         border: '1px solid #ddd9d2',
                         outline: 'none',
                         resize: 'vertical',
@@ -1332,7 +1332,7 @@ export default function BasinConfigurator({
         {/* Left: Bespoke Specification & Quote Trigger */}
         <div className="configurator-action-bar-pricing">
           <div style={{ minWidth: 0, flex: 1 }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9.5px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
               BESPOKE SPECIFICATION
             </span>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', marginTop: '2px' }}>
@@ -1344,7 +1344,7 @@ export default function BasinConfigurator({
 
           {/* Quantity Selector */}
           <div className="configurator-qty-selector" style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#9ca59b', whiteSpace: 'nowrap' }}>Qty:</span>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#9ca59b', whiteSpace: 'nowrap' }}>Qty:</span>
             <button
               type="button"
               onClick={() => setConfig(prev => ({ ...prev, quantity: Math.max(1, prev.quantity - 1) }))}
@@ -1355,7 +1355,7 @@ export default function BasinConfigurator({
                 border: 'none',
                 color: '#fff',
                 cursor: 'pointer',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 borderRadius: '2px',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -1364,7 +1364,7 @@ export default function BasinConfigurator({
             >
               -
             </button>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', width: '18px', textAlign: 'center', color: '#fff' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', width: '18px', textAlign: 'center', color: '#fff' }}>
               {config.quantity}
             </span>
             <button
@@ -1377,7 +1377,7 @@ export default function BasinConfigurator({
                 border: 'none',
                 color: '#fff',
                 cursor: 'pointer',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 borderRadius: '2px',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -1400,7 +1400,7 @@ export default function BasinConfigurator({
               color: '#dcdad2',
               border: '1px solid rgba(255,255,255,0.22)',
               padding: '11px 18px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
@@ -1418,7 +1418,7 @@ export default function BasinConfigurator({
               color: '#dcdad2',
               border: '1px solid rgba(255,255,255,0.22)',
               padding: '11px 18px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
@@ -1437,7 +1437,7 @@ export default function BasinConfigurator({
               color: '#ffffff',
               border: 'none',
               padding: '12px 28px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '0.06em',
@@ -1520,7 +1520,7 @@ export default function BasinConfigurator({
                     background: '#1e211d',
                     color: '#fff',
                     border: 'none',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     cursor: 'pointer',
                   }}
@@ -1532,7 +1532,7 @@ export default function BasinConfigurator({
               <form onSubmit={handleQuoteSubmit}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                   <div>
-                    <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                    <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--brand-red, #d43833)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                       Architectural Quotation Request
                     </span>
                     <h2 style={{ margin: '4px 0 0', fontSize: '20px', fontWeight: 600 }}>
@@ -1548,19 +1548,19 @@ export default function BasinConfigurator({
                   </button>
                 </div>
 
-                <div style={{ background: '#f0eee8', padding: '10px 14px', marginBottom: '18px', fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+                <div style={{ background: '#f0eee8', padding: '10px 14px', marginBottom: '18px', fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
                   {config.width} × {config.depth} × {config.height} mm / {config.materialName} / Qty: {config.quantity}
                 </div>
 
                 {quoteError && (
-                  <div style={{ padding: '8px 12px', background: '#fde8e8', color: '#9e2521', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '14px' }}>
+                  <div style={{ padding: '8px 12px', background: '#fde8e8', color: '#9e2521', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '14px' }}>
                     {quoteError}
                   </div>
                 )}
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', marginBottom: '4px' }}>
                       Contact Name *
                     </label>
                     <input
@@ -1575,7 +1575,7 @@ export default function BasinConfigurator({
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', marginBottom: '4px' }}>
                         Email Address *
                       </label>
                       <input
@@ -1588,7 +1588,7 @@ export default function BasinConfigurator({
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', marginBottom: '4px' }}>
                         Phone / WhatsApp *
                       </label>
                       <input
@@ -1604,7 +1604,7 @@ export default function BasinConfigurator({
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', marginBottom: '4px' }}>
                         Studio / Practice
                       </label>
                       <input
@@ -1616,7 +1616,7 @@ export default function BasinConfigurator({
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', marginBottom: '4px' }}>
                         Location / City
                       </label>
                       <input
@@ -1630,7 +1630,7 @@ export default function BasinConfigurator({
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', marginBottom: '4px' }}>
                       Additional Project Notes
                     </label>
                     <textarea
@@ -1651,7 +1651,7 @@ export default function BasinConfigurator({
                       background: 'var(--brand-red, #d43833)',
                       color: '#fff',
                       border: 'none',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       fontWeight: 700,
                       cursor: isSubmittingQuote ? 'wait' : 'pointer',

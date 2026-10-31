@@ -377,7 +377,7 @@ export default function ProductConfigurator({
             color: '#e9e8e2',
             padding: '12px 24px',
             borderRadius: '2px',
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '12px',
             letterSpacing: '0.04em',
             zIndex: 99999,
@@ -456,7 +456,7 @@ export default function ProductConfigurator({
                     border: 'none',
                     borderRadius: '0px',
                     padding: '4px 10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '9.5px',
                     fontWeight: activeView === v.key ? 600 : 500,
                     textTransform: 'uppercase',
@@ -522,7 +522,7 @@ export default function ProductConfigurator({
                         strokeWidth="3px"
                         strokeLinejoin="round"
                         paintOrder="stroke fill"
-                        fontFamily="DM Mono, monospace"
+                        fontFamily="Urbanist, sans-serif"
                         fontSize="10.5px"
                         fontWeight="500"
                         letterSpacing="0.02em"
@@ -551,7 +551,7 @@ export default function ProductConfigurator({
                         textAnchor="end"
                         dominantBaseline="hanging"
                         fill="#d43833"
-                        fontFamily="DM Mono, monospace"
+                        fontFamily="Urbanist, sans-serif"
                         fontSize="9px"
                         fontWeight="500"
                         stroke="#f5f4ee"
@@ -582,7 +582,7 @@ export default function ProductConfigurator({
                       color: '#f5f4ee',
                       padding: '3px 8px',
                       borderRadius: '2px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10.5px',
                       letterSpacing: '0.04em',
                       whiteSpace: 'nowrap',
@@ -603,7 +603,7 @@ export default function ProductConfigurator({
                 bottom: '18px',
                 left: '20px',
                 pointerEvents: 'none',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '10px',
                 color: '#7a857a',
                 letterSpacing: '0.04em',
@@ -684,7 +684,7 @@ export default function ProductConfigurator({
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 12a9 9 0 1 1-2.64-6.36L21 8" />
                   <path d="M21 3v5h-5" />
-                  <text x="12" y="14" fontSize="7" fontWeight="bold" fontFamily="DM Mono, monospace" textAnchor="middle" fill="currentColor" stroke="none">360</text>
+                  <text x="12" y="14" fontSize="7" fontWeight="bold" fontFamily="Urbanist, sans-serif" textAnchor="middle" fill="currentColor" stroke="none">360</text>
                 </svg>
               </button>
 
@@ -796,7 +796,7 @@ export default function ProductConfigurator({
             }}
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#737e73', fontWeight: 600 }}>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#737e73', fontWeight: 600 }}>
                 Base Model
               </span>
               <button
@@ -806,7 +806,7 @@ export default function ProductConfigurator({
                   background: 'none',
                   border: 'none',
                   color: '#737e73',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   cursor: 'pointer',
                   textDecoration: 'underline',
@@ -847,7 +847,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>01</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>01</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Dimensions
                 </span>
@@ -876,13 +876,13 @@ export default function ProductConfigurator({
                             width: '75px',
                             textAlign: 'right',
                             padding: '4px 6px',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '12px',
                             border: '1px solid rgba(30,33,29,0.2)',
                             outline: 'none',
                           }}
                         />
-                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#888' }}>mm</span>
+                        <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#888' }}>mm</span>
                       </div>
                     </div>
                     <input
@@ -894,7 +894,7 @@ export default function ProductConfigurator({
                       onChange={e => setConfig({ ...config, width: Number(e.target.value) })}
                       style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                     />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '3px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', marginTop: '3px' }}>
                       <span>380mm</span>
                       <span>2200mm</span>
                     </div>
@@ -918,13 +918,13 @@ export default function ProductConfigurator({
                             width: '75px',
                             textAlign: 'right',
                             padding: '4px 6px',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontSize: '12px',
                             border: '1px solid rgba(30,33,29,0.2)',
                             outline: 'none',
                           }}
                         />
-                        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#888' }}>mm</span>
+                        <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#888' }}>mm</span>
                       </div>
                     </div>
                     <input
@@ -936,7 +936,7 @@ export default function ProductConfigurator({
                       onChange={e => setConfig({ ...config, depth: Number(e.target.value) })}
                       style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                     />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '3px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', marginTop: '3px' }}>
                       <span>270mm</span>
                       <span>700mm</span>
                     </div>
@@ -944,8 +944,8 @@ export default function ProductConfigurator({
 
                   {/* Slab Thickness Badge */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '3px' }}>
-                    <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#667066' }}>Slab Thickness</span>
-                    <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: 600, color: '#1e211d' }}>12 mm Solid Surface</span>
+                    <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: '#667066' }}>Slab Thickness</span>
+                    <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, color: '#1e211d' }}>12 mm Solid Surface</span>
                   </div>
                 </div>
               </div>
@@ -972,7 +972,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>02</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>02</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Corners
                 </span>
@@ -1057,7 +1057,7 @@ export default function ProductConfigurator({
                         <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
                           Left Corner Shift
                         </span>
-                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                        <strong style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           {config.cornerConfig.leftShift || 50}mm
                         </strong>
                       </div>
@@ -1083,7 +1083,7 @@ export default function ProductConfigurator({
                         }}
                         style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                       />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', marginTop: '2px' }}>
                         <span>-65mm</span>
                         <span>700mm</span>
                       </div>
@@ -1096,7 +1096,7 @@ export default function ProductConfigurator({
                         <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
                           Left Curve Radius
                         </span>
-                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                        <strong style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           R{config.cornerConfig.leftRadius || 25} mm
                         </strong>
                       </div>
@@ -1122,7 +1122,7 @@ export default function ProductConfigurator({
                         }}
                         style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                       />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', marginTop: '2px' }}>
                         <span>5mm</span>
                         <span>100mm</span>
                       </div>
@@ -1135,7 +1135,7 @@ export default function ProductConfigurator({
                         <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
                           Left Bevel Size
                         </span>
-                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                        <strong style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           C{config.cornerConfig.leftChamfer || 20} mm
                         </strong>
                       </div>
@@ -1161,7 +1161,7 @@ export default function ProductConfigurator({
                         }}
                         style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                       />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', marginTop: '2px' }}>
                         <span>5mm</span>
                         <span>80mm</span>
                       </div>
@@ -1245,7 +1245,7 @@ export default function ProductConfigurator({
                         <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
                           Right Corner Shift
                         </span>
-                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                        <strong style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           {config.cornerConfig.rightShift || 50}mm
                         </strong>
                       </div>
@@ -1271,7 +1271,7 @@ export default function ProductConfigurator({
                         }}
                         style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                       />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', marginTop: '2px' }}>
                         <span>-65mm</span>
                         <span>700mm</span>
                       </div>
@@ -1284,7 +1284,7 @@ export default function ProductConfigurator({
                         <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
                           Right Curve Radius
                         </span>
-                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                        <strong style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           R{config.cornerConfig.rightRadius || 25} mm
                         </strong>
                       </div>
@@ -1310,7 +1310,7 @@ export default function ProductConfigurator({
                         }}
                         style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                       />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', marginTop: '2px' }}>
                         <span>5mm</span>
                         <span>100mm</span>
                       </div>
@@ -1323,7 +1323,7 @@ export default function ProductConfigurator({
                         <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
                           Right Bevel Size
                         </span>
-                        <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
+                        <strong style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: 'var(--brand-red, #d43833)' }}>
                           C{config.cornerConfig.rightChamfer || 20} mm
                         </strong>
                       </div>
@@ -1349,7 +1349,7 @@ export default function ProductConfigurator({
                         }}
                         style={{ width: '100%', accentColor: 'var(--brand-red, #d43833)', cursor: 'pointer' }}
                       />
-                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', marginTop: '2px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', marginTop: '2px' }}>
                         <span>5mm</span>
                         <span>80mm</span>
                       </div>
@@ -1381,7 +1381,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Sink &amp; Basin
                 </span>
@@ -1425,7 +1425,7 @@ export default function ProductConfigurator({
                           }}
                         >
                           <TapLocationDiagram location={item.id as any} active={isAct} />
-                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                          <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
                             {item.label}
                           </span>
                         </div>
@@ -1475,7 +1475,7 @@ export default function ProductConfigurator({
                           }}
                         >
                           <SinkIntegrationDiagram type={item.id as any} active={isAct} />
-                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
+                          <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', fontWeight: isAct ? 600 : 400, color: isAct ? 'var(--brand-red, #d43833)' : '#444' }}>
                             {item.label}
                           </span>
                         </div>
@@ -1517,7 +1517,7 @@ export default function ProductConfigurator({
                       <div>
                         {/* STORE MODELS: Oval & Capsule */}
                         <div style={{ marginBottom: '12px' }}>
-                          <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+                          <div style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
                             Oval &amp; Capsule
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
@@ -1542,10 +1542,10 @@ export default function ProductConfigurator({
                                   }}
                                 >
                                   <SinkModelDiagram model={item.code} active={isAct} />
-                                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
+                                  <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
                                     {item.code}
                                   </span>
-                                  <span style={{ fontSize: '8px', fontFamily: 'DM Mono, monospace', color: '#777' }}>
+                                  <span style={{ fontSize: '8px', fontFamily: 'Urbanist, sans-serif', color: '#777' }}>
                                     {item.width}×{item.depth}
                                   </span>
                                 </div>
@@ -1556,7 +1556,7 @@ export default function ProductConfigurator({
 
                         {/* STORE MODELS: Circular */}
                         <div style={{ marginBottom: '12px' }}>
-                          <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+                          <div style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
                             Circular
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '6px' }}>
@@ -1581,10 +1581,10 @@ export default function ProductConfigurator({
                                   }}
                                 >
                                   <SinkModelDiagram model={item.code} active={isAct} />
-                                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
+                                  <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
                                     {item.code}
                                   </span>
-                                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: '#777' }}>
+                                  <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: '#777' }}>
                                     Ø {item.width} × {item.height} mm
                                   </span>
                                 </div>
@@ -1595,7 +1595,7 @@ export default function ProductConfigurator({
 
                         {/* STORE MODELS: Square & Rectangular */}
                         <div style={{ marginBottom: '14px' }}>
-                          <div style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
+                          <div style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: '#888', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '6px' }}>
                             Square &amp; Rectangular
                           </div>
                           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '6px' }}>
@@ -1620,10 +1620,10 @@ export default function ProductConfigurator({
                                   }}
                                 >
                                   <SinkModelDiagram model={item.code} active={isAct} />
-                                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
+                                  <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', fontWeight: isAct ? 700 : 500, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
                                     {item.code}
                                   </span>
-                                  <span style={{ fontSize: '8px', fontFamily: 'DM Mono, monospace', color: '#777' }}>
+                                  <span style={{ fontSize: '8px', fontFamily: 'Urbanist, sans-serif', color: '#777' }}>
                                     {item.width}×{item.depth}
                                   </span>
                                 </div>
@@ -1635,10 +1635,10 @@ export default function ProductConfigurator({
                         {/* CUSTOMIZABLE TROUGHS: WDT, UC, UB */}
                         <div>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
-                            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--brand-red, #d43833)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                               Custom Sinks (Any Size)
                             </span>
-                            <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', background: 'rgba(212,56,51,0.08)', color: 'var(--brand-red, #d43833)', padding: '1px 5px', borderRadius: '2px' }}>
+                            <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: 'rgba(212,56,51,0.08)', color: 'var(--brand-red, #d43833)', padding: '1px 5px', borderRadius: '2px' }}>
                               Customizable
                             </span>
                           </div>
@@ -1664,10 +1664,10 @@ export default function ProductConfigurator({
                                   }}
                                 >
                                   <SinkModelDiagram model={item.code} active={isAct} />
-                                  <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', fontWeight: isAct ? 700 : 600, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
+                                  <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', fontWeight: isAct ? 700 : 600, color: isAct ? 'var(--brand-red, #d43833)' : '#222' }}>
                                     {item.code}
                                   </span>
-                                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: isAct ? 'var(--brand-red, #d43833)' : '#666' }}>
+                                  <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: isAct ? 'var(--brand-red, #d43833)' : '#666' }}>
                                     Custom Size
                                   </span>
                                 </div>
@@ -1685,11 +1685,11 @@ export default function ProductConfigurator({
                             <div style={{ fontSize: '12px', fontFamily: 'Manrope, sans-serif', fontWeight: 600, color: '#1e211d' }}>
                               {currentBasin.name} ({currentBasin.code})
                             </div>
-                            <div style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '2px' }}>
+                            <div style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: '#687268', marginTop: '2px' }}>
                               {currentBasin.width} × {currentBasin.depth} × {currentBasin.height} mm (Standard Size)
                             </div>
                           </div>
-                          <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', background: '#1e211d', color: '#fff', padding: '3px 8px', borderRadius: '2px' }}>
+                          <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: '#1e211d', color: '#fff', padding: '3px 8px', borderRadius: '2px' }}>
                             Standard
                           </span>
                         </div>
@@ -1699,10 +1699,10 @@ export default function ProductConfigurator({
                       {isCustom && (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', background: '#faf9f6', padding: '14px', border: '1px solid rgba(212,56,51,0.2)', borderRadius: '2px' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                               Custom Dimensions ({currentBasin.code})
                             </span>
-                            <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
+                            <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
                               Custom Sizes
                             </span>
                           </div>
@@ -1710,10 +1710,10 @@ export default function ProductConfigurator({
                           {/* WIDTH (SPAN) CUSTOMIZATION */}
                           <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                              <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                              <label style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
                                 Width
                               </label>
-                              <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                              <span style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                                 {config.basinWidthMm || currentBasin.width} mm
                               </span>
                             </div>
@@ -1731,7 +1731,7 @@ export default function ProductConfigurator({
                                       color: isAct ? '#fff' : '#1e211d',
                                       border: isAct ? '1px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                       fontSize: '11px',
-                                      fontFamily: 'DM Mono, monospace',
+                                      fontFamily: 'Urbanist, sans-serif',
                                       cursor: 'pointer',
                                     }}
                                   >
@@ -1745,10 +1745,10 @@ export default function ProductConfigurator({
                           {/* DEPTH (FRONT-TO-BACK) CUSTOMIZATION */}
                           <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                              <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                              <label style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
                                 Depth
                               </label>
-                              <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                              <span style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                                 {config.basinDepthMm || currentBasin.depth} mm
                               </span>
                             </div>
@@ -1769,7 +1769,7 @@ export default function ProductConfigurator({
                                         borderRadius: '2px',
                                         cursor: 'pointer',
                                         textAlign: 'center',
-                                        fontFamily: 'DM Mono, monospace',
+                                        fontFamily: 'Urbanist, sans-serif',
                                         fontSize: '11px',
                                         fontWeight: isAct ? 600 : 400,
                                       }}
@@ -1796,7 +1796,7 @@ export default function ProductConfigurator({
                                         borderRadius: '2px',
                                         cursor: 'pointer',
                                         textAlign: 'center',
-                                        fontFamily: 'DM Mono, monospace',
+                                        fontFamily: 'Urbanist, sans-serif',
                                         fontSize: '11px',
                                         fontWeight: isAct ? 600 : 400,
                                       }}
@@ -1812,10 +1812,10 @@ export default function ProductConfigurator({
                           {/* BOWL DEPTH / HEIGHT (H) CUSTOMIZATION */}
                           <div>
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                              <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                              <label style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
                                 Bowl Depth
                               </label>
-                              <span style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
+                              <span style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                                 {config.basinHeightMm || currentBasin.height} mm
                               </span>
                             </div>
@@ -1835,7 +1835,7 @@ export default function ProductConfigurator({
                                       borderRadius: '2px',
                                       cursor: 'pointer',
                                       textAlign: 'center',
-                                      fontFamily: 'DM Mono, monospace',
+                                      fontFamily: 'Urbanist, sans-serif',
                                       fontSize: '11px',
                                       fontWeight: isAct ? 600 : 400,
                                     }}
@@ -1851,7 +1851,7 @@ export default function ProductConfigurator({
                           {currentBasin.id === 'wdt' && (
                             <>
                               <div style={{ marginTop: '4px' }}>
-                                <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                                <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
                                   Slope Direction
                                 </label>
                                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
@@ -1864,7 +1864,7 @@ export default function ProductConfigurator({
                                       color: (config.wdtSlopeDirection || 'right-to-left') === 'right-to-left' ? '#fff' : '#1e211d',
                                       border: '1px solid rgba(30,33,29,0.15)',
                                       fontSize: '11px',
-                                      fontFamily: 'DM Mono, monospace',
+                                      fontFamily: 'Urbanist, sans-serif',
                                       cursor: 'pointer',
                                     }}
                                   >
@@ -1879,7 +1879,7 @@ export default function ProductConfigurator({
                                       color: config.wdtSlopeDirection === 'left-to-right' ? '#fff' : '#1e211d',
                                       border: '1px solid rgba(30,33,29,0.15)',
                                       fontSize: '11px',
-                                      fontFamily: 'DM Mono, monospace',
+                                      fontFamily: 'Urbanist, sans-serif',
                                       cursor: 'pointer',
                                     }}
                                   >
@@ -1890,10 +1890,10 @@ export default function ProductConfigurator({
 
                               <div style={{ background: '#fff', padding: '12px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
                                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                                  <label style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
+                                  <label style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268' }}>
                                     Slope Angle
                                   </label>
-                                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
+                                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
                                     {(config.wdtSlopeAngleDeg || 8).toFixed(1)}°
                                   </span>
                                 </div>
@@ -1927,7 +1927,7 @@ export default function ProductConfigurator({
                                           color: isCur ? '#ffffff' : '#333333',
                                           border: isCur ? '1px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                           fontSize: '10px',
-                                          fontFamily: 'DM Mono, monospace',
+                                          fontFamily: 'Urbanist, sans-serif',
                                           cursor: 'pointer',
                                         }}
                                       >
@@ -1949,8 +1949,8 @@ export default function ProductConfigurator({
                 {config.tapLocation === 'top-mounted' && (
                   <div style={{ background: 'rgba(30,33,29,0.03)', padding: '12px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-                      <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>Tap Holes (35mm)</span>
-                      <strong style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace' }}>{config.tapHoles} Holes</strong>
+                      <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>Tap Holes (35mm)</span>
+                      <strong style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif' }}>{config.tapHoles} Holes</strong>
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '6px' }}>
                       {[0, 1, 2, 3].map(count => (
@@ -1964,7 +1964,7 @@ export default function ProductConfigurator({
                             color: config.tapHoles === count ? '#fff' : '#1e211d',
                             border: '1px solid rgba(30,33,29,0.2)',
                             fontSize: '11px',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             cursor: 'pointer',
                           }}
                         >
@@ -1999,7 +1999,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Front &amp; Side Aprons
                 </span>
@@ -2028,7 +2028,7 @@ export default function ProductConfigurator({
                         color: config.downstands?.front ? '#fff' : '#1e211d',
                         border: '1px solid rgba(30,33,29,0.15)',
                         fontSize: '11px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
                         borderRadius: '2px',
@@ -2049,7 +2049,7 @@ export default function ProductConfigurator({
                         color: config.downstands?.left ? '#fff' : '#1e211d',
                         border: '1px solid rgba(30,33,29,0.15)',
                         fontSize: '11px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
                         borderRadius: '2px',
@@ -2070,7 +2070,7 @@ export default function ProductConfigurator({
                         color: config.downstands?.right ? '#fff' : '#1e211d',
                         border: '1px solid rgba(30,33,29,0.15)',
                         fontSize: '11px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
                         borderRadius: '2px',
@@ -2087,7 +2087,7 @@ export default function ProductConfigurator({
                     <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
                       Apron Height
                     </label>
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', fontWeight: 600 }}>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', fontWeight: 600 }}>
                       {config.downstands?.height || config.frontApronHeight || 100} mm
                     </span>
                   </div>
@@ -2115,7 +2115,7 @@ export default function ProductConfigurator({
 
                   {/* Continuous Height Slider */}
                   <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '6px' }}>
                       <span>Custom Height Slider</span>
                       <strong>{config.downstands?.height || config.frontApronHeight || 100} mm</strong>
                     </div>
@@ -2163,7 +2163,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>05</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>05</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Wall Splashback
                 </span>
@@ -2180,7 +2180,7 @@ export default function ProductConfigurator({
                     <label style={{ fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600 }}>
                       Rear Wall Splashback
                     </label>
-                    <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--brand-red, #d43833)' }}>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: 'var(--brand-red, #d43833)' }}>
                       {config.upstands?.backMode || 'full'}
                     </span>
                   </div>
@@ -2242,7 +2242,7 @@ export default function ProductConfigurator({
                         color: config.upstands?.leftMode === 'full' ? '#fff' : '#1e211d',
                         border: '1px solid rgba(30,33,29,0.15)',
                         fontSize: '11px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
                         borderRadius: '2px',
@@ -2273,7 +2273,7 @@ export default function ProductConfigurator({
                         color: config.upstands?.rightMode === 'full' ? '#fff' : '#1e211d',
                         border: '1px solid rgba(30,33,29,0.15)',
                         fontSize: '11px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
                         borderRadius: '2px',
@@ -2286,7 +2286,7 @@ export default function ProductConfigurator({
 
                 {/* UPSTAND HEIGHT SLIDER */}
                 <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '6px' }}>
                     <span>Splashback Height</span>
                     <strong>{config.upstands?.backMode === 'none' ? '0 mm (Disabled)' : `${config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 80} mm`}</strong>
                   </div>
@@ -2349,7 +2349,7 @@ export default function ProductConfigurator({
                       Smooth seamless curved joint without silicone gaps
                     </span>
                   </div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
                     {config.upstands?.coved ? 'Active ✓' : 'Standard'}
                   </span>
                 </div>
@@ -2378,7 +2378,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>06</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>06</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Towel Slot
                 </span>
@@ -2417,7 +2417,7 @@ export default function ProductConfigurator({
                       CNC precision milled slot for hanging hand towels
                     </span>
                   </div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>
                     {config.towelHolder?.enabled ? 'Active ✓' : 'Off'}
                   </span>
                 </div>
@@ -2426,7 +2426,7 @@ export default function ProductConfigurator({
                   <>
                     {/* LENGTH SELECTION */}
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
                         Length
                       </label>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
@@ -2449,7 +2449,7 @@ export default function ProductConfigurator({
 
                     {/* POSITION SELECTION */}
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
                         Position
                       </label>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
@@ -2467,7 +2467,7 @@ export default function ProductConfigurator({
                               color: config.towelHolder?.position === pos ? '#fff' : '#1e211d',
                               border: '1px solid rgba(30,33,29,0.15)',
                               fontSize: '11px',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                               textTransform: 'uppercase',
                               cursor: 'pointer',
                               borderRadius: '2px',
@@ -2481,7 +2481,7 @@ export default function ProductConfigurator({
 
                     {/* CORNER FILLET SELECTION */}
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: '#687268', marginBottom: '8px' }}>
                         Slot Corner Curve
                       </label>
                       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
@@ -2499,7 +2499,7 @@ export default function ProductConfigurator({
                               color: config.towelHolder?.cornerRadius === rad ? '#fff' : '#1e211d',
                               border: '1px solid rgba(30,33,29,0.15)',
                               fontSize: '11px',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                               cursor: 'pointer',
                               borderRadius: '2px',
                             }}
@@ -2536,7 +2536,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>07</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>07</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Edge Profile
                 </span>
@@ -2581,7 +2581,7 @@ export default function ProductConfigurator({
 
                 {((config.topEdge?.type === 'fillet') || config.edgeProfileId === 'rounded') && (
                   <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '6px' }}>
                       <span>Radius</span>
                       <strong>R{config.topEdge?.radiusMm || 6} mm</strong>
                     </div>
@@ -2606,7 +2606,7 @@ export default function ProductConfigurator({
 
                 {((config.topEdge?.type === 'chamfer') || config.edgeProfileId === 'chamfer') && (
                   <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', marginBottom: '6px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '6px' }}>
                       <span>Bevel Size</span>
                       <strong>{config.topEdge?.chamferMm || 3} mm</strong>
                     </div>
@@ -2653,7 +2653,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>08</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>08</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Drain &amp; Waste
                 </span>
@@ -2703,7 +2703,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>09</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>09</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Color &amp; Material
                 </span>
@@ -2757,7 +2757,7 @@ export default function ProductConfigurator({
                             bottom: '2px',
                             right: '3px',
                             fontSize: '8px',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             fontWeight: 600,
                             background: 'rgba(30,33,29,0.85)',
                             color: '#ffffff',
@@ -2776,7 +2776,7 @@ export default function ProductConfigurator({
                           <span
                             style={{
                               fontSize: '8.5px',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                               textTransform: 'uppercase',
                               letterSpacing: '0.06em',
                               padding: '2px 5px',
@@ -2793,7 +2793,7 @@ export default function ProductConfigurator({
                               display: 'inline-flex',
                               alignItems: 'center',
                               fontSize: '9px',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                               color: 'var(--muted, #687268)',
                               textTransform: 'uppercase',
                               letterSpacing: '0.06em',
@@ -2819,7 +2819,7 @@ export default function ProductConfigurator({
                           {config.materialName}
                         </strong>
 
-                        <div style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace', color: '#687268', marginTop: '2px' }}>
+                        <div style={{ fontSize: '10.5px', fontFamily: 'Urbanist, sans-serif', color: '#687268', marginTop: '2px' }}>
                           DuPont™ Corian® / {(config.materialFinish || activeMat?.finish || 'Honed Satin Matte').toUpperCase()}
                         </div>
                       </div>
@@ -2850,7 +2850,7 @@ export default function ProductConfigurator({
                             color: isActive ? '#ffffff' : 'var(--ink, #1e211d)',
                             border: isActive ? '1px solid var(--ink, #1e211d)' : '1px solid rgba(30,33,29,0.16)',
                             fontSize: '10px',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             textTransform: 'uppercase',
                             letterSpacing: '0.04em',
                             borderRadius: '3px',
@@ -2888,7 +2888,7 @@ export default function ProductConfigurator({
                         background: '#ffffff',
                         border: '1px solid rgba(30,33,29,0.16)',
                         borderRadius: '3px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '11px',
                         color: 'var(--ink, #1e211d)',
                         outline: 'none',
@@ -2944,7 +2944,7 @@ export default function ProductConfigurator({
                           borderRadius: '4px',
                         }}
                       >
-                        <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#687268', marginBottom: '8px' }}>
+                        <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#687268', marginBottom: '8px' }}>
                           No materials matching &ldquo;{materialSearch}&rdquo;
                         </div>
                         <button
@@ -2960,7 +2960,7 @@ export default function ProductConfigurator({
                             border: 'none',
                             borderRadius: '2px',
                             fontSize: '10px',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             textTransform: 'uppercase',
                             cursor: 'pointer',
                           }}
@@ -3056,7 +3056,7 @@ export default function ProductConfigurator({
                                   position: 'absolute',
                                   top: '4px',
                                   left: '4px',
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '7.5px',
                                   fontWeight: 600,
                                   background: 'rgba(255,255,255,0.92)',
@@ -3118,7 +3118,7 @@ export default function ProductConfigurator({
                               {/* Collection / Series Monospace Subtitle */}
                               <div
                                 style={{
-                                  fontFamily: 'DM Mono, monospace',
+                                  fontFamily: 'Urbanist, sans-serif',
                                   fontSize: '8px',
                                   color: '#8b948b',
                                   marginTop: '2px',
@@ -3163,7 +3163,7 @@ export default function ProductConfigurator({
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>10</span>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>10</span>
                 <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
                   Project Notes
                 </span>
@@ -3175,7 +3175,7 @@ export default function ProductConfigurator({
               <div className="accordion-collapse-inner">
                 <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
+                  <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
                     Project Name
                   </label>
                   <input
@@ -3188,7 +3188,7 @@ export default function ProductConfigurator({
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
+                  <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
                     Studio / Client Name
                   </label>
                   <input
@@ -3201,7 +3201,7 @@ export default function ProductConfigurator({
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
+                  <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
                     Fabrication Notes / Requests
                   </label>
                   <textarea
@@ -3241,7 +3241,7 @@ export default function ProductConfigurator({
         {/* Left: Bespoke Specification & Quote Trigger */}
         <div className="configurator-action-bar-pricing">
           <div style={{ minWidth: 0, flex: 1 }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9.5px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9.5px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.06em', whiteSpace: 'nowrap' }}>
               BESPOKE SPECIFICATION
             </span>
             <div style={{ display: 'flex', alignItems: 'baseline', gap: '4px', marginTop: '2px' }}>
@@ -3253,7 +3253,7 @@ export default function ProductConfigurator({
 
           {/* Quantity Selector */}
           <div className="configurator-qty-selector" style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#9ca59b', whiteSpace: 'nowrap' }}>Qty:</span>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#9ca59b', whiteSpace: 'nowrap' }}>Qty:</span>
             <button
               type="button"
               onClick={() => setConfig({ ...config, quantity: Math.max(1, config.quantity - 1) })}
@@ -3264,7 +3264,7 @@ export default function ProductConfigurator({
                 border: 'none',
                 color: '#fff',
                 cursor: 'pointer',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 borderRadius: '2px',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -3273,7 +3273,7 @@ export default function ProductConfigurator({
             >
               -
             </button>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', width: '18px', textAlign: 'center', color: '#fff' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', width: '18px', textAlign: 'center', color: '#fff' }}>
               {config.quantity}
             </span>
             <button
@@ -3286,7 +3286,7 @@ export default function ProductConfigurator({
                 border: 'none',
                 color: '#fff',
                 cursor: 'pointer',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 borderRadius: '2px',
                 display: 'inline-flex',
                 alignItems: 'center',
@@ -3309,7 +3309,7 @@ export default function ProductConfigurator({
               color: '#dcdad2',
               border: '1px solid rgba(255,255,255,0.22)',
               padding: '11px 18px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
@@ -3327,7 +3327,7 @@ export default function ProductConfigurator({
               color: '#dcdad2',
               border: '1px solid rgba(255,255,255,0.22)',
               padding: '11px 18px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
@@ -3346,7 +3346,7 @@ export default function ProductConfigurator({
               color: '#ffffff',
               border: 'none',
               padding: '12px 28px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '12px',
               fontWeight: 600,
               letterSpacing: '0.06em',
@@ -3417,7 +3417,7 @@ export default function ProductConfigurator({
                     display: 'inline-block',
                     background: '#1e211d',
                     color: '#e9e8e2',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '18px',
                     padding: '8px 20px',
                     letterSpacing: '0.1em',
@@ -3440,7 +3440,7 @@ export default function ProductConfigurator({
                     color: '#fff',
                     border: 'none',
                     padding: '12px 28px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     textTransform: 'uppercase',
                     cursor: 'pointer',
@@ -3452,7 +3452,7 @@ export default function ProductConfigurator({
             ) : (
               <form onSubmit={handleQuoteSubmit}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#667066', letterSpacing: '0.08em' }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: '#667066', letterSpacing: '0.08em' }}>
                     Ace Spaces Technical Desk
                   </span>
                   <button
@@ -3491,7 +3491,7 @@ export default function ProductConfigurator({
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
                         Specifier Name *
                       </label>
                       <input
@@ -3504,7 +3504,7 @@ export default function ProductConfigurator({
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
                         Architecture Studio / Firm
                       </label>
                       <input
@@ -3519,7 +3519,7 @@ export default function ProductConfigurator({
 
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
                         Corporate Email *
                       </label>
                       <input
@@ -3532,7 +3532,7 @@ export default function ProductConfigurator({
                       />
                     </div>
                     <div>
-                      <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
+                      <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
                         Mobile / WhatsApp Phone
                       </label>
                       <input
@@ -3546,7 +3546,7 @@ export default function ProductConfigurator({
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
                       Delivery / Site Location City
                     </label>
                     <input
@@ -3559,7 +3559,7 @@ export default function ProductConfigurator({
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
+                    <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
                       Additional Notes / Installation Timeline
                     </label>
                     <textarea
@@ -3581,7 +3581,7 @@ export default function ProductConfigurator({
                         background: 'var(--brand-red, #d43833)',
                         color: '#fff',
                         border: 'none',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '12px',
                         fontWeight: 600,
                         letterSpacing: '0.08em',

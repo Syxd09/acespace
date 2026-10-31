@@ -7,6 +7,7 @@ import { useSearchParams } from 'next/navigation';
 import { materials as defaultMaterials, Material } from '@/data/materials';
 import { useSiteContent } from '@/context/SiteContentContext';
 import MaterialModal from '@/components/MaterialModal';
+import ScrollReveal from '@/components/ScrollReveal';
 import { useSampleShortlist } from '@/context/SampleContext';
 
 export default function ColourLibrary() {
@@ -208,7 +209,7 @@ export default function ColourLibrary() {
       >
         <div className="colour-controls-bar">
           <div className="colour-search-box" style={{ flex: 1 }}>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
               Search Colour Library & Codes
             </span>
             <div style={{ position: 'relative' }}>
@@ -258,7 +259,7 @@ export default function ColourLibrary() {
                 style={{
                   padding: '10px 14px',
                   fontSize: '11px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   background: viewMode === 'grid' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'grid' ? '#fff' : 'var(--ink)',
                   borderRight: '1px solid var(--line)',
@@ -277,7 +278,7 @@ export default function ColourLibrary() {
                 style={{
                   padding: '10px 14px',
                   fontSize: '11px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   background: viewMode === 'compact' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'compact' ? '#fff' : 'var(--ink)',
                   borderRight: '1px solid var(--line)',
@@ -295,7 +296,7 @@ export default function ColourLibrary() {
                 style={{
                   padding: '10px 14px',
                   fontSize: '11px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   background: viewMode === 'list' ? 'var(--ink)' : 'transparent',
                   color: viewMode === 'list' ? '#fff' : 'var(--ink)',
                   border: 'none',
@@ -310,7 +311,7 @@ export default function ColourLibrary() {
               type="button"
               onClick={toggleTray}
               className="text-link"
-              style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', background: 'none', border: 'none', cursor: 'pointer' }}
+              style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', background: 'none', border: 'none', cursor: 'pointer' }}
             >
               Open Sample Tray <span>↗</span>
             </button>
@@ -320,14 +321,14 @@ export default function ColourLibrary() {
         {/* Color Family Filters with Color Swatch Dots */}
         <div style={{ marginTop: '24px', borderTop: '1px solid rgba(30,33,29,0.12)', paddingTop: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
               Filter by Colour Group:
             </span>
             {selectedColorFamily !== 'all' && (
               <button
                 type="button"
                 onClick={() => setSelectedColorFamily('all')}
-                style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
+                style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
               >
                 Reset Hue
               </button>
@@ -424,12 +425,12 @@ export default function ColourLibrary() {
                               flexShrink: 0,
                             }}
                           />
-                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                          <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                             {fam.label}
                           </span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <span style={{ fontSize: '10px', opacity: isSelected ? 0.85 : 0.6, fontFamily: 'DM Mono, monospace' }}>
+                          <span style={{ fontSize: '10px', opacity: isSelected ? 0.85 : 0.6, fontFamily: 'Urbanist, sans-serif' }}>
                             ({count})
                           </span>
                           {isSelected && (
@@ -469,7 +470,7 @@ export default function ColourLibrary() {
                     gap: '8px',
                     padding: '8px 14px',
                     fontSize: '11px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     textTransform: 'uppercase',
                     border: isActive ? '1px solid var(--ink)' : '1px solid var(--line)',
                     background: isActive ? 'var(--ink)' : 'var(--paper)',
@@ -504,7 +505,7 @@ export default function ColourLibrary() {
                     style={{
                       fontSize: '9px',
                       opacity: isActive ? 0.75 : 0.55,
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                     }}
                   >
                     ({count})
@@ -521,14 +522,14 @@ export default function ColourLibrary() {
         {/* Pattern / Texture Filter */}
         <div style={{ marginTop: '18px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block' }}>
               Filter by Pattern / Character:
             </span>
             {selectedPattern !== 'all' && (
               <button
                 type="button"
                 onClick={() => setSelectedPattern('all')}
-                style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
+                style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline' }}
               >
                 Reset Pattern
               </button>
@@ -633,12 +634,12 @@ export default function ColourLibrary() {
                           >
                             {pat.glyph}
                           </span>
-                          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                          <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                             {pat.label}
                           </span>
                         </div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <span style={{ fontSize: '10px', opacity: isSelected ? 0.85 : 0.6, fontFamily: 'DM Mono, monospace' }}>
+                          <span style={{ fontSize: '10px', opacity: isSelected ? 0.85 : 0.6, fontFamily: 'Urbanist, sans-serif' }}>
                             ({count})
                           </span>
                           {isSelected && (
@@ -678,7 +679,7 @@ export default function ColourLibrary() {
                     gap: '8px',
                     padding: '8px 14px',
                     fontSize: '11px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     textTransform: 'uppercase',
                     border: isActive ? '1px solid var(--ink)' : '1px solid var(--line)',
                     background: isActive ? 'var(--ink)' : 'var(--paper)',
@@ -696,7 +697,7 @@ export default function ColourLibrary() {
                     style={{
                       fontSize: '9px',
                       opacity: isActive ? 0.75 : 0.55,
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                     }}
                   >
                     ({count})
@@ -725,7 +726,7 @@ export default function ColourLibrary() {
             border: '1px solid var(--line)',
           }}
         >
-          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
+          <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.06em' }}>
             Active:
           </span>
 
@@ -739,7 +740,7 @@ export default function ColourLibrary() {
                 gap: '6px',
                 padding: '4px 10px',
                 fontSize: '11px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 background: 'var(--ink)',
                 color: '#fff',
                 border: 'none',
@@ -761,7 +762,7 @@ export default function ColourLibrary() {
                 gap: '6px',
                 padding: '4px 10px',
                 fontSize: '11px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 background: 'var(--ink)',
                 color: '#fff',
                 border: 'none',
@@ -783,7 +784,7 @@ export default function ColourLibrary() {
                 gap: '6px',
                 padding: '4px 10px',
                 fontSize: '11px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 background: 'var(--ink)',
                 color: '#fff',
                 border: 'none',
@@ -804,7 +805,7 @@ export default function ColourLibrary() {
             }}
             style={{
               fontSize: '10px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               color: 'var(--ink)',
               textDecoration: 'underline',
               background: 'none',
@@ -820,7 +821,7 @@ export default function ColourLibrary() {
 
       {/* Results Header Counter */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-        <span suppressHydrationWarning style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
+        <span suppressHydrationWarning style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>
           Showing {filteredMaterials.length} of {materials.length} Architectural Colours
         </span>
         {(searchQuery || selectedColorFamily !== 'all' || selectedPattern !== 'all') && (
@@ -831,7 +832,7 @@ export default function ColourLibrary() {
               setSelectedColorFamily('all');
               setSelectedPattern('all');
             }}
-            style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', textDecoration: 'underline', color: 'var(--ink)', cursor: 'pointer', background: 'none', border: 'none' }}
+            style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textDecoration: 'underline', color: 'var(--ink)', cursor: 'pointer', background: 'none', border: 'none' }}
           >
             Reset Filters
           </button>
@@ -859,7 +860,7 @@ export default function ColourLibrary() {
               alignItems: 'center',
               justifyContent: 'center',
               fontSize: '18px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               color: 'var(--muted)',
             }}
           >
@@ -881,7 +882,7 @@ export default function ColourLibrary() {
             style={{
               padding: '11px 24px',
               fontSize: '11px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               textTransform: 'uppercase',
               letterSpacing: '0.06em',
               background: 'var(--ink)',
@@ -905,11 +906,16 @@ export default function ColourLibrary() {
           {visibleMaterials.map((mat, idx) => {
             const inTray = isShortlisted(mat.slug);
             return (
-              <div
+              <ScrollReveal
                 key={mat.slug}
-                className="material-card"
-                role="button"
-                tabIndex={0}
+                variant="image"
+                delay={(idx % 4) * 60}
+                style={{ height: '100%' }}
+              >
+                <div
+                  className="material-card"
+                  role="button"
+                  tabIndex={0}
                 aria-label={`View ${mat.name} (${mat.code}) material specifications`}
                 data-agent-target="material-card"
                 data-material-slug={mat.slug}
@@ -976,7 +982,7 @@ export default function ColourLibrary() {
                     padding: '6px 12px',
                     borderRadius: '0px',
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     textTransform: 'uppercase',
                     cursor: 'pointer',
                     transition: 'all 0.25s ease',
@@ -1012,7 +1018,8 @@ export default function ColourLibrary() {
                     {mat.code} / {mat.finish}
                   </p>
                 </div>
-              </div>
+                </div>
+              </ScrollReveal>
             );
           })}
 
@@ -1107,7 +1114,7 @@ export default function ColourLibrary() {
                       />
                     )}
                   </div>
-                  <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block' }}>
+                  <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block' }}>
                     {mat.code}
                   </span>
                   <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)', display: 'block', lineHeight: 1.2 }}>
@@ -1116,7 +1123,7 @@ export default function ColourLibrary() {
                       if (match) {
                         return (
                           <>
-                            <span style={{ display: 'block', fontSize: '8px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.65, textTransform: 'uppercase', marginBottom: '2px' }}>
+                            <span style={{ display: 'block', fontSize: '8px', fontWeight: 400, fontFamily: 'Urbanist, sans-serif', opacity: 0.65, textTransform: 'uppercase', marginBottom: '2px' }}>
                               {match[1]}
                             </span>
                             <span>{match[2]}</span>
@@ -1147,7 +1154,7 @@ export default function ColourLibrary() {
                       width: '100%',
                       padding: '6px 8px',
                       fontSize: '9px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       background: inTray ? 'var(--ink)' : 'transparent',
                       color: inTray ? '#fff' : 'var(--ink)',
@@ -1244,7 +1251,7 @@ export default function ColourLibrary() {
                   </div>
 
                   <div className="material-list-title-block">
-                    <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                    <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                       {mat.code} / {mat.collection}
                     </span>
                     <h4 style={{ fontSize: '17px', fontWeight: 500, margin: '2px 0 0', color: 'var(--ink)', lineHeight: 1.25 }}>
@@ -1253,7 +1260,7 @@ export default function ColourLibrary() {
                         if (match) {
                           return (
                             <>
-                              <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'DM Mono, monospace', opacity: 0.65, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
+                              <span style={{ display: 'block', fontSize: '9px', fontWeight: 400, fontFamily: 'Urbanist, sans-serif', opacity: 0.65, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '2px' }}>
                                 {match[1]}
                               </span>
                               <span>{match[2]}</span>
@@ -1268,7 +1275,7 @@ export default function ColourLibrary() {
 
                 {/* Spec: Finish & Tone */}
                 <div className="material-list-spec-finish">
-                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Finish & Tone
                   </span>
                   <span style={{ fontSize: '13px', color: 'var(--ink)' }}>
@@ -1278,7 +1285,7 @@ export default function ColourLibrary() {
 
                 {/* Spec: Translucency */}
                 <div className="material-list-spec-trans">
-                  <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase', letterSpacing: '0.04em' }}>
                     Translucency
                   </span>
                   <span style={{ fontSize: '13px', color: 'var(--ink)' }}>
@@ -1302,7 +1309,7 @@ export default function ColourLibrary() {
                     style={{
                       padding: '8px 14px',
                       fontSize: '10.5px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       letterSpacing: '0.04em',
                       background: inTray ? 'var(--ink)' : 'transparent',
@@ -1371,7 +1378,7 @@ export default function ColourLibrary() {
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
             {/* Progress Counter & Bar */}
             <div style={{ maxWidth: '340px', width: '100%' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', marginBottom: '8px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', marginBottom: '8px' }}>
                 <span>Showing {Math.min(visibleCount, filteredMaterials.length)} of {filteredMaterials.length} materials</span>
                 <span>{Math.round((Math.min(visibleCount, filteredMaterials.length) / filteredMaterials.length) * 100)}%</span>
               </div>
@@ -1397,7 +1404,7 @@ export default function ColourLibrary() {
                     style={{
                       padding: '10px 22px',
                       fontSize: '10.5px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       letterSpacing: '0.06em',
                       textTransform: 'uppercase',
                       cursor: isLoadingMore ? 'wait' : 'pointer',
@@ -1415,14 +1422,14 @@ export default function ColourLibrary() {
                     {isLoadingMore ? (
                       <>
                         <span className="spinner-loader" style={{ width: '11px', height: '11px' }} />
-                        <span style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace' }}>Retrieving Materials...</span>
+                        <span style={{ fontSize: '10.5px', fontFamily: 'Urbanist, sans-serif' }}>Retrieving Materials...</span>
                       </>
                     ) : (
                       <>
-                        <span style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace' }}>
+                        <span style={{ fontSize: '10.5px', fontFamily: 'Urbanist, sans-serif' }}>
                           Load More Materials (+{Math.min(PAGE_SIZE, filteredMaterials.length - visibleCount)})
                         </span>
-                        <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', lineHeight: 1 }}>↓</span>
+                        <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', lineHeight: 1 }}>↓</span>
                       </>
                     )}
                   </button>
@@ -1433,7 +1440,7 @@ export default function ColourLibrary() {
                     style={{
                       padding: '10px 18px',
                       fontSize: '10.5px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       letterSpacing: '0.06em',
                       textTransform: 'uppercase',
                       background: 'var(--paper)',
@@ -1447,7 +1454,7 @@ export default function ColourLibrary() {
                       transition: 'all 0.25s ease',
                     }}
                   >
-                    <span suppressHydrationWarning style={{ fontSize: '10.5px', fontFamily: 'DM Mono, monospace' }}>
+                    <span suppressHydrationWarning style={{ fontSize: '10.5px', fontFamily: 'Urbanist, sans-serif' }}>
                       {isLoadingMore ? 'Expanding Catalog...' : `View All (${filteredMaterials.length})`}
                     </span>
                   </button>
@@ -1460,7 +1467,7 @@ export default function ColourLibrary() {
                 )}
               </div>
             ) : (
-              <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.04em' }}>
+              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: 'var(--muted)', letterSpacing: '0.04em' }}>
                 All {filteredMaterials.length} materials displayed. Looking for a custom shade?{' '}
                 <Link href="/contact" style={{ textDecoration: 'underline', color: 'var(--ink)' }}>
                   Consult our Studio Desk ↗

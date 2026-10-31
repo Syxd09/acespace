@@ -140,7 +140,7 @@ export default function ApplicationMaterialGallery({
             style={{
               padding: '8px 18px',
               fontSize: '11px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
               border: selectedFamily === 'all' ? '1px solid var(--ink)' : '1px solid rgba(30,33,29,0.18)',
@@ -168,7 +168,7 @@ export default function ApplicationMaterialGallery({
                 style={{
                   padding: '8px 18px',
                   fontSize: '11px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   textTransform: 'uppercase',
                   letterSpacing: '0.08em',
                   border: selectedFamily === fam ? '1px solid var(--ink)' : '1px solid rgba(30,33,29,0.18)',
@@ -271,7 +271,7 @@ export default function ApplicationMaterialGallery({
                       color: '#f5f4ef',
                       padding: '4px 10px',
                       fontSize: '9px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       letterSpacing: '0.06em',
                       textTransform: 'uppercase',
                       border: '1px solid rgba(255, 255, 255, 0.15)',
@@ -296,7 +296,7 @@ export default function ApplicationMaterialGallery({
                     justifyContent: 'space-between',
                     alignItems: 'center',
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     color: 'var(--ink)',
                     textTransform: 'uppercase',
                   }}
@@ -330,7 +330,7 @@ export default function ApplicationMaterialGallery({
                     <span
                       style={{
                         fontSize: '10px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         color: 'var(--muted)',
                         textTransform: 'uppercase',
                         letterSpacing: '0.08em',
@@ -341,7 +341,7 @@ export default function ApplicationMaterialGallery({
                     <span
                       style={{
                         fontSize: '11px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         color: 'var(--ink)',
                         fontWeight: 600,
                       }}
@@ -389,7 +389,7 @@ export default function ApplicationMaterialGallery({
                       <span
                         style={{
                           fontSize: '9px',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           color: 'var(--muted)',
                           textTransform: 'uppercase',
                           display: 'block',
@@ -401,7 +401,7 @@ export default function ApplicationMaterialGallery({
                         style={{
                           fontSize: '12px',
                           color: 'var(--ink)',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                         }}
                       >
                         {mat.finish}
@@ -411,7 +411,7 @@ export default function ApplicationMaterialGallery({
                       <span
                         style={{
                           fontSize: '9px',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                           color: 'var(--muted)',
                           textTransform: 'uppercase',
                           display: 'block',
@@ -423,7 +423,7 @@ export default function ApplicationMaterialGallery({
                         style={{
                           fontSize: '12px',
                           color: 'var(--ink)',
-                          fontFamily: 'DM Mono, monospace',
+                          fontFamily: 'Urbanist, sans-serif',
                         }}
                       >
                         {mat.thicknessOptions ? mat.thicknessOptions.join(' / ') : '12mm / 19mm'}
@@ -449,7 +449,7 @@ export default function ApplicationMaterialGallery({
                     style={{
                       padding: '8px 16px',
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       letterSpacing: '0.08em',
                       background: inTray ? '#253f2a' : 'var(--ink)',
@@ -473,7 +473,7 @@ export default function ApplicationMaterialGallery({
                     className="text-link"
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       textTransform: 'uppercase',
                       letterSpacing: '0.06em',
                     }}
@@ -555,7 +555,7 @@ export default function ApplicationMaterialGallery({
                   color: '#fff',
                   padding: '6px 14px',
                   fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                 }}
@@ -585,7 +585,7 @@ export default function ApplicationMaterialGallery({
                   <span
                     style={{
                       fontSize: '11px',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       color: 'var(--muted)',
                       textTransform: 'uppercase',
                       letterSpacing: '0.08em',
@@ -639,23 +639,23 @@ export default function ApplicationMaterialGallery({
                   }}
                 >
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                    <span style={{ fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Composition</span>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Composition</span>
                     <strong style={{ color: 'var(--ink)' }}>2/3 Natural ATH Mineral + 1/3 Acrylic</strong>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                    <span style={{ fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Porosity</span>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Porosity</span>
                     <strong style={{ color: 'var(--ink)' }}>ASTM D570 &lt; 0.03% (Zero Absorption)</strong>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                    <span style={{ fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Bacterial Defense</span>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Bacterial Defense</span>
                     <strong style={{ color: 'var(--ink)' }}>ISO 846 Method A &amp; C Rating 0</strong>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                    <span style={{ fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Fire Rating</span>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Fire Rating</span>
                     <strong style={{ color: 'var(--ink)' }}>{inspectingMaterial.fireRating || 'Class 1 / Class A (ASTM E84)'}</strong>
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12px' }}>
-                    <span style={{ fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Joint Seam</span>
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Joint Seam</span>
                     <strong style={{ color: 'var(--ink)' }}>&lt; 0.08mm Chemical Thermo-Weld</strong>
                   </div>
                 </div>
@@ -688,7 +688,7 @@ export default function ApplicationMaterialGallery({
                   style={{
                     padding: '12px 20px',
                     fontSize: '12px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     border: '1px solid var(--line)',
                     textTransform: 'uppercase',
                   }}

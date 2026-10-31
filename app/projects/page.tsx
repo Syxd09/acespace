@@ -98,28 +98,28 @@ export default function ProjectsPage() {
 
           <div className="hero-stats-row anim-fade-up anim-delay-3">
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Typologies
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Res / Hosp / Comm</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>Res / Hosp / Comm</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Locations
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>BLR / BOM / DEL</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>BLR / BOM / DEL</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Standards
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Master Joinery</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>Master Joinery</strong>
             </div>
           </div>
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div className="hero-image-frame">
+        <ScrollReveal variant="image" className="hero-image-frame">
           <Image
             src="/images/images/app_residential_stonecrest_smoke_1.jpg"
             alt="Completed private residence kitchen island by Studio Vardhan Architects"
@@ -132,18 +132,18 @@ export default function ProjectsPage() {
           />
           <div className="hero-image-badge">
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Featured Case Study
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
                 Private Residence / Studio Vardhan Architects
               </strong>
             </div>
-            <Link href="/projects/private-residence" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="/projects/private-residence" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
               Read Story <span>↗</span>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Interactive Project Gallery */}
@@ -151,7 +151,7 @@ export default function ProjectsPage() {
         <ProjectGallery initialProjects={projects} />
       </section>
 
-      <section className="callout">
+      <ScrollReveal className="callout">
         <p className="eyebrow">Collaborate on your next project</p>
         <h2>
           Bring your
@@ -162,7 +162,7 @@ export default function ProjectsPage() {
         <Link className="button button-dark" href="/contact">
           Submit Project Details <span>↗</span>
         </Link>
-      </section>
+      </ScrollReveal>
     </main>
   );
 }

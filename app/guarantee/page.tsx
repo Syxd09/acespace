@@ -22,11 +22,11 @@ export default function GuaranteePage() {
         
         {/* Breadcrumb */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '24px', lineHeight: 1 }}>
-          <Link href="/about" style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', textDecoration: 'none', margin: 0, lineHeight: 1 }}>
+          <Link href="/about" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--muted, #788078)', textDecoration: 'none', margin: 0, lineHeight: 1 }}>
             Practice &amp; Atelier
           </Link>
-          <span style={{ color: 'var(--muted, #788078)', fontSize: '11px', fontFamily: 'DM Mono, monospace', lineHeight: 1, userSelect: 'none', opacity: 0.6 }}>/</span>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', fontWeight: 600, margin: 0, lineHeight: 1 }}>
+          <span style={{ color: 'var(--muted, #788078)', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', lineHeight: 1, userSelect: 'none', opacity: 0.6 }}>/</span>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', fontWeight: 600, margin: 0, lineHeight: 1 }}>
             10-Year Renewable Guarantee
           </span>
         </div>
@@ -34,7 +34,7 @@ export default function GuaranteePage() {
         {/* Hero Header */}
         <div style={{ borderBottom: '1px solid var(--line, rgba(30, 33, 29, 0.18))', paddingBottom: '36px', marginBottom: '48px' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', background: 'rgba(30, 33, 29, 0.05)', border: '1px solid rgba(30, 33, 29, 0.12)', padding: '6px 14px', marginBottom: '20px' }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: '#1a1d19', fontWeight: 600 }}>
               DuPont™ Corian® Quality Network Partner Warranty (Bengaluru)
             </span>
           </div>
@@ -58,13 +58,13 @@ export default function GuaranteePage() {
             { label: 'Transferability', value: 'Fully Transferable', sub: 'Warranty transfers to new property buyers and tenants' },
           ].map((stat, i) => (
             <div key={i} style={{ background: '#fff', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', padding: '24px 22px', borderRadius: '6px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: '#788078', letterSpacing: '0.08em' }}>
                 {stat.label}
               </span>
               <div style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '-0.03em', color: '#1a1d19', margin: '14px 0 6px' }}>
                 {stat.value}
               </div>
-              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#596059', margin: 0, lineHeight: 1.5 }}>
+              <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#596059', margin: 0, lineHeight: 1.5 }}>
                 {stat.sub}
               </p>
             </div>
@@ -91,10 +91,10 @@ export default function GuaranteePage() {
 
             <div style={{ background: 'rgba(30, 33, 29, 0.03)', border: '1px solid var(--line, rgba(30, 33, 29, 0.18))', padding: '28px 24px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <div>
-                <h3 style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', margin: '0 0 14px' }}>
+                <h3 style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1a1d19', margin: '0 0 14px' }}>
                   On-Site Restoration Protocol
                 </h3>
-                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#4a5249' }}>
+                <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px', fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#4a5249' }}>
                   <li><strong>Stage 1:</strong> Chemical clean with micro-degreaser</li>
                   <li><strong>Stage 2:</strong> Feather-sanding to eliminate localized scratches</li>
                   <li><strong>Stage 3:</strong> Progressive orbital cross-hatch refinement</li>
@@ -103,7 +103,7 @@ export default function GuaranteePage() {
               </div>
 
               <div style={{ borderTop: '1px solid rgba(30,33,29,0.1)', paddingTop: '16px', marginTop: '20px' }}>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#788078', display: 'block' }}>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', display: 'block' }}>
                   RESULT: ZERO VISIBLE WEAR / FULLY RESTORABLE
                 </span>
               </div>
@@ -166,13 +166,13 @@ export default function GuaranteePage() {
         <div style={{ background: '#141713', color: '#e9e8e2', padding: '40px', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', marginBottom: '56px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '24px' }}>
             <div>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#c2cdc2', display: 'block', marginBottom: '8px' }}>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#c2cdc2', display: 'block', marginBottom: '8px' }}>
                 Warranty Desk &amp; Atelier Service Handover
               </span>
               <h3 style={{ fontSize: '24px', fontWeight: 600, letterSpacing: '-0.03em', color: '#fff', margin: '0 0 8px' }}>
                 Need to register an installation or request surface renewal?
               </h3>
-              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#aab4aa', margin: 0 }}>
+              <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#aab4aa', margin: 0 }}>
                 Every Ace Spaces project is catalogued with a digital fabrication dossier and material batch serial number.
               </p>
             </div>
@@ -182,7 +182,7 @@ export default function GuaranteePage() {
                 background: '#e9e8e2',
                 color: '#141713',
                 padding: '12px 24px', borderRadius: '4px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 fontWeight: 600,
                 letterSpacing: '0.06em',
@@ -198,10 +198,10 @@ export default function GuaranteePage() {
 
         {/* Footer Navigation */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '16px', borderTop: '1px solid var(--line, rgba(30,33,29,0.18))', paddingTop: '28px' }}>
-          <Link href="/certifications" style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#1a1d19', textDecoration: 'none' }}>
+          <Link href="/certifications" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#1a1d19', textDecoration: 'none' }}>
             ← Inspect Architectural Certifications &amp; Standards
           </Link>
-          <Link href="/consultation" style={{ fontFamily: 'DM Mono, monospace', fontSize: '12px', color: '#1a1d19', textDecoration: 'none', fontWeight: 600 }}>
+          <Link href="/consultation" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '12px', color: '#1a1d19', textDecoration: 'none', fontWeight: 600 }}>
             Project Consultation Form →
           </Link>
         </div>

@@ -64,6 +64,17 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Sanitize numerical boundary values to prevent NaN or negative dimension exploits
+    cfg.width = Math.max(300, Math.min(6000, Number(cfg.width) || 1200));
+    cfg.depth = Math.max(300, Math.min(2000, Number(cfg.depth) || 600));
+    cfg.thickness = ([12, 19, 24, 60].includes(Number(cfg.thickness)) ? Number(cfg.thickness) : 12) as (12 | 19 | 24 | 60);
+    if (cfg.frontApronHeight) {
+      cfg.frontApronHeight = Math.max(0, Math.min(600, Number(cfg.frontApronHeight) || 0));
+    }
+    if (cfg.rearUpstandHeight) {
+      cfg.rearUpstandHeight = Math.max(0, Math.min(600, Number(cfg.rearUpstandHeight) || 0));
+    }
+
     const pricing = calculateIndicativePrice(cfg);
 
     // Save formal 3D configuration record

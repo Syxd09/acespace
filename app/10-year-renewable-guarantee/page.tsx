@@ -1,1 +1,5 @@
-export { default, metadata } from '@/app/guarantee/page';
+import { redirect } from 'next/navigation';
+
+export default function Page() {
+  redirect('/guarantee');
+}

@@ -41,6 +41,8 @@ Thumbs.db
 
 # Raw source images
 public/assets/My images/
+data/source-raw-assets/
+scratch/
 
 # Dynamic order, configurator and lead databases
 data/orders.json

@@ -35,14 +35,14 @@ export default function JournalGallery({ images, articleTitle = 'Journal Essay' 
     <section className="journal-gallery-section" style={{ marginTop: '56px', marginBottom: '40px' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px', borderBottom: '1px solid rgba(30,33,29,0.12)', paddingBottom: '12px' }}>
         <div>
-          <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#737e73', display: 'block' }}>
+          <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#737e73', display: 'block' }}>
             Visual Monograph &amp; Documentation
           </span>
           <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '20px', fontWeight: 500, margin: '2px 0 0 0', color: 'var(--ink, #1e211d)' }}>
             Article Gallery ({images.length} {images.length === 1 ? 'Photograph' : 'Photographs'})
           </h3>
         </div>
-        <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#889088' }}>
+        <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#889088' }}>
           Click to expand ↗
         </span>
       </div>
@@ -116,7 +116,7 @@ export default function JournalGallery({ images, articleTitle = 'Journal Essay' 
               >
                 <span
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
@@ -130,7 +130,7 @@ export default function JournalGallery({ images, articleTitle = 'Journal Essay' 
                 </span>
                 <span
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     color: '#d0cfc7',
                     letterSpacing: '0.04em',
@@ -174,7 +174,7 @@ export default function JournalGallery({ images, articleTitle = 'Journal Essay' 
             onClick={(e) => e.stopPropagation()}
           >
             <div>
-              <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.08em' }}>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: '#9ca59b', letterSpacing: '0.08em' }}>
                 {articleTitle}
               </span>
               <div style={{ fontFamily: 'Manrope, sans-serif', fontSize: '14px', fontWeight: 600 }}>
@@ -191,7 +191,7 @@ export default function JournalGallery({ images, articleTitle = 'Journal Essay' 
                 border: '1px solid rgba(255,255,255,0.2)',
                 color: '#fff',
                 padding: '8px 16px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 cursor: 'pointer',
                 borderRadius: '2px',
@@ -248,7 +248,7 @@ export default function JournalGallery({ images, articleTitle = 'Journal Essay' 
                 border: '1px solid rgba(255,255,255,0.2)',
                 color: '#fff',
                 padding: '10px 20px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '12px',
                 cursor: images.length <= 1 ? 'not-allowed' : 'pointer',
                 opacity: images.length <= 1 ? 0.4 : 1,
@@ -290,7 +290,7 @@ export default function JournalGallery({ images, articleTitle = 'Journal Essay' 
                 border: '1px solid rgba(255,255,255,0.2)',
                 color: '#fff',
                 padding: '10px 20px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '12px',
                 cursor: images.length <= 1 ? 'not-allowed' : 'pointer',
                 opacity: images.length <= 1 ? 0.4 : 1,

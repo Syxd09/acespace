@@ -94,7 +94,7 @@ export default function PhilosophyAccordion({ pillars }: PhilosophyAccordionProp
                     paddingTop: '14px',
                     borderTop: '1px solid rgba(0,0,0,0.06)',
                     fontSize: '11px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     color: 'var(--muted)',
                   }}
                 >

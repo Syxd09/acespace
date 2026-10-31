@@ -327,7 +327,7 @@ export default function ArchitecturalSelect({
                 >
                   <span
                     style={{
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10px',
                       color: isSelected ? 'var(--brand-red, #d43833)' : '#99a199',
                       letterSpacing: '0.04em',
@@ -351,7 +351,7 @@ export default function ArchitecturalSelect({
                   {opt.meta && (
                     <span
                       style={{
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '10.5px',
                         color: isSelected ? 'var(--brand-red, #d43833)' : '#8c948c',
                         letterSpacing: '0.04em',

@@ -7,6 +7,7 @@ import { SiteContentProvider } from '@/context/SiteContentContext';
 import SampleTray from '@/components/SampleTray';
 import PageTransition from '@/components/PageTransition';
 import SmoothScroll from '@/components/SmoothScroll';
+import GlobalScrollObserver from '@/components/GlobalScrollObserver';
 import ArchitecturalAIBot from '@/components/ArchitecturalAIBot';
 import CookieConsent from '@/components/CookieConsent';
 
@@ -113,7 +114,7 @@ const jsonLdGraph = {
         'Ace Spaces Material Hub Bengaluru',
       ],
       image: 'https://acespacesindia.vercel.app/assets/hero-ace.png',
-      logo: 'https://acespacesindia.vercel.app/favicon.svg',
+      logo: 'https://acespacesindia.vercel.app/logo/icon-logo-transparent.png',
       url: 'https://acespacesindia.vercel.app',
       telephone: '+919741044776',
       email: 'studio@acespaces.in',
@@ -126,6 +127,7 @@ const jsonLdGraph = {
         streetAddress: 'Coro Crafted Collective & Ace Spaces Studio Headquarters',
         addressLocality: 'Bengaluru',
         addressRegion: 'Karnataka',
+        postalCode: '560038',
         addressCountry: 'IN',
       },
       geo: {
@@ -213,10 +215,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Local Geo & Geographic Positioning Meta Tags */}
+        <meta name="geo.region" content="IN-KA" />
+        <meta name="geo.placename" content="Bengaluru" />
+        <meta name="geo.position" content="12.9716;77.6412" />
+        <meta name="ICBM" content="12.9716, 77.6412" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Urbanist:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
         {/* Agentic Browsing & AI Crawler Specification */}
@@ -245,6 +252,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <SmoothScroll />
+        <GlobalScrollObserver />
         <SiteContentProvider>
           <SampleProvider>
             <SiteHeader />

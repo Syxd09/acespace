@@ -180,7 +180,7 @@ export default function ProductImageGallery({
                   backdropFilter: 'blur(8px)',
                   color: '#e9e8e2',
                   padding: '4px 10px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
@@ -223,7 +223,7 @@ export default function ProductImageGallery({
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   color: 'var(--muted, #667066)',
                   borderTop: '1px dashed rgba(30, 33, 29, 0.14)',
@@ -280,7 +280,7 @@ export default function ProductImageGallery({
             <div>
               <span
                 style={{
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   color: 'var(--brand-red, #d43833)',
                   letterSpacing: '0.1em',
@@ -308,7 +308,7 @@ export default function ProductImageGallery({
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
               <span
                 style={{
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   color: '#9ba59b',
                   letterSpacing: '0.06em',
@@ -329,7 +329,7 @@ export default function ProductImageGallery({
                   border: '1px solid rgba(255, 255, 255, 0.25)',
                   color: '#ffffff',
                   padding: '7px 14px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
                   fontWeight: 600,
                   cursor: 'pointer',
@@ -478,7 +478,7 @@ export default function ProductImageGallery({
                 <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.12)', paddingBottom: '10px', marginBottom: '12px' }}>
                   <span
                     style={{
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10px',
                       color: '#c2cdc2',
                       letterSpacing: '0.12em',
@@ -507,7 +507,7 @@ export default function ProductImageGallery({
                 <div style={{ marginBottom: '14px' }}>
                   <span
                     style={{
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10px',
                       color: '#9ca59b',
                       letterSpacing: '0.08em',
@@ -529,19 +529,19 @@ export default function ProductImageGallery({
                       gap: '6px',
                     }}
                   >
-                    <li style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
+                    <li style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
                       <span style={{ color: '#c2cdc2' }}>✓</span>
                       <span><strong>Substrate:</strong> Authentic DuPont™ Corian® Solid Surface</span>
                     </li>
-                    <li style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
+                    <li style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
                       <span style={{ color: '#c2cdc2' }}>✓</span>
                       <span><strong>Jointing:</strong> Seamless chemical jointing (zero visible seams)</span>
                     </li>
-                    <li style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
+                    <li style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
                       <span style={{ color: '#c2cdc2' }}>✓</span>
                       <span><strong>Health:</strong> 100% Zero-Silica (safe to fabricate and live with)</span>
                     </li>
-                    <li style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
+                    <li style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
                       <span style={{ color: '#c2cdc2' }}>✓</span>
                       <span><strong>Hygiene:</strong> NSF/ANSI 51 Food Zone &amp; Cleanroom Certified</span>
                     </li>
@@ -553,7 +553,7 @@ export default function ProductImageGallery({
                   <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', marginBottom: '14px' }}>
                     <span
                       style={{
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '10px',
                         color: '#9ca59b',
                         letterSpacing: '0.08em',
@@ -566,7 +566,7 @@ export default function ProductImageGallery({
                     </span>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '5px' }}>
                       {specifications.slice(0, 3).map((spec, sIdx) => (
-                        <div key={sIdx} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'DM Mono, monospace', color: '#b5c0b5' }}>
+                        <div key={sIdx} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: '#b5c0b5' }}>
                           <span style={{ color: '#788278' }}>{spec.label}:</span>
                           <span style={{ textAlign: 'right', color: '#ffffff' }}>{spec.value}</span>
                         </div>
@@ -580,7 +580,7 @@ export default function ProductImageGallery({
                   <div style={{ marginBottom: '14px' }}>
                     <span
                       style={{
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         fontSize: '10px',
                         color: '#9ca59b',
                         letterSpacing: '0.08em',
@@ -591,7 +591,7 @@ export default function ProductImageGallery({
                     >
                       Architectural Palette Range
                     </span>
-                    <p style={{ margin: 0, fontSize: '11px', color: '#c4cdc4', lineHeight: 1.45, fontFamily: 'DM Mono, monospace' }}>
+                    <p style={{ margin: 0, fontSize: '11px', color: '#c4cdc4', lineHeight: 1.45, fontFamily: 'Urbanist, sans-serif' }}>
                       {compatibleMaterials.join(', ')}
                     </p>
                   </div>
@@ -606,7 +606,7 @@ export default function ProductImageGallery({
                     background: '#ffffff',
                     color: '#141713',
                     padding: '10px 14px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     fontWeight: 600,
                     textTransform: 'uppercase',
@@ -634,7 +634,7 @@ export default function ProductImageGallery({
                     color: '#e9e8e2',
                     border: '1px solid rgba(255, 255, 255, 0.25)',
                     padding: '9px 14px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     fontWeight: 500,
                     letterSpacing: '0.06em',
@@ -670,7 +670,7 @@ export default function ProductImageGallery({
           >
             <span
               style={{
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '10px',
                 color: '#9ca59b',
                 letterSpacing: '0.08em',
@@ -718,7 +718,7 @@ export default function ProductImageGallery({
             <span
               style={{
                 marginLeft: 'auto',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '10px',
                 color: '#788278',
                 whiteSpace: 'nowrap',

@@ -76,7 +76,7 @@ export default function MaterialExplorer() {
                 style={{
                   padding: '8px 16px',
                   fontSize: '11px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   textTransform: 'uppercase',
                   border: '1px solid var(--line)',
                   background: isActive ? 'var(--ink)' : 'var(--paper)',
@@ -131,7 +131,7 @@ export default function MaterialExplorer() {
             type="button"
             onClick={toggleTray}
             className="text-link"
-            style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}
+            style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}
           >
             Sample Tray <span>↗</span>
           </button>
@@ -147,7 +147,7 @@ export default function MaterialExplorer() {
           border: '1px solid var(--line)',
           marginBottom: '60px',
         }}>
-          <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+          <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
             Foundry Search Query: &quot;{searchQuery}&quot;
           </span>
           <h3 style={{ fontFamily: 'var(--serif, serif)', fontSize: '24px', margin: '12px 0 16px', fontWeight: 400 }}>
@@ -226,7 +226,7 @@ export default function MaterialExplorer() {
                   padding: '6px 12px',
                   borderRadius: '0px',
                   fontSize: '10px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   textTransform: 'uppercase',
                   cursor: 'pointer',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',

@@ -83,7 +83,7 @@ export default function SiteFooter() {
               src="/logo/full-logo-white-transparent.png"
               alt="Ace Spaces India"
               width={176}
-              height={48}
+              height={65}
               style={{
                 height: '40px',
                 width: 'auto',
@@ -93,7 +93,7 @@ export default function SiteFooter() {
             />
           </Link>
           <p style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '11px',
             lineHeight: '1.7',
             color: '#a0aba0',
@@ -116,7 +116,7 @@ export default function SiteFooter() {
           justifyContent: 'center',
         }}>
           <div style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '10px',
             letterSpacing: '0.12em',
             textTransform: 'uppercase',
@@ -138,7 +138,7 @@ export default function SiteFooter() {
 
           {isSubscribed ? (
             <div style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               color: '#73c991',
               padding: '10px 0',
@@ -163,7 +163,7 @@ export default function SiteFooter() {
                     border: '1px solid rgba(255, 255, 255, 0.18)',
                     padding: '12px 14px',
                     color: '#fff',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '12px',
                     outline: 'none',
                     transition: 'border-color 0.2s ease',
@@ -177,7 +177,7 @@ export default function SiteFooter() {
                     color: '#141713',
                     border: 'none',
                     padding: '12px 18px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     fontWeight: 600,
                     letterSpacing: '0.06em',
@@ -194,7 +194,7 @@ export default function SiteFooter() {
                 </button>
               </div>
               {subscribeError && (
-                <div style={{ color: '#ef4444', fontFamily: 'DM Mono, monospace', fontSize: '11px' }}>
+                <div style={{ color: '#ef4444', fontFamily: 'Urbanist, sans-serif', fontSize: '11px' }}>
                   ⚠ {subscribeError}
                 </div>
               )}
@@ -214,7 +214,7 @@ export default function SiteFooter() {
         {/* Col 1 */}
         <div>
           <div style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '10px',
             textTransform: 'uppercase',
             letterSpacing: '0.12em',
@@ -235,7 +235,7 @@ export default function SiteFooter() {
                 <Link
                   href={item.href}
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     color: '#c2cdc2',
                     textDecoration: 'none',
@@ -254,7 +254,7 @@ export default function SiteFooter() {
         {/* Col 2 */}
         <div>
           <div style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '10px',
             textTransform: 'uppercase',
             letterSpacing: '0.12em',
@@ -268,14 +268,14 @@ export default function SiteFooter() {
               { label: 'Solid Surface Monoliths', href: '/materials' },
               { label: 'Curated Architectural Palette', href: '/materials#library' },
               { label: 'Fabricated Products & Sinks', href: '/products' },
-              { label: 'Design Certainty Service', href: '/products/design-certainty' },
+              { label: 'Engineering Consultation', href: '/contact' },
               { label: 'Custom Specimen Box Order', href: '/materials' },
             ].map(item => (
               <li key={item.label}>
                 <Link
                   href={item.href}
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     color: '#c2cdc2',
                     textDecoration: 'none',
@@ -294,7 +294,7 @@ export default function SiteFooter() {
         {/* Col 3 */}
         <div>
           <div style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '10px',
             textTransform: 'uppercase',
             letterSpacing: '0.12em',
@@ -316,7 +316,7 @@ export default function SiteFooter() {
                 <Link
                   href={item.href}
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     color: '#c2cdc2',
                     textDecoration: 'none',
@@ -335,7 +335,7 @@ export default function SiteFooter() {
         {/* Col 4 */}
         <div>
           <div style={{
-            fontFamily: 'DM Mono, monospace',
+            fontFamily: 'Urbanist, sans-serif',
             fontSize: '10px',
             textTransform: 'uppercase',
             letterSpacing: '0.12em',
@@ -362,7 +362,7 @@ export default function SiteFooter() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       fontWeight: 600,
                       color: '#c2cdc2',
@@ -382,7 +382,7 @@ export default function SiteFooter() {
                   <Link
                     href={item.href}
                     style={{
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       fontWeight: item.href === '/consultation' ? 600 : 400,
                       color: item.href === '/consultation' ? '#e9e8e2' : '#c2cdc2',
@@ -409,7 +409,7 @@ export default function SiteFooter() {
         alignItems: 'center',
         flexWrap: 'wrap',
         gap: '16px',
-        fontFamily: 'DM Mono, monospace',
+        fontFamily: 'Urbanist, sans-serif',
         fontSize: '10px',
         color: '#7e897e',
       }}>
@@ -448,7 +448,7 @@ export default function SiteFooter() {
               border: 'none',
               padding: 0,
               color: '#7e897e',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '10px',
               cursor: 'pointer',
               textDecoration: 'underline',

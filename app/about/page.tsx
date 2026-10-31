@@ -235,7 +235,7 @@ export default function AboutPage() {
             <p className="eyebrow" style={{ margin: 0 }}>01 / Origin &amp; Purpose</p>
           </div>
 
-          <div className="about-two-col">
+          <ScrollReveal className="about-two-col">
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, fontWeight: 400, margin: '0 0 18px', letterSpacing: '-0.04em' }}>
                 Surfaces that
@@ -303,7 +303,7 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -314,7 +314,7 @@ export default function AboutPage() {
             <p className="eyebrow" style={{ margin: 0 }}>02 / Craft Disciplines</p>
           </div>
 
-          <div className="about-two-col-wide" style={{ marginBottom: '36px' }}>
+          <ScrollReveal className="about-two-col-wide" style={{ marginBottom: '36px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, fontWeight: 400, margin: 0, letterSpacing: '-0.04em' }}>
                 Principles of
@@ -327,9 +327,11 @@ export default function AboutPage() {
                 Every surface, sink, and plinth we craft is guided by four disciplines: invisible chemical fusion, 160°C thermoforming, 5-axis CNC accuracy, and diamond hand honing.
               </p>
             </div>
-          </div>
+          </ScrollReveal>
 
-          <AboutTenetsViewer />
+          <ScrollReveal delay={80}>
+            <AboutTenetsViewer />
+          </ScrollReveal>
         </div>
       </section>
 
@@ -409,7 +411,7 @@ export default function AboutPage() {
             <p className="eyebrow" style={{ margin: 0 }}>03 / Workshop &amp; Makers</p>
           </div>
 
-          <div className="about-two-col-team" style={{ marginBottom: '40px' }}>
+          <ScrollReveal className="about-two-col-team" style={{ marginBottom: '40px' }}>
             <div>
               <h2 style={{ fontSize: 'clamp(32px, 3.8vw, 50px)', lineHeight: 1.1, fontWeight: 400, margin: '0 0 16px', letterSpacing: '-0.04em' }}>
                 The hands behind
@@ -446,7 +448,7 @@ export default function AboutPage() {
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Workshop Visual Feature */}
           <div
@@ -706,7 +708,7 @@ export default function AboutPage() {
       </section>
 
       {/* Section 06: Coro Crafted Collective Callout */}
-      <section className="callout about-coro-callout" id="coro">
+      <ScrollReveal className="callout about-coro-callout" id="coro">
         <div
           className="coro-brand-showcase"
           style={{
@@ -769,7 +771,7 @@ export default function AboutPage() {
             </Link>
           </div>
         </div>
-      </section>
+      </ScrollReveal>
     </main>
   );
 }

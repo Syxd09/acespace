@@ -56,7 +56,7 @@ export default function ApplicationsLookbook({ sectors }: Props) {
             type="button"
             onClick={() => setActiveFilter(f.id)}
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
@@ -132,7 +132,7 @@ export default function ApplicationsLookbook({ sectors }: Props) {
                     background: 'rgba(20, 23, 20, 0.82)',
                     backdropFilter: 'blur(8px)',
                     color: '#ffffff',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '9.5px',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
@@ -157,7 +157,7 @@ export default function ApplicationsLookbook({ sectors }: Props) {
                       background: 'rgba(20, 23, 20, 0.88)',
                       backdropFilter: 'blur(8px)',
                       color: '#e9e8e2',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10px',
                       letterSpacing: '0.04em',
                       padding: '4px 10px', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '3px',
@@ -220,7 +220,7 @@ export default function ApplicationsLookbook({ sectors }: Props) {
                   <Link
                     href={`/materials/${item.material.slug}`}
                     style={{
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
                       color: 'var(--ink, #1e211d)',
                       textDecoration: 'none',
@@ -236,7 +236,7 @@ export default function ApplicationsLookbook({ sectors }: Props) {
                 <Link
                   href={`/applications/${item.sectorId}`}
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     color: 'var(--ink, #1e211d)',
                     textDecoration: 'none',

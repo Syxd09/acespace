@@ -69,7 +69,7 @@ export default function ErrorBoundary({
             href={generateWhatsAppUrl(DEFAULT_WHATSAPP_NUMBER)}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase' }}
+            style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase' }}
           >
             WhatsApp Desk ↗
           </a>

@@ -79,13 +79,16 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
 
   const otherProjects = projects.filter((p) => p.slug !== project.slug);
 
+  const rawProjImg = project.image || '/assets/hero-ace.png';
+  const schemaProjImg = rawProjImg.startsWith('http') ? rawProjImg : `https://acespacesindia.vercel.app${rawProjImg.startsWith('/') ? '' : '/'}${rawProjImg}`;
+
   const projectSchema = {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
     name: project.title,
     headline: project.title,
     description: project.description,
-    image: project.image || 'https://acespacesindia.vercel.app/assets/hero-ace.png',
+    image: schemaProjImg,
     dateCreated: project.year,
     locationCreated: {
       '@type': 'Place',
@@ -114,7 +117,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
               href="/projects"
               style={{
                 fontSize: '11px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 color: 'rgba(255,255,255,0.7)',
                 textDecoration: 'none',
                 letterSpacing: '0.06em',
@@ -163,7 +166,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
               padding: '6px 14px',
               border: '1px solid rgba(255, 255, 255, 0.15)',
               color: '#e9e8e2',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               textTransform: 'uppercase',
               letterSpacing: '0.08em',
@@ -252,7 +255,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
         <section style={{ marginBottom: '120px', borderTop: '1px solid var(--line)', paddingTop: '80px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '32px' }}>
             <p className="eyebrow" style={{ margin: 0 }}>Explore Other Projects</p>
-            <Link href="/projects" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="/projects" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
               All Case Studies <span>↗</span>
             </Link>
           </div>
@@ -287,7 +290,7 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                       background: 'rgba(25, 28, 24, 0.7)',
                       backdropFilter: 'blur(6px)',
                       color: '#ede8db',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       fontSize: '9px',
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
@@ -307,12 +310,12 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
                     <h3 style={{ fontFamily: 'var(--serif)', fontSize: '26px', fontWeight: 400, margin: '0 0 10px', lineHeight: 1.15, color: 'var(--ink)' }}>
                       {p.title}
                     </h3>
-                    <p style={{ fontSize: '12px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', margin: 0 }}>
+                    <p style={{ fontSize: '12px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', margin: 0 }}>
                       {p.materialUsed}
                     </p>
                   </div>
                   <div style={{ marginTop: '22px', paddingTop: '16px', borderTop: '1px solid rgba(30, 33, 29, 0.1)' }}>
-                    <span className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+                    <span className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
                       View Case Study <span>↗</span>
                     </span>
                   </div>

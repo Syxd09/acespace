@@ -113,7 +113,7 @@ export default function AboutTenetsViewer() {
               <span
                 style={{
                   display: 'block',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   color: isActive ? 'var(--ink, #1e211d)' : 'var(--muted, #667064)',
                   letterSpacing: '0.08em',
@@ -139,7 +139,7 @@ export default function AboutTenetsViewer() {
                   fontSize: '11px',
                   color: '#7a8479',
                   marginTop: '2px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                 }}
               >
                 {tenet.subtitle}
@@ -171,7 +171,7 @@ export default function AboutTenetsViewer() {
           <div>
             <span
               style={{
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 letterSpacing: '0.1em',
                 textTransform: 'uppercase',
@@ -217,7 +217,7 @@ export default function AboutTenetsViewer() {
           >
             <span
               style={{
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '10px',
                 textTransform: 'uppercase',
                 color: 'var(--muted, #667064)',
@@ -228,7 +228,7 @@ export default function AboutTenetsViewer() {
             </span>
             <strong
               style={{
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '13px',
                 color: 'var(--ink, #1e211d)',
               }}
@@ -276,7 +276,7 @@ export default function AboutTenetsViewer() {
                 fontSize: '12px',
                 lineHeight: 1.5,
                 color: 'rgba(255, 255, 255, 0.85)',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
               }}
             >
               {activeTenet.caption}

@@ -19,8 +19,10 @@ import {
 
 import { broadcastRealtimeEvent, REALTIME_CHANNEL_NAME, RealtimeEvent } from '@/lib/realtime';
 
-const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v9';
+const LOCAL_STORAGE_KEY = 'acespaces_custom_content_v13';
 const LEGACY_STORAGE_KEYS = [
+  'acespaces_custom_content_v12',
+  'acespaces_custom_content_v11',
   'acespaces_custom_content_v1',
   'acespaces_custom_content_v2',
   'acespaces_custom_content_v3',
@@ -29,6 +31,8 @@ const LEGACY_STORAGE_KEYS = [
   'acespaces_custom_content_v6',
   'acespaces_custom_content_v7',
   'acespaces_custom_content_v8',
+  'acespaces_custom_content_v9',
+  'acespaces_custom_content_v10',
 ];
 
 interface SiteContentContextType {
@@ -101,8 +105,8 @@ export function SiteContentProvider({ children }: { children: React.ReactNode })
 
           if (!isStale) {
             if (parsed.heroSlides && parsed.heroSlides.length > 0) {
-              const hasOldDraft = parsed.heroSlides.some((s: HeroSlide) => s.title?.includes('Quiet depth'));
-              if (!hasOldDraft) {
+              const isCurrentSchema = parsed.heroSlides.length === 4 && parsed.heroSlides[0]?.title === 'Solid by design.';
+              if (isCurrentSchema) {
                 setHeroSlides(parsed.heroSlides);
               } else {
                 setHeroSlides(defaultHeroSlides);

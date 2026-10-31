@@ -329,7 +329,7 @@ export default function SpecimenZoomViewer({
               style={{
                 padding: '4px 10px',
                 fontSize: '9px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 textTransform: 'uppercase',
                 border: 'none',
                 borderRadius: '100px',
@@ -351,7 +351,7 @@ export default function SpecimenZoomViewer({
               style={{
                 padding: '4px 10px',
                 fontSize: '9px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 textTransform: 'uppercase',
                 border: 'none',
                 borderRadius: '100px',
@@ -504,7 +504,7 @@ export default function SpecimenZoomViewer({
           <span
             style={{
               fontSize: '10px',
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               color: 'var(--ink)',
               minWidth: '38px',
               textAlign: 'center',
@@ -555,7 +555,7 @@ export default function SpecimenZoomViewer({
               title="Reset Zoom (0)"
               style={{
                 fontSize: '9px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 background: 'rgba(0,0,0,0.06)',
                 border: '1px solid rgba(0,0,0,0.1)',
                 color: 'var(--ink)',
@@ -993,7 +993,7 @@ export default function SpecimenZoomViewer({
                 <span
                   style={{
                     fontSize: '11px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     color: '#fff',
                     minWidth: '36px',
                     textAlign: 'center',
@@ -1018,7 +1018,7 @@ export default function SpecimenZoomViewer({
                   className="fullscreen-zoom-reset-btn"
                   style={{
                     fontSize: '10px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     background: scale > 1.01 ? 'rgba(255, 255, 255, 0.15)' : 'rgba(255, 255, 255, 0.06)',
                     border: '1px solid rgba(255, 255, 255, 0.2)',
                     color: scale > 1.01 ? '#fff' : 'rgba(255, 255, 255, 0.4)',

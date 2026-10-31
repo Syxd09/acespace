@@ -14,9 +14,12 @@ export default function HeroSlider() {
     setMounted(true);
   }, []);
 
-  const slides = mounted && heroSlides && heroSlides.length > 0 ? heroSlides : defaultHeroSlides;
-
+  const slides = (heroSlides && heroSlides.length === 4 && heroSlides[0]?.title === 'Solid by design.')
+    ? heroSlides
+    : defaultHeroSlides;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
 
   // Keep index within bounds if slides count changes
   useEffect(() => {
@@ -25,11 +28,11 @@ export default function HeroSlider() {
     }
   }, [slides.length, currentSlide]);
 
-  // 5-second slide auto-advance timer
+  // 6-second slide auto-advance timer with pause-on-hover logic
   useEffect(() => {
-    if (slides.length <= 1) return;
+    if (slides.length <= 1 || isPaused) return;
 
-    const duration = 5000;
+    const duration = 6000;
     const slideTimer = setTimeout(() => {
       setCurrentSlide((curr) => (curr + 1) % slides.length);
     }, duration);
@@ -37,7 +40,7 @@ export default function HeroSlider() {
     return () => {
       clearTimeout(slideTimer);
     };
-  }, [currentSlide, slides.length]);
+  }, [currentSlide, slides.length, isPaused]);
 
   const goToSlide = (idx: number) => {
     setCurrentSlide(idx);
@@ -54,10 +57,7 @@ export default function HeroSlider() {
   const activeSlide = slides[currentSlide] || slides[0] || defaultHeroSlides[0];
 
   return (
-    <section
-      className="hero"
-      aria-label="Architectural hero showcase"
-    >
+    <section className="hero" aria-label="Architectural hero showcase">
       {/* Slide Images with Ken-Burns and Crossfade */}
       {slides.map((slide, index) => {
         const isActive = index === currentSlide;
@@ -77,180 +77,157 @@ export default function HeroSlider() {
             <div
               style={{
                 position: 'absolute',
-                inset: '-5%',
-                transform: isActive ? 'scale(1.05) translate(0, 0)' : 'scale(1.12) translate(-1%, -1%)',
-                transition: 'transform 6.5s cubic-bezier(0.25, 1, 0.5, 1)',
+                inset: '-4%',
+                transform: isActive ? 'scale(1.04) translate(0, 0)' : 'scale(1.1) translate(-0.5%, -0.5%)',
+                transition: 'transform 7s cubic-bezier(0.25, 1, 0.5, 1)',
               }}
             >
               {slide.image && (
                 <Image
                   src={slide.image}
-                  alt={`${slide.specimen || 'Ace Spaces'} architectural solid surface - ${slide.title} ${slide.subtitle}`}
+                  alt={`${slide.specimen || 'Ace Spaces'} solid surface architecture - ${slide.title}`}
                   fill
                   priority={index === 0}
                   loading={index === 0 ? 'eager' : 'lazy'}
                   decoding="async"
-                  quality={75}
+                  quality={85}
                   sizes="100vw"
                   style={{ objectFit: 'cover', objectPosition: 'center' }}
                 />
               )}
             </div>
-            {/* Ambient Dark Gradient Shade for Text Legibility */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(90deg, rgba(15, 17, 14, 0.82) 0%, rgba(15, 17, 14, 0.45) 55%, rgba(15, 17, 14, 0.25) 100%)',
-              }}
-            />
           </div>
         );
       })}
 
-      {/* Hero Text Content */}
-      <div className="hero-content" style={{ zIndex: 2 }}>
-        <p className="eyebrow light">{activeSlide.eyebrow}</p>
-        <h1 key={`title-${currentSlide}`} style={{ animation: 'heroTextIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) both' }}>
-          {activeSlide.title}
-          <br />
-          <i>{activeSlide.subtitle}</i>
-        </h1>
-        <p key={`copy-${currentSlide}`} className="hero-copy" style={{ animation: 'heroTextIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both' }}>
-          {activeSlide.copy}
+      {/* Hero Text Content — Docked at Bottom-Left */}
+      <div className="hero-content">
+        <p
+          key={`kicker-${currentSlide}`}
+          className="hero-kicker"
+          style={{ animation: 'heroTextIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both' }}
+        >
+          {activeSlide.eyebrow}
         </p>
+        <h1
+          key={`headline-${currentSlide}`}
+          className="hero-headline"
+          style={{ animation: 'heroTextIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both' }}
+        >
+          {activeSlide.title}
+        </h1>
 
         <div className="hero-buttons">
-          <Link className="button button-light" href={activeSlide.ctaPrimaryHref || '/materials'}>
-            {activeSlide.ctaPrimaryText || 'Explore materials'} <span>↗</span>
+          <Link className="hero-btn-primary" href={activeSlide.ctaPrimaryHref || '/materials'}>
+            <span className="hero-btn-label">
+              {(activeSlide.ctaPrimaryText || 'Explore materials')
+                .replace(/& palette/gi, '')
+                .replace(/& pallette/gi, '')
+                .replace(/[↗→]/g, '')
+                .trim() || 'Explore materials'}
+            </span>
+            <span className="hero-btn-arrow" aria-hidden="true">↗</span>
           </Link>
-          <Link className="text-link light" href={activeSlide.ctaSecondaryHref || '/projects'}>
-            {activeSlide.ctaSecondaryText || 'View projects'} <span>↗</span>
+          <Link className="hero-btn-secondary" href={activeSlide.ctaSecondaryHref || '/projects'}>
+            <span className="hero-btn-label">
+              {(activeSlide.ctaSecondaryText || 'See projects').replace(/[↗→]/g, '').trim()}
+            </span>
+            <span className="hero-btn-arrow" aria-hidden="true">↗</span>
           </Link>
         </div>
       </div>
 
-      {/* Interactive Slide Navigation Controls & 5s Progress Bar */}
-      <div className="hero-slider-controls">
-        {/* Specimen Tag */}
-        <div className="specimen-tag" style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-          {activeSlide.specimen} <span style={{ color: 'var(--muted)', margin: '0 6px' }}>/</span> {activeSlide.location}
-        </div>
-
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-          {/* Arrow Buttons */}
+      {/* Slide Navigation Capsule HUD — Docked at Bottom-Right */}
+      {slides.length > 1 && (
+        <div
+          className="hero-slider-nav"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => {
+            setIsPaused(false);
+            setHoveredDot(null);
+          }}
+          aria-label="Hero showcase navigation"
+        >
+          {/* Previous Slide Arrow Button */}
           <button
             type="button"
+            className="hero-nav-arrow hero-nav-prev"
             onClick={prevSlide}
             aria-label="Previous slide"
-            style={{
-              width: '34px',
-              height: '34px',
-              minWidth: '34px',
-              minHeight: '34px',
-              maxWidth: '34px',
-              maxHeight: '34px',
-              aspectRatio: '1 / 1',
-              flexShrink: 0,
-              padding: 0,
-              boxSizing: 'border-box',
-              lineHeight: 1,
-              borderRadius: '50%',
-              border: '1px solid rgba(255,255,255,0.35)',
-              color: '#fff',
-              display: 'grid',
-              placeItems: 'center',
-              cursor: 'pointer',
-              fontSize: '14px',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#fff';
-              e.currentTarget.style.color = '#1e211d';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = '#fff';
-            }}
           >
-            ←
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
           </button>
 
-          {/* Slide Indicator & Progress Bar */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#fff', flexShrink: 0 }}>
-            <span style={{ color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>0{currentSlide + 1}</span>
-            <div
-              style={{
-                width: '70px',
-                height: '2px',
-                background: 'rgba(255,255,255,0.25)',
-                position: 'relative',
-                overflow: 'hidden',
-                borderRadius: '2px',
-              }}
-            >
-              <div
-                key={currentSlide}
-                className="hero-progress-bar"
-                style={{
-                  position: 'absolute',
-                  left: 0,
-                  top: 0,
-                  bottom: 0,
-                  width: '100%',
-                  background: 'linear-gradient(90deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 75%, var(--brand-red, #d43833) 100%)',
-                  transformOrigin: 'left',
-                  animation: 'heroProgress 5000ms linear forwards',
-                }}
-              />
-            </div>
-            <span style={{ color: 'rgba(255,255,255,0.6)' }}>0{slides.length}</span>
+          {/* Architectural Index & Typology Counter */}
+          <div className="hero-nav-counter" aria-live="polite">
+            <span className="hero-nav-index">
+              {String(currentSlide + 1).padStart(2, '0')}
+            </span>
+            <span className="hero-nav-sep">/</span>
+            <span className="hero-nav-total">
+              {String(slides.length).padStart(2, '0')}
+            </span>
+            {activeSlide.specimen && (
+              <span className="hero-nav-specimen">
+                · {activeSlide.specimen}
+              </span>
+            )}
           </div>
 
+          <div className="hero-nav-divider" aria-hidden="true" />
+
+          {/* Interactive Progress Timeline Segments */}
+          <div className="hero-nav-dots" role="tablist" aria-label="Hero slide selection">
+            {slides.map((s, idx) => {
+              const isActive = idx === currentSlide;
+              const isPast = idx < currentSlide;
+              return (
+                <button
+                  key={idx}
+                  type="button"
+                  className={`hero-nav-dot ${isActive ? 'active' : ''} ${isPast ? 'past' : ''}`}
+                  onClick={() => goToSlide(idx)}
+                  onMouseEnter={() => setHoveredDot(idx)}
+                  onMouseLeave={() => setHoveredDot(null)}
+                  aria-label={`Slide ${idx + 1}: ${s.title}`}
+                  role="tab"
+                  aria-selected={isActive}
+                >
+                  {/* Floating Micro-Tooltip */}
+                  {hoveredDot === idx && (
+                    <span className="hero-nav-tooltip" role="tooltip">
+                      <span className="tooltip-num">{String(idx + 1).padStart(2, '0')}</span>
+                      <span className="tooltip-title">{s.title.replace(/\.$/, '')}</span>
+                    </span>
+                  )}
+                  {/* Active Slide Timeline Progress Bar */}
+                  <span
+                    key={`fill-${currentSlide}-${idx}`}
+                    className="hero-nav-dot-fill"
+                    style={{
+                      animationPlayState: isPaused ? 'paused' : 'running',
+                    }}
+                  />
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Next Slide Arrow Button */}
           <button
             type="button"
+            className="hero-nav-arrow hero-nav-next"
             onClick={nextSlide}
             aria-label="Next slide"
-            style={{
-              width: '34px',
-              height: '34px',
-              minWidth: '34px',
-              minHeight: '34px',
-              maxWidth: '34px',
-              maxHeight: '34px',
-              aspectRatio: '1 / 1',
-              flexShrink: 0,
-              padding: 0,
-              boxSizing: 'border-box',
-              lineHeight: 1,
-              borderRadius: '50%',
-              border: '1px solid rgba(255,255,255,0.35)',
-              color: '#fff',
-              display: 'grid',
-              placeItems: 'center',
-              cursor: 'pointer',
-              fontSize: '14px',
-              transition: 'all 0.2s',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#fff';
-              e.currentTarget.style.color = '#1e211d';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent';
-              e.currentTarget.style.color = '#fff';
-            }}
           >
-            →
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
           </button>
         </div>
-      </div>
-
-      {/* Vertical Scroll Cue on Left */}
-      <div className="scroll-cue" style={{ zIndex: 10 }}>
-        <span>Scroll to discover</span>
-        <div className="scroll-line" />
-      </div>
+      )}
     </section>
   );
 }

@@ -125,7 +125,7 @@ export default function CookieConsent() {
 
           <span
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
@@ -183,7 +183,7 @@ export default function CookieConsent() {
               <div style={{ fontSize: '12px', fontWeight: 600, color: '#f0efe9' }}>Strictly Essential</div>
               <div style={{ fontSize: '11px', color: '#8c968c', lineHeight: 1.4 }}>Security, sample tray state, CSRF tokens</div>
             </div>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: '#a3aca3', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#a3aca3', letterSpacing: '0.05em', textTransform: 'uppercase' }}>
               Required
             </span>
           </div>
@@ -237,7 +237,7 @@ export default function CookieConsent() {
                 color: '#fff',
                 border: 'none',
                 padding: '9px 18px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 fontWeight: 600,
                 letterSpacing: '0.05em',
@@ -254,7 +254,7 @@ export default function CookieConsent() {
                 color: '#b0bcb0',
                 border: '1px solid rgba(255, 255, 255, 0.2)',
                 padding: '9px 16px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 letterSpacing: '0.05em',
                 textTransform: 'uppercase',
@@ -273,7 +273,7 @@ export default function CookieConsent() {
                 color: '#fff',
                 border: 'none',
                 padding: '9px 18px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 fontWeight: 600,
                 letterSpacing: '0.05em',
@@ -293,7 +293,7 @@ export default function CookieConsent() {
                 color: '#e9e8e2',
                 border: '1px solid rgba(255, 255, 255, 0.2)',
                 padding: '9px 16px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 letterSpacing: '0.05em',
                 textTransform: 'uppercase',
@@ -312,7 +312,7 @@ export default function CookieConsent() {
                 color: '#8c968c',
                 border: 'none',
                 padding: '9px 12px',
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 letterSpacing: '0.05em',
                 textTransform: 'uppercase',
@@ -329,7 +329,7 @@ export default function CookieConsent() {
           <Link
             href="/privacy"
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '10px',
               color: '#7e897e',
               textDecoration: 'none',

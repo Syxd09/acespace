@@ -4,12 +4,13 @@ import Image from 'next/image';
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import JsonLd from '@/components/JsonLd';
+import ScrollReveal from '@/components/ScrollReveal';
 import { materials } from '@/data/materials';
 
 const ColourLibrary = dynamic(() => import('@/components/ColourLibrary'), {
   ssr: false,
   loading: () => (
-    <div style={{ padding: '60px 0', textAlign: 'center', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>
+    <div style={{ padding: '60px 0', textAlign: 'center', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)' }}>
       Loading Material Library...
     </div>
   ),
@@ -133,7 +134,7 @@ export default function MaterialsAndColoursPage() {
             Calibrated DuPont™ Corian® slabs, 20+ architectural tones, and zero-silica mineral surfaces for residential, commercial, and hospitality projects across India.
           </p>
 
-          <div style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '24px' }}>
+          <div style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '24px' }}>
             Calibrated Slabs / Swatch Library / Pan-India Dispatch
           </div>
 
@@ -151,34 +152,34 @@ export default function MaterialsAndColoursPage() {
 
           <div className="hero-stats-row">
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Composition
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>2/3 Natural ATH</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>2/3 Natural ATH</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Palette
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>20+ Colours</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>20+ Colours</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Hygiene
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>100% Non-Porous</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>100% Non-Porous</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Dispatch
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>48h Courier</strong>
+              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>48h Courier</strong>
             </div>
           </div>
         </div>
 
         {/* Hero Architectural Image Frame */}
-        <div className="hero-image-frame">
+        <ScrollReveal variant="image" className="hero-image-frame">
           <Image
             src="/assets/material-macro.png"
             alt="Macro detail of through-body architectural mineral surface and colour swatches"
@@ -191,18 +192,18 @@ export default function MaterialsAndColoursPage() {
           />
           <div className="hero-image-badge">
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Integrated Palette &amp; Substrate
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
                 Through-Body Mineral Slabs &amp; Colour Swatches
               </strong>
             </div>
-            <Link href="#library" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="#library" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
               Select Samples <span>↓</span>
             </Link>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* 4 Core Material Substrates Breakdown */}
@@ -210,39 +211,39 @@ export default function MaterialsAndColoursPage() {
         <p className="eyebrow" style={{ marginBottom: '24px' }}>The 4 Core Material Substrates</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
           <div id="architectural-solids" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
-            <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>01</span>
+            <span style={{ fontSize: '28px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>01</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Architectural Solids</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
               Solid through-body formulations with uniform color depth and an ultra-smooth satin touch.
             </p>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Opaque / Non-Porous / Zero Seams</span>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Solid Homogeneous Mineral Composition</span>
           </div>
 
           <div id="architectural-veined" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
-            <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>02</span>
+            <span style={{ fontSize: '28px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>02</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Architectural Veined</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
               Natural veining that flows through the full thickness of the slab, ideal for seamless waterfall edges.
             </p>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Directional Flow / Acid Resistant</span>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Continuous Through-Body Veining</span>
           </div>
 
           <div id="terrazzo-aggregates" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
-            <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>03</span>
+            <span style={{ fontSize: '28px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>03</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Terrazzo &amp; Aggregates</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
               Mineral particulates and aggregate flecks that bring natural texture and visual depth to high-traffic areas.
             </p>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Quartz Chips / Micro-Honed Grain</span>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Textured Particulate Mineral Matrix</span>
           </div>
 
           <div id="onyx-translucent" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
-            <span style={{ fontSize: '28px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>04</span>
+            <span style={{ fontSize: '28px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>04</span>
             <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Onyx &amp; Translucent</h3>
             <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
               Translucent mineral sheets that diffuse backlighting for illuminated bars, reception portals, and feature walls.
             </p>
-            <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>Backlit / 38% Light Transmission</span>
+            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Diffused Ambient Illumination</span>
           </div>
         </div>
       </section>
@@ -263,7 +264,7 @@ export default function MaterialsAndColoursPage() {
           </p>
         </div>
 
-        <Suspense fallback={<div style={{ padding: '60px 0', textAlign: 'center', fontFamily: 'DM Mono, monospace', color: 'var(--muted)' }}>Loading Material Library...</div>}>
+        <Suspense fallback={<div style={{ padding: '60px 0', textAlign: 'center', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)' }}>Loading Material Library...</div>}>
           <ColourLibrary />
         </Suspense>
       </section>

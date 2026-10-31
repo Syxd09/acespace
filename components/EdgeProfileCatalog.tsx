@@ -86,7 +86,7 @@ export default function EdgeProfileCatalog() {
             >
               <div>
                 <strong style={{ display: 'block', fontSize: '16px', fontWeight: 500 }}>{edge.name}</strong>
-                <span style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace', opacity: 0.7, textTransform: 'uppercase' }}>
+                <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', opacity: 0.7, textTransform: 'uppercase' }}>
                   {edge.subtitle}
                 </span>
               </div>
@@ -120,7 +120,7 @@ export default function EdgeProfileCatalog() {
 
           <div className="edge-profile-meta">
             <div>
-              <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
+              <span style={{ display: 'block', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
                 Geometry & Detail
               </span>
               <strong style={{ fontSize: '13px', fontWeight: 500, color: 'var(--ink)' }}>
@@ -129,7 +129,7 @@ export default function EdgeProfileCatalog() {
             </div>
 
             <div>
-              <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
+              <span style={{ display: 'block', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
                 Shadow & Light Interaction
               </span>
               <strong style={{ fontSize: '13px', fontWeight: 500, color: 'var(--ink)' }}>

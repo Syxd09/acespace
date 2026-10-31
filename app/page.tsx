@@ -79,7 +79,7 @@ export default function HomePage() {
                 <span
                   style={{
                     display: 'block',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
@@ -97,7 +97,7 @@ export default function HomePage() {
                 <span
                   style={{
                     display: 'block',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
@@ -115,7 +115,7 @@ export default function HomePage() {
                 <span
                   style={{
                     display: 'block',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10px',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
@@ -185,7 +185,7 @@ export default function HomePage() {
 
       {/* Fabrication Section */}
       <section id="fabrication" className="fabrication dark-section">
-        <div className="fabrication-image" style={{ position: 'relative' }}>
+        <ScrollReveal variant="image" className="fabrication-image" style={{ position: 'relative' }}>
           <Image
             src="/images/images/app_residential_calacatta_greige_2.jpg"
             alt="Close-up of seamless 45-degree mitred waterfall edge and surface join"
@@ -196,8 +196,8 @@ export default function HomePage() {
             decoding="async"
             style={{ objectFit: 'cover' }}
           />
-        </div>
-        <div className="fabrication-copy section-pad">
+        </ScrollReveal>
+        <ScrollReveal delay={120} className="fabrication-copy section-pad">
           <p className="eyebrow light">02 / From sheet to space</p>
           <h2>
             Made for the
@@ -224,7 +224,7 @@ export default function HomePage() {
           <Link className="button button-light" href="/fabrication">
             Explore fabrication <span>↗</span>
           </Link>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Projects Section */}
@@ -243,8 +243,8 @@ export default function HomePage() {
           </Link>
         </ScrollReveal>
 
-        <ScrollReveal className="project-feature">
-          <div className="project-photo photo-one" style={{ position: 'relative' }}>
+        <div className="project-feature">
+          <ScrollReveal variant="image" className="project-photo photo-one" style={{ position: 'relative' }}>
             <Image
               src="/images/images/app_residential_calacatta_greige_1.jpg"
               alt="Calacatta Greige monolithic kitchen island"
@@ -256,8 +256,8 @@ export default function HomePage() {
               style={{ objectFit: 'cover' }}
             />
             <div className="project-tag" style={{ position: 'absolute', bottom: '24px', left: '24px', zIndex: 2 }}>Residential / Bengaluru</div>
-          </div>
-          <div className="project-info">
+          </ScrollReveal>
+          <ScrollReveal delay={120} className="project-info">
             <p className="eyebrow">01 / Private residence</p>
             <h3>
               A quieter kind
@@ -274,47 +274,59 @@ export default function HomePage() {
             <Link className="text-link dark" href="/projects/private-residence">
               View case study <span>↗</span>
             </Link>
-          </div>
-        </ScrollReveal>
+          </ScrollReveal>
+        </div>
       </section>
 
       {/* Applications Section */}
       <section id="applications" className="applications section-pad">
-        <div className="section-label">03 / Applications</div>
-        <div className="application-intro">
-          <h2>
-            One material.
-            <br />
-            <i>Many lives.</i>
-          </h2>
-          <p>From the intimacy of a vanity to the energy of a hospitality space, we help materials find their right expression.</p>
-        </div>
+        <ScrollReveal>
+          <div className="section-label">03 / Applications</div>
+          <div className="application-intro">
+            <h2>
+              One material.
+              <br />
+              <i>Many lives.</i>
+            </h2>
+            <p>From the intimacy of a vanity to the energy of a hospitality space, we help materials find their right expression.</p>
+          </div>
+        </ScrollReveal>
         <div className="app-list">
-          <Link href="/applications/residential">
-            <span>01</span>
-            <strong>Residential Architecture</strong>
-            <em>↗</em>
-          </Link>
-          <Link href="/applications/hospitality">
-            <span>02</span>
-            <strong>Hospitality & Cultural</strong>
-            <em>↗</em>
-          </Link>
-          <Link href="/applications/commercial">
-            <span>03</span>
-            <strong>Commercial Architecture</strong>
-            <em>↗</em>
-          </Link>
-          <Link href="/applications/retail">
-            <span>04</span>
-            <strong>Retail & Brand Portals</strong>
-            <em>↗</em>
-          </Link>
-          <Link href="/applications/healthcare">
-            <span>05</span>
-            <strong>Hospitals & Healthcare</strong>
-            <em>↗</em>
-          </Link>
+          <ScrollReveal delay={40}>
+            <Link href="/applications/residential">
+              <span>01</span>
+              <strong>Residential Architecture</strong>
+              <em>↗</em>
+            </Link>
+          </ScrollReveal>
+          <ScrollReveal delay={100}>
+            <Link href="/applications/hospitality">
+              <span>02</span>
+              <strong>Hospitality & Cultural</strong>
+              <em>↗</em>
+            </Link>
+          </ScrollReveal>
+          <ScrollReveal delay={160}>
+            <Link href="/applications/commercial">
+              <span>03</span>
+              <strong>Commercial Architecture</strong>
+              <em>↗</em>
+            </Link>
+          </ScrollReveal>
+          <ScrollReveal delay={220}>
+            <Link href="/applications/retail">
+              <span>04</span>
+              <strong>Retail & Brand Portals</strong>
+              <em>↗</em>
+            </Link>
+          </ScrollReveal>
+          <ScrollReveal delay={280}>
+            <Link href="/applications/healthcare">
+              <span>05</span>
+              <strong>Hospitals & Healthcare</strong>
+              <em>↗</em>
+            </Link>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -403,7 +415,7 @@ export default function HomePage() {
             {/* Studio Identity Description */}
             <p
               style={{
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 letterSpacing: '0.06em',
                 textTransform: 'uppercase',
@@ -487,7 +499,7 @@ export default function HomePage() {
 
       {/* Enquiry Section */}
       <section className="enquiry dark-section section-pad">
-        <div className="enquiry-copy">
+        <ScrollReveal className="enquiry-copy">
           <p className="eyebrow light">Start a conversation</p>
           <h2>
             Have a space
@@ -520,7 +532,7 @@ export default function HomePage() {
 
           {/* Quick WhatsApp Consultation Chips */}
           <div style={{ marginTop: '22px', display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: 'rgba(242, 240, 234, 0.5)', letterSpacing: '0.08em', textTransform: 'uppercase', width: '100%' }}>
+            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: 'rgba(242, 240, 234, 0.5)', letterSpacing: '0.08em', textTransform: 'uppercase', width: '100%' }}>
               Quick Specifier Inquiries:
             </span>
             <a
@@ -551,7 +563,7 @@ export default function HomePage() {
               Slab Specs & Pricing <span>↗</span>
             </a>
           </div>
-        </div>
+        </ScrollReveal>
         <div className="enquiry-side">
           01
           <span>

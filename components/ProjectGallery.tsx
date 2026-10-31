@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { projects as defaultProjects, Project } from '@/data/projects';
 import { useSiteContent } from '@/context/SiteContentContext';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export default function ProjectGallery({ initialProjects }: { initialProjects?: Project[] }) {
   const { projects: liveProjects } = useSiteContent();
@@ -52,7 +53,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
             type="button"
             onClick={() => setSelectedCategory(cat.id)}
             style={{
-              fontFamily: 'DM Mono, monospace',
+              fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
@@ -71,13 +72,19 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
 
       {/* Hero Featured Case Study */}
       {heroProject && (
-        <article
+        <ScrollReveal
+          key={`hero-${selectedCategory}-${heroProject.slug}`}
+          delay={60}
           style={{
             marginBottom: '60px',
-            background: 'var(--paper, #f5f4ee)', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', overflow: 'hidden', borderRadius: '6px',
+            background: 'var(--paper, #f5f4ee)',
+            border: '1px solid var(--line, rgba(30, 33, 29, 0.09))',
+            overflow: 'hidden',
+            borderRadius: '6px',
           }}
           className="project-hero-card"
         >
+          <article>
           <div
             style={{
               display: 'grid',
@@ -111,7 +118,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
                   background: 'rgba(20, 23, 20, 0.85)',
                   backdropFilter: 'blur(8px)',
                   color: '#ffffff',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '10px',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
@@ -133,7 +140,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
               <div>
                 <p
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     color: 'var(--muted, #687268)',
                     textTransform: 'uppercase',
@@ -178,7 +185,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
                   }}
                 >
                   <div>
-                    <span style={{ fontSize: '9.5px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: '9.5px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                       Material Specified
                     </span>
                     <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
@@ -186,7 +193,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
                     </strong>
                   </div>
                   <div>
-                    <span style={{ fontSize: '9.5px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+                    <span style={{ fontSize: '9.5px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                       Scale / Footprint
                     </span>
                     <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
@@ -206,7 +213,8 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
               </div>
             </div>
           </div>
-        </article>
+          </article>
+        </ScrollReveal>
       )}
 
       {/* Editorial Grid of Further Case Studies */}
@@ -219,16 +227,21 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
         }}
       >
         {gridProjects.map((project, idx) => (
-          <article
-            key={project.slug}
-            style={{
-              background: 'var(--paper, #f5f4ee)', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', overflow: 'hidden', borderRadius: '6px',
-              display: 'flex',
-              flexDirection: 'column',
-              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease',
-            }}
-            className="project-grid-card"
+          <ScrollReveal
+            key={`${selectedCategory}-${project.slug}`}
+            delay={(idx % 3) * 110}
+            style={{ height: '100%' }}
           >
+            <article
+              style={{
+                background: 'var(--paper, #f5f4ee)', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', overflow: 'hidden', borderRadius: '6px',
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100%',
+                transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease',
+              }}
+              className="project-grid-card"
+            >
             <div
               style={{
                 position: 'relative',
@@ -257,7 +270,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
                   background: 'rgba(20, 23, 20, 0.85)',
                   backdropFilter: 'blur(8px)',
                   color: '#ffffff',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '9.5px',
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
@@ -280,7 +293,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
               <div>
                 <p
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '10.5px',
                     color: 'var(--muted, #687268)',
                     textTransform: 'uppercase',
@@ -327,7 +340,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
               >
                 <span
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     color: 'var(--muted, #687268)',
                   }}
@@ -338,7 +351,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
                 <Link
                   href={`/projects/${project.slug}`}
                   style={{
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     fontSize: '11px',
                     color: 'var(--ink, #1e211d)',
                     textDecoration: 'none',
@@ -350,6 +363,7 @@ export default function ProjectGallery({ initialProjects }: { initialProjects?: 
               </div>
             </div>
           </article>
+          </ScrollReveal>
         ))}
       </div>
 

@@ -323,7 +323,7 @@ export default function SampleTray() {
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '6px', flexWrap: 'wrap' }}>
                   <span className="eyebrow" style={{ color: 'var(--muted)', margin: 0 }}>Sample Order Dispatched</span>
                   {orderNumber && (
-                    <span style={{ background: '#dcd7cd', border: '1px solid var(--line)', padding: '2px 8px', fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                    <span style={{ background: '#dcd7cd', border: '1px solid var(--line)', padding: '2px 8px', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
                       Ref: <strong>{orderNumber}</strong>
                     </span>
                   )}
@@ -367,10 +367,10 @@ export default function SampleTray() {
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '6px' }}>
-                      <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)' }}>
+                      <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)' }}>
                         Studio Concierge Follow-Up
                       </span>
-                      <span style={{ fontSize: '9.5px', color: '#6e766c', fontFamily: 'DM Mono, monospace' }}>
+                      <span style={{ fontSize: '9.5px', color: '#6e766c', fontFamily: 'Urbanist, sans-serif' }}>
                         +91 (80) 4122-8900
                       </span>
                     </div>
@@ -384,7 +384,7 @@ export default function SampleTray() {
               {/* Specimens list in confirmation screen - Compact rows */}
               {shortlist.length > 0 && (
                 <div style={{ margin: '6px 0 8px', flex: '0 1 auto', minHeight: 0, overflow: 'hidden' }}>
-                  <span style={{ fontSize: '9.5px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '5px', letterSpacing: '0.05em' }}>
+                  <span style={{ fontSize: '9.5px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '5px', letterSpacing: '0.05em' }}>
                     Specimens in this tray ({shortlist.length})
                   </span>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', maxHeight: '130px', overflowY: 'auto', paddingRight: '2px' }}>
@@ -437,11 +437,11 @@ export default function SampleTray() {
                             <strong style={{ display: 'block', fontSize: '12px', fontWeight: 500, color: 'var(--ink)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                               {fullMat.name}
                             </strong>
-                            <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase' }}>
+                            <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>
                               {fullMat.finish} / 12mm
                             </span>
                           </div>
-                          <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '2px' }}>
+                          <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'flex', alignItems: 'center', gap: '2px' }}>
                             Inspect ↗
                           </span>
                         </div>
@@ -476,12 +476,12 @@ export default function SampleTray() {
           ) : (
             <div style={{ flex: 1, overflowY: 'auto', paddingRight: '4px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
-                <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)' }}>
+                <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>
                   Selected Specimens (100mm × 100mm)
                 </span>
                 <button
                   onClick={clearShortlist}
-                  style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', textTransform: 'uppercase', color: 'var(--muted)', textDecoration: 'underline', cursor: 'pointer', background: 'none', border: 'none' }}
+                  style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', textDecoration: 'underline', cursor: 'pointer', background: 'none', border: 'none' }}
                 >
                   Clear All
                 </button>
@@ -553,7 +553,7 @@ export default function SampleTray() {
                               height: '100%',
                               display: 'grid',
                               placeItems: 'center',
-                              fontFamily: 'DM Mono, monospace',
+                              fontFamily: 'Urbanist, sans-serif',
                               fontSize: '9px',
                               color: 'var(--muted)',
                               textTransform: 'uppercase',
@@ -588,7 +588,7 @@ export default function SampleTray() {
                         <span
                           style={{
                             fontSize: '11px',
-                            fontFamily: 'DM Mono, monospace',
+                            fontFamily: 'Urbanist, sans-serif',
                             color: 'var(--muted)',
                             textTransform: 'uppercase',
                             display: 'block',
@@ -696,7 +696,7 @@ export default function SampleTray() {
                   </div>
 
                   {errorMessage && (
-                    <div style={{ padding: '10px 14px', background: 'rgba(215, 65, 50, 0.1)', border: '1px solid rgba(215, 65, 50, 0.3)', color: '#b93222', fontSize: '12px', fontFamily: 'DM Mono, monospace' }}>
+                    <div style={{ padding: '10px 14px', background: 'rgba(215, 65, 50, 0.1)', border: '1px solid rgba(215, 65, 50, 0.3)', color: '#b93222', fontSize: '12px', fontFamily: 'Urbanist, sans-serif' }}>
                       ⚠ {errorMessage}
                     </div>
                   )}
@@ -710,7 +710,7 @@ export default function SampleTray() {
                     >
                       {isSubmitting ? 'Registering Order...' : `Order Complimentary Sample Box (${shortlist.length}) ↗`}
                     </button>
-                    <span style={{ display: 'block', fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textAlign: 'center', marginTop: '10px', textTransform: 'uppercase' }}>
+                    <span style={{ display: 'block', fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textAlign: 'center', marginTop: '10px', textTransform: 'uppercase' }}>
                       Free delivery to studios across India / 100mm × 100mm
                     </span>
                   </div>

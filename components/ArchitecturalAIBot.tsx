@@ -458,7 +458,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
           >
             <span
               style={{
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'Urbanist, sans-serif',
                 fontSize: '11px',
                 color: '#6f786f',
                 flexShrink: 0,
@@ -500,7 +500,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
       })
       .replace(/\*\*(.*?)\*\*/g, '<strong style="color:#1e211d; font-weight:600;">$1</strong>')
       .replace(/\*(.*?)\*/g, '<em style="color:#2a3029;">$1</em>')
-      .replace(/`([^`]+)`/g, '<code style="background:rgba(30,33,29,0.06); padding:1px 5px; border-radius:3px; font-family:DM Mono,monospace; font-size:11px; color:#1e211d; border:1px solid rgba(30,33,29,0.1);">$1</code>');
+      .replace(/`([^`]+)`/g, '<code style="background:rgba(30,33,29,0.06); padding:1px 5px; border-radius:3px; font-family:Urbanist,monospace; font-size:11px; color:#1e211d; border:1px solid rgba(30,33,29,0.1);">$1</code>');
   };
 
   const isConfigurator = pathname?.startsWith('/configurator') || pathname?.startsWith('/basin-configurator');
@@ -615,7 +615,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                       letterSpacing: '0.06em',
                       textTransform: 'uppercase',
                       color: '#1e211d',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                     }}
                   >
                     Ace Spaces Studio Desk
@@ -635,28 +635,17 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
               </div>
 
               {/* Action Buttons */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
                 <button
                   type="button"
                   className="ace-ai-header-btn"
                   onClick={handleClearChat}
-                  title="Refresh Conversation"
-                  aria-label="Refresh conversation"
-                  style={{
-                    background: 'transparent',
-                    border: '1px solid rgba(30, 33, 29, 0.12)',
-                    color: '#495248',
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '4px',
-                    display: 'grid',
-                    placeItems: 'center',
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                    transition: 'all 0.2s ease',
-                  }}
+                  title="Reset Conversation"
+                  aria-label="Reset conversation"
                 >
-                  ↻
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.2"/>
+                  </svg>
                 </button>
 
                 <button
@@ -665,22 +654,22 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                   onClick={toggleHalfScreen}
                   title={isHalfScreen ? 'Compact View' : 'Spread View'}
                   aria-label={isHalfScreen ? 'Compact View' : 'Spread View'}
-                  style={{
-                    background: isHalfScreen ? 'rgba(30, 33, 29, 0.08)' : 'transparent',
-                    border: '1px solid rgba(30, 33, 29, 0.12)',
-                    color: '#495248',
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '4px',
-                    display: 'grid',
-                    placeItems: 'center',
-                    cursor: 'pointer',
-                    fontSize: '11px',
-                    fontFamily: 'DM Mono, monospace',
-                    transition: 'all 0.2s ease',
-                  }}
                 >
-                  {isHalfScreen ? '⤡' : '⤢'}
+                  {isHalfScreen ? (
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="4 14 10 14 10 20" />
+                      <polyline points="20 10 14 10 14 4" />
+                      <line x1="14" y1="10" x2="21" y2="3" />
+                      <line x1="3" y1="21" x2="10" y2="14" />
+                    </svg>
+                  ) : (
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                      <polyline points="15 3 21 3 21 9" />
+                      <polyline points="9 21 3 21 3 15" />
+                      <line x1="21" y1="3" x2="14" y2="10" />
+                      <line x1="3" y1="21" x2="10" y2="14" />
+                    </svg>
+                  )}
                 </button>
 
                 <button
@@ -689,21 +678,11 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                   onClick={handleCloseChat}
                   title="Close Advisory Desk"
                   aria-label="Close conversation"
-                  style={{
-                    background: 'transparent',
-                    border: '1px solid rgba(30, 33, 29, 0.12)',
-                    color: '#495248',
-                    width: '28px',
-                    height: '28px',
-                    borderRadius: '4px',
-                    display: 'grid',
-                    placeItems: 'center',
-                    cursor: 'pointer',
-                    fontSize: '12px',
-                    transition: 'all 0.2s ease',
-                  }}
                 >
-                  ✕
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                  </svg>
                 </button>
               </div>
             </header>
@@ -784,7 +763,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                               onClick={() => navigateToSiteLink(action.href!)}
                               style={{
                                 fontSize: '10px',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 letterSpacing: '0.04em',
                                 textTransform: 'uppercase',
                                 color: '#2d332c',
@@ -810,7 +789,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                               onClick={() => handleSendMessage(action.prompt || action.label)}
                               style={{
                                 fontSize: '10px',
-                                fontFamily: 'DM Mono, monospace',
+                                fontFamily: 'Urbanist, sans-serif',
                                 letterSpacing: '0.04em',
                                 textTransform: 'uppercase',
                                 color: '#2d332c',
@@ -834,7 +813,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                     style={{
                       fontSize: '9px',
                       color: '#8a9489',
-                      fontFamily: 'DM Mono, monospace',
+                      fontFamily: 'Urbanist, sans-serif',
                       marginTop: '3px',
                       padding: '0 4px',
                     }}
@@ -867,7 +846,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                     <span
                       style={{
                         fontSize: '11.5px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         letterSpacing: '0.04em',
                         color: '#6f786f',
                       }}
@@ -893,7 +872,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                 <div
                   style={{
                     fontSize: '9px',
-                    fontFamily: 'DM Mono, monospace',
+                    fontFamily: 'Urbanist, sans-serif',
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
                     color: '#6f786f',
@@ -916,7 +895,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                       onClick={() => handleSendMessage(starter.prompt)}
                       style={{
                         fontSize: '10.5px',
-                        fontFamily: 'DM Mono, monospace',
+                        fontFamily: 'Urbanist, sans-serif',
                         padding: '6px 11px',
                         borderRadius: '4px',
                         background: '#ffffff',
@@ -1023,7 +1002,7 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   fontSize: '9.5px',
-                  fontFamily: 'DM Mono, monospace',
+                  fontFamily: 'Urbanist, sans-serif',
                   color: '#788278',
                   letterSpacing: '0.02em',
                 }}
@@ -1042,107 +1021,29 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
           </div>
         )}
 
-        {/* Architectural Floating Trigger Seal */}
+        {/* Architectural Floating Trigger Seal - Circular Monogram */}
         <button
           type="button"
           onClick={handleToggleChat}
           aria-expanded={isOpen}
           aria-label="Ace Spaces Studio Desk Advisory"
+          title="Studio Desk Advisory"
           className="ace-ai-trigger-seal"
-          style={{
-            background: '#151714',
-            color: '#f5f2ea',
-            border: '1px solid rgba(255, 255, 255, 0.16)',
-            borderRadius: '100px',
-            height: '40px',
-            padding: '0 16px 0 12px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '10px',
-            cursor: 'pointer',
-            boxShadow: '0 12px 32px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.16)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            transition: 'all 0.28s cubic-bezier(0.16, 1, 0.3, 1)',
-            transform: (isOpen && !isClosing) ? 'scale(0.97)' : 'scale(1)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(196, 67, 61, 0.55)';
-            e.currentTarget.style.boxShadow = '0 16px 40px rgba(0, 0, 0, 0.38)';
-            e.currentTarget.style.transform = 'translateY(-2px)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.16)';
-            e.currentTarget.style.boxShadow = '0 12px 32px rgba(0, 0, 0, 0.28), 0 2px 6px rgba(0, 0, 0, 0.16)';
-            e.currentTarget.style.transform = 'translateY(0)';
-          }}
         >
-          {/* Logo Monogram */}
-          <div
-            style={{
-              width: '18px',
-              height: '18px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            <img
-              src="/logo/icon-logo-white-transparent.png"
-              alt="Ace Spaces Logo"
-              style={{ width: '18px', height: '18px', objectFit: 'contain', display: 'block' }}
-            />
-          </div>
-
-          {/* Clean Single-Line Architectural Monogram Label */}
-          <span
-            style={{
-              fontFamily: 'DM Mono, monospace',
-              fontSize: '11px',
-              fontWeight: 500,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              color: '#f5f2ea',
-              lineHeight: 1,
-            }}
-          >
-            Studio Desk
-          </span>
-
-          <span
-            style={{
-              width: '1px',
-              height: '12px',
-              background: 'rgba(255, 255, 255, 0.18)',
-              margin: '0 1px',
-            }}
-          />
-
-          <span
-            style={{
-              fontFamily: 'DM Mono, monospace',
-              fontSize: '10px',
-              letterSpacing: '0.04em',
-              color: 'rgba(245, 242, 234, 0.62)',
-              lineHeight: 1,
-            }}
-          >
-            Advisory
-          </span>
-
-          <span
-            style={{
-              fontFamily: 'DM Mono, monospace',
-              fontSize: '12px',
-              color: 'var(--brand-red, #c4433d)',
-              marginLeft: '2px',
-              lineHeight: 1,
-              transition: 'transform 0.2s ease',
-            }}
-          >
-            {isOpen ? '✕' : '↗'}
-          </span>
+          {isOpen ? (
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          ) : (
+            <div className="ace-ai-seal-icon-box">
+              <img
+                src="/logo/icon-logo-transparent.png"
+                alt="Ace Spaces Studio Desk"
+                className="ace-ai-seal-logo-img"
+              />
+            </div>
+          )}
         </button>
       </aside>
 
@@ -1178,6 +1079,116 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
           pointer-events: none;
         }
 
+        .ace-ai-header-btn {
+          background: transparent;
+          border: none;
+          color: #495248;
+          width: 28px;
+          height: 28px;
+          border-radius: 4px;
+          display: grid;
+          place-items: center;
+          cursor: pointer;
+          padding: 0;
+          transition: all 0.2s ease;
+        }
+        .ace-ai-header-btn:hover {
+          background: rgba(30, 33, 29, 0.08);
+          color: #1e211d;
+        }
+
+        .ace-ai-trigger-seal {
+          background: rgba(247, 245, 240, 0.95);
+          color: #1e211d;
+          border: 1px solid rgba(30, 33, 29, 0.16);
+          border-radius: 50% !important;
+          width: 46px !important;
+          height: 46px !important;
+          padding: 0 !important;
+          display: grid !important;
+          place-items: center !important;
+          cursor: pointer;
+          box-shadow: 0 8px 24px rgba(30, 33, 29, 0.12), 0 2px 6px rgba(30, 33, 29, 0.04);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ace-ai-trigger-seal:hover {
+          background: #ffffff;
+          border-color: rgba(30, 33, 29, 0.32);
+          box-shadow: 0 12px 32px rgba(30, 33, 29, 0.16);
+          transform: translateY(-2px) scale(1.05);
+        }
+        .ace-ai-bot-root.is-open .ace-ai-trigger-seal {
+          background: #1e211d;
+          color: #f7f5f0;
+          border-color: #1e211d;
+        }
+        .ace-ai-bot-root.is-open .ace-ai-seal-logo-img {
+          filter: brightness(0) invert(1);
+        }
+        .ace-ai-bot-root.is-open .ace-ai-seal-title {
+          color: #f7f5f0;
+        }
+        .ace-ai-bot-root.is-open .ace-ai-seal-subtitle {
+          color: rgba(247, 245, 240, 0.7);
+        }
+        .ace-ai-bot-root.is-open .ace-ai-seal-divider {
+          background: rgba(255, 255, 255, 0.2);
+        }
+        .ace-ai-bot-root.is-open .ace-ai-seal-arrow {
+          color: #f7f5f0;
+        }
+
+        .ace-ai-seal-icon-box {
+          width: 22px;
+          height: 22px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .ace-ai-seal-logo-img {
+          width: 20px;
+          height: 20px;
+          object-fit: contain;
+          display: block;
+          transition: filter 0.2s ease;
+        }
+        .ace-ai-seal-text {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+        }
+        .ace-ai-seal-title {
+          font-family: Urbanist, sans-serif;
+          font-size: 11px;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #1e211d;
+          line-height: 1;
+        }
+        .ace-ai-seal-divider {
+          width: 1px;
+          height: 11px;
+          background: rgba(30, 33, 29, 0.18);
+        }
+        .ace-ai-seal-subtitle {
+          font-family: Urbanist, sans-serif;
+          font-size: 10px;
+          letter-spacing: 0.04em;
+          color: #555e54;
+          line-height: 1;
+        }
+        .ace-ai-seal-arrow {
+          display: inline-flex;
+          align-items: center;
+          color: var(--brand-red, #c4433d);
+          margin-left: 2px;
+          line-height: 1;
+        }
+
         .ace-ai-messages-scroll::-webkit-scrollbar {
           width: 4px;
         }
@@ -1200,6 +1211,17 @@ Ask about in-stock slabs, custom fabrication tolerances, or visit details for ou
           .ace-ai-bot-root {
             bottom: max(16px, env(safe-area-inset-bottom)) !important;
             right: 16px !important;
+          }
+          .ace-ai-trigger-seal {
+            width: 44px !important;
+            height: 44px !important;
+            padding: 0 !important;
+            border-radius: 50% !important;
+            justify-content: center !important;
+            box-shadow: 0 8px 20px rgba(30, 33, 29, 0.14) !important;
+          }
+          .ace-ai-seal-text {
+            display: none !important;
           }
           .ace-ai-chat-window {
             position: fixed !important;
