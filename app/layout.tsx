@@ -223,7 +223,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Urbanist:wght@300;400;500;600;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Oswald:wght@200;300;400;500;600&family=Urbanist:wght@300;400;500;600;700&display=swap"
           rel="stylesheet"
         />
         {/* Agentic Browsing & AI Crawler Specification */}

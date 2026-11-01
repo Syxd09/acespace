@@ -229,7 +229,7 @@ export default function SiteFooter() {
               { label: 'Design Philosophy & Craft', href: '/about#philosophy' },
               { label: 'The Atelier & Craftsmen', href: '/about#team' },
               { label: 'DuPont™ Material Foundation', href: '/about#foundation' },
-              { label: 'Powering Coro Crafted Collective ↗', href: 'https://corocollective.com' },
+              { label: 'Powering Coro Crafted Collective ↗', href: 'https://coro-nine.vercel.app/' },
             ].map(item => (
               <li key={item.label}>
                 <Link

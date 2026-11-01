@@ -5,6 +5,7 @@ import Link from 'next/link';
 import MaterialGrid from '@/components/MaterialGrid';
 import ScrollReveal from '@/components/ScrollReveal';
 import HeroSlider from '@/components/HeroSlider';
+import CoroShowcase from '@/components/CoroShowcase';
 import { getSiteContent } from '@/data/contentStore';
 import {
   generateWhatsAppUrl,
@@ -331,132 +332,7 @@ export default function HomePage() {
       </section>
 
       {/* Coro Crafted Collective Ecosystem Section */}
-      <section id="coro" className="coro section-pad">
-        <ScrollReveal>
-          <div
-            className="coro-brand-showcase"
-            style={{
-              background: 'rgba(244, 243, 239, 0.72)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: '1px solid rgba(30, 33, 29, 0.22)',
-              borderRadius: '4px',
-              padding: 'clamp(28px, 3.5vw, 44px) clamp(22px, 3vw, 36px)',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              textAlign: 'center',
-              maxWidth: '420px',
-              margin: '0 auto',
-              boxShadow: '0 20px 50px rgba(30, 33, 29, 0.09)',
-              position: 'relative',
-              transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-            }}
-          >
-            {/* Official Coro Geometric Emblem */}
-            <div
-              style={{
-                width: '140px',
-                height: '170px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '18px',
-              }}
-            >
-              <img
-                src="/images/coro-emblem.png"
-                alt="Coro Crafted Collective Emblem"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'contain',
-                  display: 'block',
-                  filter: 'contrast(1.05)',
-                  transition: 'transform 0.3s ease',
-                }}
-              />
-            </div>
-
-            {/* Official Coro Geometric Wordmark */}
-            <div
-              style={{
-                width: '190px',
-                height: '52px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginBottom: '14px',
-              }}
-            >
-              <img
-                src="/images/coro-wordmark.png"
-                alt="Coro Crafted Collective Wordmark"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'contain',
-                  display: 'block',
-                }}
-              />
-            </div>
-
-            {/* Subtle Divider */}
-            <div
-              style={{
-                width: '40px',
-                height: '1px',
-                background: 'rgba(30, 33, 29, 0.25)',
-                margin: '8px 0 16px',
-              }}
-            />
-
-            {/* Studio Identity Description */}
-            <p
-              style={{
-                fontFamily: 'Urbanist, sans-serif',
-                fontSize: '11px',
-                letterSpacing: '0.06em',
-                textTransform: 'uppercase',
-                color: 'rgba(30, 33, 29, 0.85)',
-                margin: 0,
-                lineHeight: 1.6,
-              }}
-            >
-              Spatial Concepts & Monolithic Interiors
-              <br />
-              <span style={{ color: 'rgba(30, 33, 29, 0.55)', fontSize: '10px' }}>
-                Powered by Ace Spaces Foundry
-              </span>
-            </p>
-          </div>
-        </ScrollReveal>
-        <ScrollReveal>
-          <p className="eyebrow" style={{ marginBottom: '16px' }}>
-            Studio Sister Brand
-          </p>
-          <h2 style={{ fontSize: 'clamp(36px, 4.5vw, 60px)', lineHeight: 1.05, margin: '16px 0 24px' }}>
-            The source where
-            <br />
-            Coro Crafted Collective <i>begins.</i>
-          </h2>
-          <p style={{ fontSize: '16px', lineHeight: 1.7, color: 'rgba(30,33,29,0.9)', marginBottom: '16px' }}>
-            Ace Spaces is the material and fabrication house behind Coro Crafted Collective. Every monolithic counter, sculpted basin, and curved plinth in Coro&apos;s interiors is built right here from authentic DuPont™ Corian®.
-          </p>
-          <p style={{ fontSize: '14px', lineHeight: 1.7, color: 'rgba(30,33,29,0.75)', marginBottom: '32px' }}>
-            Independent architects, interior designers, and builders have direct factory-gate access to the same calibrated slabs and master fabrication services.
-          </p>
-          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <Link className="button button-dark" href="/materials">
-              Source Raw Materials <span>↗</span>
-            </Link>
-            <Link className="button button-light" href="/about#coro" style={{ border: '1px solid var(--ink)', background: 'rgba(255,255,255,0.75)' }}>
-              Understand Ecosystem <span>↗</span>
-            </Link>
-          </div>
-        </ScrollReveal>
-      </section>
+      <CoroShowcase />
 
       {/* Journal Section */}
       <section id="journal" className="journal section-pad">
