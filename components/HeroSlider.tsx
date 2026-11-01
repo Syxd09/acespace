@@ -8,11 +8,6 @@ import { defaultHeroSlides } from '@/data/contentTypes';
 
 export default function HeroSlider() {
   const { heroSlides } = useSiteContent();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const slides = (heroSlides && heroSlides.length === 4 && heroSlides[0]?.title === 'Solid by design.')
     ? heroSlides
