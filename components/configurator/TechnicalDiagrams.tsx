@@ -402,94 +402,51 @@ export function SinkModelDiagram({
         </>
       )}
 
-      {/* 6. MODEL UB: Undermount Box with Ramp (Exact match to Reference Image 5) */}
+      {/* 6. MODEL UB: Undermount Box with Ramp */}
       {isUndermountBox && (
-        <>
-          {/* Stepped left side exterior & front face */}
-          <path
-            d="M 17,17 L 17,27 L 28,39 L 75,31 L 75,23"
-            fill={underbelly}
-            stroke={stroke}
-            strokeWidth="1.2"
-            strokeLinejoin="round"
-          />
-          <polygon points="17,27 28,39 28,32 17,22" fill={wallDrop} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
-
-          {/* Top rectangular rim */}
-          <polygon points="17,17 64,9 75,17 28,25" fill={rimFill} stroke={stroke} strokeWidth="1.3" strokeLinejoin="round" />
-
-          {/* Inner front vertical drop */}
-          <polygon points="28,25 75,17 75,21 28,29" fill={wallDrop} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
-
-          {/* Sloped ramp descending to rear drainage trench */}
-          <polygon points="28,29 75,21 68,14 22,22" fill={floorFill} stroke={stroke} strokeWidth="1.1" strokeLinejoin="round" />
-
-          {/* Rear drainage trench gap */}
-          <polygon points="22,22 68,14 68,12 22,19" fill={slotFill} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
-        </>
+        <image
+          href="/icons/basins/sink-ub.png"
+          x="3"
+          y="2"
+          width="82"
+          height="52"
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            filter: active ? 'drop-shadow(0 2px 4px rgba(212, 56, 51, 0.35))' : 'drop-shadow(0 1px 2px rgba(0,0,0,0.06))',
+          }}
+        />
       )}
 
-      {/* 7. MODEL UC: Undermount Sloped Channel (Exact match to Reference Image 6) */}
+      {/* 7. MODEL UC: Undermount Sloped Channel */}
       {isUndermountChannel && (
-        <>
-          {/* Wedge left side exterior & front bottom */}
-          <path
-            d="M 17,17 L 28,39 L 75,31 L 75,23"
-            fill={underbelly}
-            stroke={stroke}
-            strokeWidth="1.2"
-            strokeLinejoin="round"
-          />
-          <polygon points="17,17 28,39 28,25" fill={wallDrop} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
-
-          {/* Top rectangular rim */}
-          <polygon points="17,17 64,9 75,17 28,25" fill={rimFill} stroke={stroke} strokeWidth="1.3" strokeLinejoin="round" />
-
-          {/* Continuous sloping ramp descending directly from front to rear */}
-          <polygon points="28,25 75,17 68,12 20,20" fill={floorFill} stroke={stroke} strokeWidth="1.1" strokeLinejoin="round" />
-
-          {/* Rear drainage trench gap */}
-          <polygon points="20,20 68,12 68,10 20,18" fill={slotFill} stroke={stroke} strokeWidth="1" strokeLinejoin="round" />
-        </>
+        <image
+          href="/icons/basins/sink-uc.png"
+          x="3"
+          y="2"
+          width="82"
+          height="52"
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            filter: active ? 'drop-shadow(0 2px 4px rgba(212, 56, 51, 0.35))' : 'drop-shadow(0 1px 2px rgba(0,0,0,0.06))',
+          }}
+        />
       )}
 
-      {/* 8. MODEL WDT: Deep Rectangular Trough (Exact match to Reference Image 7 - Highlighted Card) */}
+      {/* 8. MODEL WDT: Deep Rectangular Washdesk Trough */}
       {isWashdesk && (
-        <>
-          {/* Left wall with curved front-bottom corner & bottom front edge */}
-          <path
-            d="M 17,18 L 17,32 C 17,38 22,41 28,41 L 75,33 L 75,18"
-            fill={underbelly}
-            stroke={stroke}
-            strokeWidth="1.3"
-            strokeLinejoin="round"
-          />
-          {/* Front face with curved bottom edge */}
-          <path
-            d="M 28,26 L 75,18 L 75,33 L 28,41 Z"
-            fill={rimFill}
-            stroke={stroke}
-            strokeWidth="1.2"
-            strokeLinejoin="round"
-          />
-          {/* Top rim opening */}
-          <polygon points="17,18 64,10 75,18 28,26" fill={rimFill} stroke={stroke} strokeWidth="1.3" strokeLinejoin="round" />
-
-          {/* Inner wall thickness lip reveal */}
-          <polygon points="19,19 63,11.5 73,18.5 29,26" fill={floorFill} stroke={stroke} strokeWidth="0.9" strokeLinejoin="round" />
-
-          {/* Inner trough floor */}
-          <polygon points="23,30 65,22 70,26 29,34" fill={floorFill} stroke={stroke} strokeWidth="0.9" strokeLinejoin="round" />
-
-          {/* Rear wall overflow slot */}
-          <ellipse cx="36" cy="15" rx="2.5" ry="1.1" fill={slotFill} transform="rotate(-11 36 15)" />
-
-          {/* Centered concentric pop-up drain */}
-          <ellipse cx="46" cy="28" rx="4.2" ry="2.2" fill={wallDrop} stroke={stroke} strokeWidth="1.2" />
-          <ellipse cx="46" cy="28" rx="2.2" ry="1.1" fill={stroke} />
-        </>
+        <image
+          href="/icons/basins/sink-wdt.png"
+          x="2"
+          y="2"
+          width="84"
+          height="52"
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            filter: active ? 'drop-shadow(0 2px 4px rgba(212, 56, 51, 0.35))' : 'drop-shadow(0 1px 2px rgba(0,0,0,0.06))',
+          }}
+        />
       )}
-    </svg>
+      </svg>
   );
 }
 
