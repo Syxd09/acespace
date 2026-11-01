@@ -155,22 +155,22 @@ export default function AboutPage() {
 
           <div className="hero-stats-row anim-fade-up anim-delay-3">
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Origin
               </span>
-              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>Bengaluru</strong>
+              <strong style={{ fontSize: '15px', fontFamily: 'var(--font-mono)', color: 'var(--ink)' }}>Bengaluru</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Facility
               </span>
-              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>15,000 sq.ft</strong>
+              <strong style={{ fontSize: '15px', fontFamily: 'var(--font-mono)', color: 'var(--ink)' }}>15,000 sq.ft</strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'var(--font-mono)', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
                 Material Standard
               </span>
-              <strong style={{ fontSize: '15px', fontFamily: 'DM Mono, monospace', color: 'var(--ink)' }}>0% Silica</strong>
+              <strong style={{ fontSize: '15px', fontFamily: 'var(--font-mono)', color: 'var(--ink)' }}>0% Silica</strong>
             </div>
           </div>
         </div>
@@ -189,14 +189,14 @@ export default function AboutPage() {
           />
           <div className="hero-image-badge">
             <div>
-              <span style={{ fontSize: '9px', fontFamily: 'DM Mono, monospace', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
+              <span style={{ fontSize: '9px', fontFamily: 'var(--font-mono)', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
                 Studio Focus
               </span>
               <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
                 Bespoke Monoliths &amp; Joinery
               </strong>
             </div>
-            <Link href="#story" className="text-link" style={{ fontSize: '11px', fontFamily: 'DM Mono, monospace' }}>
+            <Link href="#story" className="text-link" style={{ fontSize: '11px', fontFamily: 'var(--font-mono)' }}>
               Explore Atelier <span>↓</span>
             </Link>
           </div>
@@ -212,7 +212,7 @@ export default function AboutPage() {
           borderBottom: '1px solid var(--line)',
           overflowX: 'auto',
           whiteSpace: 'nowrap',
-          fontFamily: 'DM Mono, monospace',
+          fontFamily: 'var(--font-mono)',
           fontSize: '11px',
           textTransform: 'uppercase',
           letterSpacing: '0.08em',
@@ -242,7 +242,7 @@ export default function AboutPage() {
                 <br />
                 <i>outlast trends.</i>
               </h2>
-              <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.6, margin: '0 0 24px' }}>
+              <p style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--muted)', textTransform: 'uppercase', lineHeight: 1.6, margin: '0 0 24px' }}>
                 Founded in Bengaluru to connect architectural vision directly with precision fabrication.
               </p>
 
@@ -368,7 +368,7 @@ export default function AboutPage() {
           <div style={{ maxWidth: '720px' }}>
             <p
               style={{
-                fontFamily: 'DM Mono, monospace',
+                fontFamily: 'var(--font-mono)',
                 fontSize: '11px',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
@@ -433,13 +433,13 @@ export default function AboutPage() {
                     border: '1px solid var(--line)',
                   }}
                 >
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', color: 'var(--muted)', display: 'block', marginBottom: '6px' }}>
                     Unit 0{idx + 1}
                   </span>
                   <h4 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', margin: '0 0 4px' }}>
                     {team.role}
                   </h4>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: '#7a8479', marginBottom: '8px' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase', color: '#7a8479', marginBottom: '8px' }}>
                     {team.focus}
                   </div>
                   <p style={{ fontSize: '12.5px', lineHeight: 1.55, color: '#656e64', margin: 0 }}>
@@ -493,7 +493,7 @@ export default function AboutPage() {
               }}
             >
               <div>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--muted)', display: 'block', marginBottom: '2px' }}>
                   Bengaluru Workshop
                 </span>
                 <strong style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>
@@ -532,7 +532,7 @@ export default function AboutPage() {
                 <i>DuPont™ Corian®.</i>
               </h2>
               <div style={{ padding: '18px 20px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)', borderRadius: '2px', marginBottom: '20px' }}>
-                <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '4px' }}>
                   Strategic Partnership
                 </div>
                 <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>
@@ -564,7 +564,7 @@ export default function AboutPage() {
                   height={48}
                   style={{ height: 'auto', width: '130px', objectFit: 'contain' }}
                 />
-                <span style={{ fontSize: '16px', color: 'var(--muted)', fontFamily: 'DM Mono, monospace' }}>×</span>
+                <span style={{ fontSize: '16px', color: 'var(--muted)', fontFamily: 'var(--font-mono)' }}>×</span>
                 <Image
                   src="/assets/dupont-corian-quality-network-partner.png"
                   alt="DuPont™ Corian® Quality Network Industrial Partner"
@@ -586,7 +586,7 @@ export default function AboutPage() {
               {/* 3-Entity Overview */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '14px' }}>
                 <div style={{ padding: '16px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
                     01 / Material Origin
                   </span>
                   <h4 style={{ fontSize: '13px', fontWeight: 600, margin: '0 0 4px' }}>DuPont™ Corian®</h4>
@@ -595,7 +595,7 @@ export default function AboutPage() {
                   </p>
                 </div>
                 <div style={{ padding: '16px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
                     02 / Fabrication
                   </span>
                   <h4 style={{ fontSize: '13px', fontWeight: 600, margin: '0 0 4px' }}>Ace Spaces</h4>
@@ -604,7 +604,7 @@ export default function AboutPage() {
                   </p>
                 </div>
                 <div style={{ padding: '16px', background: 'rgba(255, 255, 255, 0.85)', border: '1px solid var(--line)' }}>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', textTransform: 'uppercase', color: 'var(--muted)', display: 'block', marginBottom: '8px' }}>
                     03 / Spatial Brand
                   </span>
                   <h4 style={{ fontSize: '13px', fontWeight: 600, margin: '0 0 4px' }}>Coro Crafted Collective</h4>
@@ -659,14 +659,14 @@ export default function AboutPage() {
             <div style={{ padding: '28px', background: 'rgba(255, 255, 255, 0.75)', border: '1px solid var(--line)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '10px', marginBottom: '14px' }}>
                 <div>
-                  <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)', display: 'block', marginBottom: '4px' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--muted)', display: 'block', marginBottom: '4px' }}>
                     Unified Studio &amp; Atelier
                   </span>
                   <h3 style={{ fontSize: '20px', fontWeight: 600, color: 'var(--ink)', margin: 0 }}>
                     Ace Spaces &amp; Coro Crafted Collective
                   </h3>
                 </div>
-                <span style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', padding: '4px 10px', background: 'var(--ink)', color: '#fff', borderRadius: '2px', textTransform: 'uppercase' }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', padding: '4px 10px', background: 'var(--ink)', color: '#fff', borderRadius: '2px', textTransform: 'uppercase' }}>
                   Bengaluru
                 </span>
               </div>
@@ -677,10 +677,10 @@ export default function AboutPage() {
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '18px', paddingTop: '16px', borderTop: '1px solid var(--line)' }}>
                 <div>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>
+                  <strong style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>
                     Gallery &amp; Slab Library
                   </strong>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#656e64', lineHeight: 1.6 }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: '#656e64', lineHeight: 1.6 }}>
                     20+ Calibrated Full-Scale Slabs
                     <br />
                     Backlit Translucency Displays
@@ -690,10 +690,10 @@ export default function AboutPage() {
                 </div>
 
                 <div>
-                  <strong style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>
+                  <strong style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', textTransform: 'uppercase', color: 'var(--ink)', display: 'block', marginBottom: '6px' }}>
                     Fabrication Atelier
                   </strong>
-                  <div style={{ fontFamily: 'DM Mono, monospace', fontSize: '11px', color: '#656e64', lineHeight: 1.6 }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: '11px', color: '#656e64', lineHeight: 1.6 }}>
                     5-Axis CNC Precision Milling
                     <br />
                     Vacuum Membrane Thermoforming
@@ -742,7 +742,7 @@ export default function AboutPage() {
               style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
             />
           </div>
-          <p style={{ fontFamily: 'DM Mono, monospace', fontSize: '10px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(30, 33, 29, 0.75)', margin: 0 }}>
+          <p style={{ fontFamily: 'var(--font-mono)', fontSize: '10px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'rgba(30, 33, 29, 0.75)', margin: 0 }}>
             Spatial Concepts and Collectible Furniture
             <br />
             <span style={{ color: 'rgba(30, 33, 29, 0.5)', fontSize: '9px' }}>Powered by Ace Spaces</span>

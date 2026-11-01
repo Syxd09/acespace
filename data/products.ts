@@ -91,7 +91,7 @@ export const productsData: ProductItem[] = [
     heroDescription:
       'Under-mount sinks fused seamlessly into your benchtop. With no raised rims or silicone caulking, water and food debris wipe straight into the bowl.',
     overview:
-      'Milled and bonded from matching DuPont™ Corian® mineral composite, each sink becomes one continuous piece with the counter. Soft rounded internal corners make cleaning effortless.',
+      'Milled and bonded from matching DuPont™ Corian® mineral composite, each sink becomes one continuous piece with the counter. Coved internal radii (R10mm) eliminate silicone caulking and dirt traps, preventing grime accumulation.',
     image: '/images/integrated-sink-installation.jpg',
     galleryImages: [
       {
