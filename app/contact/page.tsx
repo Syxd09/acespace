@@ -192,22 +192,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Tactile Sample Box Callout Banner */}
-      <section className="callout" style={{ margin: '40px 0 60px' }}>
-        <p className="eyebrow">Physical Material Evaluation</p>
-        <h2>
-          Need tactile samples
-          <br />
-          <i>on your desk?</i>
-        </h2>
-        <p>
-          Review colours, veining, and finishes under natural light with our complimentary 4-swatch specimen tray.
-        </p>
-        <Link className="button button-dark" href="/materials#sample-tray" prefetch={false}>
-          Request Specifier Swatch Tray <span>↗</span>
-        </Link>
-      </section>
-
       {/* Interactive Form Section */}
       <section style={{ borderTop: '1px solid var(--line)', paddingTop: '60px' }}>
         <p className="eyebrow">Consultation Brief</p>
