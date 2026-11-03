@@ -262,7 +262,7 @@ export default function EnquiryForm() {
 
       <div style={{ marginTop: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
         <button className="button" type="submit" disabled={isSubmitting}>
-          {isSubmitting ? 'Transmitting brief...' : 'Transmit Consultation Brief ↗'}
+          {isSubmitting ? 'Sending query...' : 'Send Query ↗'}
         </button>
         <span style={{ fontSize: '12px', color: '#5d665c', fontFamily: 'Urbanist, sans-serif' }}>
           Response within 24h &middot; Bengaluru Studio Team

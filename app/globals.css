@@ -7525,14 +7525,17 @@ blockquote {
 
 /* ==========================================================================
    Lineage Monograph Rail — About Page 3-Brand Architectural Network
-   Bold, spacious gallery-framed presentation matching fabrication & products
+   Frameless, transparent, minimal layout without card containers
    ========================================================================== */
 
 .lineage-monograph-rail {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
-  gap: 36px !important;
+  gap: 48px !important;
   width: 100% !important;
+  margin-top: 56px !important;
+  padding-top: 40px !important;
+  border-top: 1px solid var(--line, rgba(30, 33, 29, 0.14)) !important;
   box-sizing: border-box !important;
 }
 
@@ -7543,47 +7546,90 @@ blockquote {
   background: transparent !important;
   text-decoration: none !important;
   color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
 }
 
-.lineage-image-frame {
-  position: relative !important;
-  width: 100% !important;
-  aspect-ratio: 16 / 10 !important;
-  background: #ffffff !important;
-  border-radius: 4px !important;
-  overflow: hidden !important;
-  border: 1px solid var(--line, rgba(30, 33, 29, 0.12)) !important;
+.lineage-logo-slot {
+  height: 52px !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: center !important;
-  padding: 32px 24px !important;
-  box-sizing: border-box !important;
-  transition: border-color 0.4s ease, transform 0.4s ease !important;
+  margin-bottom: 20px !important;
+  background: transparent !important;
 }
 
-.lineage-monograph-item:hover .lineage-image-frame {
-  border-color: rgba(30, 33, 29, 0.35) !important;
-  transform: translateY(-3px) !important;
-}
-
-.lineage-image-frame img {
-  max-height: 48px !important;
+.lineage-logo-slot img {
+  max-height: 40px !important;
   width: auto !important;
   object-fit: contain !important;
   display: block !important;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 0.4s ease !important;
 }
 
-.lineage-monograph-item:hover .lineage-image-frame img {
-  transform: scale(1.05) !important;
+.lineage-monograph-item:hover .lineage-logo-slot img {
+  transform: translateY(-2px) !important;
 }
 
-.lineage-monograph-item:hover .sequence-step-phase {
+.lineage-meta {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 12px !important;
+}
+
+.lineage-num {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace) !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
   color: var(--ink, #1e211d) !important;
 }
 
-.lineage-monograph-item:hover .sequence-step-line {
+.lineage-divider {
+  font-size: 11px !important;
+  color: var(--muted, #6f786d) !important;
+  opacity: 0.45 !important;
+}
+
+.lineage-phase {
+  font-family: 'Urbanist', -apple-system, sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--muted, #6f786d) !important;
+  transition: color 0.3s ease !important;
+}
+
+.lineage-line {
+  flex: 1 !important;
+  height: 1px !important;
+  background: var(--line, rgba(30, 33, 29, 0.14)) !important;
+  transition: background-color 0.4s ease !important;
+}
+
+.lineage-monograph-item:hover .lineage-phase {
+  color: var(--ink, #1e211d) !important;
+}
+
+.lineage-monograph-item:hover .lineage-line {
   background: var(--ink, #1e211d) !important;
+}
+
+.lineage-title {
+  font-size: 19px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--ink, #1e211d) !important;
+  margin: 0 0 8px !important;
+  line-height: 1.25 !important;
+}
+
+.lineage-desc {
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+  color: #4a5249 !important;
+  margin: 0 !important;
 }
 
 @media (max-width: 960px) {

@@ -326,70 +326,48 @@ export default function AboutPage() {
         <div className="lineage-monograph-rail">
           {/* 01. Ace Spaces */}
           <Link href="/fabrication" className="lineage-monograph-item">
-            <div className="sequence-step-header">
-              <span className="sequence-step-num">01</span>
-              <span className="sequence-step-divider">—</span>
-              <span className="sequence-step-phase">Fabrication Atelier</span>
-              <div className="sequence-step-line" />
-            </div>
-
-            <div className="lineage-image-frame">
+            <div className="lineage-logo-slot">
               <Image
                 src="/logo/full-logo-transparent.png"
                 alt="Ace Spaces"
-                width={200}
-                height={60}
-                style={{ height: '42px', width: 'auto', objectFit: 'contain' }}
+                width={160}
+                height={48}
+                style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
               />
-              <div className="sequence-image-spec">
-                <span>Bengaluru · 5-Axis CNC</span>
-              </div>
             </div>
-
-            <div className="sequence-step-body">
-              <h3 className="sequence-step-title">Ace Spaces</h3>
-              <p className="sequence-step-desc">
-                Central raw material stockyard and 5-axis digital CNC fabrication atelier.
-              </p>
-              <div className="sequence-step-footer">
-                <span className="sequence-footer-label">Discipline</span>
-                <span className="sequence-footer-val">Atelier &amp; Stockyard</span>
-              </div>
+            <div className="lineage-meta">
+              <span className="lineage-num">01</span>
+              <span className="lineage-divider">—</span>
+              <span className="lineage-phase">Fabrication Atelier</span>
+              <div className="lineage-line" />
             </div>
+            <h3 className="lineage-title">Ace Spaces</h3>
+            <p className="lineage-desc">
+              Central raw material stockyard and 5-axis digital CNC fabrication atelier.
+            </p>
           </Link>
 
           {/* 02. DuPont Quality Network */}
           <Link href="/materials" className="lineage-monograph-item">
-            <div className="sequence-step-header">
-              <span className="sequence-step-num">02</span>
-              <span className="sequence-step-divider">—</span>
-              <span className="sequence-step-phase">Certified Network</span>
-              <div className="sequence-step-line" />
-            </div>
-
-            <div className="lineage-image-frame">
+            <div className="lineage-logo-slot">
               <Image
                 src="/assets/dupont-corian-quality-network-partner.png"
                 alt="DuPont™ Corian® Quality Network Industrial Partner"
-                width={220}
-                height={65}
-                style={{ height: '46px', width: 'auto', objectFit: 'contain' }}
+                width={190}
+                height={48}
+                style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
               />
-              <div className="sequence-image-spec">
-                <span>10-Year DuPont™ Warranty</span>
-              </div>
             </div>
-
-            <div className="sequence-step-body">
-              <h3 className="sequence-step-title">DuPont™ Corian®</h3>
-              <p className="sequence-step-desc">
-                Authorized Quality Network Industrial Partner backed by a 10-year warranty.
-              </p>
-              <div className="sequence-step-footer">
-                <span className="sequence-footer-label">Endorsement</span>
-                <span className="sequence-footer-val">Quality Network Partner</span>
-              </div>
+            <div className="lineage-meta">
+              <span className="lineage-num">02</span>
+              <span className="lineage-divider">—</span>
+              <span className="lineage-phase">Certified Network</span>
+              <div className="lineage-line" />
             </div>
+            <h3 className="lineage-title">DuPont™ Corian®</h3>
+            <p className="lineage-desc">
+              Authorized Quality Network Industrial Partner backed by a 10-year DuPont warranty.
+            </p>
           </Link>
 
           {/* 03. Coro Crafted Collective */}
@@ -399,36 +377,25 @@ export default function AboutPage() {
             rel="noopener noreferrer"
             className="lineage-monograph-item"
           >
-            <div className="sequence-step-header">
-              <span className="sequence-step-num">03</span>
-              <span className="sequence-step-divider">—</span>
-              <span className="sequence-step-phase">Spatial Practice</span>
-              <div className="sequence-step-line" />
-            </div>
-
-            <div className="lineage-image-frame">
+            <div className="lineage-logo-slot">
               <Image
                 src="/images/coro/coro-lockup-navy.png"
                 alt="Coro Crafted Collective"
-                width={190}
-                height={60}
-                style={{ height: '40px', width: 'auto', objectFit: 'contain' }}
+                width={150}
+                height={48}
+                style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
               />
-              <div className="sequence-image-spec">
-                <span>Bengaluru Experience Centre</span>
-              </div>
             </div>
-
-            <div className="sequence-step-body">
-              <h3 className="sequence-step-title">Coro Crafted Collective</h3>
-              <p className="sequence-step-desc">
-                Sister spatial architecture studio and collectible monolithic furniture practice.
-              </p>
-              <div className="sequence-step-footer">
-                <span className="sequence-footer-label">Ecosystem</span>
-                <span className="sequence-footer-val">Spatial Living Practice</span>
-              </div>
+            <div className="lineage-meta">
+              <span className="lineage-num">03</span>
+              <span className="lineage-divider">—</span>
+              <span className="lineage-phase">Spatial Practice</span>
+              <div className="lineage-line" />
             </div>
+            <h3 className="lineage-title">Coro Crafted Collective</h3>
+            <p className="lineage-desc">
+              Sister spatial architecture studio and collectible monolithic furniture practice.
+            </p>
           </a>
         </div>
       </section>
