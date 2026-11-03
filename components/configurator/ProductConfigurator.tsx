@@ -376,7 +376,7 @@ export default function ProductConfigurator({
             background: '#1e211d',
             color: '#e9e8e2',
             padding: '12px 24px',
-            borderRadius: '2px',
+            borderRadius: '8px',
             fontFamily: 'Urbanist, sans-serif',
             fontSize: '12px',
             letterSpacing: '0.04em',
@@ -429,7 +429,7 @@ export default function ProductConfigurator({
                 backdropFilter: 'blur(12px)',
                 WebkitBackdropFilter: 'blur(12px)',
                 border: '1px solid var(--line, rgba(30, 33, 29, 0.18))',
-                borderRadius: '0px',
+                borderRadius: '8px',
                 padding: '2px',
                 pointerEvents: 'auto',
                 display: 'inline-flex',
@@ -454,7 +454,7 @@ export default function ProductConfigurator({
                     background: activeView === v.key ? '#1e211d' : 'transparent',
                     color: activeView === v.key ? '#ffffff' : '#555e54',
                     border: 'none',
-                    borderRadius: '0px',
+                    borderRadius: '8px',
                     padding: '4px 10px',
                     fontFamily: 'Urbanist, sans-serif',
                     fontSize: '9.5px',
@@ -581,7 +581,7 @@ export default function ProductConfigurator({
                       background: 'rgba(30, 33, 29, 0.90)',
                       color: '#f5f4ee',
                       padding: '3px 8px',
-                      borderRadius: '2px',
+                      borderRadius: '8px',
                       fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10.5px',
                       letterSpacing: '0.04em',
@@ -612,7 +612,7 @@ export default function ProductConfigurator({
                 backdropFilter: 'blur(6px)',
               }}
             >
-              Left Drag: Orbit / Right Drag: Pan / Scroll: Zoom
+              Drag to rotate · Scroll to zoom
             </div>
 
             {/* Viewport Floating Icon Toolbar (Sleek, Architectural, Responsive) */}
@@ -628,7 +628,7 @@ export default function ProductConfigurator({
                 backdropFilter: 'blur(10px)',
                 WebkitBackdropFilter: 'blur(10px)',
                 border: '1px solid rgba(30, 33, 29, 0.16)',
-                borderRadius: '4px',
+                borderRadius: '8px',
                 padding: '3px',
                 gap: '3px',
                 zIndex: 10,
@@ -650,7 +650,7 @@ export default function ProductConfigurator({
                   background: showDimensions ? '#1e211d' : 'transparent',
                   color: showDimensions ? '#ffffff' : '#3c423c',
                   border: 'none',
-                  borderRadius: '2px',
+                  borderRadius: '8px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -676,7 +676,7 @@ export default function ProductConfigurator({
                   background: isTurntable ? 'var(--brand-red, #d43833)' : 'transparent',
                   color: isTurntable ? '#ffffff' : '#3c423c',
                   border: 'none',
-                  borderRadius: '2px',
+                  borderRadius: '8px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -703,7 +703,7 @@ export default function ProductConfigurator({
                   background: isWireframe ? '#1e211d' : 'transparent',
                   color: isWireframe ? '#ffffff' : '#3c423c',
                   border: 'none',
-                  borderRadius: '2px',
+                  borderRadius: '8px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -729,7 +729,7 @@ export default function ProductConfigurator({
                   background: 'transparent',
                   color: '#3c423c',
                   border: 'none',
-                  borderRadius: '2px',
+                  borderRadius: '8px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -755,7 +755,7 @@ export default function ProductConfigurator({
                   background: 'transparent',
                   color: '#3c423c',
                   border: 'none',
-                  borderRadius: '2px',
+                  borderRadius: '8px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -786,33 +786,40 @@ export default function ProductConfigurator({
             gap: '18px',
           }}
         >
-          {/* Preset Selector Banner */}
+          {/* Design Template Selector Banner */}
           <div
             style={{
-              background: '#f0eee8',
-              border: '1px solid var(--line, rgba(30,33,29,0.15))',
-              borderLeft: '3px solid var(--brand-red, #d43833)',
-              padding: '14px 18px',
+              background: '#ffffff',
+              border: '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              padding: '16px 18px',
+              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.02)',
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
-              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#737e73', fontWeight: 600 }}>
-                Base Model
-              </span>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+              <div>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '13px', fontWeight: 600, color: '#1a1d19' }}>
+                  Choose Design
+                </span>
+                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788278', margin: '2px 0 0 0' }}>
+                  Pick a starting template to customize
+                </p>
+              </div>
               <button
                 type="button"
                 onClick={handleResetPreset}
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#737e73',
+                  color: '#6e776e',
                   fontFamily: 'Urbanist, sans-serif',
-                  fontSize: '10px',
+                  fontSize: '11px',
                   cursor: 'pointer',
                   textDecoration: 'underline',
+                  padding: '2px 4px',
                 }}
               >
-                Reset Defaults
+                Reset to default
               </button>
             </div>
 
@@ -822,7 +829,7 @@ export default function ProductConfigurator({
               options={CONFIGURATOR_PRESETS.map(p => ({
                 value: p.id,
                 label: p.name,
-                meta: `${p.defaultConfig.width}×${p.defaultConfig.depth}mm`,
+                meta: `${p.defaultConfig.width} × ${p.defaultConfig.depth}mm`,
               }))}
             />
           </div>
@@ -830,34 +837,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 01: PRODUCT DIMENSIONS                          */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['02'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['02'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('02')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['02'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>01</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Dimensions
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['02'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['02'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  01
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Dimensions
+                  </span>
+                  {!openSections['02'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {config.width} × {config.depth} mm
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['02'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['02'] ? '#1e211d' : '#889188',
+                  transform: openSections['02'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['02'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                   {/* Width Control */}
                   <div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
@@ -943,9 +1003,9 @@ export default function ProductConfigurator({
                   </div>
 
                   {/* Slab Thickness Badge */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '3px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '8px' }}>
                     <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: '#667066' }}>Slab Thickness</span>
-                    <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, color: '#1e211d' }}>12 mm Solid Surface</span>
+                    <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', fontWeight: 600, color: '#1e211d' }}>12 mm Solid Surface (DuPont™ Corian® standard)</span>
                   </div>
                 </div>
               </div>
@@ -955,34 +1015,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 02: CORNER PROFILES                             */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['03'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['03'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('03')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['03'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>02</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Corners
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['03'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['03'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  02
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Corner Shapes
+                  </span>
+                  {!openSections['03'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {`Left: ${config.cornerConfig?.leftType === 'fillet' ? 'Curved' : config.cornerConfig?.leftType === 'chamfer' ? 'Beveled' : config.cornerConfig?.leftType === 'shift' ? 'Offset' : 'Square'} · Right: ${config.cornerConfig?.rightType === 'fillet' ? 'Curved' : config.cornerConfig?.rightType === 'chamfer' ? 'Beveled' : config.cornerConfig?.rightType === 'shift' ? 'Offset' : 'Square'}`}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['03'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['03'] ? '#1e211d' : '#889188',
+                  transform: openSections['03'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['03'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* LEFT CORNER */}
                 <div>
                   <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
@@ -1024,7 +1137,7 @@ export default function ProductConfigurator({
                             justifyContent: 'space-between',
                             minHeight: '74px',
                             boxSizing: 'border-box',
-                            borderRadius: '2px',
+                            borderRadius: '8px',
                           }}
                         >
                           <CornerProfileDiagram
@@ -1212,7 +1325,7 @@ export default function ProductConfigurator({
                             justifyContent: 'space-between',
                             minHeight: '74px',
                             boxSizing: 'border-box',
-                            borderRadius: '2px',
+                            borderRadius: '8px',
                           }}
                         >
                           <CornerProfileDiagram
@@ -1364,34 +1477,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 03: BASIN & SINK                                */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['04'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['04'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('04')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['04'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Sink &amp; Basin
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['04'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['04'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  03
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Sink &amp; Basin
+                  </span>
+                  {!openSections['04'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {config.sinkIntegration === 'none' ? 'No sink (Flat counter)' : (AVAILABLE_BASINS.find(b => b.id === config.basinModelId)?.name || 'Integrated Sink')}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['04'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['04'] ? '#1e211d' : '#889188',
+                  transform: openSections['04'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['04'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* 1. TAP LOCATION */}
                 <div>
                   <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
@@ -1399,8 +1565,8 @@ export default function ProductConfigurator({
                   </label>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '10px' }}>
                     {[
-                      { id: 'top-mounted', label: 'Top' },
-                      { id: 'wall-mounted', label: 'Wall' },
+                      { id: 'top-mounted', label: 'Countertop Tap' },
+                      { id: 'wall-mounted', label: 'Wall Mounted' },
                     ].map(item => {
                       const isAct = config.tapLocation === item.id;
                       return (
@@ -1415,7 +1581,7 @@ export default function ProductConfigurator({
                             padding: '10px 8px 8px',
                             border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                             background: isAct ? '#ffffff' : '#fcfbfa',
-                            borderRadius: '2px',
+                            borderRadius: '8px',
                             cursor: 'pointer',
                             display: 'flex',
                             flexDirection: 'column',
@@ -1441,10 +1607,10 @@ export default function ProductConfigurator({
                   </label>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '8px' }}>
                     {[
-                      { id: 'integrated', label: 'IN', title: 'IN - Seamless Integrated Coved Basin (Flush into deck)' },
-                      { id: 'topmount', label: 'TOP', title: 'TOP - Top-Mounted Semi-Inset Basin (Collar on deck, bowl inside)' },
-                      { id: 'undermount', label: 'ON', title: 'ON - Sit-On Countertop Vessel Basin (Sits entirely on deck)' },
-                      { id: 'none', label: 'no sink', title: 'Solid Surface Deck (No Basin)' },
+                      { id: 'integrated', label: 'Seamless Integrated', title: 'Seamless Integrated Basin (Molded smoothly into deck)' },
+                      { id: 'topmount', label: 'Semi-Inset Sink', title: 'Semi-Inset Basin (Drop-in with raised rim)' },
+                      { id: 'undermount', label: 'Vessel Bowl', title: 'Countertop Vessel Basin (Sits on deck)' },
+                      { id: 'none', label: 'No Sink', title: 'Flat Solid Surface Deck (No Basin)' },
                     ].map(item => {
                       const isAct = config.sinkIntegration === item.id;
                       return (
@@ -1465,7 +1631,7 @@ export default function ProductConfigurator({
                             padding: '8px 4px',
                             border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                             background: isAct ? '#ffffff' : '#fcfbfa',
-                            borderRadius: '2px',
+                            borderRadius: '8px',
                             cursor: 'pointer',
                             display: 'flex',
                             flexDirection: 'column',
@@ -1532,7 +1698,7 @@ export default function ProductConfigurator({
                                     padding: '8px 4px 6px',
                                     border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                     background: isAct ? '#ffffff' : '#fcfbfa',
-                                    borderRadius: '2px',
+                                    borderRadius: '8px',
                                     cursor: 'pointer',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -1571,7 +1737,7 @@ export default function ProductConfigurator({
                                     padding: '8px 6px 6px',
                                     border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                     background: isAct ? '#ffffff' : '#fcfbfa',
-                                    borderRadius: '2px',
+                                    borderRadius: '8px',
                                     cursor: 'pointer',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -1610,7 +1776,7 @@ export default function ProductConfigurator({
                                     padding: '8px 4px 6px',
                                     border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                     background: isAct ? '#ffffff' : '#fcfbfa',
-                                    borderRadius: '2px',
+                                    borderRadius: '8px',
                                     cursor: 'pointer',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -1638,7 +1804,7 @@ export default function ProductConfigurator({
                             <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--brand-red, #d43833)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                               Custom Sinks (Any Size)
                             </span>
-                            <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: 'rgba(212,56,51,0.08)', color: 'var(--brand-red, #d43833)', padding: '1px 5px', borderRadius: '2px' }}>
+                            <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: 'rgba(212,56,51,0.08)', color: 'var(--brand-red, #d43833)', padding: '1px 5px', borderRadius: '8px' }}>
                               Customizable
                             </span>
                           </div>
@@ -1654,7 +1820,7 @@ export default function ProductConfigurator({
                                     padding: '10px 6px 8px',
                                     border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                     background: isAct ? '#ffffff' : '#fcfbfa',
-                                    borderRadius: '2px',
+                                    borderRadius: '8px',
                                     cursor: 'pointer',
                                     display: 'flex',
                                     flexDirection: 'column',
@@ -1680,7 +1846,7 @@ export default function ProductConfigurator({
                       {/* 4. SINK SPECIFICATION / SIZE DISPLAY */}
                       {/* CASE 1: FIXED STORE MODEL */}
                       {!isCustom && (
-                        <div style={{ background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', padding: '10px 14px', borderRadius: '4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <div style={{ background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', padding: '10px 14px', borderRadius: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                           <div>
                             <div style={{ fontSize: '12px', fontFamily: 'Manrope, sans-serif', fontWeight: 600, color: '#1e211d' }}>
                               {currentBasin.name} ({currentBasin.code})
@@ -1689,7 +1855,7 @@ export default function ProductConfigurator({
                               {currentBasin.width} × {currentBasin.depth} × {currentBasin.height} mm (Standard Size)
                             </div>
                           </div>
-                          <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: '#1e211d', color: '#fff', padding: '3px 8px', borderRadius: '2px' }}>
+                          <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: '#1e211d', color: '#fff', padding: '3px 8px', borderRadius: '8px' }}>
                             Standard
                           </span>
                         </div>
@@ -1697,12 +1863,12 @@ export default function ProductConfigurator({
 
                       {/* CASE 2: CUSTOMIZABLE SINK MODELS (WDT, UC, UB) */}
                       {isCustom && (
-                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', background: '#faf9f6', padding: '14px', border: '1px solid rgba(212,56,51,0.2)', borderRadius: '2px' }}>
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', background: '#faf9f6', padding: '14px', border: '1px solid rgba(212,56,51,0.2)', borderRadius: '8px' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                             <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
                               Custom Dimensions ({currentBasin.code})
                             </span>
-                            <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
+                            <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 8px', borderRadius: '8px' }}>
                               Custom Sizes
                             </span>
                           </div>
@@ -1766,7 +1932,7 @@ export default function ProductConfigurator({
                                         border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                         background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
                                         color: isAct ? '#ffffff' : '#1e211d',
-                                        borderRadius: '2px',
+                                        borderRadius: '8px',
                                         cursor: 'pointer',
                                         textAlign: 'center',
                                         fontFamily: 'Urbanist, sans-serif',
@@ -1793,7 +1959,7 @@ export default function ProductConfigurator({
                                         border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                         background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
                                         color: isAct ? '#ffffff' : '#1e211d',
-                                        borderRadius: '2px',
+                                        borderRadius: '8px',
                                         cursor: 'pointer',
                                         textAlign: 'center',
                                         fontFamily: 'Urbanist, sans-serif',
@@ -1832,7 +1998,7 @@ export default function ProductConfigurator({
                                       border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                                       background: isAct ? 'var(--brand-red, #d43833)' : '#ffffff',
                                       color: isAct ? '#ffffff' : '#1e211d',
-                                      borderRadius: '2px',
+                                      borderRadius: '8px',
                                       cursor: 'pointer',
                                       textAlign: 'center',
                                       fontFamily: 'Urbanist, sans-serif',
@@ -1982,34 +2148,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 04: FRONT & SIDE APRONS                         */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['05'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['05'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('05')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['05'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Front &amp; Side Aprons
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['05'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['05'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  04
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Front &amp; Side Skirts
+                  </span>
+                  {!openSections['05'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {`${config.downstands?.height || config.frontApronHeight || 100}mm drop`}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['05'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['05'] ? '#1e211d' : '#889188',
+                  transform: openSections['05'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['05'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* INDEPENDENT SIDE TOGGLES */}
                 <div>
                   <label style={{ display: 'block', fontFamily: 'Manrope, sans-serif', fontSize: '12px', textTransform: 'uppercase', letterSpacing: '0.04em', color: '#1e211d', fontWeight: 600, marginBottom: '8px' }}>
@@ -2031,10 +2250,10 @@ export default function ProductConfigurator({
                         fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
-                        borderRadius: '2px',
+                        borderRadius: '8px',
                       }}
                     >
-                      Front: {config.downstands?.front ? 'ON' : 'OFF'}
+                      Front: {config.downstands?.front ? 'Included' : 'None'}
                     </button>
 
                     <button
@@ -2052,10 +2271,10 @@ export default function ProductConfigurator({
                         fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
-                        borderRadius: '2px',
+                        borderRadius: '8px',
                       }}
                     >
-                      Left: {config.downstands?.left ? 'ON' : 'OFF'}
+                      Left: {config.downstands?.left ? 'Included' : 'None'}
                     </button>
 
                     <button
@@ -2073,10 +2292,10 @@ export default function ProductConfigurator({
                         fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
-                        borderRadius: '2px',
+                        borderRadius: '8px',
                       }}
                     >
-                      Right: {config.downstands?.right ? 'ON' : 'OFF'}
+                      Right: {config.downstands?.right ? 'Included' : 'None'}
                     </button>
                   </div>
                 </div>
@@ -2114,9 +2333,9 @@ export default function ProductConfigurator({
                   </div>
 
                   {/* Continuous Height Slider */}
-                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '8px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '6px' }}>
-                      <span>Custom Height Slider</span>
+                      <span>Custom Drop Height (mm)</span>
                       <strong>{config.downstands?.height || config.frontApronHeight || 100} mm</strong>
                     </div>
                     <input
@@ -2146,34 +2365,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 05: UPSTANDS & SPLASHBACKS                      */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['06'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['06'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('06')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['06'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>05</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Wall Splashback
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['06'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['06'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  05
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Wall Backsplash
+                  </span>
+                  {!openSections['06'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {(config.upstands?.backMode || 'full') === 'none' ? 'None' : `${config.upstands?.height || 100}mm backsplash`}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['06'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['06'] ? '#1e211d' : '#889188',
+                  transform: openSections['06'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['06'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '18px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '18px' }}>
                 {/* BACK UPSTAND MODE */}
                 <div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
@@ -2245,10 +2517,10 @@ export default function ProductConfigurator({
                         fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
-                        borderRadius: '2px',
+                        borderRadius: '8px',
                       }}
                     >
-                      Left Wall: {config.upstands?.leftMode === 'full' ? 'FULL' : 'NONE'}
+                      Left Wall: {config.upstands?.leftMode === 'full' ? 'Included' : 'None'}
                     </button>
 
                     <button
@@ -2276,16 +2548,16 @@ export default function ProductConfigurator({
                         fontFamily: 'Urbanist, sans-serif',
                         cursor: 'pointer',
                         textAlign: 'center',
-                        borderRadius: '2px',
+                        borderRadius: '8px',
                       }}
                     >
-                      Right Wall: {config.upstands?.rightMode === 'full' ? 'FULL' : 'NONE'}
+                      Right Wall: {config.upstands?.rightMode === 'full' ? 'Included' : 'None'}
                     </button>
                   </div>
                 </div>
 
                 {/* UPSTAND HEIGHT SLIDER */}
-                <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
+                <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '8px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '6px' }}>
                     <span>Splashback Height</span>
                     <strong>{config.upstands?.backMode === 'none' ? '0 mm (Disabled)' : `${config.upstands?.height || config.upstands?.heightMm || config.rearUpstandHeight || 80} mm`}</strong>
@@ -2340,7 +2612,7 @@ export default function ProductConfigurator({
                     border: (config.upstands?.coved ?? config.upstands?.isCoved) ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
                     background: (config.upstands?.coved ?? config.upstands?.isCoved) ? 'rgba(212,56,51,0.03)' : '#fff',
                     cursor: 'pointer',
-                    borderRadius: '2px',
+                    borderRadius: '8px',
                   }}
                 >
                   <div>
@@ -2361,34 +2633,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 07: TOWEL-HOLDER CUT-OUT                        */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['07'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['07'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('07')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['07'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>06</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Towel Slot
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['07'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['07'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  06
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Towel Cutout
+                  </span>
+                  {!openSections['07'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {config.towelHolder?.enabled ? `${config.towelHolder?.position === 'center' ? 'Center' : config.towelHolder?.position === 'left' ? 'Left' : 'Right'} Cutout` : 'None'}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['07'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['07'] ? '#1e211d' : '#889188',
+                  transform: openSections['07'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['07'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {/* ENABLE / DISABLE TOGGLE */}
                 <div
                   onClick={() => {
@@ -2406,7 +2731,7 @@ export default function ProductConfigurator({
                     border: config.towelHolder?.enabled ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.15)',
                     background: config.towelHolder?.enabled ? 'rgba(212,56,51,0.03)' : '#fff',
                     cursor: 'pointer',
-                    borderRadius: '2px',
+                    borderRadius: '8px',
                   }}
                 >
                   <div>
@@ -2470,7 +2795,7 @@ export default function ProductConfigurator({
                               fontFamily: 'Urbanist, sans-serif',
                               textTransform: 'uppercase',
                               cursor: 'pointer',
-                              borderRadius: '2px',
+                              borderRadius: '8px',
                             }}
                           >
                             {pos}
@@ -2501,7 +2826,7 @@ export default function ProductConfigurator({
                               fontSize: '11px',
                               fontFamily: 'Urbanist, sans-serif',
                               cursor: 'pointer',
-                              borderRadius: '2px',
+                              borderRadius: '8px',
                             }}
                           >
                             R{rad} mm
@@ -2519,34 +2844,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 08: TOP EDGE PROFILES & FINISHING               */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['08'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['08'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('08')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['08'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>07</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Edge Profile
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['08'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['08'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  07
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Edge Finish
+                  </span>
+                  {!openSections['08'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {EDGE_PROFILES.find(e => e.id === (config as any).edgeProfileId || e.id === (config as any).edgeProfile)?.name || 'Square Eased'}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['08'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['08'] ? '#1e211d' : '#889188',
+                  transform: openSections['08'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['08'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px' }}>
                   {TOP_EDGE_OPTIONS.map(opt => {
                     const isActive =
@@ -2580,7 +2958,7 @@ export default function ProductConfigurator({
                 </div>
 
                 {((config.topEdge?.type === 'fillet') || config.edgeProfileId === 'rounded') && (
-                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '8px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '6px' }}>
                       <span>Radius</span>
                       <strong>R{config.topEdge?.radiusMm || 6} mm</strong>
@@ -2605,7 +2983,7 @@ export default function ProductConfigurator({
                 )}
 
                 {((config.topEdge?.type === 'chamfer') || config.edgeProfileId === 'chamfer') && (
-                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '2px' }}>
+                  <div style={{ background: 'rgba(30,33,29,0.03)', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)', borderRadius: '8px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', marginBottom: '6px' }}>
                       <span>Bevel Size</span>
                       <strong>{config.topEdge?.chamferMm || 3} mm</strong>
@@ -2636,34 +3014,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 09: WASTE & DRAIN SYSTEM                        */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['09'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['09'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('09')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['09'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>08</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Drain &amp; Waste
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['09'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['09'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  08
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Drain &amp; Waste Cover
+                  </span>
+                  {!openSections['09'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {DRAIN_OPTIONS.find(d => d.id === (config as any).drainTypeId || d.id === (config as any).drainType)?.name || 'Pop-up Waste'}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['09'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['09'] ? '#1e211d' : '#889188',
+                  transform: openSections['09'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['09'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '8px' }}>
                   {DRAIN_OPTIONS.map(opt => (
                     <TechnicalOptionCard
@@ -2686,34 +3117,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 10: MATERIAL & COLOUR PALETTE                   */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['10'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['10'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('10')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['10'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>09</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Color &amp; Material
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['10'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['10'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  09
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Material &amp; Color
+                  </span>
+                  {!openSections['10'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {CONFIGURATOR_MATERIALS.find(m => m.slug === config.materialSlug)?.name || 'Glacier White'}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['10'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['10'] ? '#1e211d' : '#889188',
+                  transform: openSections['10'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['10'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
                 {/* Active Material Architectural Specimen Hero */}
                 {(() => {
@@ -2730,7 +3214,7 @@ export default function ProductConfigurator({
                         padding: '12px 14px',
                         background: '#faf9f5',
                         border: '1px solid rgba(30,33,29,0.18)',
-                        borderRadius: '4px',
+                        borderRadius: '8px',
                         position: 'relative',
                         boxShadow: '0 1px 3px rgba(0,0,0,0.04)',
                       }}
@@ -2740,7 +3224,7 @@ export default function ProductConfigurator({
                         style={{
                           width: '52px',
                           height: '52px',
-                          borderRadius: '4px',
+                          borderRadius: '8px',
                           backgroundColor: config.materialHex,
                           backgroundImage: `url(${swatchSrc})`,
                           backgroundSize: 'cover',
@@ -2762,7 +3246,7 @@ export default function ProductConfigurator({
                             background: 'rgba(30,33,29,0.85)',
                             color: '#ffffff',
                             padding: '1px 3px',
-                            borderRadius: '2px',
+                            borderRadius: '8px',
                             letterSpacing: '0.04em',
                           }}
                         >
@@ -2780,7 +3264,7 @@ export default function ProductConfigurator({
                               textTransform: 'uppercase',
                               letterSpacing: '0.06em',
                               padding: '2px 5px',
-                              borderRadius: '2px',
+                              borderRadius: '8px',
                               background: 'rgba(212,56,51,0.08)',
                               color: 'var(--brand-red, #d43833)',
                               fontWeight: 600,
@@ -2853,7 +3337,7 @@ export default function ProductConfigurator({
                             fontFamily: 'Urbanist, sans-serif',
                             textTransform: 'uppercase',
                             letterSpacing: '0.04em',
-                            borderRadius: '3px',
+                            borderRadius: '8px',
                             cursor: 'pointer',
                             display: 'inline-flex',
                             alignItems: 'center',
@@ -2887,7 +3371,7 @@ export default function ProductConfigurator({
                         padding: '7px 28px 7px 10px',
                         background: '#ffffff',
                         border: '1px solid rgba(30,33,29,0.16)',
-                        borderRadius: '3px',
+                        borderRadius: '8px',
                         fontFamily: 'Urbanist, sans-serif',
                         fontSize: '11px',
                         color: 'var(--ink, #1e211d)',
@@ -2941,7 +3425,7 @@ export default function ProductConfigurator({
                           textAlign: 'center',
                           background: '#faf9f5',
                           border: '1px dashed rgba(30,33,29,0.2)',
-                          borderRadius: '4px',
+                          borderRadius: '8px',
                         }}
                       >
                         <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#687268', marginBottom: '8px' }}>
@@ -2958,7 +3442,7 @@ export default function ProductConfigurator({
                             background: 'var(--ink, #1e211d)',
                             color: '#ffffff',
                             border: 'none',
-                            borderRadius: '2px',
+                            borderRadius: '8px',
                             fontSize: '10px',
                             fontFamily: 'Urbanist, sans-serif',
                             textTransform: 'uppercase',
@@ -3007,7 +3491,7 @@ export default function ProductConfigurator({
                               flexDirection: 'column',
                               padding: '6px',
                               border: isSelected ? '2px solid var(--brand-red, #d43833)' : '1px solid rgba(30,33,29,0.14)',
-                              borderRadius: '4px',
+                              borderRadius: '8px',
                               background: isSelected ? '#ffffff' : '#faf9f5',
                               cursor: 'pointer',
                               position: 'relative',
@@ -3038,7 +3522,7 @@ export default function ProductConfigurator({
                               style={{
                                 width: '100%',
                                 aspectRatio: '1 / 1',
-                                borderRadius: '3px',
+                                borderRadius: '8px',
                                 backgroundColor: mat.hexColor,
                                 backgroundImage: mat.swatchImage ? `url(${mat.swatchImage})` : undefined,
                                 backgroundSize: 'cover',
@@ -3062,7 +3546,7 @@ export default function ProductConfigurator({
                                   background: 'rgba(255,255,255,0.92)',
                                   color: '#1e211d',
                                   padding: '1.5px 4px',
-                                  borderRadius: '2px',
+                                  borderRadius: '8px',
                                   letterSpacing: '0.04em',
                                   boxShadow: '0 1px 3px rgba(0,0,0,0.12)',
                                   pointerEvents: 'none',
@@ -3146,34 +3630,87 @@ export default function ProductConfigurator({
           {/* ======================================================= */}
           {/* SECTION 11: PROJECT NOTES & SPECIFIER DETAILS           */}
           {/* ======================================================= */}
-          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
+          <div
+            className="accordion-card"
+            style={{
+              background: '#ffffff',
+              border: openSections['11'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
+              borderRadius: '12px',
+              boxShadow: openSections['11'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
+              overflow: 'hidden',
+              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+            }}
+          >
             <button
               type="button"
               onClick={() => toggleSection('11')}
               style={{
                 width: '100%',
-                padding: '16px 20px',
-                background: 'none',
+                padding: '15px 18px',
+                background: openSections['11'] ? '#fcfbfa' : '#ffffff',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
+                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>10</span>
-                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
-                  Project Notes
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
+                <span
+                  style={{
+                    width: '26px',
+                    height: '26px',
+                    borderRadius: '50%',
+                    background: openSections['11'] ? '#1e211d' : '#f2efe9',
+                    color: openSections['11'] ? '#ffffff' : '#687268',
+                    fontFamily: 'Urbanist, sans-serif',
+                    fontSize: '11px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  10
                 </span>
+                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
+                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
+                    Custom Notes &amp; Requests
+                  </span>
+                  {!openSections['11'] && (
+                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
+                      {projectNotes ? 'Notes added' : 'Optional project details'}
+                    </span>
+                  )}
+                </div>
               </div>
-              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['11'] ? '▲' : '▼'}</span>
+              <span
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '22px',
+                  height: '22px',
+                  color: openSections['11'] ? '#1e211d' : '#889188',
+                  transform: openSections['11'] ? 'rotate(180deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
+                  flexShrink: 0,
+                  marginLeft: '10px',
+                }}
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['11'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 20px 22px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
                   <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#667066', marginBottom: '4px' }}>
                     Project Name
@@ -3183,7 +3720,7 @@ export default function ProductConfigurator({
                     value={config.projectName || ''}
                     onChange={e => setConfig({ ...config, projectName: e.target.value })}
                     placeholder="e.g. Master Bathroom Vanity"
-                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none', borderRadius: '2px' }}
+                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none', borderRadius: '8px' }}
                   />
                 </div>
 
@@ -3196,7 +3733,7 @@ export default function ProductConfigurator({
                     value={config.clientStudio || ''}
                     onChange={e => setConfig({ ...config, clientStudio: e.target.value })}
                     placeholder="e.g. Design Studio or Client"
-                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none', borderRadius: '2px' }}
+                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '13px', outline: 'none', borderRadius: '8px' }}
                   />
                 </div>
 
@@ -3209,7 +3746,7 @@ export default function ProductConfigurator({
                     value={config.specialInstructions || ''}
                     onChange={e => setConfig({ ...config, specialInstructions: e.target.value })}
                     placeholder="e.g. Special cutouts, custom requirements..."
-                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '12px', outline: 'none', borderRadius: '2px' }}
+                    style={{ width: '100%', padding: '8px 10px', border: '1px solid rgba(30,33,29,0.2)', fontSize: '12px', outline: 'none', borderRadius: '8px' }}
                   />
                 </div>
               </div>
@@ -3265,7 +3802,7 @@ export default function ProductConfigurator({
                 color: '#fff',
                 cursor: 'pointer',
                 fontFamily: 'Urbanist, sans-serif',
-                borderRadius: '2px',
+                borderRadius: '8px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -3287,7 +3824,7 @@ export default function ProductConfigurator({
                 color: '#fff',
                 cursor: 'pointer',
                 fontFamily: 'Urbanist, sans-serif',
-                borderRadius: '2px',
+                borderRadius: '8px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -3332,7 +3869,7 @@ export default function ProductConfigurator({
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               cursor: 'pointer',
-              borderRadius: '2px',
+              borderRadius: '8px',
             }}
           >
             View in AR
@@ -3352,7 +3889,7 @@ export default function ProductConfigurator({
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
               cursor: 'pointer',
-              borderRadius: '2px',
+              borderRadius: '8px',
               boxShadow: '0 6px 18px rgba(212,56,51,0.4)',
               transition: 'opacity 0.2s ease',
             }}
@@ -3393,8 +3930,8 @@ export default function ProductConfigurator({
               width: '100%',
               background: '#faf9f5',
               padding: '36px',
-              border: '1px solid rgba(30,33,29,0.18)',
-              borderTop: '3px solid var(--brand-red, #d43833)',
+              borderRadius: '14px',
+              border: '1px solid rgba(28,25,23,0.1)',
               boxShadow: '0 24px 48px rgba(0,0,0,0.5)',
               maxHeight: '90vh',
               overflowY: 'auto',
@@ -3453,7 +3990,7 @@ export default function ProductConfigurator({
               <form onSubmit={handleQuoteSubmit}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
                   <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: '#667066', letterSpacing: '0.08em' }}>
-                    Ace Spaces Technical Desk
+                    Ace Spaces India
                   </span>
                   <button
                     type="button"
@@ -3465,7 +4002,7 @@ export default function ProductConfigurator({
                 </div>
 
                 <h3 style={{ margin: '0 0 6px 0', fontSize: '20px', fontWeight: 600 }}>
-                  Request Specification Quotation
+                  Request Quote for this Design
                 </h3>
                 <p style={{ margin: '0 0 20px 0', fontSize: '12px', color: '#667066' }}>
                   {config.title} / {config.width}mm × {config.depth}mm / {config.materialName} / Qty: {config.quantity}
@@ -3492,7 +4029,7 @@ export default function ProductConfigurator({
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                     <div>
                       <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
-                        Specifier Name *
+                        Full Name *
                       </label>
                       <input
                         required
@@ -3505,7 +4042,7 @@ export default function ProductConfigurator({
                     </div>
                     <div>
                       <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
-                        Architecture Studio / Firm
+                        Company / Studio (Optional)
                       </label>
                       <input
                         type="text"
@@ -3520,7 +4057,7 @@ export default function ProductConfigurator({
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
                     <div>
                       <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', color: '#687268', marginBottom: '4px' }}>
-                        Corporate Email *
+                        Email Address *
                       </label>
                       <input
                         required
