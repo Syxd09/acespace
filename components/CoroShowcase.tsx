@@ -31,7 +31,7 @@ export default function CoroShowcase() {
           </h2>
 
           <p className="coro-clean-text">
-            Walk the experience centre in Bengaluru and handle each material directly — the weight of a Corian® panel, the fluid joint-free curve of a monolithic desk, the seamless edge. Ace Spaces is the master material hub and certified fabrication foundry powering Coro&apos;s architectural interiors.
+            Visit our Bengaluru experience centre to see Corian® in person — from curved reception desks to seamless kitchen counters. Ace Spaces supplies the raw materials and precision fabrication behind Coro&apos;s custom architectural furniture.
           </p>
 
           <div className="coro-clean-meta">
@@ -55,7 +55,7 @@ export default function CoroShowcase() {
               Explore Coro <span>↗</span>
             </a>
             <Link href="/materials" className="coro-clean-btn coro-clean-btn-secondary">
-              Source Raw Materials <span>↗</span>
+              Explore Materials <span>↗</span>
             </Link>
           </div>
         </ScrollReveal>

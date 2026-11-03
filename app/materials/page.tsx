@@ -160,15 +160,15 @@ export default function MaterialsAndColoursPage() {
               marginBottom: '32px',
             }}
           >
-            Calibrated DuPont™ Corian® mineral slabs, architectural tones, and zero-silica surfaces for spaces across India.
+            Genuine DuPont™ Corian® solid surface sheets and colors for homes, offices, and commercial spaces across India.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '36px' }}>
             <Link className="button button-dark" href="#library">
-              Explore Swatches <span>↓</span>
+              Explore Materials <span>↓</span>
             </Link>
             <Link className="text-link" href="/contact">
-              Order Specimen Box <span>↗</span>
+              Order Samples <span>↗</span>
             </Link>
           </div>
 
@@ -219,15 +219,15 @@ export default function MaterialsAndColoursPage() {
       <section id="substrates" style={{ margin: '80px 0 100px' }}>
         <ScrollReveal className="section-head" style={{ marginBottom: '40px' }}>
           <div>
-            <p className="eyebrow">The 4 Substrate Typologies</p>
+            <p className="eyebrow">Material Types</p>
             <h2 style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}>
-              Substrate
+              Corian®
               <br />
-              <i>classifications.</i>
+              <i>finishes.</i>
             </h2>
           </div>
           <p style={{ fontSize: '15px', color: 'var(--muted)', maxWidth: '420px', margin: 0, lineHeight: 1.6 }}>
-            Homogeneous through-body formulations crafted from natural mineral bauxite and pure acrylic resin.
+            Solid surfaces made from natural minerals and pure acrylic resin, built for seamless fabrication.
           </p>
         </ScrollReveal>
 
@@ -240,8 +240,8 @@ export default function MaterialsAndColoursPage() {
               <div className="sequence-step-line" />
             </div>
             <div className="sequence-step-body" style={{ paddingTop: '8px' }}>
-              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Architectural Solids</h3>
-              <p className="sequence-step-desc">Solid through-body formulations with uniform color depth and an ultra-smooth satin touch.</p>
+              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Solid Colors</h3>
+              <p className="sequence-step-desc">Clean, uniform colors with a smooth, satin touch for seamless surfaces.</p>
               <div className="sequence-step-footer">
                 <span className="sequence-footer-label">Composition</span>
                 <span className="sequence-footer-val">Homogeneous</span>
@@ -257,8 +257,8 @@ export default function MaterialsAndColoursPage() {
               <div className="sequence-step-line" />
             </div>
             <div className="sequence-step-body" style={{ paddingTop: '8px' }}>
-              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Architectural Veined</h3>
-              <p className="sequence-step-desc">Natural veining that flows through the full thickness of the slab, continuous across waterfall mitres.</p>
+              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Veined &amp; Marble</h3>
+              <p className="sequence-step-desc">Flowing veined patterns that run through the entire slab thickness, continuous across edges.</p>
               <div className="sequence-step-footer">
                 <span className="sequence-footer-label">Grain</span>
                 <span className="sequence-footer-val">Through-Body</span>
@@ -274,8 +274,8 @@ export default function MaterialsAndColoursPage() {
               <div className="sequence-step-line" />
             </div>
             <div className="sequence-step-body" style={{ paddingTop: '8px' }}>
-              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Terrazzo &amp; Particulates</h3>
-              <p className="sequence-step-desc">Mineral particulates and aggregate flecks that bring natural texture and visual depth to high-traffic zones.</p>
+              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Textured &amp; Terrazzo</h3>
+              <p className="sequence-step-desc">Natural mineral flecks that add depth and subtle texture to busy countertops.</p>
               <div className="sequence-step-footer">
                 <span className="sequence-footer-label">Texture</span>
                 <span className="sequence-footer-val">Tactile Matrix</span>
@@ -291,8 +291,8 @@ export default function MaterialsAndColoursPage() {
               <div className="sequence-step-line" />
             </div>
             <div className="sequence-step-body" style={{ paddingTop: '8px' }}>
-              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Onyx &amp; Backlit</h3>
-              <p className="sequence-step-desc">Translucent mineral sheets that diffuse backlighting for illuminated bars, reception desks, and feature portals.</p>
+              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Translucent &amp; Backlit</h3>
+              <p className="sequence-step-desc">Sheets that softly diffuse light, perfect for illuminated bars, reception counters, and feature walls.</p>
               <div className="sequence-step-footer">
                 <span className="sequence-footer-label">Luminance</span>
                 <span className="sequence-footer-val">Diffused</span>
@@ -314,7 +314,7 @@ export default function MaterialsAndColoursPage() {
             </h2>
           </div>
           <p style={{ fontSize: '15px', color: 'var(--muted)', maxWidth: '440px', margin: 0, lineHeight: 1.6 }}>
-            Filter by hue family, pattern, translucency, or search by code. Click any swatch to inspect high-resolution macro textures, or add specimens to your complimentary studio sample box.
+            Filter by color, pattern, or search by code. Click any material to view textures, or add samples to your shortlist.
           </p>
         </div>
 
@@ -366,17 +366,17 @@ export default function MaterialsAndColoursPage() {
 
       {/* Sample Consultation Callout */}
       <section className="callout">
-        <p className="eyebrow">Sample consultation &amp; Box Delivery</p>
+        <p className="eyebrow">Free Material Samples</p>
         <h2>
-          Order architectural
+          Order material
           <br />
-          <i>specimen boxes.</i>
+          <i>samples.</i>
         </h2>
         <p>
-          Review finishes and veining under natural daylight. Select up to 6 material samples from our library for complimentary delivery to your studio.
+          Feel the texture, color, and finish in person. Select up to 6 free samples delivered directly to your office or home.
         </p>
         <Link className="button button-dark" href="/contact">
-          Request Studio Specimen Box <span>↗</span>
+          Order Free Samples <span>↗</span>
         </Link>
       </section>
     </main>

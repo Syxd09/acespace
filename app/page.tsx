@@ -75,31 +75,31 @@ export default function HomePage() {
 
           <div style={{ maxWidth: '460px' }}>
             <p className="lead" style={{ fontSize: '18px', lineHeight: 1.65, color: '#3c423b', marginBottom: '24px' }}>
-              Surfaces shape how architecture is felt. As an authorized DuPont™ Corian® partner in Bengaluru, Ace Spaces fabricates seamless solid surfaces crafted to outlast trends.
+              Ace Spaces is an authorized DuPont™ Corian® partner in Bengaluru. We supply solid surface sheets and fabricate custom seamless countertops, sinks, and architectural surfaces.
             </p>
 
             <div style={{ display: 'flex', gap: '32px', alignItems: 'center', paddingTop: '16px', borderTop: '1px solid var(--line, rgba(30, 33, 29, 0.12))', marginBottom: '24px' }}>
               <div>
                 <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
-                  Alliance
+                  Certification
                 </span>
                 <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--ink)' }}>
-                  DuPont™ Corian® Quality Network
+                  Authorized DuPont™ Corian® Partner
                 </span>
               </div>
               <div>
                 <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
-                  Atelier
+                  Workshop
                 </span>
                 <span style={{ fontSize: '13px', color: '#5d665c' }}>
-                  Bengaluru · Pan-India Dispatch
+                  Bengaluru · Shipping Across India
                 </span>
               </div>
             </div>
 
             <div>
               <Link className="text-link dark" href="/about">
-                Studio Philosophy <span>↗</span>
+                About Our Studio <span>↗</span>
               </Link>
             </div>
           </div>
@@ -112,16 +112,16 @@ export default function HomePage() {
       {/* Statement Section */}
       <section className="statement section-pad">
         <ScrollReveal>
-          <p className="eyebrow">The Ace Spaces approach</p>
+          <p className="eyebrow">Our Approach</p>
           <h2>
-            Good material is felt
+            Built to last.
             <br />
-            before it is <i>named.</i>
+            Crafted with <i>precision.</i>
           </h2>
           <div className="statement-bottom">
             <span>Material / form / detail</span>
             <Link className="text-link dark" href="/materials">
-              Understand our materials <span>↗</span>
+              Explore our materials <span>↗</span>
             </Link>
           </div>
         </ScrollReveal>
@@ -142,14 +142,14 @@ export default function HomePage() {
           />
         </ScrollReveal>
         <ScrollReveal delay={120} className="fabrication-copy section-pad">
-          <p className="eyebrow light">02 / From sheet to space</p>
+          <p className="eyebrow light">02 / Custom Fabrication</p>
           <h2>
             Made for the
             <br />
-            <i>way you imagine.</i>
+            <i>way you design.</i>
           </h2>
           <p>
-            We fabricate solid surfaces into seamless architectural fixtures—from kitchen monoliths to curved washplanes.
+            We craft solid surfaces into seamless kitchen countertops, integrated sinks, and curved architectural pieces.
           </p>
           <div className="process">
             <div>
@@ -166,7 +166,7 @@ export default function HomePage() {
             </div>
           </div>
           <Link className="button button-light" href="/fabrication">
-            Explore fabrication <span>↗</span>
+            Explore our fabrication <span>↗</span>
           </Link>
         </ScrollReveal>
       </section>
@@ -204,11 +204,11 @@ export default function HomePage() {
           <ScrollReveal delay={120} className="project-info">
             <p className="eyebrow">01 / Private residence</p>
             <h3>
-              A quieter kind
+              Seamless kitchen island.
               <br />
-              of <i>luxury.</i>
+              <i>Private residence.</i>
             </h3>
-            <p>A continuous mineral surface moves from island to wall, letting the architecture speak in one measured gesture.</p>
+            <p>Continuous solid surface island with waterfall edges and integrated sink, custom-built for a Bengaluru home.</p>
             <div className="project-meta">
               <span>Material</span>
               <strong>Calacatta Greige</strong>
@@ -228,11 +228,11 @@ export default function HomePage() {
           <div className="section-label">03 / Applications</div>
           <div className="application-intro">
             <h2>
-              One material.
+              Versatile surfaces.
               <br />
-              <i>Many lives.</i>
+              <i>Everyday spaces.</i>
             </h2>
-            <p>From the intimacy of a vanity to the energy of a hospitality space, we help materials find their right expression.</p>
+            <p>Ideal for modern kitchens, luxury bathrooms, corporate offices, healthcare, and hospitality interiors.</p>
           </div>
         </ScrollReveal>
         <div className="app-list">
@@ -330,22 +330,22 @@ export default function HomePage() {
                 fontWeight: 600,
               }}
             >
-              07 — Atelier Consultation
+              07 — Start Your Project
             </span>
             <div style={{ width: '80px', height: '1px', background: 'rgba(255, 255, 255, 0.2)' }} />
           </div>
           <h2>
-            Have a space
+            Have a project
             <br />
             in <i>mind?</i>
           </h2>
           <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.75)', margin: '16px 0 32px' }}>
-            Tell us about your project. Our Bengaluru engineering team assists with material selection, joinery calculations, and physical mockups.
+            Tell us about your project. Our Bengaluru team will help you select materials, review drawings, and provide clear quotations.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
             <Link className="button button-light" href="/contact">
-              Start Project Brief <span>↗</span>
+              Send an Inquiry <span>↗</span>
             </Link>
 
             <a
@@ -355,7 +355,7 @@ export default function HomePage() {
               className="button-outline-glass"
               style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-              <span>Direct WhatsApp Desk</span>
+              <span>Chat on WhatsApp</span>
               <span>↗</span>
             </a>
           </div>

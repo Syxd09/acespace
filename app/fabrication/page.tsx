@@ -118,7 +118,7 @@ export default function FabricationPage() {
                 fontWeight: 600,
               }}
             >
-              01 — Fabrication / Workshop
+              01 — Workshop &amp; Craft
             </span>
             <div style={{ width: '60px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
           </div>
@@ -131,9 +131,9 @@ export default function FabricationPage() {
               letterSpacing: '-0.05em',
             }}
           >
-            From sheet
+            Precision
             <br />
-            to <i>space.</i>
+            <i>fabrication.</i>
           </h1>
 
           <p
@@ -145,15 +145,15 @@ export default function FabricationPage() {
               marginBottom: '32px',
             }}
           >
-            Parametric digital toolpaths to seamless on-site joinery. 5-axis CNC routing, 160°C thermoforming, and hand-honing in our Bengaluru atelier.
+            From raw Corian® sheets to finished architectural fixtures. We specialize in 5-axis CNC cutting, heat thermoforming for curves, and invisible seamless joins.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '36px' }}>
             <Link className="button button-dark" href="/contact">
-              Fabrication Brief <span>↗</span>
+              Start a Project <span>↗</span>
             </Link>
             <Link className="text-link" href="#sequence">
-              Atelier Sequence <span>↓</span>
+              Our Process <span>↓</span>
             </Link>
           </div>
 
@@ -214,18 +214,18 @@ export default function FabricationPage() {
                   fontWeight: 600,
                 }}
               >
-                02 — Atelier Sequence
+                02 — Fabrication Process
               </span>
               <div style={{ flex: 1, maxWidth: '180px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
             </div>
             <h2 style={{ fontSize: 'clamp(34px, 4.8vw, 60px)', lineHeight: 1.04, letterSpacing: '-0.03em', margin: 0 }}>
-              Crafted in four movements.
+              Our four-step process.
               <br />
-              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>Felt in one seamless form.</i>
+              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>Crafted with precision.</i>
             </h2>
           </div>
           <p style={{ fontSize: '15px', color: '#555e54', maxWidth: '440px', margin: 0, lineHeight: 1.65, fontWeight: 400 }}>
-            Every custom fixture moves through CNC routing, thermal forming, molecular seam fusion, and diamond hand-honing in our Bengaluru workshop.
+            We cut sheets with CNC accuracy, heat-form curves, bond seams invisibly, and hand-finish each surface to a smooth satin touch.
           </p>
         </ScrollReveal>
 
@@ -327,7 +327,7 @@ export default function FabricationPage() {
                 marginBottom: '10px',
               }}
             >
-              Curvature Beyond The Grid
+              Custom Curved Surfaces
             </span>
             <blockquote
               style={{
@@ -339,7 +339,7 @@ export default function FabricationPage() {
                 color: '#f5f4ee',
               }}
             >
-              “Heated to 160°C, mineral sheets become supple as leather, forming compound curves without surface blanching.”
+              “When heated, Corian® can be molded into smooth curves, rounded corners, and seamless custom shapes.”
             </blockquote>
           </div>
 
@@ -355,7 +355,7 @@ export default function FabricationPage() {
               fontFamily: 'Urbanist, sans-serif',
             }}
           >
-            Request Thermoformed Mockup <span>↗</span>
+            Request a Quote <span>↗</span>
           </Link>
         </div>
       </section>
@@ -372,7 +372,7 @@ export default function FabricationPage() {
             </h2>
           </div>
           <p style={{ maxWidth: '420px', fontSize: '15px', color: '#5d665c', lineHeight: 1.6, fontStyle: 'italic', fontFamily: 'serif' }}>
-            “How light, shadow, and touch interact across the architectural boundary.”
+            “Choose from clean chamfers, bullnose curves, bevels, and waterfall edges.”
           </p>
         </div>
 
@@ -381,21 +381,21 @@ export default function FabricationPage() {
 
       {/* Consultation Callout */}
       <section className="callout" style={{ margin: '80px 0 100px' }}>
-        <p className="eyebrow">Technical fabrication consultation / Bengaluru Workshop</p>
+        <p className="eyebrow">Fabrication Consultation</p>
         <h2>
-          Make the
+          Bring your designs
           <br />
-          <i>unusual possible.</i>
+          <i>to life.</i>
         </h2>
         <p style={{ fontStyle: 'italic', fontFamily: 'serif', fontSize: '18px', color: '#2e352d', marginBottom: '12px' }}>
-          “Share your drawings or 3D CAD models.”
+          “Share your drawings, sketches, or dimensions.”
         </p>
         <p style={{ maxWidth: '520px', fontSize: '14px', color: '#555e54', margin: '0 0 24px', lineHeight: 1.6 }}>
-          Our workshop team reviews joint placements, calculates steel sub-framing, and provides physical mockups.
+          Our workshop team reviews your plans, helps with joinery details, and builds custom samples for your project.
         </p>
         <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
           <Link className="button button-dark" href="/contact">
-            Discuss a Fabrication Brief <span>↗</span>
+            Contact Our Workshop <span>↗</span>
           </Link>
           <a
             href="https://wa.me/919741044776?text=Hello%20Ace%20Spaces%20Engineering%2C%20I%20have%20an%20architectural%20fabrication%20brief%20and%20would%20like%20to%20consult%20on%20drawings."
@@ -404,7 +404,7 @@ export default function FabricationPage() {
             className="button"
             style={{ border: '1px solid var(--ink)', background: 'transparent' }}
           >
-            Direct CAD Desk (WhatsApp) <span>↗</span>
+            Chat on WhatsApp <span>↗</span>
           </a>
         </div>
       </section>

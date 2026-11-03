@@ -101,7 +101,7 @@ export default function AboutPage() {
                 fontWeight: 600,
               }}
             >
-              01 — Lineage &amp; Studio
+              01 — Our Story
             </span>
             <div style={{ width: '60px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
           </div>
@@ -114,9 +114,9 @@ export default function AboutPage() {
               letterSpacing: '-0.05em',
             }}
           >
-            Form &amp;
+            Built to last.
             <br />
-            <i>continuity.</i>
+            <i>Made for architecture.</i>
           </h1>
 
           <p
@@ -128,15 +128,15 @@ export default function AboutPage() {
               marginBottom: '32px',
             }}
           >
-            We fabricate solid surfaces into seamless architectural fixtures, working directly with architects, interior designers, and creators across India.
+            We are an authorized DuPont™ Corian® partner and fabrication workshop in Bengaluru. We supply solid surface sheets and craft seamless surfaces for architects, designers, and homeowners across India.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '36px' }}>
             <Link className="button button-dark" href="#philosophy">
-              Studio Philosophy <span>↓</span>
+              Our Approach <span>↓</span>
             </Link>
             <Link className="text-link" href="/contact">
-              Bengaluru Atelier <span>↗</span>
+              Visit Our Workshop <span>↗</span>
             </Link>
           </div>
 
@@ -194,12 +194,12 @@ export default function AboutPage() {
               <div style={{ width: '80px', height: '1px', background: 'var(--line)' }} />
             </div>
             <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1.02, letterSpacing: '-0.03em', margin: '0 0 24px' }}>
-              Surfaces that
+              Surfaces built
               <br />
-              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>outlast trends.</i>
+              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>for everyday life.</i>
             </h2>
             <p style={{ fontSize: '16px', lineHeight: 1.7, color: '#4a5249', margin: 0 }}>
-              We believe architectural surfaces should be durable, seamless, and safe to live with. Because solid surface is non-porous and free of crystalline silica, it creates calm, hygienic spaces — from continuous kitchen islands and coved washplanes to curved reception desks.
+              We believe everyday surfaces should be beautiful, durable, and safe. Corian® solid surface is completely non-porous, stain-resistant, and 100% free of crystalline silica. It is easy to clean, simple to repair, and can be shaped into seamless countertops, integrated sinks, and custom furniture.
             </p>
           </div>
 
@@ -230,18 +230,18 @@ export default function AboutPage() {
                   fontWeight: 600,
                 }}
               >
-                03 — Workshop Disciplines
+                03 — Fabrication Process
               </span>
               <div style={{ width: '80px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
             </div>
             <h2 style={{ fontSize: 'clamp(36px, 5vw, 64px)', lineHeight: 1.02, letterSpacing: '-0.03em', margin: 0 }}>
-              Principles of
+              How we craft
               <br />
-              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>our craft.</i>
+              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>our surfaces.</i>
             </h2>
           </div>
           <p style={{ fontSize: '15px', color: '#555e54', maxWidth: '440px', margin: 0, lineHeight: 1.65 }}>
-            Every fixture moves through four calibrated disciplines in our Bengaluru atelier.
+            Every piece is cut with CNC precision, heat-formed if curved, seamlessly bonded, and hand-finished in our Bengaluru workshop.
           </p>
         </ScrollReveal>
 
@@ -297,7 +297,7 @@ export default function AboutPage() {
                   fontWeight: 600,
                 }}
               >
-                04 — Material Lineage
+                04 — Certified Network
               </span>
               <div style={{ flex: 1, maxWidth: '180px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
             </div>
@@ -309,14 +309,14 @@ export default function AboutPage() {
           </div>
           <div style={{ maxWidth: '460px' }}>
             <p style={{ fontSize: '15px', color: '#555e54', margin: '0 0 24px', lineHeight: 1.65 }}>
-              Craftsmanship is only as enduring as the raw material. Ace Spaces is an authorized Quality Network Industrial Partner of DuPont™ Corian®, supplying and fabricating genuine through-body mineral slabs across India with a 10-year manufacturer warranty.
+              Quality begins with genuine materials. As an authorized DuPont™ Corian® Quality Network Partner, Ace Spaces supplies authentic Corian® sheets and fabricates custom surfaces backed by a 10-year DuPont manufacturer warranty.
             </p>
             <div style={{ display: 'flex', gap: '18px', alignItems: 'center', flexWrap: 'wrap' }}>
               <Link className="button button-dark" href="/materials">
-                Explore Material Palette <span>↗</span>
+                Explore Materials <span>↗</span>
               </Link>
               <Link className="text-link" href="/contact">
-                Certificate of Authenticity <span>↗</span>
+                Warranty Details <span>↗</span>
               </Link>
             </div>
           </div>
@@ -343,7 +343,7 @@ export default function AboutPage() {
             </div>
             <h3 className="lineage-title">Ace Spaces</h3>
             <p className="lineage-desc">
-              Central raw material stockyard and 5-axis digital CNC fabrication atelier.
+              Authorized stockist of genuine Corian® sheets and custom fabrication workshop in Bengaluru.
             </p>
           </Link>
 
@@ -366,7 +366,7 @@ export default function AboutPage() {
             </div>
             <h3 className="lineage-title">DuPont™ Corian®</h3>
             <p className="lineage-desc">
-              Authorized Quality Network Industrial Partner backed by a 10-year DuPont warranty.
+              Authorized DuPont™ Corian® partner backed by a 10-year manufacturer warranty.
             </p>
           </Link>
 
@@ -394,7 +394,7 @@ export default function AboutPage() {
             </div>
             <h3 className="lineage-title">Coro Crafted Collective</h3>
             <p className="lineage-desc">
-              Sister spatial architecture studio and collectible monolithic furniture practice.
+              Our dedicated design studio for bespoke solid surface furniture and installations.
             </p>
           </a>
         </div>

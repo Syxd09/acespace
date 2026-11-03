@@ -183,7 +183,7 @@ export default function MaterialGrid() {
                   fontWeight: 600,
                 }}
               >
-                02 — Materials &amp; Palette
+                02 — Materials &amp; Colors
               </span>
               <div style={{ flex: 1, maxWidth: '140px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
             </div>
@@ -195,10 +195,10 @@ export default function MaterialGrid() {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '14px', maxWidth: '380px' }}>
             <p style={{ fontSize: '15px', color: '#555e54', margin: 0, lineHeight: 1.65 }}>
-              Through-body mineral compositions and non-porous architectural hues, calibrated in our Bengaluru stockyard.
+              Genuine DuPont™ Corian® solid surface slabs and colors available in our Bengaluru warehouse.
             </p>
             <Link className="button button-dark" href="/materials">
-              Explore All Materials <span>↗</span>
+              Explore Materials <span>↗</span>
             </Link>
           </div>
         </ScrollReveal>
@@ -223,18 +223,18 @@ export default function MaterialGrid() {
                     fontWeight: 600,
                   }}
                 >
-                  Featured Architectural Slabs
+                  Featured Materials
                 </span>
                 <div style={{ width: '80px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
               </div>
               <h3 style={{ fontSize: 'clamp(24px, 3.2vw, 38px)', lineHeight: 1.12, margin: 0, fontWeight: 500 }} suppressHydrationWarning>
-                Curated architectural slabs.
+                Featured Corian® slabs.
                 <br />
-                <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>Veined &amp; textured monoliths.</i>
+                <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>Veined, textured &amp; solid finishes.</i>
               </h3>
             </div>
             <Link className="text-link dark" href="/materials" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', letterSpacing: '0.06em', textTransform: 'uppercase', fontWeight: 600 }}>
-              View Complete Palette <span>↗</span>
+              View All Materials <span>↗</span>
             </Link>
           </div>
         </div>
@@ -258,14 +258,14 @@ export default function MaterialGrid() {
           }}
         >
           <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em' }}>
-            40+ Through-Body Swatches · 12mm &amp; 19mm Calibrated Slabs
+            Available in 12mm &amp; 19mm thickness · Custom CNC cutting available
           </span>
           <Link
             className="text-link dark"
             href="/materials"
             style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', letterSpacing: '0.06em', textTransform: 'uppercase', fontWeight: 600 }}
           >
-            Explore Full Palette <span>↗</span>
+            Explore All Materials <span>↗</span>
           </Link>
         </div>
       </section>

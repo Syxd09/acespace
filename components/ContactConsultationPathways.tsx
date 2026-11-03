@@ -18,38 +18,38 @@ interface Pathway {
 const PATHWAYS: Pathway[] = [
   {
     number: '01 / SAMPLES & SPEC',
-    title: 'Specifier Samples & Palette Trays',
+    title: 'Material Samples & Colors',
     description:
-      'Request curated 100×100mm solid-surface specimens, high-contrast veining trays, and DuPont™ technical test certificates for client presentations.',
+      'Request 100×100mm solid surface samples and color swatches to review in natural light or present to clients.',
     typology: 'Material Specification & Samples',
     secondaryLink: {
-      href: '/materials#sample-tray',
-      text: 'Order Specimen Tray ↗',
+      href: '/materials#library',
+      text: 'Order Samples ↗',
     },
   },
   {
     number: '02 / CAD & CNC REVIEW',
-    title: 'CAD, BIM & Engineering Review',
+    title: 'CAD Drawings & Quotation',
     description:
-      'Submit .dwg, .step, or Revit shop drawings for thermal bend radii, invisible seam maps, substrate engineering, and 5-axis CNC machining.',
+      'Send us your architectural drawings, sketches, or 3D files. We review dimensions, joinery, and provide pricing.',
     typology: 'CAD / CNC Drawing Review',
   },
   {
     number: '03 / BESPOKE FORMS',
-    title: 'Monoliths, Flutes & Translucency',
+    title: 'Custom Counters & Furniture',
     description:
-      'Seamless kitchen islands, sculptural corporate reception desks, thermoformed fluted walls, and illuminated backlit translucent panels.',
-    typology: 'Residential Monolith / Island',
+      'Kitchen islands, seamless sinks, reception desks, curved wall panels, and backlit surfaces crafted to your specs.',
+    typology: 'Residential Island / Counter',
   },
   {
     number: '04 / STUDIO VISIT',
-    title: 'Atelier Walkthrough & Slab Review',
+    title: 'Visit Our Studio & Workshop',
     description:
-      'Schedule an in-person session at our Bengaluru studio headquarters to inspect full-scale slab veining and tactile joinery mockups.',
-    typology: 'Atelier Visit & Inspection',
+      'Visit our Bengaluru experience centre to see full-size slabs, custom sinks, and fabricated pieces in person.',
+    typology: 'Studio Visit & Inspection',
     secondaryLink: {
       href: 'https://maps.app.goo.gl/eNFxtR7WPqRS8gpd7',
-      text: 'Google Maps Pin ↗',
+      text: 'View on Google Maps ↗',
       isExternal: true,
     },
   },

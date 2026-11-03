@@ -130,7 +130,7 @@ export default function ProductsCatalogPage() {
                 fontWeight: 600,
               }}
             >
-              Fabrication &amp; Systems / Products
+              Products &amp; Fixtures
             </span>
             <div style={{ width: '60px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
           </div>
@@ -143,9 +143,9 @@ export default function ProductsCatalogPage() {
               letterSpacing: '-0.05em',
             }}
           >
-            Formed for
+            Custom solid surface
             <br />
-            <i>purpose.</i>
+            <i>products.</i>
           </h1>
 
           <p
@@ -157,15 +157,15 @@ export default function ProductsCatalogPage() {
               marginBottom: '32px',
             }}
           >
-            Seamless kitchen benchtops, integrated coved sinks, commercial washplanes, and bespoke vanities. Fabricated with 5-axis CNC precision in Bengaluru.
+            Seamless kitchen countertops, integrated sinks, commercial washplanes, and custom bathroom vanities. Fabricated with precision in Bengaluru.
           </p>
 
           <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '36px' }}>
             <Link className="button button-dark" href="#products-grid">
-              Browse Range <span>↓</span>
+              Browse Products <span>↓</span>
             </Link>
             <Link className="text-link" href="/contact">
-              CAD Consultation <span>↗</span>
+              Request a Quote <span>↗</span>
             </Link>
           </div>
 
@@ -239,7 +239,7 @@ export default function ProductsCatalogPage() {
               <div className="product-monograph-header">
                 <span className="product-monograph-num">01</span>
                 <span className="product-monograph-divider">—</span>
-                <span className="product-monograph-category">SUBSTRATES</span>
+                <span className="product-monograph-category">MATERIALS</span>
                 <div className="product-monograph-line" />
               </div>
 
@@ -255,16 +255,16 @@ export default function ProductsCatalogPage() {
                   className="product-monograph-image"
                 />
                 <div className="product-monograph-spec">
-                  <span>3660 × 760 mm · 20+ Swatches</span>
+                  <span>3660 × 760 mm · 40+ Colors</span>
                 </div>
               </div>
 
               <div className="product-monograph-body">
-                <h3 className="product-monograph-title">Corian® Slabs</h3>
+                <h3 className="product-monograph-title">Corian® Sheets</h3>
 
                 <div className="product-monograph-footer">
                   <span className="product-monograph-action">
-                    Explore Slabs <span>↗</span>
+                    Explore Materials <span>↗</span>
                   </span>
                 </div>
               </div>
@@ -327,17 +327,17 @@ export default function ProductsCatalogPage() {
 
       {/* Engineering Consultation Callout */}
       <section className="callout">
-        <p className="eyebrow">Project Consultation &amp; CAD Submittals</p>
+        <p className="eyebrow">Request a Custom Quotation</p>
         <h2>
           Send us your
           <br />
-          <i>project drawings.</i>
+          <i>drawings or sketches.</i>
         </h2>
         <p>
-          Upload your drawings or 3D models. Our workshop team will review joinery details and provide trade pricing within 48 hours.
+          Upload your drawings, sketches, or dimensions. Our team will review your requirements and provide pricing within 24 to 48 hours.
         </p>
         <Link className="button button-dark" href="/contact">
-          Submit Drawings for Quotation <span>↗</span>
+          Request a Quote <span>↗</span>
         </Link>
       </section>
     </main>
