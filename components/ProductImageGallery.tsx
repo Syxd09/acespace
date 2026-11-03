@@ -116,131 +116,78 @@ export default function ProductImageGallery({
 
   return (
     <>
-      {/* Gallery Cards Grid */}
+      {/* Gallery Cards Grid — Clean Monograph Style */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
           gap: '24px',
         }}
       >
-        {images.map((img, i) => (
-          <div
-            key={i}
-            role="button"
-            tabIndex={0}
-            onClick={() => setActiveIdx(i)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                setActiveIdx(i);
-              }
-            }}
-            aria-label={`Open photo ${i + 1}: ${img.caption}`}
-            className="product-gallery-card"
-            style={{
-              background: '#f5f3ec', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', borderRadius: '6px', overflow: 'hidden',
-              display: 'flex',
-              flexDirection: 'column',
-              cursor: 'pointer',
-              outline: 'none',
-              textAlign: 'left',
-              transition: 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease',
-            }}
-          >
-            {/* Image Container with hover overlay */}
+        {images.map((img, i) => {
+          const numStr = String(i + 1).padStart(2, '0');
+          return (
             <div
-              style={{
-                position: 'relative',
-                height: '300px',
-                width: '100%',
-                overflow: 'hidden',
-                background: '#1a1d19',
+              key={i}
+              role="button"
+              tabIndex={0}
+              onClick={() => setActiveIdx(i)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveIdx(i);
+                }
               }}
-            >
-              <Image
-                src={img.src}
-                alt={img.alt || `${productName} installation photograph ${i + 1}`}
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                style={{
-                  objectFit: 'cover',
-                  transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)',
-                }}
-                className="gallery-card-img"
-              />
-
-              {/* Top Index Badge */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '12px',
-                  left: '12px',
-                  background: 'rgba(20, 23, 20, 0.78)',
-                  backdropFilter: 'blur(8px)',
-                  color: '#e9e8e2',
-                  padding: '4px 10px',
-                  fontFamily: 'Urbanist, sans-serif',
-                  fontSize: '10px',
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
-                  zIndex: 2,
-                }}
-              >
-                PHOTO {String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
-              </div>
-
-
-            </div>
-
-            {/* Caption & Metadata Foot */}
-            <div
+              aria-label={`View photo ${i + 1}: ${img.caption}`}
+              className="sequence-step-item"
               style={{
-                padding: '18px 22px',
-                background: 'var(--paper, #f5f4ee)',
-                flex: 1,
+                cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'space-between',
-                borderTop: '1px solid var(--line, rgba(30, 33, 29, 0.18))',
+                height: '100%',
               }}
             >
-              <p
-                style={{
-                  margin: '0 0 12px',
-                  fontSize: '13.5px',
-                  color: '#343a33',
-                  lineHeight: 1.6,
-                  fontWeight: 500,
-                }}
-              >
-                {img.caption}
-              </p>
+              {/* Header Track */}
+              <div className="sequence-step-header">
+                <span className="sequence-step-num">{numStr}</span>
+                <span className="sequence-step-divider">—</span>
+                <span className="sequence-step-phase">INSTALLATION</span>
+                <div className="sequence-step-line" />
+              </div>
 
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  fontFamily: 'Urbanist, sans-serif',
-                  fontSize: '11px',
-                  color: 'var(--muted, #667066)',
-                  borderTop: '1px dashed rgba(30, 33, 29, 0.14)',
-                  paddingTop: '10px',
-                }}
-              >
-                <span>SPECIFICATION VIEW</span>
-                <span style={{ color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
-                  Tap to expand →
-                </span>
+              {/* Clean Image Frame with Zoom */}
+              <div className="sequence-image-frame" style={{ aspectRatio: '16 / 10' }}>
+                <Image
+                  src={img.src}
+                  alt={img.alt || `${productName} installation photograph ${i + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="sequence-image"
+                  style={{ objectFit: 'cover' }}
+                />
+                <div className="sequence-image-spec">
+                  <span>Photo {numStr} of {String(images.length).padStart(2, '0')}</span>
+                </div>
+              </div>
+
+              {/* Caption & Clean Link */}
+              <div className="sequence-step-body" style={{ paddingTop: '14px' }}>
+                <p className="sequence-step-desc" style={{ fontSize: '14px', margin: '0 0 12px', color: '#3c423b', lineHeight: 1.55 }}>
+                  {img.caption}
+                </p>
+                <div className="sequence-step-footer" style={{ borderTop: 'none', paddingTop: 0 }}>
+                  <span style={{ fontSize: '11px', fontFamily: "'Urbanist', sans-serif", fontWeight: 600, color: 'var(--ink)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                    View Fullscreen
+                  </span>
+                  <span style={{ fontSize: '12px', color: 'var(--muted)' }}>↗</span>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
-      {/* Lightbox Architectural Dossier Modal */}
+      {/* Lightbox Modal — Clean, Minimalist & Modern */}
       {activeIdx !== null && currentItem && (
         <div
           role="dialog"
@@ -250,28 +197,27 @@ export default function ProductImageGallery({
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(12, 14, 12, 0.94)',
+            background: 'rgba(14, 16, 14, 0.94)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             zIndex: 9999,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            padding: '16px clamp(16px, 3vw, 36px)',
+            padding: '20px clamp(16px, 3.5vw, 40px)',
             overflowY: 'auto',
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
+            fontFamily: "'Urbanist', -apple-system, sans-serif",
           }}
         >
-          {/* Top Bar: Product Context, Image Counter & Close Button */}
+          {/* Top Bar: Product Context & Close Button */}
           <div
             style={{
               display: 'flex',
               justifyContent: 'space-between',
               alignItems: 'center',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
-              paddingBottom: '14px',
-              marginBottom: '14px',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+              paddingBottom: '16px',
+              marginBottom: '16px',
               zIndex: 10,
               gap: '16px',
             }}
@@ -280,22 +226,21 @@ export default function ProductImageGallery({
             <div>
               <span
                 style={{
-                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
-                  color: 'var(--brand-red, #d43833)',
+                  color: 'rgba(255, 255, 255, 0.6)',
                   letterSpacing: '0.1em',
                   textTransform: 'uppercase',
                   display: 'block',
                   marginBottom: '2px',
+                  fontWeight: 600,
                 }}
               >
-                {productCode} / {categoryName}
+                {productCode} · {categoryName}
               </span>
               <h3
                 style={{
-                  fontFamily: 'Manrope, sans-serif',
-                  fontSize: 'clamp(16px, 2vw, 20px)',
-                  fontWeight: 600,
+                  fontSize: 'clamp(18px, 2.2vw, 24px)',
+                  fontWeight: 500,
                   color: '#ffffff',
                   margin: 0,
                   letterSpacing: '-0.02em',
@@ -305,19 +250,19 @@ export default function ProductImageGallery({
               </h3>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <span
                 style={{
-                  fontFamily: 'Urbanist, sans-serif',
                   fontSize: '11px',
-                  color: '#9ba59b',
+                  color: 'rgba(255, 255, 255, 0.7)',
                   letterSpacing: '0.06em',
                   background: 'rgba(255, 255, 255, 0.08)',
-                  padding: '5px 10px',
-                  borderRadius: '2px',
+                  padding: '6px 12px',
+                  borderRadius: '3px',
+                  fontWeight: 500,
                 }}
               >
-                IMAGE {String(activeIdx + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+                Photo {activeIdx + 1} of {images.length}
               </span>
 
               <button
@@ -326,19 +271,20 @@ export default function ProductImageGallery({
                 aria-label="Close image viewer"
                 style={{
                   background: 'rgba(255, 255, 255, 0.12)',
-                  border: '1px solid rgba(255, 255, 255, 0.25)',
+                  border: '1px solid rgba(255, 255, 255, 0.22)',
                   color: '#ffffff',
-                  padding: '7px 14px',
-                  fontFamily: 'Urbanist, sans-serif',
+                  padding: '7px 16px',
+                  borderRadius: '3px',
                   fontSize: '11px',
                   fontWeight: 600,
                   cursor: 'pointer',
                   letterSpacing: '0.06em',
                   textTransform: 'uppercase',
-                  transition: 'background 0.15s ease',
+                  transition: 'background 0.2s ease',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '6px',
+                  fontFamily: "'Urbanist', -apple-system, sans-serif",
                 }}
               >
                 ✕ Close
@@ -346,32 +292,33 @@ export default function ProductImageGallery({
             </div>
           </div>
 
-          {/* Main Stage: Image Viewport + Architectural Dossier Drawer */}
+          {/* Main Stage: Image Viewport + Clean Architectural Details */}
           <div
             style={{
               flex: 1,
               display: 'grid',
-              gridTemplateColumns: 'minmax(0, 1.4fr) minmax(320px, 1fr)',
-              gap: '24px',
+              gridTemplateColumns: 'minmax(0, 1.45fr) minmax(320px, 1fr)',
+              gap: '28px',
               alignItems: 'center',
               minHeight: 0,
-              margin: '8px 0',
+              margin: '10px 0',
             }}
             className="gallery-modal-stage"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Left: Large High-Res Image Viewport with Previous/Next Arrows */}
+            {/* Left: Large Image Viewport */}
             <div
               style={{
                 position: 'relative',
                 width: '100%',
                 height: '100%',
-                minHeight: '420px',
-                maxHeight: '70vh',
+                minHeight: '440px',
+                maxHeight: '72vh',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: 'rgba(0, 0, 0, 0.45)',
+                background: 'rgba(0, 0, 0, 0.35)',
+                borderRadius: '4px',
                 border: '1px solid rgba(255, 255, 255, 0.08)',
                 overflow: 'hidden',
               }}
@@ -400,24 +347,25 @@ export default function ProductImageGallery({
                 <button
                   type="button"
                   onClick={prevImage}
-                  aria-label="Previous image"
+                  aria-label="Previous photo"
                   style={{
                     position: 'absolute',
                     left: '16px',
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    background: 'rgba(15, 18, 15, 0.75)',
-                    border: '1px solid rgba(255, 255, 255, 0.25)',
-                    color: '#fff',
+                    background: 'rgba(20, 23, 20, 0.75)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    color: '#ffffff',
                     width: '42px',
                     height: '42px',
+                    borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
                     fontSize: '18px',
                     backdropFilter: 'blur(8px)',
-                    transition: 'all 0.15s ease',
+                    transition: 'background 0.2s ease',
                     zIndex: 4,
                   }}
                 >
@@ -430,24 +378,25 @@ export default function ProductImageGallery({
                 <button
                   type="button"
                   onClick={nextImage}
-                  aria-label="Next image"
+                  aria-label="Next photo"
                   style={{
                     position: 'absolute',
                     right: '16px',
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    background: 'rgba(15, 18, 15, 0.75)',
-                    border: '1px solid rgba(255, 255, 255, 0.25)',
-                    color: '#fff',
+                    background: 'rgba(20, 23, 20, 0.75)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    color: '#ffffff',
                     width: '42px',
                     height: '42px',
+                    borderRadius: '50%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
                     fontSize: '18px',
                     backdropFilter: 'blur(8px)',
-                    transition: 'all 0.15s ease',
+                    transition: 'background 0.2s ease',
                     zIndex: 4,
                   }}
                 >
@@ -456,46 +405,44 @@ export default function ProductImageGallery({
               )}
             </div>
 
-            {/* Right: Architectural Dossier Panel ("all about this image") */}
+            {/* Right: Clean Details Card */}
             <div
               className="gallery-dossier-panel"
               style={{
-                background: 'rgba(22, 25, 22, 0.95)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                padding: '20px 20px',
+                background: 'rgba(255, 255, 255, 0.04)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '6px',
+                padding: '24px 26px',
                 color: '#e9e8e2',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 maxHeight: '74vh',
                 overflowY: 'auto',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
               }}
             >
               <div>
-                {/* Dossier Header */}
-                <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.12)', paddingBottom: '10px', marginBottom: '12px' }}>
+                {/* Photo Caption */}
+                <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', paddingBottom: '14px', marginBottom: '16px' }}>
                   <span
                     style={{
-                      fontFamily: 'Urbanist, sans-serif',
-                      fontSize: '10px',
-                      color: '#c2cdc2',
-                      letterSpacing: '0.12em',
+                      fontSize: '11px',
+                      color: 'rgba(255, 255, 255, 0.55)',
+                      letterSpacing: '0.1em',
                       textTransform: 'uppercase',
                       display: 'block',
-                      marginBottom: '4px',
+                      marginBottom: '6px',
+                      fontWeight: 600,
                     }}
                   >
-                    Architectural Installation Dossier
+                    Installation Details
                   </span>
                   <h4
                     style={{
-                      fontFamily: 'Manrope, sans-serif',
-                      fontSize: '15px',
-                      fontWeight: 600,
+                      fontSize: '17px',
+                      fontWeight: 500,
                       color: '#ffffff',
-                      lineHeight: 1.4,
+                      lineHeight: 1.45,
                       margin: 0,
                     }}
                   >
@@ -503,95 +450,82 @@ export default function ProductImageGallery({
                   </h4>
                 </div>
 
-                {/* Key Technical Matrix */}
-                <div style={{ marginBottom: '14px' }}>
+                {/* Key Material Facts */}
+                <div style={{ marginBottom: '18px' }}>
                   <span
                     style={{
-                      fontFamily: 'Urbanist, sans-serif',
-                      fontSize: '10px',
-                      color: '#9ca59b',
+                      fontSize: '11px',
+                      color: 'rgba(255, 255, 255, 0.55)',
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
                       display: 'block',
-                      marginBottom: '8px',
+                      marginBottom: '10px',
+                      fontWeight: 600,
                     }}
                   >
-                    Material &amp; Fabrication Protocols
+                    Material &amp; Fabrication
                   </span>
 
-                  <ul
-                    style={{
-                      listStyle: 'none',
-                      padding: 0,
-                      margin: 0,
-                      display: 'flex',
-                      flexDirection: 'column',
-                      gap: '6px',
-                    }}
-                  >
-                    <li style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
-                      <span style={{ color: '#c2cdc2' }}>✓</span>
-                      <span><strong>Substrate:</strong> Authentic DuPont™ Corian® Solid Surface</span>
-                    </li>
-                    <li style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
-                      <span style={{ color: '#c2cdc2' }}>✓</span>
-                      <span><strong>Jointing:</strong> Seamless chemical jointing (zero visible seams)</span>
-                    </li>
-                    <li style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
-                      <span style={{ color: '#c2cdc2' }}>✓</span>
-                      <span><strong>Health:</strong> 100% Zero-Silica (safe to fabricate and live with)</span>
-                    </li>
-                    <li style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#c4cdc4', display: 'flex', alignItems: 'flex-start', gap: '8px', lineHeight: 1.35 }}>
-                      <span style={{ color: '#c2cdc2' }}>✓</span>
-                      <span><strong>Hygiene:</strong> NSF/ANSI 51 Food Zone &amp; Cleanroom Certified</span>
-                    </li>
-                  </ul>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12.5px', color: '#c4cdc4', paddingBottom: '6px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                      <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Material</span>
+                      <span style={{ color: '#ffffff', fontWeight: 500 }}>DuPont™ Corian® Solid Surface</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12.5px', color: '#c4cdc4', paddingBottom: '6px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                      <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Joinery</span>
+                      <span style={{ color: '#ffffff', fontWeight: 500 }}>Seamless invisible chemical bond</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12.5px', color: '#c4cdc4', paddingBottom: '6px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                      <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>Hygiene</span>
+                      <span style={{ color: '#ffffff', fontWeight: 500 }}>100% Non-porous · Zero Silica</span>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Product Specifications Preview */}
+                {/* Product Specifications */}
                 {specifications.length > 0 && (
-                  <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '10px', marginBottom: '14px' }}>
+                  <div style={{ marginBottom: '18px' }}>
                     <span
                       style={{
-                        fontFamily: 'Urbanist, sans-serif',
-                        fontSize: '10px',
-                        color: '#9ca59b',
+                        fontSize: '11px',
+                        color: 'rgba(255, 255, 255, 0.55)',
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase',
                         display: 'block',
-                        marginBottom: '6px',
+                        marginBottom: '8px',
+                        fontWeight: 600,
                       }}
                     >
-                      Typology Specifications
+                      Specifications
                     </span>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '5px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '7px' }}>
                       {specifications.slice(0, 3).map((spec, sIdx) => (
-                        <div key={sIdx} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: '#b5c0b5' }}>
-                          <span style={{ color: '#788278' }}>{spec.label}:</span>
-                          <span style={{ textAlign: 'right', color: '#ffffff' }}>{spec.value}</span>
+                        <div key={sIdx} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '12.5px', color: '#c4cdc4', paddingBottom: '6px', borderBottom: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                          <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>{spec.label}</span>
+                          <span style={{ textAlign: 'right', color: '#ffffff', fontWeight: 500 }}>{spec.value}</span>
                         </div>
                       ))}
                     </div>
                   </div>
                 )}
 
-                {/* Compatible Materials */}
+                {/* Compatible Palette */}
                 {compatibleMaterials.length > 0 && (
-                  <div style={{ marginBottom: '14px' }}>
+                  <div style={{ marginBottom: '16px' }}>
                     <span
                       style={{
-                        fontFamily: 'Urbanist, sans-serif',
-                        fontSize: '10px',
-                        color: '#9ca59b',
+                        fontSize: '11px',
+                        color: 'rgba(255, 255, 255, 0.55)',
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase',
                         display: 'block',
-                        marginBottom: '4px',
+                        marginBottom: '6px',
+                        fontWeight: 600,
                       }}
                     >
-                      Architectural Palette Range
+                      Color Finishes
                     </span>
-                    <p style={{ margin: 0, fontSize: '11px', color: '#c4cdc4', lineHeight: 1.45, fontFamily: 'Urbanist, sans-serif' }}>
+                    <p style={{ margin: 0, fontSize: '12px', color: '#d0d8d0', lineHeight: 1.5 }}>
                       {compatibleMaterials.join(', ')}
                     </p>
                   </div>
@@ -599,14 +533,14 @@ export default function ProductImageGallery({
               </div>
 
               {/* Action Buttons */}
-              <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.12)', paddingTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '16px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 <Link
                   href={`/contact?product=${encodeURIComponent(productName)}&source=gallery`}
                   style={{
                     background: '#ffffff',
                     color: '#141713',
-                    padding: '10px 14px',
-                    fontFamily: 'Urbanist, sans-serif',
+                    padding: '12px 16px',
+                    borderRadius: '4px',
                     fontSize: '11px',
                     fontWeight: 600,
                     textTransform: 'uppercase',
@@ -617,15 +551,15 @@ export default function ProductImageGallery({
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '6px',
-                    transition: 'background 0.15s ease',
+                    transition: 'opacity 0.2s ease',
                   }}
                 >
-                  Request CAD &amp; Quotation Dossier <span>→</span>
+                  Request a Quote <span>↗</span>
                 </Link>
 
                 <a
                   href={`https://wa.me/919741044776?text=${encodeURIComponent(
-                    `Hello Ace Spaces Studio, I am inspecting the ${productName} installation photograph (${currentItem.caption}) and would like to consult on material specification for an upcoming project.`
+                    `Hello Ace Spaces Studio, I am viewing the ${productName} installation photo (${currentItem.caption}) and would like to ask a question.`
                   )}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -633,8 +567,8 @@ export default function ProductImageGallery({
                     background: 'transparent',
                     color: '#e9e8e2',
                     border: '1px solid rgba(255, 255, 255, 0.25)',
-                    padding: '9px 14px',
-                    fontFamily: 'Urbanist, sans-serif',
+                    padding: '11px 16px',
+                    borderRadius: '4px',
                     fontSize: '11px',
                     fontWeight: 500,
                     letterSpacing: '0.06em',
@@ -646,51 +580,46 @@ export default function ProductImageGallery({
                     gap: '6px',
                   }}
                 >
-                  Consult via WhatsApp Studio Line ↗
+                  Chat on WhatsApp ↗
                 </a>
               </div>
             </div>
           </div>
 
-          {/* Bottom Filmstrip Bar: "and also the images" */}
+          {/* Bottom Filmstrip Bar */}
           <div
             className="gallery-thumb-strip"
             style={{
-              borderTop: '1px solid rgba(255, 255, 255, 0.12)',
-              paddingTop: '12px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+              paddingTop: '14px',
               display: 'flex',
               alignItems: 'center',
               gap: '14px',
               zIndex: 10,
               overflowX: 'auto',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
             }}
             onClick={(e) => e.stopPropagation()}
           >
             <span
               style={{
-                fontFamily: 'Urbanist, sans-serif',
-                fontSize: '10px',
-                color: '#9ca59b',
+                fontSize: '11px',
+                color: 'rgba(255, 255, 255, 0.55)',
                 letterSpacing: '0.08em',
                 textTransform: 'uppercase',
                 whiteSpace: 'nowrap',
+                fontWeight: 600,
               }}
             >
-              ALL INSTALLATION PHOTOS ({images.length}):
+              Photos ({images.length}):
             </span>
 
             <div
-              className="gallery-thumb-strip"
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 gap: '10px',
                 overflowX: 'auto',
                 padding: '4px 0',
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
               }}
             >
               {images.map((thumb, tIdx) => {
@@ -700,7 +629,20 @@ export default function ProductImageGallery({
                     key={tIdx}
                     type="button"
                     onClick={() => setActiveIdx(tIdx)}
-                    className={`gallery-thumb-btn ${isSelected ? 'is-active' : ''}`}
+                    style={{
+                      position: 'relative',
+                      width: '72px',
+                      height: '48px',
+                      flexShrink: 0,
+                      borderRadius: '3px',
+                      overflow: 'hidden',
+                      border: isSelected ? '2px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.2)',
+                      padding: 0,
+                      background: '#1a1d19',
+                      cursor: 'pointer',
+                      opacity: isSelected ? 1 : 0.65,
+                      transition: 'all 0.2s ease',
+                    }}
                     aria-label={`View photo ${tIdx + 1}`}
                   >
                     <Image
@@ -718,17 +660,17 @@ export default function ProductImageGallery({
             <span
               style={{
                 marginLeft: 'auto',
-                fontFamily: 'Urbanist, sans-serif',
-                fontSize: '10px',
-                color: '#788278',
+                fontSize: '11px',
+                color: 'rgba(255, 255, 255, 0.45)',
                 whiteSpace: 'nowrap',
                 display: 'inline-flex',
                 gap: '8px',
               }}
               className="gallery-keyboard-hint"
             >
-              <span>[← / → Key to Navigate]</span>
-              <span>[Esc to Close]</span>
+              <span>Esc to close</span>
+              <span>·</span>
+              <span>Arrow keys to navigate</span>
             </span>
           </div>
         </div>
