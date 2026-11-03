@@ -187,15 +187,15 @@ export default function MaterialGrid() {
               </span>
               <div style={{ flex: 1, maxWidth: '140px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
             </div>
-            <h2 style={{ fontSize: 'clamp(34px, 4.8vw, 60px)', lineHeight: 1.04, margin: 0 }}>
+            <h2 style={{ fontSize: 'clamp(34px, 4.8vw, 60px)', lineHeight: 1.04, margin: 0 }} suppressHydrationWarning>
               Tactile minerals.
               <br />
-              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>New arrivals.</i>
+              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>Monolithic tones.</i>
             </h2>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '14px', maxWidth: '380px' }}>
             <p style={{ fontSize: '15px', color: '#555e54', margin: 0, lineHeight: 1.65 }}>
-              Newly released mineral compositions from the Artista series, calibrated in our Bengaluru stockyard.
+              Through-body mineral compositions and non-porous architectural hues, calibrated in our Bengaluru stockyard.
             </p>
             <Link className="button button-dark" href="/materials">
               Explore All Materials <span>↗</span>
@@ -227,7 +227,7 @@ export default function MaterialGrid() {
                 </span>
                 <div style={{ width: '80px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
               </div>
-              <h3 style={{ fontSize: 'clamp(24px, 3.2vw, 38px)', lineHeight: 1.12, margin: 0, fontWeight: 500 }}>
+              <h3 style={{ fontSize: 'clamp(24px, 3.2vw, 38px)', lineHeight: 1.12, margin: 0, fontWeight: 500 }} suppressHydrationWarning>
                 Curated architectural slabs.
                 <br />
                 <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>Veined &amp; textured monoliths.</i>
