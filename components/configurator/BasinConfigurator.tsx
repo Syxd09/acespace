@@ -331,7 +331,7 @@ export default function BasinConfigurator({
             background: '#1e211d',
             color: '#e9e8e2',
             padding: '12px 24px',
-            borderRadius: '8px',
+            borderRadius: '2px',
             fontFamily: 'Urbanist, sans-serif',
             fontSize: '12px',
             letterSpacing: '0.04em',
@@ -548,7 +548,7 @@ export default function BasinConfigurator({
                 backdropFilter: 'blur(10px)',
                 WebkitBackdropFilter: 'blur(10px)',
                 border: '1px solid rgba(30, 33, 29, 0.16)',
-                borderRadius: '8px',
+                borderRadius: '4px',
                 padding: '3px',
                 gap: '3px',
                 zIndex: 10,
@@ -570,7 +570,7 @@ export default function BasinConfigurator({
                   background: showDimensions ? '#1e211d' : 'transparent',
                   color: showDimensions ? '#ffffff' : '#3c423c',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -596,7 +596,7 @@ export default function BasinConfigurator({
                   background: isTurntable ? 'var(--brand-red, #d43833)' : 'transparent',
                   color: isTurntable ? '#ffffff' : '#3c423c',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -623,7 +623,7 @@ export default function BasinConfigurator({
                   background: isWireframe ? '#1e211d' : 'transparent',
                   color: isWireframe ? '#ffffff' : '#3c423c',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -649,7 +649,7 @@ export default function BasinConfigurator({
                   background: 'transparent',
                   color: '#3c423c',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -675,7 +675,7 @@ export default function BasinConfigurator({
                   background: showScaleFigure ? '#1e211d' : 'transparent',
                   color: showScaleFigure ? '#ffffff' : '#3c423c',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -701,7 +701,7 @@ export default function BasinConfigurator({
                   background: 'transparent',
                   color: '#3c423c',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -727,7 +727,7 @@ export default function BasinConfigurator({
                   background: 'transparent',
                   color: '#3c423c',
                   border: 'none',
-                  borderRadius: '8px',
+                  borderRadius: '2px',
                   cursor: 'pointer',
                   transition: 'all 0.15s ease',
                 }}
@@ -758,63 +758,55 @@ export default function BasinConfigurator({
             gap: '18px',
           }}
         >
-          {/* Selected Basin Banner */}
+          {/* Base Model Selector Banner */}
           <div
             style={{
-              background: '#ffffff',
-              border: '1px solid rgba(28, 25, 23, 0.08)',
-              borderRadius: '12px',
-              padding: '16px 18px',
-              boxShadow: '0 1px 3px rgba(0, 0, 0, 0.02)',
+              background: '#f0eee8',
+              border: '1px solid var(--line, rgba(30,33,29,0.15))',
+              borderLeft: '3px solid var(--brand-red, #d43833)',
+              padding: '14px 18px',
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
-              <div>
-                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '13px', fontWeight: 600, color: '#1a1d19' }}>
-                  Selected Basin
-                </span>
-                <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#788278', margin: '2px 0 0 0' }}>
-                  Solid surface countertop washbowl
-                </p>
-              </div>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+              <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#737e73', fontWeight: 600 }}>
+                Base Model
+              </span>
               <button
                 type="button"
                 onClick={handleResetCamera}
                 style={{
                   background: 'none',
                   border: 'none',
-                  color: '#6e776e',
+                  color: '#737e73',
                   fontFamily: 'Urbanist, sans-serif',
-                  fontSize: '11px',
+                  fontSize: '10px',
                   cursor: 'pointer',
                   textDecoration: 'underline',
-                  padding: '2px 4px',
                 }}
               >
-                Reset view
+                Reset Camera
               </button>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#faf9f6', padding: '10px 14px', borderRadius: '8px', border: '1px solid rgba(28, 25, 23, 0.06)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div>
-                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 700, color: '#1e211d' }}>
-                  {config.modelName}
+                <div style={{ fontFamily: 'Manrope, sans-serif', fontSize: '16px', fontWeight: 700, color: '#1e211d' }}>
+                  Countertop Basin {config.modelName}
                 </div>
-                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#687268', marginTop: '2px' }}>
+                <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#687268', marginTop: '2px' }}>
                   {config.width} × {config.depth} × {config.height} mm
                 </div>
               </div>
               <span
                 style={{
-                  padding: '4px 10px',
-                  background: '#ffffff',
-                  border: '1px solid rgba(28, 25, 23, 0.1)',
-                  color: '#1e211d',
+                  padding: '4px 8px',
+                  background: 'rgba(212,56,51,0.08)',
+                  border: '1px solid rgba(212,56,51,0.2)',
+                  color: 'var(--brand-red, #d43833)',
                   fontFamily: 'Urbanist, sans-serif',
-                  fontSize: '11px',
+                  fontSize: '10px',
                   fontWeight: 600,
-                  textTransform: 'capitalize',
-                  borderRadius: '6px',
+                  textTransform: 'uppercase',
                 }}
               >
                 {config.shape}
@@ -825,87 +817,34 @@ export default function BasinConfigurator({
           {/* ======================================================= */}
           {/* SECTION 01: SINK SIZE / BASIN MODEL                    */}
           {/* ======================================================= */}
-          <div
-            className="accordion-card"
-            style={{
-              background: '#ffffff',
-              border: openSections['01'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
-              borderRadius: '12px',
-              boxShadow: openSections['01'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
-              overflow: 'hidden',
-              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
-            }}
-          >
+          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
               type="button"
               onClick={() => toggleSection('01')}
               style={{
                 width: '100%',
-                padding: '15px 18px',
-                background: openSections['01'] ? '#fcfbfa' : '#ffffff',
+                padding: '16px 20px',
+                background: 'none',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
-                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
-                <span
-                  style={{
-                    width: '26px',
-                    height: '26px',
-                    borderRadius: '50%',
-                    background: openSections['01'] ? '#1e211d' : '#f2efe9',
-                    color: openSections['01'] ? '#ffffff' : '#687268',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  01
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>01</span>
+                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  Sink Size &amp; Model
                 </span>
-                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
-                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
-                    Basin Shape &amp; Size
-                  </span>
-                  {!openSections['01'] && (
-                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
-                      {config.modelName} · {config.width} × {config.depth} mm
-                    </span>
-                  )}
-                </div>
               </div>
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '22px',
-                  height: '22px',
-                  color: openSections['01'] ? '#1e211d' : '#889188',
-                  transform: openSections['01'] ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
-                  flexShrink: 0,
-                  marginLeft: '10px',
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </span>
+              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['01'] ? '▲' : '▼'}</span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['01'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   {/* Category Filter Tabs */}
                   <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                     {[
@@ -925,7 +864,7 @@ export default function BasinConfigurator({
                           color: modelCategoryTab === tab.key ? '#fff' : '#4a5249',
                           fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10.5px',
-                          borderRadius: '8px',
+                          borderRadius: '2px',
                           cursor: 'pointer',
                           transition: 'all 0.15s ease',
                         }}
@@ -947,7 +886,7 @@ export default function BasinConfigurator({
                             padding: '10px 8px',
                             border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                             background: isAct ? '#ffffff' : '#fcfbfa',
-                            borderRadius: '8px',
+                            borderRadius: '2px',
                             cursor: 'pointer',
                             display: 'flex',
                             flexDirection: 'column',
@@ -973,39 +912,39 @@ export default function BasinConfigurator({
                   </div>
 
                   {/* Active Model Specification Summary Table */}
-                  <div style={{ background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', padding: '14px', borderRadius: '8px' }}>
+                  <div style={{ background: '#f8f7f4', border: '1px solid rgba(30,33,29,0.08)', padding: '14px', borderRadius: '3px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', borderBottom: '1px solid rgba(30,33,29,0.08)', paddingBottom: '8px' }}>
                       <strong style={{ fontSize: '12px', fontFamily: 'Manrope, sans-serif', color: '#1e211d' }}>
                         {config.modelName} Dimensions &amp; Geometry
                       </strong>
-                      <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 6px', borderRadius: '8px' }}>
+                      <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', background: 'var(--brand-red, #d43833)', color: '#fff', padding: '2px 6px', borderRadius: '2px' }}>
                         Fixed Model
                       </span>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
                       <div>
-                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>Length</span>
+                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>LENGTH (W)</span>
                         <strong style={{ color: '#1e211d' }}>{config.width} mm</strong>
                       </div>
                       <div>
-                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>Depth</span>
+                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>WIDTH (D)</span>
                         <strong style={{ color: '#1e211d' }}>{config.depth} mm</strong>
                       </div>
                       <div>
-                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>Height</span>
+                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>HEIGHT (H)</span>
                         <strong style={{ color: '#1e211d' }}>{config.height} mm</strong>
                       </div>
                       <div>
-                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>Rim Thickness</span>
+                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>WALL RIM</span>
                         <strong style={{ color: '#1e211d' }}>12 mm Solid</strong>
                       </div>
                       <div>
-                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>Internal Radius</span>
+                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>COVED RADIUS</span>
                         <strong style={{ color: '#1e211d' }}>R{config.covedRadius} mm</strong>
                       </div>
                       <div>
-                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>Installation</span>
+                        <span style={{ color: '#7a857a', display: 'block', fontSize: '9.5px' }}>MOUNTING</span>
                         <strong style={{ color: '#1e211d' }}>Vessel / Deck</strong>
                       </div>
                     </div>
@@ -1018,87 +957,34 @@ export default function BasinConfigurator({
           {/* ======================================================= */}
           {/* SECTION 02: MATERIAL & COLOUR                           */}
           {/* ======================================================= */}
-          <div
-            className="accordion-card"
-            style={{
-              background: '#ffffff',
-              border: openSections['02'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
-              borderRadius: '12px',
-              boxShadow: openSections['02'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
-              overflow: 'hidden',
-              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
-            }}
-          >
+          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
               type="button"
               onClick={() => toggleSection('02')}
               style={{
                 width: '100%',
-                padding: '15px 18px',
-                background: openSections['02'] ? '#fcfbfa' : '#ffffff',
+                padding: '16px 20px',
+                background: 'none',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
-                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
-                <span
-                  style={{
-                    width: '26px',
-                    height: '26px',
-                    borderRadius: '50%',
-                    background: openSections['02'] ? '#1e211d' : '#f2efe9',
-                    color: openSections['02'] ? '#ffffff' : '#687268',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  02
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>02</span>
+                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  Material &amp; Colour
                 </span>
-                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
-                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
-                    Material &amp; Color
-                  </span>
-                  {!openSections['02'] && (
-                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
-                      {config.materialName} · {config.materialFinish}
-                    </span>
-                  )}
-                </div>
               </div>
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '22px',
-                  height: '22px',
-                  color: openSections['02'] ? '#1e211d' : '#889188',
-                  transform: openSections['02'] ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
-                  flexShrink: 0,
-                  marginLeft: '10px',
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </span>
+              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['02'] ? '▲' : '▼'}</span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['02'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   {/* Active Swatch Badge */}
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: '#f8f7f4', padding: '10px 14px', border: '1px solid rgba(30,33,29,0.08)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -1121,7 +1007,7 @@ export default function BasinConfigurator({
                         </span>
                       </div>
                     </div>
-                    <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', background: '#1e211d', color: '#fff', padding: '2px 8px', borderRadius: '8px' }}>
+                    <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', background: '#1e211d', color: '#fff', padding: '2px 8px', borderRadius: '2px' }}>
                       DuPont™ Corian®
                     </span>
                   </div>
@@ -1147,7 +1033,7 @@ export default function BasinConfigurator({
                           color: materialFilter === f.key ? '#fff' : '#4a5249',
                           fontFamily: 'Urbanist, sans-serif',
                           fontSize: '10px',
-                          borderRadius: '8px',
+                          borderRadius: '2px',
                           cursor: 'pointer',
                         }}
                       >
@@ -1168,7 +1054,7 @@ export default function BasinConfigurator({
                       fontSize: '11px',
                       fontFamily: 'Urbanist, sans-serif',
                       border: '1px solid #ddd9d2',
-                      borderRadius: '8px',
+                      borderRadius: '2px',
                       outline: 'none',
                     }}
                   />
@@ -1191,7 +1077,7 @@ export default function BasinConfigurator({
                           style={{
                             border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #ddd9d2',
                             background: '#fff',
-                            borderRadius: '8px',
+                            borderRadius: '3px',
                             padding: '6px 4px',
                             cursor: 'pointer',
                             display: 'flex',
@@ -1227,87 +1113,34 @@ export default function BasinConfigurator({
           {/* ======================================================= */}
           {/* SECTION 03: DRAIN TYPE                                  */}
           {/* ======================================================= */}
-          <div
-            className="accordion-card"
-            style={{
-              background: '#ffffff',
-              border: openSections['03'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
-              borderRadius: '12px',
-              boxShadow: openSections['03'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
-              overflow: 'hidden',
-              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
-            }}
-          >
+          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
               type="button"
               onClick={() => toggleSection('03')}
               style={{
                 width: '100%',
-                padding: '15px 18px',
-                background: openSections['03'] ? '#fcfbfa' : '#ffffff',
+                padding: '16px 20px',
+                background: 'none',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
-                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
-                <span
-                  style={{
-                    width: '26px',
-                    height: '26px',
-                    borderRadius: '50%',
-                    background: openSections['03'] ? '#1e211d' : '#f2efe9',
-                    color: openSections['03'] ? '#ffffff' : '#687268',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  03
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>03</span>
+                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  Drain System
                 </span>
-                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
-                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
-                    Drain System
-                  </span>
-                  {!openSections['03'] && (
-                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
-                      {DRAIN_OPTIONS.find(d => d.id === config.drainTypeId)?.name || 'Pop-up Waste'}
-                    </span>
-                  )}
-                </div>
               </div>
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '22px',
-                  height: '22px',
-                  color: openSections['03'] ? '#1e211d' : '#889188',
-                  transform: openSections['03'] ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
-                  flexShrink: 0,
-                  marginLeft: '10px',
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </span>
+              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['03'] ? '▲' : '▼'}</span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['03'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                   {DRAIN_OPTIONS.map(drn => {
                     const isAct = config.drainTypeId === drn.id;
                     return (
@@ -1322,7 +1155,7 @@ export default function BasinConfigurator({
                           padding: '12px 14px',
                           border: isAct ? '2px solid var(--brand-red, #d43833)' : '1px solid #e0ded8',
                           background: isAct ? '#ffffff' : '#fcfbfa',
-                          borderRadius: '8px',
+                          borderRadius: '3px',
                           cursor: 'pointer',
                           display: 'flex',
                           alignItems: 'center',
@@ -1362,87 +1195,34 @@ export default function BasinConfigurator({
           {/* ======================================================= */}
           {/* SECTION 04: PRODUCT NOTES & SPECIFICATION              */}
           {/* ======================================================= */}
-          <div
-            className="accordion-card"
-            style={{
-              background: '#ffffff',
-              border: openSections['04'] ? '1px solid rgba(28, 25, 23, 0.22)' : '1px solid rgba(28, 25, 23, 0.08)',
-              borderRadius: '12px',
-              boxShadow: openSections['04'] ? '0 4px 18px rgba(0, 0, 0, 0.04)' : '0 1px 3px rgba(0, 0, 0, 0.02)',
-              overflow: 'hidden',
-              transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
-            }}
-          >
+          <div className="accordion-card" style={{ background: '#fff', border: '1px solid var(--line, rgba(30,33,29,0.15))' }}>
             <button
               type="button"
               onClick={() => toggleSection('04')}
               style={{
                 width: '100%',
-                padding: '15px 18px',
-                background: openSections['04'] ? '#fcfbfa' : '#ffffff',
+                padding: '16px 20px',
+                background: 'none',
                 border: 'none',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 textAlign: 'left',
-                transition: 'background 0.15s ease',
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0, flex: 1 }}>
-                <span
-                  style={{
-                    width: '26px',
-                    height: '26px',
-                    borderRadius: '50%',
-                    background: openSections['04'] ? '#1e211d' : '#f2efe9',
-                    color: openSections['04'] ? '#ffffff' : '#687268',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  04
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', fontWeight: 600, color: 'var(--brand-red, #d43833)' }}>04</span>
+                <span style={{ fontFamily: 'Manrope, sans-serif', fontSize: '13px', fontWeight: 600, letterSpacing: '0.02em' }}>
+                  Product Notes &amp; Specification
                 </span>
-                <div style={{ display: 'flex', flexDirection: 'column', minWidth: 0, flex: 1 }}>
-                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '14.5px', fontWeight: 600, color: '#1a1d19' }}>
-                    Custom Notes &amp; Requests
-                  </span>
-                  {!openSections['04'] && (
-                    <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11.5px', color: '#889188', marginTop: '1px' }}>
-                      {projectNotes ? 'Notes added' : 'Optional project details'}
-                    </span>
-                  )}
-                </div>
               </div>
-              <span
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '22px',
-                  height: '22px',
-                  color: openSections['04'] ? '#1e211d' : '#889188',
-                  transform: openSections['04'] ? 'rotate(180deg)' : 'rotate(0deg)',
-                  transition: 'transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.15s ease',
-                  flexShrink: 0,
-                  marginLeft: '10px',
-                }}
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </span>
+              <span style={{ fontSize: '12px', color: '#888' }}>{openSections['04'] ? '▲' : '▼'}</span>
             </button>
 
             <div className={`accordion-collapse-wrapper ${openSections['04'] ? 'is-open' : ''}`}>
               <div className="accordion-collapse-inner">
-                <div style={{ padding: '16px 18px 20px', borderTop: '1px solid rgba(28, 25, 23, 0.06)', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div style={{ padding: '16px 20px 20px', borderTop: '1px solid #f0eee8', display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: '#687268', marginBottom: '6px' }}>
                       Project Reference / Title
@@ -1576,7 +1356,7 @@ export default function BasinConfigurator({
                 color: '#fff',
                 cursor: 'pointer',
                 fontFamily: 'Urbanist, sans-serif',
-                borderRadius: '8px',
+                borderRadius: '2px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -1598,7 +1378,7 @@ export default function BasinConfigurator({
                 color: '#fff',
                 cursor: 'pointer',
                 fontFamily: 'Urbanist, sans-serif',
-                borderRadius: '8px',
+                borderRadius: '2px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -1643,7 +1423,7 @@ export default function BasinConfigurator({
               letterSpacing: '0.04em',
               textTransform: 'uppercase',
               cursor: 'pointer',
-              borderRadius: '8px',
+              borderRadius: '2px',
             }}
           >
             View in AR
@@ -1663,7 +1443,7 @@ export default function BasinConfigurator({
               letterSpacing: '0.06em',
               textTransform: 'uppercase',
               cursor: 'pointer',
-              borderRadius: '8px',
+              borderRadius: '2px',
               boxShadow: '0 6px 18px rgba(212,56,51,0.4)',
               transition: 'opacity 0.2s ease',
             }}
@@ -1709,7 +1489,7 @@ export default function BasinConfigurator({
               maxWidth: '540px',
               width: '100%',
               background: '#faf9f5',
-              borderRadius: '14px', borderTop: 'none', border: '1px solid rgba(28,25,23,0.1)',
+              borderTop: '4px solid var(--brand-red, #d43833)',
               padding: '32px',
               boxShadow: '0 32px 64px rgba(0,0,0,0.4)',
               maxHeight: '90vh',
@@ -1753,7 +1533,7 @@ export default function BasinConfigurator({
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '16px' }}>
                   <div>
                     <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--brand-red, #d43833)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                      Request Quote for this Basin
+                      Architectural Quotation Request
                     </span>
                     <h2 style={{ margin: '4px 0 0', fontSize: '20px', fontWeight: 600 }}>
                       Countertop Basin {config.modelName}
@@ -1781,7 +1561,7 @@ export default function BasinConfigurator({
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', marginBottom: '4px' }}>
-                      Full Name *
+                      Contact Name *
                     </label>
                     <input
                       type="text"

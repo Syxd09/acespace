@@ -198,19 +198,19 @@ export default function ArchitecturalSelect({
           alignItems: 'center',
           justifyContent: 'space-between',
           gap: '12px',
-          padding: '12px 14px',
-          background: isOpen ? '#ffffff' : '#fcfbfa',
-          border: `1px solid ${isOpen ? '#1e211d' : 'rgba(30,33,29,0.16)'}`,
-          borderRadius: '10px',
+          padding: '11px 14px',
+          background: isOpen ? '#ffffff' : '#faf9f5',
+          border: `1px solid ${isOpen ? 'var(--brand-red, #d43833)' : 'var(--line, rgba(30,33,29,0.2))'}`,
+          borderRadius: '1px',
           color: selectedOption ? '#1a1d19' : '#8c948c',
-          fontFamily: 'Urbanist, sans-serif',
+          fontFamily: 'Manrope, system-ui, -apple-system, sans-serif',
           fontSize: '13.5px',
           fontWeight: 600,
           textAlign: 'left',
           cursor: disabled ? 'not-allowed' : 'pointer',
           outline: 'none',
           boxShadow: isOpen
-            ? '0 4px 16px rgba(0, 0, 0, 0.08)'
+            ? '0 4px 16px rgba(212, 56, 51, 0.12)'
             : 'none',
           transition: 'background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease',
         }}
@@ -270,13 +270,13 @@ export default function ArchitecturalSelect({
             right: 0,
             zIndex: 90,
             margin: 0,
-            padding: '6px',
+            padding: '6px 0',
             listStyle: 'none',
             background: '#ffffff',
-            border: '1px solid rgba(30, 33, 29, 0.1)',
-            borderRadius: '10px',
+            border: '1px solid rgba(30, 33, 29, 0.16)',
+            borderRadius: '2px',
             boxShadow:
-              '0 16px 36px -6px rgba(26, 29, 25, 0.15), 0 4px 14px -2px rgba(26, 29, 25, 0.08)',
+              '0 16px 36px -6px rgba(26, 29, 25, 0.2), 0 4px 14px -2px rgba(26, 29, 25, 0.1)',
             maxHeight: '290px',
             overflowY: 'auto',
             overscrollBehavior: 'contain',
@@ -301,18 +301,19 @@ export default function ArchitecturalSelect({
                   gap: '12px',
                   padding: '10px 14px',
                   cursor: 'pointer',
-                  borderRadius: '6px',
-                  fontFamily: 'Urbanist, sans-serif',
+                  fontFamily: 'Manrope, system-ui, sans-serif',
                   fontSize: '13px',
-                  color: isSelected ? '#1a1d19' : '#2e332d',
-                  fontWeight: isSelected ? 600 : 500,
+                  color: isSelected ? 'var(--ink, #1a1d19)' : '#2e332d',
+                  fontWeight: isSelected ? 600 : 400,
                   background: isSelected
-                    ? '#f2efe9'
+                    ? '#edeae0'
                     : isHighlighted
-                    ? '#f8f7f4'
+                    ? '#f6f5ef'
                     : 'transparent',
-                  borderLeft: 'none',
-                  transition: 'background 0.12s ease',
+                  borderLeft: isSelected
+                    ? '3px solid var(--brand-red, #d43833)'
+                    : '3px solid transparent',
+                  transition: 'background 0.12s ease, border-left-color 0.12s ease',
                 }}
               >
                 <div
