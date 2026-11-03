@@ -9,7 +9,7 @@ import { productsData } from '@/data/products';
 export const metadata: Metadata = {
   title: 'Architectural Products — Benchtops, Sinks, Washplanes & Vanities',
   description:
-    'Explore Ace Spaces precision-fabricated solid surface architectural systems: monolithic benchtops, integrated sinks, commercial washplanes, floating vanities, EOT grooming stations, healthcare clinical bays, and bespoke 3D thermoformed works.',
+    'Explore Ace Spaces precision-fabricated solid surface architectural systems: seamless benchtops, integrated sinks, commercial washplanes, floating vanities, EOT grooming stations, healthcare clinical bays, and bespoke 3D thermoformed works.',
   keywords: [
     'solid surface benchtops India',
     'seamless integrated sinks Corian',
@@ -74,38 +74,48 @@ const productsJsonLd = {
   })),
 };
 
-const productMicroSpecs: Record<string, { micro: string; spec: string }> = {
+const productMicroSpecs: Record<string, { micro: string; spec: string; metricLabel: string; metricVal: string }> = {
   benchtops: {
-    micro: 'Seamless waterfall islands & worktops',
-    spec: 'Zero visible seam',
+    micro: 'Seamless kitchen islands and worktops with continuous waterfall drops.',
+    spec: 'Zero visible seam · Mitred apron',
+    metricLabel: 'JOINERY',
+    metricVal: 'Seamless Mitre',
   },
-  'integrated-sinks': {
-    micro: 'Coved undermount basins welded flush',
-    spec: 'Coved non-porous joint',
+  sinks: {
+    micro: 'Coved undermount basins welded directly into solid surface counters.',
+    spec: 'Coved joint · Seamless flush',
+    metricLabel: 'HYGIENE',
+    metricVal: 'Zero Dirt Traps',
   },
   washplanes: {
-    micro: 'Multi-station linear drainage basins',
-    spec: 'Commercial grade',
+    micro: 'Sloped commercial washplanes with continuous linear drainage channels.',
+    spec: 'Multi-station · Hidden drainage',
+    metricLabel: 'APPLICATION',
+    metricVal: 'Commercial Grade',
   },
-  'basin-vanities': {
-    micro: 'Thermoformed single & double vanities',
-    spec: '160°C curved forming',
+  'basins-vanities': {
+    micro: 'Seamless bathroom vanities with sculpted washbowls and coved backsplashes.',
+    spec: '160°C thermoformed curves',
+    metricLabel: 'FORMING',
+    metricVal: 'Seamless Curve',
   },
-  'exterior-cladding': {
-    micro: 'Curved ventilated exterior panels',
-    spec: 'UV & weather stable',
+  'public-bathrooms-eot': {
+    micro: 'Heavy-duty washstations, locker benches, and privacy partitions for commercial amenities.',
+    spec: 'Anti-microbial · Non-porous',
+    metricLabel: 'DURABILITY',
+    metricVal: 'High Traffic',
   },
-  'healthcare-surfaces': {
-    micro: 'Seamless clinical work stations',
-    spec: 'NSF / ANSI 51 certified',
+  'health-aged-care': {
+    micro: 'Hygienic scrub sinks and clinical counters with zero microbial dirt traps.',
+    spec: 'NSF / ANSI 51 · Zero silica',
+    metricLabel: 'STANDARD',
+    metricVal: 'Clinical Grade',
   },
-  'end-of-trip': {
-    micro: 'Integrated locker & shower partitions',
-    spec: 'Moisture-impervious',
-  },
-  'bespoke-monoliths': {
-    micro: 'Sculptural multi-axis centerpieces',
-    spec: 'Custom 5-axis geometry',
+  bespoke: {
+    micro: 'Custom curved reception desks, fluted feature walls, and backlit monolithic fixtures.',
+    spec: '5-axis CNC · 3D curved form',
+    metricLabel: 'PRECISION',
+    metricVal: 'Custom 3D CAD',
   },
 };
 
@@ -228,98 +238,100 @@ export default function ProductsCatalogPage() {
           </p>
         </ScrollReveal>
 
-        {/* Product Cards Grid — Frameless Architectural Monograph */}
-        <div className="products-catalog-grid">
-          {/* 1. Special Corian Material Card */}
-          <ScrollReveal delay={0} style={{ height: '100%' }}>
-            <Link
-              href="/materials"
-              className="product-monograph-item"
-            >
-              <div className="product-monograph-header">
-                <span className="product-monograph-num">01</span>
-                <span className="product-monograph-divider">—</span>
-                <span className="product-monograph-category">MATERIALS</span>
-                <div className="product-monograph-line" />
+        {/* Product Cards Grid — Matching Fabrication Sequence Monograph Rail */}
+        <div className="sequence-monograph-rail">
+          {/* Card 01: Corian® Solid Surfaces (Materials) */}
+          <Link
+            href="/materials"
+            className="sequence-step-item"
+            style={{ textDecoration: 'none', color: 'inherit' }}
+          >
+            <div className="sequence-step-header">
+              <span className="sequence-step-num">01</span>
+              <span className="sequence-step-divider">—</span>
+              <span className="sequence-step-phase">MATERIALS</span>
+              <div className="sequence-step-line" />
+            </div>
+
+            <div className="sequence-image-frame">
+              <Image
+                src="/assets/material-macro.png"
+                alt="Corian solid surface mineral slabs and colour palette"
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                quality={75}
+                loading="lazy"
+                decoding="async"
+                className="sequence-image"
+              />
+              <div className="sequence-image-spec">
+                <span>12mm &amp; 19mm · 40+ Colors</span>
               </div>
+            </div>
 
-              <div className="product-monograph-image-frame">
-                <Image
-                  src="/assets/material-macro.png"
-                  alt="Corian solid surface mineral slabs and colour palette"
-                  fill
-                  sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
-                  quality={75}
-                  loading="lazy"
-                  decoding="async"
-                  className="product-monograph-image"
-                />
-                <div className="product-monograph-spec">
-                  <span>3660 × 760 mm · 40+ Colors</span>
-                </div>
+            <div className="sequence-step-body">
+              <h3 className="sequence-step-title">Corian® Solid Surfaces</h3>
+              <p className="sequence-step-desc">
+                Genuine DuPont™ Corian® sheets in 40+ colors for residential and commercial spaces.
+              </p>
+
+              <div className="sequence-step-footer">
+                <span className="sequence-footer-label">COLLECTION</span>
+                <span className="sequence-footer-val">40+ Finishes</span>
               </div>
+            </div>
+          </Link>
 
-              <div className="product-monograph-body">
-                <h3 className="product-monograph-title">Corian® Sheets</h3>
-
-                <div className="product-monograph-footer">
-                  <span className="product-monograph-action">
-                    Explore Materials <span>↗</span>
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </ScrollReveal>
-
-          {/* Render All Fabricated Products */}
+          {/* Render All 7 Fabricated Products */}
           {mainProducts.map((product, idx) => {
             const microData = productMicroSpecs[product.slug] || {
-              micro: product.tagline.split('.')[0],
+              micro: product.tagline,
               spec: 'Custom Fabrication',
+              metricLabel: 'SPECIFICATION',
+              metricVal: product.code,
             };
             const numStr = String(idx + 2).padStart(2, '0');
 
             return (
-              <ScrollReveal key={product.slug} delay={Math.min((idx + 1) * 40, 240)} style={{ height: '100%' }}>
-                <Link
-                  href={`/products/${product.slug}`}
-                  className="product-monograph-item"
-                >
-                  <div className="product-monograph-header">
-                    <span className="product-monograph-num">{numStr}</span>
-                    <span className="product-monograph-divider">—</span>
-                    <span className="product-monograph-category">{product.categoryName}</span>
-                    <div className="product-monograph-line" />
-                  </div>
+              <Link
+                key={product.slug}
+                href={`/products/${product.slug}`}
+                className="sequence-step-item"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                <div className="sequence-step-header">
+                  <span className="sequence-step-num">{numStr}</span>
+                  <span className="sequence-step-divider">—</span>
+                  <span className="sequence-step-phase">{product.categoryName}</span>
+                  <div className="sequence-step-line" />
+                </div>
 
-                  <div className="product-monograph-image-frame">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
-                      quality={75}
-                      loading="lazy"
-                      decoding="async"
-                      className="product-monograph-image"
-                    />
-                    <div className="product-monograph-spec">
-                      <span>{microData.spec}</span>
-                    </div>
+                <div className="sequence-image-frame">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                    quality={75}
+                    loading="lazy"
+                    decoding="async"
+                    className="sequence-image"
+                  />
+                  <div className="sequence-image-spec">
+                    <span>{microData.spec}</span>
                   </div>
+                </div>
 
-                  <div className="product-monograph-body">
-                    <h3 className="product-monograph-title">{product.name}</h3>
-                    <p className="product-monograph-desc">{microData.micro}</p>
+                <div className="sequence-step-body">
+                  <h3 className="sequence-step-title">{product.name}</h3>
+                  <p className="sequence-step-desc">{microData.micro}</p>
 
-                    <div className="product-monograph-footer">
-                      <span className="product-monograph-action">
-                        Explore <span>↗</span>
-                      </span>
-                    </div>
+                  <div className="sequence-step-footer">
+                    <span className="sequence-footer-label">{microData.metricLabel}</span>
+                    <span className="sequence-footer-val">{microData.metricVal}</span>
                   </div>
-                </Link>
-              </ScrollReveal>
+                </div>
+              </Link>
             );
           })}
         </div>
