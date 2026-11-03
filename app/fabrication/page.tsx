@@ -254,13 +254,7 @@ export default function FabricationPage() {
           </p>
         </ScrollReveal>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '32px',
-          }}
-        >
+        <div className="fabrication-stages-grid">
           {steps.map((step) => (
             <article
               key={step.num}
@@ -275,7 +269,7 @@ export default function FabricationPage() {
               <div
                 style={{
                   position: 'relative',
-                  height: '260px',
+                  height: '210px',
                   width: '100%',
                   background: '#1a1d19',
                   overflow: 'hidden',
@@ -330,7 +324,7 @@ export default function FabricationPage() {
 
               <div
                 style={{
-                  padding: '24px 24px 20px',
+                  padding: '20px 18px 18px',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between',
@@ -354,7 +348,7 @@ export default function FabricationPage() {
                   </span>
                   <h3
                     style={{
-                      fontSize: '19px',
+                      fontSize: '18px',
                       fontWeight: 500,
                       margin: '0 0 10px',
                       color: 'var(--ink, #1e211d)',
@@ -521,13 +515,7 @@ export default function FabricationPage() {
           </p>
         </ScrollReveal>
 
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-            gap: '20px',
-          }}
-        >
+        <div className="fabrication-protocols-grid">
           {protocols.map((proto) => (
             <div
               key={proto.num}

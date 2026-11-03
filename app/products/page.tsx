@@ -263,7 +263,7 @@ export default function ProductsCatalogPage() {
               transition: 'transform 0.25s ease, box-shadow 0.25s ease',
             }}
           >
-            <div style={{ position: 'relative', height: '240px', width: '100%', background: '#c8cbbe' }}>
+            <div style={{ position: 'relative', height: '210px', width: '100%', background: '#c8cbbe' }}>
               <Image
                 src="/assets/material-macro.png"
                 alt="Corian solid surface mineral slabs and colour palette"
@@ -291,7 +291,7 @@ export default function ProductsCatalogPage() {
                 Raw Substrates &amp; Slabs
               </div>
             </div>
-            <div style={{ padding: '28px 28px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+            <div style={{ padding: '22px 20px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
               <span
                 style={{
                   fontSize: '10px',
@@ -305,7 +305,7 @@ export default function ProductsCatalogPage() {
               >
                 SUBSTRATES / 3660 × 760 MM
               </span>
-              <h3 style={{ fontSize: '22px', margin: '0 0 12px', fontWeight: 500, color: 'var(--ink)' }}>
+              <h3 style={{ fontSize: '20px', margin: '0 0 10px', fontWeight: 500, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
                 CORIAN&reg; MATERIAL
               </h3>
               <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', margin: '0 0 20px', flex: 1 }}>
@@ -341,7 +341,7 @@ export default function ProductsCatalogPage() {
                 transition: 'transform 0.25s ease, box-shadow 0.25s ease',
               }}
             >
-              <div style={{ position: 'relative', height: '240px', width: '100%', background: '#c8cbbe' }}>
+              <div style={{ position: 'relative', height: '210px', width: '100%', background: '#c8cbbe' }}>
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -369,7 +369,7 @@ export default function ProductsCatalogPage() {
                   {product.code}
                 </div>
               </div>
-              <div style={{ padding: '28px 28px 24px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ padding: '22px 20px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <span
                   style={{
                     fontSize: '10px',
@@ -383,7 +383,7 @@ export default function ProductsCatalogPage() {
                 >
                   {product.categoryName}
                 </span>
-                <h3 style={{ fontSize: '22px', margin: '0 0 12px', fontWeight: 500, color: 'var(--ink)' }}>
+                <h3 style={{ fontSize: '20px', margin: '0 0 10px', fontWeight: 500, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
                   {product.name}
                 </h3>
                 <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', margin: '0 0 20px', flex: 1 }}>
