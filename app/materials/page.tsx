@@ -119,70 +119,92 @@ export default function MaterialsAndColoursPage() {
   return (
     <main className="page-main">
       <JsonLd data={materialsJsonLd} />
-      {/* Rich Split Architectural Hero */}
+      {/* Split Architectural Hero — Minimal Opening */}
       <section className="page-split-hero">
         <div>
-          <p className="eyebrow" style={{ marginBottom: '24px' }}>Materials &amp; Colours / Substrates, Slabs &amp; Palette</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '20px' }}>
+            <span
+              style={{
+                fontFamily: 'Urbanist, sans-serif',
+                fontSize: '11px',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--muted, #6f786d)',
+                fontWeight: 600,
+              }}
+            >
+              Materials &amp; Palette / Slabs
+            </span>
+            <div style={{ width: '60px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
+          </div>
 
-          <h1 style={{ fontSize: 'clamp(44px, 7vw, 108px)', lineHeight: 0.96, margin: '0 0 28px', letterSpacing: '-0.06em' }}>
+          <h1
+            style={{
+              fontSize: 'clamp(44px, 6.8vw, 100px)',
+              lineHeight: 0.96,
+              margin: '0 0 24px',
+              letterSpacing: '-0.05em',
+            }}
+          >
             Material &amp;
             <br />
             <i>colour.</i>
           </h1>
 
-          <p style={{ fontSize: '17px', lineHeight: 1.7, color: '#4a5249', maxWidth: '540px', marginBottom: '16px' }}>
-            Calibrated DuPont™ Corian® slabs, 20+ architectural tones, and zero-silica mineral surfaces for residential, commercial, and hospitality projects across India.
+          <p
+            style={{
+              fontSize: '17px',
+              lineHeight: 1.65,
+              color: '#4a5249',
+              maxWidth: '520px',
+              marginBottom: '32px',
+            }}
+          >
+            Calibrated DuPont™ Corian® mineral slabs, architectural tones, and zero-silica surfaces for spaces across India.
           </p>
 
-          <div style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '24px' }}>
-            Calibrated Slabs / Swatch Library / Pan-India Dispatch
-          </div>
-
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '36px' }}>
             <Link className="button button-dark" href="#library">
-              Explore Swatches &amp; Palette <span>↓</span>
-            </Link>
-            <Link className="text-link" href="#substrates">
-              4 Core Substrates <span>↓</span>
+              Explore Swatches <span>↓</span>
             </Link>
             <Link className="text-link" href="/contact">
               Order Specimen Box <span>↗</span>
             </Link>
           </div>
 
-          <div className="hero-stats-row">
+          <div style={{ display: 'flex', gap: '32px', alignItems: 'center', paddingTop: '18px', borderTop: '1px solid var(--line, rgba(30, 33, 29, 0.12))' }}>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Composition
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
+                Silica
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>2/3 Natural ATH</strong>
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                0.00% Zero Silica
+              </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Palette
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
+                Thickness
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>20+ Colours</strong>
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                12 mm &amp; 19 mm
+              </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Hygiene
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
+                Standard
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>100% Non-Porous</strong>
-            </div>
-            <div>
-              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
-                Dispatch
-              </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>48h Courier</strong>
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                DuPont™ Quality Network
+              </strong>
             </div>
           </div>
         </div>
 
-        {/* Hero Architectural Image Frame */}
+        {/* Clean Hero Visual Frame */}
         <ScrollReveal variant="image" className="hero-image-frame">
           <Image
             src="/assets/material-macro.png"
-            alt="Macro detail of through-body architectural mineral surface and colour swatches"
+            alt="Macro detail of through-body architectural mineral surface"
             fill
             sizes="(max-width: 800px) 100vw, 45vw"
             quality={75}
@@ -190,61 +212,93 @@ export default function MaterialsAndColoursPage() {
             style={{ objectFit: 'cover' }}
             priority
           />
-          <div className="hero-image-badge">
-            <div>
-              <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
-                Integrated Palette &amp; Substrate
-              </span>
-              <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Through-Body Mineral Slabs &amp; Colour Swatches
-              </strong>
-            </div>
-            <Link href="#library" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
-              Select Samples <span>↓</span>
-            </Link>
-          </div>
         </ScrollReveal>
       </section>
 
-      {/* 4 Core Material Substrates Breakdown */}
-      <section id="substrates" style={{ margin: '80px 0', borderBottom: '1px solid var(--line)', paddingBottom: '80px' }}>
-        <p className="eyebrow" style={{ marginBottom: '24px' }}>The 4 Core Material Substrates</p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '20px' }}>
-          <div id="architectural-solids" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
-            <span style={{ fontSize: '28px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>01</span>
-            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Architectural Solids</h3>
-            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
-              Solid through-body formulations with uniform color depth and an ultra-smooth satin touch.
-            </p>
-            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Solid Homogeneous Mineral Composition</span>
+      {/* 4 Core Material Substrates Breakdown — Frameless Architectural Monograph */}
+      <section id="substrates" style={{ margin: '80px 0 100px' }}>
+        <ScrollReveal className="section-head" style={{ marginBottom: '40px' }}>
+          <div>
+            <p className="eyebrow">The 4 Substrate Typologies</p>
+            <h2 style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}>
+              Substrate
+              <br />
+              <i>classifications.</i>
+            </h2>
           </div>
+          <p style={{ fontSize: '15px', color: 'var(--muted)', maxWidth: '420px', margin: 0, lineHeight: 1.6 }}>
+            Homogeneous through-body formulations crafted from natural mineral bauxite and pure acrylic resin.
+          </p>
+        </ScrollReveal>
 
-          <div id="architectural-veined" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
-            <span style={{ fontSize: '28px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>02</span>
-            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Architectural Veined</h3>
-            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
-              Natural veining that flows through the full thickness of the slab, ideal for seamless waterfall edges.
-            </p>
-            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Continuous Through-Body Veining</span>
-          </div>
+        <div className="sequence-monograph-rail">
+          <article className="sequence-step-item">
+            <div className="sequence-step-header">
+              <span className="sequence-step-num">01</span>
+              <span className="sequence-step-divider">—</span>
+              <span className="sequence-step-phase">Solids</span>
+              <div className="sequence-step-line" />
+            </div>
+            <div className="sequence-step-body" style={{ paddingTop: '8px' }}>
+              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Architectural Solids</h3>
+              <p className="sequence-step-desc">Solid through-body formulations with uniform color depth and an ultra-smooth satin touch.</p>
+              <div className="sequence-step-footer">
+                <span className="sequence-footer-label">Composition</span>
+                <span className="sequence-footer-val">Homogeneous</span>
+              </div>
+            </div>
+          </article>
 
-          <div id="terrazzo-aggregates" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
-            <span style={{ fontSize: '28px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>03</span>
-            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Terrazzo &amp; Aggregates</h3>
-            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
-              Mineral particulates and aggregate flecks that bring natural texture and visual depth to high-traffic areas.
-            </p>
-            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Textured Particulate Mineral Matrix</span>
-          </div>
+          <article className="sequence-step-item">
+            <div className="sequence-step-header">
+              <span className="sequence-step-num">02</span>
+              <span className="sequence-step-divider">—</span>
+              <span className="sequence-step-phase">Veined</span>
+              <div className="sequence-step-line" />
+            </div>
+            <div className="sequence-step-body" style={{ paddingTop: '8px' }}>
+              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Architectural Veined</h3>
+              <p className="sequence-step-desc">Natural veining that flows through the full thickness of the slab, continuous across waterfall mitres.</p>
+              <div className="sequence-step-footer">
+                <span className="sequence-footer-label">Grain</span>
+                <span className="sequence-footer-val">Through-Body</span>
+              </div>
+            </div>
+          </article>
 
-          <div id="onyx-translucent" style={{ background: '#dcd7cd', padding: '32px', border: '1px solid var(--line)', transition: 'transform 0.3s ease' }}>
-            <span style={{ fontSize: '28px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', marginBottom: '12px' }}>04</span>
-            <h3 style={{ fontSize: '20px', margin: '0 0 10px' }}>Onyx &amp; Translucent</h3>
-            <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', marginBottom: '16px' }}>
-              Translucent mineral sheets that diffuse backlighting for illuminated bars, reception portals, and feature walls.
-            </p>
-            <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>Diffused Ambient Illumination</span>
-          </div>
+          <article className="sequence-step-item">
+            <div className="sequence-step-header">
+              <span className="sequence-step-num">03</span>
+              <span className="sequence-step-divider">—</span>
+              <span className="sequence-step-phase">Aggregates</span>
+              <div className="sequence-step-line" />
+            </div>
+            <div className="sequence-step-body" style={{ paddingTop: '8px' }}>
+              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Terrazzo &amp; Particulates</h3>
+              <p className="sequence-step-desc">Mineral particulates and aggregate flecks that bring natural texture and visual depth to high-traffic zones.</p>
+              <div className="sequence-step-footer">
+                <span className="sequence-footer-label">Texture</span>
+                <span className="sequence-footer-val">Tactile Matrix</span>
+              </div>
+            </div>
+          </article>
+
+          <article className="sequence-step-item">
+            <div className="sequence-step-header">
+              <span className="sequence-step-num">04</span>
+              <span className="sequence-step-divider">—</span>
+              <span className="sequence-step-phase">Translucent</span>
+              <div className="sequence-step-line" />
+            </div>
+            <div className="sequence-step-body" style={{ paddingTop: '8px' }}>
+              <h3 className="sequence-step-title" style={{ fontSize: '19px' }}>Onyx &amp; Backlit</h3>
+              <p className="sequence-step-desc">Translucent mineral sheets that diffuse backlighting for illuminated bars, reception desks, and feature portals.</p>
+              <div className="sequence-step-footer">
+                <span className="sequence-footer-label">Luminance</span>
+                <span className="sequence-footer-val">Diffused</span>
+              </div>
+            </div>
+          </article>
         </div>
       </section>
 

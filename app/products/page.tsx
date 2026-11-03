@@ -74,6 +74,41 @@ const productsJsonLd = {
   })),
 };
 
+const productMicroSpecs: Record<string, { micro: string; spec: string }> = {
+  benchtops: {
+    micro: 'Seamless waterfall islands & worktops',
+    spec: 'Zero visible seam',
+  },
+  'integrated-sinks': {
+    micro: 'Coved undermount basins welded flush',
+    spec: 'Coved non-porous joint',
+  },
+  washplanes: {
+    micro: 'Multi-station linear drainage basins',
+    spec: 'Commercial grade',
+  },
+  'basin-vanities': {
+    micro: 'Thermoformed single & double vanities',
+    spec: '160°C curved forming',
+  },
+  'exterior-cladding': {
+    micro: 'Curved ventilated exterior panels',
+    spec: 'UV & weather stable',
+  },
+  'healthcare-surfaces': {
+    micro: 'Seamless clinical work stations',
+    spec: 'NSF / ANSI 51 certified',
+  },
+  'end-of-trip': {
+    micro: 'Integrated locker & shower partitions',
+    spec: 'Moisture-impervious',
+  },
+  'bespoke-monoliths': {
+    micro: 'Sculptural multi-axis centerpieces',
+    spec: 'Custom 5-axis geometry',
+  },
+};
+
 export default function ProductsCatalogPage() {
   const mainProducts = productsData.filter((p) => p.slug !== 'design-certainty');
 
@@ -81,19 +116,31 @@ export default function ProductsCatalogPage() {
     <main className="page-main">
       <JsonLd data={productsJsonLd} />
 
-      {/* Split Architectural Hero */}
+      {/* Split Architectural Hero — Minimal Editorial */}
       <section className="page-split-hero">
         <div>
-          <p className="eyebrow anim-fade-up" style={{ marginBottom: '24px' }}>
-            Fabrication &amp; Systems / Architectural Products
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '20px' }}>
+            <span
+              style={{
+                fontFamily: 'Urbanist, sans-serif',
+                fontSize: '11px',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--muted, #6f786d)',
+                fontWeight: 600,
+              }}
+            >
+              Fabrication &amp; Systems / Products
+            </span>
+            <div style={{ width: '60px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
+          </div>
 
-          <h1 className="anim-fade-up anim-delay-1"
+          <h1
             style={{
-              fontSize: 'clamp(44px, 7vw, 108px)',
+              fontSize: 'clamp(44px, 6.8vw, 100px)',
               lineHeight: 0.96,
-              margin: '0 0 28px',
-              letterSpacing: '-0.06em',
+              margin: '0 0 24px',
+              letterSpacing: '-0.05em',
             }}
           >
             Formed for
@@ -101,96 +148,56 @@ export default function ProductsCatalogPage() {
             <i>purpose.</i>
           </h1>
 
-          <p className="anim-fade-up anim-delay-2"
+          <p
             style={{
               fontSize: '17px',
-              lineHeight: 1.7,
+              lineHeight: 1.65,
               color: '#4a5249',
-              maxWidth: '540px',
-              marginBottom: '20px',
+              maxWidth: '520px',
+              marginBottom: '32px',
             }}
           >
-            Seamless kitchen benchtops, integrated sinks, commercial washplanes, and bespoke vanities. Fabricated in Bengaluru with 5-axis CNC accuracy and invisible chemical bonding.
+            Seamless kitchen benchtops, integrated coved sinks, commercial washplanes, and bespoke vanities. Fabricated with 5-axis CNC precision in Bengaluru.
           </p>
 
-          <div
-            style={{
-              fontSize: '11px',
-              fontFamily: 'Urbanist, sans-serif',
-              letterSpacing: '0.08em', borderRadius: '3px',
-              textTransform: 'uppercase',
-              color: 'var(--muted)',
-              marginBottom: '28px',
-            }}
-          >
-            Certified DuPont™ Corian® Fabrication, Bengaluru Workshop
-          </div>
-
-          <div className="anim-fade-up anim-delay-3" style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
-            <Link className="button button-dark" href="/configurator">
-              3D Configurator <span>↗</span>
-            </Link>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '36px' }}>
             <Link className="button button-dark" href="#products-grid">
               Browse Range <span>↓</span>
             </Link>
-            <Link className="text-link" href="/materials">
-              Corian® Palette <span>↗</span>
+            <Link className="text-link" href="/contact">
+              CAD Consultation <span>↗</span>
             </Link>
           </div>
 
-          <div className="hero-stats-row anim-fade-up anim-delay-4">
+          <div style={{ display: 'flex', gap: '32px', alignItems: 'center', paddingTop: '18px', borderTop: '1px solid var(--line, rgba(30, 33, 29, 0.12))' }}>
             <div>
-              <span
-                style={{
-                  fontSize: '10px',
-                  fontFamily: 'Urbanist, sans-serif',
-                  color: 'var(--muted)',
-                  display: 'block',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Joint Integrity
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
+                Joints
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
                 100% Inconspicuous
               </strong>
             </div>
             <div>
-              <span
-                style={{
-                  fontSize: '10px',
-                  fontFamily: 'Urbanist, sans-serif',
-                  color: 'var(--muted)',
-                  display: 'block',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Silicone Grout
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
+                Grout
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
-                Zero (Silicone-Free)
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                Silicone-Free
               </strong>
             </div>
             <div>
-              <span
-                style={{
-                  fontSize: '10px',
-                  fontFamily: 'Urbanist, sans-serif',
-                  color: 'var(--muted)',
-                  display: 'block',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Machining
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
+                Tolerance
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
-                5-Axis CNC &plusmn;0.2mm
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                ±0.18 mm CNC
               </strong>
             </div>
           </div>
         </div>
 
-        {/* Hero Architectural Image Frame */}
+        {/* Hero Architectural Image Frame — Clean & Uncluttered */}
         <ScrollReveal variant="image" className="hero-image-frame">
           <Image
             src="/images/images/app_residential_calacatta_greige_1.jpg"
@@ -202,27 +209,6 @@ export default function ProductsCatalogPage() {
             style={{ objectFit: 'cover' }}
             priority
           />
-          <div className="hero-image-badge">
-            <div>
-              <span
-                style={{
-                  fontSize: '9px',
-                  fontFamily: 'Urbanist, sans-serif',
-                  color: 'var(--muted)',
-                  textTransform: 'uppercase',
-                  display: 'block',
-                }}
-              >
-                Fabricated Product Portfolio
-              </span>
-              <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Sinks, Benchtops, Washplanes &amp; Clinical Systems
-              </strong>
-            </div>
-            <Link href="#products-grid" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
-              Explore Products <span>↓</span>
-            </Link>
-          </div>
         </ScrollReveal>
       </section>
 
@@ -242,170 +228,100 @@ export default function ProductsCatalogPage() {
           </p>
         </ScrollReveal>
 
-        {/* Product Cards Grid */}
-        <div
-          className="products-catalog-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 340px), 1fr))',
-            gap: '24px',
-            width: '100%',
-          }}
-        >
+        {/* Product Cards Grid — Frameless Architectural Monograph */}
+        <div className="products-catalog-grid">
           {/* 1. Special Corian Material Card */}
           <ScrollReveal delay={0} style={{ height: '100%' }}>
-          <Link
-            href="/materials"
-            style={{
-              textDecoration: 'none',
-              color: 'inherit',
-              background: '#f5f3ec', border: '1px solid var(--line)', borderRadius: '6px', display: 'flex', flexDirection: 'column', overflow: 'hidden',
-              transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-            }}
-          >
-            <div style={{ position: 'relative', height: '210px', width: '100%', background: '#c8cbbe' }}>
-              <Image
-                src="/assets/material-macro.png"
-                alt="Corian solid surface mineral slabs and colour palette"
-                fill
-                sizes="(max-width: 640px) 100vw, 360px"
-                quality={75}
-                loading="lazy"
-                decoding="async"
-                style={{ objectFit: 'cover' }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '14px',
-                  left: '14px',
-                  background: 'rgba(30, 33, 29, 0.88)',
-                  color: '#fff',
-                  fontFamily: 'Urbanist, sans-serif',
-                  fontSize: '10px',
-                  padding: '4px 10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em', borderRadius: '3px',
-                }}
-              >
-                Raw Substrates &amp; Slabs
-              </div>
-            </div>
-            <div style={{ padding: '22px 20px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-              <span
-                style={{
-                  fontSize: '10px',
-                  fontFamily: 'Urbanist, sans-serif',
-                  color: 'var(--muted)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  display: 'block',
-                  marginBottom: '8px',
-                }}
-              >
-                SUBSTRATES / 3660 × 760 MM
-              </span>
-              <h3 style={{ fontSize: '20px', margin: '0 0 10px', fontWeight: 500, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-                CORIAN&reg; MATERIAL
-              </h3>
-              <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', margin: '0 0 20px', flex: 1 }}>
-                Authorized DuPont&trade; Corian&reg; solid surface slabs, through-body ATH mineral composition, and 20+ architectural colour swatches across 6 tone families.
-              </p>
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  borderTop: '1px solid var(--line)',
-                  paddingTop: '16px',
-                }}
-              >
-                <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                  View Slabs &amp; Swatches
-                </span>
-                <span style={{ fontSize: '14px' }}>↗</span>
-              </div>
-            </div>
-          </Link>
-          </ScrollReveal>
-
-          {/* Render All Fabricated Products */}
-          {mainProducts.map((product) => (
             <Link
-              key={product.slug}
-              href={`/products/${product.slug}`}
-              style={{
-                textDecoration: 'none',
-                color: 'inherit',
-                background: '#f5f3ec', border: '1px solid var(--line)', borderRadius: '6px', display: 'flex', flexDirection: 'column', overflow: 'hidden',
-                transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-              }}
+              href="/materials"
+              className="product-monograph-item"
             >
-              <div style={{ position: 'relative', height: '210px', width: '100%', background: '#c8cbbe' }}>
+              <div className="product-monograph-header">
+                <span className="product-monograph-num">01</span>
+                <span className="product-monograph-divider">—</span>
+                <span className="product-monograph-category">SUBSTRATES</span>
+                <div className="product-monograph-line" />
+              </div>
+
+              <div className="product-monograph-image-frame">
                 <Image
-                  src={product.image}
-                  alt={product.name}
+                  src="/assets/material-macro.png"
+                  alt="Corian solid surface mineral slabs and colour palette"
                   fill
-                  sizes="(max-width: 640px) 100vw, 360px"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
                   quality={75}
                   loading="lazy"
                   decoding="async"
-                  style={{ objectFit: 'cover' }}
+                  className="product-monograph-image"
                 />
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '14px',
-                    left: '14px',
-                    background: 'rgba(30, 33, 29, 0.88)',
-                    color: '#fff',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '10px',
-                    padding: '4px 10px',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.08em', borderRadius: '3px',
-                  }}
-                >
-                  {product.code}
+                <div className="product-monograph-spec">
+                  <span>3660 × 760 mm · 20+ Swatches</span>
                 </div>
               </div>
-              <div style={{ padding: '22px 20px 20px', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                <span
-                  style={{
-                    fontSize: '10px',
-                    fontFamily: 'Urbanist, sans-serif',
-                    color: 'var(--muted)',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    display: 'block',
-                    marginBottom: '8px',
-                  }}
-                >
-                  {product.categoryName}
-                </span>
-                <h3 style={{ fontSize: '20px', margin: '0 0 10px', fontWeight: 500, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
-                  {product.name}
-                </h3>
-                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#4a5249', margin: '0 0 20px', flex: 1 }}>
-                  {product.tagline}
-                </p>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    borderTop: '1px solid var(--line)',
-                    paddingTop: '16px',
-                  }}
-                >
-                  <span style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                    Technical Specs &amp; Drawings
+
+              <div className="product-monograph-body">
+                <h3 className="product-monograph-title">Corian® Slabs</h3>
+
+                <div className="product-monograph-footer">
+                  <span className="product-monograph-action">
+                    Explore Slabs <span>↗</span>
                   </span>
-                  <span style={{ fontSize: '14px' }}>↗</span>
                 </div>
               </div>
             </Link>
-          ))}
+          </ScrollReveal>
+
+          {/* Render All Fabricated Products */}
+          {mainProducts.map((product, idx) => {
+            const microData = productMicroSpecs[product.slug] || {
+              micro: product.tagline.split('.')[0],
+              spec: 'Custom Fabrication',
+            };
+            const numStr = String(idx + 2).padStart(2, '0');
+
+            return (
+              <ScrollReveal key={product.slug} delay={Math.min((idx + 1) * 40, 240)} style={{ height: '100%' }}>
+                <Link
+                  href={`/products/${product.slug}`}
+                  className="product-monograph-item"
+                >
+                  <div className="product-monograph-header">
+                    <span className="product-monograph-num">{numStr}</span>
+                    <span className="product-monograph-divider">—</span>
+                    <span className="product-monograph-category">{product.categoryName}</span>
+                    <div className="product-monograph-line" />
+                  </div>
+
+                  <div className="product-monograph-image-frame">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 25vw"
+                      quality={75}
+                      loading="lazy"
+                      decoding="async"
+                      className="product-monograph-image"
+                    />
+                    <div className="product-monograph-spec">
+                      <span>{microData.spec}</span>
+                    </div>
+                  </div>
+
+                  <div className="product-monograph-body">
+                    <h3 className="product-monograph-title">{product.name}</h3>
+                    <p className="product-monograph-desc">{microData.micro}</p>
+
+                    <div className="product-monograph-footer">
+                      <span className="product-monograph-action">
+                        Explore <span>↗</span>
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </section>
 

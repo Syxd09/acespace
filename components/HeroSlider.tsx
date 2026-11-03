@@ -14,7 +14,6 @@ export default function HeroSlider() {
     : defaultHeroSlides;
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [hoveredDot, setHoveredDot] = useState<number | null>(null);
 
   // Keep index within bounds if slides count changes
   useEffect(() => {
@@ -132,95 +131,71 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      {/* Slide Navigation Capsule HUD — Docked at Bottom-Right */}
+      {/* Slide Navigation — Simple, Architectural & Clean */}
       {slides.length > 1 && (
         <div
-          className="hero-slider-nav"
+          className="hero-slider-controls"
           onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => {
-            setIsPaused(false);
-            setHoveredDot(null);
-          }}
+          onMouseLeave={() => setIsPaused(false)}
           aria-label="Hero showcase navigation"
         >
-          {/* Previous Slide Arrow Button */}
-          <button
-            type="button"
-            className="hero-nav-arrow hero-nav-prev"
-            onClick={prevSlide}
-            aria-label="Previous slide"
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
+          {/* Specimen Tag */}
+          {activeSlide.specimen && (
+            <div className="hero-specimen-tag">
+              <span>{activeSlide.specimen}</span>
+              {activeSlide.location && (
+                <>
+                  <span className="hero-specimen-sep">/</span>
+                  <span>{activeSlide.location}</span>
+                </>
+              )}
+            </div>
+          )}
 
-          {/* Architectural Index & Typology Counter */}
-          <div className="hero-nav-counter" aria-live="polite">
-            <span className="hero-nav-index">
-              {String(currentSlide + 1).padStart(2, '0')}
-            </span>
-            <span className="hero-nav-sep">/</span>
-            <span className="hero-nav-total">
-              {String(slides.length).padStart(2, '0')}
-            </span>
-            {activeSlide.specimen && (
-              <span className="hero-nav-specimen">
-                · {activeSlide.specimen}
+          <div className="hero-controls-row">
+            {/* Previous Slide Arrow Button */}
+            <button
+              type="button"
+              className="hero-arrow-btn"
+              onClick={prevSlide}
+              aria-label="Previous slide"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+
+            {/* Slide Index Counter & Minimal Progress Line */}
+            <div className="hero-counter-wrap" aria-live="polite">
+              <span className="hero-counter-current">
+                {String(currentSlide + 1).padStart(2, '0')}
               </span>
-            )}
+              <div className="hero-timeline-track">
+                <div
+                  key={`timeline-${currentSlide}`}
+                  className="hero-timeline-bar"
+                  style={{
+                    animationPlayState: isPaused ? 'paused' : 'running',
+                  }}
+                />
+              </div>
+              <span className="hero-counter-total">
+                {String(slides.length).padStart(2, '0')}
+              </span>
+            </div>
+
+            {/* Next Slide Arrow Button */}
+            <button
+              type="button"
+              className="hero-arrow-btn"
+              onClick={nextSlide}
+              aria-label="Next slide"
+            >
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
           </div>
-
-          <div className="hero-nav-divider" aria-hidden="true" />
-
-          {/* Interactive Progress Timeline Segments */}
-          <div className="hero-nav-dots" role="tablist" aria-label="Hero slide selection">
-            {slides.map((s, idx) => {
-              const isActive = idx === currentSlide;
-              const isPast = idx < currentSlide;
-              return (
-                <button
-                  key={idx}
-                  type="button"
-                  className={`hero-nav-dot ${isActive ? 'active' : ''} ${isPast ? 'past' : ''}`}
-                  onClick={() => goToSlide(idx)}
-                  onMouseEnter={() => setHoveredDot(idx)}
-                  onMouseLeave={() => setHoveredDot(null)}
-                  aria-label={`Slide ${idx + 1}: ${s.title}`}
-                  role="tab"
-                  aria-selected={isActive}
-                >
-                  {/* Floating Micro-Tooltip */}
-                  {hoveredDot === idx && (
-                    <span className="hero-nav-tooltip" role="tooltip">
-                      <span className="tooltip-num">{String(idx + 1).padStart(2, '0')}</span>
-                      <span className="tooltip-title">{s.title.replace(/\.$/, '')}</span>
-                    </span>
-                  )}
-                  {/* Active Slide Timeline Progress Bar */}
-                  <span
-                    key={`fill-${currentSlide}-${idx}`}
-                    className="hero-nav-dot-fill"
-                    style={{
-                      animationPlayState: isPaused ? 'paused' : 'running',
-                    }}
-                  />
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Next Slide Arrow Button */}
-          <button
-            type="button"
-            className="hero-nav-arrow hero-nav-next"
-            onClick={nextSlide}
-            aria-label="Next slide"
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <polyline points="9 18 15 12 9 6" />
-            </svg>
-          </button>
         </div>
       )}
     </section>

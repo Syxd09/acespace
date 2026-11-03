@@ -60,66 +60,43 @@ export default function FabricationPage() {
   const steps = [
     {
       num: '01',
+      phase: 'Milling',
       title: '5-Axis CNC Precision',
-      badge: 'Sub-Millimeter Cut',
-      tagline: 'Nested cutting paths, sink rebates, and custom edge profiles machined to ±0.18mm accuracy.',
+      discipline: 'Milling',
+      tagline: 'Multi-axis routing for tight sink rebates and custom edges.',
       image: '/images/images/app_residential_calacatta_greige_2.jpg',
-      stat: '±0.18 mm',
-      statLabel: 'Tolerance',
+      spec: '±0.18 mm tolerance',
+      metricLabel: 'Tolerance',
     },
     {
       num: '02',
-      title: '160°C Vacuum Forming',
-      badge: '25 mm Radii',
-      tagline: 'Mineral sheets heated in platen ovens and vacuum-formed over timber formwork into organic curves.',
-      image: '/images/images/app_commercial_bleached_nuwood.jpg',
-      stat: '160°C',
-      statLabel: 'Forming Temp',
+      phase: 'Forming',
+      title: '160°C Thermal Forming',
+      discipline: 'Forming',
+      tagline: 'Platen-softened mineral sheets formed into organic curves.',
+      image: '/images/basin-vanity-thermoformed-double.jpg',
+      spec: '160°C · 25 mm min. radius',
+      metricLabel: 'Curvature',
     },
     {
       num: '03',
+      phase: 'Fusion',
       title: 'Invisible Seam Fusion',
-      badge: 'Seamless Joints',
-      tagline: 'Sheets bonded with color-matched acrylic resin to create seamless, continuous surfaces.',
-      image: '/images/images/app_residential_calacatta_greige_1.jpg',
-      stat: '0.0 mm',
-      statLabel: 'Seam Line',
+      discipline: 'Fusion',
+      tagline: 'Molecular chemical weld with zero visible joints.',
+      image: '/images/integrated-sink-installation.jpg',
+      spec: '0.0 mm joint · Monolithic',
+      metricLabel: 'Joint',
     },
     {
       num: '04',
+      phase: 'Honing',
       title: 'Diamond Hand Honing',
-      badge: 'Satin Touch',
-      tagline: 'Multi-stage diamond sanding for a smooth satin touch that resists glare and refreshes on-site.',
+      discipline: 'Honing',
+      tagline: 'Progressive diamond sanding for a glare-free satin touch.',
       image: '/assets/material-macro.png',
-      stat: '600 Grit',
-      statLabel: 'Finish Grade',
-    },
-  ];
-
-  const protocols = [
-    {
-      num: '01',
-      title: '3D Laser Templating',
-      detail: 'Digital spatial scans ensure an accurate fit against existing site walls.',
-      badge: 'Laser Scan',
-    },
-    {
-      num: '02',
-      title: 'Workshop Dry-Fit',
-      detail: 'Monolithic assemblies are pre-assembled and inspected in Bengaluru before packing.',
-      badge: 'Pre-Assembled',
-    },
-    {
-      num: '03',
-      title: 'On-Site Assembly',
-      detail: 'Experienced joiners assemble and seam sections on site with zero visible joints.',
-      badge: 'Seamless Fit',
-    },
-    {
-      num: '04',
-      title: 'In-Situ Renewal',
-      detail: 'Everyday scuffs or marks can be refreshed on-site with simple hand sanding.',
-      badge: 'Renewable',
+      spec: '600 grit · Velvet touch',
+      metricLabel: 'Finish',
     },
   ];
 
@@ -127,16 +104,28 @@ export default function FabricationPage() {
     <main className="page-main">
       <JsonLd data={fabricationJsonLd} />
 
-      {/* Editorial Visual Hero */}
+      {/* Editorial Visual Hero — Minimal Architectural Opening */}
       <section className="page-split-hero" style={{ marginBottom: '60px' }}>
         <div>
-          <p className="eyebrow anim-fade-up" style={{ marginBottom: '24px' }}>
-            Fabrication / Atelier &amp; Workshop
-          </p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '20px' }}>
+            <span
+              style={{
+                fontFamily: 'Urbanist, sans-serif',
+                fontSize: '11px',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--muted, #6f786d)',
+                fontWeight: 600,
+              }}
+            >
+              01 — Fabrication / Workshop
+            </span>
+            <div style={{ width: '60px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
+          </div>
 
           <h1
             style={{
-              fontSize: 'clamp(44px, 6.5vw, 96px)',
+              fontSize: 'clamp(44px, 6.8vw, 96px)',
               lineHeight: 0.96,
               margin: '0 0 24px',
               letterSpacing: '-0.05em',
@@ -147,71 +136,56 @@ export default function FabricationPage() {
             to <i>space.</i>
           </h1>
 
-          <blockquote
-            style={{
-              fontSize: '18px',
-              fontStyle: 'italic',
-              fontFamily: 'serif',
-              lineHeight: 1.5,
-              color: '#1e211d',
-              margin: '0 0 24px',
-              paddingLeft: '14px',
-              borderLeft: '2px solid rgba(196, 67, 61, 0.28)',
-            }}
-          >
-            “Where CNC precision meets the tactile touch of master hand joinery.”
-          </blockquote>
-
           <p
             style={{
-              fontSize: '16px',
+              fontSize: '17px',
               lineHeight: 1.65,
               color: '#4a5249',
               maxWidth: '520px',
               marginBottom: '32px',
             }}
           >
-            From parametric shop drawings to on-site assembly, our Bengaluru workshop crafts bespoke solid surface counters, basins, and curved elements for projects across India.
+            Parametric digital toolpaths to seamless on-site joinery. 5-axis CNC routing, 160°C thermoforming, and hand-honing in our Bengaluru atelier.
           </p>
 
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '32px' }}>
+          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap', marginBottom: '36px' }}>
             <Link className="button button-dark" href="/contact">
-              Discuss Fabrication Brief <span>↗</span>
+              Fabrication Brief <span>↗</span>
             </Link>
             <Link className="text-link" href="#sequence">
-              Workshop Sequence <span>↓</span>
+              Atelier Sequence <span>↓</span>
             </Link>
           </div>
 
-          <div className="hero-stats-row anim-fade-up anim-delay-4">
+          <div style={{ display: 'flex', gap: '32px', alignItems: 'center', paddingTop: '18px', borderTop: '1px solid var(--line, rgba(30, 33, 29, 0.12))' }}>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
                 Tolerance
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
-                &lt; 0.2 mm
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                ±0.18 mm CNC
               </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
                 Forming
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
-                Fluid Curves
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                160°C Platen
               </strong>
             </div>
             <div>
-              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', display: 'block', textTransform: 'uppercase' }}>
+              <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
                 Joint
               </span>
-              <strong style={{ fontSize: '16px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
-                Seamless Joint
+              <strong style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>
+                Seamless Monolith
               </strong>
             </div>
           </div>
         </div>
 
-        {/* Hero Architectural Image Frame */}
+        {/* Hero Architectural Image Frame — Clean & Pristine */}
         <div className="hero-image-frame">
           <Image
             src="/images/images/app_residential_calacatta_greige_2.jpg"
@@ -222,169 +196,75 @@ export default function FabricationPage() {
             priority
             style={{ objectFit: 'cover' }}
           />
-          <div className="hero-image-badge">
-            <div>
-              <span style={{ fontSize: '9px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase', display: 'block' }}>
-                Workshop Focus
-              </span>
-              <strong style={{ fontSize: '13px', color: 'var(--ink)' }}>
-                Hand-Honed Satin Edge / Sub-millimeter Tolerance
-              </strong>
-            </div>
-            <Link href="#edges" className="text-link" style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif' }}>
-              Edge Profiles <span>↗</span>
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Workshop Sequence — 4-Stage Visual Monograph Grid */}
-      <section id="sequence" style={{ margin: '80px 0 100px' }}>
-        <ScrollReveal className="section-head" style={{ marginBottom: '40px' }}>
+      {/* Workshop Sequence — Architectural Craft Monograph */}
+      <section id="sequence" style={{ margin: '90px 0 110px' }}>
+        <ScrollReveal className="section-head" style={{ marginBottom: '44px' }}>
           <div>
-            <p className="eyebrow">The 4-Stage Workshop Sequence</p>
-            <h2 style={{ fontSize: 'clamp(32px, 4.5vw, 56px)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+              <span
+                style={{
+                  fontFamily: 'Urbanist, sans-serif',
+                  fontSize: '11px',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--muted, #6f786d)',
+                  fontWeight: 600,
+                }}
+              >
+                02 — Atelier Sequence
+              </span>
+              <div style={{ flex: 1, maxWidth: '180px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
+            </div>
+            <h2 style={{ fontSize: 'clamp(34px, 4.8vw, 60px)', lineHeight: 1.04, letterSpacing: '-0.03em', margin: 0 }}>
               Crafted in four movements.
               <br />
-              <i>Felt in one.</i>
+              <i style={{ fontFamily: 'var(--serif, serif)', fontStyle: 'italic', fontWeight: 400 }}>Felt in one seamless form.</i>
             </h2>
           </div>
-          <p style={{ fontSize: '14.5px', color: '#5d665c', maxWidth: '440px', margin: 0, lineHeight: 1.6 }}>
-            Every custom fixture moves through CNC routing, thermal forming, molecular seam welding, and diamond hand-honing in our Bengaluru workshop.
+          <p style={{ fontSize: '15px', color: '#555e54', maxWidth: '440px', margin: 0, lineHeight: 1.65, fontWeight: 400 }}>
+            Every custom fixture moves through CNC routing, thermal forming, molecular seam fusion, and diamond hand-honing in our Bengaluru workshop.
           </p>
         </ScrollReveal>
 
-        <div className="fabrication-stages-grid">
+        <div className="sequence-monograph-rail">
           {steps.map((step) => (
-            <article
-              key={step.num}
-              style={{
-                background: 'var(--paper, #f5f4ee)', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', borderRadius: '6px', overflow: 'hidden',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease',
-              }}
-              className="fabrication-card"
-            >
-              <div
-                style={{
-                  position: 'relative',
-                  height: '210px',
-                  width: '100%',
-                  background: '#1a1d19',
-                  overflow: 'hidden',
-                }}
-              >
+            <article key={step.num} className="sequence-step-item">
+              {/* Step Timeline Header */}
+              <div className="sequence-step-header">
+                <span className="sequence-step-num">{step.num}</span>
+                <span className="sequence-step-divider">—</span>
+                <span className="sequence-step-phase">{step.phase}</span>
+                <div className="sequence-step-line" />
+              </div>
+
+              {/* Clean Architectural Image Frame */}
+              <div className="sequence-image-frame">
                 <Image
                   src={step.image}
                   alt={step.title}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1100px) 50vw, 25vw"
                   style={{
                     objectFit: 'cover',
-                    transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                   }}
-                  className="fabrication-card-img"
+                  className="sequence-image"
                 />
-                <span
-                  style={{
-                    position: 'absolute',
-                    top: '14px',
-                    left: '14px',
-                    background: 'rgba(20, 23, 20, 0.85)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#ffffff',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '10px',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    padding: '4px 10px',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
-                  }}
-                >
-                  Stage {step.num}
-                </span>
-
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '14px',
-                    right: '14px',
-                    background: 'rgba(255, 255, 255, 0.94)',
-                    color: 'var(--ink, #1e211d)',
-                    padding: '4px 10px',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '11px',
-                    fontWeight: 600,
-                  }}
-                >
-                  {step.stat}
+                <div className="sequence-image-spec">
+                  <span>{step.spec}</span>
                 </div>
               </div>
 
-              <div
-                style={{
-                  padding: '20px 18px 18px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  flex: 1,
-                }}
-              >
-                <div>
-                  <span
-                    style={{
-                      display: 'inline-block',
-                      padding: '3px 8px', background: 'rgba(30, 33, 29, 0.06)', borderRadius: '3px',
-                      fontFamily: 'Urbanist, sans-serif',
-                      fontSize: '10px',
-                      fontWeight: 600,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.05em',
-                      marginBottom: '12px',
-                    }}
-                  >
-                    {step.badge}
-                  </span>
-                  <h3
-                    style={{
-                      fontSize: '18px',
-                      fontWeight: 500,
-                      margin: '0 0 10px',
-                      color: 'var(--ink, #1e211d)',
-                      letterSpacing: '-0.02em',
-                    }}
-                  >
-                    {step.title}
-                  </h3>
-                  <p
-                    style={{
-                      fontSize: '13.5px',
-                      lineHeight: 1.6,
-                      color: '#555e54',
-                      margin: 0,
-                    }}
-                  >
-                    {step.tagline}
-                  </p>
-                </div>
+              {/* Editorial Content Below */}
+              <div className="sequence-step-body">
+                <h3 className="sequence-step-title">{step.title}</h3>
+                <p className="sequence-step-desc">{step.tagline}</p>
 
-                <div
-                  style={{
-                    marginTop: '20px',
-                    paddingTop: '14px',
-                    borderTop: '1px dashed rgba(30, 33, 29, 0.14)',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', color: 'var(--muted)', textTransform: 'uppercase' }}>
-                    {step.statLabel}
-                  </span>
-                  <strong style={{ fontSize: '11px', fontFamily: 'Urbanist, sans-serif', color: 'var(--ink)' }}>
-                    {step.badge}
-                  </strong>
+                <div className="sequence-step-footer">
+                  <span className="sequence-footer-label">{step.metricLabel}</span>
+                  <span className="sequence-footer-val">{step.spec.split('·')[0].trim()}</span>
                 </div>
               </div>
             </article>
@@ -405,7 +285,7 @@ export default function FabricationPage() {
         }}
       >
         <Image
-          src="/images/images/app_commercial_bleached_nuwood.jpg"
+          src="/images/bespoke-sculptural-lounge-monolith.jpg"
           alt="160 degree thermoforming solid surface workshop in Bengaluru"
           fill
           sizes="100vw"
@@ -497,54 +377,6 @@ export default function FabricationPage() {
         </div>
 
         <EdgeProfileCatalog />
-      </section>
-
-      {/* Workshop Specifications & Site Protocols */}
-      <section id="protocols" style={{ marginBottom: '100px' }}>
-        <ScrollReveal className="section-head" style={{ marginBottom: '32px' }}>
-          <div>
-            <p className="eyebrow">Workshop Protocols</p>
-            <h2 style={{ fontSize: 'clamp(28px, 3.5vw, 44px)', letterSpacing: '-0.03em', margin: 0 }}>
-              Precision protocols.
-              <br />
-              <i>Zero guesswork.</i>
-            </h2>
-          </div>
-          <p style={{ fontSize: '14px', color: '#5d665c', maxWidth: '420px', margin: 0, lineHeight: 1.6 }}>
-            Laser templating and certified installation ensure seamless integration into rough architectural framing.
-          </p>
-        </ScrollReveal>
-
-        <div className="fabrication-protocols-grid">
-          {protocols.map((proto) => (
-            <div
-              key={proto.num}
-              style={{
-                background: 'var(--paper, #f5f4ee)', border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', padding: '24px 22px', borderRadius: '6px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-              }}
-            >
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '14px' }}>
-                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: 'var(--brand-red, #d43833)', fontWeight: 600 }}>
-                    {proto.num}
-                  </span>
-                  <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', background: 'rgba(30,33,29,0.06)', padding: '2px 8px', textTransform: 'uppercase' }}>
-                    {proto.badge}
-                  </span>
-                </div>
-                <h4 style={{ fontSize: '16px', fontWeight: 600, margin: '0 0 10px', color: 'var(--ink, #1e211d)' }}>
-                  {proto.title}
-                </h4>
-                <p style={{ fontSize: '13px', lineHeight: 1.6, color: '#555e54', margin: 0 }}>
-                  {proto.detail}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
       {/* Consultation Callout */}

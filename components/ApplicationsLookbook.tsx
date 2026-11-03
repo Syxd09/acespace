@@ -73,94 +73,49 @@ export default function ApplicationsLookbook({ sectors }: Props) {
         ))}
       </div>
 
-      {/* Visual Lookbook Editorial Grid */}
+      {/* Visual Lookbook Editorial Grid — Frameless Architectural Monograph */}
       <div
         style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
-          gap: '32px',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: '32px 28px',
         }}
       >
         {filteredItems.map((item, idx) => (
           <article
             key={`${item.sectorId}-${idx}`}
-            style={{
-              background: 'var(--paper, #f5f4ee)',
-              border: '1px solid var(--line, rgba(30, 33, 29, 0.09))', borderRadius: '6px',
-              display: 'flex',
-              flexDirection: 'column',
-              overflow: 'hidden',
-              transition: 'transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease',
-            }}
-            className="lookbook-card"
+            className="lookbook-monograph-item"
           >
+            {/* Top Index Rail */}
+            <div className="lookbook-monograph-header">
+              <span className="lookbook-monograph-num">{item.sectorNumber}</span>
+              <span className="lookbook-monograph-divider">—</span>
+              <span className="lookbook-monograph-sector">{item.sectorTitle}</span>
+              <div className="lookbook-monograph-line" />
+            </div>
+
             {/* Visual Image Viewport */}
-            <div
-              style={{
-                position: 'relative',
-                height: '340px',
-                width: '100%',
-                background: '#1a1d19',
-                overflow: 'hidden',
-              }}
-            >
+            <div className="lookbook-monograph-frame">
               <Image
                 src={item.src}
                 alt={item.alt}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                style={{
-                  objectFit: 'cover',
-                  transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
-                }}
-                className="lookbook-card-image"
+                className="lookbook-monograph-img"
               />
 
-              {/* Architectural Tag Overlays */}
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '14px',
-                  left: '14px',
-                  display: 'flex',
-                  gap: '6px',
-                  zIndex: 2,
-                }}
-              >
-                <span
-                  style={{
-                    background: 'rgba(20, 23, 20, 0.82)',
-                    backdropFilter: 'blur(8px)',
-                    color: '#ffffff',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '9.5px',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    padding: '4px 8px', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: '3px',
-                  }}
-                >
-                  {item.sectorNumber} / {item.sectorTitle}
-                </span>
-              </div>
-
               {item.tag && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    bottom: '14px',
-                    left: '14px',
-                    zIndex: 2,
-                  }}
-                >
+                <div style={{ position: 'absolute', bottom: '12px', left: '12px', pointerEvents: 'none' }}>
                   <span
                     style={{
-                      background: 'rgba(20, 23, 20, 0.88)',
+                      background: 'rgba(18, 21, 18, 0.78)',
                       backdropFilter: 'blur(8px)',
-                      color: '#e9e8e2',
+                      color: '#f7f6f2',
                       fontFamily: 'Urbanist, sans-serif',
                       fontSize: '10px',
-                      letterSpacing: '0.04em',
-                      padding: '4px 10px', border: '1px solid rgba(255, 255, 255, 0.2)', borderRadius: '3px',
+                      padding: '3px 8px',
+                      borderRadius: '2px',
+                      border: '1px solid rgba(255, 255, 255, 0.14)',
                     }}
                   >
                     {item.tag}
@@ -169,68 +124,27 @@ export default function ApplicationsLookbook({ sectors }: Props) {
               )}
             </div>
 
-            {/* Editorial Caption & Material Reference */}
-            <div
-              style={{
-                padding: '20px 22px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                flex: 1,
-              }}
-            >
-              <div>
-                <h3
-                  style={{
-                    fontSize: '16px',
-                    fontWeight: 500,
-                    margin: '0 0 10px',
-                    color: 'var(--ink, #1e211d)',
-                    lineHeight: 1.35,
-                    letterSpacing: '-0.01em',
-                  }}
-                >
-                  {item.caption}
-                </h3>
+            {/* Caption & Clean Spec Footer — Minimal Text */}
+            <div className="lookbook-monograph-body">
+              <h3 className="lookbook-monograph-title">{item.caption}</h3>
 
-                {item.spec && (
-                  <p
-                    style={{
-                      fontSize: '12.5px',
-                      lineHeight: 1.55,
-                      color: '#5d665c',
-                      margin: '0 0 16px',
-                    }}
-                  >
-                    {item.spec.description}
-                  </p>
-                )}
-              </div>
-
-              <div
-                style={{
-                  paddingTop: '14px',
-                  borderTop: '1px dashed rgba(30, 33, 29, 0.14)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                {item.material && (
+              <div className="lookbook-monograph-footer">
+                {item.material ? (
                   <Link
                     href={`/materials/${item.material.slug}`}
                     style={{
                       fontFamily: 'Urbanist, sans-serif',
                       fontSize: '11px',
-                      color: 'var(--ink, #1e211d)',
+                      color: 'var(--muted, #6f786d)',
                       textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '4px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
                     }}
                   >
-                    <span style={{ color: 'var(--muted, #687268)' }}>Spec:</span> {item.material.name} <span>↗</span>
+                    {item.material.name}
                   </Link>
+                ) : (
+                  <span />
                 )}
 
                 <Link
@@ -241,26 +155,20 @@ export default function ApplicationsLookbook({ sectors }: Props) {
                     color: 'var(--ink, #1e211d)',
                     textDecoration: 'none',
                     fontWeight: 600,
+                    letterSpacing: '0.06em',
+                    textTransform: 'uppercase',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '4px',
                   }}
                 >
-                  Sector Guide →
+                  Explore <span>↗</span>
                 </Link>
               </div>
             </div>
           </article>
         ))}
       </div>
-
-      <style jsx>{`
-        .lookbook-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
-        }
-        .lookbook-card:hover .lookbook-card-image {
-          transform: scale(1.03);
-        }
-      `}</style>
     </div>
   );
 }
-

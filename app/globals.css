@@ -7353,3 +7353,242 @@ blockquote {
   padding-left: 16px;
   background: rgba(255, 255, 255, 0.35);
 }
+
+
+/* ==========================================================================
+   Workshop Sequence Monograph (Architectural 4-Stage Strip)
+   Bespoke, visual-forward, uncluttered layout inspired by architectural ateliers
+   ========================================================================== */
+
+.sequence-monograph-rail {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 28px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.sequence-step-item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: transparent;
+}
+
+.sequence-step-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.sequence-step-num {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--ink, #1e211d);
+}
+
+.sequence-step-divider {
+  font-size: 11px;
+  color: var(--muted, #6f786d);
+  opacity: 0.45;
+}
+
+.sequence-step-phase {
+  font-family: 'Urbanist', -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted, #6f786d);
+  transition: color 0.3s ease;
+}
+
+.sequence-step-line {
+  flex: 1;
+  height: 1px;
+  background: var(--line, rgba(30, 33, 29, 0.14));
+  transition: background-color 0.4s ease;
+}
+
+.sequence-step-item:hover .sequence-step-phase {
+  color: var(--ink, #1e211d);
+}
+
+.sequence-step-item:hover .sequence-step-line {
+  background: var(--ink, #1e211d);
+}
+
+.sequence-image-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 10 / 11;
+  background: #191c18;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(30, 33, 29, 0.08);
+}
+
+.sequence-image {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sequence-step-item:hover .sequence-image {
+  transform: scale(1.04);
+}
+
+.sequence-image-spec {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: flex;
+  pointer-events: none;
+}
+
+.sequence-image-spec span {
+  font-family: 'Urbanist', -apple-system, sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #f7f6f2;
+  background: rgba(18, 21, 18, 0.78);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.sequence-step-body {
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sequence-step-title {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ink, #1e211d);
+  margin: 0 0 8px;
+  line-height: 1.25;
+}
+
+.sequence-step-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #555e54;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.sequence-step-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(30, 33, 29, 0.1);
+  font-size: 11px;
+  font-family: 'Urbanist', -apple-system, sans-serif;
+}
+
+.sequence-footer-label {
+  color: var(--muted, #6f786d);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 10px;
+}
+
+.sequence-footer-val {
+  color: var(--ink, #1e211d);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 1100px) {
+  .sequence-monograph-rail {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 28px 22px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .sequence-monograph-rail {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+  }
+}
+
+/* ==========================================================================
+   Lineage Monograph Rail — About Page 3-Brand Architectural Network
+   Bold, spacious gallery-framed presentation matching fabrication & products
+   ========================================================================== */
+
+.lineage-monograph-rail {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 36px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.lineage-monograph-item {
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  background: transparent !important;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.lineage-image-frame {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 10 !important;
+  background: #ffffff !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  border: 1px solid var(--line, rgba(30, 33, 29, 0.12)) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 32px 24px !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.4s ease, transform 0.4s ease !important;
+}
+
+.lineage-monograph-item:hover .lineage-image-frame {
+  border-color: rgba(30, 33, 29, 0.35) !important;
+  transform: translateY(-3px) !important;
+}
+
+.lineage-image-frame img {
+  max-height: 48px !important;
+  width: auto !important;
+  object-fit: contain !important;
+  display: block !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.lineage-monograph-item:hover .lineage-image-frame img {
+  transform: scale(1.05) !important;
+}
+
+.lineage-monograph-item:hover .sequence-step-phase {
+  color: var(--ink, #1e211d) !important;
+}
+
+.lineage-monograph-item:hover .sequence-step-line {
+  background: var(--ink, #1e211d) !important;
+}
+
+@media (max-width: 960px) {
+  .lineage-monograph-rail {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+}

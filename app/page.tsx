@@ -47,123 +47,66 @@ export default function HomePage() {
       {/* Dynamic 5-Second Sliding Architectural Hero */}
       <HeroSlider />
 
-      {/* Intro Section */}
+      {/* 01. Intro Section — Minimal Editorial */}
       <section className="intro section-pad">
-        <div className="section-label">01 / Foundation</div>
         <ScrollReveal className="intro-grid">
-          <h2>
-            Quiet presence.
-            <br />
-            Lasting <i>character.</i>
-          </h2>
-          <div style={{ maxWidth: '480px' }}>
-            <p className="lead" style={{ maxWidth: '100%', marginBottom: '20px' }}>
-              Surfaces shape how a room feels. As an authorized partner for <strong>DuPont™ Corian®</strong>, Ace Spaces supplies and fabricates seamless solid surfaces that reward touch and outlast trends.
-            </p>
-            <p style={{ maxWidth: '100%', marginBottom: '26px' }}>
-              From our stockyard and workshop in Bengaluru, we work directly with architects and interior studios across India—supplying calibrated slabs, custom thermoforming, and precision fabrication.
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '20px' }}>
+              <span
+                style={{
+                  fontFamily: 'Urbanist, sans-serif',
+                  fontSize: '11px',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--muted, #6f786d)',
+                  fontWeight: 600,
+                }}
+              >
+                01 — Foundation
+              </span>
+              <div style={{ width: '80px', height: '1px', background: 'var(--line, rgba(30, 33, 29, 0.14))' }} />
+            </div>
+            <h2 style={{ fontSize: 'clamp(36px, 5.2vw, 68px)', lineHeight: 1.04, letterSpacing: '-0.03em', margin: 0 }}>
+              Quiet presence.
+              <br />
+              Lasting <i>character.</i>
+            </h2>
+          </div>
+
+          <div style={{ maxWidth: '460px' }}>
+            <p className="lead" style={{ fontSize: '18px', lineHeight: 1.65, color: '#3c423b', marginBottom: '24px' }}>
+              Surfaces shape how architecture is felt. As an authorized DuPont™ Corian® partner in Bengaluru, Ace Spaces fabricates seamless solid surfaces crafted to outlast trends.
             </p>
 
-            {/* Architectural Credential Strip */}
-            <div
-              style={{
-                padding: '16px 0',
-                borderTop: '1px solid var(--line)',
-                borderBottom: '1px solid var(--line)',
-                marginBottom: '30px',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))',
-                gap: '14px 20px',
-              }}
-            >
+            <div style={{ display: 'flex', gap: '32px', alignItems: 'center', paddingTop: '16px', borderTop: '1px solid var(--line, rgba(30, 33, 29, 0.12))', marginBottom: '24px' }}>
               <div>
-                <span
-                  style={{
-                    display: 'block',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '10px',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    color: 'var(--muted)',
-                    marginBottom: '3px',
-                  }}
-                >
-                  Strategic Alliance
+                <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
+                  Alliance
                 </span>
                 <span style={{ fontSize: '13px', fontWeight: 500, color: 'var(--ink)' }}>
-                  Authorized DuPont™ Corian® Partner
+                  DuPont™ Corian® Quality Network
                 </span>
               </div>
               <div>
-                <span
-                  style={{
-                    display: 'block',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '10px',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    color: 'var(--muted)',
-                    marginBottom: '3px',
-                  }}
-                >
-                  Central Hub
+                <span style={{ fontSize: '10px', fontFamily: 'Urbanist, sans-serif', textTransform: 'uppercase', color: 'var(--muted)', letterSpacing: '0.08em', display: 'block', marginBottom: '3px' }}>
+                  Atelier
                 </span>
                 <span style={{ fontSize: '13px', color: '#5d665c' }}>
-                  Bangalore Stockyard, Pan-India
+                  Bengaluru · Pan-India Dispatch
                 </span>
-              </div>
-              <div>
-                <span
-                  style={{
-                    display: 'block',
-                    fontFamily: 'Urbanist, sans-serif',
-                    fontSize: '10px',
-                    letterSpacing: '0.08em',
-                    textTransform: 'uppercase',
-                    color: 'var(--muted)',
-                    marginBottom: '3px',
-                  }}
-                >
-                  Direct Studio Desk
-                </span>
-                <a
-                  suppressHydrationWarning
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    fontSize: '13px',
-                    fontWeight: 600,
-                    color: 'var(--ink)',
-                    textDecoration: 'none',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '5px',
-                  }}
-                >
-
-                  WhatsApp {displayPhone} ↗
-                </a>
               </div>
             </div>
 
-            <div style={{ display: 'flex', gap: '28px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link className="text-link dark" href="/about" style={{ marginTop: 0 }}>
-                Read our studio approach <span>↗</span>
-              </Link>
-              <Link
-                className="text-link dark"
-                href="/about#dupont"
-                style={{ marginTop: 0, color: 'var(--muted)' }}
-              >
-                DuPont™ Partnership <span>↗</span>
+            <div>
+              <Link className="text-link dark" href="/about">
+                Studio Philosophy <span>↗</span>
               </Link>
             </div>
           </div>
         </ScrollReveal>
       </section>
 
-      {/* Featured Collections: Materials & Colours */}
+            {/* Featured Collections: Materials & Colours */}
       <MaterialGrid />
 
       {/* Statement Section */}
@@ -373,86 +316,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Enquiry Section */}
+      {/* 07. Enquiry Section — Minimal Atelier Desk */}
       <section className="enquiry dark-section section-pad">
-        <ScrollReveal className="enquiry-copy">
-          <p className="eyebrow light">Start a conversation</p>
+        <ScrollReveal className="enquiry-copy" style={{ maxWidth: '640px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+            <span
+              style={{
+                fontFamily: 'Urbanist, sans-serif',
+                fontSize: '11px',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'rgba(255, 255, 255, 0.6)',
+                fontWeight: 600,
+              }}
+            >
+              07 — Atelier Consultation
+            </span>
+            <div style={{ width: '80px', height: '1px', background: 'rgba(255, 255, 255, 0.2)' }} />
+          </div>
           <h2>
             Have a space
             <br />
             in <i>mind?</i>
           </h2>
-          <p>Tell us about your project. Our Bengaluru team can help with material selection, joinery details, and quotations.</p>
+          <p style={{ fontSize: '16px', lineHeight: 1.6, color: 'rgba(255, 255, 255, 0.75)', margin: '16px 0 32px' }}>
+            Tell us about your project. Our Bengaluru engineering team assists with material selection, joinery calculations, and physical mockups.
+          </p>
 
-          <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center', marginTop: '24px' }}>
+          <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', alignItems: 'center' }}>
             <Link className="button button-light" href="/contact">
-              Start a project <span>↗</span>
+              Start Project Brief <span>↗</span>
             </Link>
 
-            {/* Direct WhatsApp Consultation CTA */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="button-outline-glass"
-              title="Connect directly with our Bangalore Material Specifier Desk on WhatsApp"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
             >
-
-              <svg className="wa-svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-              </svg>
-              <span>WhatsApp Material Desk</span>
-              <span className="arrow">↗</span>
-            </a>
-          </div>
-
-          {/* Quick WhatsApp Consultation Chips */}
-          <div style={{ marginTop: '22px', display: 'flex', gap: '8px', flexWrap: 'wrap', alignItems: 'center' }}>
-            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: 'rgba(242, 240, 234, 0.5)', letterSpacing: '0.08em', textTransform: 'uppercase', width: '100%' }}>
-              Quick Specifier Inquiries:
-            </span>
-            <a
-              suppressHydrationWarning
-              href={generateWhatsAppUrl(whatsappNumber, 'Hello Ace Spaces Studio, I would like to request physical material specimen samples for my project specification.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="specifier-chip"
-            >
-              Request Material Samples <span>↗</span>
-            </a>
-            <a
-              suppressHydrationWarning
-              href={generateWhatsAppUrl(whatsappNumber, 'Hello Ace Spaces Studio, I have architectural drawings / CAD files ready and would like a fabrication & material quotation.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="specifier-chip"
-            >
-              Share CAD / Drawings <span>↗</span>
-            </a>
-            <a
-              suppressHydrationWarning
-              href={generateWhatsAppUrl(whatsappNumber, 'Hello Ace Spaces Studio, I would like to inquire about full-slab sheet dimensions, pricing, and current stockyard inventory in Bangalore.')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="specifier-chip"
-            >
-              Slab Specs & Pricing <span>↗</span>
+              <span>Direct WhatsApp Desk</span>
+              <span>↗</span>
             </a>
           </div>
         </ScrollReveal>
-        <div className="enquiry-side">
-          01
-          <span>
-            Material consultation
-            <br />
-            Fabrication
-            <br />
-            Project support
-          </span>
-          <div className="enquiry-direct-indicator">
 
-            <span>Direct: {displayPhone}</span>
-          </div>
+        <div className="enquiry-side" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
+          <span style={{ fontSize: '13px', lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.7)' }}>
+            DuPont™ Corian® Quality Network
+            <br />
+            15,000 sq.ft Bengaluru Facility
+            <br />
+            Direct: {displayPhone}
+          </span>
         </div>
       </section>
     </main>
