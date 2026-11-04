@@ -110,7 +110,7 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
 
   // Base origin: On localhost, remote mobile devices cannot fetch 127.0.0.1.
   // We can default to window.location.origin or provide clear fallback options.
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://acespacesindia.com';
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://acespacesindia.vercel.app';
   const effectiveConfigId = savedConfigId || config.referenceCode || config.id || 'current';
   
   // Compact encoded parameters for Zero-DB instant mobile hydration
@@ -118,24 +118,27 @@ export const ArViewerModal: React.FC<ArViewerModalProps> = ({
 
   // URLs for remote consumption (passes both id and direct encoded params for 100% database failover)
   const mobileViewerUrl = `${origin}/configurator?id=${effectiveConfigId}&${encodedParams}&launchAr=true`;
-  const remoteGlbUrl = `${origin}/api/configurator/model?id=${effectiveConfigId}&${encodedParams}`;
-  const directGlbUrl = localGlbUrl || remoteGlbUrl;
+  // Real HTTPS GLB endpoint ending in .glb — required by Google Scene Viewer to detect file format
+  const remoteGlbUrl = `${origin}/api/model/acespaces-${config.presetId || 'vanity'}.glb?id=${effectiveConfigId}&${encodedParams}`;
+  
+  // On mobile (iOS / Android), ALWAYS use remoteGlbUrl so Scene Viewer does not crash on a local blob: URL
+  const isMobile = deviceType === 'ios' || deviceType === 'android';
+  const directGlbUrl = isMobile ? remoteGlbUrl : (localGlbUrl || remoteGlbUrl);
 
-  // Google Scene Viewer intent for Android Chrome / Samsung Internet:
-  // 1. Google Scene Viewer is hosted inside the Google App (com.google.android.googlequicksearchbox) or Google Chrome, NOT com.google.ar.core (which is only the background tracking daemon).
-  // 2. We use package=com.google.android.googlequicksearchbox with scheme=https and a universal browser fallback.
+  // Google Scene Viewer intent for Android Chrome / Samsung Internet
+  // Uses mode=3d_preferred to smoothly load geometry first, then activates AR without crashing
   const androidSceneViewerIntent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(
     remoteGlbUrl
-  )}&mode=ar_only&resizable=false&title=${encodeURIComponent(
+  )}&mode=3d_preferred&resizable=false&title=${encodeURIComponent(
     `${config.title} (${config.width}x${config.depth}mm)`
-  )}#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(
+  )}#Intent;scheme=https;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(
     mobileViewerUrl
   )};end;`;
 
-  // Generic fallback intent without forcing Google app package (lets Chrome handle arvr.google.com directly)
+  // Generic fallback intent
   const androidGenericSceneViewerIntent = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(
     remoteGlbUrl
-  )}&mode=ar_only&resizable=false&title=${encodeURIComponent(
+  )}&mode=3d_preferred&resizable=false&title=${encodeURIComponent(
     `${config.title} (${config.width}x${config.depth}mm)`
   )}`;
 

@@ -15278,3 +15278,43 @@ blockquote {
 
 }
 
+
+
+/* ==========================================================================
+   ADMIN CONSOLE REFINED ARCHITECTURAL THEME (Warm Bone & Dark Slate)
+   ========================================================================== */
+.admin-console-root {
+  font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  background-color: #faf9f5 !important;
+  color: #1e211d !important;
+}
+
+.admin-console-root input,
+.admin-console-root textarea,
+.admin-console-root select {
+  font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(30, 33, 29, 0.14) !important;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease !important;
+}
+
+.admin-console-root input:focus,
+.admin-console-root textarea:focus,
+.admin-console-root select:focus {
+  outline: none !important;
+  border-color: #1e211d !important;
+  box-shadow: 0 0 0 2px rgba(30, 33, 29, 0.08) !important;
+}
+
+.admin-console-root button {
+  font-family: 'Urbanist', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  border-radius: 8px !important;
+  transition: all 0.18s ease !important;
+}
+
+.admin-console-card {
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(30, 33, 29, 0.08) !important;
+  box-shadow: 0 2px 8px rgba(30, 33, 29, 0.03) !important;
+}

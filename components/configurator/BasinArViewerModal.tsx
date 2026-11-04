@@ -52,7 +52,7 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
     document.head.appendChild(script);
   }, [isOpen]);
 
-  // Generate local GLB Blob when modal opens
+  // Generate local GLB Blob when modal opens (used for instant desktop preview & direct download)
   useEffect(() => {
     if (!isOpen) return;
 
@@ -71,8 +71,25 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
 
   if (!isOpen) return null;
 
-  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://acespacesindia.com';
+  const origin = typeof window !== 'undefined' ? window.location.origin : 'https://acespacesindia.vercel.app';
   const mobileViewerUrl = `${origin}/basin-configurator?model=${encodeURIComponent(config.modelId)}&material=${encodeURIComponent(config.materialSlug)}&drain=${encodeURIComponent(config.drainTypeId)}&launchAr=true`;
+  
+  // Public HTTPS URL ending with .glb — REQUIRED for Google Scene Viewer & Quick Look to load model from remote process
+  const remoteGlbUrl = `${origin}/api/model/acespaces-basin-${encodeURIComponent(config.modelCode || config.modelId)}.glb?type=basin&model=${encodeURIComponent(config.modelId)}&material=${encodeURIComponent(config.materialSlug)}&drain=${encodeURIComponent(config.drainTypeId)}&w=${config.width}&d=${config.depth}&h=${config.height}`;
+
+  // On mobile (iOS / Android), ALWAYS use remoteGlbUrl (HTTPS) so Scene Viewer and Quick Look do NOT receive an inaccessible blob: URL
+  const isMobile = deviceType === 'ios' || deviceType === 'android';
+  const directGlbUrl = isMobile ? remoteGlbUrl : (localGlbUrl || remoteGlbUrl);
+
+  // Google Scene Viewer intent for Android Chrome / Samsung Internet
+  const androidSceneViewerIntent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(
+    remoteGlbUrl
+  )}&mode=3d_preferred&resizable=false&title=${encodeURIComponent(
+    `Countertop Basin ${config.modelName}`
+  )}#Intent;scheme=https;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(
+    mobileViewerUrl
+  )};end;`;
+
   const qrCodeImageSrc = `https://api.qrserver.com/v1/create-qr-code/?size=260x260&margin=12&format=svg&data=${encodeURIComponent(
     mobileViewerUrl
   )}`;
@@ -86,9 +103,8 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
   };
 
   const handleDownloadGlb = () => {
-    if (!localGlbUrl) return;
     const a = document.createElement('a');
-    a.href = localGlbUrl;
+    a.href = localGlbUrl || remoteGlbUrl;
     a.download = `acespaces-basin-${config.modelCode || config.modelId}.glb`;
     document.body.appendChild(a);
     a.click();
@@ -217,13 +233,13 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
               Place this architectural solid surface countertop washbasin on your vanity surface with exact 1:1 metric scale.
             </p>
 
-            {modelViewerLoaded && localGlbUrl && (
+            {modelViewerLoaded && directGlbUrl && (
               <div style={{ marginBottom: '16px' }}>
                 {React.createElement('model-viewer', {
                   ref: modelViewerRef,
-                  src: localGlbUrl,
+                  src: directGlbUrl,
                   ar: true,
-                  'ar-modes': 'quick-look scene-viewer webxr',
+                  'ar-modes': 'webxr scene-viewer quick-look',
                   'ar-scale': 'fixed',
                   'camera-controls': true,
                   'touch-action': 'pan-y',
@@ -243,6 +259,8 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
                   onClick={() => {
                     if (modelViewerRef.current && modelViewerRef.current.activateAR) {
                       modelViewerRef.current.activateAR();
+                    } else if (deviceType === 'android') {
+                      window.location.href = androidSceneViewerIntent;
                     }
                   }}
                   style={{
@@ -270,6 +288,45 @@ export const BasinArViewerModal: React.FC<BasinArViewerModalProps> = ({
                   </svg>
                   Place Basin in 1:1 AR
                 </button>
+
+                {deviceType === 'android' && (
+                  <div style={{ display: 'flex', gap: '8px', marginTop: '6px' }}>
+                    <a
+                      href={androidSceneViewerIntent}
+                      style={{
+                        flex: 1,
+                        padding: '10px 8px',
+                        background: 'rgba(30,33,29,0.06)',
+                        color: '#1e211d',
+                        border: '1px solid rgba(30,33,29,0.18)',
+                        fontSize: '11px',
+                        textDecoration: 'none',
+                        fontFamily: 'Urbanist, sans-serif',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      Google Scene Viewer ↗
+                    </a>
+                    <button
+                      type="button"
+                      onClick={handleDownloadGlb}
+                      style={{
+                        flex: 1,
+                        padding: '10px 8px',
+                        background: 'transparent',
+                        color: '#1e211d',
+                        border: '1px solid rgba(30,33,29,0.18)',
+                        fontSize: '11px',
+                        fontFamily: 'Urbanist, sans-serif',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      Download .GLB Model
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>

@@ -1450,51 +1450,56 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
     return (
       <div style={{
         minHeight: '100vh',
-        background: '#131512',
-        color: '#e9e8e2',
+        background: '#faf9f5',
+        color: '#1e211d',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         padding: '24px',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
+        fontFamily: "'Urbanist', -apple-system, sans-serif",
       }}>
         <div style={{
-          maxWidth: '440px',
+          maxWidth: '460px',
           width: '100%',
-          background: '#1c201b',
-          border: '1px solid rgba(255,255,255,0.12)',
-          padding: '40px 36px',
-          boxShadow: '0 24px 48px rgba(0,0,0,0.5)',
+          background: '#ffffff',
+          border: '1px solid rgba(30, 33, 29, 0.1)',
+          borderRadius: '16px',
+          padding: '44px 38px',
+          boxShadow: '0 24px 60px rgba(30, 33, 29, 0.06)',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '28px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px' }}>
             <div style={{
-              width: '36px',
-              height: '36px',
-              border: '1px solid rgba(255,255,255,0.25)',
+              width: '42px',
+              height: '42px',
+              borderRadius: '10px',
+              background: '#1e211d',
+              color: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontFamily: 'var(--serif, serif)',
-              fontSize: '20px',
-              background: '#222620',
+              fontFamily: "'Urbanist', sans-serif",
+              fontSize: '18px',
+              fontWeight: 700,
+              letterSpacing: '0.04em',
+              flexShrink: 0,
             }}>A</div>
             <div>
-              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', letterSpacing: '0.15em', color: '#9ca59b', textTransform: 'uppercase' }}>
-                Ace Spaces · Bengaluru
+              <div style={{ fontFamily: "'Urbanist', sans-serif", fontSize: '10px', letterSpacing: '0.14em', color: '#6f786d', textTransform: 'uppercase', fontWeight: 600 }}>
+                Ace Spaces India · Atelier
               </div>
-              <div style={{ fontFamily: 'var(--serif, serif)', fontSize: '18px', letterSpacing: '0.02em' }}>
-                Studio Management Console
+              <div style={{ fontFamily: "'Urbanist', sans-serif", fontSize: '20px', fontWeight: 600, color: '#1e211d', letterSpacing: '-0.01em' }}>
+                Studio Administration
               </div>
             </div>
           </div>
 
-          <p style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', lineHeight: '1.6', color: '#a0aba0', marginBottom: '24px' }}>
-            Administrative console for architectural curators to manage hero slides, materials, colours, sector photography, and media assets.
+          <p style={{ fontFamily: "'Urbanist', sans-serif", fontSize: '13px', lineHeight: '1.6', color: '#4a5249', marginBottom: '26px' }}>
+            Management console for architectural curators to manage material swatches, hero imagery, project briefs, client sample trays, and spatial catalog assets.
           </p>
 
-          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
-              <label style={{ display: 'block', fontFamily: 'Urbanist, sans-serif', fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#8c968c', marginBottom: '6px' }}>
+              <label style={{ display: 'block', fontFamily: "'Urbanist', sans-serif", fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#1e211d', fontWeight: 600, marginBottom: '6px' }}>
                 Studio Passkey
               </label>
               <input
@@ -1504,19 +1509,21 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                 placeholder="Enter studio passkey"
                 style={{
                   width: '100%',
-                  padding: '12px 14px',
-                  background: '#121411',
-                  border: '1px solid rgba(255,255,255,0.2)',
-                  color: '#fff',
-                  fontFamily: 'Urbanist, sans-serif',
-                  fontSize: '13px',
+                  padding: '13px 16px',
+                  background: '#faf9f5',
+                  border: '1px solid rgba(30, 33, 29, 0.18)',
+                  borderRadius: '10px',
+                  color: '#1e211d',
+                  fontFamily: "'Urbanist', sans-serif",
+                  fontSize: '14px',
                   outline: 'none',
+                  transition: 'border-color 0.2s ease',
                 }}
               />
             </div>
 
             {authError && (
-              <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '11px', color: '#e57373' }}>
+              <div style={{ fontFamily: "'Urbanist', sans-serif", fontSize: '12px', color: '#c53030', fontWeight: 500 }}>
                 {authError}
               </div>
             )}
@@ -1525,29 +1532,31 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
               type="submit"
               style={{
                 width: '100%',
-                padding: '12px',
-                background: '#e9e8e2',
-                color: '#131512',
+                padding: '14px',
+                background: '#1e211d',
+                color: '#ffffff',
                 border: 'none',
-                fontFamily: 'Urbanist, sans-serif',
-                fontSize: '11px',
-                fontWeight: '600',
-                letterSpacing: '0.1em',
+                borderRadius: '10px',
+                fontFamily: "'Urbanist', sans-serif",
+                fontSize: '12px',
+                fontWeight: 600,
+                letterSpacing: '0.06em',
                 textTransform: 'uppercase',
                 cursor: 'pointer',
-                marginTop: '6px',
+                marginTop: '4px',
+                boxShadow: '0 4px 14px rgba(30, 33, 29, 0.16)',
+                transition: 'all 0.2s ease',
               }}
             >
-              Authenticate & Enter Console →
+              Enter Studio Console →
             </button>
-
           </form>
 
-          <div style={{ marginTop: '28px', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <Link href="/" style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#808a80', textDecoration: 'none' }}>
+          <div style={{ marginTop: '28px', borderTop: '1px solid rgba(30, 33, 29, 0.08)', paddingTop: '18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Link href="/" style={{ fontFamily: "'Urbanist', sans-serif", fontSize: '11px', color: '#6f786d', textDecoration: 'none', fontWeight: 500 }}>
               ← Return to Ace Spaces
             </Link>
-            <span style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#606860' }}>
+            <span style={{ fontFamily: "'Urbanist', sans-serif", fontSize: '11px', color: '#9ca59b' }}>
               v2.4 Production
             </span>
           </div>
@@ -1560,11 +1569,11 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
   // Render Full Admin Console
   // -------------------------------------------------------------
   return (
-    <div style={{
+    <div className="admin-console-root" style={{
       minHeight: '100vh',
-      background: '#f5f4ee',
-      color: '#1a1d19',
-      fontFamily: 'system-ui, -apple-system, sans-serif',
+      background: '#faf9f5',
+      color: '#1e211d',
+      fontFamily: "'Urbanist', -apple-system, sans-serif",
       display: 'flex',
       flexDirection: 'column',
     }}>
@@ -1665,33 +1674,38 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
           <button
             onClick={handleResetDefaults}
             style={{
-              padding: '7px 14px',
+              padding: '8px 16px',
               background: 'transparent',
-              border: '1px solid rgba(255,255,255,0.25)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              borderRadius: '8px',
               color: '#c2cdc2',
               fontFamily: 'Urbanist, sans-serif',
-              fontSize: '10px',
+              fontSize: '11px',
               textTransform: 'uppercase',
-              letterSpacing: '0.08em',
+              letterSpacing: '0.06em',
               cursor: 'pointer',
+              transition: 'all 0.18s ease',
             }}
           >
-            Reset Factory Defaults
+            Reset Defaults
           </button>
           <button
             onClick={handleSaveAll}
             disabled={isContextLoading}
             style={{
-              padding: '8px 18px',
-              background: '#e9e8e2',
+              padding: '9px 20px',
+              background: '#ffffff',
               border: 'none',
-              color: '#1a1d19',
+              borderRadius: '8px',
+              color: '#1e211d',
               fontFamily: 'Urbanist, sans-serif',
               fontSize: '11px',
-              fontWeight: '600',
+              fontWeight: 600,
               textTransform: 'uppercase',
-              letterSpacing: '0.1em',
+              letterSpacing: '0.08em',
               cursor: isContextLoading ? 'wait' : 'pointer',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.18)',
+              transition: 'all 0.18s ease',
             }}
           >
             {isContextLoading ? 'Saving...' : 'Save All Changes ✓'}
@@ -1700,14 +1714,18 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             href="/"
             target="_blank"
             style={{
-              padding: '7px 14px',
-              background: '#2a3029',
+              padding: '8px 16px',
+              background: '#2c302a',
               border: '1px solid rgba(255,255,255,0.15)',
+              borderRadius: '8px',
               color: '#fff',
               fontFamily: 'Urbanist, sans-serif',
-              fontSize: '10px',
+              fontSize: '11px',
               textDecoration: 'none',
-              letterSpacing: '0.08em',
+              letterSpacing: '0.06em',
+              display: 'inline-flex',
+              alignItems: 'center',
+              transition: 'all 0.18s ease',
             }}
           >
             View Live Site ↗
@@ -2016,10 +2034,12 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
                   onClick={() => setActiveTab(stat.tab as TabKey)}
                   style={{
                     background: '#ffffff',
-                    padding: '20px',
-                    border: '1px solid rgba(0,0,0,0.08)',
+                    padding: '22px 20px',
+                    border: '1px solid rgba(30, 33, 29, 0.08)',
+                    borderRadius: '14px',
+                    boxShadow: '0 2px 8px rgba(30, 33, 29, 0.03)',
                     cursor: 'pointer',
-                    transition: 'all 0.15s ease',
+                    transition: 'all 0.18s ease',
                   }}
                 >
                   <div style={{ fontFamily: 'Urbanist, sans-serif', fontSize: '10px', color: '#788078', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
@@ -2036,7 +2056,7 @@ ${order.items.map((it, idx) => `[ ] ${idx + 1}. ${it.name} | Finish: ${it.finish
             </div>
 
             {/* Direct WhatsApp Studio Configuration Card */}
-            <div style={{ background: '#ffffff', padding: '24px 28px', border: '1px solid rgba(0,0,0,0.08)', marginBottom: '24px', borderRadius: '2px' }}>
+            <div style={{ background: '#ffffff', padding: '24px 28px', border: '1px solid rgba(30, 33, 29, 0.08)', marginBottom: '24px', borderRadius: '14px', boxShadow: '0 2px 8px rgba(30, 33, 29, 0.03)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>

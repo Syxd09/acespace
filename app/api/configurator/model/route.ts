@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSavedConfigurationById } from '@/data/configuratorStore';
-import { ProductConfiguration, CONFIGURATOR_PRESETS } from '@/data/configuratorData';
+import { ProductConfiguration, CONFIGURATOR_PRESETS, CONFIGURATOR_MATERIALS, DRAIN_OPTIONS } from '@/data/configuratorData';
 import { buildProductMesh } from '@/lib/configurator/meshBuilder';
 import { exportGeometryToGlb } from '@/lib/configurator/glbExporter';
-
 import { decodeUrlParamsToConfig } from '@/lib/configurator/urlParams';
+import { BasinConfiguration, DEFAULT_BASIN_CONFIG, STANDALONE_BASIN_MODELS } from '@/data/basinConfiguratorData';
+import { buildStandaloneBasinMesh } from '@/lib/configurator/basinMeshBuilder';
 
 export const dynamic = 'force-dynamic';
 
@@ -12,6 +13,7 @@ const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Cross-Origin-Resource-Policy': 'cross-origin',
 };
 
 export async function OPTIONS() {
@@ -22,13 +24,67 @@ export async function OPTIONS() {
 }
 
 /**
- * GET /api/configurator/model?id=cfg_...
+ * GET /api/configurator/model
  * Generates and serves a real binary glTF 2.0 (.glb) architectural model
  * formatted with 1:1 metric scale for Google Scene Viewer and Apple Quick Look AR.
  */
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
+    const type = searchParams.get('type');
+
+    // Case 1: Basin request
+    if (type === 'basin') {
+      const modelId = searchParams.get('model') || searchParams.get('m') || DEFAULT_BASIN_CONFIG.modelId;
+      const matSlug = searchParams.get('material') || searchParams.get('mat') || DEFAULT_BASIN_CONFIG.materialSlug;
+      const drainId = searchParams.get('drain') || searchParams.get('d') || DEFAULT_BASIN_CONFIG.drainTypeId;
+
+      const foundModel = STANDALONE_BASIN_MODELS.find(m => m.id === modelId) || STANDALONE_BASIN_MODELS[0];
+      const foundMat = CONFIGURATOR_MATERIALS.find(m => m.slug === matSlug) || CONFIGURATOR_MATERIALS[0];
+      const foundDrain = DRAIN_OPTIONS.find(d => d.id === drainId) || DRAIN_OPTIONS[0];
+
+      const width = parseInt(searchParams.get('w') || '', 10) || foundModel.width || DEFAULT_BASIN_CONFIG.width;
+      const depth = parseInt(searchParams.get('d') || '', 10) || foundModel.depth || DEFAULT_BASIN_CONFIG.depth;
+      const height = parseInt(searchParams.get('h') || '', 10) || foundModel.height || DEFAULT_BASIN_CONFIG.height;
+
+      const basinConfig: BasinConfiguration = {
+        modelId: foundModel.id,
+        modelName: foundModel.name,
+        modelCode: foundModel.code,
+        shape: (foundModel.category === 'circular' ? 'round' : foundModel.category === 'oval' ? 'oval' : 'rectangular') as any,
+        width,
+        depth,
+        height,
+        covedRadius: 12,
+        materialSlug: foundMat.slug,
+        materialName: foundMat.name,
+        materialHex: foundMat.hexColor,
+        materialFinish: foundMat.finish,
+        drainTypeId: foundDrain.id,
+        drainName: foundDrain.name,
+        projectName: 'AR Spatial Preview',
+        clientStudio: 'Ace Spaces Specifier',
+        locationCity: 'Bengaluru',
+        specialInstructions: '',
+        quantity: 1,
+      };
+
+      const mesh = buildStandaloneBasinMesh(basinConfig);
+      const glbUint8Array = exportGeometryToGlb(mesh);
+      const filename = `acespaces-basin-${basinConfig.modelCode}.glb`;
+
+      return new NextResponse(Buffer.from(glbUint8Array), {
+        status: 200,
+        headers: {
+          ...corsHeaders,
+          'Content-Type': 'model/gltf-binary',
+          'Content-Disposition': `inline; filename="${filename}"`,
+          'Cache-Control': 'public, max-age=3600, s-maxage=86400',
+        },
+      });
+    }
+
+    // Case 2: Vanity / Parametric product
     const id = searchParams.get('id');
     const presetId = searchParams.get('presetId') || searchParams.get('p');
 
